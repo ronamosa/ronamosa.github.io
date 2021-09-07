@@ -14,7 +14,7 @@ That was my thought for the week. I scribbled down some ideas that were coming t
 
 <!--truncate-->
 
-I've been reading a book a week starting about 3 weeks ago in an effort to read more- you can check out what I've finished reading and what I'm currently reading over in my [books](/books/) section.
+I've been reading a book a week starting about 3 weeks ago in an effort to read more- you can check out what I've finished reading and what I'm currently reading over in my [books](/docs/books/reading-list) section.
 
 I always say I want to read more, and I buy some interesting titles, but they just end up sitting in my book shelf looking brand new for ages. So I set myself a goal of reading a book a week (currently stuck on the textbook I'm reading taking a bit longer).
 

@@ -11,7 +11,7 @@ tags: [career]
 
 But I knew I was the least experienced and had the smaller skill-set in a team of battle hardened and really skilled Engineers.
 
-I.T. attracts some very smart people and I talk about this in my [last post](/work/Egos-Expectations-and-Bad-Workplaces/). And sure that doesn't always equal good things. But if you have been fortunate, like me, to end up in a team surrounded by knowledgeable and helpful Engineers (notice I didn't say "friendly"), you learn.
+I.T. attracts some very smart people and I talk about this in my last post. And sure that doesn't always equal good things. But if you have been fortunate, like me, to end up in a team surrounded by knowledgeable and helpful Engineers (notice I didn't say "friendly"), you learn.
 
 A lot.
 

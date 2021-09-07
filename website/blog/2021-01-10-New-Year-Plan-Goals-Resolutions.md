@@ -55,7 +55,7 @@ During the lock-down aka 2020, I wrote about my wanting to [read and write more]
 
 I'm determined to read more this year so I've made a reading list (i.e. books I own that I haven't read yet), watched a few YouTube videos about how other people approached a book a week ( e.g. dividing the total book pages by days = daily target, read in the morning etc. ) and am committing to that reading schedule.
 
-I've even added a new section to my site where I will post my book notes, reviews etc. (coming soon under ['Books'](/books/)).
+I've even added a new section to my site where I will post my book notes, reviews etc. (coming soon under ['Books'](/docs/books/reading-list)).
 
 ## Blog Post 1 x week
 

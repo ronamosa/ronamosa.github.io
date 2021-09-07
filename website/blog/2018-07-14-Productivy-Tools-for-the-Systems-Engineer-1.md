@@ -1,5 +1,5 @@
 ---
-title: "Productivity Tools & Tips for the Professional DevOps Engineer - Part 2."
+title: "Productivity Tools & Tips for the Professional DevOps Engineer - Part 1."
 author: Ron Amosa
 author_title: Platform Security Engineer @ Salesforce U.S.
 author_url: https://github.com/ronamosa

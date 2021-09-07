@@ -120,4 +120,4 @@ And all is right with the world....
 
 But this makes me remember all the headlines I had seen about moving to the cloud, companys underestimating the need to design and stay on top of their AWS resources.
 
-This isn't easy. And certainly shouldn't be underestimated. And also inspired me to write another blog post about it **[here](/cloud/AWS-Cloud-Cost-Management/).**
+This isn't easy. And certainly shouldn't be underestimated. And also inspired me to write another blog post about it [here](2018-04-02-AWS-Cloud-Cost-Management.md)

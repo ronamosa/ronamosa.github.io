@@ -383,7 +383,7 @@ have a browse to `https://54.89.22.195:8080` and see the output of the 'index.ht
 
 wow, so this took me a while sorting out a few things as I tried to go through this so we'll leave it there today.
 
-In [Part II](/documentation/2018-04-07-Terraform-from-the-Beginning-part2/) II we'll deploy a cluster of web servers using Auto Scaling Groups, and fang an Elastic Load Balancer in there as well!
+In [Part II](terraform-aws-2) we'll deploy a cluster of web servers using Auto Scaling Groups, and fang an Elastic Load Balancer in there as well!
 
 ## References
 

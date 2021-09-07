@@ -7,7 +7,7 @@ author_image_url: https://github.com/ronamosa.png
 tags: [career, devops, tools]
 ---
 
-In [Part 1](/technology/Productivy-Tools-for-the-Systems-Engineer-1/), we looked at the apps and other tools that I come across and use not only in my day to day work as a contractor, but also in my personal projects as well.
+In Part 1, we looked at the apps and other tools that I come across and use not only in my day to day work as a contractor, but also in my personal projects as well.
 
 I wanted to list and give a brief overview and explanation of why I use the things I do, for the things I do ;)
 
