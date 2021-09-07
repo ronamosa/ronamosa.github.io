@@ -9,6 +9,8 @@ npm install --save @fortawesome/free-brands-svg-icons
 npm install --save @docusaurus/theme-live-codeblock
 ```
 
+This cli is "nice to have" but not required for this project.
+
 `gh` cli install
 
 ```cosole
@@ -31,23 +33,53 @@ This command starts a local development server and opens up a browser window. Mo
 ## Build
 
 ```console
-npm build
+npm run build
 ```
 
-This command generates static content into the `build` directory and can be served using any static contents hosting service.
+debug and fix broken things until build is successful.
 
 ## Deployment
 
-```console
-GIT_USER=<Your GitHub username> USE_SSH=true npm deploy
+GitHub Actions via `/.github/workflows/deploy-docusaurus.yml`
+
+```yaml
+name: deploy-docusaurus
+
+on:
+  push:
+    branches: [main]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - name: Check out repo
+        uses: actions/checkout@v2
+      # Node is required for npm
+      - name: Set up Node
+        uses: actions/setup-node@v2
+        with:
+          node-version: '12'
+      # Install and build Docusaurus website
+      - name: Build Docusaurus website
+        run: |
+          cd website
+          npm install 
+          npm run build
+      - name: Deploy to GitHub Pages
+        if: success()
+        uses: crazy-max/ghaction-github-pages@v2
+        with:
+          target_branch: gh-pages
+          build_dir: website/build
 ```
 
-If you are using GitHub pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.
+go to repo's `Settings` page, go down to `Pages` set the `Source` branch to `gh-pages` and the root folder to `/(root)`.
 
-## GitHub Actions
+Click save. When you push anything to `main` branch, your workflow will kick off, install deps, build site, then deploy to the `gh-pages` branch and you see it at `https://ronamosa.github.io/`
 
-install gh-pages `npm install gh-pages --save-dev`
-
-- create deploy keys: `ssh-keygen`
-- copy public key `*.pub` to deploy keys under you repo
-- create GitHub repo secret: 
