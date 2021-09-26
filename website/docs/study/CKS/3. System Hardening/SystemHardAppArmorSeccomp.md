@@ -185,7 +185,7 @@ int main() {
 
 ### Seccomp on Docker
 
-save a seccomp profile somewhere e.g. [seccomp-profile](cks-course-environment/course-content/system-hardening/kernel-hardening-tools/seccomp/profile-docker-nginx.json)
+save a seccomp profile somewhere
 
 save to `docker.json` and then create a container using that profile
 
