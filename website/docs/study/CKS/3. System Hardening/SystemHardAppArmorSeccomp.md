@@ -96,7 +96,7 @@ The document has moved
 
 ### AA in docker
 
-look at [profile-docker-nginx](../CKS/cks-course-environment/course-content/system-hardening/kernel-hardening-tools/apparmor/profile-docker-nginx)
+look at `profile-docker-nginx` in course material.
 
 copy our profile to `/etc/apparmor.d/docker-nginx`
 now load it using `apparmor_parser /etc/apparmor.d/docker-nginx`

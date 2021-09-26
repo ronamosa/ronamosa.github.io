@@ -141,7 +141,7 @@ go through each advisory, make changes, re-run kubesec.
 
 ### OPA conftest
 
-see [cks-course-folder](../cks-course-environment/course-content/supply-chain-security/static-analysis/conftest)
+see `conftest` in course materials
 
 quick look at these policies `base.rego` for rules on our base images
 
