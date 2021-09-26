@@ -96,7 +96,7 @@ module.exports = {
       copyright: `Last updated on ${new Date().toDateString()}`,
     },
     prism: {
-      additionalLanguages: ['ruby', 'hcl', 'docker'],
+      additionalLanguages: ['ruby', 'hcl', 'docker', 'yaml'],
       theme: require('prism-react-renderer/themes/nightOwl')
     }
   },

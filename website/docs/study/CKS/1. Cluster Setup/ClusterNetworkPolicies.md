@@ -45,12 +45,12 @@ single network policy
 ```yaml
 kind: NetworkPolicy
 metadata:
-  name: example
-  namespace: default
+  name: 'example'
+  namespace: 'default'
 spec:
   podSelector:
     matchLabels:
-      id: frontend
+      id: 'frontend'
     policyTypes:
     - Egress
 ```
@@ -61,19 +61,17 @@ this policy right now
 - lives in namespace `default`
 - denies ALL outgoing traffic (it has indicated Egress so now its the all-controlling egress ruler)
 
-carrying on
-
 ### Multi Network Policy
 
 ```yaml
 kind: NetworkPolicy
 metadata:
-  name: example
-  namespace: default
+  name: 'example'
+  namespace: 'default' # <-- policy applies to this namespace
 spec:
   podSelector:
     matchLabels:
-      id: frontend # <-- applied to these pods
+      id: 'frontend' # <-- applied to these pods as the SUBJECT/TARGET
     policyTypes:
     - Egress
     egress:
@@ -82,16 +80,16 @@ spec:
     - to: # to AND ports i.e. id=ns1 AND port=80
       - namespaceSelector:
           matchLabels:
-            id: ns1
+            id: 'ns1'
       ports:
-      - protoco: TCP
+      - protoco: 'TCP'
         port: 80
 
     # RULE 2.
     - to:
       - podSelector:
           matchLabels:
-            id: backend # <-- applies to these pods in SAME namespace where the policy lives, unless otherwise specified with a `namespaceSelector` label here.
+            id: 'backend' # <-- applies to these pods in SAME namespace where the policy lives, unless otherwise specified with a `namespaceSelector` label here.
 ```
 
 Rule 1 and Rule 1 are OR'd.
@@ -105,8 +103,6 @@ multiple network policies - what the difference?
 
 - is good practice.
 - required for CKS.
-
-scenario (see [create course k8s cluster](2.%20Create%20Course%20K8s%20Cluster.md) to get k8s running)
 
 ```bash
 root@cks-master:~# k run frontend --image=nginx
@@ -210,8 +206,8 @@ create our default deny policy
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
-  name: default-deny
-  namespace: default
+  name: 'default-deny'
+  namespace: 'default'
 spec:
   podSelector: {}
   policyTypes:
@@ -252,19 +248,19 @@ new policy `frontend.yaml`
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
-  name: frontend
-  namespace: default
+  name: 'frontend'
+  namespace: 'default'
 spec:
   podSelector:
     matchLabels:
-      run: frontend
+      run: 'frontend'
   policyTypes:
   - Egress
   egress:
   - to:
     - podSelector:
         matchLabels:
-          run: backend
+          run: 'backend'
 ```
 
 create
@@ -294,19 +290,19 @@ create `backend.yaml`
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
-  name: backend 
-  namespace: default
+  name: 'backend' 
+  namespace: 'default'
 spec:
   podSelector:
     matchLabels:
-      run: backend 
+      run: 'backend' 
   policyTypes:
   - Ingress
   ingress:
   - from:
     - podSelector:
         matchLabels:
-          run: frontend
+          run: 'frontend'
 ```
 
 create, test
@@ -377,8 +373,8 @@ let's update our `default-deny` policy to allow DNS
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
-  name: default-deny
-  namespace: default
+  name: 'default-deny'
+  namespace: 'default'
 spec:
   podSelector: {}
   policyTypes:
@@ -388,9 +384,9 @@ spec:
   - to:
     ports:
       - port: 53
-        protocol: TCP
+        protocol: 'TCP'
       - port: 53
-        protocol: UDP
+        protocol: 'UDP'
 ```
 
 apply and test
@@ -476,12 +472,12 @@ new `backend.yaml`
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
-  name: backend 
-  namespace: default
+  name: 'backend' 
+  namespace: 'default'
 spec:
   podSelector:
     matchLabels:
-      run: backend 
+      run: 'backend' 
   policyTypes:
   - Ingress
   - Egress
@@ -489,12 +485,12 @@ spec:
   - from:
     - podSelector:
         matchLabels:
-          run: frontend
+          run: 'frontend'
   egress:
   - to:
     - namespaceSelector:
         matchLabels:
-          ns: cassandra
+          ns: 'cassandra'
 ```
 
 create/apply
@@ -548,8 +544,8 @@ new `cassandra-deny.yaml`
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
-  name: cassandra-deny
-  namespace: cassandra
+  name: 'cassandra-deny'
+  namespace: 'cassandra'
 spec:
   podSelector: {}
   policyTypes:
@@ -559,9 +555,9 @@ spec:
   - to:
     ports:
       - port: 53
-        protocol: TCP
+        protocol: 'TCP'
       - port: 53
-        protocol: UDP
+        protocol: 'UDP'
 ```
 
 doesn't work! needs explicit allow `Ingress` into cassandra.
@@ -572,19 +568,19 @@ cp `backend.yaml` to `cassandra.yaml`
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
-  name: cassandra
-  namespace: cassandra
+  name: 'cassandra'
+  namespace: 'cassandra'
 spec:
   podSelector:
     matchLabels:
-      run: cassandra
+      run: 'cassandra'
   policyTypes:
   - Ingress
   ingress:
   - from:
     - namespaceSelector:
         matchLabels:
-          ns: default
+          ns: 'default'
 ```
 
 still wont work because we need to add the `ns: default` label to the default namespace: `kubectl edit ns default`
@@ -623,9 +619,10 @@ Commercial support is available at
 100   612  100   612    0     0   597k      0 --:--:-- --:--:-- --:--:--  597k
 ```
 
-## Summary
-
 frontend (egress) --> (ingress) backend : based on pod labels
+
 backend (egress) --> (ingress) cassandra : based on namespace labels
 
 default deny policies for both namespaces
+
+## Summary

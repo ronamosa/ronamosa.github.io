@@ -1,5 +1,5 @@
 ---
-title: GUI Elements
+title: Dashboard
 ---
 
 What do we know about the k8s Dashboard?
@@ -7,13 +7,13 @@ What do we know about the k8s Dashboard?
 - expose externally if needed only
 - can also use `kubectl port-forward`
 
-### kubectl proxy
+## kubectl proxy
 
 - creates proxy server between localhost and k8s api server
 - uses kubeconfig
 - allow access to api locally over http no auth
 
-http://localhost:8001/ --> kubectl proxy --> kubectl (https) --> k8s api
+[http://localhost:8001/](http://localhost:8001/) --> kubectl proxy --> kubectl (https) --> k8s api
 
 ### kubectl port-forward
 
@@ -23,7 +23,7 @@ http://localhost:8001/ --> kubectl proxy --> kubectl (https) --> k8s api
 
 so now localpost port 1234 is fowarded to dashboard on 10.1.2.3 port 443.
 
-### Ingress
+## Ingress
 
 can use it to expose dashboard to the internet if you want, but PLEASE USE SOME AUTH! e.g. can use nginx-ingress, but implement auth on it.
 
@@ -65,7 +65,7 @@ service/dashboard-metrics-scraper   ClusterIP   10.98.132.195   <none>        80
 service/kubernetes-dashboard        ClusterIP   10.105.25.220   <none>        443/TCP    52s
 ```
 
-### External Access
+## External Access
 
 bad example - available externally over HTTP
 
