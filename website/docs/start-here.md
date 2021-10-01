@@ -10,18 +10,30 @@ That means "hello" in Samoan.
 
 This is my make-shift [Digital Garden](https://joelhooks.com/digital-garden) 🌱 where I try to write regularly, learn in public and share the thought-process.
 
-## Notes
+## 🗒 Notes
 
-I will mostly focus on various technologies I'm interested in such as cloud, kubernetes, containers, devops and security. The sidebar menu and documents will grow as I continue to add more notes to the garden.
+My notes will be on random, ad-hoc things I'm working on at any one time, but will mostly involve cloud, kubernetes, devops, automation, security.
 
-I will also make notes from books I'm reading on my [reading list](books/reading-list) 📚.
+The sidebar menu and documents will grow as I continue to add more notes to the garden.
 
-### Top of mind notes
+## Currently...
 
-What I'm currently thinking about:
+What you can find in my garden:
 
-* N/A
+### 📚 [Books](books/reading-list.md)
 
-Here is what I'm currently reading:
+My reading list, what I'm currently reading and notes on books I've read.
 
-* [Sapiens](books/sapiens) by Yuval Noah Harari
+### 📗 Study
+
+Study and exam notes for certifications, courses.
+
+I sat and passed my CKS in 09-2021. All my study and exam notes are [here](study/CKS/README.md).
+
+### 💻 [Technology](technology/index.md)
+
+Where all the technology notes live...
+
+### 🗃 Archive
+
+Old blog posts from 2016-2020.
