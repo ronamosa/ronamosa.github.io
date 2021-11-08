@@ -36,7 +36,7 @@ const internetProfiles = {
 module.exports = {
   title: 'Ron Amosa',
   tagline: 'Pasifika Excellence and Leadership in Cloud, DevOps and Security Engineering.',
-  url: 'https://ronamosa.github.io',
+  url: 'https://ronamosa.io',
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
@@ -52,7 +52,7 @@ module.exports = {
     navbar: {
       title: 'Ron Amosa',
       logo: {
-        alt: 'ronamosa.github.io',
+        alt: 'ronamosa.io',
         src: 'img/logo.svg',
       },
       items: [
@@ -66,7 +66,7 @@ module.exports = {
         { to: "projects/", label: "Projects", position: "right" },
         { to: "about/", label: "About", position: "right" },
         {
-          href: "https://ronamosa.github.io/pdf/resume.pdf",
+          href: "https://ronamosa.io/pdf/resume.pdf",
           label: "Resume",
           position: "right",
         },
@@ -109,12 +109,12 @@ module.exports = {
           disableVersioning: false,
           editCurrentVersion: false,          
           editUrl:
-            'https://github.com/ronamosa/edit/main/docs/',
+            'https://github.com/ronamosa/ronamosa.github.io/edit/main/docs/',
         },
         blog: {
           showReadingTime: true,
           editUrl:
-            'https://github.com/ronamosa/edit/main/blog/',
+            'https://github.com/ronamosa/ronamosa.github.io/edit/main/blog/',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
