@@ -7,7 +7,7 @@ author_image_url: https://github.com/ronamosa.png
 tags: [personal]
 ---
 
-I started a [Twitch](https://www.twitch.tv/rxnamxsa) stream today.
+I started a [Twitch](https://www.twitch.tv/rxhackk) stream today.
 
 > Why?
 
