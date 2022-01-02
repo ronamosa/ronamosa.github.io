@@ -15,10 +15,13 @@ I've been giving this a bit of thought- the "why" in "why do we do the things we
 
 So, instead of new resolutions, I'm going to look at the whys.
 
-Regular blog posts. Why? To improve my writing and thought processes.
-Twitch stream. Why? To foster the "learn in public" philosophy and grow a community of like-minded learners.
-75 Hard. Why? To develop the mental resilience, and kickstart and continue good, healthy daily habits.
-Reading more books. Why? honestly, to know and understand more things.
+* Regular blog posts. Why? To improve my writing and thought processes.
+* Twitch stream. Why? To foster the "learn in public" philosophy and grow a community of like-minded learners.
+* 75 Hard. Why? To develop the mental resilience, and kickstart and continue good, healthy daily habits.
+* Reading more books. Why? honestly, to know and understand more things.
+* TryHackme/HackTheBox/OSCP. Why? To get really good level of red teaming skills.
+* Niutech (Pasifika Tech Club). Why? To expose more Pasifika Community to IT and opportunities in the IT industry,ry, in and for their best interests and no-one elses.
+
 
 It might work, it might not. There's only one way to find out.
 
