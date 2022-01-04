@@ -17,7 +17,7 @@ those that question power, what's going on, based on values- and are then demoni
 
 the values we are talking about e.g. _"moral responsibility as decent human beings, in a position to use their privilege and status to advance the causes of freedom, justice, mercy, peace, and other such sentimental concerns"_
 
-versus the shills, and false prophets of the powers/state, providing cover for any/all misdeeds under quise of "intellectuals":
+versus the shills, and false prophets of the powers/state, providing cover for any/all misdeeds under cover of being "intellectuals":
 
 - _"Like the New Republic progressives during the First World War, they extend the concept of “intellectual” beyond Brunetière to include the “technocratic and policy-oriented intellectuals,” responsible and serious thinkers who devote themselves to the constructive work of shaping policy within established institutions, and to ensuring that indoctrination of the young proceeds on course."_ 
 
