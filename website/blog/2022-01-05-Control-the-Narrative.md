@@ -21,6 +21,8 @@ decided that this is something that I do to myself in that I allow it to
 happen. I have control over opening up twitter, reading an instagram
 post or newspaper article.
 
+<!--truncate-->
+
 I don't have to do any of these things. That I've conditioned myself,
 absent-mindedly or whatever, over the years to repeat these things says
 more about my being present or deliberate about how I conduct my life or
