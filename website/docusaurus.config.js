@@ -43,6 +43,7 @@ module.exports = {
   favicon: 'img/favicon.ico',
   organizationName: 'ronamosa', // Usually your GitHub org/user name.
   projectName: 'ronamosa.github.io', // Usually your repo name.
+
   themeConfig: {
     colorMode: {
       defaultMode: "dark",
@@ -100,6 +101,7 @@ module.exports = {
       theme: require('prism-react-renderer/themes/nightOwl')
     }
   },
+
   presets: [
     [
       '@docusaurus/preset-classic',
@@ -122,4 +124,15 @@ module.exports = {
       },
     ],
   ],
+
+  plugins: [
+    [
+      '@docusaurus/plugin-google-gtag',
+      {
+        trackingID: 'G-DMRNTVGLRC',
+        anonymizeIP: true,
+      },
+    ],
+  ],
+
 };
