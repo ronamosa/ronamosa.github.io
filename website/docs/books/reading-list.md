@@ -6,11 +6,16 @@ sidebar_position: 0
 
 ## Currently Reading
 
-"Sapiens: A Brief History of Humankind" by Yuval Noah Harari
+:::info 📑
 
-## Want to read
+1. "Sapiens: A Brief History of Humankind" by Yuval Noah Harari.
+2. "Who Rules the World?" by Noam Chomsky.
 
-books in my current short-list to read next
+:::
+
+## Bookshelf
+
+Books in my current short-list to read next
 
 |Title|Author|
 |:------|:-----------|
@@ -26,9 +31,9 @@ books in my current short-list to read next
 |Kubernetes Patterns: Reusable Elements for Designing Cloud-Native Applications| Bilgin Ibryam & Roland Hub|
 |Terraform Up & Running: Writing Infrastructure as Code|Yevgeniy Brikman|
 
-## Read
+## Finished Reading 
 
-books I've finished reading and ready for review, write-up
+Books I've finished reading and ready for review, write-up
 
 |Title|Author|
 |:------|:-----------|
