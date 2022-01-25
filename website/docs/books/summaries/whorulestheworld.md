@@ -5,9 +5,19 @@ tags:
   - nonfiction
 ---
 
+:::info
+
+My notes and thoughts on "Who Rules the World?" by Noam Chomsky.
+
+:::
+
 ![who rules the world cover](https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1506307262l/32489954._SY475_.jpg)
 
-## Chapter 1 - Responsiblity of intellectuals
+## Responsiblity of intellectuals
+
+Chapter 1 is looking at the role of "intellectuals" in the shaping and perpetuation of the U.S. narrative regarding their activities/crimes abroad, and even their lens through which Americans see themselves.
+
+_"intellectuals are typically privileged; privilege yields opportunity, and opportunity confers responsibilities. An individual then has choices."_ - Noam Chomsky.
 
 two types of "intellectuals"
 
@@ -41,7 +51,7 @@ Other important events, dates in history:
 - Regan (cos Mandela) supported apartheid regime, increased trade with SA violating congressional sanctions, supported SA's depredations in neighbouring countries, UN study says 1.5million deaths.
 - See also: Central America, Middle East.
 
-### US wars in Latin America
+### U.S. Wars in Latin America
 
 1960 to 1990.
 
@@ -57,7 +67,7 @@ U.S. supports "the methods of Heinrich Himller's extermination squads".
 
 1962 U.S. special forces mission to Colombia to take out "communist proponents"- the definition of which applied to the president of the Colombian Permenent Committee for Human Rights (Alfredo Vazquez Carrizosa). Quoting/Paraphrasing Carrizosa- Kennedy took great pains to change regular army into death squads, to make the military the "masters of the game" with the right to combat the "internal enemy" under the Brazilian, Argentine, Uruguayan and Colombian doctrines- i.e. the right to kill social workers, trade unionists, anyone who doesn't support the establishment, human rights activists.
 
-### U.S. war criminals
+### U.S. War Criminals
 
 Obama killed unarmed, no protection, Bin Laden in May 2011, where he could have apprehended him, and dumps him in the Sea. Murdered, body dumped, no autopsy. No trial. Even the Nazi war criminals had a trial.
 
@@ -65,7 +75,7 @@ Name of the Bin Laden murder operation? Operation Geronimo- name caused outrage 
 
 The point being, the intellectuals or people who wrote books, recorded history, barely made mention of any of these objective facts. 
 
-### 9/11
+### U.S. 9/11 vs the Latino 9/11
 
 some interesting points
 
@@ -77,6 +87,4 @@ Nixons goal for installing Pinochet? To dissuade "foreigners [who] are out to sc
 
 American's don't care about this first 9/11, why would they? Thank the "responsible intellectuals" for guarding this history well with their arguments and writings.
 
-### Summary 
 
-_"intellectuals are typically privileged; privilege yields opportunity, and opportunity confers responsibilities. An individual then has choices."_ - Noam Chomsky.

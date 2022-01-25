@@ -30,7 +30,7 @@ Study and exam notes for certifications, courses.
 
 I sat and passed my CKS in 09-2021. All my study and exam notes are [here](study/CKS/README.md).
 
-### 💻 [Technology](technology/index.md)
+### 💻 [Technology](technology/)
 
 Where all the technology notes live...
 
