@@ -21,14 +21,16 @@
     "@fortawesome/free-brands-svg-icons": "^5.15.4",
     "@fortawesome/free-regular-svg-icons": "^5.15.4",
     "@fortawesome/free-solid-svg-icons": "^5.15.4",
-    "@fortawesome/react-fontawesome": "^0.1.15",
-    "@mdx-js/react": "^1.6.21",
-    "@svgr/webpack": "^5.5.0",
+    "@fortawesome/react-fontawesome": "^0.1.16",
+    "@mdx-js/react": "^1.6.22",
+    "@svgr/webpack": "^6.2.0",
     "clsx": "^1.1.1",
     "file-loader": "^6.2.0",
+    "follow-redirects": ">=1.14.7",
     "prism-react-renderer": "^1.2.1",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "shelljs": ">=0.8.5",
     "url-loader": "^4.1.1"
   },
   "browserslist": {
@@ -44,6 +46,7 @@
     ]
   },
   "devDependencies": {
-    "gh-pages": "^3.2.3"
+    "gh-pages": "^3.2.3",
+    "trim": ">=0.0.3"
   }
 }
