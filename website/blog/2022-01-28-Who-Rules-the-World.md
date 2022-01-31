@@ -13,6 +13,8 @@ Chock-full of deep insights backed up with pages and pages of references, citati
 
 It's a lot to take in. Most of it leaving you feeling helpless in the face of it. Why helpless? Mainly because what, at my level of influence and effect, can I do to change this? 
 
+<!--truncate-->
+
 Yes sure, "every vote counts" and "the journey of a thousand miles begins with the first step"- we're all too familiar with the cliches that give us a sense of empowerment and effect. But let's be real for a second- sure, cynical maybe, but on the sliding scale between "absolute delusion" and "objectively true"- reading the events and actions of the people and organizations in the book, what can we really do about them? Nothing.
 
 Firstly, they're done. There's no bringing all the dead Palestinian children back, or reversing the terror and deaths in Latin America under the United States. Those things are done and (barely) inscribed in history.
