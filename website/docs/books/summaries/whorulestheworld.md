@@ -2,7 +2,11 @@
 title: Who Rules the World?
 tags:
   - Noam Chomsky
-  - nonfiction
+  - Non-Fiction
+  - War
+  - America
+  - Imperialism
+  - Israel
 ---
 
 :::info
@@ -13,7 +17,7 @@ My notes and thoughts on "Who Rules the World?" by Noam Chomsky.
 
 ![who rules the world cover](https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1506307262l/32489954._SY475_.jpg)
 
-## Responsiblity of intellectuals
+## Responsibility of intellectuals
 
 Chapter 1 is looking at the role of "intellectuals" in the shaping and perpetuation of the U.S. narrative regarding their activities/crimes abroad, and even their lens through which Americans see themselves.
 
