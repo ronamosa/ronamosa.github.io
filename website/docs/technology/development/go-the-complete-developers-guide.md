@@ -190,3 +190,35 @@ tie methods to the new type deck
 receivers = can tack onto the type deck e.g. `cards.print()`
 no receiver for methods like `.deal()` because the "root" instance of the deck (??)
 
+## Assignment 1
+
+write a go program that iterates over a range of numbers and evaluates even and odd and prints a statement to each.
+
+my solution:
+
+```golang
+package main
+
+import "fmt"
+
+func main() {
+    numbers := []int{1,2,3,4,5,6,7,8,9,10}
+
+    for _, num := range numbers {
+        if num % 2 == 0 {
+            fmt.Println(num, " is even.")
+        } else {
+            fmt.Println(num, " is odd.")
+          }
+        }
+      }
+  }
+```
+
+## Data Structures
+
+## structs 
+
+aka data structures are a "collection of properties that are related together".
+
+we first define a "structure" e.g. of a person, then we create instances of people.
