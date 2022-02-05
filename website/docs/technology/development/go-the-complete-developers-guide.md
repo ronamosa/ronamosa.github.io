@@ -148,7 +148,7 @@ trying to save to file, `import io/ioutil` we need to transfer our strings to a 
 
 a way to do a "type conversion":
 
-```golang
+```go
 greeting = "Hi there!"
 fmt.Println([]byte(greeting)) // changes the greeting string into a byte slice.
 ```
@@ -173,7 +173,7 @@ use `io/ioutil` functions `ReadFile` to do the reverse and open a file from HDD,
 
 the `err` convention
 
-```golang
+```go
 ...
 if err != nil {
     fmt.Println("Error:", err)
@@ -196,7 +196,7 @@ write a go program that iterates over a range of numbers and evaluates even and 
 
 my solution:
 
-```golang
+```go
 package main
 
 import "fmt"
@@ -222,3 +222,215 @@ func main() {
 aka data structures are a "collection of properties that are related together".
 
 we first define a "structure" e.g. of a person, then we create instances of people.
+
+e.g.
+
+```go
+type person struct {
+    firstName string
+    lastName string
+}
+```
+few different ways to construct `struct`
+
+1. `alex := person{firstName: "Alex", lastName: "Anderson"}`
+2. `var alex person` then init with `alex.firstName = "Alex"` and `alex.lastName = "Anderson"`
+3. `var alex person` then `fmt.Printf("%+v", alex)` with `%+v` printing out field names and values.
+
+### updating struct values
+
+if you don't init the vars with values, if string they get assigned `""` empty string value.
+if bool or int, they get `0`.
+
+so if you `fmt.Println(alex)` with no value assigned, you get `{ }` printed out i.e. "empty strings"
+
+using `fmt.Printf()` and syntax `fmt.Printf("%+v", alex)` as the 3rd way to show structs.
+
+final form :
+
+```go
+package main
+
+import "fmt"
+
+type person struct {
+  firstName string
+  lastName string
+}
+
+func main() {
+  //alex := person{firstName: "Alex", lastName: "Anderson"} // version 1
+
+  var alex person // version 2
+
+  alex.firstName = "Alex"
+  alex.lastName = "Anderson"
+
+  fmt.Println(alex)
+  fmt.Printf("%+v", alex)
+}
+```
+
+### embedded structs 
+
+embed on struct inside another struct. 
+
+type person 
+type contactInfo
+
+you can use custom types inside our structs.
+
+```go
+package main
+
+import "fmt"
+
+type contactInfo struct {
+  email string
+  zipCode int
+}
+type person struct {
+  firstName string
+  lastName string
+  contact contactInfo
+}
+
+func main() {
+  jim := person{
+    firstName: "Jim",
+    lastName: "Party",
+    contact: contactInfo{
+      email: "jim@gmail.com",
+      zipCode: 94000,
+    },
+  }
+  fmt.Printf("%+v", jim)
+}
+```
+
+another method of declaring our `contactInfo` is to remove the explicit variable name `contact` and just do the following:
+
+```go
+type person struct {
+    firstName string
+    lastName string
+    contactInfo
+  }
+```
+
+and then 
+
+```go
+function main() {
+    jim := person{
+        firstName: "Jim",
+        lastName: "Party",
+        contactInfo: contactInfo{
+            email: "jim@gmail.com",
+            zipCode: 94000,
+        },
+    }
+}
+```
+
+### structs receiver functions
+
+recap receiver functions 
+
+```
+func (letter type) funcName(varName varType) { }
+
+e.g.
+func (p person) updateName(newFirstName string)
+```
+
+### pointers
+
+the reason the updateName function did not work.
+
+Go is a "pass by values" means you work on a COPY of the value of the object/thing, not the original object/thing.
+
+e.g. we contruct the `person{firstName: "Jim"...}` person, but when we pass the value to our function for a name update `func (p person) updateName(newFirstName string)`, it creates a copy `p` of the person Jim:
+
+|RAM|
+|---|---|
+|Address|Value|
+|0000||
+|0001|`person{firstName: "Jim"...}`|
+|0002||
+|0003|`person{firstName: "Jim"...}`|
+
+original Jim object at `0001`, "newFirstName" Jim object (i.e. `p`) at `0003`.
+
+to summarize, when `updateName` is called, go makes a COPY of that struct, and then makes the COPY (`p`) available to the function for processing.
+
+why does go do this?
+
+### Pointer Operations
+
+:::info operators
+
+`&` creates a memory ADDRESS pointer 
+
+`*` creates a memory VALUE pointer
+
+:::
+
+`&jim` = "give me the memory address of the value this variable is pointing to"
+
+so `jimPointer := &jim` is now pointing to the MEMORY ADDRESS of whatever `&jim` evaluated to.
+
+`*pointer` = "give me the value this memory address is pointing to"
+
+so `func(pointerToPerson *person)` says give me the VALUE at the pointer where this `*pointer` memory address is pointing.
+
+understand difference between pointer as a TYPE and as a POINTER:
+
+1. pointer in front of a type e.g. `func (pointerToPerson *person)` means this receiver can only accept a type of a "pointer to a person" i.e. something like `jimPointer`
+2. pointer in front of a pointer e.g. `(*pointerToPerson).firstName`
+
+#### rules to remember
+
+use `*address` to turn an address into value.
+
+use `&value` to turn a value into address.
+
+### shortcuts 
+
+with this code:
+
+```go 
+  jimPointer := &jim
+  jimPointer.updateName("jimmy")
+  jim.print()
+```
+
+you can remove `jimPointer := &jim`, and the `func (pointerToPerson *person)` will automatically take your "type person" and turn it into a "pointer person (`*person`)" for you.
+
+## Pointer Gotchas 
+
+struct vs slice 
+
+with struct, you need pointers to update the actual values.
+
+with stlices - values seem to update directly as you act upon the values.
+
+### Reference vs Value Types 
+
+arrays vs slices - arrays are primitive, can't be resized. we use slices more. 
+
+a slice gives us BOTH a slice data structure (ptr, capacity, length) and array data structure (ptr points to the elements in our slice "array").
+
+in memory, our SLICE is registered as the slice data structure at one memory address, and the actual array with our elements in it at another memory address.
+
+when the "pass by value" happens when we pass our slice to a function, the COPY go makes of the slice is just the SLICE data structure, which goes into another address- BUT, this COPY still points to the SAME ARRAY values the original slice data structure points to.
+
+so when we modify the SLICE, we are not modifying a COPY of the array values for the slice, there is no COPY, we are modifying the original array values from the slice.
+
+slice is a "reference" type - it a data structure that refers to ANOTHER data structure in RAM.
+
+Other reference types: maps, channels, pointers, functions.
+value types: int, float, string, bool, structs.
+
+
+
