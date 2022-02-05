@@ -2,7 +2,11 @@
 title: Who Rules the World?
 tags:
   - Noam Chomsky
-  - nonfiction
+  - Non-Fiction
+  - War
+  - America
+  - Imperialism
+  - Israel
 ---
 
 :::info
@@ -13,29 +17,29 @@ My notes and thoughts on "Who Rules the World?" by Noam Chomsky.
 
 ![who rules the world cover](https://i.gr-assets.com/images/S/compressed.photo.goodreads.com/books/1506307262l/32489954._SY475_.jpg)
 
-## Responsiblity of intellectuals
+## Responsibility of intellectuals
 
 Chapter 1 is looking at the role of "intellectuals" in the shaping and perpetuation of the U.S. narrative regarding their activities/crimes abroad, and even their lens through which Americans see themselves.
 
-_"intellectuals are typically privileged; privilege yields opportunity, and opportunity confers responsibilities. An individual then has choices."_ - Noam Chomsky.
+> _"intellectuals are typically privileged; privilege yields opportunity, and opportunity confers responsibilities. An individual then has choices."_ - Noam Chomsky.
 
 two types of "intellectuals"
 
 those that question power, what's going on, based on values- and are then demonized by those powers:
 
-- _"The ridiculous eccentrics are termed “value-oriented intellectuals,” who pose “a challenge to democratic government which is, potentially at least, as serious as those posed in the past by aristocratic cliques, fascist movements, and communist parties.”"_ 
+> _"The ridiculous eccentrics are termed “value-oriented intellectuals,” who pose “a challenge to democratic government which is, potentially at least, as serious as those posed in the past by aristocratic cliques, fascist movements, and communist parties.”"_ 
 
 the values we are talking about e.g. _"moral responsibility as decent human beings, in a position to use their privilege and status to advance the causes of freedom, justice, mercy, peace, and other such sentimental concerns"_
 
 versus the shills, and false prophets of the powers/state, providing cover for any/all misdeeds under cover of being "intellectuals":
 
-- _"Like the New Republic progressives during the First World War, they extend the concept of “intellectual” beyond Brunetière to include the “technocratic and policy-oriented intellectuals,” responsible and serious thinkers who devote themselves to the constructive work of shaping policy within established institutions, and to ensuring that indoctrination of the young proceeds on course."_ 
+> _"Like the New Republic progressives during the First World War, they extend the concept of “intellectual” beyond Brunetière to include the “technocratic and policy-oriented intellectuals,” responsible and serious thinkers who devote themselves to the constructive work of shaping policy within established institutions, and to ensuring that indoctrination of the young proceeds on course."_ 
 
 the 2nd type of intellectuals, keyword=`lierbal internationalist Trilateral Commission` worried about the "excess of democracy"... when normally passive, apathetic parts of the population suddenly wanted to exercise their democractic rights to vote in thier interests- a group of people sometimes identified as "special interests" i.e. minorities, women, the young, the old, working people.
 
 who are the "special interest" groups up against?
 
-_"They are to be distinguished from those whom Adam Smith called the “masters of mankind,” who are the “principal architects” of government policy and who pursue their “vile maxim”: “All for ourselves and nothing for other people.”"_ 
+> _"They are to be distinguished from those whom Adam Smith called the “masters of mankind,” who are the “principal architects” of government policy and who pursue their “vile maxim”: “All for ourselves and nothing for other people.”"_ 
 
 Something interesting, and not surprising about how terms are thrown around depending on who's using them and against whom. We've heard the phrase "one person freedom fighter is another persons terrorist", and how intellectuals are referred to- either "values based" troublemakers (type1) or "responsible" bootlickers (type2)- follows the same pattern.
 
