@@ -4,15 +4,6 @@ slug: "reading-list"
 sidebar_position: 0
 ---
 
-## Currently Reading
-
-:::info 📑
-
-1. "Sapiens: A Brief History of Humankind" by Yuval Noah Harari.
-2. "Who Rules the World?" by Noam Chomsky.
-
-:::
-
 ## Bookshelf
 
 Books in my current short-list to read next
@@ -24,19 +15,19 @@ Books in my current short-list to read next
 |Capitalism and Freedom|Milton Friedman|
 |Gangland: New Zealands Underworld of Organized Crime|Jared Savage|
 |Thinking in Systems|Donella H. Meadows|
-|Who Rules the World?|Noam Chomsky|
 |Capital|Karl Marx|
 |Superintelligence: Paths, Dangers, Strategies|Nick Bostrom|
 |The 48 Laws of Power| Robert Greene|
 |Kubernetes Patterns: Reusable Elements for Designing Cloud-Native Applications| Bilgin Ibryam & Roland Hub|
 |Terraform Up & Running: Writing Infrastructure as Code|Yevgeniy Brikman|
 
-## Finished Reading 
+## Finished Reading
 
 Books I've finished reading and ready for review, write-up
 
 |Title|Author|
 |:------|:-----------|
+|Who Rules the World?|Noam Chomsky|
 |Threat Modeling: Designing for Security| Adam Shostack|
 |Shouting Zeros and Ones: Digital Technology, Ethics and Policy in New Zealand| various, edited by Andrew Chen|
 |On Anarchism| Noam Chomsky|
