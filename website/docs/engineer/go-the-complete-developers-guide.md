@@ -4,7 +4,7 @@
 
 :::info
 
-Doing the Udemy [course](https://www.udemy.com/course/go-the-complete-developers-guide) to learn Golang.
+My notes of the ["Go: The Complete Developers Guide (Golang)"](https://www.udemy.com/course/go-the-complete-developers-guide) course on Udemy to learn Golang.
 
 :::
 
@@ -13,9 +13,9 @@ Doing the Udemy [course](https://www.udemy.com/course/go-the-complete-developers
 From Simple Start Chapter, questions:
 
 1. how do we run the code in our project?
-2. what does 'package main' mean?
-3. what does 'import "fmt"' mean?
-4. what's that 'func' thing?
+2. what does `package main` mean?
+3. what does `import "fmt"` mean?
+4. what's that `func` thing?
 5. how is the `main.go` file organized
 
 ## Simple Start
@@ -28,7 +28,7 @@ From Simple Start Chapter, questions:
 - go build = just compile
 - go install, go get = installs pkg, download raw source code
 
-### Package Main
+### package main
 
 package == project == workspace
 
@@ -68,7 +68,7 @@ this `var Name string` and `name := "Ron"` are EQUIVALENT in variable initializa
 
 when writing up non-main functions, this is the format `func funcName() typeToReturn` e.g. `func newCard() string {` you'll get an error message if return type and return value type are mismatched.
 
-### Slice and For Loops
+### slice and for Loops
 
 Array = fixed list
 Slice = array that can grow/shrink
@@ -83,7 +83,7 @@ iterate over a slice, print every element: `for i, card := range cards { fmt.Pri
 
 i = index, range = iterate over every element in slice.
 
-### OO vs Go
+### oo vs go
 
 Go is NOT OO language.
 
@@ -93,7 +93,7 @@ Think - go types (string, int, float, array, map), then extend `type deck []stri
 - `deck.go` - describe deck, how it works (spec?)
 - `deck_test.go` - automatically test our deck
 
-### Our Card Deck Go Program
+### card deck go program
 
 For our card app, what functions do we want?
 
@@ -106,7 +106,7 @@ For our card app, what functions do we want?
 
 add the custom types and receivers as necessary.
 
-### Custom types and receiver functions
+### custom types and receiver functions
 
 we can do something like this to sort of simulate "extends" from OO approach
 
@@ -118,23 +118,35 @@ type deck []string
 
 // create custom method for new type
 func (d deck) print() {
-    for i, card := range d {
-        fmt.Println(i, card)
-      }
-  }
+  for i, card := range d {
+      fmt.Println(i, card)
+    }
+}
 ```
 
-we can now use `deck` "type" anywhere in our main package code.
+We declared a custom type with `type deck []string` and can now use `deck` "type" anywhere in our main package code.
 
-printing the new type out now made easier with our `print()` function.
+Printing the new type out now made easier with our `print()` function.
 
-`(d deck)` is the bit that makes this func a "receiver" function. A receiver sets up methods on variables we create e.g. we create var `card` of type `deck`, and now the print func can be setup on ANY var of type `deck` e.g. `card.print()`
+`(d deck)` is the bit that makes this func a _**"receiver function"**_. 
 
-think of `d` arg as `this` or `self` - in go, never use "this" or "self", and also always refer to the THING that you're setting method up on, by convention if your type is `deck` your arg name will be `d`, but you can do whatever as long as the references match i.e. `(d deck)` and `range d` match.
+A receiver sets up methods on variables we create e.g. we create var `card` of type `deck`, and now the print func can be setup on ANY var of type `deck` e.g. `card.print()`
 
-if you have a var that you don't care to use, and want to avoid the "you declared but haven't used this var" error message, replace them with `_` underscore.
+Think of `d` arg as `this` or `self` - in go, never use "this" or "self", and also always refer to the THING that you're setting method up on, by convention if your type is `deck` your arg name will be `d`, but you can do whatever as long as the references match i.e. `(d deck)` and `range d` match.
 
-### Slice Range Syntax
+If you have a var that you don't care to use, and want to avoid the "you declared but haven't used this var" error message, replace them with `_` underscore.
+
+e.g.
+
+```go
+func (d deck) print() {
+  for i, card := range d {
+    fmt.Println(i, card)
+  }
+}
+```
+
+### slice range syntax
 
 Dealing out a "hand", a slice of the 52 available cards.
 
@@ -146,7 +158,7 @@ shorthand for this can be `[:2]` is the same as `[0:2]`, another example is `[2:
 
 when returning 2 x type deck values from the function, you assign them to two variables like this: `hand, remainingDeck := deal(cards, 5)` <-- because `deal(cards, 5)` gets `(deck, deck)` from the receiver function.
 
-### Deck to String
+### deck to string
 
 trying to save to file, `import io/ioutil` we need to transfer our strings to a `[]byte` "byte slice".
 
@@ -161,19 +173,19 @@ our process = start with `deck` --> `[]string` --> `string` --> `[]byte`
 
 the `string` is ALL card strings smashed together to then convert to a `[]byte`.
 
-### Join slice of Strings
+### join slice of Strings
 
 lookup and use `strings` library `Join` function.
 
-### Save data to HDD
+### save data to HDD
 
 lookup and use `io/iotuil` library `WriteFile` function for writing a `[]byte` byte slice to disk under "filename".
 
-### Read data from HDD
+### read data from HDD
 
 use `io/ioutil` functions `ReadFile` to do the reverse and open a file from HDD, then use `strings` function `Split` to reverse what you did with `Join`, now you have a `[]string` string slice AKA a `deck type`.
 
-### Error handling
+### error handling
 
 the `err` convention
 
@@ -189,10 +201,10 @@ make sure to `import os`, and any non-zero number inside `Exit()` to signal a ba
 
 ## Summary
 
-type deck
-tie methods to the new type deck
-receivers = can tack onto the type deck e.g. `cards.print()`
-no receiver for methods like `.deal()` because the "root" instance of the deck (??)
+- create `type deck`
+- tie methods to the new `type deck` using _"receiver functions"_
+- receivers = can tack onto the type deck e.g. `cards.print()`
+- no receiver for methods like `.deal()` because the "root" instance of the deck (??)
 
 ## Assignment 1
 
@@ -221,7 +233,7 @@ func main() {
 
 ## Data Structures
 
-## Structs
+### structs
 
 aka data structures are a "collection of properties that are related together".
 
@@ -276,7 +288,7 @@ func main() {
 }
 ```
 
-### Embedded Structs
+### embedded structs
 
 embed on struct inside another struct.
 
@@ -351,7 +363,7 @@ func (letter type) funcName(varName varType) { }
 // e.g. func (p person) updateName(newFirstName string)
 ```
 
-### Pointers
+### pointers
 
 the reason the updateName function did not work.
 
@@ -396,11 +408,13 @@ understand difference between pointer as a TYPE and as a POINTER:
 1. pointer in front of a type e.g. `func (pointerToPerson *person)` means this receiver can only accept a type of a "pointer to a person" i.e. something like `jimPointer`
 2. pointer in front of a pointer e.g. `(*pointerToPerson).firstName`
 
-#### Rules to Remember
+:::tip Rules to Remember
 
 use `*address` to turn an address into value.
 
 use `&value` to turn a value into address.
+
+:::
 
 ### Shortcuts
 
@@ -416,13 +430,13 @@ you can remove `jimPointer := &jim`, and the `func (pointerToPerson *person)` wi
 
 ## Pointer Gotchas
 
-struct vs slice
+### struct vs slice
 
 with struct, you need pointers to update the actual values.
 
 with stlices - values seem to update directly as you act upon the values.
 
-### Reference vs Value Types
+### reference vs value types
 
 Arrays vs Slices - arrays are primitive, can't be resized. we use slices more.
 
@@ -430,11 +444,27 @@ A slice gives us BOTH a slice data structure (ptr, capacity, length) and array d
 
 in memory, our SLICE is registered as the slice data structure at one memory address, and the actual array with our elements in it at another memory address.
 
-when the "pass by value" happens when we pass our slice to a function, the COPY go makes of the slice is just the SLICE data structure, which goes into another address- BUT, this COPY still points to the SAME ARRAY values the original slice data structure points to.
+when the _"pass by value"_ happens when we pass our slice to a function, the COPY go makes of the slice is just the SLICE data structure, which goes into another address- BUT, this COPY still points to the SAME ARRAY values the original slice data structure points to.
 
 so when we modify the SLICE, we are not modifying a COPY of the array values for the slice, there is no COPY, we are modifying the original array values from the slice.
 
 slice is a "reference" type - it a data structure that refers to ANOTHER data structure in RAM.
 
-Other reference types: maps, channels, pointers, functions.
-value types: int, float, string, bool, structs.
+:::info Types
+
+Reference types:
+
+- maps
+- channels
+- pointers
+- functions.
+
+value types:
+
+- int
+- float
+- string
+- bool
+- structs.
+
+:::
