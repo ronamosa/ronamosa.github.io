@@ -19,10 +19,6 @@ const internetProfiles = {
     label: "Docs",
     to: "docs",
   },
-  projects: {
-    label: "Projects",
-    to: "projects",
-  },
   about: {
     label: "About",
     to: "about",
@@ -64,7 +60,6 @@ module.exports = {
           position: "left",
         },
         { to: "blog/", label: "Blog", position: "left" },
-        { to: "projects/", label: "Projects", position: "right" },
         { to: "about/", label: "About", position: "right" },
         {
           href: "https://ronamosa.io/pdf/resume.pdf",
@@ -88,7 +83,6 @@ module.exports = {
           items: [
             internetProfiles.blog,
             internetProfiles.docs,
-            internetProfiles.projects,
             internetProfiles.about,
             internetProfiles.resume,
           ],

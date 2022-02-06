@@ -16,24 +16,30 @@ My notes will be on random, ad-hoc things I'm working on at any one time, but wi
 
 The sidebar menu and documents will grow as I continue to add more notes to the garden.
 
-## Currently...
+## 🗓️ Currently
 
-What you can find in my garden:
+- Reading: ["The War of Art"](https://www.goodreads.com/book/show/1319.The_War_of_Art?ac=1&from_search=true&qid=W3UewsmnZl&rank=1) by Steven Pressfield.
+- Working out: [75 Hard Challenge](https://andyfrisella.com/pages/75hard-info)
+- Studying: [Go: The Complete Developers Guide (Golang)](https://www.udemy.com/share/101Xzy3@hziIwJOYjh6rFVCIAKG1zdfk5Eb-J9Kemb9gSJhrrXEqB7SOZamW13muBuWYkvjneg==/)
 
-### 📚 [Books](books/reading-list.md)
+## 📚 [Books](books/reading-list.md)
 
 My reading list, what I'm currently reading and notes on books I've read.
 
-### 📗 Study
+## 📗 Study
 
 Study and exam notes for certifications, courses.
 
 I sat and passed my CKS in 09-2021. All my study and exam notes are [here](study/CKS/README.md).
 
-### 💻 [Technology](technology/)
+## 🏴‍☠️ Hacker
 
-Where all the technology notes live...
+Breaking things. Notes and information related to Information Security, Offensive (red) and Defensive (blue) Security and DevSecOps (purple).
 
-### 🗃 Archive
+## 💻 Engineer
+
+Building things. Applications, Software Engineering, Infrastructure Architecture and Engineering.
+
+## 🗃 Archive
 
 Old blog posts from 2016-2020.

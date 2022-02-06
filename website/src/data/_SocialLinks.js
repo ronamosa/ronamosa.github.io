@@ -1,5 +1,5 @@
 import { faAirFreshener, faEnvelope } from "@fortawesome/free-regular-svg-icons";
-import { faLinkedin, faGithub } from "@fortawesome/free-brands-svg-icons";
+import { faLinkedin, faGithub, faTwitch } from "@fortawesome/free-brands-svg-icons";
 
 const socialLinks = [
   {
@@ -13,9 +13,9 @@ const socialLinks = [
     url: "https://github.com/ronamosa",
   },
   {
-    faIcon: faEnvelope,
-    alt: "Email",
-    url: "mailto:contact@ronamosa.io",
+    faIcon: faTwitch,
+    alt: "Twitch",
+    url: "https://www.twitch.tv/rxhackk",
   },
 ];
 
