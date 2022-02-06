@@ -2,7 +2,11 @@
 
 ## Overview
 
+:::info
+
 Doing the Udemy [course](https://www.udemy.com/course/go-the-complete-developers-guide) to learn Golang.
+
+:::
 
 ## Notes
 
@@ -14,9 +18,9 @@ From Simple Start Chapter, questions:
 4. what's that 'func' thing?
 5. how is the `main.go` file organized
 
-## Simple Start 
+## Simple Start
 
-### run code 
+### run code
 
 `go run main.go`
 
@@ -24,7 +28,7 @@ From Simple Start Chapter, questions:
 - go build = just compile
 - go install, go get = installs pkg, download raw source code
 
-### package main 
+### Package Main
 
 package == project == workspace
 
@@ -40,19 +44,19 @@ rename package to anything else and do `go build` does NOT build any executable 
 
 ### import fmt
 
-gives us access to `fmt` library/package. 
+gives us access to `fmt` library/package.
 
-### func 
+### func
 
 `fun main() {` - short for function.
 
 ### main.go organized
 
 - package declaration
-- imports packages 
+- imports packages
 - func main
 
-## Deeper into Go 
+## Deeper into Go
 
 ### variable declaration
 
@@ -60,7 +64,7 @@ this `var Name string` and `name := "Ron"` are EQUIVALENT in variable initializa
 
 `:=` use only when declaring new vars, dont use for value "assignment".
 
-### functions 
+### functions
 
 when writing up non-main functions, this is the format `func funcName() typeToReturn` e.g. `func newCard() string {` you'll get an error message if return type and return value type are mismatched.
 
@@ -83,19 +87,19 @@ i = index, range = iterate over every element in slice.
 
 Go is NOT OO language.
 
-Think - go types (string, int, float, array, map), then extend `type deck []string`, then functions 
+Think - go types (string, int, float, array, map), then extend `type deck []string`, then functions
 
 - `main.go` - our main program that manipulates the deck
 - `deck.go` - describe deck, how it works (spec?)
-- `deck_test.go` - automatically test our deck 
+- `deck_test.go` - automatically test our deck
 
-### Our Card Deck Go Program 
+### Our Card Deck Go Program
 
 For our card app, what functions do we want?
 
 1. newDeck - create return list of playing cards (array of strings)
 2. print
-3. shuffle 
+3. shuffle
 4. deal
 5. saveToFile
 6. newDeckFromFile
@@ -142,7 +146,7 @@ shorthand for this can be `[:2]` is the same as `[0:2]`, another example is `[2:
 
 when returning 2 x type deck values from the function, you assign them to two variables like this: `hand, remainingDeck := deal(cards, 5)` <-- because `deal(cards, 5)` gets `(deck, deck)` from the receiver function.
 
-### Deck to String 
+### Deck to String
 
 trying to save to file, `import io/ioutil` we need to transfer our strings to a `[]byte` "byte slice".
 
@@ -157,11 +161,11 @@ our process = start with `deck` --> `[]string` --> `string` --> `[]byte`
 
 the `string` is ALL card strings smashed together to then convert to a `[]byte`.
 
-### Join slice of Strings 
+### Join slice of Strings
 
 lookup and use `strings` library `Join` function.
 
-### Save data to HDD 
+### Save data to HDD
 
 lookup and use `io/iotuil` library `WriteFile` function for writing a `[]byte` byte slice to disk under "filename".
 
@@ -169,7 +173,7 @@ lookup and use `io/iotuil` library `WriteFile` function for writing a `[]byte` b
 
 use `io/ioutil` functions `ReadFile` to do the reverse and open a file from HDD, then use `strings` function `Split` to reverse what you did with `Join`, now you have a `[]string` string slice AKA a `deck type`.
 
-### Error handling 
+### Error handling
 
 the `err` convention
 
@@ -217,7 +221,7 @@ func main() {
 
 ## Data Structures
 
-## structs 
+## Structs
 
 aka data structures are a "collection of properties that are related together".
 
@@ -231,6 +235,7 @@ type person struct {
     lastName string
 }
 ```
+
 few different ways to construct `struct`
 
 1. `alex := person{firstName: "Alex", lastName: "Anderson"}`
@@ -271,12 +276,14 @@ func main() {
 }
 ```
 
-### embedded structs 
+### Embedded Structs
 
-embed on struct inside another struct. 
+embed on struct inside another struct.
 
-type person 
+```go
+type person
 type contactInfo
+```
 
 you can use custom types inside our structs.
 
@@ -289,6 +296,7 @@ type contactInfo struct {
   email string
   zipCode int
 }
+
 type person struct {
   firstName string
   lastName string
@@ -312,43 +320,42 @@ another method of declaring our `contactInfo` is to remove the explicit variable
 
 ```go
 type person struct {
-    firstName string
-    lastName string
-    contactInfo
-  }
+  firstName string
+  lastName string
+  contactInfo
+}
 ```
 
-and then 
+and then
 
 ```go
 function main() {
-    jim := person{
-        firstName: "Jim",
-        lastName: "Party",
-        contactInfo: contactInfo{
-            email: "jim@gmail.com",
-            zipCode: 94000,
-        },
-    }
+  jim := person{
+    firstName: "Jim",
+    lastName: "Party",
+    contactInfo: contactInfo{
+      email: "jim@gmail.com",
+      zipCode: 94000,
+    },
+  }
 }
 ```
 
 ### structs receiver functions
 
-recap receiver functions 
+recap receiver functions
 
-```
+```go
 func (letter type) funcName(varName varType) { }
 
-e.g.
-func (p person) updateName(newFirstName string)
+// e.g. func (p person) updateName(newFirstName string)
 ```
 
-### pointers
+### Pointers
 
 the reason the updateName function did not work.
 
-Go is a "pass by values" means you work on a COPY of the value of the object/thing, not the original object/thing.
+Go is a _"pass by values"_ means you work on a COPY of the value of the object/thing, not the original object/thing.
 
 e.g. we contruct the `person{firstName: "Jim"...}` person, but when we pass the value to our function for a name update `func (p person) updateName(newFirstName string)`, it creates a copy `p` of the person Jim:
 
@@ -370,7 +377,7 @@ why does go do this?
 
 :::info operators
 
-`&` creates a memory ADDRESS pointer 
+`&` creates a memory ADDRESS pointer
 
 `*` creates a memory VALUE pointer
 
@@ -389,17 +396,17 @@ understand difference between pointer as a TYPE and as a POINTER:
 1. pointer in front of a type e.g. `func (pointerToPerson *person)` means this receiver can only accept a type of a "pointer to a person" i.e. something like `jimPointer`
 2. pointer in front of a pointer e.g. `(*pointerToPerson).firstName`
 
-#### rules to remember
+#### Rules to Remember
 
 use `*address` to turn an address into value.
 
 use `&value` to turn a value into address.
 
-### shortcuts 
+### Shortcuts
 
 with this code:
 
-```go 
+```go
   jimPointer := &jim
   jimPointer.updateName("jimmy")
   jim.print()
@@ -407,19 +414,19 @@ with this code:
 
 you can remove `jimPointer := &jim`, and the `func (pointerToPerson *person)` will automatically take your "type person" and turn it into a "pointer person (`*person`)" for you.
 
-## Pointer Gotchas 
+## Pointer Gotchas
 
-struct vs slice 
+struct vs slice
 
 with struct, you need pointers to update the actual values.
 
 with stlices - values seem to update directly as you act upon the values.
 
-### Reference vs Value Types 
+### Reference vs Value Types
 
-arrays vs slices - arrays are primitive, can't be resized. we use slices more. 
+Arrays vs Slices - arrays are primitive, can't be resized. we use slices more.
 
-a slice gives us BOTH a slice data structure (ptr, capacity, length) and array data structure (ptr points to the elements in our slice "array").
+A slice gives us BOTH a slice data structure (ptr, capacity, length) and array data structure (ptr points to the elements in our slice "array").
 
 in memory, our SLICE is registered as the slice data structure at one memory address, and the actual array with our elements in it at another memory address.
 
@@ -431,6 +438,3 @@ slice is a "reference" type - it a data structure that refers to ANOTHER data st
 
 Other reference types: maps, channels, pointers, functions.
 value types: int, float, string, bool, structs.
-
-
-
