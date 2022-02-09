@@ -1,4 +1,6 @@
-# Go: The Complete Developers Guide (Golang)
+---
+title: "Go: The Complete Developers Guide (Golang)"
+---
 
 ## Overview
 
@@ -128,7 +130,7 @@ We declared a custom type with `type deck []string` and can now use `deck` "type
 
 Printing the new type out now made easier with our `print()` function.
 
-`(d deck)` is the bit that makes this func a _**"receiver function"**_. 
+`(d deck)` is the bit that makes this func a _**"receiver function"**_.
 
 A receiver sets up methods on variables we create e.g. we create var `card` of type `deck`, and now the print func can be setup on ANY var of type `deck` e.g. `card.print()`
 
