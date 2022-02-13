@@ -468,3 +468,67 @@ value types:
 - structs.
 
 :::
+
+## Maps
+
+`map[string]string` = `map[keys]values` = a map of key type string, and value type string.
+
+3 ways to create maps
+
+```golang
+# 1.
+  colors := map[string]string{
+    "red":   "#ff0000",
+    "green": "#00ff00",
+  }
+
+# 2. 
+  var colors map[string]string
+
+# 3.
+  colors := make(map[int]string)
+  colors[10] = "#ffffff
+```
+
+to delete a value `delete(colors, 10)`
+
+### iterate over maps
+
+A function to iterate of key-value pairs from the map data structure:
+
+```golang
+func printMap(c map[string]string){
+  for key,value := range c {
+    // some code to do something with
+    // key and value.
+  }
+}
+```
+
+- `c` = name of argument
+- `map[string]string` = Type
+
+### Summary + maps vs structs
+
+main differences between maps and structs:
+
+map = all keys must be same type
+struct = values can be different type (keys are not strongly typed in structs)
+
+map = can iterate over keys
+stuct = keys dont support indexing
+
+map = reference type
+struct = value type
+
+:::tip when to use what?
+
+use a `map` when representing a collection of closely related properties e.g. colors.
+
+use a `map` when you don't know all the keys at compile time.
+
+if you know all the keys and only work with those keys, good case to use `struct`.
+
+:::
+
+struct seem more strictly defined, where maps are more "freer".
