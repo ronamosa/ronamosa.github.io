@@ -177,7 +177,9 @@ Obviously!!
 
 ### Run Playbooks
 
-not left to it but to do it, from your local desktop ansible setup, run: `ansible-playbook -i hosts playbooks/create-cloud-vm.yml`
+Nothing left to it but to do it, from your local desktop ansible setup, run: 
+
+`ansible-playbook -i hosts playbooks/create-cloud-vm.yml`
 
 ## Verify
 
