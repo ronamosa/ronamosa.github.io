@@ -1,12 +1,18 @@
 # Proxmox Cloud Init Setup
 
-## Architecture
+## Overview
 
-Basic overview of what we're trying to build is:
+Basically what we're trying to setup is a Proxmox Host that can run Ansible playbooks against to create cloud-init enabled virtual machines from a pre-made template we source from official cloud sources.
 
-* A proxmox host setp for Ansible requests
-* A cloud-init enabled cloud image with customizations
-* An ansible playbook to create VMs using our cloud-init enabled template.
+### Systems / Architecture Diagram
+
+What you can see here is the following:
+
+* Ansible desktop client running `ansible-playbook` with proxmox user api token credentials
+* a console session as `root@pam` user which sources an official cloud image and create a cloud-init enabled template from it
+* the playbook successfully creates `clone vm 1` and `clone vm 2` from the template.
+
+![proxmox architecture](/img/proxmox-architecture.png)
 
 ## Proxmox Host Setup
 
@@ -177,7 +183,7 @@ Obviously!!
 
 ### Run Playbooks
 
-not left to it but to do it, from your local desktop ansible setup, run: `ansible-playbook -i hosts playbooks/create-cloud-vm.yml`
+Right, there's nothing left to it but to do it, from your local desktop ansible setup, run: `ansible-playbook -i hosts playbooks/create-cloud-vm.yml`
 
 ## Verify
 
