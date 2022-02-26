@@ -1,12 +1,10 @@
 ---
 title: "Life 3.0: Being Human in the Age of Artificial Intelligence"
 tags:
-  - Noam Chomsky
+  - AI
   - Non-Fiction
-  - War
-  - America
-  - Imperialism
-  - Israel
+  - ML
+  - Aritifial Intelligence
 ---
 
 :::info
@@ -73,7 +71,7 @@ Sure.
 
 At least this important insight from their "members only" meetup in Puerto Rico:
 
->_"..we might build technology power enough to permanently end these scourges(poverty,disease and war)-- or to end humanity itself. We might create societies that flourish like never before, on Earth and perhaps beyond, or a Kafkaesque global surveillance state so powerful that it could never be toppled"_
+>_"..we might build technology powerful enough to permanently end these scourges(poverty,disease and war)-- or to end humanity itself. We might create societies that flourish like never before, on Earth and perhaps beyond, or a Kafkaesque global surveillance state so powerful that it could never be toppled"_
 
 ## Chapter 2: Matter Turns Intelligent
 
