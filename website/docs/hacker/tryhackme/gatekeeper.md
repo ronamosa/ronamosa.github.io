@@ -2,6 +2,8 @@
 title: "Gatekeeper"
 ---
 
+This is a write-up for the [Gatekeeper Room](https://tryhackme.com/room/gatekeeper) on TryHackMe. S/o to SnoOw, Kafka and Noodles for the assist on this box.
+
 ## RECON
 
 Let's enumerate all the things and see what the box can tell us.
