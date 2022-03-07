@@ -204,7 +204,7 @@ Tip from noodles: do `offset.py` script with a big-ass number, use `pattern_crea
 
 :::
 
-Follow [Buffer Overflow Shortcut](resources) for the full technique.
+Follow [Buffer Overflow Shortcut](/docs/hacker/bufferoverflow/resources) for the full technique.
 
 ```sh
 /usr/share/metasploit-framework/tools/exploit/pattern_offset.rb -l 6700 -q 39654138                       130 ⨯
