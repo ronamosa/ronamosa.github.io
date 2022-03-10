@@ -468,3 +468,158 @@ value types:
 - structs.
 
 :::
+
+## Maps
+
+```text
+# MAP
+key --> value
+key --> value
+key --> value
+```
+
+comparably: map(go) = hash(ruby) = object(javascript) = dict(python)
+
+Maps = statically typed i.e. all keys = same type, all values = same type.
+
+```go
+package main
+
+import "fmt"
+
+func main() {
+
+  // 2 x ways of init a "null" map:
+  // 1. var colors map[string]string
+  // 2. colors := make(map[string]string)
+
+  // example of using type=int
+  // colors := make(map[int]string)
+  // colors[10] = "#ffffff"
+  // delete(colors, 10)
+  // fmt.Println(color)
+
+  colors := map[string]string{
+    "red":   "#ff0000",
+    "green": "#00ff00",
+    "white": "#ffffff",
+  }
+
+  printMap(colors)
+}
+
+func printMap(c map[string]string) {
+  // iterate over a map
+  for color, hex := range c {
+    fmt.Println("Hex code for", color, "is", hex)
+  }
+}
+```
+
+Always use `[]` braces with maps e.g. `color["white"] = "#ffffff`.
+
+Let's break down the func, loop
+
+```go
+// c = argument
+// map[string]string = type of the argument
+// color, hex = the variables that will receive the `key, value` during the loop
+// range c = "iterate over the range 'c'"
+
+func printMap(c map[string]string) {
+  // iterate over a map
+  for color, hex := range c {
+    fmt.Println("Hex code for", color, "is", hex)
+  }
+}
+```
+
+### Maps vs Structs
+
+Maps = statically typed = all keys and values must be same type.
+Struct = values can be different type.
+
+Maps = keys are indexed 0...12, can iterate over.
+Struct = keys dont support index, can't interate over.
+
+Maps = original data structure of map directly modified
+Structs = original data structure is copied, and edited, original is unmodified.
+
+:::tip When to use Maps?
+
+- when representing a set of collection of closely related properties
+- when your scenario doesn't know all keys, types at compile time (otherwise, look at structs if you know)
+
+:::
+
+vast majority of golang = use structs.
+
+## Interfaces
+
+### Purpose of interfaces
+
+reuse, generic code or code that has common factors - write an interface instead of duplicate code.
+
+```go
+package main
+
+import "fmt"
+
+type bot interface {
+  getGreeting() string
+}
+
+type englishBot struct{}
+type spanishBot struct{}
+
+func main() {
+  eb := englishBot{}
+  sb := spanishBot{}
+
+  printGreeting(eb)
+  printGreeting(sb)
+}
+
+func printGreeting(b bot) {
+  fmt.Println(b.getGreeting())
+}
+
+func (eb englishBot) getGreeting() string {
+  // very custom logic for generating english greeting
+  return "Hi there!"
+}
+
+func (sb spanishBot) getGreeting() string {
+  return "Hola!"
+}
+```
+
+Create a new type `bot` that says, if you have a `getGreeting()` function, with return type `string`, you can be type cast as `bot` and use what `bot` can use i.e. `printGreeting()`.
+
+### Rules of Interfaces
+
+```go
+
+type bot interface {
+
+  // input args = string, int
+  // returns = string, error
+  getGreeting(string, int) (string, error)
+
+  // input args = none
+  // returns = float
+  getBotVersion() float
+
+  // input args = user
+  // returns = string
+  respondToUser(user) string
+}
+```
+
+Concrete Types = map, struct, int, englishBot, string -- can create values directly e.g. `int a := 12`
+Interface Type = bot -- can't create value directly i.e. bot can't "equal 5"
+
+remember interfaces only help reuse code, doesn't check logic or test things for you, garbage in = garbage out.
+
+### The HTTP Package
+
