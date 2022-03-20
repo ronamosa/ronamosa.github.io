@@ -2,7 +2,11 @@
 title: "Gatekeeper"
 ---
 
+:::info
+
 This is a write-up for the [Gatekeeper Room](https://tryhackme.com/room/gatekeeper) on TryHackMe. S/o to SnoOw, Kafka and Noodles for the assist on this box.
+
+:::
 
 ## RECON
 
