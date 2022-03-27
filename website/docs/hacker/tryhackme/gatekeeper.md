@@ -16,11 +16,9 @@ Credits: S/o to SnoOw, Kafka and Noodles for the assist on this box.
 
 ## RECON
 
-Initial recon, network scan.
+### Scan
 
-### Nmap
-
-Start with nmap: `nmap -v -sV -Pn -p-54000 -o nmap-gatekeeper.txt $TARGET_IP`
+Initial recon with an nmap scan: `nmap -v -sV -Pn -p-54000 -o nmap-gatekeeper.txt $TARGET_IP`
 
 ```bash
 # Nmap 7.92 scan initiated Tue Mar  1 20:43:11 2022 as: nmap -v -sV -Pn -p-54000 -o nmap-gatekeeper.txt 10.10.51.255
@@ -66,7 +64,7 @@ Service detection performed. Please report any incorrect results at https://nmap
 # Nmap done at Tue Mar  1 21:49:31 2022 -- 1 IP address (1 host up) scanned in 3980.16 seconds
 ```
 
-### Smbclient
+### Enumerate
 
 I can see the 135, 139 ports are open so let's try `smbclient`: `smbclient -L //$TARGET_IP`
 
@@ -85,9 +83,7 @@ do_connect: Connection to 10.10.51.255 failed (Error NT_STATUS_RESOURCE_NAME_NOT
 Unable to connect with SMB1 -- no workgroup available
 ```
 
-### Nmblookup
-
-try `nmblookup`: `nmblookup -A $TARGET_IP`
+now try `nmblookup`: `nmblookup -A $TARGET_IP`
 
 ```bash
 nmblookup -A 10.10.51.255
