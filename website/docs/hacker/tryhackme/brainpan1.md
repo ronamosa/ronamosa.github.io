@@ -4,17 +4,23 @@ title: "Brainpan 1"
 
 :::info
 
-This is a write-up for the [Brainpan 1 Room](https://tryhackme.com/room/brainpan) on TryHackMe. S/o to SnoOw, Hunterbot, Tedd and Kafka's help on this box!
+Description: This is a write-up for the [Brainpan 1 Room](https://tryhackme.com/room/brainpan) on TryHackMe. 
+
+Credits: S/o to SnoOw, Hunterbot, Tedd and Kafka's help on this box!
+
+|OS|Level|Rating
+|:---:|:-----:|:-----:|
+|Linux &#xf17c;|OSCP|&#xf058; &#xf058; &#xf058; &#xf058;|
 
 :::
 
 ## RECON
 
-First, as always, enumerate network ports & services access for recon and potential entry-point to the box:
+First, as always, recon to see what's open
 
-### Network Enumeration
+### scan
 
-Otherwise known as "Port Scanning"
+Port scanning to see what's open -- let's use `threader3000` for speed
 
 Using dievus' [threader3000](https://github.com/dievus/threader3000) multi-threaded python port scanner with Nmap integration to scan the brainpan box:
 
@@ -117,9 +123,9 @@ PORT      STATE SERVICE VERSION
 10000/tcp open  http    SimpleHTTPServer 0.6 (Python 2.7.3)
 ```
 
-### Directory Enumeration
+### enumerate
 
-Looks like a web server running on port `10000`, I used `gobuster` and found:
+Looks like a web server running on port `10000`, I use `gobuster` to enumerate possible directories on the server and found:
 
 ```bash
 http://10.10.5.188:10000/bin                  (Status: 301) [Size: 0] [--> /bin/]
@@ -127,7 +133,7 @@ http://10.10.5.188:10000/index.html           (Status: 200) [Size: 215]
 
 ```
 
-Open browser to `http://10.10.5.188:10000/bin` and found `brainpan.exe` application.
+Open browser to `http://$TARGET_IP:10000/bin` and found `brainpan.exe` application.
 
 I download the .exe and proceed to setup a buffer overflow local development environment on my Windows7 VM.
 

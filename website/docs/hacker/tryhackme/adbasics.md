@@ -1,10 +1,16 @@
 ---
-title: "Active Directory Basics"
+title: "AD Basics"
 ---
 
 :::info
 
-This is a write-up for the [Active Directory Basics Room](https://tryhackme.com/room/activedirectorybasics) on TryHackMe.
+Description: This is a write-up for the [Active Directory Basics Room](https://tryhackme.com/room/activedirectorybasics) on TryHackMe.
+
+Credits: Me.
+
+|OS|Level|Rating
+|:---:|:-----:|:-----:|
+|Windows &#xf17a;|Easy|&#xf058; &#xf058;|
 
 :::
 
