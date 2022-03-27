@@ -4,17 +4,19 @@ title: "Legacy"
 
 :::info
 
-This is a write-up for the Legacy Box on [HackTheBox](https://hackthebox.com). S/o to Sno0wCS for the collab session on this box.
+Description: This is a write-up for the Legacy Box on [HackTheBox](https://hackthebox.com).
+
+Credits: S/o to Sno0wCS for the collab session on this box.
+
+|OS|Level|Rating
+|:---:|:-----:|:-----:|
+|Windows &#xf17a;|Easy|&#xf058; &#xf058; &#xf058; &#xf058;|
 
 :::
 
-|OS|Level|
-|:---:|:-----:|
-|Windows &#xf17a;|Easy|
-
 ## RECON
 
-### nmap, smb scanning
+### scan
 
 first run of nmap:
 
@@ -33,6 +35,8 @@ Read data files from: /usr/bin/../share/nmap
 ```
 
 We can see the classic 139,445 port combo that tells us SMB is in the house, so we scan them.
+
+### enumerate
 
 First `--script smb-enum-shares`:
 
