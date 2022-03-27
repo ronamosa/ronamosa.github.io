@@ -16,7 +16,7 @@ Credits: S/o to Sno0wCS for the collab session on this box.
 
 ## RECON
 
-### scan
+### Scan
 
 first run of nmap:
 
@@ -36,7 +36,7 @@ Read data files from: /usr/bin/../share/nmap
 
 We can see the classic 139,445 port combo that tells us SMB is in the house, so we scan them.
 
-### enumerate
+### Enumerate
 
 First `--script smb-enum-shares`:
 

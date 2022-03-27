@@ -18,7 +18,7 @@ Credits: S/o to SnoOw, Hunterbot, Tedd and Kafka's help on this box!
 
 First, as always, recon to see what's open
 
-### scan
+### Scan
 
 Port scanning to see what's open -- let's use `threader3000` for speed
 
@@ -123,7 +123,7 @@ PORT      STATE SERVICE VERSION
 10000/tcp open  http    SimpleHTTPServer 0.6 (Python 2.7.3)
 ```
 
-### enumerate
+### Enumerate
 
 Looks like a web server running on port `10000`, I use `gobuster` to enumerate possible directories on the server and found:
 
