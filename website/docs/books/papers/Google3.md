@@ -14,24 +14,24 @@ Youtube Version: [here](https://www.youtube.com/watch?v=W71BTkUbdqE)
 
 ### Key Details
 
-* Google uses a custom Version Control System (VCS)
-* use "trunk-based" development
-* Codebase is used by 95% of Software Developers
-* Google monolithic repo is by definition an "ultra-large-scale" system
-* Google codebase size = 1B files, 35 millions commits across 18 years.
-* 86TB of data
-
-All the code commits, 25,000 SE's around the world commiting typically 16,000 changes, 24,000 changes by way of automated systems. switched to a custom VCS bumped up automated commits.
-
-Custom VCS tools called "Piper"- Google looked for but couldn't find a commercial VCS solution to do what it needed, so created it's own.
+* Google uses a custom Version Control System (VCS) called Piper & CitC
+* Piper distributed across 10 x Data Centres around the world
+* Piper is used by 95% of Google Developers situated around the globe
+* Developers use "trunk-based" development at Google
+* Lot of custom tooling and practices by Google to enable effective use of Monolithic Repo
+* Google codebase size = 1B files, 86TB of data including 35 millions commits across 18 years.
 
 ### Piper
+
+Google tried looking for a commercial solution for their VCS needs, but couldn't find one so built Piper.
+
+All the code commits, 25,000 SE's around the world commiting typically 16,000 changes, 24,000 changes by way of automated systems.
 
 Single large repo on top of Google infra, first [Big table](https://static.googleusercontent.com/media/research.google.com/en//archive/bigtable-osdi06.pdf)
 
 :::info Big Table
 
-"Bigtable is a distributed storage system for managing structured data that is designed to scale to a very large size: petabytes of data across thousands of commodity 
+"Bigtable is a distributed storage system for managing structured data that is designed to scale to a very large size: petabytes of data across thousands of commodity
 servers. "
 
 :::
@@ -52,7 +52,13 @@ _Paxos is a family of protocols for solving consensus in a network of unreliable
 
 :::
 
-Interesting reference in Googles ["Site Reliability Engineering"](https://sre.google/sre-book/managing-critical-state/) _"Chapter 23 - Managing Critical State: Distributed Consensus for Reliability"_.
+Interesting reference in Googles ["Site Reliability Engineering"](https://sre.google/sre-book/managing-critical-state/) _"Chapter 23 - Managing Critical State: Distributed Consensus for Reliability"_ to Paxos Algorithm as SRE would be super interested and invested in distributed systems consistency.
+
+:::tip System Architecture Patterns
+
+Also check out [System Architecture Patterns for Distributed Consensus](https://sre.google/sre-book/managing-critical-state/) in the Google SRE book.
+
+:::
 
 Architected for high level of redundancy and optimize latency across 10 x Data Centres
 
@@ -89,7 +95,7 @@ ALL code is reviewed before commit, so there's a little culture pressure there t
 
 Code ownership = every directory in the monolith has code ownership of that directory, so they control who can commit code to their codebase/directory. How does it typically work? 1 x code review from a Developer from that codebase and 1 x commit approval from the "code owner" of that directory/codebase.
 
-> "Google has developed a number of practices and tools to support its enormous monolithic codebase, including trunk-based development, the distributed source-code repository Piper, the workspace client CitC, and workflow-support-tools, Critique, CodeSearch, Tricorder, and Rosie."
+> _"Google has developed a number of practices and tools to support its enormous monolithic codebase, including trunk-based development, the distributed source-code repository Piper, the workspace client CitC, and workflow-support-tools, Critique, CodeSearch, Tricorder, and Rosie."_
 
 ## Advantages
 
