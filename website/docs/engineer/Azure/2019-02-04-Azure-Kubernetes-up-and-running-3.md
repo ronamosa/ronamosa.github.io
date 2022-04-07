@@ -8,7 +8,7 @@ Published Date: 04-FEB-2019
 
 :::
 
-In [Part 2](/docs/engineer/2019-02-04-Azure-Kubernetes-up-and-running-2), we setup a private Azure Container Register using azure-cli and terraform.
+In [Part 2](2019-02-04-Azure-Kubernetes-up-and-running-2), we setup a private Azure Container Register using azure-cli and terraform.
 
 For the 3rd and final instalment of this "Look Ma, I'm playing with Azure!", we will deploy an application to our AKS cluster using `kubectl`
 
@@ -33,7 +33,7 @@ Right, quick run through the new ACR setup so that the rest of the code below is
 
 :::info
 
-I have updated [Part 1](/docs/engineer/Azure/2019-01-28-Azure-Kubernetes-up-and-running-1) so if you've followed that you should be up to speed at this point.
+I have updated [Part 1](2019-01-28-Azure-Kubernetes-up-and-running-1) so if you've followed that you should be up to speed at this point.
 
 :::
 
@@ -47,7 +47,7 @@ run this to get your kubeconfig: `$ az aks get-credentials --resource-group AKS-
 
 ## (new) Azure Container Registry
 
-> [Part 2](/documentation/2019-02-04-Azure-Kubernetes-up-and-running-2/) has also been updated, so hopefully you have a running AKS cluster AND a working Azure Container Registry now!
+> [Part 2](2019-02-04-Azure-Kubernetes-up-and-running-2) has also been updated, so hopefully you have a running AKS cluster AND a working Azure Container Registry now!
 
 Right. We are ready to deploy something to our AKS cluster!
 

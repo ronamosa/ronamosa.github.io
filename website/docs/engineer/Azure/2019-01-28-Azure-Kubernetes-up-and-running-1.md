@@ -10,7 +10,7 @@ Published Date: 28-JAN-2019
 
 :::info Update
 
-The code and approach below has been updated 03-JUN-2019 to align with [Post 3](/docs/engineer/2019-02-04-Azure-Kubernetes-up-and-running-3).
+The code and approach below has been updated 03-JUN-2019 to align with [Post 3](2019-02-04-Azure-Kubernetes-up-and-running-3).
 
 :::
 

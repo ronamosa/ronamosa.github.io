@@ -20,7 +20,7 @@ As-is, this sonarqube helm chart will survive a deleted pod event, maybe even a 
 
 :::tip
 
-installation instructions for these tools can be found [here.](/docs/engineer/2019-01-28-Azure-Kubernetes-up-and-running-1/)
+installation instructions for these tools can be found [here.](2019-01-28-Azure-Kubernetes-up-and-running-1/)
 
 :::
 
@@ -146,7 +146,30 @@ azureDisk:
 ### Create pv.yaml for sonarqube chart
 
 Place this under `/sonarqube/templates/`
-<script src="https://gist.github.com/ronamosa/4929df7836519312c10483a427c6715e.js"></script>
+
+```yaml title="sonarqube-pv.yaml"
+{{- if and .Values.persistence.enabled (not .Values.persistence.existingClaim) }}
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: pv-{{ template "sonarqube.name" . }}-data
+  labels:
+    app: {{ template "sonarqube.name" . }}
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
+spec:
+  capacity:
+    storage: {{ .Values.persistence.size }}
+  storageClassName: {{ .Values.persistence.storageClassName | quote }}
+  azureDisk:
+    kind: {{ .Values.azureDisk.kind | quote }}
+    diskName: {{ .Values.azureDisk.diskName | quote }}
+    diskURI: {{ .Values.azureDisk.diskURI | quote }}
+  accessModes:
+    - {{ .Values.persistence.accessMode | quote }}
+{{- end }}
+```
 
 ## PostgreSQL Helm Sub Chart
 

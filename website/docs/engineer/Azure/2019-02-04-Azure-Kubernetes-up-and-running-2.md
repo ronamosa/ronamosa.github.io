@@ -8,7 +8,7 @@ Published Date: 28-JAN-2019
 
 :::
 
-Over in [Part 1](/docs/engineer/2019-01-28-Azure-Kubernetes-up-and-running-1) we used Terraform to spin up a really basic Kubernetes cluster in azure. CLI for the win always!
+Over in [Part 1](2019-01-28-Azure-Kubernetes-up-and-running-1) we used Terraform to spin up a really basic Kubernetes cluster in azure. CLI for the win always!
 
 For the record, I'm following some really good documentation from Microsoft's Azure documentation site (all references credited at the end). These are just my notes, screenshots and outputs for my own reference.
 
