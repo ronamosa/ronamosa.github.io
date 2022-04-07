@@ -4,7 +4,7 @@ title: "Ambassador: Disable TLS 1.0, TLS 1.1"
 
 :::info
 
-Published Date: 09-JULY-2019
+Published Date: 09-JUL-2019
 
 :::
 
@@ -12,7 +12,11 @@ Having just learned about Ambassador, and how it's implemented in a Kubernetes c
 
 ## What is Ambassador?
 
-> "Ambassador is an open source Kubernetes-native API gateway for microservices build on the Envoy Proxy." - [The Ambassador Github](https://github.com/datawire/ambassador)
+:::info
+
+"Ambassador is an open source Kubernetes-native API gateway for microservices build on the Envoy Proxy." - [The Ambassador Github](https://github.com/datawire/ambassador)
+
+:::
 
 What does that even mean? Well I guess the answer depends on who's reading this.
 
@@ -50,7 +54,6 @@ spec:
     port: 80
     protocol: TCP
     targetPort: http
-
 ```
 
 All these configs define the k8s manifest. Now, when this manifest is applied, the Kubernetes API lets Ambassador know about the change, and Ambassador will dynamically generate an Envoy proxy configuration which will have the required mappings in it, and Envoy will know how to handle the traffic for that API.
@@ -95,8 +98,11 @@ spec:
 
 ```
 
-_Note: I had to remove the Go templating syntax because it was messing with Jekylls code block rendering ability_
-{: .notice--info}
+:::info
+
+I had to remove the Go templating syntax because it was messing with Jekylls code block rendering ability.
+
+:::
 
 That's all well and good, but how do we disable TLS1.0 and TLS1.1?
 
@@ -117,7 +123,11 @@ So now we can set the `min_tls_version` to v1.2 and effectively disable tls1.0 a
 
 For this configuration I bumped Ambassador up to 0.70.1 from 0.50.x (cos why not right?) and with it had introduced a bunch of new things that needed to be configured before this would work.
 
-_I will cover them briefly as the scope of this post is to show the working tls1.2 ambassador setup._
+:::info
+
+I will cover them briefly as the scope of this post is to show the working tls1.2 ambassador setup.
+
+:::
 
 ### Overview of new configs in 0.70.x
 
@@ -184,9 +194,6 @@ spec:
     port: 443
     targetPort: 8443
 ```
-
-_Note: I had to remove the Go templating syntax because it was messing with Jekylls code block rendering ability_
-{: .notice--info}
 
 that's it.
 

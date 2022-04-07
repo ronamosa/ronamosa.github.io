@@ -4,7 +4,7 @@ title: "AWS S3 Static Blog"
 
 :::info
 
-Published Date: 27-JUL-2018
+Published Date: 29-JUL-2018
 
 :::
 
@@ -20,8 +20,7 @@ So I thought - "more of that, but add in some other functions to make it interes
 
 My site consists of the following:
 
-![site architecture](/img/myblog-cloudb
-uilder-site.png)
+![site architecture](/img/myblog-cloudbuilder-site.png)
 
 * AWS S3 buckets
   * 1 x PROD, 1 x DEV, (1 x redirect bucket)
@@ -81,7 +80,7 @@ This bucket is pretty much like the PROD bucket only its **private**. I used thi
 
 Paste this policy in but change the "aws:SourceIp" to your IP or subnet that includes IPs you want to allow:
 
-``` json
+```json
 {
     "Version": "2012-10-17",
     "Id": "S3PolicyId1",
@@ -149,7 +148,6 @@ Essentially the pipeline uses an image to create a container where I create a li
 This is my `bitbucket-pipelines.yml` file, few things to note
 
 ``` yaml
-
 image: ruby:2.4.0
 
 pipelines:

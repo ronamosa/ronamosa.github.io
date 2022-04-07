@@ -1,21 +1,12 @@
 ---
-layout: single
-title: "Notes: Setting up an EKS with Spot Instances using Terraform"
-description: >
-  The various pain points of setting up Amazon Elastic Kubernetes Service (EKS) on spot instances, using Terraform.
-header:
-  teaser: /img/amazon-web-services.jpg
-categories:
-  - AWS
-tags:
-  - Kubernetes
-  - EKS
-  - Terraform
-toc: true
-toc_label: "Table of Contents"
-toc_icon: "cog"
-comments: true
+title: "EKS with Spot Instances using Terraform"
 ---
+
+:::info
+
+Published Date: 18-SEP-2020
+
+:::
 
 The objective of this post is not to get a fully running AWS EKS cluster running with spot instances, but rather the key "pain points" I run into when trying to spin up this infrastructure using Terraform.
 

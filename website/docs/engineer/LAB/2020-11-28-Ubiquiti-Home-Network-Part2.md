@@ -1,30 +1,16 @@
 ---
-layout: single
-title: "Ubiquiti Home Network: EdgeRouterX, EdgeSwitch, Unifi AP - Part 2"
-description: >
-  Part 2 is setting up the VLANS for Physical Setup from Part 1, and VLAN-to-VLAN routing
-header:
-  teaser: /img/ubiquiti-networks.png
-excerpt: >
-  Part 2 - Setup the VLANs for the EdgeRouterX, EdgeSwitch10XP and Unifi AP AC Lite.
-categories:
-  - Network
-tags:
-  - Unifi
-  - EdgeRouter
-  - EdgeSwitch
-  - Wifi
-  - VLAN
-  - Security
-toc: true
-toc_label: "Table of Contents"
-toc_icon: "cog"
-comments: true
+title: "Ubiquiti Home Network: Part.2"
 ---
+
+:::info
+
+Published Date: 28-NOV-2020
+
+:::
 
 > What are you setting up?
 
-Following on from the physical setup in ["Part 1"](https://ronamosa.io/documentation/2020-11-19-Ubiquiti-Home-Network-Part1/), this post will detail setting up the VLANs required to achieve the following:
+Following on from the physical setup in ["Part 1"](/docs/engineer/LAB/2020-11-19-Ubiquiti-Home-Network-Part1), this post will detail setting up the VLANs required to achieve the following:
 
 * A VLAN for the users in the main house. This VLAN can go out to the internet and also access specific services from another VLAN. This VLAN is going to be VLAN30.
 
@@ -44,18 +30,21 @@ A review of our setup (updated version of Part 1), VLAN configuration needed acr
 
 ![network vlans](/img/ubiquiti-network-vlans-2.png)
 
+:::info
+
 _The 'MyRepublic' router is temporary as I setup & configured the network without disrupting the existing internet connection for the rest of the house. Once its all go, the ONT will go directly to the EdgeRouter X._
-{: .notice--info}
+
+:::
 
 ## EdgeRouter X
 
 The EdgeRouter is the epicenter for all things VLAN, so we setup VLAN 20, 30, 50. Because we are going with a ["Router-on-a-stick"](https://en.wikipedia.org/wiki/Router_on_a_stick) setup, all VLANs will be configured on the same Interface (eth1).
 
-### VLAN Setup
+### VLAN: Router
 
 Log into your EdgeRouterX management UI- if you're following from Part 1 - use [https://172.16.1.1](https://172.16.1.1/).
 
-From the ['Dashboard'](https://172.16.1.1/#Dashboard), 
+From the ['Dashboard'](https://172.16.1.1/#Dashboard)
 
 ![edgerouterx create vlans](/img/edgerouterx-create-vlan.png)
 
@@ -87,7 +76,6 @@ When complete, you should have these three VLANs showing:
 ![edgerouterx all vlans](/img/edgerouterx-all-vlans.png)
 
 _Ignore the other VLANs and just refer to VLANs 20, 30, 50 for this post. I have some work to do setting up the other VLANs for their specific use._
-{: .notice--info}
 
 ### DHCP Servers
 
@@ -139,8 +127,11 @@ Next up is the switch. Now that we've created our VLANs we have to make sure eve
 
 And that means we need to know about Access Ports, Trunk Ports, Tagged, Untagged and excluded ports (we'll learn about them as we go).
 
+:::info
+
 _**Access Port**: "a port that can be assigned to a single VLAN. The frames that arrive on an access port are assumed to be part of the access VLAN. This port type is configured on switch ports that are connected to devices with a normal network card, for example a host on a network."_
-{: .notice--info}
+
+:::
 
 Login to your EdgeSwitch10XP
 
@@ -155,8 +146,11 @@ From ["Part 1"](https://ronamosa.io/documentation/2020-11-19-Ubiquiti-Home-Netwo
 * Port 1 is PoE-enabled port for our UAP WiFi device
 * Port 8 is our **Trunk Port**.
 
+:::info
+
 _**Trunk Port**: "a port that is connected to another switch. This port type can carry traffic of multiple VLANs, thus allowing you to extend VLANs across your entire network. Frames are tagged by assigning a VLAN ID to each frame as they traverse between switches."_
-{: .notice--info}
+
+:::
 
 From our digram from before:
 
@@ -164,7 +158,7 @@ From our digram from before:
 
 the connection from EdgeRouterX port `eth1` into EdgeSwitch10XP needs port `8` to be a **Trunk Port** to understand that it has to handle multiple VLANs that arrive on that port.
 
-### VLAN Setup
+### VLAN: Switch
 
 Click the 'VLAN' link in the side menu.
 
@@ -192,8 +186,11 @@ The setup only has 2 x devices connected, so only ports 1 & 8 will have 'T' tags
 
 As you can see in the diagram, the 'default' VLAN (ID:1) is set to 'U' or "Untagged" for ports 1 and 8.
 
-_Note: one thing to keep in mind is that some management level communication happens between devices and default to the native VLAN (ID:1), so if you don't ensure the 'U' is on a default VLAN ID that matches other devices, you're going to have a bad "why is the connection timing out?!" day._
-{: .notice--danger}
+:::danger
+
+_One thing to keep in mind is that some management level communication happens between devices and default to the native VLAN (ID:1), so if you don't ensure the 'U' is on a default VLAN ID that matches other devices, you're going to have a bad "why is the connection timing out?!" day._
+
+:::
 
 To summarize:
 
@@ -216,7 +213,6 @@ Now to setup the last device- the Unifi AP AC Lite.
 ## Unifi AP AC Lite
 
 **_Note: firmware at time of writing:_** UI: 6.0.28, Backend: 6.0.28, Build: atag_6.0.28_14280
-{: .notice--primary}
 
 Log into your Unifi network controller _(see ['Part 1'](https://ronamosa.io/documentation/2020-11-19-Ubiquiti-Home-Network-Part1/) for setting up and logging into the unifi network controller)_.
 
@@ -247,8 +243,11 @@ Under 'Advanced' settings you want mainly the following 2:
 
 ![UnifiAPACLite LAB VLAN](/img/unifiapaclite-setupwifi4.png)
 
-_Note: setting up the 'Domain Name' is on the To-do list_
-{: .notice--info}
+:::info
+
+Setting up the 'Domain Name' is on the To-do list
+
+:::
 
 Click 'Apply Changes' and you are done (for this Network)
 
@@ -264,7 +263,6 @@ Your Networks page should look similar to this after:
 ![UnifiAPACLite All Network](/img/unifiapaclite-setupwifi6.png)
 
 _Note: the 'LAN' network is a preset default and locked to the default VLAN._
-{: .notice--info}
 
 Networks are setup, now they need WiFi's attached to them.
 
@@ -321,7 +319,6 @@ This setting lists the 3 x main internal/local network ranges (add more if you w
 Click 'Apply Changes' button and you have the GUEST WiFi (Hotspot) set up.
 
 _**Note: You can only have a MAXIMUM 4 x WiFi(SSID) including Guest Hotspots. Your 'Add' buttons will grey out when you reach MAX.**_
-{: .notice--warning}
 
 You should see the new WiFi/SSID's are available and be able to connect to them.
 

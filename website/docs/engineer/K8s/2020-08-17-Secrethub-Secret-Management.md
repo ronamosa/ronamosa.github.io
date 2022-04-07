@@ -2,6 +2,12 @@
 title: "SecretHub: Secrets Management"
 ---
 
+:::info
+
+Published Date: 17-AUG-2020
+
+:::
+
 A simple example of setting up SecretHub secrets manager to secure all your application and infrastructure secrets at deployment
 
 Secrets management, especially as part of a project/product team, is something that can easily get very messy with user, system and application credentials all over the place due to a lack of a secrets management system and practice setup. It's important to figure this out early in the piece, especially for all the engineers who are going to be working on the application and infrastructure for that app, you want people to come into the team and have access to everything they need and not have to compromise any security to do so.
@@ -166,7 +172,7 @@ secrethub mkdir $SECRETHUB_ACCOUNT/aks_secrets/prod/azure
 
 ### Create SecretHub Secrets
 
-```sh
+```bash
 # azure secrets directory
 echo ${ARM_ACCESS_KEY} | secrethub write $SECRETHUB_ACCOUNT/aks_secrets/prod/azure/arm_access_key
 

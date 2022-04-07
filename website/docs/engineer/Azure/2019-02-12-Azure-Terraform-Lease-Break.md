@@ -10,10 +10,15 @@ Published Date: 12-FEB-2019
 
 I'm busy building stuff in Azure using terraform. I've got different workspaces for terraform for different environments, so I've switched to my new environment workspace.
 
+:::danger
+
+7-APR-2022: Be advised, it's not advisable to use terraform workspaces for multiple environments, per-environment folders is recommended.
+
+:::
+
 `terraform workspace new development-env`
 
 When I try to a `terraform init` it a backend config file which will line my terraform up with the statefiles stored in Azure blob storage accounts, I get an error message.
-
 
 ## The backend config
 
@@ -23,13 +28,15 @@ if you're trying to do this:
 
 with a backend.conf like this:
 
-```
+```terraform
 storage_account_name = "terraformstateaccount"
 container_name       = "terraformstateaccount"
 key                  = "env-cluster.terraform.tfstate"
 ```
+
 you run this
-```
+
+```bash
 07:48 $ terraform init --backend-config="config/backend.conf"
 Initializing modules...
 - module.log_analytics
@@ -59,13 +66,14 @@ Do you want to migrate all workspaces to "azurerm"?
 ```
 
 ## 'Already has a lease' Error
+
 But instead of a nice bunch of green (is good) text as output, you get this red mess...
 
 ![error](/img/azurebreaklease-error.png)
 
 text version for good measure:
 
-```sh
+```text
 Error migrating the workspace "nptemp" from the previous "azurerm" backend
 to the newly configured "azurerm" backend:
     Error loading state:

@@ -1,26 +1,12 @@
 ---
-layout: single
-title: "Ubiquiti Home Network: EdgeRouterX, EdgeSwitch, Unifi AP - Part 1"
-description: >
-  Home network setup using EdgeRouterX SFP, EdgeSwitch 10XP, Unifi AP AC Lite, VLAN-to-VLAN routing, Security.
-header:
-  teaser: /img/ubiquiti-networks.png
-excerpt: >
-  Home network setup with an EdgeRouterX SFP, EdgeSwitch 10XP and Unifi AP AC Lite, with multiple VLANs, DHCP, DNS forwarding and Firewall rulesets for security.
-categories:
-  - Network
-tags:
-  - Unifi
-  - EdgeRouter
-  - EdgeSwitch
-  - Wifi
-  - VLAN
-  - Security
-toc: true
-toc_label: "Table of Contents"
-toc_icon: "cog"
-comments: true
+title: "Ubiquiti Home Network: Part.1"
 ---
+
+:::info
+
+Published Date: 19-NOV-2020
+
+:::
 
 > What are you setting up?
 
@@ -38,8 +24,11 @@ The high-level overview of connectivity and what we're configuring at different 
 
 ![network overview](/img/ubiquiti-network-vlans.png)
 
+:::info
+
 _The 'MyRepublic' router is temporary as I setup & configured the network without disrupting the existing internet connection for the rest of the house. Once its all go, the ONT will go directly to the EdgeRouter X._
-{: .notice--info}
+
+:::
 
 ### Hardware
 
@@ -139,8 +128,11 @@ When you run the 'Basic Setup' wizard and specify that we only use ONE LAN, this
 
 What we need to do here, is separate out those **_ethX_** ports from the **_switch0_** so we can use one for our OOB-MGMT port.
 
+:::tip
+
 _If you try to just assign an IP address to one of the ethX ports, you'll get an error about assigning IP address to a switchport interface (or something, can't remeber the exact error)._
-{: .notice--warning}
+
+:::
 
 Find the interface named _'switch0'_ and click the 'Action>Config' from the dropdown.
 
@@ -216,19 +208,24 @@ This updates our diagram a little bit, adding the controller service running fro
 
 Follow the official documentation for setting up the network controller: ["Unifi- How to Set Up a UniFi Network Controller](https://help.ui.com/hc/en-us/articles/360012282453-UniFi-How-to-Set-Up-a-UniFi-Network-Controller#h_01EPDDV86GTK4M229TJHQK93MR)
 
+:::info
+
 _You need a Unifi account to login to the controller. If you don't have an account, go to [https://account.ui.com/](https://account.ui.com/) to create one._
-{: .notice--info}
+
+:::
 
 For my Ubuntu setup, I did the following:
 
 1. Download installer from [https://www.ui.com/download/unifi/](https://www.ui.com/download/unifi/)
 2. Run the installer on my server
 3. Check service status, stop, restart:
-  * To start UniFi if the webpage prompt does not appear: `sudo service unifi start`
-  * To stop the UniFi service: `sudo service unifi stop`
-  * To restart the UniFi service: `sudo service unifi restart`
-  * To see the status of UniFi service: `sudo service unifi status`
-4. Run through the setup wizard when you browse to `https://IP-of-Network-Contoller:8443`.
+
+* To start UniFi if the webpage prompt does not appear: `sudo service unifi start`
+* To stop the UniFi service: `sudo service unifi stop`
+* To restart the UniFi service: `sudo service unifi restart`
+* To see the status of UniFi service: `sudo service unifi status`
+
+1. Run through the setup wizard when you browse to `https://IP-of-Network-Contoller:8443`.
 
 After the setup, you can now visit the network controller management UI (in my case) on [https://172.16.5.2:8443](https://172.16.5.2:8443) (this PC is on my OOB-MGMT interface).
 

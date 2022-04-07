@@ -1,23 +1,12 @@
 ---
-layout: single
 title: "Setup Istio mTLS with Secret Discovery Service (SDS) and AzureDNS using Cert-Manager for LetsEncrypt Certs."
-description: >
-  A valid TLS certificate from LetsEncrypt used for Mutial TLS in your Istio setup automatically provisioned and updated via Cert-Manager using AzureDNS acme challenge.
-header:
-  teaser: /img/istio-service-mesh.png
-categories:
-  - Istio
-tags:
-  - AKS
-  - Kubernetes
-  - tls
-  - Certificate
-  - LetsEncrypt
-  - Cert-Manager
-toc: true
-toc_label: "Table of Contents"
-toc_icon: "cog"
 ---
+
+:::info
+
+Published Date: 06-MAR-2020
+
+:::
 
 In this post we will be setting up a way for Istio to automatically provision and manage LetsEncrypt Signed TLS certificates for use in Kubernetes clusters.
 
@@ -61,7 +50,7 @@ run: `kubectl get nodes`
 
 output:
 
-```sh
+```bash
 NAME                               STATUS   ROLES   AGE   VERSION
 aks-nodepool-38331632-vmss000000   Ready    agent   26h   v1.15.7
 aks-nodepool-38331632-vmss000001   Ready    agent   26h   v1.15.7
@@ -76,7 +65,11 @@ install via curl:
 
 setup the `istioctl` binary in your $PATH
 
-_current istio version as time of writing: 1.5.0_
+:::info
+
+current istio version as time of writing: 1.5.0
+
+:::
 
 ### Install Istio with SDS enabled
 
@@ -86,20 +79,20 @@ _'[Secret Discovery Service (SDS)](https://www.envoyproxy.io/docs/envoy/v1.8.0/c
 
 using `istioctl` run:
 
-```sh
+```bash
 istioctl manifest apply \
   --set profile=default \
   --set values.gateways.istio-egressgateway.enabled=false \
   --set values.gateways.istio-ingressgateway.sds.enabled=true
 ```
 
-* use `default` [profile] (https://istio.io/docs/setup/additional-setup/config-profiles/)
+* use `default` [profile](https://istio.io/docs/setup/additional-setup/config-profiles/)
 * disable `egress` gateway
 * enable SDS on `ingress` gateway
 
 this will install istio system in the `istio-system` namespace by default, you can check by running:
 
-```sh
+```bash
 kubectl -n istio-system get pods
 NAME                                    READY   STATUS    RESTARTS   AGE
 istio-ingressgateway-8577f4c6f8-nc7fb   1/1     Running   0          26h
@@ -142,7 +135,7 @@ Events:                 <none>
 
 run this json `patch` command to update the gateway:
 
-```sh
+```bash
 kubectl -n istio-system \
   patch gateway ingressgateway --type=json \
   -p="$(cat patch.json)"
@@ -150,7 +143,7 @@ kubectl -n istio-system \
 
 patch.json:
 
-```json
+```json title="patch.json"
 [{"op": "add","path": "/spec/servers/1","value": {"hosts": ["*"], "port": {"name": "https-443","number": 443,"protocol": "HTTPS"},"tls": {"credentialName": "ingress-cert", "mode": "SIMPLE"}}}]
 ```
 
@@ -202,7 +195,6 @@ At this point you should have the following things in place:
 * an Istio installation in the `istio-system` namespace
 * an `ingressgateway` gateway with HTTPS and TLS configured.
 
-
 ## Install Bookinfo Demo Application
 
 We need to install an application to demonstrate a valid TLS certificate on, and also show how that tls certificate is used for mutual TLS (mTLS) by Istio.
@@ -227,7 +219,7 @@ check pods
 
 you should see something like this:
 
-```sh
+```bash
 NAME                              READY   STATUS    RESTARTS   AGE
 details-v1-74f858558f-xx97s       2/2     Running   0          21h
 productpage-v1-76589d9fdc-9qbf9   2/2     Running   0          21h
@@ -342,7 +334,7 @@ check and delete any existing cert-manager releases:
 
 add cert-manager to the repo, and install:
 
-```sh
+```bash
 helm repo add jetstack https://charts.jetstack.io
 
 helm repo update
@@ -361,7 +353,7 @@ run:
 
 output:
 
-```sh
+```bash
 NAME                                       READY   STATUS    RESTARTS   AGE
 cert-manager-6f9d54fdc7-jl6wv              1/1     Running   0          26h
 cert-manager-cainjector-6b6c7955f4-whvjm   1/1     Running   0          26h
@@ -400,7 +392,7 @@ My domain `cloudbuild.site` is registered at [https://www.gandi.net/en-NZ](https
 
 So when I query the nameservers for my domain `cloudbuild.site`, I should see this:
 
-```
+```bash
 dig NS cloudbuild.site
 
 ; <<>> DiG 9.11.3-1ubuntu1.11-Ubuntu <<>> NS cloudbuild.site
@@ -493,10 +485,8 @@ The secret is created in the `setup_azuredns.sh` script but if you need to manua
 `kubectl -n <NAMESPACE_WHERE_ISSUER_IS> create secret generic azuredns-config --from-literal=CLIENT_SECRET=<secret_goes_here>`
 
 take note of the `CLIENT_SECRET` bit as the required reference to the secret later on.
-{: .notice--info}
 
 _letsencrypt has 2 acme servers, a staging and a production one - we will use the production one._
-{: .notice--success}
 
 ## Create Issuer & Certificates
 
@@ -572,7 +562,7 @@ save to `CertProd.yaml` and deploy into the `istio-system` namespace:
 
 Once you deploy the cert, if everything is setup correctly you should see logs like this :
 
-```sh
+```bash
 I0307 08:21:35.667035       1 controller.go:135] cert-manager/controller/orders "msg"="finished processing work item" "key"="istio-system/ingress-cert-1810009586-3587251712"
 I0307 08:21:38.181385       1 dns.go:121] cert-manager/controller/challenges/Check "msg"="checking DNS propagation" "dnsName"="bookinfo.cloudbuild.site" "domain"="bookinfo.cloudbuild.site" "resource_kind"="Challenge" "resource_name"="ingress-cert-1810009586-3587251712-2272992580" "resource_namespace"="istio-system" "type"="dns-01" "nameservers"=["10.0.0.10:53"]
 I0307 08:21:49.666500       1 dns.go:133] cert-manager/controller/challenges/Check "msg"="waiting DNS record TTL to allow the DNS01 record to propagate for domain" "dnsName"="bookinfo.cloudbuild.site" "domain"="bookinfo.cloudbuild.site" "resource_kind"="Challenge" "resource_name"="ingress-cert-1810009586-3587251712-2272992580" "resource_namespace"="istio-system" "type"="dns-01" "fqdn"="_acme-challenge.bookinfo.cloudbuild.site." "ttl"=60
@@ -585,8 +575,7 @@ Once you see all sorts of successful activity happening, go to your Azure Portal
 Check the cert resource via kubectl:
 
 ```yaml
-
-kubectl -n istio-system describe certs
+# kubectl -n istio-system describe certs
 Name:         ingress-cert
 Namespace:    istio-system
 Labels:       <none>
@@ -632,7 +621,7 @@ results, we see:
 * CN of 'bookinfo.cloudbuild.site'
 * Signed Certificate
 
-```sh
+```bash
 CONNECTED(00000005)
 depth=2 O = Digital Signature Trust Co., CN = DST Root CA X3
 verify return:1
@@ -698,5 +687,3 @@ Verification: OK
 Now you can browse and use your bookinfo app at https://bookinfo.cloudbuild.site/productpage with a valid TLS certificate, and working cert-manager and SDS setup with Azure DNS challenge solver!
 
 I know this was pretty long, so any question, please feel free to ping me online, probably on [Twitter](https://twitter.com/iamronamo)
-
-## Thanks for reading!

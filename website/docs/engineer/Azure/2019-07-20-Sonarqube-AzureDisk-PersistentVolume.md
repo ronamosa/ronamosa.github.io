@@ -1,24 +1,12 @@
 ---
-layout: single
-author_profile: true 
 title: "Sonarqube Scanner Helm Chart with AzureDisk PersistentVolume Setup."
-description: >
-  Setting up a static PersistentVolume using AzureDisk for your Sonarqube helm chart deployment.
-header:
-  teaser: /img/sonarqube-logo.png
-categories:
-  - Testing
-tags:
-  - helm
-  - sonarqube
-  - Azure
-  - Disks
-  - PersistentVolume
-toc: true
-toc_label: "Table of Contents"
-toc_icon: "cog"
-comments: true
 ---
+
+:::info
+
+Published Date: 20-JUL-2019
+
+:::
 
 As-is, this sonarqube helm chart will survive a deleted pod event, maybe even a helm delete. But if your cluster is rebuilt, or you run a `helm delete --purge sonarqube` you're going to lose any data and reports that were living with your deployment.
 
@@ -30,8 +18,11 @@ As-is, this sonarqube helm chart will survive a deleted pod event, maybe even a 
 * kubectl
 * az-cli
 
-_installation instructions for these tools can be found [here.](/documentation/2019-01-28-Azure-Kubernetes-up-and-running-1/)_
-{: .notice--info}
+:::tip
+
+installation instructions for these tools can be found [here.](/docs/engineer/2019-01-28-Azure-Kubernetes-up-and-running-1/)
+
+:::
 
 ## Quick K8s Storage Overview
 
@@ -52,14 +43,15 @@ This [video](https://www.youtube.com/watch?v=OulmwTYTauI) by "IBM FSS FCI and Co
 ### The abstractions: Volumes, PV, StorageClasses and PVC's
 
 Here's a diagram:
+
 ![AKS PV PVC](https://social.technet.microsoft.com/wiki/cfs-filesystemfile.ashx/__key/communityserver-wikis-components-files/00-00-00-00-05/7485.persistent_2D00_volume_2D00_claims.png)
 
 Essentially, in an oversimplified nutshell:
 
-- **Volumes** are derived from Physical Disks that an Admin provisions
-- **PersistentVolumes** (static) are an abstraction of the Physical Disks
-- **StorageClasses** (dynamic) are also an abstraction of the Physical Disks
-- **PersistentVolumeClaims** is what the Pod will actually mount as a "volume". The PVC will determine if you'll be mounting a static PV, or a storageClass Volume.
+* **Volumes** are derived from Physical Disks that an Admin provisions
+* **PersistentVolumes** (static) are an abstraction of the Physical Disks
+* **StorageClasses** (dynamic) are also an abstraction of the Physical Disks
+* **PersistentVolumeClaims** is what the Pod will actually mount as a "volume". The PVC will determine if you'll be mounting a static PV, or a storageClass Volume.
 
 Right, so now that we've got that out of the way, let's build some things.
 
@@ -68,9 +60,9 @@ Right, so now that we've got that out of the way, let's build some things.
 * 1 x sonarqube data disk
 * 1 x postgresql database disk
 
-```sh
-$ az disk create -g AKS-CLOUDRESOURCES -n sonarqube-data --size-gb 10 --sku Standard_LRS --tags application=sonarqube
-$ az disk create -g AKS-CLOUDRESOURCES -n postgresql-data --size-gb 16 --sku Standard_LRS --tags application=postgresql
+```bash
+az disk create -g AKS-CLOUDRESOURCES -n sonarqube-data --size-gb 10 --sku Standard_LRS --tags application=sonarqube
+az disk create -g AKS-CLOUDRESOURCES -n postgresql-data --size-gb 16 --sku Standard_LRS --tags application=postgresql
 ```
 
 example output for sonarqube disk
@@ -183,8 +175,31 @@ azureDisk:
 
 ## Create pv.yaml for PostgreSQL sub-chart
 
-Place this under `/post/templates/`
-<script src="https://gist.github.com/ronamosa/0a2c22d31d4e958eabe857236eea0ca3.js"></script>
+Place this under `/post/templates/`:
+
+```yaml title="sonarqube-pv.yaml"
+{{- if and .Values.persistence.enabled (not .Values.persistence.existingClaim) }}
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: pv-{{ template "sonarqube.name" . }}-data
+  labels:
+    app: {{ template "sonarqube.name" . }}
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
+spec:
+  capacity:
+    storage: {{ .Values.persistence.size }}
+  storageClassName: {{ .Values.persistence.storageClassName | quote }}
+  azureDisk:
+    kind: {{ .Values.azureDisk.kind | quote }}
+    diskName: {{ .Values.azureDisk.diskName | quote }}
+    diskURI: {{ .Values.azureDisk.diskURI | quote }}
+  accessModes:
+    - {{ .Values.persistence.accessMode | quote }}
+{{- end }}
+```
 
 ## Zip PostgreSQL (optional)
 
@@ -192,8 +207,7 @@ After adding the `pv.yaml` file to the postgresql/templates directory and adding
 
 You can also just keep the files unzipped in their folders under `sonarqube/charts/postgresql/` etc.
 
-Worse case scenario none of this makes sense and is hard to follow - have a look at my git repo with the files laid out how it worked for me: [https://github.com/ronamosa/sonarqube-static-disks.git](https://github.com/ronamosa/sonarqube-static-disks.git)
-{: .notice--warning}
+Worse case scenario none of this makes sense and is hard to follow - have a look at my git repo with the files laid out how it worked for me: [https://github.com/ronamosa/sonarqube-static-disks.git](https://github.com/ronamosa/sonarqube-static-disks.git)ng}
 
 ## Helm deploy chart
 

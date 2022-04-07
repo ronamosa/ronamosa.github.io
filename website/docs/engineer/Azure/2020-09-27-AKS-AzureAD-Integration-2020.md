@@ -1,24 +1,12 @@
 ---
-layout: single
 title: "Azure AKS Security: Azure Active Directory (AAD) Integration and K8s RBAC"
-description: >
-  The new Azure AD Integration with AKS and testing K8s RBAC Policies for Users.
-header:
-  teaser: /img/azure-cloud-provider.png
-categories:
-  - Azure
-tags:
-  - Kubernetes
-  - AKS
-  - Terraform
-  - AzureAD
-  - AAD
-  - RBAC
-toc: true
-toc_label: "Table of Contents"
-toc_icon: "cog"
-comments: true
 ---
+
+:::info
+
+Published Date: 27-SEP-2020
+
+:::
 
 This post is going to look at how to create an Azure AKS Cluster with Azure AD Integration enabled to deploy K8s RBAC policies so your users will only be allowed to do things on the AKS Cluster that is tied to their Azure AD Group, and RBAC policies for those groups.
 
@@ -68,7 +56,7 @@ It's important you have the following versions, or later of the CLI's, or the ne
 
 * az-cli: 2.11.0+
 
-```sh
+```bash
 az --version
 azure-cli                         2.12.1
 
@@ -89,7 +77,7 @@ Your CLI is up-to-date.
 
 * kubectl: 1.18.1
 
-```sh
+```bash
 kubectl version
 Client Version: version.Info{Major:"1", Minor:"18", GitVersion:"v1.18.2", GitCommit:"52c56ce7a8272c798dbc29846288d7cd9fbae032", GitTreeState:"clean", BuildDate:"2020-04-16T11:56:40Z", GoVersion:"go1.13.9", Compiler:"gc", Platform:"linux/amd64"}
 ```
@@ -252,7 +240,7 @@ vnet_subnet_id = data.terraform_remote_state.vnet.outputs.vnet_subnet_id[0]
 
 If you see any errors that look like this
 
-```sh
+```bash
 Error: Incorrect attribute value type
 
   on .terraform/modules/aks/azure/services/azure_kubernetes_service/main.tf line 30, in resource "azurerm_kubernetes_cluster" "main":
@@ -267,7 +255,7 @@ Check the values of your `outputs.tf` are passing the appropriate value `types` 
 
 Now you have completed your build
 
-```sh
+```bash
 module.aks.azurerm_kubernetes_cluster.main: Still creating... [3m40s elapsed]
 module.aks.azurerm_kubernetes_cluster.main: Still creating... [3m50s elapsed]
 module.aks.azurerm_kubernetes_cluster.main: Still creating... [4m0s elapsed]
@@ -277,7 +265,7 @@ module.aks.azurerm_kubernetes_cluster.main: Creation complete after 4m12s [id=/s
 
 I retrieved the kubeconfig with the `--admin` switch, so I can do a quick check that the nodes are there
 
-```sh
+```bash
 NAME                           STATUS   ROLES   AGE   VERSION
 aks-prod-38331632-vmss000000   Ready    agent   86s   v1.19.0
 aks-prod-38331632-vmss000001   Ready    agent   84s   v1.19.0
@@ -451,7 +439,7 @@ subjects:
 
 Create the two `dev` namespaces 
 
-```sh
+```bash
 $ kubectl create ns dev1
 namespace/dev1 created
 
@@ -461,7 +449,7 @@ namespace/dev2 created
 
 Apply RBAC policy (role & binding)
 
-```sh
+```bash
 $ kubectl apply -f dev1-role-binding.yml
 role.rbac.authorization.k8s.io/dev1-user-full-access created
 rolebinding.rbac.authorization.k8s.io/dev1-user-access created
@@ -473,7 +461,7 @@ rolebinding.rbac.authorization.k8s.io/dev2-user-access created
 
 Check...
 
-```sh
+```bash
 $ kubectl get role -n dev1
 NAME                    CREATED AT
 dev1-user-full-access   2020-10-07T12:03:39Z
@@ -487,7 +475,7 @@ dev2-user-full-access   2020-10-07T12:07:27Z
 
 Login as `dev1` user and query pods in dev1 namespace
 
-```sh
+```bash
 $ kubectl -n dev1 get pods
 To sign in, use a web browser to open the page https://microsoft.com/devicelogin and enter the code Q6GR3KMGL to authenticate.
 No resources found in dev1 namespace.
@@ -495,7 +483,7 @@ No resources found in dev1 namespace.
 
 There's a cool feature of `kubectl` where you can basically ask the AKS cluster what you're allowed to do e.g. at the moment I'm logged in as the `dev1` user so I ask the cluster (via kubectl)
 
-```sh
+```bash
 kubectl auth can-i create pods
 no
 ```
@@ -508,7 +496,7 @@ Next question
 
 > Can I create pods in dev1 namespace?
 
-```sh
+```bash
 kubectl auth can-i create pods -n dev1
 yes
 kubectl auth can-i delete pods -n dev1
@@ -519,7 +507,7 @@ Ok, so "yes" I'm allowed to create and delete pods in `dev1` namespace.
 
 Let's try it.
 
-```sh
+```bash
 $ kubectl run nginx-dev1 --image=nginx --namespace dev1
 pod/nginx-dev1 created
 
@@ -530,7 +518,7 @@ nginx-dev1   1/1     Running   0          22s
 
 Looks good. What can we do in `dev2`?
 
-```sh
+```bash
 $ kubectl auth can-i create pods -n dev2
 no
 
@@ -542,7 +530,7 @@ As `dev1` user, I'm not allowed to create or even "get" pods from namespace dev2
 
 Let's try it.
 
-```sh
+```bash
 kubectl run nginx-dev2 --image=nginx --namespace dev2
 Error from server (Forbidden): pods is forbidden: User "dev1@xxxxxxxx.onmicrosoft.com" cannot create resource "pods" in API group "" in the namespace "dev2"
 ```

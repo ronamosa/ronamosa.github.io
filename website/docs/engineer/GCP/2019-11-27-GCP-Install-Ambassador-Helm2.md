@@ -1,28 +1,18 @@
 ---
-layout: single
 title: "Setup Ambassador API Gateway on GCP."
-description: >
-  Install Ambassador API Gateway on Google Cloud Provider along with a demo application to test.
-header:
-  teaser: /img/google-cloud-platform.png
-categories:
-  - Ambassador
-tags:
-  - GKE
-  - Kubernetes
-  - helm2
-  - Ambassador
-  - Ingress
-  - Annotations
-  - Charts
-toc: true
-toc_label: "Table of Contents"
-toc_icon: "cog"
 ---
+
+:::info
+
+Published Date: 27-NOV-2019
+
+:::
 
 A pre-requisite to another post I'm writing where I'm setting up a Nexus instance, requires a working Ambassador setup. I only figured that out when trying to deploy my Nexus setup so here I am writing the pre-cursor to writing that blog i.e. set this up so I can set _that_ up.
 
-I've written about [Ambassador](https://www.getambassador.io/) before. Learn a little bit about it on a blog I wrote about [disabling tls1, tls1.0 on Ambassador](/documentation/2019-07-09-Ambassador-Disable-TLS1/).
+I've written about [Ambassador](https://www.getambassador.io/) before.
+
+Learn a little bit about it on a blog I wrote about [disabling tls1, tls1.0 on Ambassador](/docs/engineer/K8s/2019-07-09-Ambassador-Disable-TLS1).
 
 Basically, this is a quick run through setting up a simple ambassador API gateway that proxies connections through to a nginx backend pod/service using helm (version 2 for now).
 
@@ -39,21 +29,23 @@ Basically, this is a quick run through setting up a simple ambassador API gatewa
 
 * `kubectl` installed
 * grabbed a `kubeconfig` file from your GKE cluster
-* [helm3](/documentation/2019-11-11-Helm-3-Kubernetes-Package-Manager/) installed.
+* [helm3](/docs/engineer/K8s/2019-11-11-Helm-3-Kubernetes-Package-Manager) installed.
 
 ## Create your GKE Cluster
-However you want to do it, via terraform or via https://console.cloud.google.com just get one up & running.
+
+However you want to do it, via terraform or via [https://console.cloud.google.com](https://console.cloud.google.com) just get one up & running.
 
 ## Setup your kubectl
+
 For me I setup a demo cluster `development-cluster-1` in `us-central1-a` on my `cloudbuilderio` project
 
-```sh
-$ gcloud container clusters get-credentials development-cluster-1 --zone us-central1-a --project cloudbuilderio
+```bash
+gcloud container clusters get-credentials development-cluster-1 --zone us-central1-a --project cloudbuilderio
 ```
 
 test it
 
-```sh
+```bash
 ubuntudevbox:~/GCP$ kubectl get nodes
 NAME                                                  STATUS   ROLES    AGE   VERSION
 gke-development-cluster--default-pool-d0e1b087-llxh   Ready    <none>   32m   v1.13.11-gke.14
@@ -61,14 +53,13 @@ gke-development-cluster--default-pool-d0e1b087-z8gh   Ready    <none>   32m   v1
 gke-development-cluster--default-pool-d0e1b087-z8s7   Ready    <none>   32m   v1.13.11-gke.14
 ```
 
-
 ## Setup charts : helm version 2
 
 ### create tiller-rbac service account
 
-Deploy this yaml config `tiller-rbac.yaml`
+Deploy this yaml config
 
-```yaml
+```yaml title="tiller-rbac.yaml"
 apiVersion: v1
 kind: ServiceAccount
 metadata:
@@ -95,7 +86,7 @@ deploy with : `$ kubectl create -f ./tiller-rbac.yaml`
 
 helm v2 needs tiller, so run `helm init`
 
-```sh
+```bash
 23:30 $ helm2 init
 Creating /home/user1/.helm
 Creating /home/user1/.helm/repository
@@ -120,14 +111,15 @@ For more information on securing your installation see: https://docs.helm.sh/usi
 
 As helm2 fetch the latest stable ambassador helm chart
 
-```sh
-$ helm2 fetch stable/ambassador --untar
+```bash
+helm2 fetch stable/ambassador --untar
 ```
+
 ### setup ingress, application namespaces
 
 We will setup a namespace for ambassador (ingress), and another one for a web app demo (application) that ambassador will proxy through to
 
-```sh
+```bash
 $ kubectl create ns ingress
 namespace/ingress created
 
@@ -137,7 +129,7 @@ namespace/application created
 
 check namespaces
 
-```sh
+```bash
 23:52 $ kubectl get ns
 NAME              STATUS   AGE
 application       Active   7m26s
@@ -154,7 +146,7 @@ kube-system       Active   32m
 
 output
 
-```sh
+```bash
 NAME:   ambassador
 LAST DEPLOYED: Sun Dec  1 00:25:54 2019
 NAMESPACE: ingress
@@ -218,17 +210,22 @@ Ok. Ambassador installed and we're ready to rock'n'roll.
 ## Create & Deploy a demo pod
 
 ### helm create
+
 create a dummy/demo helm chart
 
-```sh
+```bash
 ~/helm/charts/v2 $ helm2 create www-demo
 ```
 
-_note: helm2 is my symlink to the helm v2 binary cos I have helm3 installed as the default 'helm' command_
+:::info
+
+helm2 is my symlink to the helm v2 binary cos I have helm3 installed as the default 'helm' command
+
+:::
 
 this is your new demo chart
 
-```sh
+```bash
 ✔ ~/helm/charts/v2/www-demo
 21:16 $ tree
 .
@@ -251,17 +248,41 @@ this is your new demo chart
 
 update your `templates/service.yaml` file so it looks like this:
 
-<script src="https://gist.github.com/ronamosa/7161f600b54c26aaed0f5faf780f9768.js"></script>
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "www-demo.fullname" . }}
+  labels:
+{{ include "www-demo.labels" . | indent 4 }}
+  annotations:
+    getambassador.io/config: |
+      ---
+      apiVersion: ambassador/v1
+      kind: Mapping
+      name: www_mapping
+      prefix: /
+      service: {{ include "www-demo.fullname" . }}.application:80
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.port }}
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    app.kubernetes.io/name: {{ include "www-demo.name" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+```
 
 key things in this config
 
-* the 'service' in the annotation name has to match the name of this service. 
+* the 'service' in the annotation name has to match the name of this service.
 * the service annotation also follows the form `service_name.namespace_name:port` and we will be deploying the demo in the `application` namespace on the `http` port (80)
-
 
 ### deploy the www-demo chart
 
-```sh
+```bash
 19:58 $ helm2 upgrade --install www-demo www-demo/
 WARNING: Namespace "default" doesnt match with previous. Release will be deployed to application
 Release "www-demo" has been upgraded.
@@ -294,20 +315,26 @@ NOTES:
 
 using `kubectl` port-forwarding, let's just check the service & port is up & running ready for business
 
-1. get the pod name
-```sh
+Get the pod name
+
+```bash
 kubectl -n application get pods
 NAME                       READY   STATUS    RESTARTS   AGE
 www-demo-8895fbdcb-gj8bh   1/1     Running   0          102m
 ```
 
-2. port-forward to the remote pod on port 80, from local port 8080
-```sh
+`port-forward` to the remote pod on port 80, from local port 8080
+
+```bash
 kubectl -n application port-forward www-demo-8895fbdcb-gj8bh 8080:80 --address 0.0.0.0
 Forwarding from 0.0.0.0:8080 -> 80
 ```
 
-_note: I'm doing the `--address` switch because I'm running this command on a different box (with IP address 192.168.1.19) and want to open the connection local to this machine I'm writing on._
+:::tip
+
+_I'm doing the `--address` switch because I'm running this command on a different box (with IP address 192.168.1.19) and want to open the connection local to this machine I'm writing on._
+
+:::
 
 should get this if everything's in order
 
@@ -321,6 +348,4 @@ If the ambassador mapping is correct and the www-demo pod is up & running (which
 
 And that's it!
 
-Tune in next time when I try and get helm3 charts working for ambassador (maybe)
-
-## Thanks for reading!
+Tune in next time when I try and get helm3 charts working for ambassador (maybe).

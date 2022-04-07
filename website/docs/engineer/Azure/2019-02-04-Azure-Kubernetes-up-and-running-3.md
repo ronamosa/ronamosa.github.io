@@ -18,11 +18,6 @@ For the 3rd and final instalment of this "Look Ma, I'm playing with Azure!", we 
 * Part 2 - create a private Docker Registry in the cloud using Azure's Container Registry Managed service (ACR)
 * **Part 3 - deploy a simple application to AKS.**
 
-_**Note**: I'm writing Part 3 quite a while after Part's 1 & 2, and I've learned quite a lot in that time and as such my approach and code will be a bit different. So I've gone back and updated most of Parts 1 & 2 to hopefully fit Part 3. No promises though._
-{: .notice--info}
-
-Right, final post on azure up & running - let's go!
-
 ## Pre-requisites tools
 
 Get these installed if you haven't already:
@@ -36,13 +31,19 @@ Right, quick run through the new ACR setup so that the rest of the code below is
 
 ## (new) AKS cluster deployed
 
-> I have updated [Part 1](/documentation/2019-01-28-Azure-Kubernetes-up-and-running-1/) so if you've followed that you should be up to speed at this point.
+:::info
 
-_Make sure you have your kubeconfig file handy for the 'helm' section._
-{: .notice--info}
+I have updated [Part 1](/docs/engineer/Azure/2019-01-28-Azure-Kubernetes-up-and-running-1) so if you've followed that you should be up to speed at this point.
+
+:::
+
+:::danger
+
+Make sure you have your kubeconfig file handy for the 'helm' section!
+
+:::
 
 run this to get your kubeconfig: `$ az aks get-credentials --resource-group AKS-CLOUDRESOURCES --name AKS-cloudbuilderio`
-{: .notice--success}
 
 ## (new) Azure Container Registry
 
@@ -54,9 +55,7 @@ Right. We are ready to deploy something to our AKS cluster!
 
 This file basically uses 'kubectl' to deploy whatever we specify in here, as "pods" in our cluster (note `kubectl` by default will point to whatever you have in `~/.kube/config`)
 
-_deployment.yaml_
-
-```yaml
+```yaml title="deployment.yaml"
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -76,19 +75,18 @@ spec:
         image: nginx:1.8
         ports:
         - containerPort: 80
-
 ```
 
 ### kubectl: deploy
 
-```sh
+```bash
 $ kubectl apply -f ./deployment.yaml
 deployment.apps/nginx created
 ```
 
 ### kubectl: check deployment
 
-```sh
+```bash
 $ kubectl get deploy
 NAME    DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE
 nginx   2         2         2            2           81s
@@ -96,7 +94,7 @@ nginx   2         2         2            2           81s
 
 ### kubectl: check pods
 
-```sh
+```bash
 $ kubectl get pods -lapp=nginx -o wide
 NAME                     READY   STATUS    RESTARTS   AGE     IP           NODE                   NOMINATED NODE
 nginx-5cd6d46846-cr5m7   1/1     Running   0          6m10s   10.244.0.9   aks-nodes-28201024-2   <none>
@@ -108,14 +106,14 @@ nginx-5cd6d46846-ntszh   1/1     Running   0          6m10s   10.244.2.3   aks-n
 Again, like the deployment this is just a basic "service" component to be deployed. A Service is an abstraction that defines a set of pods somewhere on your cluster that all do the same thing.
 If a node dies and takes all the pods with it, as long as there was a 'Service' configured for the functionality of those pods, the new pods that come up with new IP addresses will be known to the Service.
 
-```sh
+```bash
 $ kubectl apply -f service.yaml
 service/nginx created
 ```
 
 check our service is up & running
 
-```sh
+```bash
 $ kubectl get svc nginx
 NAME    TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)   AGE
 nginx   ClusterIP   10.0.154.171   <none>        80/TCP    24s
@@ -123,7 +121,7 @@ nginx   ClusterIP   10.0.154.171   <none>        80/TCP    24s
 
 ## Delete deployment
 
-```sh
+```bash
 $ kubectl delete deploy nginx
 deployment.extensions "nginx" deleted
 ```
@@ -181,7 +179,7 @@ let's pull the image from our own ACR instead
 
 pull from docker hub.
 
-```sh
+```bash
 $ docker pull nginx:1.8
 1.8: Pulling from library/nginx
 efd26ecc9548: Pull complete
@@ -194,13 +192,13 @@ Status: Downloaded newer image for nginx:1.8
 
 re-tag
 
-```sh
+```bash
 docker tag nginx:1.8 registercloudbuilderio.azurecr.io/nginx:1.8
 ```
 
 push to our ACR.
 
-```sh
+```bash
 $ docker push registercloudbuilderio.azurecr.io/nginx:1.8
 The push refers to repository [registercloudbuilderio.azurecr.io/nginx]
 5f70bf18a086: Pushed
@@ -212,7 +210,7 @@ c12ecfd4861d: Pushed
 
 ### deploy nginx.yaml
 
-```sh
+```bash
 $ kubectl apply -f ./nginx.yaml
 service/nginx created
 deployment.apps/nginx created
@@ -239,9 +237,13 @@ looks good!
 
 A quick way to check the app (nginx) is serving correctly is to port-forward a local port to the AKS cluster and into the nginx pods.
 
-_note: here is how I had to do it because I run my `kubectl` from a linux vm, so I serve the port-forward on that vm and connect to it from this (windows) PC._
+:::info
 
-```sh
+Here is how I had to do it because I run my `kubectl` from a linux vm, so I serve the port-forward on that vm and connect to it from this (windows) PC.
+
+:::
+
+```bash
 kubectl port-forward --address 0.0.0.0 deployment/nginx 8080:80
 ```
 

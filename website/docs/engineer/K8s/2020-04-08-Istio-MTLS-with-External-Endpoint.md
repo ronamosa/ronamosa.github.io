@@ -1,27 +1,12 @@
 ---
-layout: single
 title: "Setup Istio to handle Mutual TLS (mTLS) with an external site using an Egress gateway."
-description: >
-  Setting up mutual TLS between two endpoints going over the internet for good security. Istio service mesh in an azure AKS cluster talking to a remote virtual machine running NGINX with client-certificate verification enabled.
-header:
-  teaser: /img/istio-service-mesh.png
-categories:
-  - Istio
-tags:
-  - AKS
-  - Kubernetes
-  - tls
-  - Certificate
-  - Ansible
-  - playbook
-  - mTLS
-  - NGINX
-  - VM
-toc: true
-toc_label: "Table of Contents"
-toc_icon: "cog"
-comments: true
 ---
+
+:::info
+
+Published Date: 08-APR-2020
+
+:::
 
 In this post I endeavour to go through setting up [Istio Egress Gateway with TLS Origination](https://istio.io/docs/tasks/traffic-management/egress/egress-gateway-tls-origination/) using a real-world external/remote server setup to do MTLS between an outside client and itself.
 
@@ -82,25 +67,68 @@ All you need is a server that runs nginx so you can throw this `nginx.conf` and 
 
 I spent way too much time getting this done via terraform and ansible that I'm going to put the ansible code here: [link to gist](https://gist.link).
 
-
 #### nginx.conf & certs
 
 Once you have nginx up & running on your server:
 
 * upload the `nginx.conf` below and save it to `/etc/nginx/nginx.conf`
 * upload the following certs (I'm using my domain `mtls.cloudbuild.site` as an example):
-  - server cert: `certs/3_application/certs/mtls.cloudbuild.site.cert.pem` = `/etc/nginx-server-certs/tls.crt`
-  - server private key: `certs/3_application/private/mtls.cloudbuild.site.key.pem` = `/etc/nginx-server-certs/tls.key`
-  - ca-certs: `certs/2_intermediate/certs/ca-chain.cert.pem` = `/etc/nginx-ca-certs/ca-chain.cert.pem`
+  * server cert: `certs/3_application/certs/mtls.cloudbuild.site.cert.pem` = `/etc/nginx-server-certs/tls.crt`
+  * server private key: `certs/3_application/private/mtls.cloudbuild.site.key.pem` = `/etc/nginx-server-certs/tls.key`
+  * ca-certs: `certs/2_intermediate/certs/ca-chain.cert.pem` = `/etc/nginx-ca-certs/ca-chain.cert.pem`
 
+```ruby title="nginx.conf"
+user www-data;
+worker_processes auto;
+pid /run/nginx.pid;
 
-<script src="https://gist.github.com/ronamosa/71dcc660bf40af5245a4c7118a70780a.js"></script>
+events {
+}
+
+http {
+
+  # custom log format to show good debugging information.
+  log_format ssl_client
+  '$remote_addr - $remote_user [$time_local] '
+  '"$request" $status $body_bytes_sent '
+  '"Client fingerprint" $ssl_client_fingerprint '
+  '"Client DN" $ssl_client_s_dn';
+
+  error_log  /var/log/nginx/error.log;
+
+  server {
+
+    listen 443 ssl;
+
+    # set our access_log to use the log_format from above.
+    access_log /var/log/nginx/listener.log ssl_client;
+
+    # homepage for the NGINX server -- edit as needed.
+    root /usr/share/nginx/html;
+    index index.html;
+
+    # server's name -- mine is a fqdn
+    server_name mtls.cloudbuild.site;
+
+    # setup the server cert, key and the ca-cert which will be the same one that signed the client certs.
+    ssl_certificate /etc/nginx-server-certs/tls.crt;
+    ssl_certificate_key /etc/nginx-server-certs/tls.key;
+    ssl_client_certificate /etc/nginx-ca-certs/ca-chain.cert.pem;
+
+    # enable mutual tls and set depth to be >2.
+    ssl_verify_client on;
+    ssl_verify_depth 10;
+  }
+}
+```
+
+:::tip
 
 _The `ssl_verify_client` is the thing that enables MTLS with incoming calls, and `ssl_verify_depth` needs to be set to >2 or things behave badly._
-{: .notice--info}
+
+:::
 
 * restart your `nginx.service` e.g. on ubuntu `sudo systemctl restart nginx.service`
-
 
 ### the MTLS client (test)
 
@@ -110,7 +138,7 @@ The MTLS URL to call is `https://mtls.cloudbuild.site`.
 
 curl without certificates:
 
-```sh
+```bash
 curl -v -k -I https://mtls.cloudbuild.site
 * Rebuilt URL to: https://mtls.cloudbuild.site/
 *   Trying 13.70.185.45...
@@ -164,12 +192,11 @@ Connection: close
 
 ```
 
-
 We get an `HTTP 400` error code, telling us to go away.
 
 Now `curl` the same endpoint but this time present the server with the right client certificates:
 
-```sh
+```bash
 $ curl --cacert certs/2_intermediate/certs/ca-chain.cert.pem \
     --cert certs/4_client/certs/mtls.cloudbuild.site.cert.pem \
     --key certs/4_client/private/mtls.cloudbuild.site.key.pem \
@@ -180,7 +207,7 @@ Note, the `ca-chain.pem` will be the same intermediate ca-cert the MTLS nginx se
 
 And we get a successful `HTTP 200 OK`
 
-```sh
+```bash
 * Rebuilt URL to: https://mtls.cloudbuild.site/
 *   Trying 13.70.185.45...
 * TCP_NODELAY set
@@ -243,13 +270,13 @@ And just for posterity, the logs from `/var/log/nginx/listener.log` with the new
 
 curl with no certs
 
-```sh
+```bash
 115.189.88.95 - - [08/Apr/2020:10:13:11 +0000] "HEAD / HTTP/1.1" 400 0 "Client fingerprint" - "Client DN" -
 ```
 
 curl with certs
 
-```sh
+```bash
 115.189.88.95 - - [08/Apr/2020:10:25:29 +0000] "HEAD / HTTP/1.1" 200 0 "Client fingerprint" 7dccb99b6584e9b6cf624290952c7bd4b905412b "Client DN" /C=US/ST=Denial/L=Springfield/O=Dis/CN=mtls.cloudbuild.site
 ```
 
@@ -261,7 +288,7 @@ You should have `istioctl` installed already (if not, go [here](https://istio.io
 
 ### install istio with egressgateway
 
-```sh
+```bash
 istioctl manifest apply --set values.global.istioNamespace=istio-system \
     --set values.gateways.istio-ingressgateway.enabled=false \
     --set values.gateways.istio-egressgateway.enabled=true \
@@ -269,28 +296,28 @@ istioctl manifest apply --set values.global.istioNamespace=istio-system \
     --set values.sidecarInjectorWebhook.rewriteAppHTTPProbe=true
 ```
 
-- enables `istio-egressgateway`
-- disables `istio-ingressgateway`
-- enables access logs for istio-proxy containers
-- enables `rewriteAppHTTPProbe` which helps with healthcheck 503 errors.
+* *enables `istio-egressgateway`
+* *disables `istio-ingressgateway`
+* *enables access logs for istio-proxy containers
+* *enables `rewriteAppHTTPProbe` which helps with healthcheck 503 errors.
 
 ### create the cert k8s secrets
 
 create the following secrets in the `istio-system` namespace so `egressgateway` can find them
 
-- 1 x tls secret with the cert & key pair
-- 1 x generic secret with the `ca-chain.cert.pem` file contents.
+* *1 x tls secret with the cert & key pair
+* *1 x generic secret with the `ca-chain.cert.pem` file contents.
 
-```sh
-$ kubectl -n istio-system create secret tls nginx-client-certs --key certs/4_client/private/mtls.cloudbuild.site.key.pem --cert certs/4_client/certs/mtls.cloudbuild.site.cert.pem
-$ kubectl -n istio-system create secret generic nginx-ca-certs --from-file=certs/2_intermediate/certs/ca-chain.cert.pem
+```bash
+kubectl -n istio-system create secret tls nginx-client-certs --key certs/4_client/private/mtls.cloudbuild.site.key.pem --cert certs/4_client/certs/mtls.cloudbuild.site.cert.pem
+kubectl -n istio-system create secret generic nginx-ca-certs --from-file=certs/2_intermediate/certs/ca-chain.cert.pem
 ```
 
 ### patch the egressgateway
 
 There's a better way to do this by setting these mounts during the `istioctl` install, but this is the manual post-install way:
 
-```sh
+```bash
 kubectl -n istio-system patch --type=json deploy istio-egressgateway -p "$(cat patch-egress.json)"
 ```
 
@@ -345,7 +372,7 @@ Check you can now see the certs in the `egressgateway` pod in the `istio-system`
 
 client certs
 
-```sh
+```bash
 $ kubectl -n istio-system exec -ti istio-egressgateway-8544965cd5-2hdnc -- ls -al /etc/istio/nginx-client-certs
 total 8
 drwxrwxrwt 3 root root  120 Apr  8 13:56 .
@@ -358,7 +385,7 @@ lrwxrwxrwx 1 root root   14 Apr  8 13:56 tls.key -> ..data/tls.key
 
 ca-certs
 
-```sh
+```bash
 $ kubectl -n istio-system exec -ti istio-egressgateway-8544965cd5-2hdnc -- ls -al /etc/istio/nginx-ca-certs
 total 8
 drwxrwxrwt 3 root root  100 Apr  8 13:56 .
@@ -378,7 +405,6 @@ I logged an issues ticket ([https://github.com/istio/istio.io/issues/7063](https
 So the _**"not working"**_ setup is as follows:
 
 With everything setup as above, and following the [Egress Gateways with TLS Origination (v1.5.0)](https://istio.io/docs/tasks/traffic-management/egress/egress-gateway-tls-origination/) I deployed the following configurations to a namespace called `mesh-internal`
-
 
 ```yaml
 ---
@@ -488,7 +514,7 @@ this creates 4 x objects
 
 checking the istio-proxy container for a `sleep` pod inside my `mesh-internal` namespace:
 
-```sh
+```bash
 2020-04-12T02:39:07.916502Z	info	Envoy proxy is ready
 [Envoy (Epoch 0)] [2020-04-12 02:40:53.418][16][warning][config] [external/envoy/source/common/config/grpc_subscription_impl.cc:87] gRPC config for type.googleapis.com/envoy.api.v2.Cluster rejected: Error adding/updating cluster(s) outbound|443||mtls.cloudbuild.site: Invalid path: /etc/istio/nginx-ca-certs/ca-chain.cert.pem
 ```
@@ -497,7 +523,7 @@ checking the istio-proxy container for a `sleep` pod inside my `mesh-internal` n
 
 checking the `istio-egressgateway` pod I can see the following errors as well:
 
-```sh
+```bash
 [Envoy (Epoch 0)] [2020-04-12 02:54:07.787][15][warning][config] [external/envoy/source/common/config/grpc_subscription_impl.cc:87] gRPC config for type.googleapis.com/envoy.api.v2.Listener rejected: Error adding/updating listener(s) 0.0.0.0_443: Invalid path: /etc/certs/root-cert.pem
 ```
 
@@ -505,7 +531,7 @@ checking the `istio-egressgateway` pod I can see the following errors as well:
 
 Without the certs, checking with curl calling my mtls server I get:
 
-```sh
+```bash
 $ kubectl -n mesh-internal exec sleep-74997ffb46-flkcg -c sleep -- curl -s -I http://mtls.cloudbuild.site
 HTTP/1.1 503 Service Unavailable
 content-length: 91
@@ -514,7 +540,7 @@ date: Sat, 11 Apr 2020 13:24:33 GMT
 server: envoy
 ```
 
-## WORKING CONFIGURATION: Unofficial.
+## UNOFFICIAL: WORKING CONFIGURATION
 
 After a lot of reading through istio githubs issues and discuss.istio.io forum, I pieced together the following changes that eventually lead to a successful TLS client-verified session with my external MTLS server.
 
@@ -720,6 +746,7 @@ spec:
     hosts:
     - mtls.cloudbuild.site
 ```
+
 ### Changed DestinationRule
 
 from
@@ -843,7 +870,7 @@ And then it all works.
 
 So now when I curl from the `sleep` pod inside the `mesh-internal` namespace, I get the expected output:
 
-```sh
+```bash
 $ kubectl -n mesh-internal exec sleep-74997ffb46-cxs77 -c sleep -- curl  http://mtls.cloudbuild.site
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
@@ -875,13 +902,13 @@ $ kubectl -n mesh-internal exec sleep-74997ffb46-cxs77 -c sleep -- curl  http://
 
 From the sleep pod's `istio-proxy` container I can see it hitting my port 80 outbound endpoint:
 
-```sh
+```bash
 [2020-04-11T15:03:16.493Z] "GET / HTTP/1.1" 200 - "-" "-" 0 557 4 4 "-" "curl/7.64.0" "738ceb49-93c9-4462-a53b-ab690bef4b93" "mtls.cloudbuild.site" "16.0.1.90:80" outbound|80|nginx|istio-egressgateway.istio-system.svc.cluster.local 16.0.1.103:39040 52.189.232.175:80 16.0.1.103:45092 - -
 ```
 
 and from the `istio-egressgateway` pod I can see it going outbound on 443:
 
-```sh
+```bash
 [2020-04-11T15:04:37.866Z] "GET / HTTP/2" 200 - "-" "-" 0 557 4 4 "16.0.1.103" "curl/7.64.0" "7d158baa-3ac4-4da7-9e91-a4ae6115c090" "mtls.cloudbuild.site" "52.189.232.175:443" outbound|443||mtls.cloudbuild.site 16.0.1.90:43866 16.0.1.90:80 16.0.1.103:39040 - -
 ```
 
@@ -892,5 +919,3 @@ I have found Istio's documentation to be workable most of the time. But sometime
 The discuss forum and slack channels were very underwhelming. I don't know what to put that down to, but they weren't very active or helpful.
 
 Anyway I've spent way too much time on this and it's just good to get it working so I can put this all behind me.
-
-## Thanks for reading!

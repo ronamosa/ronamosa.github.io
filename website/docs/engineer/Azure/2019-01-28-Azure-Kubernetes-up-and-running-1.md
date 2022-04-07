@@ -22,8 +22,6 @@ The scenario we're building here is getting a Kubernetes cluster up & running in
 
 I call it a 'series', but I really only want to break it up into a couple (maybe 3) parts so its easier to write and more concise to read.
 
-So,
-
 1. Get Kubernetes cluster up and running on Azure Kubernetes Managed Service (AKS)
 2. Create a private Docker Registry in the cloud using Azure's Container Registry Managed service (ACR)
 3. Deploy a simple application to it.
@@ -47,7 +45,7 @@ Once you have all these in place, proceed to the Azure setup
 
 Once your portal account is created, and you have a valid subscription (Free Tier works), you need to login to link your azure-cli to your account, so from your terminal run this:
 
-```sh
+```bash
 az login
 ```
 
@@ -55,7 +53,7 @@ a browser window opens, you login with your azure portal account..
 
 and then you'll see something like this:
 
-```sh
+```bash
 user@laptop:~$ az login
 Note, we have launched a browser for you to login. For old experience with device code, use "az login --use-device-code"
 Opening in existing browser session.
@@ -91,7 +89,7 @@ You need a Service Principal (sp) setup as Role Based Access Control (rbac) so i
 
 Run this to setup an 'sp' for the subscription you see above under 'id'
 
-```sh
+```bash
 az ad sp create-for-rbac --role="Contributor" --scopes="/subscriptions/XXXXXXX-XXXX-46ef-a5b4-86979fdXXXXX" -n "http://cluster-admin"
 ```
 
@@ -103,7 +101,7 @@ what's happening here:
 
 output example looks like this - first the command throws a notice at you
 
-```sh
+```bash
 Changing "cluster-admin" to a valid URI of "http://cluster-admin", which is the required format used for service principal names
 Retrying role assignment creation: 1/36
 ```
@@ -124,8 +122,11 @@ so now you have your 'sp' setup, it has the right permissions and you have your 
 
 ## Terraform setup
 
-_Note: using terraform v0.12.0 at time of writing._
-{: .notice--warning}
+:::info
+
+Note: using terraform v0.12.0 at time of writing.
+
+:::
 
 As per usual terraform build, we need to configure a few key pieces of infrastructure to be built in our cloud.
 
@@ -139,12 +140,11 @@ Key approaches include:
 ### terraform workspace
 
 _Best Practice Tip: use terraform workspaces to separate you infra code per environment/project._
-{: .notice--success}
 
 run `terraform workspace new <environment name>`
 e.g.
 
-```sh
+```bash
 13:18 $ terraform workspace new cloudbuilderio
 Created and switched to workspace "cloudbuilderio"!
 
@@ -229,7 +229,6 @@ resource "local_file" "kubeconfig" {
 why is this kubeconfig so important? this is the config file we feed to 'kubectl' so that it knows which cluster things are being applied to!
 
 _note: you can query for the client_id but you need to know the client_secret. If these don't already exist, you need to setup the service principals._
-{: .notice--primary}
 
 #### Output (output.tf)
 
@@ -352,7 +351,7 @@ Awesome. Now let's validate and build this puppy!
 
 only started using this recently since upgrading to terraform v0.12.0 but its a good step to quickly sort your code out. think dev's call this a linter? lol.
 
-```sh
+```bash
  $ terraform validate --var sp_client_secret="your-sp-secret-here" -var-file=env.tfvars
  Success! The configuration is valid.
 ```
@@ -361,13 +360,13 @@ only started using this recently since upgrading to terraform v0.12.0 but its a 
 
 Go!
 
-```sh
+```bash
 terraform apply --var sp_client_secret="your sp secret goes here" -var-file=env.tfvars -auto-approve
 ```
 
 you'll see a bunch of these...
 
-```sh
+```bash
 azurerm_kubernetes_cluster.k8s: Creating...
 azurerm_kubernetes_cluster.k8s: Still creating... [10s elapsed]
 azurerm_kubernetes_cluster.k8s: Still creating... [20s elapsed]
@@ -419,9 +418,13 @@ users:
 
 Success! now you have a file `cloudbuilderio-kubeconfig` in your current directory which you can now use `kubectl` to control your new cluster!
 
-> For the record, this cluster took 7m9s to create.
+:::tip
 
-```sh
+For the record, this cluster took 7m9s to create.
+
+:::
+
+```bash
 azurerm_kubernetes_cluster.k8s: Creation complete after 7m9s [id=/subscriptions/.../resourcegroups/AKS-CLOUDRESOURCES/providers/Microsoft.ContainerService/managedClusters/AKS-cloudbuilderio]
 ```
 
@@ -431,7 +434,7 @@ Let's have a look at our new AKS cluster using `kubectl` and file=`cloudbuilderi
 
 check it with 'kubectl'
 
-```sh
+```bash
 14:53 $ kubectl --kubeconfig ./cloudbuilderio-kubeconfig get nodes
 NAME                   STATUS   ROLES   AGE   VERSION
 aks-nodes-28201024-0   Ready    agent   41m   v1.12.7
@@ -441,7 +444,7 @@ aks-nodes-28201024-2   Ready    agent   41m   v1.12.7
 
 check it with 'az aks'
 
-```sh
+```bash
 14:53 $ az aks list -o table
 Name                Location       ResourceGroup       KubernetesVersion    ProvisioningState    Fqdn
 ------------------  -------------  ------------------  -------------------  -------------------  ---------------------------------------------

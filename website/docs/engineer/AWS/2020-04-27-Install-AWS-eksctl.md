@@ -1,22 +1,12 @@
 ---
-layout: single
 title: "Install eksctl tool for AWS Elastic Kubernetes Service (EKS)"
-description: >
-  Setup the eksctl tool for creating AWS EKS clusters. Simple. Straight-forward procedure.
-header:
-  teaser: /img/amazon-web-services.jpg
-categories:
-  - AWS
-tags:
-  - eksctl
-  - Kubernetes
-  - eks
-  - aws-cli
-toc: true
-toc_label: "Table of Contents"
-toc_icon: "cog"
-comments: true
 ---
+
+:::info
+
+Published Date: 27-APR-2020
+
+:::
 
 This quick bit of documentation is more for me to get right setting up to play with EKS clusters for the first time using the `eksctl` tool.
 
@@ -24,28 +14,28 @@ This quick bit of documentation is more for me to get right setting up to play w
 
 if you haven't got aws-cli already installed, install v1, python3 version:
 
-```sh
-$ pip3 install awscli --upgrade [--user]
+```bash
+pip3 install awscli --upgrade [--user]
 ```
 
 if you do and just need to upgrade
 
-```sh
-$ pip3 install --upgrade [--user] awscli
+```bash
+pip3 install --upgrade [--user] awscli
 ```
 
 verify
 
-```sh
-$ aws --version
+```bash
+aws --version
 aws-cli/1.18.46 Python/3.6.9 Linux/5.3.0-46-generic botocore/1.15.46
 ```
 
 ### configure aws-cli
 
-run `$ aws configure` and answer these questions:
+run `aws configure` and answer these questions:
 
-```sh
+```bash
 AWS Access Key ID [None]: ...
 AWS Secret Access Key [None]: ...
 Default region name [None]: us-west-2 # this is an example
@@ -56,7 +46,7 @@ or make sure these files look like this:
 
 `~/.aws/credentials`
 
-```sh
+```bash
 [default]
 aws_secret_access_key = "some_access_key"
 aws_access_key_id = "some_access_key_id"
@@ -64,7 +54,7 @@ aws_access_key_id = "some_access_key_id"
 
 and `~/.aws/config` (this is an example, change your region, output values)
 
-```sh
+```bash
 [default]
 output = json
 region = us-west-2
@@ -72,7 +62,7 @@ region = us-west-2
 
 ## install eksctl
 
-```sh
+```bash
 curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp
 sudo mv /tmp/eksctl /usr/local/bin
 ```
@@ -139,11 +129,11 @@ users:
 
 ## verify eks creation
 
-check nodes with `$ kubectl get nodes`
+check nodes with `kubectl get nodes`
 
 output:
 
-```sh
+```bash
 NAME                                           STATUS   ROLES    AGE     VERSION
 ip-192-168-55-170.us-west-2.compute.internal   Ready    <none>   4h18m   v1.14.9-eks-1f0ca9
 ip-192-168-83-228.us-west-2.compute.internal   Ready    <none>   4h18m   v1.14.9-eks-1f0ca9
@@ -153,7 +143,7 @@ ip-192-168-83-228.us-west-2.compute.internal   Ready    <none>   4h18m   v1.14.9
 
 if you see this, it means your aws-cli version doesn't have the required subcommand `get-token` in it cos its too old
 
-```sh
+```bash
 [✖]  unable to use kubectl with the EKS cluster (check 'kubectl version'): usage: aws [options] <command> <subcommand> [<subcommand> ...] [parameters]
 To see help text, you can run:
 

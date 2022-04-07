@@ -12,8 +12,11 @@ Over in [Part 1](/docs/engineer/2019-01-28-Azure-Kubernetes-up-and-running-1) we
 
 For the record, I'm following some really good documentation from Microsoft's Azure documentation site (all references credited at the end). These are just my notes, screenshots and outputs for my own reference.
 
-_A lot of the how this I write these is how I would want to it to read if I were trying to learn this again myself :)_
-{: .notice--warning}
+:::tip
+
+A lot of the how this I write these is how I would want to it to read if I were trying to learn this again myself :)
+
+:::
 
 In this part, we just want to setup an Azure Container Registry (ACR) that's going to be our private, or internal, holder of all things docker/container images and what-not.
 
@@ -46,7 +49,7 @@ with this method, we'll be going through a series of azure-cli 'az' calls to set
 
 from a terminal, login to your azure account
 
-```sh
+```bash
 az login
 ```
 
@@ -54,7 +57,7 @@ a browser window opens, you select the email that gets you into your azure porta
 
 ### create a resource group
 
-```sh
+```bash
 az group create --name cloudbuilder-rg --location australiaeast
 ```
 
@@ -78,14 +81,14 @@ output looks like this
 
 run this command
 
-```sh
-darthvaldr@hx0:~ $ az acr create --resource-group "cloudbuilder-rg" --name cloudBRegistry --sku Basic
+```bash
+az acr create --resource-group "cloudbuilder-rg" --name cloudBRegistry --sku Basic
 ```
 
 take note the registry name you choose after "--name" has to be a unique name when combined with suffix ".azurecr.io" otherwise you'll get denied like so
 
-```sh
-darthvaldr@hx0:~ $ az acr create --resource-group "cloudbuilder-rg" --name cloudRegistry --sku Basic
+```bash
+az acr create --resource-group "cloudbuilder-rg" --name cloudRegistry --sku Basic
 The registry DNS name cloudregistry.azurecr.io is already in use.
 ```
 
@@ -119,7 +122,7 @@ key output here to take note of = `"loginServer": "cloudbregistry.azurecr.io"`
 
 OR short-cut:
 
-```sh
+```bash
 az acr list --resource-group $NAME_OF_ACR --query "[].{acrLoginServer:loginServer}" --output table
 ```
 
@@ -127,8 +130,8 @@ az acr list --resource-group $NAME_OF_ACR --query "[].{acrLoginServer:loginServe
 
 I had issues with this on a corporate setup with multiple Azure accounts so it kept giving me weird errors and not letting me login. On my personal, simple, single account setup, the login is really straight forward
 
-```sh
-darthvaldr@hx0:~ $ az acr login --name cloudBRegistry
+```bash
+az acr login --name cloudBRegistry
 Login Succeeded
 ```
 
@@ -142,8 +145,8 @@ but its a bit useless sitting there doing nothing, let's try and push some image
 
 hmmm, let's just test it with a local docker image we can re-tag and push to see how it goes.
 
-```sh
-darthvaldr@hx0:~ $ docker images
+```bash
+docker images
 REPOSITORY                                       TAG                 IMAGE ID            CREATED             SIZE
 tiangolo/uwsgi-nginx-flask                       python3.6           0f8df7d438f3        3 weeks ago         949MB
 localhost:5000/golang                            1.10                b65fe5418f5f        5 weeks ago         729MB
@@ -158,14 +161,14 @@ alpine                                           3.8                 3f53bb00af9
 
 'registry' looks small enough
 
-```sh
-darthvaldr@hx0:~ $ docker tag registry:2 cloudbregistry.azurecr.io/registry:2
+```bash
+docker tag registry:2 cloudbregistry.azurecr.io/registry:2
 ```
 
 re-tagged with our new ACR as the destination, now for a Push
 
-```sh
-darthvaldr@hx0:~ $ docker push cloudbregistry.azurecr.io/registry:2
+```bash
+docker push cloudbregistry.azurecr.io/registry:2
 The push refers to a repository [cloudbregistry.azurecr.io/registry]
 2c2e689683cd: Pushed
 0d2f98178000: Pushed
@@ -181,8 +184,8 @@ easy as that!
 
 quick look at all the images in our ACR
 
-```sh
-darthvaldr@hx0:~ $ az acr repository list --name cloudbregistry --output table
+```bash
+az acr repository list --name cloudbregistry --output table
 Result
 --------
 registry
@@ -192,8 +195,8 @@ hmmm, not many!
 
 any cool tags?
 
-```sh
-darthvaldr@hx0:~ $ az acr repository show-tags --name cloudbregistry --repository registry --output table
+```bash
+az acr repository show-tags --name cloudbregistry --repository registry --output table
 Result
 --------
 2
@@ -203,8 +206,8 @@ ah, just the 'registry:2' tag!
 
 ah well, we're done with the ACR, so quick way to DELETE IT ALL, is to delete the resource group - you remember the one "cloudbuilder-rg"
 
-```sh
-darthvaldr@hx0:~ $ az group delete --name "cloudbuilder-rg"
+```bash
+az group delete --name "cloudbuilder-rg"
 Are you sure you want to perform this operation? (y/n): y
 ```
 
@@ -281,7 +284,7 @@ output "admin_username" {
 
 run terraform plan to check what we're doing
 
-```sh
+```bash
 ------------------------------------------------------------------------
 
 An execution plan has been generated and is shown below.
@@ -310,7 +313,7 @@ Plan: 0 to add, 1 to change, 0 to destroy.
 
 ## Terraform Apply
 
-```sh
+```bash
 22:07 $ terraform apply -auto-approve
 azurerm_resource_group.rg: Refreshing state... [id=/subscriptions/.../resourceGroups/AKS-CLOUDRESOURCES]
 azurerm_container_registry.acr: Creating...
@@ -331,7 +334,7 @@ Right, we should be able to tear through all the ACR stuff we did with the az-cl
 
 #### docker login
 
-```sh
+```bash
 22:16 $ docker login -u "registercloudbuilderio" -p "SomePassWOrdz" https://registercloudbuilderio.azurecr.io
 WARNING! Using --password via the CLI is insecure. Use --password-stdin.
 WARNING! Your password will be stored unencrypted in /home/amosar/.docker/config.json.
@@ -381,9 +384,9 @@ In Part 3 - we tie it all together with an application deploy into our Kubernete
 
 ## References
 
+* Azure Create SPN [Azure Create SPN](https://docs.microsoft.com/en-us/cli/azure/ad/sp?view=azure-cli-latest#az-ad-sp-create-for-rbac)
 * [winsmarts - create an ACR](https://winsmarts.com/create-an-azure-container-registry-using-the-azure-cli-74993d363c2f)
 * [Microsoft Azure - create a private container registry with azure-cli](https://docs.microsoft.com/en-us/azure/container-registry/container-registry-get-started-azure-cli)
 * [Terraform - create ACR](https://www.terraform.io/docs/providers/azurerm/r/container_registry.html)
 * [Hashicorp - kubernetes cluster with terraform](https://www.hashicorp.com/blog/kubernetes-cluster-with-aks-and-terraform)
 * [Terraform - azurerm](https://www.terraform.io/docs/providers/azurerm/)
-* [Azure - create service principals](https://docs.microsoft.com/en-us/cli/azure/ad/sp?view=azure-cli-latest#az-ad-sp-create-for-rbac)

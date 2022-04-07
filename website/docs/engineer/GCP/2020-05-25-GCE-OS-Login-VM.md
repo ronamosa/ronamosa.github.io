@@ -1,22 +1,12 @@
 ---
-layout: single
 title: "Setup Google Compute Engine VM to ssh using OS Login."
-description: >
-  A quick setup of OS Login for Google Compute Engine instances for easy automatic SSH access.
-header:
-  teaser: /img/google-cloud-platform.png
-categories:
-  - GCP
-tags:
-  - gce
-  - Google
-  - VM
-  - OSLogin
-toc: true
-toc_label: "Table of Contents"
-toc_icon: "cog"
-comments: true
 ---
+
+:::info
+
+Published Date: 25-MAY-2020
+
+:::
 
 A quick setup for when you're firing up GCE VM's and dont have to worry about managing and organizing ssh keys to jump into any of them. Setup OS Login for the project and any instance launched automatically allows access with the configure keys (obviously check your security needs).
 
@@ -123,8 +113,11 @@ The two OS Login roles available are:
 * roles/compute.osLogin (non-root)
 * roles/compute.osAdminLogin (root available)
 
-_Note: your terraform user needs the `Project IAM Admin` role enabled to be able to admin IAM Policy._
-{: .notice--info}
+:::tip
+
+_Your terraform user needs the `Project IAM Admin` role enabled to be able to admin IAM Policy._
+
+:::
 
 ```bash
 gcloud projects add-iam-policy-binding <your_project_name> \
@@ -148,8 +141,11 @@ resource "google_project_iam_member" "owner_binding" {
 }
 ```
 
-_Another Note: I'm using my GCP account owner account as the one that's going to login to any GCE instances created in this project, so the syntax is `user:...` whereas if I were using a service account it would be e.g. `serviceAccount:terraform@${project}.iam.gserviceaccount.com`._
-{: .notice--warning}
+:::info
+
+_I'm using my GCP account owner account as the one that's going to login to any GCE instances created in this project, so the syntax is `user:...` whereas if I were using a service account it would be e.g. `serviceAccount:terraform@${project}.iam.gserviceaccount.com`._
+
+:::
 
 ### Upload your SSH keys
 
@@ -174,7 +170,7 @@ Easy build, no remote statefile needed:
 
 build takes about 18s, output looks like this:
 
-```sh
+```bash
 google_compute_project_metadata_item.oslogin: Creating...
 google_project_iam_member.owner_binding: Creating...
 google_compute_instance.demo: Creating...
@@ -191,7 +187,7 @@ Now, if all's gone right you will be able to ssh to your new vm.
 
 ### get ip address & ssh
 
-```sh
+```bash
 gcloud compute instances list
 NAME          ZONE        MACHINE_TYPE   PREEMPTIBLE  INTERNAL_IP  EXTERNAL_IP    STATUS
 oslogin-demo  us-east1-c  n1-standard-1               10.142.0.6   34.74.255.103  RUNNING
@@ -207,7 +203,7 @@ if you created a new key e.g. `~/.ssh/newkey`, you will ssh like this (`-i /priv
 
 And voila:
 
-```sh
+```bash
 Welcome to Ubuntu 16.04.6 LTS (GNU/Linux 4.15.0-1071-gcp x86_64)
 
  * Documentation:  https://help.ubuntu.com
@@ -242,9 +238,6 @@ me_mydomain_com@oslogin-demo:~$
 ## References
 
 * [Centralized SSH login to Google Compute Engine instances](https://medium.com/infrastructure-adventures/centralized-ssh-login-to-google-compute-engine-instances-d00f8654f379)
-
 * [Terraform: Google Compute Instance](https://www.terraform.io/docs/providers/google/r/compute_instance.html#guest_accelerator)
-
 * [Google: SSH with third party tools](https://cloud.google.com/compute/docs/instances/connecting-advanced#thirdpartytools)
-
 * [Google: Granting Roles to Service Accounts](https://cloud.google.com/iam/docs/granting-roles-to-service-accounts#gcloud)

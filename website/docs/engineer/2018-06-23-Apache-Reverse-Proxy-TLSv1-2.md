@@ -34,14 +34,14 @@ these steps will be based on installing apache on Oracle Linux 6 application ser
 
 ssh into the application server and make sure your repos are setup and up to date
 
-```sh
+```bash
 cd /etc/yum.repos.d/
 wget -e use_proxy=yes -e http_proxy=http://corporateproxy:8080 http://yum.oracle.com/public-yum-ol6.repo
 ```
 
 edit your publi-yum-ol6.repo file
 
-```sh
+```bash
 vim /etc/yum.repos.d/public-yum-ol6.repo
 ```
 
@@ -67,7 +67,7 @@ delete the entries you don't want, set `enable=1` on the ones you do, and add th
 
 update repo, install httpd (apache) and mod_ssl
 
-```sh
+```bash
 yum --verbose --noplugins repolist
 yum install -y httpd
 yum install -y mod_ssl
@@ -75,7 +75,7 @@ yum install -y mod_ssl
 
 _note: I had to comment out the following modules in /etc/httpd/conf/httpd.conf for apache to start up._
 
-```sh
+```bash
 /etc/httpd/modules/mod_file_cache.so
 /etc/httpd/modules/mod_mem_cache.so
 ```
@@ -88,7 +88,7 @@ Edit your /etc/httpd/conf/httpd.conf file (or you can create a sub-config under 
 
 Description in the comments.
 
-```sh
+```bash
 # have our reverse proxy listen on a different port
 Listen 7090
 
@@ -132,7 +132,7 @@ test with curl e.g. `curl -v -k http://reverseproxy:8080/externalget/api.aspx` a
 
 first it goes through mapping/linking the client to the reverseproxy, reverseproxy to the corporateproxy, and the corporateproxy to the external endpoint
 
-```sh
+```bash
 [Wed Jun 13 23:02:31 2018] [debug] proxy_util.c(2158): proxy: connecting https://externalresource.com/pxpay/pxaccess.aspx to externalresource.com:443
 [Wed Jun 13 23:02:31 2018] [debug] proxy_util.c(2289): proxy: connected /pxpay/pxaccess.aspx to corporateproxy:8080
 [Wed Jun 13 23:02:31 2018] [debug] proxy_util.c(2476): proxy: HTTPS: backend socket is disconnected.
@@ -150,7 +150,7 @@ first it goes through mapping/linking the client to the reverseproxy, reversepro
 
 our reverse proxy starts negotiating with the external endpoint. starts with SSLv3
 
-```sh
+```bash
 [Wed Jun 13 23:02:31 2018] [debug] ssl_engine_kernel.c(1884): OpenSSL: Loop: SSLv3 read server done A
 [Wed Jun 13 23:02:31 2018] [debug] ssl_engine_kernel.c(1884): OpenSSL: Loop: SSLv3 write client key exchange A
 [Wed Jun 13 23:02:31 2018] [debug] ssl_engine_kernel.c(1884): OpenSSL: Loop: SSLv3 write change cipher spec A
@@ -160,7 +160,7 @@ our reverse proxy starts negotiating with the external endpoint. starts with SSL
 
 loops through SSLv3, then when it finds TLS1.2 we get a client connect:
 
-```sh
+```bash
 [Wed Jun 13 23:02:31 2018] [debug] ssl_engine_kernel.c(1884): OpenSSL: Loop: SSLv3 read finished A
 [Wed Jun 13 23:02:31 2018] [debug] ssl_engine_kernel.c(1880): OpenSSL: Handshake: done
 [Wed Jun 13 23:02:31 2018] [info] Connection: Client IP: corporateproxy-ip, Protocol: TLSv1.2, Cipher: ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits)
@@ -169,7 +169,7 @@ loops through SSLv3, then when it finds TLS1.2 we get a client connect:
 
 then sends the payload body:
 
-```sh
+```bash
 [Wed Jun 13 23:02:31 2018] [debug] mod_proxy_http.c(1775): proxy: start body send
 [Wed Jun 13 23:02:31 2018] [debug] mod_proxy_http.c(1885): proxy: end body send
 [Wed Jun 13 23:02:31 2018] [debug] proxy_util.c(2120): proxy: HTTPS: has released connection for (externalresource.com)
