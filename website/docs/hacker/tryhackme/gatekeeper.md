@@ -4,7 +4,7 @@ title: "Gatekeeper"
 
 :::info Description
 
-This is a write-up for the [Gatekeeper Room](https://tryhackme.com/room/gatekeeper) on TryHackMe.
+These are my notes for the [Gatekeeper Room](https://tryhackme.com/room/gatekeeper) on TryHackMe.
 
 Credits: S/o to SnoOw, Kafka and Noodles for the assist on this box.
 

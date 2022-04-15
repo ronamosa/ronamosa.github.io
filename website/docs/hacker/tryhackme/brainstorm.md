@@ -4,7 +4,7 @@ title: "Brainstorm"
 
 :::info Description
 
-This is a write-up for the [Brainstorm Room](https://tryhackme.com/room/brainstorm) on TryHackMe.
+These are my notes for the [Brainstorm Room](https://tryhackme.com/room/brainstorm) on TryHackMe.
 
 |OS|Level|Rating
 |:---:|:-----:|:-----:|

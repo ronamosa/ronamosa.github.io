@@ -4,7 +4,7 @@ title: "MR Robot"
 
 :::info Description
 
-This is a write-up for the [Mr Robot CTF Room](https://tryhackme.com/room/mrrobot) on TryHackMe.
+These are my notes for the [Mr Robot CTF Room](https://tryhackme.com/room/mrrobot) on TryHackMe.
 
 Note: Task #1 is to deploy the machine.
 

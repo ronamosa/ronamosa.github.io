@@ -4,7 +4,7 @@ title: "Corp"
 
 :::info Description
 
-This is a write-up for the [Corp Room](https://tryhackme.com/room/corp) on TryHackMe.
+These are my notes for the [Corp Room](https://tryhackme.com/room/corp) on TryHackMe.
 
 Note: Task #1 is to deploy the machine.
 

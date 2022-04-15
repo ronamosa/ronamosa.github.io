@@ -4,7 +4,7 @@ title: "Shocker"
 
 :::info Description
 
-This is a write-up for the Shocker (Retired) Box on [HackTheBox](https://hackthebox.com).
+These are my notes for the Shocker (Retired) Box on [HackTheBox](https://hackthebox.com).
 
 |OS|Level|Rating
 |:---:|:-----:|:-----:|

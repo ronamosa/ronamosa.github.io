@@ -4,7 +4,7 @@ title: "AD Basics"
 
 :::info Description
 
-This is a write-up for the [Active Directory Basics Room](https://tryhackme.com/room/activedirectorybasics) on TryHackMe.
+These are my notes for the [Active Directory Basics Room](https://tryhackme.com/room/activedirectorybasics) on TryHackMe.
 
 Credits: Me.
 

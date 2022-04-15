@@ -4,7 +4,7 @@ title: "Cyborg"
 
 :::info Description
 
-This is a write-up for the [Cyborg Room](https://tryhackme.com/room/cyborgt8) on TryHackMe.
+These are my notes for the [Cyborg Room](https://tryhackme.com/room/cyborgt8) on TryHackMe.
 
 Note: Task #1 is to deploy the machine.
 

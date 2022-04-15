@@ -4,7 +4,7 @@ title: "Brainpan 1"
 
 :::info Description
 
-This is a write-up for the [Brainpan 1 Room](https://tryhackme.com/room/brainpan) on TryHackMe. 
+These are my notes for the [Brainpan 1 Room](https://tryhackme.com/room/brainpan) on TryHackMe. 
 
 Credits: S/o to SnoOw, Hunterbot, Tedd and Kafka's help on this box!
 
