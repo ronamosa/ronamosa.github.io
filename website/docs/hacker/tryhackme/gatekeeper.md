@@ -2,15 +2,15 @@
 title: "Gatekeeper"
 ---
 
-:::info
+:::info Description
 
-Description: This is a write-up for the [Gatekeeper Room](https://tryhackme.com/room/gatekeeper) on TryHackMe.
+This is a write-up for the [Gatekeeper Room](https://tryhackme.com/room/gatekeeper) on TryHackMe.
 
 Credits: S/o to SnoOw, Kafka and Noodles for the assist on this box.
 
 |OS|Level|Rating
 |:---:|:-----:|:-----:|
-|Windows &#xf17a;|Medium|&#xf058; &#xf058; &#xf058; &#xf058;|
+|Windows|Medium|4/5|
 
 :::
 

@@ -2,15 +2,15 @@
 title: "Brainpan 1"
 ---
 
-:::info
+:::info Description
 
-Description: This is a write-up for the [Brainpan 1 Room](https://tryhackme.com/room/brainpan) on TryHackMe. 
+This is a write-up for the [Brainpan 1 Room](https://tryhackme.com/room/brainpan) on TryHackMe. 
 
 Credits: S/o to SnoOw, Hunterbot, Tedd and Kafka's help on this box!
 
 |OS|Level|Rating
 |:---:|:-----:|:-----:|
-|Linux &#xf17c;|OSCP|&#xf058; &#xf058; &#xf058; &#xf058;|
+|Linux|OSCP|4/5|
 
 :::
 

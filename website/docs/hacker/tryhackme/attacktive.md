@@ -2,15 +2,15 @@
 title: "Attacktive Directory"
 ---
 
-:::info
+:::info Description
 
-Description: This is a write-up for the ["Attacktive Directory"](https://tryhackme.com/room/attacktivedirectory) Room on TryHackMe. This was a walk-through styled room so all the instructions were there, these are just my notes.
+This is a write-up for the ["Attacktive Directory"](https://tryhackme.com/room/attacktivedirectory) Room on TryHackMe. This was a walk-through styled room so all the instructions were there, these are just my notes.
 
 Credits: S/o to hunterbot for the assist, and Doxum and Noodles for hanging out no the stream :)
 
 |OS|Level|Rating
 |:---:|:-----:|:-----:|
-|Windows &#xf17a;|Medium|&#xf058; &#xf058; &#xf058;|
+|Windows|Medium|3/5|
 
 :::
 

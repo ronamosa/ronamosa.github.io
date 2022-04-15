@@ -2,15 +2,24 @@
 title: "Lame"
 ---
 
-:::info
+:::info Description
 
-Description: This is a write-up for the Lame (Retired) Box on [HackTheBox](https://hackthebox.com).
+This is a write-up for the Lame (Retired) Box on [HackTheBox](https://hackthebox.com).
 
 Credits: S/o to tedd_918, hunterbot, Sno0wCS for the assist.
 
 |OS|Level|Rating
 |:---:|:-----:|:-----:|
-|Linux &#xf17c;|Easy|&#xf058; &#xf058; &#xf058; &#xf058;|
+|Linux|Easy|4/5|
+
+:::
+
+## KEY LEARNINGS
+
+:::tip
+
+1. I need a better, ready-to-go Nmap playbook to work from.
+2. Dont be afraid to use metasploit to learn if you get stuck.
 
 :::
 
