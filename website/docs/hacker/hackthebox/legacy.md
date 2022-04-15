@@ -2,15 +2,24 @@
 title: "Legacy"
 ---
 
-:::info
+:::info Description
 
-Description: This is a write-up for the Legacy (Retired) Box on [HackTheBox](https://hackthebox.com).
+This is a write-up for the Legacy (Retired) Box on [HackTheBox](https://hackthebox.com).
 
 Credits: S/o to Sno0wCS for the collab session on this box.
 
 |OS|Level|Rating
 |:---:|:-----:|:-----:|
-|Windows &#xf17a;|Easy|&#xf058; &#xf058; &#xf058; &#xf058;|
+|Windows|Easy|4/5|
+
+:::
+
+## KEY LEARNINGS
+
+:::tip
+
+1. I need a more clear Samba enumeration playbook at the ready
+2. I need a better exploit lab environment to better download, edit and run exploits that may not be supported by modern environments.
 
 :::
 
