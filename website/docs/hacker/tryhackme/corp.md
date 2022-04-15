@@ -16,7 +16,7 @@ Note: Task #1 is to deploy the machine.
 
 ## TASK2: BYPASS APPLOCK
 
-I RDP to the machine with login details provided. On the machine I can't 
+I RDP to the machine with login details provided. On the machine I can't execute anything with AppLocker tripping and stopping me.
 
 ### shell.exe
 
