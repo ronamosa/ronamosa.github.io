@@ -4,7 +4,7 @@ title: "Legacy"
 
 :::info Description
 
-This is a write-up for the Legacy (Retired) Box on [HackTheBox](https://hackthebox.com).
+These are my notes for the Legacy (Retired) Box on [HackTheBox](https://hackthebox.com).
 
 Credits: S/o to Sno0wCS for the collab session on this box.
 

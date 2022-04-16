@@ -4,7 +4,7 @@ title: "Lame"
 
 :::info Description
 
-This is a write-up for the Lame (Retired) Box on [HackTheBox](https://hackthebox.com).
+These are my notes for the Lame (Retired) Box on [HackTheBox](https://hackthebox.com).
 
 Credits: S/o to tedd_918, hunterbot, Sno0wCS for the assist.
 

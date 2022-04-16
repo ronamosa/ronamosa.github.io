@@ -6,7 +6,7 @@ title: "Traverxec"
 
 :::info Description
 
-This is a write-up for the Traverxec (Retired) Box on [HackTheBox](https://hackthebox.com).
+These are my notes for the Traverxec (Retired) Box on [HackTheBox](https://hackthebox.com).
 
 Credits: S/o to tedd_918, hunterbot for the assist.
 
