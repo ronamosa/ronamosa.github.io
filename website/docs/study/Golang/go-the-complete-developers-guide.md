@@ -1,4 +1,6 @@
-# Go: The Complete Developers Guide (Golang)
+---
+title: The Complete Developers Guide (Golang)
+---
 
 ## Overview
 
@@ -599,7 +601,6 @@ Create a new type `bot` that says, if you have a `getGreeting()` function, with 
 ### Rules of Interfaces
 
 ```go
-
 type bot interface {
 
   // input args = string, int
@@ -616,10 +617,65 @@ type bot interface {
 }
 ```
 
-Concrete Types = map, struct, int, englishBot, string -- can create values directly e.g. `int a := 12`
-Interface Type = bot -- can't create value directly i.e. bot can't "equal 5"
+Concrete Types = map, struct, int, englishBot, string -- **can** create values directly e.g. `int a := 12`
+Interface Type = bot -- **can't** create value directly i.e. bot can't "equal 5"
 
-remember interfaces only help reuse code, doesn't check logic or test things for you, garbage in = garbage out.
+Some key interface points:
+
+1. Interfaces are NOT generic types.
+2. Interfaces are implicit i.e. when you declare a `type bot interface` and then do a `type englishBot struct{}`, go will implicitly treat `englishBot` as type `bot interface`.
+3. Interfaces are a contract to help us manages types.
+4. Interfaces only help reuse code, doesn't check logic or test things for you, garbage in = garbage out.
 
 ### The HTTP Package
 
+A program that:
+
+1. HTTP request --> google.com
+2. print response to terminal
+
+Get used to following the docs:
+
+e.g. we are looking for where the "Body" of the HTTP request we made is, so we follow the code
+
+[https://pkg.go.dev/net/http#Get](https://pkg.go.dev/net/http#Get) --> `func Get(url string) (resp *Response, err error)` --> [https://pkg.go.dev/net/http#Response](https://pkg.go.dev/net/http#Response) --> `Body io.ReadCloser` --> [https://pkg.go.dev/io#ReadCloser](https://pkg.go.dev/io#ReadCloser) --> `type ReadCloser interface` --> [https://pkg.go.dev/io#Reader](https://pkg.go.dev/io#Reader)
+
+:::tip
+
+my thought: interfaces re-packages the data into a form that is generic enough, to be consumed by general code e.g. the Reader interface accepts all sources of Input and then "output" it to a `byte[]` slice, and that's a generic enough type to be handled by anything on the other side of the interface.
+
+:::
+
+```golang
+type Reader interface {
+  Read(p []byte) (n int, err error)
+}
+```
+
+this interface, has func `Read`, accepts input `p` of type `[]byte`, and returns `n int` and `err error`.
+
+### Writer Interface
+
+where the Reader is like: `source of input` --> `Reader` --> `[]byte`
+
+Writer is like: `[]byte` --> `Writer` --> `source of output`
+
+What, in the "standard library", implements the Writer interface? `io.Copy()`
+
+So this:
+
+```golang
+  bs := make([]byte, 99999) //fixed byte size 99999 empty elements
+  resp.Body.Read(bs)
+  fmt.Println(string(bs))
+```
+
+does the same thing as this:
+
+```golang
+io.Copy(os.Stdout, resp.Body)
+```
+
+where `resp` is from `resp, err := http.Get("http://google.com")`
+
+Copy interface, takes two types: `func Copy(dst Writer, src Reader) (written int64, err error)` a `Writer` or "something that implements the Writer interface" and a `Reader` or "something that implements the Reader interface" e.g. `io.Copy(os.Stdout, resp.Body)` i.e. `io.Copy` implmements the `Writer` interface, and `resp.Body` implements the Reader interface.
