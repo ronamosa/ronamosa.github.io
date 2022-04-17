@@ -18,9 +18,15 @@ The sidebar menu and documents will grow as I continue to add more notes to the 
 
 ## 🗓️ Currently
 
-- Reading: ["Life 3.0: Being Human in the Age of Artificial Intelligence](https://www.goodreads.com/book/show/34272565-life-3-0) by Max Tegmark.
-- Working out: [75 Hard Challenge](https://andyfrisella.com/pages/75hard-info)
-- Studying: [Go: The Complete Developers Guide (Golang)](https://www.udemy.com/share/101Xzy3@hziIwJOYjh6rFVCIAKG1zdfk5Eb-J9Kemb9gSJhrrXEqB7SOZamW13muBuWYkvjneg==/)
+### Reading
+
+- ["Life 3.0: Being Human in the Age of Artificial Intelligence](https://www.goodreads.com/book/show/34272565-life-3-0) by Max Tegmark.
+- ["Sapiens: A Brief History of Mankind](https://www.goodreads.com/book/show/23692271-sapiens) by Yuval Noah Harari.
+
+### Studying
+
+- [Offensive Security PEN-200: OSCP.](https://www.offensive-security.com/pwk-oscp/)
+- [Go: The Complete Developers Guide (Golang).](https://www.udemy.com/share/101Xzy3@hziIwJOYjh6rFVCIAKG1zdfk5Eb-J9Kemb9gSJhrrXEqB7SOZamW13muBuWYkvjneg==/)
 
 ## 📚 [Books](books/reading-list.md)
 
@@ -30,15 +36,32 @@ My reading list, what I'm currently reading and notes on books I've read.
 
 Study and exam notes for certifications, courses.
 
-I sat and passed my CKS in 09-2021. All my study and exam notes are [here](study/CKS/README.md).
+- I passed my "CKA: Certified Kubernetes Administrator" exam, July 2021. Find my study and exam notes [here](study/CKA/README.md)
+- I passed my "CKS: Certified Kubernetes Security Specialist" exam, September 2021. Find my study and exam notes [here](study/CKS/README.md)
 
 ## 🏴‍☠️ Hacker
 
 Breaking things. Notes and information related to Information Security, Offensive (red) and Defensive (blue) Security and DevSecOps (purple).
 
+### TryHackMe
+
+I work on hacking various rooms on the TryHackMe platform under ["RxHack"](https://tryhackme.com/p/rxhack) and do write-ups of what I learn here.
+
+### HackTheBox
+
+I started on HackTheBox on March-15-2022 and will post write-ups of my hacking efforts here as well.
+
+### Twitch
+
+I do a hacking stream at [https://www.twitch.tv/RxHackk](https://www.twitch.tv/rxhackk) where I hack on TryHackme or HackTheBox machines and do my best to follow ['swyx'](https://www.swyx.io/about) philosophy of ["learning in public"](https://www.swyx.io/learn-in-public/).
+
 ## 💻 Engineer
 
 Building things. Applications, Software Engineering, Infrastructure Architecture and Engineering.
+
+Even though I'm in Security at the moment, I still love Infrastructure, Automation and Engineering so will do my best to stay in touch with knowledge and skills from that era of my career.
+
+All code for such projects you can find on my [GitHub](https://github.com/ronamosa) account (the public repo's anyway).
 
 ## 🗃 Archive
 

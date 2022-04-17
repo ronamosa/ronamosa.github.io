@@ -1,4 +1,6 @@
-# Proxmox Cloud Init Setup
+---
+title: "Proxmox Cloud Init VM Setup"
+---
 
 ## Overview
 

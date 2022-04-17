@@ -3,7 +3,7 @@ title: README
 sidebar_position: 0
 ---
 
-On 25-Sept-2021 I earned my CKS [certification](https://www.credly.com/badges/1fe5f731-1d6a-48c1-8d2c-60db0ca73f88).
+On September 26, 2021 I earned my CKS: Certified Kubernetes Security Specialist [certification](https://www.credly.com/badges/1fe5f731-1d6a-48c1-8d2c-60db0ca73f88).
 
 ## Overview
 
