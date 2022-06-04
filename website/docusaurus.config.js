@@ -105,12 +105,12 @@ module.exports = {
           disableVersioning: false,
           editCurrentVersion: false,          
           editUrl:
-            'https://github.com/ronamosa/ronamosa.github.io/edit/main/docs/',
+            'https://github.com/ronamosa/ronamosa.github.io/edit/main/website/',
         },
         blog: {
           showReadingTime: true,
           editUrl:
-            'https://github.com/ronamosa/ronamosa.github.io/edit/main/blog/',
+            'https://github.com/ronamosa/ronamosa.github.io/edit/main/website/',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
