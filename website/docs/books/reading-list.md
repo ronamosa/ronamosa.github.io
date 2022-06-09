@@ -10,7 +10,6 @@ Books in my current short-list to read next
 
 |Title|Author|
 |:------|:-----------|
-|Life 3.0: Being Human in the Age of Artificial Intelligence |Max Tegmark|
 |The Better Angels of Our Nature|Steven Pinker|
 |MAU: Samoa's struggle against New Zealand oppression|Michael J. Field|
 |Capitalism and Freedom|Milton Friedman|
@@ -28,6 +27,7 @@ Books I've finished reading and ready for review, write-up
 
 |Title|Author|
 |:------|:-----------|
+|Life 3.0: Being Human in the Age of Artificial Intelligence |Max Tegmark|
 |The War of Art| Steven Pressfield|
 |Who Rules the World?|Noam Chomsky|
 |Threat Modeling: Designing for Security| Adam Shostack|
