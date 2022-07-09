@@ -10,6 +10,12 @@ Books in my current short-list to read next
 
 |Title|Author|
 |:------|:-----------|
+|Finite and Infinite Games| James P. Carse|
+|The Midnight Library| Matt Haig|
+|Foundation| Isaac Asimov|
+|Meditations|Marcus Aurelius|
+|Lao Tzu|Tao Te Ching|
+|Sapiens:A Brief History of Humankind|Yuval Noah Harari|
 |The Better Angels of Our Nature|Steven Pinker|
 |MAU: Samoa's struggle against New Zealand oppression|Michael J. Field|
 |Capitalism and Freedom|Milton Friedman|
@@ -27,6 +33,7 @@ Books I've finished reading and ready for review, write-up
 
 |Title|Author|
 |:------|:-----------|
+|Deep Work| Cal Newport|
 |Life 3.0: Being Human in the Age of Artificial Intelligence |Max Tegmark|
 |The War of Art| Steven Pressfield|
 |Who Rules the World?|Noam Chomsky|
