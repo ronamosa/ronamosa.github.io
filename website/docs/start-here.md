@@ -20,12 +20,12 @@ The sidebar menu and documents will grow as I continue to add more notes to the 
 
 ### Reading
 
-- ["Life 3.0: Being Human in the Age of Artificial Intelligence](https://www.goodreads.com/book/show/34272565-life-3-0) by Max Tegmark.
 - ["Sapiens: A Brief History of Mankind](https://www.goodreads.com/book/show/23692271-sapiens) by Yuval Noah Harari.
+- ["Finite and Infinite Games: A Vision of Life as Play and Possibility"](https://www.goodreads.com/book/show/16117440-finite-and-infinite-games) by James P. Carse.
+- ["The Midnight Library"](https://www.goodreads.com/book/show/52578297-the-midnight-library) by Matt Haig.
 
 ### Studying
 
-- [Offensive Security PEN-200: OSCP.](https://www.offensive-security.com/pwk-oscp/)
 - [Go: The Complete Developers Guide (Golang).](https://www.udemy.com/share/101Xzy3@hziIwJOYjh6rFVCIAKG1zdfk5Eb-J9Kemb9gSJhrrXEqB7SOZamW13muBuWYkvjneg==/)
 
 ## 📚 [Books](books/reading-list.md)
