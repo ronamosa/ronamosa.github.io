@@ -18,7 +18,10 @@ The curriculum assessed covers the following, with weighting of each topic
 | 25%      | Cluster Architecture, Installation & Configuration |
 | 20% | Services & Networking      |
 
-You can find a copy of the [CKA_Curriculum_ v1.21](https://github.com/cncf/curriculum/blob/master/CKA_Curriculum_v1.22.pdf).
+You can find a copy of the [CKA_Curriculum_ v1.21](https://github.com/cncf/curriculum/blob/master/old-versions/CKA_Curriculum_v1.21.pdf).
+New curriculum: [v1.24](https://github.com/cncf/curriculum/blob/master/CKA_Curriculum_v1.24.pdf)
+
+All CNCF curriculum can be found [here](https://github.com/cncf/curriculum)
 
 ## Courses
 
