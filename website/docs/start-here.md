@@ -36,6 +36,8 @@ My reading list, what I'm currently reading and notes on books I've read.
 
 Study and exam notes for certifications, courses.
 
+- [] AWS Cloud Practitioner Certification 2022 Notes
+- [] AWS Solution Architect Associate S03 Certification 2022 Notes
 - I passed my "CKA: Certified Kubernetes Administrator" exam, July 2021. Find my study and exam notes [here](study/CKA/README.md)
 - I passed my "CKS: Certified Kubernetes Security Specialist" exam, September 2021. Find my study and exam notes [here](study/CKS/README.md)
 
@@ -53,13 +55,13 @@ I started on HackTheBox on March-15-2022 and will post write-ups of my hacking e
 
 ### Twitch
 
-I do a hacking stream at [https://www.twitch.tv/RxHackk](https://www.twitch.tv/rxhackk) where I hack on TryHackme or HackTheBox machines and do my best to follow ['swyx'](https://www.swyx.io/about) philosophy of ["learning in public"](https://www.swyx.io/learn-in-public/).
+⏸️ _Currently on hold_.
+
+> My hacking stream at [https://www.twitch.tv/RxHackk](https://www.twitch.tv/rxhackk) where I hack on TryHackme or HackTheBox machines and do my best to follow ['swyx'](https://www.swyx.io/about) philosophy of ["learning in public"](https://www.swyx.io/learn-in-public/).
 
 ## 💻 Engineer
 
 Building things. Applications, Software Engineering, Infrastructure Architecture and Engineering.
-
-Even though I'm in Security at the moment, I still love Infrastructure, Automation and Engineering so will do my best to stay in touch with knowledge and skills from that era of my career.
 
 All code for such projects you can find on my [GitHub](https://github.com/ronamosa) account (the public repo's anyway).
 

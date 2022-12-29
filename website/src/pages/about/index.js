@@ -36,7 +36,7 @@ function About() {
                 I am New Zealand born Samoan, Tuvalu and Chinese. 
                 </p>
                 <p>
-                When I'm not behind a computer, I play the drums, I train <a href="https://www.instagram.com/ron.amosa/">Brazilian Jiu Jitsu</a> and ride my motorbike.
+                When I'm not behind a computer, I play the drums, I train <a href="https://www.instagram.com/ron.amosa/">Brazilian Jiu Jitsu</a> and (once I get a new one) ride my motorbike.
                 </p>
                 <p>
                   <i>
