@@ -2,13 +2,39 @@ import React from "react";
 
 const projects = [
   {
+    category: "Community",
+    title: "Pasifika Technology Education Charity",
+    slug: "#pasifika-tech-charity",
+    imageUrl: "img/projects/ptec.png",
+    subtitle:
+      "Providing hands-on I.T. learning and education for the Pasifika community.",
+    period: "EST. 2019",
+    tech: "Google, Scratch, Microbit, Raspberry Pi",
+    description: (
+      <>
+        <p>
+          PTEC
+        </p>
+        <p>
+          PTEC.
+        </p>
+      </>
+    ),
+    links: [
+      {
+        name: "Pasifika Technology Education Charity",
+        link: "https://pasifikateched.net",
+      },
+    ],
+  },
+  {
     category: "Project",
     title: "Azure Kubernetes Starter Cluster",
-    slug: "#nodejs-mysql-cloudformation",
+    slug: "#azure-k8s-terraform",
     subtitle:
       "A basic AKS cluster setup using Terraform",
     period: "August 2020",
-    tech: "Azure, Terraform",
+    tech: "Azure, Terraform, Kubernetes",
     description: (
       <>
         <p>
