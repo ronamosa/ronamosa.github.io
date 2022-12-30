@@ -23,6 +23,10 @@ const internetProfiles = {
     label: "About",
     to: "about",
   },
+  projects: {
+    label: "Projects",
+    to: "projects",
+  },  
   resume: {
     label: "Resume",
     href: "https://ronamosa.github.io/pdf/resume.pdf",
@@ -61,6 +65,7 @@ module.exports = {
         },
         { to: "blog/", label: "Blog", position: "left" },
         { to: "about/", label: "About", position: "right" },
+        { to: "projects/", label: "Projects", position: "right" },
         {
           href: "https://ronamosa.io/pdf/resume.pdf",
           label: "Resume",
