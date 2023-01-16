@@ -26,7 +26,7 @@ function Home() {
               <span className="colorDanger">Amosa.</span>
             </h1>
             <p>I'm a Hacker/Engineer/Geek. 💻.</p>
-            <p>Part Blog. Part <a href="https://maggieappleton.com/garden-history">Digital Garden</a> 🌱.</p>
+            <p>Part Blog / Part <a href="https://maggieappleton.com/garden-history">Digital Garden</a> 🌱.</p>
             <p>This is where I learn in public 📚.</p>
             <SocialLinks />
             <nav className={clsx("pagination-nav", styles.heroBannerButton)}>
