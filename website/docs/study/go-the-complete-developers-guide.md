@@ -468,5 +468,3 @@ value types:
 - string
 - bool
 - structs.
-
-:::
