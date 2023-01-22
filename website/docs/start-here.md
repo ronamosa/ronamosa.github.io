@@ -18,9 +18,15 @@ The sidebar menu and documents will grow as I continue to add more notes to the 
 
 ## 🗓️ Currently
 
-- Reading: ["The War of Art"](https://www.goodreads.com/book/show/1319.The_War_of_Art?ac=1&from_search=true&qid=W3UewsmnZl&rank=1) by Steven Pressfield.
-- Working out: [75 Hard Challenge](https://andyfrisella.com/pages/75hard-info)
-- Studying: [Go: The Complete Developers Guide (Golang)](https://www.udemy.com/share/101Xzy3@hziIwJOYjh6rFVCIAKG1zdfk5Eb-J9Kemb9gSJhrrXEqB7SOZamW13muBuWYkvjneg==/)
+### Reading
+
+- ["Sapiens: A Brief History of Mankind](https://www.goodreads.com/book/show/23692271-sapiens) by Yuval Noah Harari.
+- ["Finite and Infinite Games: A Vision of Life as Play and Possibility"](https://www.goodreads.com/book/show/16117440-finite-and-infinite-games) by James P. Carse.
+- ["The Midnight Library"](https://www.goodreads.com/book/show/52578297-the-midnight-library) by Matt Haig.
+
+### Studying
+
+- [Go: The Complete Developers Guide (Golang).](https://www.udemy.com/share/101Xzy3@hziIwJOYjh6rFVCIAKG1zdfk5Eb-J9Kemb9gSJhrrXEqB7SOZamW13muBuWYkvjneg==/)
 
 ## 📚 [Books](books/reading-list.md)
 
@@ -30,15 +36,34 @@ My reading list, what I'm currently reading and notes on books I've read.
 
 Study and exam notes for certifications, courses.
 
-I sat and passed my CKS in 09-2021. All my study and exam notes are [here](study/CKS/README.md).
+- [] AWS Cloud Practitioner Certification 2022 Notes
+- [] AWS Solution Architect Associate S03 Certification 2022 Notes
+- I passed my "CKA: Certified Kubernetes Administrator" exam, July 2021. Find my study and exam notes [here](study/CKA/README.md)
+- I passed my "CKS: Certified Kubernetes Security Specialist" exam, September 2021. Find my study and exam notes [here](study/CKS/README.md)
 
 ## 🏴‍☠️ Hacker
 
 Breaking things. Notes and information related to Information Security, Offensive (red) and Defensive (blue) Security and DevSecOps (purple).
 
+### TryHackMe
+
+I work on hacking various rooms on the TryHackMe platform under ["RxHack"](https://tryhackme.com/p/rxhack) and do write-ups of what I learn here.
+
+### HackTheBox
+
+I started on HackTheBox on March-15-2022 and will post write-ups of my hacking efforts here as well.
+
+### Twitch
+
+⏸️ _Currently on hold_.
+
+> My hacking stream at [https://www.twitch.tv/RxHackk](https://www.twitch.tv/rxhackk) where I hack on TryHackme or HackTheBox machines and do my best to follow ['swyx'](https://www.swyx.io/about) philosophy of ["learning in public"](https://www.swyx.io/learn-in-public/).
+
 ## 💻 Engineer
 
 Building things. Applications, Software Engineering, Infrastructure Architecture and Engineering.
+
+All code for such projects you can find on my [GitHub](https://github.com/ronamosa) account (the public repo's anyway).
 
 ## 🗃 Archive
 

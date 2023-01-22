@@ -27,16 +27,16 @@ function About() {
               <div className="col col--9">
                 <h2>Talofa 👋</h2>
                 <p>
-                  I'm Ron, a Senior Platform Security Engineer for <a href="https://www.salesforce.com/?ir=1">Salesforce U.S.</a> which includes the <a href="https://www.heroku.com/">Heroku</a> and <a href="https://www.mulesoft.com/">Mulesoft</a> cloud platforms.
+                  I'm Ron, a Partner Solution Architect for the Pacific Islands, at <a href='https://aws.amazon.com/'>Amazon Web Services</a>
                 </p>
                 <p>
-                  In a previous life I was a <a href="https://sre.google/">SRE</a> and DevOps Engineer building CICD environments and Production-Ready Kubernetes Infrastructure for banks and insurance companies.
+                  In a previous life I was a Platform Security Engineer at Salesforce/Heroku. And before that, an <a href="https://sre.google/">SRE</a> and DevOps Engineer building CICD environments and Production-Ready Kubernetes Infrastructure for banks and insurance companies.
                 </p>
                 <p>
                 I am New Zealand born Samoan, Tuvalu and Chinese. 
                 </p>
                 <p>
-                When I'm not behind a computer, I play the drums, I train <a href="https://www.instagram.com/ron.amosa/">Brazilian Jiu Jitsu</a> and ride my motorbike.
+                When I'm not behind a computer, I play the drums, I train <a href="https://www.instagram.com/ron.amosa/">Brazilian Jiu Jitsu</a> and (once I get a new one) ride my motorbike.
                 </p>
                 <p>
                   <i>

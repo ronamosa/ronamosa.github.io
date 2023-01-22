@@ -2,30 +2,54 @@ import React from "react";
 
 const projects = [
   {
-    category: "Project",
-    title: "Azure Kubernetes Starter Cluster",
-    slug: "#nodejs-mysql-cloudformation",
+    category: "Community",
+    title: "Pasifika Technology Education Charity",
+    slug: "#pasifika-tech-charity",
+    imageUrl: "img/projects/ptec.png",
     subtitle:
-      "A basic AKS cluster setup using Terraform",
-    period: "August 2020",
-    tech: "Azure, Terraform",
+      "Providing hands-on information technology learning and education for the Pasifika community.",
+    period: "EST. 2019",
+    tech: "Google Classroom, Scratch, Microbit, Raspberry Pi",
     description: (
       <>
         <p>
-          At the time I was always in need of a quick AKS cluster for testing or demonstrating various things, it made sense to create a simple base terraform setup to use as a complete setup, or the base for something more complex to add on.
+        The Pasifika Technology Education Charity is an organisation set up to provide opportunities for Pasifika to learn, up-skill and pursue knowledge in technology and of the technology sector.
         </p>
         <p>
-          This example will create a storage account backend for secure terraform state management, ssh keys for access and a separate virtual network for the cluster.
-        </p>
-        <p>
-          A <a href="https://github.com/ronamosa/aks-starter-cluster/blob/master/terraform/Makefile">Makefile</a> is provided to make life easier but after all that you can then spin up a simple <a href="https://azure.microsoft.com/en-us/services/kubernetes-service/">Azure Kubernetes Service</a> and ssh into it as needed.
+          PTEC.
         </p>
       </>
     ),
     links: [
       {
-        name: "GitHub",
-        link: "https://github.com/ronamosa/aks-starter-cluster",
+        name: "Pasifika Technology Education Charity",
+        link: "https://pasifikateched.net",
+      },
+    ],
+  },
+  {
+    category: "Community",
+    title: "Pasifika Tech Network",
+    slug: "#pasifika-tech-network",
+    imageUrl: "img/projects/ptn.png",
+    subtitle:
+      "An online and in-person network of Pasifika technology professionals, students and learners.",
+    period: "EST. 2021",
+    tech: "Discord",
+    description: (
+      <>
+        <p>
+        The Pasifika Tech Network brings together Pasifika from across the technology industry in techincal and non-technical roles to share knowledge, collaborate and support our community currently in the industry, and for the incoming generation.
+        </p>
+        <p>
+        Get in contact to 
+        </p>
+      </>
+    ),
+    links: [
+      {
+        name: "Pasifika Tech Network",
+        link: "mailto:ron@pasifikateched.net",
       },
     ],
   },

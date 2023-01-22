@@ -23,6 +23,10 @@ const internetProfiles = {
     label: "About",
     to: "about",
   },
+  projects: {
+    label: "Projects",
+    to: "projects",
+  },  
   resume: {
     label: "Resume",
     href: "https://ronamosa.github.io/pdf/resume.pdf",
@@ -61,6 +65,7 @@ module.exports = {
         },
         { to: "blog/", label: "Blog", position: "left" },
         { to: "about/", label: "About", position: "right" },
+        { to: "projects/", label: "Projects", position: "right" },
         {
           href: "https://ronamosa.io/pdf/resume.pdf",
           label: "Resume",
@@ -105,12 +110,12 @@ module.exports = {
           disableVersioning: false,
           editCurrentVersion: false,          
           editUrl:
-            'https://github.com/ronamosa/ronamosa.github.io/edit/main/docs/',
+            'https://github.com/ronamosa/ronamosa.github.io/edit/main/website/',
         },
         blog: {
           showReadingTime: true,
           editUrl:
-            'https://github.com/ronamosa/ronamosa.github.io/edit/main/blog/',
+            'https://github.com/ronamosa/ronamosa.github.io/edit/main/website/',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
