@@ -686,4 +686,4 @@ Verification: OK
 
 Now you can browse and use your bookinfo app at https://bookinfo.cloudbuild.site/productpage with a valid TLS certificate, and working cert-manager and SDS setup with Azure DNS challenge solver!
 
-I know this was pretty long, so any question, please feel free to ping me online, probably on [Twitter](https://twitter.com/iamronamo)
+I know this was pretty long, so any question, please feel free to ping me online, probably on [Twitter](https://twitter.com/rxnamxsa)
