@@ -6,9 +6,15 @@ title: "Terminal and OMZ Prompt Setup"
 
 Documenting how I set my terminal up with `oh-my-zsh`, `powerlevel10k` theme and plugins. I use Gnomes [terminator](https://gnome-terminator.org/) terminal with tmux.
 
-## Remove existing install
+## Pre-requisites
+
+### Remove existing install
 
 from terminal: `uninstall_oh_my_zsh`
+
+### Install ZSH
+
+from terminal: `sudo apt install zsh`
 
 ## Install oh-my-zsh
 
