@@ -22,7 +22,7 @@ You can find a copy of the [CKS_Curriculum_ v1.21](https://raw.githubusercontent
 
 ## Courses
 
-My main study material was [Kubernetes CKS 2021 Complete Course](https://www.udemy.com/share/103O5A3@tvmhKg4QOGimr2W3jgLP2nxMOL5LC86ZUnUdOdW74r7CnMjwY6XTOY7owUd6z63ALQ==/) by Kim Wüstkamp. Very good course and I would recommend it to get a good grasp of the topics for examination.
+My main study material was [Kubernetes CKS 2021 Complete Course](https://www.udemy.com/course/certified-kubernetes-security-specialist/)(link is updated 2023 course) by Kim Wüstkamp. Very good course and I would recommend it to get a good grasp of the topics for examination.
 
 At the end of the course I signed up for my CKS exam where you get 2 x [killer.sh](https://killer.sh) simulators included in the CKS exam purchase. I completed both of these.
 
