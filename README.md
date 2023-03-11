@@ -1,22 +1,11 @@
 # ronamosa.io
 
-## Usage
+Hi, my name is:
 
-uses `npm`, docusaurus CLI reference [here](https://docusaurus.io/docs/cli).
+Ron Amosa.
 
-commands available (see `package.json`):
+I'm a Hacker/Engineer/Geek. 💻.
 
-```sh
-"start": build and serve preview locally
-"build": built it
-"swizzle": install themes
-"deploy": deploy with GitHub Pages
-"clear": clear generated assets, caches, build artifacts
-"serve": serve the existing build locally
-```
+This is GitHub repo for my [Digital Garden / Blog Space.](https://ronamosa.io/) 🌱
 
-e.g. syntax is `npm run <command>`
-
-### local dev
-
-run `npm run start` and browse to `http://localhost:3000`
+This is where I learn in public 📚.
