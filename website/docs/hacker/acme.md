@@ -20,8 +20,8 @@ If they believe you they will give you the folder name... go find this folder na
 
 Good luck!!
 
-:::info 
+:::tip
 
-*FLAG2=HERETIC.*
+*FLAG2=SOCIAL-ENGINEER*
 
 :::
