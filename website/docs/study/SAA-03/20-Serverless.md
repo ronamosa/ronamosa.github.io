@@ -1,0 +1,191 @@
+---
+title: Serverless
+---
+
+:::info
+
+These were the topics I created flashcards for (Remnote) and would revise them using spaced repetition. The formatting is an export from Remnote.
+
+:::
+
+- serverless doesn't mean servers don't exist, it means you don't {{provision}} or {{manage}} servers.
+- AWS Lambda
+  - lambda is a virtual {{function}} .
+  - lambdas provide two main functions... ↓
+    - transformations
+    - job scheduling (cron)
+  - lambdas are great because they... (hint: runtime, provision, grow)― ↓
+    - short execution
+    - on-demand
+    - scale automatically
+  - lambda pricing is per {{request}} plus {{compute or execution}} time.
+  - compute time is {{GB}} per second of {{execution}} time.
+  - a good rule of thumb is if the process takes longer than {{15}} mins, don't use lambda.
+    - why? because lambda's maximum execution time is {{15}} mins.
+  - programming languages supported? (hint: N P J C G C R c)― ↓
+    - node.js
+    - python
+    - java
+    - C# (.NET)
+    - Golang
+    - C# (powershell)
+    - Ruby
+    - Custom Runtime API
+  - Lambda Container Image
+    - use, only if "{{lambda runtime}} API" is enabled or installed.
+    - otherwise, use {{ECS}} or {{Fargate}}.
+  - Limits
+    - Lambda limits apply per {{Region}}.
+    - Execution limit
+      - RAM limit?―128MB to 10GB
+      - Execution time limit?―900s or 15 mins
+      - Environment Variable size?―4KB
+      - Disk (i.e. functions container)?―512MB to 10GB
+    - Deployment limit
+      - lambda deployment size (zip format)?―50MB
+      - uncompressed size limit?―250MB
+      - what directory can be used to load other things at start up?―/tmp directory
+      - Environment variable size?―4KB
+  - Customisation at the Edge
+    - customisation i.e. transformation
+    - what are the TWO options for customisation at the Edge? ↓
+      - Lambda @ Edge
+      - CloudFront Functions
+    - Which option can handle more requests?―Cloudfront Functions
+      - Why?―Only deals with viewer request and response.
+      - roughly how many requests can CloudFront Functions handle?―1M+
+      - what kind of execution time per request?―less than 1ms
+    - Use CloudFront Functions when you want....
+      - high performance
+      - high scale
+      - only dealing with the viewer request and response.
+    - what kind of latency per request can you get from CloudFront Functions?―less than 1ms
+    - what kind of latency per request can you get from Lambda at Edge?―5-10ms
+    - When is it appropriate to use L@E? (hint: 3rd ext body)― ↓
+      - if you have 3rd party code dependencies
+      - if you need to access external services
+      - if you need to access a filesystem or HTTP body of a request
+  - Lambda & the Network
+    - by default Lambda is deployed {{outside}} of a (your) VPC.
+    - to deploy a Lambda inside your VPC you need to define the following: ↓
+      - VPC ID
+      - Subnets
+      - Security Groups
+    - what does Lambda create to access your subnets?―ENI (Elastic Network Interface)
+    - RDS Proxy
+      - what is the risk of having Lambda functions access your DB directly?―open too many connections during peak load
+      - what can you use to improve scalability and preserve DB connections?―use RDS Proxy between Lambda and DB
+      - what are the main benefits of RDS Proxy? ↓
+        - reduce load (calls) on the DB
+        - manage client connections (pooling and sharing)
+        - enable request AuthN (IAM + secrets manager)
+      - RDS Proxy is sometimes publicly accessible. True of False?―False. RDS Proxy is never publicly accessible.
+      - Will your Lambda be able to access RDS Proxy from outside your VPC?―No. Lambda must be deployed  ____inside____  your VPC.
+- Amazon DynamoDB
+  - Fully {{managed}}, highly {{available}} with {{replication}} across multiple {{AZs}}.
+  - DynamoDB is a NoSQL or Relational Database?―NoSQL.
+  - can handle 100's? 1000's or millions of requests per second?―Millions.
+  - always {{available}}, no {{maintenance}} or patching.
+  - uses {{Standard}} and {{Infrequent}}-Access Table Class.
+  - with DynamoDB you get {{single}} digit {{ms}} performance.
+  - Tables
+    - DynamoDB is made up of {{Tables}}.
+    - Each table is made up of the following:― ↓
+      - Primary Key
+      - Items (aka rows)
+    - An item is also known as a {{row}}.
+    - An item has {{attributes}} and you can have {{infinite}} number of items.
+    - Max size of an item?―400KB
+    - Supported Data Types? (hint: S D S)― ↓
+      - __Scalar__ (string, number, bool, null)
+      - __Document__ (list, map)
+      - __Set__ (string set, number set, binary set)
+    - If you need to {{rapidly}} evolve schemas, use {{DynamoDB}}.
+  - Read+Write Capacity Modes
+    - what are the two modes available for DynamoDB read & write capacity? ↓
+      - Provisioned Mode (default)
+      - On-Demand Mode
+    - if your capacity needs are unpredictable and you need to scale suddenly, use {{On-demand}} mode.
+    - if your capacity needs are predictable use {{Provisioned}} mode.
+    - what does RCU and WCU stand for?―Read Capacity Units, Write Capacity Units
+    - Can you scale RCU without scaling WCU?―Yes. RCU and WCU are separate so can scale independently.
+  - Advanced Features
+    - DAX (DynamoDB Accelerator)
+      - DAX is an in-memory cache __cluster__ for DynamoDB
+      - DAX has {{ms}} latency for cached data.
+      - DAX is good when you have {{read}} congestion issues.
+      - DAX default cache TTL?―5 minutes.
+      - DAX vs Elasticache
+        - What should you use when you need individual objects caching or query and scan cache needs?―DAX
+        - What should you use when you're dealing with aggregate result sets?―Elasticache.
+    - Stream Processing
+      - DDB has TWO options for processing data streams ↓
+        - DynamoDB Streams
+          - data retention?―24 hours.
+          - {{limited}} number of consumers.
+        - Kinesis Data Streams
+          - data retention?―365 days.
+          - {{high}} number of consumers.
+    - Global Table
+      - basically a DDB table that spans multiple {{Regions}}.
+      - uses {{active}}-{{active}} replication.
+      - applications can {{read}} and {{write}} from {{any}} Region.
+      - what must you enable before you can use Global Tables?―DDB Streams.
+    - TTL
+      - like any TTL, set {{expiry}}, data gets {{deleted}}.
+      - use cases? ↓
+        - keep items current
+        - regulatory needs
+        - session management
+    - Backups for DR
+      - DDB has two backup options available, they are: ↓
+        - Continuous using PITR
+        - On-Demand
+          - long-term retention, when does it delete?―explicitly requested.
+      - Both backup options will create {{new}} tables during the {{recovery}} process.
+  - Amazon S3 Integration
+    - Export to S3 requires {{PITR}} (continuous backup option).
+    - Export formats? ↓
+      - DDB JSON
+      - ION
+    - Import to S3, acceptable formats? ↓
+      - CSV
+      - DDB JSON
+      - ION
+    - Import errors logged in {{CloudWatch}}.
+    - will an import from S3 create a new table in DDB?―Yes.
+- AWS API Gateway
+  - AWS Lambda + API Gateway is a completely {{serverless}} solution.
+  - API Gateway can manage these API operations (hint: env, sec, keys, rates, x & v, save)― ↓
+    - Environment Routing (dev, test, prod)
+    - Security (AuthN, AuthZ)
+    - create API Keys
+    - Request throttling
+    - Transform & Validate Requests
+    - Cache API responses.
+  - API Gateway can provide the following API features (hint: v, generate..., import...)― ↓
+    - API Versioning
+    - Generate SDK and API specs
+    - import via Swagger or Open API to quickly define APIs
+  - Integrations
+    - API Gateway integrates with the following THREE destinations (hint: L HT.. expose...)― ↓
+      - Lambda Function
+      - HTTP Endpoint
+      - AWS Service (expose any AWS API via GW)
+        - A good way to "wrap" a backend API in the API GW features like AuthN and AuthZ, throttling etc.
+        - Also a good way to make a backend API publicly available safely.
+  - Deployment Types  
+    - what are the three TYPES of API GW deployments? (hint: E R P)― ↓
+      - __Edge__-optimised (default) i.e. routed through {{CloudFront}} {{Edge}} locations.
+      - __Regional__ for clients same Region.
+      - __Private__ limited to your VPC using VPC endpoints (ENI)
+    - no matter which type of Deployment is used, API Gateway still lives in {{ONE}} Region.
+  - Security
+    - API Gateway can do AuthN via? (hint: I C C)― ↓
+      - IAM Roles
+      - Cognito
+      - Custom Authenticators (write your own)
+    - What does API Gateway use to implement HTTPS on custom domain names?―AWS Certificate Manager (ACM)
+- AWS Step Functions
+  - give you "{{serverless}} visual {{workflows}} to {{orchestrate}} your Lambda functions"
+  - if you need a "human approval" step in an automation process, use {{step functions}}.
