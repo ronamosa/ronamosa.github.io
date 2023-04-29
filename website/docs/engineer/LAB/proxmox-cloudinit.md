@@ -1,5 +1,5 @@
 ---
-title: "Proxmox Cloud Init VM Setup"
+title: "Proxmox: Cloud Init VM Setup With Ansible-Playbooks"
 ---
 
 ## Overview
