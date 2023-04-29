@@ -10,7 +10,7 @@ Published Date: 28-NOV-2020
 
 > What are you setting up?
 
-Following on from the physical setup in ["Part 1"](/docs/engineer/LAB/2020-11-19-Ubiquiti-Home-Network-Part1), this post will detail setting up the VLANs required to achieve the following:
+Following on from the physical setup in ["Part 1"](/docs/archive/LAB/2020-11-19-Ubiquiti-Home-Network-Part1), this post will detail setting up the VLANs required to achieve the following:
 
 * A VLAN for the users in the main house. This VLAN can go out to the internet and also access specific services from another VLAN. This VLAN is going to be VLAN30.
 
