@@ -25,6 +25,16 @@ proxmox_api_token_id = "packer@pve!packer"  # API Token ID
 proxmox_api_token_secret = "{token_goes_here}"
 ```
 
+## Packer Folder Structure
+
+```bash
+/ubuntu-server-version
+--/files
+--/files/99-pve.cfg
+--/http
+
+```
+
 ### packer validate
 
 `packer validate -var-file='../credentials.pkr.hcl' ./ubuntu-server-focal.pkr.hcl`
@@ -80,3 +90,4 @@ ran listener on desktop `rlwrap nc -lvnp 6666` and then tried to run `qm guest e
 - followed video by ["Christian Lempa"](https://www.youtube.com/watch?v=1nf3WOEFq1Y)
 - "Agent not running issues", see [oliviermichaelis](https://github.com/hashicorp/packer-plugin-proxmox/issues/91) comment with the `late-commands`.
 - proxmox qemu (qm) commands for diagnosing and troubleshooting vm disks and configs from proxmox host.
+- [autoinstall docs](https://ubuntu.com/server/docs/install/autoinstall)
