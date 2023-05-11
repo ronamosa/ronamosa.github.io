@@ -2,9 +2,24 @@
 title: "Proxmox: Create a cloud-init Template VM with Packer."
 ---
 
-I wanted to setup IaC for my home lab Proxmox server to create VM templates first user Packer, and then Terraform for deploying 3-node K8s clusters for demos and learning. I originally followed ["Christian Lempa"](https://www.youtube.com/watch?v=1nf3WOEFq1Y) video and [boilerplates](https://github.com/ChristianLempa/boilerplates/tree/main/packer/proxmox), but couldn't get them to work so went on a long winding journey trying different configs and reading up on cloud-config, autoinstall and read a bunch of other blogs.
+I wanted to setup IaC for my home lab Proxmox server to create VM templates first using Packer, and then Terraform for deploying 3-node K8s clusters for demos and learning. I originally followed ["Christian Lempa"](https://www.youtube.com/watch?v=1nf3WOEFq1Y) video and [boilerplates](https://github.com/ChristianLempa/boilerplates/tree/main/packer/proxmox), but couldn't get them to work so went on a long winding journey trying different configs and reading up on cloud-config, autoinstall and read a bunch of other blogs.
 
 I got it to finally work, which came back to almost the original configs by Christian, but with a lot more understanding.
+
+## Packer Process
+
+Quick overview step-by-step of what's happening in the process
+
+1. `packer` calls proxmox endpoint, using API Token (`variables.pkr.hcl`) and a VM template definition file (`ubuntu-server-focal.pkr.hcl`), and then `WAIT` for `SSH to become available...`
+2. a VM is create on proxmox
+3. the VM pulls down `NFS-SERVER:iso/ubuntu-20.04.3-live-server-amd64.iso` and begins the install
+4. with `cloud-init=true` the VM will boot and run the `boot_command` to pull down the initial configuration for the blank VM
+5. packer will start a web server on the client machine, to serve the `http/user-data` file for the proxmox VM to download
+6. this line `autoinstall ds=nocloud-net;s=http://{{ .HTTPIP }}:{{ .HTTPPort }}/` in the `boot_command` tells the VM where to get the init configs
+7. the `http/user-data` config will install openssh, and create user `rxhackk` with public key auth enabled.
+8. when the VM finishes intial install, it will reboot.
+9. once rebooted, `packer` will ssh into the newly created, rebooted VM, and run the commanmds in `provisioner "shell" { inline =[` (or at least this is what I think it's doing after the reboot and requies a working ssh connection)
+10. when commands are finished, proxmox shuts down the completed VM and converts it into "template" format.
 
 ## Key Concept
 
@@ -62,7 +77,7 @@ use new `packer` user, API Token, no expiry, copy secret.
 
 ensure `Privilege Separation` is not checked, otherwise this token doesn't get the packer users group permissions.
 
-update file `proxmox-devops/packer/proxmox/credentials.pkr.hcl` with creds.
+update file `proxmox-devops/packer/proxmox/variables.pkr.hcl` with creds.
 
 ```sh
 # Your Proxmox IP Address
@@ -300,7 +315,7 @@ autoinstall:
 Getting error `Timeout waiting for SSH.`
 
 ```bash
-  ~/R/proxmox-devops/packer/proxmox/ubuntu-server-focal ❯ packer build -var-file='../credentials.pkr.hcl' ./ubuntu-server-focal.pkr.hcl                     took  20m 24s at  23:33:03
+  ~/R/proxmox-devops/packer/proxmox/ubuntu-server-focal ❯ packer build -var-file='../variables.pkr.hcl' ./ubuntu-server-focal.pkr.hcl                     took  20m 24s at  23:33:03
 ubuntu-server-focal.proxmox.ubuntu-server-focal-template: output will be in this color.
 
 ==> ubuntu-server-focal.proxmox.ubuntu-server-focal-template: Creating VM
