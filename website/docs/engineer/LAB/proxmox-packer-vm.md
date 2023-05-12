@@ -331,6 +331,10 @@ TBC: I will screen record the process and embed it here.
 
 :::
 
+This is what success looks like:
+
+![packer proxmox success](/img/packer-proxmox-success.png)
+
 ## Troubleshooting
 
 :::warning ssh settings
