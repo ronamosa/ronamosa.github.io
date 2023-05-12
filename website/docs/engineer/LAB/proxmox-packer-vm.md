@@ -8,7 +8,11 @@ I got it to finally work, which came back to almost the original configs by Chri
 
 ## Packer Process
 
-Quick overview step-by-step of what's happening in the process
+This is what the process looks like in a diagram as I understand it:
+
+![packer proxmox process](/img/packer-proxmox-process.png)
+
+These are the steps:
 
 1. `packer` calls proxmox endpoint, using API Token (`variables.pkr.hcl`) and a VM template definition file (`ubuntu-server-focal.pkr.hcl`), and then `WAIT` for `SSH to become available...`
 2. a VM is create on proxmox
@@ -23,9 +27,9 @@ Quick overview step-by-step of what's happening in the process
 
 ## Key Concept
 
-The key thing to understand in lining everything up to work, is the usernames for Packer ssh to connect to the new VM and provision things.
+The key thing to understand in the setup, is which ssh or username settings are to be used where, if you mix that up, the you mix up the steps in the diagram and the packer process runs into authN issues with wrong pub_key, or `sudo -S` that needs an interactive session.
 
-In `http/user-data` you set the openssh server to install itself, disable root, allow public key authN:
+In `http/user-data` this is where cloud-init will pull in this config, install openssh and configure it for no root access, and public key authN:
 
 ```yaml
   ssh:
@@ -36,7 +40,7 @@ In `http/user-data` you set the openssh server to install itself, disable root, 
     allow_public_ssh_keys: true
 ```
 
-And then further down in `http/user-data` you configure the user inside the cloud-config'd VM template, that will allow Packer to ssh into the VM as, i.e. `rxhackk`. note the `sudo` config to allow this user to run the `inline` commands in the `ubuntu-server-focal.pkr.hcl` file that needs root privs:
+Further down in `http/user-data` you configure the user that's going inside the template VM. This is essentially an admin user that will be used to set some things up after the reboot. Note the `sudo` config to allow this user to run the `inline` commands in the `ubuntu-server-focal.pkr.hcl` file that needs root privs:
 
 ```yaml
   user-data:
@@ -52,9 +56,9 @@ And then further down in `http/user-data` you configure the user inside the clou
           - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDqGjvb1c8rfv2bYNnQaRn8ggOBAUhK5jUhZUTr3dEgZDKl88leX5yBG1RWQOfc/ka/rlv6VrjuwRjy+EB1f98L9bU4JklM+/6iNqka57wrQmWIo852wK7shoDdbz55vIjdcw9S6ok11EYI39FNlVex0IYbhOlEoh/M1b0s= rxhackk@Computer
 ```
 
-That `ssh_authorized_keys` is the public key `~/.ssh/id_rsa.pub` for our user rxhackk.
+That `ssh_authorized_keys` is the public key `~/.ssh/id_rsa.pub` for our user rxhackk on the packer client machine.
 
-And finally, to tie it all together, in `ubuntu-server-focal.pkr.hcl` we specify this user we have setup in `user-data` as the user to SSH to the VM as, and this user will ssh from our local machine running the packer command, into the proxmox VM template that's running:
+And finally, to tie it all together, in `ubuntu-server-focal.pkr.hcl` we specify the user we setup in `user-data` as the user to SSH to the VM post install and after the reboot, to finish the template setup:
 
 ```yaml
     # PACKER SSH Settings
@@ -64,18 +68,21 @@ And finally, to tie it all together, in `ubuntu-server-focal.pkr.hcl` we specify
 
 ## Proxmox Setup
 
-### create packer user
+### Create A Packer user
 
-1. add packer user (ve)
-2. create group Packer
-3. add Group Permissions (PVEAdmin) to group Packer
-4. add user packer to group Packer
+Trying to follow security best practices at all times, we want a user with "least privilege" access to the proxmox API to do what's needed to setup VM and no more. I'm just noting down the steps I followed here and it's not a comprehensive step-by-step of the user setup process.
 
-### create API token
+1. login to your proxmox web GUI as `root`
+2. add packer user (ve)
+3. create group Packer
+4. add Group Permissions (PVEAdmin) to group Packer
+5. add user packer to group Packer
 
-use new `packer` user, API Token, no expiry, copy secret.
+### Create API Token
 
-ensure `Privilege Separation` is not checked, otherwise this token doesn't get the packer users group permissions.
+1. login to your proxmox web GUI as `root`
+2. Use new `packer` user, API Token, no expiry, copy secret.
+3. ensure `Privilege Separation` is not checked, otherwise this token doesn't get the packer users group permissions.
 
 update file `proxmox-devops/packer/proxmox/variables.pkr.hcl` with creds.
 
@@ -120,6 +127,8 @@ I'm not sold this is the best format after seeing JSON based configs in some blo
 :::
 
 ### ubuntu-server-focal.pkr.hcl
+
+This is our VM template definition file, note the `source` resource feeds the `build` process
 
 ```json
 # Ubuntu Server Focal
@@ -302,17 +311,37 @@ autoinstall:
 
 ## Deploy
 
+Now nothing left to it, but to do it.
+
 ### packer validate
+
+Check your configs & definitions are valid:
 
 `packer validate -var-file='./variables.pkr.hcl' ./ubuntu-server-focal.pkr.hcl`
 
 ### packer build
 
+Build the template:
+
 `packer build -var-file='./variables.pkr.hcl' ./ubuntu-server-focal.pkr.hcl`
 
-### Troubleshooting
+:::info Video
 
-Getting error `Timeout waiting for SSH.`
+TBC: I will screen record the process and embed it here.
+
+:::
+
+## Troubleshooting
+
+:::warning ssh settings
+
+Most of the issues I ran into was because the ssh details i.e. the openssh server, the ssh user in `http/user-data` as well as the template definition were all mismatched at different stages. The fixes were getting these parts correct because you can get indirectly related issues as well.
+
+:::
+
+### Timeout waiting for SSH
+
+I kept getting this error
 
 ```bash
   ~/R/proxmox-devops/packer/proxmox/ubuntu-server-focal ❯ packer build -var-file='../variables.pkr.hcl' ./ubuntu-server-focal.pkr.hcl                     took  20m 24s at  23:33:03
@@ -337,7 +366,11 @@ Build 'ubuntu-server-focal.proxmox.ubuntu-server-focal-template' errored after 2
 ==> Builds finished but no artifacts were created.
 ```
 
-checked logs:
+This was because the ssh I setup in `http/user-data` didn't match the user in [ubuntu-server-focal.pkr.hcl](###ubuntu-server-focal.pkr.hcl).
+
+### locked out of vm
+
+Trying to diagnose the issue with a vm that had no root account, and the user I had setup was locked out, I managed to get into the vm, and when I checked logs `/var/log/auth.log` I saw this:
 
 ```text
 May  6 04:25:56 ubuntu-focal sshd[2336]: Invalid user rxhackk from 172.16.2.209 port 35030
@@ -345,10 +378,9 @@ May  6 04:25:56 ubuntu-focal sshd[2336]: Connection closed by invalid user rxhac
 May  6 04:26:03 ubuntu-focal sshd[2339]: error: kex_exchange_identification: Connection closed by remote host
 May  6 04:26:03 ubuntu-focal sshd[2340]: Invalid user rxhackk from 172.16.2.209 port 34800
 May  6 04:26:03 ubuntu-focal sshd[2340]: Connection closed by invalid user rxhackk 172.16.2.209 port 34800 [preauth]
-
-
-/var/log/auth.log
 ```
+
+This whole packer setup relies heavily on the ssh user setup.
 
 ### reverse shell qm
 
@@ -364,7 +396,9 @@ ran listener on desktop `rlwrap nc -lvnp 6666` and then tried to run `qm guest e
 
 ## Appendix
 
-This `cloud-config` version create an `ubuntu` user with `ubuntu` password, encrypted format via `mkpasswd`
+### cloud-config Identity
+
+This `cloud-config` version creates an `ubuntu` user with `ubuntu` password, encrypted format via `mkpasswd`:
 
 ```yaml
 #cloud-config
