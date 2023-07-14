@@ -1,5 +1,5 @@
 ---
-title: README
+title: Certified Kubernetes Security Specialist
 sidebar_position: 0
 ---
 

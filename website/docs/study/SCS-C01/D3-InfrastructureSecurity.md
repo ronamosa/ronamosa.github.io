@@ -1,0 +1,91 @@
+---
+title: Domain 3 - Infrastructure Security
+---
+
+:::info
+
+This is an export from my Remnote with flashcard syntax included.
+
+:::
+
+- Infrastructure Security
+  - You can configure AWS Config {{Multi}}-Account {{Multi}}-Region Data {{Aggregator}} to review configurations of your secrets across all accounts and {{regions}} in your organization, and then review your secret {{configurations}} and compare to secrets {{management}} best practices.
+  - If you see  __**"dedicated storage with lifecycle management and key rotation."**__  think..?→AWS Secrets Manager
+  - Amazon GuardDuty
+    - users from a master account {{can}} upload and further manage trusted IP lists and threat lists in their {{own}} account.
+  - AWS Service Catalog
+    - safely launch products by end users by applying what to individual products in a portfolio?→launch constraints.
+    - without a launch constraint, user end up launching and managing products using which IAM credentials?→their own.
+  - Can a salted HMAC value be used to derive encryption keys or decrypt things?→No. It's just used to validate future encryption requests.
+  - can an s3 bucket policy restrict access to private IPs?→No. only specific public and elastic IPs.
+  - if I need a direct and private (non public internet) connection to s3 e.g. to bypass a possible compromised app situation (involving proxy) without disrupting the apps other calls, what endpoint should I use?→VPC Gateway Endpoint.
+  - If you have to choose between AWS Secrets Manager and AWS Systems Manager Parameter Store for storing secrets but need  __"dedicated storage with lifecycle management and key rotation"__ , which one should you use?→AWS Secrets Manager.
+  - least complex way of organising and managing multiple AWS accounts? ↓
+    - AWS Organisations
+    - SCPs
+  - if you need full end-to-end unbroken encryption only terminating on the backend EC2, what Load Balancer gives you this?→Network Load Balancer (NLB)
+  - VPC Endpoints are secure non-internet connections, you have VPC Interface Endpoints and VPC Gateway Endpoints - which one is charged per hour?→VPC Interface Endpoint
+  - which VPC Endpoint is free?→VPC Gateway Endpoint.
+  - Any question needing to verify i.e. capture and analyse network traffic (e.g. check that configs are working properly) in an S3 bucket, look out for these two services ↓
+    - VPC Flow Logs
+    - Amazon Athena (query & analyse logs)
+  - Can you use an EC2 Instance Profile on a Lambda function?→No. Use an IAM Role for execution.
+  - what service can you use to track and audit an IAM User permission changes, and at specific times?→AWS Config
+  - __VPC Security__
+    - What service gives you IDS and can perform deep packet inspection at the VPC level?→AWS Network Firewall
+      - Can AWS Network Firewall pass through only known AWS services like Amazon S3?→Yes.
+      - Can AWS Network Firewall use custom lists of known bad domains to limit access?→Yes.
+  - __OAI (Origin Access Identity)__
+    - Valid Principal: `"Principal": {   "`{{`CanonicalUser`}}`": "79a59df900b949e55d96a1e698fbacedfd6e09d98eacf8f8d5218e7cd47ef2be" }`
+    - If you see `Principal` and `CanonicalUser` use the {{Canonical}} {{User}} ID
+    - Valid Principal: `"Principal": {   "`{{`AWS`}}`": "arn:aws:iam::cloudfront:user/CloudFront Origin Access Identity EH1HDMB1FH2TC" }`
+    - If you see `Principal`and `AWS`use the {{Origin}} {{Access}} ID
+  - AWS Certificate Manager Private Certificate Authority is a {{managed}} private CA service that {{extends}} ACM certificate management to {{private}} certificates.
+  - If you are tasked with managing AWS WAF, AWS Shield Advanced, and Amazon VPC security groups, and multiple accounts, use...?→AWS Firewall Manager.
+  - where can you IMPORT a SSL/TLS certificate INTO?↓ ↓
+    - Amazon Certificate Manager (ACM)
+    - IAM Certificate Store.
+  - What services can offer SSL/TLS cipher suites for Perfect Forward Security? ↓
+    - Amazon CloudFront
+    - Elastic Load Balancers
+  - IAM Policy Access
+    - if users in account A need access to service in account B you create an IAM Role in account {{B}}, and allow users in account {{A}} to assume that Role.
+  - Amazon CloudFront
+    - when creating HTTPS from client ⇒ CDN ⇒ origin, how many certificates are always created?→2 - one in `us-east-1` for CloudFront, and one in the Region your origin is.
+  - If you have ENI issues that are behind an ALB, and all networking configs are correct e.g. NACL, SG's, what other things to check?↓ ↓
+    - ENI's are properly mapped to SG's
+    - instance ENI's attached to are registered to a ALB target group.
+  - Hybrid on-prem & AWS, DNSSEC setup
+    - how do you prevent AWS resources using the VPC DNS service and use the DNSSEC setup instead?→set `enableDnsHostnames` and `enableDnsSupport` to false in the VPC.
+  - what can you use to check for unintended network accessibility from your instances?→AWS Security Hub.
+  - Can you use AWS Systems Manager State Manager to access your remote instances?→No. Use AWS Systems Manager Session Manager.
+  - How can you inject HTTP security headers to traffic going through CloudFront inbound to Lambda Functions?→Add them to Lambda@Edge & CloudFront.
+  - If you find users are changing configs without permission, what service can assess and evaluate these configs continuously for you?→AWS Config.
+  - What can you use to stop S3 objects being accessed directly and lock it down to accept from CloudFront only?→Use OAI
+  - if you've setup custom NACL inbound for your application on the correct ports, and you're still not able to connect, what should you check for?→that ephemeral ports are allowed OUTBOUND from your NACL.
+  - if you see "common web vulnerabilities" and "DDoS" protection, what services should you look for? ↓
+    - AWS WAF
+    - AWS Shield Advanced
+  - What TWO policy types to restrict S3 bucket to authorised users only? ↓
+    - Bucket Policy (for the resources)
+    - IAM Policy (for the users)
+  - If you need an HSM that runs INSIDE a VPC and available across multiple AZ's what should you use?→AWS CloudHSM.
+    - Why not AWS KMS?→AWS KMS is a service you access via API, it doesn't run INSIDE a VPC.
+  - if you need "programmatic access" to manage access controls to CMK's what should you use - key policies, iam roles, grants or iam policy?→grants.
+  - Amazon GuardDuty
+    - member & master accounts
+      - users in member accounts can't archive findings in their own or the master account - true or false?→True.
+      - users in member accounts can't upload & manage Trusted IP lists and threat lists - true or false? True.
+      - users in master accounts can upload and manage Trusted IP lists and threat lists in their own account - true or false?→False.
+  - How do you ensure RDS database uses token authentication instead of password?→Enable `IAM DB Authentication`
+  - In a centralised multi-account CloudTrail logs-to-S3-bucket setup, do you need cross-account access between the S3 buckets in each account?→No. Logs will go directly from member account to central account's S3 (not S3-to-S3, so no cross-account needed).
+  - If you have CloudWatch and CloudWatch Log Agent issues where logs stop shipping, what are two things you can check for? ↓
+    - check log rotation rules is compatible with the agent's config
+    - check for duplicate `[logstream]`configs in agents config file.
+  - If an AWS Access Key gets popped, what are two services you can use to assess extent of compromise? ↓
+    - CloudTrail for activity history
+    - CloudWatch to search CloudTrail logs for API history
+  - what streaming service gives you real-time application log processing?→Kinesis Data Streams
+  - what search service gives you search & analytics?→AWS Elasticsearch
+  - CloudWatch can use a `Filter Pattern` to match Security Group API calls for an Alarm, ensure you include these SG calls in your pattern, to alarm on.
+    - What is the difference between setting the metric for the `Filter Pattern` to 10 as opposed to 1?→it'll take TEN matches before an alert is sent, whereas if you set it to `1` it'll alarm on the first one.
