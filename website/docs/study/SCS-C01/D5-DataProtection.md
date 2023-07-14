@@ -1,0 +1,146 @@
+---
+title: Domain 5 - Data Protection
+---
+
+:::info
+
+This is an export from my Remnote
+
+:::
+
+- **Data Protection**
+  - if you need "full control over how the KMS keys are used" dont use AWS {{managed}} keys, instead use what? ↓
+    - Symmetric Customer Managed Keys
+  - Kinesis Data Streams
+    - Kinesis Data Analytics {{encrypts}} all data both in {{transit}} and at {{rest}}.
+    - Can you encrypt a Kinesis Data Stream coming into KDA?→Yes.
+      - How? `StartStreamEncryption`API.
+  - **Amazon CloudFront**
+    - To get full end-to-end encryption between `Clients ⇒ CloudFront ⇒ Origin` and a custom domain, what TWO public AWS Certificate Manager (ACM) requests you need to make?↓ ↓
+      - Clients ⇒ CloudFront = request a certificate in `us-east-1` for the custom domain
+      - CloudFront ⇒ Origin = request a certificate in the Region where your Origin is e.g. if ALB is in us-west-1
+  - **AWS CloudTrail**
+    - CloudTrail logs what?↓ ↓
+      - Actions taken by user, role or AWS services as `events`
+    - There are no notifications by default to track IAM creds - how can you set up track & send?↓ ↓
+      - track = combine AWS CloudTrail & CloudWatch with a custom rule
+      - send = use SNS or SQS to send notifications.
+    - If you stop getting notifications from your track & send setup, what can you check? ↓
+      - trail managements events are configured for `Write-only`or `All`
+    - Multi-account, centralised S3 bucket for CloudTrail logs, with change-detection, what are the steps using accounts A, B, C...↓ ↓
+      - create bucket in account A, enable CloudTrail
+      - update bucket policy on bucket in account A (note: `s3:PutObject` action required)
+      - enable CloudTrail in accounts B, C
+      - enable Log File Validation on all trails.
+    - are logs delivered by CloudTrail to your bucket, encrypted by default?→Yes.
+      - what encryption is used, by default?→SSE-S3
+      - what is your other option for SSE for CloudTrail logs, if not SSE-S3?→SSE-KMS
+        - when you use SSE-KMS option, you create a KSM key also know as?→Customer Managed Key (CMK)
+      - if you need CMK for your CloudTrail encryption, what SSE should you use?→SSE-KMS
+        - what else does using KMS give you in terms of auditing?→An Audit Trail.
+  - **AWS Systems Manager Parameter Store**
+    - Param Store can store db connection strings, passwords and licence codes... can it store secrets?→Yes.
+      - If you want a single store for config and secrets - use...?→Parameter Store
+      - what reason would you use systems manager parameter store over aws systems manager for storing secrets?→Cost. Parameter Store is cheaper per item than Secrets Manager
+  - **Lambda Function Security**
+    - Code signing for lambda functions {{checks}} every code deployment and {{verifies}} code is signed by a {{trusted}} source, once enabled, you just need to sign the code with AWS {{Signer}} profile, package code in {{zip}} and upload to an s3 bucket.
+  - **AWS KMS**
+    - If you need key material to expire automatically after a certain date, what kind of KMS key do you use?→Customer-managed KMS key with imported key material.
+    - What kind of KMS keys do you have full control over i.e. create, own and manage?→Customer Managed KMS Key (CMK)
+    - You have an issue where an attached encrypted EBS volume prevents EC2 from starting, obviously something is up with the instance unlocking the encrypted volume, what can you add to the IAM user policy to solve this? ↓
+      - add `kms:CreateGrant`
+      - add `"Condition": { "Bool": { "kms:GrantIsForAWSResource": true } }`
+    - if you create encrypted-by-default EBS volumes, encrypt with symmetric CMK, but then accidentally delete the key, how do you recover data from these encrypted volumes?→migrated from encrypted to unencrypted volume (assuming instance is up & running)
+    - AWS KMS uses the encryption context as...?→Additional Authentication Data (AAD)
+      - is encryption context encrypted?→No. it's in plaintext so don't use sensitive information.
+      - how should you choose your encryption context?→it should describe what you are encrypting or decrypting.
+      - in key and IAM policies what can you use, additionally to control access to AWS KMS resources?→Conditions
+        - how do you specify conditions?→use Condition Keys element of the policy statement e.g. **`kms:EncryptionContextKeys`**
+    - can you import new key material into an existing KMS key?→No.
+    - imported key material means annual {{manual}} key rotation by creating a new key and {{importing}} new key material into it and finally pointing the key {{alias}} to the new KMS key.
+    - `GenerateDataKeyWithoutPlaintext` is identical to `GenerateDataKey`except that...?→it returns only the encrypted copy of the data key.
+    - I want to use a data key for encryption, I want to fetch a copy of the data key that is encrypted (without the unencrypted copy), what KMS API call do I use? `GenerateDataKeyWithoutPlaintext` or `GenerateDataKey` ?→`GenerateDataKeyWithoutPlaintext`
+    - `Access Denied`error when uploading 10GiB file to S3, what permission are you missing?→`kms:Decrypt` action permission on the key.
+      - Another reason a 10Gig upload S3 might get denied?→S3 CLI does a multi-part upload if file is over 5GiB
+      - what other KMS permissions must you have to upload or download S3 objects encrypted with KMS? ↓
+        - `kms:Encrypt`
+        - `kms:ReEncrypt*`
+        - `kms:GenerateDataKey*`
+        - `kms:DescribeKey`
+    - Automatic key rotation does NOT support these 3 types ↓
+      - **Asymmetric** KMS keys
+      - KMS keys in **custom** key stores
+      - KMS keys with **imported** key material
+    - Customer Managed Keys (CMK) when auto key rotation is enabled, how often does KMS generate new cyptographic metrial?→every year.
+    - If you create a CMK with unique imported key material for different data classifications, can you enable automatic key rotation?→No.
+    - AWS KMS does not delete any rotated key material until you delete the CMK - true or false?→true.
+    - What is the primary way to control access to CMK (customer managed keys)?→Key Policies.
+      - Do you still need IAM policy permissions?→Yes.
+    - what TWO resource-based access controls does AWS KMS support? ↓
+      - grants.
+        - when should you use grants?→more **granular**, or **dynamic**, **programmatic** permissions
+        - can you deny access using grants?→no. its in the name.
+      - key policies.
+        - when should you use key policies?→work best with static permission assignments.
+    - To setup KMS and a VPC to avoid passing through the internet what can you use (and enable)?→VPC Endpiont with private DNS enabled.
+      - you need to also modify the KMS key policy to reference VPC endpoint ID and what condition?→`aws:sourceVpce`
+    - Key Rotations
+      - AWS managed key are rotated...?→Every year.
+      - enable automatic key rotation on CMK to rotate...?→Every year.
+      - Asymmetric keys must be rotated (every year)...?→Manually.
+  - **Hardware Security Module (HSM)**
+    - customers need exclusive control over an HSM, use...?→AWS CloudHSM
+    - are CloudHSM's single or multi-tenant?→single
+    - are HSM's used by AWS KMS single or multi-tenant?→Multi-Tenant
+    - can the CloudHSM APIs that come with the AWS SDK perform cryptographic operations?→No. Only CloudHSM Cluster Management capabilities.
+  - **Encryption**
+    - envelope encryption = encrypt plaintext data with a {{data}} key and encrypt the data key with a top-level {{plaintext}} master key.
+    - can SSE-C and SSE-S3 do automatic key rotation?→Yes.
+    - can SSE-C and SSE-S3 do audit trails telling you who and when CMK was used?→No.
+    - if you need an audit trail and have to choose between, SSE-C, SSE-S3, SSE-KMS?→SSE-KMS
+    - What two AWS Services support Perfect Forward Secrecy? ↓
+      - Amazon CloudFront
+      - Elastic Load Balancers
+    - DynamoDB (DDB) can encrypt data in flight before being sent to DDB using...?→Amazon DynamoDB Encryption Client.
+      - DDB Encryption Client provides {{client}}-side encryption.
+      - DDB itself provides {{server}}-side encryption.
+  - **IAM**
+    - you need to create system to manage access keys in AWS account e.g. disable all access keys >90 days old, what API call can you call for a report?→`GenerateCredentialReport` API.
+      - what API call will disable the old keys?→`UpdateAccessKey` API
+    - if you want users to be able to assume roles with permissions to do things like upload to s3 use {{`AssumeRole`}} and not {{`AssumeRoleWithSAML`}}
+    - if you want to give users IAM permissions but prevent from having too many or creating a security issue what should you use?→Permission Boundaries
+      - why not Service Control Policies?→SCP just set limits or guardrails, they don't grant permissions.
+    - what is the hierarchy of permissions in IAM? ↓
+      - Explicit **DENY**
+      - Explicit **ALLOW**
+      - Implicit **DENY**
+  - **EC2**
+    - what are you instance metadata options? ↓
+      - require `IMDSv2` to launch
+      - set `PUT` response hop limit
+      - Turn off access to instance metadata
+  - **AWS Config**
+    - AWS Config enables you to assess, a{{udit}}, e{{valuate}} configurations on your AWS resources.
+  - **Amazon CloudWatch**
+    - if instances stop sending logs to CloudWatch what logfile should you check?→CloudWatch Logs Agent log files `/var/log/awslogs.log`
+  - **Bucket Policy**
+    - If there is any questions with s3 bucket problems, hone in on answers talking about bucket policy.
+  - **SES**
+    - what are the ports for doing TLS using STARTTLS mechanism?→25, 587, 2587.
+  - **S3**
+    - how do you ensure s3 bucket only accepts secure transport (HTTPS), what do you DENY in the bucket policy?→`{ "Bool": { "aws:SecureTransport": "false"} }`  i.e. when the transport method is not secure, DENY the request.
+    - to get CloudTrail to log S3 object retrievals for audit purposes, what do you need to enable?→Enable object-level logging in S3 bucket to log data events.
+    - Glacier Vault Lock
+      - What are the steps to lock a vault? ↓
+        - initiate by attaching vault lock policy, returns Lock ID
+        - use Lock ID to complete lock process.
+      - how long is the Lock ID valid for?→24 hours.
+      - if anything goes wrong with your vault lock, or the policy isn't working as required, how to do you fix & relock? ↓
+        - call `abort-vault-lock` (this is a must!)
+        - re-call `initiate-vault-lock`again.
+  - AWS Systems Manager Parameter Store
+    - To perform any operation on a Parameter Store SSP (secure string parameter), the Parameter Store must be able to use the AWS KMS {{CMK}} you specify with the required {{operations}} (access and authZ).
+    - when Parameter Store CMK-related failures are due to mainly THREE things ↓
+      - credentials your app is using dont have permissions to do the action on the CMK
+      - CMK not found - wrong identifier
+      - CMK not enabled - enable it!

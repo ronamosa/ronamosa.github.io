@@ -1,5 +1,5 @@
 ---
-title: README
+title: AWS Certified Cloud Practitioner
 sidebar_position: 0
 ---
 
