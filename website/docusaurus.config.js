@@ -9,7 +9,7 @@ const internetProfiles = {
   },
   email: {
     label: "Email",
-    href: "mailto:contact@ronamosa.io",
+    href: "mailto:ron+website@cloudbuilder.io",
   },
   blog: {
     label: "Blog",
