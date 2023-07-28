@@ -22,11 +22,11 @@ The sidebar menu and documents will grow as I continue to add more notes to the 
 
 - ["Sapiens: A Brief History of Mankind](https://www.goodreads.com/book/show/23692271-sapiens) by Yuval Noah Harari.
 - ["Finite and Infinite Games: A Vision of Life as Play and Possibility"](https://www.goodreads.com/book/show/16117440-finite-and-infinite-games) by James P. Carse.
-- ["The Midnight Library"](https://www.goodreads.com/book/show/52578297-the-midnight-library) by Matt Haig.
 
 ### Studying
 
-- [Go: The Complete Developers Guide (Golang).](https://www.udemy.com/share/101Xzy3@hziIwJOYjh6rFVCIAKG1zdfk5Eb-J9Kemb9gSJhrrXEqB7SOZamW13muBuWYkvjneg==/)
+- Solution Architect Professional (Due for work, Dec 2023)
+- ⏸️ (on hold, need to complete) [Go: The Complete Developers Guide (Golang).](https://www.udemy.com/share/101Xzy3@hziIwJOYjh6rFVCIAKG1zdfk5Eb-J9Kemb9gSJhrrXEqB7SOZamW13muBuWYkvjneg==/)
 
 ## 📚 [Books](books/reading-list.md)
 
@@ -34,12 +34,13 @@ My reading list, what I'm currently reading and notes on books I've read.
 
 ## 📗 Study
 
-Study and exam notes for certifications, courses.
+Study and exam notes for certifications, courses (newest->oldest)
 
-- [] AWS Cloud Practitioner Certification 2022 Notes
-- [] AWS Solution Architect Associate S03 Certification 2022 Notes
-- I passed my "CKA: Certified Kubernetes Administrator" exam, July 2021. Find my study and exam notes [here](study/CKA/README.md)
-- I passed my "CKS: Certified Kubernetes Security Specialist" exam, September 2021. Find my study and exam notes [here](study/CKS/README.md)
+- [AWS Security Specialty S01 Certification 2023](study/SCS-C01/README.md)
+- [AWS Solution Architect Associate S03 Certification 2022](study/SAA-03/README.md)
+- [AWS Cloud Practitioner Certification 2022](study/CCP/README.md)
+- [CKS: Certified Kubernetes Security Specialist 2021](study/CKS/README.md)
+- [CKA: Certified Kubernetes Administrator 2021](study/CKA/README.md)
 
 ## 🏴‍☠️ Hacker
 
