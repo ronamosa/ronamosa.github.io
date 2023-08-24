@@ -273,6 +273,10 @@ Get your kubeconfig setup:
 `aws eks update-kubeconfig --region region-code --name my-cluster` i.e. `aws eks update-kubeconfig --region ap-southeast-2 --name demo-cluster`
 ```
 
+## Demo Application
+
+Deploy the [AWS Retail Store App](https://github.com/aws-containers/retail-store-sample-app).
+
 ## Credits
 
 - big s/o to Kavitha Suresh Kumar [video](https://www.youtube.com/watch?v=KxxgF-DAGWc&ab_channel=KavithaSureshKumar) for a great video that quickly cuts through the process.
