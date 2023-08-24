@@ -215,6 +215,63 @@ aws iam attach-role-policy \
   --policy-arn arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy \
   --role-name AmazonEKSNodeGroupRole
 ```
+### Create cluster using CLI
+
+```bash
+aws eks create-cluster --region region-code --name demo-cluster --kubernetes-version 1.27 \
+   --role-arn arn:aws:iam::111122223333:role/AmazonEKSClusterRole \
+   --resources-vpc-config subnetIds=subnet-ExampleID1,subnet-ExampleID2,securityGroupIds=sg-ExampleID1
+```
+
+some aws cli commands to grab these details:
+
+```bash
+# IAM Role ARN
+aws iam get-role --role-name AmazonEKSClusterRole --query 'Role.Arn'
+
+# VPC Subnets
+aws ec2 describe-subnets --filters "Name=vpc-id,Values=vpc-068959db5aa05a1bb" --query 'Subnets[*].SubnetId'
+
+# Security Group based VPC id
+aws ec2 describe-security-groups --filters "Name=vpc-id,Values=<VPC-ID>"
+```
+
+### Create Node Group using CLI
+
+```bash
+aws eks create-nodegroup \
+  --cluster-name <CLUSTER-NAME> \
+  --nodegroup-name <NODEGROUP-NAME> \
+  --subnets <SUBNET-ID1> <SUBNET-ID2> \
+  --node-role <NODE-ROLE-ARN> \
+  --ami-type <AMI-TYPE> \
+  --scaling-config minSize=<MIN-SIZE>,maxSize=<MAX-SIZE>,desiredSize=<DESIRED-SIZE>
+```
+
+e.g.
+
+```bash
+aws eks create-nodegroup \
+  --cluster-name demo-cluster \
+  --nodegroup-name demo-ng \
+  --subnets subnet-080e38b1842fc3c2d subnet-0cc6119f1dd9f1657 \
+  --node-role arn:aws:iam::1111111111111:role/AmazonEKSNodeGroupRole \
+  --ami-type AL2_x86_64 \
+  --scaling-config minSize=2,maxSize=2,desiredSize=2
+```
+
+use some commands from above to grab some details
+
+```bash
+# EKS optimised AMI id's
+aws ssm get-parameter --name /aws/service/eks/optimized-ami/1.27/amazon-linux-2/recommended/image_id --region ap-southeast-2 --query "Parameter.Value" --output text
+```
+
+Get your kubeconfig setup:
+
+```bash
+`aws eks update-kubeconfig --region region-code --name my-cluster` i.e. `aws eks update-kubeconfig --region ap-southeast-2 --name demo-cluster`
+```
 
 ## Credits
 
