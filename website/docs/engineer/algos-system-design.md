@@ -2,7 +2,7 @@
 title: "Algorithms for Systems Design"
 ---
 
-::info Reference
+:::info Reference
 
 watching the folks at [ByteByteGo](https://www.youtube.com/watch?v=xbgzl2maQUU&ab_channel=ByteByteGo) video and making notes.
 
