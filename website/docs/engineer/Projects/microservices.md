@@ -12,11 +12,11 @@ GitHub Repo: [https://github.com/ronamosa/3-microservices](https://github.com/ro
 
 A 3-microservices projects written in Golang because it's a language I want to get better at. The gist of this project is to build a microservices application, in golang, that uses gRPC, containers and CICD as a scale "best practices" model for a SDLC using these technologies.
 
-I'm using ChatGPT to do the heavy lifting and putting the code together and debugging it to a working state.
+I'm using ChatGPT to do the heavy lifting and putting the code together and debugging it to a working state. I'm asking it to explain things to me as I go, and seeing if this speeds up the "learning go" process along with debugging and troubleshooting.
 
 ## Objective
 
-A microservices app that uses containers and CICD to develop, test and deploy to a cloud environment.
+A microservices app that uses containers and CICD to develop, test and deploy to a cloud environment in other words, "feel" and build the whole process from design, build, deploy, operate.
 
 ### Documentation
 
@@ -45,3 +45,7 @@ This list could change and most likely will as the project develops, but so far 
 I've been working on all 3 services to the point I have the skeleton of all three, `user`, `product` and `service` they each don't do anything "real" just returns what's expected.
 
 Got user Dockerfile to finally build the thing last night, lot of dep issues trying to `docker build..` until ChatGPT decided to add `RUN go mod download` after go.sum was added in order to find all the deps. Was going round in circles for a short while.
+
+### 📝 Aug-31-2023
+
+Revisiting this project today. Going to setup a GitHub Project for it.
