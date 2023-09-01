@@ -22,7 +22,92 @@ A microservices app that uses containers and CICD to develop, test and deploy to
 
 I want to document the process and learnings as I go, a sort of journal of the process. Most of the notes, officially will be in the commits and docs for the project itself, but maybe a running journal of progress can go here.
 
-## Task List
+## Setup
+
+:::note go modules
+
+if you are working on each module in the same repo, you need to work on each folder (user, product, order) as the root folder for that work otherwise you're going to get reference errors when your module is looking for.
+
+:::
+
+### Modules
+
+Decide if its local reference:
+
+`go mod init 3-microservices/user`
+
+or GitHub reference.
+
+in mod root directory `go mod init github.com/ronamosa/3-microservices/user` creates `go.mod` with this header `module github.com/ronamosa/3-microservices/user`
+
+you have protobuf files like `user.pb.go` under `/user/pb` which will be `package pb` or whatever, but they have to be the same.
+
+then your `main.go` in the `/user` mod folder will be `package main` and refer to the `pb` package like this `user "github.com/ronamosa/3-microservices/user/pb"` where `user` here is an alias for your pb package.
+
+## Commands
+
+:::note individual modules
+
+if you're go mod init in each service directory for independant modules:
+
+```sh
+cd 3-microservices/user
+go mod init github.com/yourusername/3-microservices/user
+
+cd 3-microservices/product
+go mod init github.com/yourusername/3-microservices/product
+
+cd 3-microservices/order
+go mod init github.com/yourusername/3-microservices/order
+```
+
+install protobuf
+
+```sh
+# macos
+brew install protobuf
+
+# go mods
+go install google.golang.org/protobuf/cmd/protoc-gen-go@v1.26
+go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@v1.1
+```
+
+### Protobuf generate
+
+To generate the Go code, navigate to each service directory (user, product, order) and run the following command:
+
+```sh
+cd user
+protoc --go_out=. --go_opt=paths=source_relative --go-grpc_out=. --go-grpc_opt=paths=source_relative *.proto
+cd ..
+
+cd product
+protoc --go_out=. --go_opt=paths=source_relative --go-grpc_out=. --go-grpc_opt=paths=source_relative *.proto
+cd ..
+
+cd order
+protoc --go_out=. --go_opt=paths=source_relative --go-grpc_out=. --go-grpc_opt=paths=source_relative *.proto
+cd ..
+```
+
+Dependencies : `go mod tidy` in the root folder.
+
+## Tests
+
+in the root of each module folder run `go test` to run the `_test.go` unit tests in that folder.
+
+## Containers
+
+Building and running containers for each microservice
+
+```sh
+docker build -t userservice .
+
+docker run -p 50051:50051 userservice
+```
+
+
+## Requirements
 
 This list could change and most likely will as the project develops, but so far these are the tasks & to-do for this project
 
@@ -40,8 +125,7 @@ This list could change and most likely will as the project develops, but so far 
 
 ### GitHub Project Tasks
 
-Asked ChatGPT4 to generate me a task list to complete various aspects of my project:
----
+I asked ChatGPT4 to create me a list of tasks to accomplish my requirements above.
 
 #### **Service 1**
 
@@ -162,3 +246,7 @@ Got user Dockerfile to finally build the thing last night, lot of dep issues try
 ### 📝 Aug-31-2023
 
 Revisiting this project today. Going to setup a GitHub Project for it.
+
+### 📝 Sep-01-2023
+
+
