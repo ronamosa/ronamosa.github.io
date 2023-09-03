@@ -249,4 +249,10 @@ Revisiting this project today. Going to setup a GitHub Project for it.
 
 ### 📝 Sep-01-2023
 
+- Complete directory restructure cos I wanted to put everything under `/services` and run it as a monorepo with multiple services in it, rather than 3 individual module microservices in the same folder.
+- created all tickets in a new private [Github Projects](https://github.com/users/ronamosa/projects/11).
+- refactor of directory structure + added Makefile tested working on orders services, will roll out ot the others as I go.
 
+### 📝 Sep-03-2023
+
+- working on order service, added GORM DB work.
