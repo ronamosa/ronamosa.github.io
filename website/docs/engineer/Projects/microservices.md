@@ -257,3 +257,4 @@ Revisiting this project today. Going to setup a GitHub Project for it.
 ### 📝 Sep-03-2023
 
 - working on order service, added GORM DB work.
+- add `docker run --name my-postgres -e POSTGRES_PASSWORD=mysecretpassword -p 5432:5432 -d postgres:latest` quick & dirty container for testing.
