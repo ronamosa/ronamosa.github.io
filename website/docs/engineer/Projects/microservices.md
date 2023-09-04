@@ -60,6 +60,7 @@ go mod init github.com/yourusername/3-microservices/product
 cd 3-microservices/order
 go mod init github.com/yourusername/3-microservices/order
 ```
+:::
 
 install protobuf
 
