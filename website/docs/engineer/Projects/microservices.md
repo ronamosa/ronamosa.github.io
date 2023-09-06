@@ -258,3 +258,9 @@ Revisiting this project today. Going to setup a GitHub Project for it.
 
 - working on order service, added GORM DB work.
 - add `docker run --name my-postgres -e POSTGRES_PASSWORD=mysecretpassword -p 5432:5432 -d postgres:latest` quick & dirty container for testing.
+
+### 📝 Sep-06-2023
+
+- so far, shit works. order service, order server tests, GORM seems to connect and work fine.
+- this is the point in my project where I ask myself if I'm making this too complicated, if my goals is to get a holisitic view of the full dev, deploy, secure cycle, is going this hard out counter productive and will burn me out before I see the promised land? or is this discomfort exactly what I need for growth, tenacity and resilience, perseverance? probably the latter, stfu and keep working. thanks. good chat.
+- will work on product next, then user.
