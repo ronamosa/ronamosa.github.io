@@ -1,16 +1,16 @@
 ---
-title: "Microservices Project"
+title: "Microservices"
 ---
 
 :::info
 
-GitHub Repo: [https://github.com/ronamosa/3-microservices](https://github.com/ronamosa/3-microservices)
+GitHub Repo: [https://github.com/ronamosa/microservices.git](https://github.com/ronamosa/microservices.git)
 
 :::
 
 ## Overview
 
-A 3-microservices projects written in Golang because it's a language I want to get better at. The gist of this project is to build a microservices application, in golang, that uses gRPC, containers and CICD as a scale "best practices" model for a SDLC using these technologies.
+A microservices projects written in Golang because it's a language I want to get better at. The gist of this project is to build a microservices application, in golang, that uses gRPC, containers and CICD as a scale "best practices" model for a SDLC using these technologies.
 
 I'm using ChatGPT to do the heavy lifting and putting the code together and debugging it to a working state. I'm asking it to explain things to me as I go, and seeing if this speeds up the "learning go" process along with debugging and troubleshooting.
 
