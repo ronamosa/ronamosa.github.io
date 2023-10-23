@@ -94,6 +94,26 @@ restart ubound: `sudo service unbound restart`
 
 You're done.
 
+## Adlists
+
+Login to your pihole's web GUI: [http:/pihole.local/admin](http:/pihole.local/admin)
+
+Go to ['addlists page'](http://pihole.local/admin/groups-adlists.php)
+
+Add these lists "space separated", don't use commas.
+
+```text
+https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts
+https://pgl.yoyo.org/adservers/serverlist.php?hostformat=hosts&showintro=0&mimetype=plaintext
+https://raw.githubusercontent.com/mhhakim/pihole-blocklist/master/porn.txt
+https://raw.githubusercontent.com/DandelionSprout/adfilt/master/Alternate%20versions%20Anti-Malware%20List/AntiMalwareHosts.txt
+https://osint.digitalside.it/Threat-Intel/lists/latestdomains.txt
+https://v.firebog.net/hosts/Easyprivacy.txt
+https://raw.githubusercontent.com/mhhakim/pihole-blocklist/master/list.txt
+```
+
+Update gravity "Tools>Update Gravity" in the left-hand menu, to pull down your new lists.
+
 ## Config Files
 
 ```bash
