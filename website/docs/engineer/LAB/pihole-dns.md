@@ -80,6 +80,20 @@ Level 5 logs client identification for cache misses
 
 :::
 
+restart unbound: `sudo service unbound restart`
+
+### AppArmor
+
+Create this file (if doesn't exist) `/etc/apparmor.d/local/usr.sbin.unbound`
+
+Add this line: `/var/log/unbound/unbound.log rw,`
+
+Reload AppArmor: `sudo apparmor_parser -r /etc/apparmor.d/usr.sbin.unbound`
+
+restart ubound: `sudo service unbound restart`
+
+You're done.
+
 ## Config Files
 
 ```bash
