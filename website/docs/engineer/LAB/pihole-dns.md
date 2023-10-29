@@ -72,10 +72,15 @@ server:
 :::tip Logging Levels
 
 Level 0 means no verbosity, only errors
+
 Level 1 gives operational information
+
 Level 2 gives  detailed operational  information
+
 Level 3 gives query level information
+
 Level 4 gives  algorithm  level  information
+
 Level 5 logs client identification for cache misses
 
 :::
