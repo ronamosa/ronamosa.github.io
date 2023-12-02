@@ -6,6 +6,28 @@ title: "Proxmox: Systems Administration Notes"
 
 I ran out of diskspace on my AI machine, a VM on proxmox, needed to increase disksize.
 
+:::warning
+
+You do NOT need to umount `/` partition to complete this resize, it is the LOGICAL VOLUME (lv) so can be done ONLINE
+
+:::
+
+### TL;DR
+
+The partition I'm trying to resize is `/dev/sda3`, that has a logical volume on it `/dev/ubuntu-vg/ubuntu-lv` that's mapped to `/`
+
+1. resize vm disk in proxmox UI
+2. resize phyical volume: `pvresize /dev/sda3`
+3. extend the size (`-L`) of logical volume by 200G: `lvextend -L 200G /dev/ubuntu-vg/ubuntu-lv`
+4. allocate extents from VG's available physical extents: `lvresize --extents +100%FREE --resizefs /dev/ubuntu-vg/ubuntu-lv`
+5. check disk, you should have your 200GiB added to your `/` now (no reboot required).
+
+:::info
+
+everything from this point on is just my notes and outputs for posterity
+
+:::
+
 ### Specs
 
 info and details on what I'm working with:
@@ -14,7 +36,7 @@ info and details on what I'm working with:
 
 Note - my VM disks are on Synology NFS.
 
-### Proxmox UI
+### Resize Virtual Disk
 
 Use proxmox UI to select your VM, Hard Disk, Disk Action and Resize
 
@@ -24,7 +46,7 @@ I added 200GB.
 
 ### FDISK
 
-My `fdisk -l` looks like this:
+My `fdisk -l` currently looks like this:
 
 ```bash
 Device       Start      End  Sectors Size Type                                   
@@ -110,11 +132,184 @@ old_desc_blocks = 2, new_desc_blocks = 4
 The filesystem on /dev/mapper/ubuntu--vg-ubuntu--lv is now 7863296 (4k) blocks long.
 ```
 
-### Resize Partition
+this command seemed to have resized `ubuntu-lv` from 15GiB to 30GiB.
 
-Because I'm resizing the root partition, I need to boot in via a LiveCD and get a shell with an umounted `/` to do the resize.
+check volume group display
 
-#### LiveCD
+```bash
+root@ai:~# vgdisplay 
+  --- Volume group ---
+  VG Name               ubuntu-vg
+  System ID             
+  Format                lvm2
+  Metadata Areas        1
+  Metadata Sequence No  3
+  VG Access             read/write
+  VG Status             resizable
+  MAX LV                0
+  Cur LV                1
+  Open LV               1
+  Max PV                0
+  Cur PV                1
+  Act PV                1
+  VG Size               <30.00 GiB
+  PE Size               4.00 MiB
+  Total PE              7679
+  Alloc PE / Size       7679 / <30.00 GiB
+  Free  PE / Size       0 / 0   
+  VG UUID               Uzrj6y-rERw-DxUt-asxv-ZjfD-wRck-b23lsx
+```
+
+Still showing Volume Group size as `<30.00 GiB`...
+
+pvscan is showing:
+
+```bash
+root@ai:~# pvscan
+  PV /dev/sda3   VG ubuntu-vg       lvm2 [<30.00 GiB / 0    free]
+  Total: 1 [<30.00 GiB] / in use: 1 [<30.00 GiB] / in no VG: 0 [0   ]
+```
+
+Check `lsblk` to see where our block devices are:
+
+```bash
+root@ai:~# lsblk 
+NAME                      MAJ:MIN RM   SIZE RO TYPE MOUNTPOINTS
+loop0                       7:0    0  63.5M  1 loop /snap/core20/2015
+loop1                       7:1    0  63.4M  1 loop /snap/core20/1974
+loop2                       7:2    0  49.6M  1 loop /snap/aws-cli/360
+loop3                       7:3    0  49.5M  1 loop /snap/aws-cli/356
+loop4                       7:4    0 128.9M  1 loop /snap/docker/2904
+loop5                       7:5    0  73.9M  1 loop /snap/core22/864
+loop6                       7:6    0 169.3M  1 loop /snap/microk8s/6103
+loop7                       7:7    0 111.9M  1 loop /snap/lxd/24322
+loop8                       7:8    0  95.7M  1 loop /snap/kata-containers/2446
+loop9                       7:9    0    71M  1 loop /snap/prometheus/86
+loop10                      7:10   0  53.3M  1 loop /snap/snapd/19457
+loop11                      7:11   0  40.9M  1 loop /snap/snapd/20290
+sda                         8:0    0   232G  0 disk 
+├─sda1                      8:1    0     1M  0 part 
+├─sda2                      8:2    0     2G  0 part /boot
+└─sda3                      8:3    0   230G  0 part 
+  └─ubuntu--vg-ubuntu--lv 253:0    0    30G  0 lvm  /
+```
+
+So we can see the sda disk does have the extra `200 GiB` allocated to it, but the LV `ubuntu--vg-ubuntu--lv` under partition `sda3` is still on ly `30GiB`.
+
+I try `lvextend` to add 200GiB to that logical volume, but get an error:
+
+```bash
+root@ai:~# lvextend -L 200G /dev/ubuntu-vg/ubuntu-lv
+  Insufficient free space: 43521 extents needed, but only 0 available
+```
+
+It's not until I do a `pvresize` on the physical disk I resized to 200GiB that I can see the disk space available to the volume group.
+
+```bash
+root@ai:~# pvresize /dev/sda3
+  Physical volume "/dev/sda3" changed
+  1 physical volume(s) resized or updated / 0 physical volume(s) not resized
+```
+
+Check `vg` again
+
+```bash
+root@ai:~# vgdisplay 
+  --- Volume group ---
+  VG Name               ubuntu-vg
+  System ID             
+  Format                lvm2
+  Metadata Areas        1
+  Metadata Sequence No  4
+  VG Access             read/write
+  VG Status             resizable
+  MAX LV                0
+  Cur LV                1
+  Open LV               1
+  Max PV                0
+  Cur PV                1
+  Act PV                1
+  VG Size               <230.00 GiB
+  PE Size               4.00 MiB
+  Total PE              58879
+  Alloc PE / Size       7679 / <30.00 GiB
+  Free  PE / Size       51200 / 200.00 GiB
+  VG UUID               Uzrj6y-rERw-DxUt-asxv-ZjfD-wRck-b23lsx
+```
+
+pvscan is now:
+
+```bash
+root@ai:~# pvscan
+  PV /dev/sda3   VG ubuntu-vg       lvm2 [<230.00 GiB / 200.00 GiB free]
+  Total: 1 [<230.00 GiB] / in use: 1 [<230.00 GiB] / in no VG: 0 [0   ]
+```
+
+I retry extending the `ubuntu-lv` by 200GiB
+
+```bash
+root@ai:~# lvextend -L 200G /dev/ubuntu-vg/ubuntu-lv
+  Size of logical volume ubuntu-vg/ubuntu-lv changed from <30.00 GiB (7679 extents) to 200.00 GiB (51200 extents).
+  Logical volume ubuntu-vg/ubuntu-lv successfully resized.
+```
+
+Success. Check filesystem size where my lv is mounted to `/`
+
+```bash
+root@ai:~# df -h /
+Filesystem                         Size  Used Avail Use% Mounted on
+/dev/mapper/ubuntu--vg-ubuntu--lv   30G   14G   15G  48% /
+```
+
+still at `30G`, now I do the `lvresize` to fill up `ubuntu-lv` with all available disk that's free:
+
+```bash
+oot@ai:~# lvresize --extents +100%FREE --resizefs /dev/ubuntu-vg/ubuntu-lv
+  Size of logical volume ubuntu-vg/ubuntu-lv changed from 200.00 GiB (51200 extents) to <230.00 GiB (58879 extents).
+  Logical volume ubuntu-vg/ubuntu-lv successfully resized.
+resize2fs 1.46.5 (30-Dec-2021)
+Filesystem at /dev/mapper/ubuntu--vg-ubuntu--lv is mounted on /; on-line resizing required
+old_desc_blocks = 4, new_desc_blocks = 29
+The filesystem on /dev/mapper/ubuntu--vg-ubuntu--lv is now 60292096 (4k) blocks long.
+```
+
+check block devices now:
+
+```bash
+root@ai:~# lsblk
+NAME                      MAJ:MIN RM   SIZE RO TYPE MOUNTPOINTS
+loop0                       7:0    0  63.5M  1 loop /snap/core20/2015
+loop1                       7:1    0  63.4M  1 loop /snap/core20/1974
+loop2                       7:2    0  49.6M  1 loop /snap/aws-cli/360
+loop3                       7:3    0  49.5M  1 loop /snap/aws-cli/356
+loop4                       7:4    0 128.9M  1 loop /snap/docker/2904
+loop5                       7:5    0  73.9M  1 loop /snap/core22/864
+loop6                       7:6    0 169.3M  1 loop /snap/microk8s/6103
+loop7                       7:7    0 111.9M  1 loop /snap/lxd/24322
+loop8                       7:8    0  95.7M  1 loop /snap/kata-containers/2446
+loop9                       7:9    0    71M  1 loop /snap/prometheus/86
+loop10                      7:10   0  53.3M  1 loop /snap/snapd/19457
+loop11                      7:11   0  40.9M  1 loop /snap/snapd/20290
+sda                         8:0    0   232G  0 disk 
+├─sda1                      8:1    0     1M  0 part 
+├─sda2                      8:2    0     2G  0 part /boot
+└─sda3                      8:3    0   230G  0 part 
+  └─ubuntu--vg-ubuntu--lv 253:0    0   230G  0 lvm  /
+```
+
+check filesystem size again:
+
+```bash
+root@ai:~# df -h /
+Filesystem                         Size  Used Avail Use% Mounted on
+/dev/mapper/ubuntu--vg-ubuntu--lv  227G   14G  204G   7% /
+```
+
+success.
+
+## Appendix
+
+### Shell on a LiveCD
 
 Under 'Hardware', set your CD/DVD to a LiveCD ISO
 
