@@ -2,13 +2,21 @@
 title: "PrivateGPT: Local, Secure, Private, Chat with My Docs."
 ---
 
+![header](/img/privategpt-header.png)
+
 :::info
 
 Following [PrivateGPT 2.0 - FULLY LOCAL Chat With Docs (PDF, TXT, HTML, PPTX, DOCX, and more)](https://www.youtube.com/watch?v=XFiof0V3nhA&ab_channel=MatthewBerman) by Matthew Berman.
 
 :::
 
-## Specs
+## Requirements
+
+- PrivateGPT [repo](https://github.com/imartinez/privateGPT.git)
+- PrivateGPT Installation [docs](https://docs.privategpt.dev/installation)
+- [Poetry](https://python-poetry.org/docs/#installation)
+
+### Specs
 
 Created an VM on proxmox, running:
 
@@ -32,13 +40,16 @@ PRIVACY_POLICY_URL="https://www.ubuntu.com/legal/terms-and-policies/privacy-poli
 UBUNTU_CODENAME=jammy
 ```
 
-## Requirements
+I didn't upgrade to these specs until after I'd built & ran everything (slow):
 
-- PrivateGPT [repo](https://github.com/imartinez/privateGPT.git)
-- PrivateGPT Installation [docs](https://docs.privategpt.dev/installation)
-- [Poetry](https://python-poetry.org/docs/#installation)
+![proxmox vm hw specs](/img/privategpt-hw-specs.png)
 
-## Linux
+## Installation
+
+### pyenv
+
+- clone repo
+- install pyenv
 
 ```bash
 git clone https://github.com/imartinez/privateGPT
@@ -51,6 +62,12 @@ curl https://pyenv.run | bash
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
+
+```
+
+- Install python 3.11 in our pyenv
+
+```bash
 
 # install libs
 pyenv install 3.11
@@ -96,8 +113,14 @@ Traceback (most recent call last):
 ModuleNotFoundError: No module named '_lzma'
 WARNING: The Python lzma extension was not compiled. Missing the lzma lib?
 Installed Python-3.11.6 to /home/bot/.pyenv/versions/3.11.6
+```
 
-# intall missing libs
+- Install missing libs
+- Install `local 3.11`
+
+```bash
+
+# install missing libs
 sudo apt update
 sudo apt install libbz2-dev libncurses5-dev libncursesw5-dev libreadline-dev libsqlite3-dev libssl-dev libffi-dev zlib1g-dev liblzma-dev
 
@@ -114,7 +137,7 @@ Installed Python-3.11.6 to /home/bot/.pyenv/versions/3.11.6
 pyenv local 3.11
 ```
 
-# install Poetry
+### Poetry
 
 ```bash
 curl -sSL https://install.python-poetry.org | python3 -
@@ -149,11 +172,8 @@ You can test that everything is set up by executing:
 `poetry --version`
 ```
 
-## add to ~/.bashrc for poetry
-
-`export PATH="/home/bot/.local/bin:$PATH"`
-
-install poetry ui
+- add to ~/.bashrc for poetry: `export PATH="/home/bot/.local/bin:$PATH"`
+- install poetry ui
 
 ```bash
 bot@ai:~/projects/privateGPT$ poetry install --with ui
@@ -191,7 +211,7 @@ Package operations: 26 installs, 0 updates, 0 removals
 Installing the current project: private-gpt (0.1.0)
 ```
 
-install poetry local
+- install poetry local
 
 ```bash
 bot@ai:~/projects/privateGPT$ poetry install --with local
@@ -345,6 +365,8 @@ Installing /home/bot/.cache/pypoetry/virtualenvs/private-gpt-QHOAK4Be-py3.11/lib
 Installing the current project: private-gpt (0.1.0)
 ```
 
+## Runtime
+
 Run setup: `poetry run python scripts/setup`
 
 ```bash
@@ -376,7 +398,8 @@ Launch PrivateGPT API and start the UI.
 Because we've gone with poetry for dependencies, we launch PrivateGPT with poetry
 
 ```bash
-poetry run python -m private_gpt
+poetry run python -m private_gpt #OR
+
 ```
 
 output
@@ -410,6 +433,23 @@ AVX = 0 | AVX2 = 0 | AVX512 = 0 | AVX512_VBMI = 0 | AVX512_VNNI = 0 | FMA = 0 | 
 Open webserver where API is running onport 8001, for me that's my local box `http://ai.darksyde.lan:8001`
 
 ![PrivateGPT UI](/img/privategpt-gui.png)
+
+:::warning Performance
+
+The performance for simple requests, understandably, is very, very **slow** because I'm just using CPU with specs in the [specs](#specs) section.
+
+Seriously consider a GPU rig.
+
+:::
+
+### Output
+
+What the LLM chat looks like
+
+![gui output](/img/privategpt-success.png)
+
+![console output](/img/privategpt-console.png)
+
 
 ## Troubleshooting
 
