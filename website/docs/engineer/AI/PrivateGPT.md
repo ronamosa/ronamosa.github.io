@@ -1,5 +1,5 @@
 ---
-title: "PrivateGPT: Local, Secure, Private, Chat with My Docs."
+title: "PrivateGPT on Linux (ProxMox): Local, Secure, Private, Chat with My Docs."
 ---
 
 ![header](/img/privategpt-header.png)
