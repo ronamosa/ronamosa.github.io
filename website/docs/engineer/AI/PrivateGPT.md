@@ -450,6 +450,11 @@ What the LLM chat looks like
 
 ![console output](/img/privategpt-console.png)
 
+:::tip Ingestion
+
+This is interested, bulk doc ingestion: [https://docs.privategpt.dev/manual/document-management/ingestion](https://docs.privategpt.dev/manual/document-management/ingestion)
+
+:::
 
 ## Troubleshooting
 
@@ -467,6 +472,7 @@ Traceback (most recent call last):
   File "/home/bot/.cache/pypoetry/virtualenvs/private-gpt-QHOAK4Be-py3.11/lib/python3.11/site-packages/gradio/queueing.py", line 456, in call_prediction
     output = await route_utils.call_process_api(
 ```
+
 ## Appendix
 
 ```bash
