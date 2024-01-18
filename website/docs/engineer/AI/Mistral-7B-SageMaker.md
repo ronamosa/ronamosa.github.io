@@ -1,34 +1,56 @@
 ---
-title: "Mistral-7B using Ollamaon AWS SageMaker"
+title: "Mistral-7B using Ollama on AWS SageMaker"
 ---
+
+:::info
+
+Playing with OpenSource LLMs on some super-powered AWS instances.
+
+:::
+
+## Login to AWS
 
 Login to your AWS account.
 
-Go to SageMaker Studio, click `Open Studio`
+Go to SageMaker, Studio, click `Open Studio`
 
-![SageMaker Studio](/img/Mistral7B-SageMakerStudio.png)
+![Sagemaker](/img/Mistral7B-SageMaker.png)
+
+This is SageMaker Studio
+
+![Sagemaker](/img/Mistral7B-SageMaker-Studio.png)
 
 View JupyterLab spaces
 
+![Sagemaker](/img/Mistral7B-JupyterLab.png)
+
 Create JupyterLab space - "OpenSourceLLM"
 
-In the workspace, Instance=`ml.d4dn.xlarge`, Image=`SageMaker Distribution 1.2`, Storage(GB)=`100`, `Run space`
+![Sagemaker](/img/Mistral7B-JupyterLab-CreateSpace.png)
 
-![install ollama]()
+In the workspace, I chose:
 
-Updating OpenSourceLLM...
+- Instance=`ml.g4dn.xlarge`
+- Image=`SageMaker Distribution 1.2`
+- Storage(GB)=`100`, `Run space`
+
+![Sagemaker](/img/Mistral7B-JupyterLab-Space-Settings.png)
+
+Run your configured space `Run space`
+
+![Sagemaker](/img/Mistral7B-JupyterLab-Space-Run.png)
 
 Ready to `Open JupyterLab`
 
-![install ollama]()
+![Sagemaker](/img/Mistral7B-JupyterLab-Space-Open.png)
 
 You're now in your OpenSourceLLM JupyterLab Workspace (note I changed light to dark theme under `settings`):
 
-### Install Dependencies
+![Sagemaker](/img/Mistral7B-JupyterLab-Space-Launcher.png)
 
-From `Other`1 section, choose `Terminal`
+## Install Dependencies
 
-![install ollama]()
+From `Other` section, choose `Terminal`
 
 Run the following command to install build tools:
 
@@ -39,13 +61,32 @@ sudo apt-get install -y make build-essential libssl-dev zlib1g-dev libbz2-dev \
     xz-utils tk-dev libffi-dev liblzma-dev git lshw
 ```
 
-![install ollama]()
+![Sagemaker](/img/Mistral7B-JupyterLab-Space-Deps.png)
+
+:::caution
+
+if you don't have `lshw` installed ollama will give you this warning:
+
+```bash
+>>> Installing ollama to /usr/local/bin...
+WARNING: Unable to detect NVIDIA GPU. Install lspci or lshw to automatically detect and install NVIDIA CUDA drivers.
+>>> The Ollama API is now available at 0.0.0.0:11434.
+>>> Install complete. Run "ollama" from the command line.
+```
+
+:::
 
 ## JupyterLab Notebook
 
-From `Notebook` options, choose `Python 3 (ipykernel)` (I renamed the notebook, F2, to `Mistral7B`)
+From `Notebook` options, choose `Python 3 (ipykernel)`
 
-![install ollama]()
+:::tip
+
+I renamed the notebook, press F2, to `Mistral7B`)
+
+:::
+
+### Install transformers
 
 Run: `!pip install transformers` in first cell
 
@@ -70,7 +111,7 @@ Requirement already satisfied: urllib3<3,>=1.21.1 in /opt/conda/lib/python3.10/s
 Requirement already satisfied: certifi>=2017.4.17 in /opt/conda/lib/python3.10/site-packages (from requests->transformers) (2023.7.22)
 ```
 
-![install ollama]()
+### Install Ollama
 
 Type `b`, shortcut to add another cell underneath.
 
@@ -89,20 +130,11 @@ Run: `!curl https://ollama.ai/install.sh | sh` to install ollama
 >>> Install complete. Run "ollama" from the command line.
 ```
 
-![install ollama]()
+This will look like the following in your Notebook:
 
-:::tip
+![Sagemaker](/img/Mistral7B-JupyterLab-Space-Notebook.png)
 
-if you don't have `lshw` ollama will give you this warning:
-
-```bash
->>> Installing ollama to /usr/local/bin...
-WARNING: Unable to detect NVIDIA GPU. Install lspci or lshw to automatically detect and install NVIDIA CUDA drivers.
->>> The Ollama API is now available at 0.0.0.0:11434.
->>> Install complete. Run "ollama" from the command line.
-```
-
-:::
+## Run Ollama
 
 Go back to your Terminal window.
 
@@ -127,6 +159,10 @@ ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIxhdvgcRFe7Ic1ZC9zPqW/5LPaBiDYH4SlXLhigZ9mW
 2024/01/17 09:44:00 gpu.go:94: Nvidia GPU detected
 2024/01/17 09:44:00 gpu.go:135: CUDA Compute Capability detected: 7.5
 ```
+
+Ollama server is running and ready for commands.
+
+## Download Mistral7B
 
 Go back to Notebook and run: `!ollama run mistral`
 
@@ -168,6 +204,30 @@ There are several other fighters who have made significant contributions to the 
 >>> Send a message (/? for help)
 ```
 
-Resources
+Success.
+
+![Sagemaker](/img/Mistral7B-JupyterLab-Space-Mistral7B.png)
+
+I asked Mistral to explain RAG to me like I'm 5, this was the response (after initially confusing the acronym):
+
+```bash
+>>> now do the 5 year old version of the correct acronym now
+ Sure thing! Imagine there are four special friends named Retrieval, Augmentation, Generation, and Architect.
+
+Retrieval is the memory friend who keeps all the information in a computer program. He looks up answers to questions and finds important facts when needed.
+
+Augmentation is the helper friend who makes things better for the other friends. In our case, it adds extra details and information to make answers more complete and accurate.
+
+Generation is the storyteller friend who turns information into answers that we can understand. He takes all the facts and turns them into clear and easy-to-understand responses.
+
+Architect is the designer friend who puts everything together. He makes sure that all the friends work well together to give us the best possible answers!
+
+So, as a 5-year-old, you could think of Retrieval-Augmented Generation (RAG) as a group of special friends named Retrieval, Augmentation, and Generation who work together to find information, add extra details, and 
+turn it all into clear answers for us!
+
+>>> Send a message (/? for help)
+```
+
+## Resources
 
 - ["Install and Run Mistral 7B on AWS"](https://www.youtube.com/watch?v=aSh66tG1B5o&ab_channel=FahdMirza)
