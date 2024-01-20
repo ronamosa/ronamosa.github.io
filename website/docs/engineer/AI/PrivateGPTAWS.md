@@ -1,5 +1,15 @@
 ---
 title: "PrivateGPT on AWS: Cloud, Secure, Private, Chat with My Docs."
+hide_title: false
+hide_table_of_contents: false
+pagination_label: Markdown features
+description: Installing PrivateGPT on AWS Cloud, EC2.
+keywords:
+  - aws
+  - gpt
+last_update:
+  date: 01/20/2024
+  author: R. Amosa
 ---
 
 ![header](/img/pgptaws-header.png)
