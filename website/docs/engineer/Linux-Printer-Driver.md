@@ -54,3 +54,9 @@ OK? [y/N] ->y
 ## Conclusion
 
 If it's all setup properly, the end of the script will print a test page, so if you see that, you're done.
+
+:::danger
+
+Default Password for web access to MFC-JW4330DW model = `initpass` (no username)
+
+:::
