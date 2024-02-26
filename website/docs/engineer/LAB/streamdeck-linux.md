@@ -4,10 +4,10 @@ title: "Streamdeck XL for Linux"
 
 My quick setup notes for getting streamdeck XL going on Linux.
 
-## 2 Steps
+## Steps
 
 1. Follow ["Streamdeck UI documentation"](https://timothycrosley.github.io/streamdeck-ui/docs/installation/ubuntu/) to get things setup on your desktop.
-2. Setup `--user` level systemd service for streamdeck so it runs in the background (["Create A Systemd Service"](https://linuxhandbook.com/create-systemd-services/)
+2. Setup `--user` level systemd service for streamdeck so it runs in the background (read: ["Create A Systemd Service"](https://linuxhandbook.com/create-systemd-services/))
 
 ### Files
 
