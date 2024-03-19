@@ -1,5 +1,5 @@
 ---
-title: "AWS Workshop ECS Cats and Dogs"
+title: "AWS Workshop ECS Cats and Dogs - Part 1"
 ---
 
 :::tip Workshop Links
@@ -177,9 +177,9 @@ You have two options
 
 We choose option 1
 
-### Specs
+### Cats
 
-- Type: `Amazon EC2 instances` (unchbeck `AWS Fargate`)
+- Type: `Amazon EC2 instances` (uncheck `AWS Fargate`)
 - OS: `Linux\X86_64`
 - Network: `bridge` mode
 - CPU: `0.5 vCPU`
@@ -284,18 +284,119 @@ Option 2: New task with JSON.
 }
 ```
 
+Repeat a new Task for web, port `80/HTTP`.
 
+### Dogs
 
+Uses the **FARGATE** launch type instead of EC2 (cats, web).
 
+- Type: `AWS Fargate`)
+- OS: `Linux\X86_64`
+- Network: will gray out on `awsvpc` mode
+- CPU: `0.5 vCPU`
+- Memory: `1 GB`
+- Task execution role: `ecsTaskExecutionRole`
 
+The rest should match web and cats.
 
+### ECS Task IAM Role
 
+You have a Task execution Role called `ecsTaskExecutionRole`.
 
+Ensure this Role needs has the following IAM Policies attached to it:
 
+1. `AmazonECSTaskExecutionRolePolicy`.
+2. `CloudWatchFullAccess`
 
+## Create Service
 
+### ALB
 
+- LB Type: ALB
+- Scheme: Internet-facing
+- Ip address style: IPv4
+- VPC: DemoGoECSVPC
+- Subnets: use both Public subnets
+- Security Group: use the ecs-demogo-ALBSG* security group
+- Listeners and routing: create a target group
 
+### Target Group
+
+- Target Type: Instances
+- Target Group Name: web
+- Protocol/Port: HTTP/80
+- VPC: DemoGoECSVPC
+- Health checks: HTTP, `/`
+- skip **Register Targets**
+- **Create target group**
+
+### Web Service
+
+Do the web service first.
+
+Launch Type, EC2
+
+![create service](/img/ecsworkshop-service1.png)
+
+Deployment: aim at web target definition
+
+![create deploy](/img/ecsworkshop-service2.png)
+
+Load balancer: uses existing ALB and target group.
+
+![create lb](/img/ecsworkshop-service3.png)
+
+- Task Placement: AZ balanced spread
+
+### Cats Service
+
+Same as web service, except:
+
+- Task definition, Family: `catsdef`
+- Service name: `cats`
+
+For the "Load balancing", point to the same ALB, use an existing listener `80:HTTP` but **"Create new target group"** for cats.
+
+You want these settings:
+
+| Setting                          | Value                        |
+|----------------------------------|------------------------------|
+| Load balancer type               | Application Load Balancer    |
+| Load balancer name               | demogo-alb                   |
+| Container to load balance        | cats 80:80                   |
+| Listener                         | Use an existing listener     |
+| Listener port                    | 80 HTTP                      |
+| Target Group                     | Create                       |
+| Target Group Name                | cats                         |
+| Target Group Path pattern        | /cats*                       |
+| Evaluation order                 | 1                            |
+| Target Group Health Check        | path /cats/ , protocol HTTP  |
+
+### Dogs Service
+
+Same as cats service, except:
+
+- Launch type: `FARGATE`
+- Task definition, Family: `dogsdef`
+- Service name: `dogs`
+
+![networking](/img/ecsworkshop-dogs-service-networking.png)
+
+## Check Service
+
+Grab the ALB's dns, which will route publicly:
+
+![alb dns](/img/ecsworkshop-alb-dns.png)
+
+**Success!!**
+
+![public](/img/ecsworkshop-success.png)
+
+:::caution End of Part 1
+
+I will break this up into multiple parts. I'm thinking a)Service, b)Auto Scaling, c)CI/CD and d)IaC with Copilot.
+
+:::
 
 ## Appendix
 
