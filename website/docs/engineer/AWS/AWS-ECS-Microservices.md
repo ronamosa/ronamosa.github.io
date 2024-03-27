@@ -326,7 +326,7 @@ Recommended follow-up action:
 
 all seems to be up & running. curious how I can check there are three services running now?
 
-### NodeJS
+## Backend: NodeJS
 
 Follow same pattern as frontend, code hash etc, copilot init etc.
 
@@ -382,7 +382,7 @@ then reinit (remember this is a backend service)
 re init:
 
 ```bash
-~ /Repos/AWSECS/ecsdemo-nodejs on   main ?1 ❯ copilot svc init --name ecsdemo-nodejs                                                                          at  18:16:23
+~ /Repos/AWSECS/ecsdemo-nodejs on main ?1 ❯ copilot svc init --name ecsdemo-nodejs
 Note: It's best to run this command in the root of your workspace.
 Service type: Backend Service
 Dockerfile: ./Dockerfile
@@ -444,10 +444,11 @@ latest: digest: sha256:47812e81534ec2f96cf9bb29669be5922d84f837a610b1b11de517383
 Recommended follow-up action:
   - Your service is accessible at ecsdemo-nodejs:3000 with service connect.
 ```
+
 so far so good:
 
 ```bash
-~/Repos/AWSECS/ecsdemo-nodejs on   main ?1 ❯ copilot env show env -n test                                                                      took  5m 13s at  18:25:49
+~/Repos/AWSECS/ecsdemo-nodejs on main ?1 ❯ copilot env show env -n test                                                                      took  5m 13s at  18:25:49
 About
 
   Name        test
@@ -467,4 +468,97 @@ Tags
   ---                  -----
   copilot-application  ecsmicroservices
   copilot-environment  test
+```
+
+:::tip
+
+Where's my frontend URL?
+
+Run this command to get all details:
+
+```bash
+~/R/A/ecsdemo-nodejs on main ?1 ❯ copilot svc show                                                                       at  18:31:59
+Service name: ecsdemo-frontend
+About
+
+  Application  ecsmicroservices
+  Name         ecsdemo-frontend
+  Type         Load Balanced Web Service
+
+Configurations
+
+  Environment  Tasks     CPU (vCPU)  Memory (MiB)  Platform      Port
+  -----------  -----     ----------  ------------  --------      ----
+  test         3         0.25        512           LINUX/X86_64  3000
+
+Routes
+
+  Environment  URL
+  -----------  ---
+  test         http://ecsmic-Publi-zaueLaa0sVQT-274480243.us-east-1.elb.amazonaws.com
+
+Internal Service Endpoints
+
+  Endpoint                                           Environment  Type
+  --------                                           -----------  ----
+  ecsdemo-frontend:3000                              test         Service Connect
+  ecsdemo-frontend.test.ecsmicroservices.local:3000  test         Service Discovery
+
+Variables
+
+  Name                                Container         Environment  Value
+  ----                                ---------         -----------  -----
+  COPILOT_APPLICATION_NAME            ecsdemo-frontend  test         ecsmicroservices
+  COPILOT_ENVIRONMENT_NAME              "                 "          test
+  COPILOT_LB_DNS                        "                 "          ecsmic-Publi-zaueLaa0sVQT-274480243.us-east-1.elb.amazonaws.com
+  COPILOT_SERVICE_DISCOVERY_ENDPOINT    "                 "          test.ecsmicroservices.local
+  COPILOT_SERVICE_NAME                  "                 "          ecsdemo-frontend
+```
+
+:::
+
+scale out to 3 tasks by editing the `count` in `manifest.yml`, then check
+
+```bash
+~/R/A/ecsdemo-nodejs on main ?1 ❯ copilot svc status -n ecsdemo-nodejs                                        took  27s at  10:42:32
+
+ecsdemo-nodejs found only in environment test
+Task Summary
+
+  Running   ██████████  3/3 desired tasks are running
+  Health    ██████████  3/3 passes container health checks
+
+Tasks
+
+  ID        Status      Revision    Started At     Cont. Health
+  --        ------      --------    ----------     ------------
+  7a141ab0  RUNNING     3           6 minutes ago  HEALTHY
+  a26f0cda  RUNNING     3           6 minutes ago  HEALTHY
+  e853449c  RUNNING     3           6 minutes ago  HEALTHY
+```
+
+## Backend: Crystal
+
+Do exactly the same as [NodeJS](#backend-nodejs).
+
+- `git rev-parse --short=7 HEAD > code_hash.txt`
+- `copilot init`
+- `copilot svc deploy --name ecsdemo-crystal --env test`
+
+then check with `copilot svc status`
+
+```bash
+~/Repos/AWSECS/ecsdemo-crystal on main !1 ?1 ❯ copilot svc status                                                        at  11:05:49
+
+Service: ecsdemo-crystal
+Task Summary
+
+  Running   ██████████  1/1 desired tasks are running
+  Health    ██████████  1/1 passes container health checks
+
+Tasks
+
+  ID        Status      Revision    Started At      Cont. Health
+  --        ------      --------    ----------      ------------
+  ab2c09c5  RUNNING     1           54 minutes ago  HEALTHY
 ```
