@@ -79,7 +79,7 @@ Configure a credential helper to remove this warning. See
 https://docs.docker.com/engine/reference/commandline/login/#credentials-store
 
 Login Succeeded
-[+] Building 141.4s (11/11) FINISHED                                                                                    docker:default
+[+] Building 141.4s (11/11) FINISHED                      docker:default
  => [internal] load build definition from Dockerfile                                                                              0.1s
  => => transferring dockerfile: 982B0.0s
  => [internal] load metadata for public.ecr.aws/bitnami/ruby:2.5                                                                  3.5s
@@ -274,8 +274,8 @@ Login Succeeded
  => exporting to image                                                                              2.6s
  => => exporting layers                                                                             2.6s
  => => writing image sha256:700d90f515f2eaab2ce16850378ae16c53048ea3794550cc0fe418109a5c664f        0.0s
- => => naming to 833580871776.dkr.ecr.us-east-1.amazonaws.com/ecsmicroservices/ecsdemo-frontend:latest                                                                                                                          0.0s
-The push refers to repository [833580871776.dkr.ecr.us-east-1.amazonaws.com/ecsmicroservices/ecsdemo-frontend]
+ => => naming to REDACTED.dkr.ecr.us-east-1.amazonaws.com/ecsmicroservices/ecsdemo-frontend:latest                                                                                                                          0.0s
+The push refers to repository [REDACTED.dkr.ecr.us-east-1.amazonaws.com/ecsmicroservices/ecsdemo-frontend]
 5f70bf18a086: Layer already exists 
 6ed319876ad1: Pushed 
 abe954d8444e: Layer already exists 
@@ -306,7 +306,7 @@ latest: digest: sha256:8650ce8fdf433b90cf063d6e18b89501a9eb6a750defc27646d0adc88
        
     ✘ Latest 1 task stopped reason                                                                               
       - [c8f78563]: Task failed ELB health checks in (target-group arn:aws:ela                                                     
-        sticloadbalancing:us-east-1:833580871776:targetgroup/ecsmic-Targe-SMMV                                                     
+        sticloadbalancing:us-east-1:REDACTED:targetgroup/ecsmic-Targe-SMMV                                                     
         QPCVRIBS/86a54506434cfa92)                                                                                                 
        
     Troubleshoot task stopped reason                                                                                      
@@ -316,7 +316,7 @@ latest: digest: sha256:8650ce8fdf433b90cf063d6e18b89501a9eb6a750defc27646d0adc88
     ✘ Latest failure event                                                                                       
       - (service ecsmicroservices-test-ecsdemo-frontend-Service-e3Q1Xu14Yc1V)                                                      
         (port 3000) is unhealthy in (target-group arn:aws:elasticloadbalancing
-        :us-east-1:833580871776:targetgroup/ecsmic-Targe-SMMVQPCVRIBS/86a54506                                                     
+        :us-east-1:REDACTED:targetgroup/ecsmic-Targe-SMMVQPCVRIBS/86a54506                                                     
         434cfa92) due to (reason Health checks failed).                                                                            
   - An ECS task definition to group your containers and run them on ECS                                [delete complete]  [3.9s]
 ✔ Deployed service ecsdemo-frontend.
@@ -358,3 +358,113 @@ Environment: test
 ✘ read manifest for environment "test": file /home/rxhackk/Repositories/environment/ecsdemo-nodejs/copilot/environments/test/manifest.yml does not exists
 ```
 
+I resumed work on the project on my macbook, **deleted** the NodeJS service and did another `init`
+
+```bash
+ ~/R/AWSECS/ecsdemo-nodejs on main ❯ copilot svc delete --name ecsdemo-nodejs                              took  16s at  17:39:31
+Application: ecsmicroservices
+Sure? Yes
+- Update regional resources with stack set "ecsmicroservices-infrastructure"  [succeeded]                            [5.3s]
+- Update regional resources with stack set "ecsmicroservices-infrastructure"  [succeeded]        [5.3s]
+  - Update resources in region "us-east-1"                                    [update complete]  [2.1s]
+
+✔ Deleted service ecsdemo-nodejs from application ecsmicroservices.
+Recommended follow-up action:
+  - Run `copilot pipeline deploy` to update the corresponding pipeline if it exists.
+```
+
+then reinit (remember this is a backend service)
+
+- I had to delete it again as I chose the wrong type.
+- manually deleted the `manifest.yaml` file `rm copilot/ecsdemo-nodejs/manifest.jml`
+- reinit and redeploy had specific commands, see below
+
+re init:
+
+```bash
+~ /Repos/AWSECS/ecsdemo-nodejs on   main ?1 ❯ copilot svc init --name ecsdemo-nodejs                                                                          at  18:16:23
+Note: It's best to run this command in the root of your workspace.
+Service type: Backend Service
+Dockerfile: ./Dockerfile
+Note: Architecture type arm64 has been detected. We will set platform 'linux/x86_64' instead. If you'd rather build and run as architecture type arm64, please change the 'platform' field in your workload manifest to 'linux/arm64'.
+✔ Wrote the manifest for service ecsdemo-nodejs at copilot/ecsdemo-nodejs/manifest.yml
+Your manifest contains configurations like your container size and port.
+
+- Update regional resources with stack set "ecsmicroservices-infrastructure"  [succeeded]        [12.9s]
+  - Update resources in region "us-east-1"                                    [update complete]  [8.8s]
+    - ECR container image repository for "ecsdemo-nodejs"                     [create complete]  [3.4s]
+Recommended follow-up actions:
+  - Update your manifest copilot/ecsdemo-nodejs/manifest.yml to change the defaults.
+  - Run `copilot svc deploy --name ecsdemo-nodejs --env test` to deploy your service to a test environment.
+```
+
+deploy
+
+```bash
+~/Repos/AWSECS/ecsdemo-nodejs on main ?1 ❯ copilot svc deploy --name ecsdemo-nodejs --env test         
+Login Succeeded
+[+] Building 1.8s (10/10) FINISHED                                                                 docker:orbstack
+ => [internal] load build definition from Dockerfile                                                          0.0s
+ => => transferring dockerfile: 785B            0.0s
+ => [internal] load metadata for public.ecr.aws/docker/library/ubuntu:18.04                                   1.6s
+ => [internal] load .dockerignore               0.0s
+ => => transferring context: 72B                0.0s
+ => [1/5] FROM public.ecr.aws/docker/library/ubuntu:18.04@sha256:152dc042452c496007f07ca9127571cb9c29697f42acbfad72324b2bb2e43c98                                           0.0s
+ => [internal] load build context               0.0s
+ => => transferring context: 4.79kB             0.0s
+ => CACHED [2/5] WORKDIR /usr/src/app           0.0s
+ => CACHED [3/5] COPY package*.json ./          0.0s
+ => CACHED [4/5] RUN apt-get update &&    apt install -y curl jq bash nodejs npm python3 python3-pip &&     pip3 install awscli netaddr &&     npm install &&    apt-get p  0.0s
+ => [5/5] COPY . .                              0.0s
+ => exporting to image                          0.0s
+ => => exporting layers                         0.0s
+ => => writing image sha256:6f649f55a0053d7060396369d4c22aab5c53ec522cf43ad4d54bdddda8206be8                  0.0s
+ => => naming to REDACTED.dkr.ecr.us-east-1.amazonaws.com/ecsmicroservices/ecsdemo-nodejs:latest          0.0s
+The push refers to repository [REDACTED.dkr.ecr.us-east-1.amazonaws.com/ecsmicroservices/ecsdemo-nodejs]
+b78718e1942c: Pushed 
+cd2559c3eb84: Pushed 
+ebe3b449c65c: Pushed 
+69440ab5b9c3: Pushed 
+548a79621a42: Pushed 
+latest: digest: sha256:47812e81534ec2f96cf9bb29669be5922d84f837a610b1b11de517383510f504 size: 1366
+✔ Proposing infrastructure changes for stack ecsmicroservices-test-ecsdemo-nodejs
+- Creating the infrastructure for stack ecsmicroservices-test-ecsdemo-nodejs  [create complete]  [239.4s]
+  - Service discovery for your services to communicate within the VPC         [create complete]  [2.8s]
+  - Update your environment's shared resources                                [create complete]  [3.6s]
+  - An IAM role to update your environment stack                              [create complete]  [15.4s]
+  - An IAM Role for the Fargate agent to make AWS API calls on your behalf    [create complete]  [15.4s]
+  - A CloudWatch log group to hold your service logs                          [create complete]  [4.4s]
+  - An ECS service to run and maintain your tasks in the environment cluster  [create complete]  [207.9s]
+    Deployments                    
+               Revision  Rollout      Desired  Running  Failed  Pending                                   
+      PRIMARY  2         [completed]  1        1        0       0                                         
+  - An ECS task definition to group your containers and run them on ECS       [create complete]  [0.0s]
+  - An IAM role to control permissions for the containers in your tasks       [create complete]  [15.4s]
+✔ Deployed service ecsdemo-nodejs.
+Recommended follow-up action:
+  - Your service is accessible at ecsdemo-nodejs:3000 with service connect.
+```
+so far so good:
+
+```bash
+~/Repos/AWSECS/ecsdemo-nodejs on   main ?1 ❯ copilot env show env -n test                                                                      took  5m 13s at  18:25:49
+About
+
+  Name        test
+  Region      us-east-1
+  Account ID  833580871776
+
+Workloads
+
+  Name              Type
+  ----              ----
+  ecsdemo-frontend  Load Balanced Web Service
+  ecsdemo-nodejs    Backend Service
+
+Tags
+
+  Key                  Value
+  ---                  -----
+  copilot-application  ecsmicroservices
+  copilot-environment  test
+```
