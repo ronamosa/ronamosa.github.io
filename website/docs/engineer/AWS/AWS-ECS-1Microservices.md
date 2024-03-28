@@ -1,5 +1,5 @@
 ---
-title: "AWS Workshop ECS Cats and Dogs - Part 1"
+title: "AWS Workshop ECS Microservices"
 ---
 
 :::tip Workshop Links
