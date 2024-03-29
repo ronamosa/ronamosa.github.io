@@ -241,7 +241,7 @@ Other Changes
 now you deploy the changes: `cdk deploy --require-approval never`
 
 ```bash
-~/R/A/environment/ecsdemo-capacityproviders/fargate on   main !2 ❯ cdk deploy --require-approval never                                                     at  09:55:47
+~/R/A/environment/ecsdemo-capacityproviders/fargate on main !2 ❯ cdk deploy --require-approval never                                                     at  09:55:47
 
 ✨  Synthesis time: 4.03s
 
@@ -270,7 +270,7 @@ success.
 now curl that endpoint to get the app output of "ARNs of all tasks running":
 
 ```bash
-~/R/A/e/ecsdemo-capacityproviders/fargate on   main !2 ❯ curl -s http://ecswor-Farga-7IuUzA1K0m0c-1594881063.us-east-1.elb.amazonaws.com | jq
+~/R/A/e/ecsdemo-capacityproviders/fargate on main !2 ❯ curl -s http://ecswor-Farga-7IuUzA1K0m0c-1594881063.us-east-1.elb.amazonaws.com | jq
 {
   "ALL_TASKS": {
     "arn:aws:ecs:us-east-1:REDACTED:task/container-demo/05dba4e68c42462a891d988b71db3216": "NON_DEFAULT",
@@ -314,7 +314,7 @@ I did not destroy  the `ecsdemo-platform` code from previous section, I plan to 
 output for deploy from diff
 
 ```bash
-~/R/A/environment/ecsdemo-platform/cdk on   main !1 ❯ cdk diff                                                                                  took  12s at  11:05:53
+~/R/A/environment/ecsdemo-platform/cdk on main !1 ❯ cdk diff                                                                                  took  12s at  11:05:53
 Stack ecsworkshop-base
 Hold on while we create a read-only change set to get a diff with accurate replacement information (use --no-change-set to use a less accurate but faster template-only diff)
 IAM Statement Changes
@@ -414,7 +414,7 @@ Outputs
 deploy it
 
 ```bash
-~/R/A/environment/ecsdemo-platform/cdk on   main !1 ❯ cdk deploy --require-approval never                                                       took  36s at  11:06:30
+~/R/A/environment/ecsdemo-platform/cdk on main !1 ❯ cdk deploy --require-approval never                                                       took  36s at  11:06:30
 
 ✨  Synthesis time: 4.31s
 
@@ -588,7 +588,7 @@ the environment vars in `app.py` are again inconsistent with the other environme
 our diff at this point
 
 ```bash
-~/R/A/environment/ecsdemo-capacityproviders/ec2 on   main !3 ❯ cdk diff                                                                                    at  11:32:29
+~/R/A/environment/ecsdemo-capacityproviders/ec2 on main !3 ❯ cdk diff                                                                                    at  11:32:29
 Stack ecsworkshop-capacityproviders-ec2
 IAM Statement Changes
 ┌───┬────────────────────────────────────────────────┬────────┬────────────────────────────────────────────────┬─────────────────────────────────────────────────┬───────────┐
@@ -649,7 +649,7 @@ Other Changes
 deploy changes: `cdk deploy --require-approval never`
 
 ```bash
-~/R/A/e/ecsdemo-capacityproviders/ec2 on   main !3 ❯ cdk deploy --require-approval never                                                        took  20s at  11:32:52
+~/R/A/e/ecsdemo-capacityproviders/ec2 on main !3 ❯ cdk deploy --require-approval never                                                        took  20s at  11:32:52
 
 ✨  Synthesis time: 4.4s
 
@@ -702,7 +702,7 @@ change in `app.py`
 output
 
 ```bash
-~/R/A/e/ecsdemo-capacityproviders/ec2 on   main !3 ❯ cdk deploy --require-approval never                                                        took  29s at  12:28:34
+~/R/A/e/ecsdemo-capacityproviders/ec2 on main !3 ❯ cdk deploy --require-approval never                                                        took  29s at  12:28:34
 
 ✨  Synthesis time: 4.7s
 
