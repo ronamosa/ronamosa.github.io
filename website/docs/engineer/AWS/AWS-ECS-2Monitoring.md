@@ -417,3 +417,15 @@ http://ecswor-Front-gwdgFnVMYQrg-1215657672.us-east-1.elb.amazonaws.com
 `siege -c 200 -i $alb_url`
 
 watch it for 20-30 seconds, ctrl+c to kill it, then go through your container insights on cloudwatch.
+
+## Alarms CloudWatch Metrics
+
+I skipped this part.
+
+## Amazon Managed Prometheus (AMP) & Amazon Managed Grafana (AMG)
+
+Skipped, but interested in revisiting
+
+:::tip
+
+["CONFIGURE AMAZON MANAGED SERVICE FOR PROMETHEUS / GRAFANA FOR YOUR ECS CLUSTER"](https://ecsworkshop.com/monitoring/amp_amg/)
