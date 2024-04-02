@@ -400,7 +400,7 @@ I'm going to try to call it locally:
 from sagemaker.pytorch import PyTorchModel
 
 model_data = "s3://ra-aws-s3-lab/gpt-neo-125m-model.tar.gz"
-role = "AmazonSageMakerFullAccess"
+role = "arn:aws:iam::REDACTED:role/SageMakerExecutionRole"
 
 pytorch_model = PyTorchModel(
     model_data=model_data,
@@ -414,6 +414,16 @@ predictor = pytorch_model.deploy(
     initial_instance_count=1,
 )
 ```
+
+Error:
+
+```bash
+botocore.exceptions.ClientError: An error occurred (ValidationException) when calling the CreateModel operation: Could not access model data at s3://ra-aws-s3-lab/gpt-neo-125m-model.tar.gz. Please ensure that the role "arn:aws:iam::REDACTED:role/SageMakerExecutionRole" exists and that its trust relationship policy allows the action "sts:AssumeRole" for the service principal "sagemaker.amazonaws.com". Also ensure that the role has "s3:GetObject" permissions and that the object is located in us-east-1. If your Model uses multiple models or uncompressed models, please ensure that the role has "s3:ListBucket" permission.
+```
+
+I have double checked my IAM Role, according to each comment in the error message, and my Role is legit.
+
+
 
 Create a SageMaker model using the SageMaker Python SDK or the AWS Management Console. Specify the S3 location of the `gpt-neo-125m-model.tar.gz` file as the model data and choose an appropriate Docker image for PyTorch (e.g., `pytorch-inference`).
 
