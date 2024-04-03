@@ -298,10 +298,29 @@ total 332M
 -rw-rw-r-- 1 rxhackk rxhackk 878K Apr  2 21:41 vocab.json
 ```
 
+create a sub-dir, and organise your files like this:
+
+```bash
+~/Repositories/SM-gpt-neo-125m/gpt-neo-125m-model ❯ tree                                                                                                          at  23:22:04
+.
+├── code
+│   ├── inference.py
+│   └── requirements.txt
+├── config.json
+├── merges.txt
+├── pytorch_model.bin
+├── special_tokens_map.json
+├── tokenizer_config.json
+└── vocab.json
+
+1 directory, 8 files
+```
+
 Compress the entire `gpt-neo-125m-model` directory into a `tar.gz` file using a command like:
 
 ```bash
-tar -czf gpt-neo-125m-model.tar.gz gpt-neo-125m-model/
+cd gpt-neo-125m-model
+tar -czf gpt-neo-125m-model.tar.gz *
 ```
 
 You now have a file `gpt-neo-125m-model.tar.gz` that contains the necessary files for deploying the gpt-neo-125m model to SageMaker.
@@ -415,15 +434,79 @@ predictor = pytorch_model.deploy(
 )
 ```
 
+## Troubleshooting
+
+### python3 deploy.py
+
+Deploying the *.tar.gz model package from s3.
+
 Error:
 
 ```bash
 botocore.exceptions.ClientError: An error occurred (ValidationException) when calling the CreateModel operation: Could not access model data at s3://ra-aws-s3-lab/gpt-neo-125m-model.tar.gz. Please ensure that the role "arn:aws:iam::REDACTED:role/SageMakerExecutionRole" exists and that its trust relationship policy allows the action "sts:AssumeRole" for the service principal "sagemaker.amazonaws.com". Also ensure that the role has "s3:GetObject" permissions and that the object is located in us-east-1. If your Model uses multiple models or uncompressed models, please ensure that the role has "s3:ListBucket" permission.
 ```
 
-I have double checked my IAM Role, according to each comment in the error message, and my Role is legit.
+I have double checked my IAM Role, according to each comment in the error message, and my Role is legit. I even tested by attaching Administrator access to the role, and it got the same error.
 
+After reading [SageMaker Python Docs](https://sagemaker.readthedocs.io/en/stable/frameworks/pytorch/sagemaker.pytorch.html#pytorch-model) I saw my `deploy.py` was missing an `entry_point`.
 
+I changed this:
+
+```python
+pytorch_model = PyTorchModel(
+    model_data=model_data,
+    role=role,
+    framework_version="1.9.0",
+    py_version="py38"
+)
+```
+
+to this
+
+```python
+pytorch_model = PyTorchModel(
+    model_data=model_data,
+    role=role,
+    framework_version="1.9.0",
+    py_version="py38",
+    entry_point="inference.py"
+)
+```
+
+And got an error about not finding my `inference.py` script.
+
+### No such file or directory: 'inference.py'
+
+error message:
+
+```bash
+sagemaker.config INFO - Not applying SDK defaults from location: /etc/xdg/xdg-ubuntu/sagemaker/config.yaml
+sagemaker.config INFO - Not applying SDK defaults from location: /home/rxhackk/.config/sagemaker/config.yaml
+Traceback (most recent call last):
+  File "/home/rxhackk/Repositories/SM-gpt-neo-125m/deploy.py", line 14, in <module>
+    predictor = pytorch_model.deploy(
+  File "/home/rxhackk/.local/lib/python3.10/site-packages/sagemaker/model.py", line 1610, in deploy
+    self._create_sagemaker_model(
+  File "/home/rxhackk/.local/lib/python3.10/site-packages/sagemaker/model.py", line 865, in _create_sagemaker_model
+    container_def = self.prepare_container_def(
+  File "/home/rxhackk/.local/lib/python3.10/site-packages/sagemaker/pytorch/model.py", line 319, in prepare_container_def
+    self._upload_code(deploy_key_prefix, repack=self._is_mms_version())
+  File "/home/rxhackk/.local/lib/python3.10/site-packages/sagemaker/model.py", line 763, in _upload_code
+    utils.repack_model(
+  File "/home/rxhackk/.local/lib/python3.10/site-packages/sagemaker/utils.py", line 548, in repack_model
+    _create_or_update_code_dir(
+  File "/home/rxhackk/.local/lib/python3.10/site-packages/sagemaker/utils.py", line 609, in _create_or_update_code_dir
+    shutil.copy2(inference_script, code_dir)
+  File "/usr/lib/python3.10/shutil.py", line 434, in copy2
+    copyfile(src, dst, follow_symlinks=follow_symlinks)
+  File "/usr/lib/python3.10/shutil.py", line 254, in copyfile
+    with open(src, 'rb') as fsrc:
+FileNotFoundError: [Errno 2] No such file or directory: 'inference.py'
+```
+
+If you got [Package Model](#package-deployment-model) proces, my previous `tar` command creates a folder as a parent, so if you untar the file you won't see the `code/inference` as SageMaker expects, you see `gpt-neo-125m-model/code/inference.py`.
+
+Fix: repackage it properly, re-upload, re-deploy.
 
 Create a SageMaker model using the SageMaker Python SDK or the AWS Management Console. Specify the S3 location of the `gpt-neo-125m-model.tar.gz` file as the model data and choose an appropriate Docker image for PyTorch (e.g., `pytorch-inference`).
 
