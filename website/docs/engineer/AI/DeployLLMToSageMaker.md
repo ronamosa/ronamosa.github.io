@@ -467,6 +467,7 @@ Now the custom model is up & running and our inference endpoint says "✅InServi
 ```bash
 aws sagemaker-runtime invoke-endpoint \
   --endpoint-name my-endpoint \
+  --cli-binary-format raw-in-base64-out \
   --body '{"text": "Hello, LLM!"}' \
   --content-type application/json output.txt
 ```
@@ -504,6 +505,7 @@ output
 ```bash
 aws sagemaker-runtime invoke-endpoint \
   --endpoint-name pytorch-inference-2024-04-03-10-52-17-710 \
+  --cli-binary-format raw-in-base64-out \
   --body '{"text": "Hi, LLM!"}' \
   --content-type application/json output.txt
 ```
