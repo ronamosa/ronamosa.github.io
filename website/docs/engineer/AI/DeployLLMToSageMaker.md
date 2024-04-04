@@ -286,7 +286,7 @@ Review code:
 Your directory should look like this:
 
 ```bash
-~/Repositories/SM-gpt-neo-125m/gpt-neo-125m-model ❯ ll                                                                                               took  6m 6s at  22:02:15
+~/Repositories/SM-gpt-neo-125m/gpt-neo-125m-model ❯ ll                    took  6m 6s at  22:02:15
 total 332M
 -rw-rw-r-- 1 rxhackk rxhackk 1007 Apr  2 21:41 config.json
 -rw-rw-r-- 1 rxhackk rxhackk 1.2K Apr  2 22:02 inference.py
@@ -319,6 +319,7 @@ create a sub-dir, and organise your files like this:
 Compress the entire `gpt-neo-125m-model` directory into a `tar.gz` file using a command like:
 
 ```bash
+# change into the model dir, where the `code/` subdir is
 cd gpt-neo-125m-model
 tar -czf gpt-neo-125m-model.tar.gz *
 ```
@@ -413,7 +414,7 @@ Use the SageMaker Python SDK to create the "SageMaker Model".
 
 Now, according to Claude, you can run this code in a number of places, it doesn't matter, it will call the SageMaker API and stand up this model. You can call it locally (note: you need `pip install sagemaker`), or in a JupyterLab notebook, or AWS Cloud9.
 
-I'm going to try to call it locally:
+I'm going to try to call it locally, the following code I put into `deploy.py`:
 
 ```python
 from sagemaker.pytorch import PyTorchModel
@@ -426,12 +427,247 @@ pytorch_model = PyTorchModel(
     role=role,
     framework_version="1.9.0",
     py_version="py38",
+    entry_point="inference.py"
 )
 
 predictor = pytorch_model.deploy(
     instance_type="ml.m5.large",
     initial_instance_count=1,
 )
+```
+
+Success!
+
+:::note
+
+there was a bunch of [troubleshooting](#troubleshooting) that happened before this stood up, and notes have been updated retroactively, but I've tried to capture what came out of the original process.
+
+:::
+
+```bash
+~/Repositories/SM-gpt-neo-125m ❯ python3 deploy.py                                     at  23:43:51
+sagemaker.config INFO - Not applying SDK defaults from location: /etc/xdg/xdg-ubuntu/sagemaker/config.yaml
+sagemaker.config INFO - Not applying SDK defaults from location: /home/rxhackk/.config/sagemaker/config.yaml
+----------!%                  
+~/Repositories/SM-gpt-neo-125m ❯                                         took  14m 1s at  
+```
+
+⏱️ 14mins to deploy.
+
+Check AWS Console
+
+![Endpoint Success](/img/SageMakerDeploy-endpoint.png)
+
+## Test the Endpoint
+
+The moment of truth!
+
+Now the custom model is up & running and our inference endpoint says "✅InService" we should be able to invoke it and get the inference script workingf:
+
+```bash
+aws sagemaker-runtime invoke-endpoint \
+  --endpoint-name my-endpoint \
+  --body '{"text": "Hello, LLM!"}' \
+  --content-type application/json output.txt
+```
+
+I need my new endpoint name. I can get it via AWS Console, or use cli to grab it,:
+
+To get ALL info: 
+
+`aws sagemaker list-endpoints`
+
+To get just EndpointName in a table:
+
+```bash
+aws sagemaker list-endpoints \
+  --query "Endpoints[*].[EndpointName]" \
+  --output table
+```
+
+output
+
+```bash
+-----------------------------------------------------------
+|                      ListEndpoints                      |
++---------------------------------------------------------+
+|  pytorch-inference-2024-04-03-10-52-17-710              |
+|  huggingface-pytorch-inference-2024-03-07-04-18-07-114  |
+|  DEMO-1709699475-cbc3-endpointx                         |
+|  SDXL-v2-1-RAMOS                                        |
++---------------------------------------------------------+
+(END)
+```
+
+### Invoke
+
+```bash
+aws sagemaker-runtime invoke-endpoint \
+  --endpoint-name pytorch-inference-2024-04-03-10-52-17-710 \
+  --body '{"text": "Hi, LLM!"}' \
+  --content-type application/json output.txt
+```
+
+response:
+
+```bash
+{
+    "ContentType": "application/json",
+    "InvokedProductionVariant": "AllTraffic"
+}
+(END)
+```
+
+✅ We have a `output.txt` file now from our LLM
+
+```bash
+❯ cat output.txt                                                                                                        took  44s at  11:58:49
+{"generated_text": "Hi, LLM!\n\nI'm a little confused about the word \"soul\" in the English language. I'm not sure what the word means in the English language, but I'm not sure what the word means in the English language. I'm not sure what the word means in the English language. I'm not sure what the word means in the English language. I'm not sure what the word means in the English language. I'm not sure what the word means in the"}%
+```
+
+Done.
+
+## Bonus: Re-Deploy Updates to your SageMaker Endpoint
+
+I needed to update my `inference.py` script to the following, to get better results:
+
+```python
+...
+def predict_fn(input_data, model_and_tokenizer):
+    model, tokenizer = model_and_tokenizer
+    input_ids = tokenizer.encode(input_data, return_tensors="pt").to(device)
+    output = model.generate(
+        input_ids,
+        max_length=150,
+        num_return_sequences=1,
+        temperature=0.7,
+        top_k=50,
+        top_p=0.95
+    )
+    generated_text = tokenizer.decode(output[0], skip_special_tokens=True)
+    return generated_text
+...
+```
+
+so the whole `inference.py` now reads
+
+```python
+import json
+import torch
+from transformers import GPTNeoForCausalLM, GPT2Tokenizer
+
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
+def model_fn(model_dir):
+    tokenizer = GPT2Tokenizer.from_pretrained(model_dir)
+    model = GPTNeoForCausalLM.from_pretrained(model_dir)
+    model.to(device)
+    model.eval()
+    return model, tokenizer
+
+def input_fn(serialized_input_data, content_type):
+    if content_type == "application/json":
+        input_data = json.loads(serialized_input_data)
+        text = input_data["text"]
+        return text
+    raise Exception("Unsupported content type: {}".format(content_type))
+
+def predict_fn(input_data, model_and_tokenizer):
+    model, tokenizer = model_and_tokenizer
+    input_ids = tokenizer.encode(input_data, return_tensors="pt").to(device)
+    output = model.generate(
+        input_ids,
+        max_length=150,
+        num_return_sequences=1,
+        temperature=0.7,
+        top_k=50,
+        top_p=0.95
+    )
+    generated_text = tokenizer.decode(output[0], skip_special_tokens=True)
+    return generated_text
+
+def output_fn(prediction, accept):
+    if accept == "application/json":
+        return json.dumps({"generated_text": prediction}), accept
+    raise Exception("Unsupported accept type: {}".format(accept))
+
+```
+
+retar it, re-upload to s3.
+
+### Redeploy SageMaker Model
+
+Here's the trick to de-deploying the same endpoint, you just need to add this to the existing `deploy.py`
+
+```bash
+# original code
+from sagemaker.pytorch import PyTorchModel
+
+model_data = "s3://ra-aws-s3-lab/gpt-neo-125m-model.tar.gz"
+role = "arn:aws:iam::REDACTED:role/SageMakerExecutionRole"
+
+pytorch_model = PyTorchModel(
+    model_data=model_data,
+    role=role,
+    framework_version="1.9.0",
+    py_version="py38",
+    entry_point="inference.py"
+)
+
+predictor = pytorch_model.deploy(
+    instance_type="ml.m5.large",
+    initial_instance_count=1,
+    # add this oneline
+    update_endpoint=True
+)
+```
+
+Run re-deploy: `python3 deploy.py`
+
+```bash
+~/Repositories/SM-gpt-neo-125m ❯ python3 deploy.py                                           at  16:08:03
+sagemaker.config INFO - Not applying SDK defaults from location: /etc/xdg/xdg-ubuntu/sagemaker/config.yaml
+sagemaker.config INFO - Not applying SDK defaults from location: /home/rxhackk/.config/sagemaker/config.yaml
+-
+--------!%    
+  ~/Repositories/SM-gpt-neo-125m ❯                                                       took  13m 40s
+```
+
+only took ⏱️ **13m40s** this time.
+
+check endpoints: `aws sagemaker list-endpoints --query "Endpoints[*].[EndpointName]" --output table`
+
+looks like its actually stop up a different endpoint:
+
+```bash
+-----------------------------------------------------------
+|                      ListEndpoints                      |
++---------------------------------------------------------+
+|  pytorch-inference-2024-04-04-03-16-43-017              |
+|  pytorch-inference-2024-04-03-10-52-17-710              |
+|  huggingface-pytorch-inference-2024-03-07-04-18-07-114  |
+|  DEMO-1709699475-cbc3-endpointx                         |
+|  SDXL-v2-1-RAMOS                                        |
++---------------------------------------------------------+
+(END)
+```
+
+picking the new endpoint in our invoke method
+
+```bash
+aws sagemaker-runtime invoke-endpoint \ 
+  --endpoint-name pytorch-inference-2024-04-04-03-16-43-017 \
+  --cli-binary-format raw-in-base64-out \
+  --body '{"text": "Hi! how are you?"}' \
+  --content-type application/json \
+  output.txt
+```
+
+new output, but probably just as sh! as the previous, think it needs a lot more config attention, but that's for another post.
+
+```bash
+cat output.txt  
+{"generated_text": "Hi! how are you?\n\nI'm back! I'm back! I'm back! I'm back! I'm back! I'm back! I'm back! I'm back! I'm back! I'm back! I'm back! I'm back! I'm back! I'm back! I'm back! I'm back! I'm back! I'm back! I'm back! I'm back! I'm back! I'm back! I'm back! I'm back! I'm back! I'm back! I'm back! I'm back! I'm back! I'm back! I'm back! I'm back! I'm back! I'm back! I'm back! I'm"}% 
 ```
 
 ## Troubleshooting
@@ -450,7 +686,7 @@ I have double checked my IAM Role, according to each comment in the error messag
 
 After reading [SageMaker Python Docs](https://sagemaker.readthedocs.io/en/stable/frameworks/pytorch/sagemaker.pytorch.html#pytorch-model) I saw my `deploy.py` was missing an `entry_point`.
 
-I changed this:
+**Solution**: I changed this
 
 ```python
 pytorch_model = PyTorchModel(
@@ -473,7 +709,13 @@ pytorch_model = PyTorchModel(
 )
 ```
 
-And got an error about not finding my `inference.py` script.
+And the IAM Role error went away 😒 ✅
+
+:::note
+
+I don't know why a missing parameter for pytorch model setup has to do with tripping on an IAM Role, maybe that's just python 🤷.
+
+:::
 
 ### No such file or directory: 'inference.py'
 
@@ -504,12 +746,42 @@ Traceback (most recent call last):
 FileNotFoundError: [Errno 2] No such file or directory: 'inference.py'
 ```
 
-If you got [Package Model](#package-deployment-model) proces, my previous `tar` command creates a folder as a parent, so if you untar the file you won't see the `code/inference` as SageMaker expects, you see `gpt-neo-125m-model/code/inference.py`.
+**Solution**: for me this was due to an incorrect directory strucuture for the model package I created in [Package Deployment Model](#package-deployment-model) (my original instructions, which I've fixed, but this was the step I borked this in).
 
-Fix: repackage it properly, re-upload, re-deploy.
+Make sure you tar just the contents of the model package directory and not create a parent directory, i.e. when you untar or view the archive, you should see the `code/` directory (where the inference code is) straight away.
 
-Create a SageMaker model using the SageMaker Python SDK or the AWS Management Console. Specify the S3 location of the `gpt-neo-125m-model.tar.gz` file as the model data and choose an appropriate Docker image for PyTorch (e.g., `pytorch-inference`).
+### Invalid base64
 
-Create an endpoint configuration and an endpoint using the created model.
+Got this error:
 
-Invoke the endpoint with input text to generate predictions.
+```bash
+~/Repositories/SM-gpt-neo-125m ❯ aws sagemaker-runtime invoke-endpoint \                                                                                    ✘ 254 at  11:52:01
+  --endpoint-name pytorch-inference-2024-04-03-10-52-17-710 \
+  --body '{"text": "Hi, LLM!"}' \
+  --content-type application/json output.txt
+
+Invalid base64: "{"text": "Hi, LLM!"}"
+```
+
+I asked Claude3 and got these solutions:
+
+```bash
+aws sagemaker-runtime invoke-endpoint \                                                                                    ✘ 255 at  11:52:39
+  --endpoint-name pytorch-inference-2024-04-03-10-52-17-710 \
+  --body $(echo '{"text": "Hi, LLM!"}' | base64) \
+  --content-type application/json \
+  output.txt
+```
+
+✅ works.
+
+````bash
+aws sagemaker-runtime invoke-endpoint \
+  --endpoint-name pytorch-inference-2024-04-03-10-52-17-710 \
+  --cli-binary-format raw-in-base64-out \
+  --body '{"text": "Hi, LLM!"}' \
+  --content-type application/json \
+  output.txt
+```
+
+✅ works.
