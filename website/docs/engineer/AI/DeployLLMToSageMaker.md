@@ -777,7 +777,7 @@ aws sagemaker-runtime invoke-endpoint \                                         
 
 ✅ works.
 
-````bash
+```bash
 aws sagemaker-runtime invoke-endpoint \
   --endpoint-name pytorch-inference-2024-04-03-10-52-17-710 \
   --cli-binary-format raw-in-base64-out \
