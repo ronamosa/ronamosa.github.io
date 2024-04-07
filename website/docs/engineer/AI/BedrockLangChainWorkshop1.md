@@ -1450,85 +1450,398 @@ Success
 
 ![chatbot](/img/AWSBedrockLangchainWK-LabT3.png)
 
-### T4
+### T4 Embeddings Search
+
+This is similar to RAG setup, with one important distinction- the user query is a "search" of the vector database, and not generating a new result.
+
+Note we're using in-memory FAISS vectorstore, in real world we'd use something more persistent.
 
 Backend functions
 
-```python title="" showLineNumbers
+```python title="embeddings_search_lib" showLineNumbers
+#imports
+from langchain_community.embeddings import BedrockEmbeddings
+from langchain.indexes import VectorstoreIndexCreator
+from langchain_community.vectorstores import FAISS
+from langchain_text_splitters import CharacterTextSplitter
+from langchain_community.document_loaders.csv_loader import CSVLoader
+
+# create in-memory store
+def get_index(): #creates and returns an in-memory vector store to be used in the application
+    
+    embeddings = BedrockEmbeddings() #create a Titan Embeddings client
+    
+    loader = CSVLoader(file_path="sagemaker_answers.csv")
+
+    index_creator = VectorstoreIndexCreator(
+        vectorstore_cls=FAISS,
+        embedding=embeddings,
+        text_splitter=CharacterTextSplitter(chunk_size=300, chunk_overlap=0),
+    )
+
+    index_from_loader = index_creator.from_loaders([loader])
+    
+    return index_from_loader
+
+# call bedrock
+def get_similarity_search_results(index, question):
+    results = index.vectorstore.similarity_search_with_score(question)
+    
+    flattened_results = [{"content":res[0].page_content, "score":res[1]} for res in results] #flatten results for easier display and handling
+    
+    return flattened_results
+
+# get embeddings
+def get_embedding(text):
+    embeddings = BedrockEmbeddings() #create a Titan Embeddings client
+    
+    return embeddings.embed_query(text)
 ```
 
 Frontend UI
 
-```python title="" showLineNumbers
+```python title="embeddings_search_app.py" showLineNumbers
+import streamlit as st #all streamlit commands will be available through the "st" alias
+import embeddings_search_lib as glib #reference to local lib script
+
+# titles
+st.set_page_config(page_title="Embeddings Search", layout="wide") #HTML title
+st.title("Embeddings Search") #page title
+
+# add vector index to session cache
+if 'vector_index' not in st.session_state: #see if the vector index hasn't been created yet
+    with st.spinner("Indexing document..."): #show a spinner while the code in this with block runs
+        st.session_state.vector_index = glib.get_index() #retrieve the index through the supporting library and store in the app's session cache
+
+# inputs
+input_text = st.text_input("Ask a question about Amazon SageMaker:") #display a multiline text box with no label
+go_button = st.button("Go", type="primary") #display a primary button
+
+# outputs
+if go_button: #code in this if block will be run when the button is clicked
+    
+    with st.spinner("Working..."): #show a spinner while the code in this with block runs
+        response_content = glib.get_similarity_search_results(index=st.session_state.vector_index, question=input_text)
+        
+        st.table(response_content) #using table so text will wrap
+        
+        
+        raw_embedding = glib.get_embedding(input_text)
+        
+        with st.expander("View question embedding"):
+            st.json(raw_embedding)
 ```
 
 add requirements: anthropic
 
-Run it: `streamlit run chatbot_app.py --server.port 8080`
+Run it: `streamlit run embeddings_search_app.py --server.port 8080`
 
 Success
 
-![chatbot](/img/AWSBedrockLangchainWK-LabT1.png)
+![chatbot](/img/AWSBedrockLangchainWK-LabT4.png)
 
-### T5
+### T5 Personalised Recommendations
+
+in a nutshell, user query -> RAG match query -> results go to LLM for "personalised summary".
 
 Backend functions
 
-```python title="" showLineNumbers
+```python title="recommendations_lib.py" showLineNumbers
+from langchain_community.llms import Bedrock
+from langchain_community.embeddings import BedrockEmbeddings
+from langchain.indexes import VectorstoreIndexCreator
+from langchain_community.vectorstores import FAISS
+from langchain_text_splitters import RecursiveCharacterTextSplitter
+from langchain_community.document_loaders import JSONLoader
+
+# setup llm
+def get_llm():
+    
+    model_kwargs = { #AI21
+        "maxTokens": 1024, 
+        "temperature": 0, 
+        "topP": 0.5, 
+        "stopSequences": [], 
+        "countPenalty": {"scale": 0 }, 
+        "presencePenalty": {"scale": 0 }, 
+        "frequencyPenalty": {"scale": 0 } 
+    }
+    
+    llm = Bedrock(
+        model_id="ai21.j2-ultra-v1", #set the foundation model
+        model_kwargs=model_kwargs) #configure the properties for Claude
+    
+    return llm
+
+#function to identify the metadata to capture in the vectorstore and return along with the matched content
+def item_metadata_func(record: dict, metadata: dict) -> dict: 
+
+    metadata["name"] = record.get("name")
+    metadata["url"] = record.get("url")
+
+    return metadata
+
+# in memory vectory store
+def get_index(): #creates and returns an in-memory vector store to be used in the application
+    
+    embeddings = BedrockEmbeddings() #create a Titan Embeddings client
+    
+    loader = JSONLoader(
+        file_path="services.json",
+        jq_schema='.[]',
+        content_key='description',
+        metadata_func=item_metadata_func)
+
+    text_splitter = RecursiveCharacterTextSplitter( #create a text splitter
+        separators=["\n\n", "\n", ".", " "], #split chunks at (1) paragraph, (2) line, (3) sentence, or (4) word, in that order
+        chunk_size=8000, #based on this content, we just want the whole item so no chunking - this could lead to an error if the content is too long
+        chunk_overlap=0 #number of characters that can overlap with previous chunk
+    )
+    
+    index_creator = VectorstoreIndexCreator( #create a vector store factory
+        vectorstore_cls=FAISS, #use an in-memory vector store for demo purposes
+        embedding=embeddings, #use Titan embeddings
+        text_splitter=text_splitter, #use the recursive text splitter
+    )
+    
+    index_from_loader = index_creator.from_loaders([loader]) #create an vector store index from the loaded PDF
+    
+    return index_from_loader #return the index to be cached by the client app
+
+# call bedrock
+def get_similarity_search_results(index, question):
+    raw_results = index.vectorstore.similarity_search_with_score(question)
+    
+    llm = get_llm()
+    
+    results = []
+    
+    for res in raw_results:
+        content = res[0].page_content
+        prompt = f"{content}\n\nSummarize how the above service addresses the following needs : {question}"
+        
+        summary = llm.invoke(prompt)
+        
+        results.append({"name": res[0].metadata["name"], "url": res[0].metadata["url"], "summary": summary, "original": content})
+    
+    return results
+
+
 ```
 
 Frontend UI
 
-```python title="" showLineNumbers
+```python title="recommendations_app.py" showLineNumbers
+import streamlit as st #all streamlit commands will be available through the "st" alias
+import recommendations_lib as glib #reference to local lib script
+
+# titles
+st.set_page_config(page_title="Personalized Recommendations", layout="wide") #HTML title
+st.title("Personalized Recommendations") #page title
+
+# add vector index to session cache
+if 'vector_index' not in st.session_state: #see if the vector index hasn't been created yet
+    with st.spinner("Indexing document..."): #show a spinner while the code in this with block runs
+        st.session_state.vector_index = glib.get_index() #retrieve the index through the supporting library and store in the app's session cache
+
+# add inputs
+input_text = st.text_input("Name some key features you need from a cloud service:") #display a multiline text box with no label
+go_button = st.button("Go", type="primary") #display a primary button
+
+# add outputs
+if go_button: #code in this if block will be run when the button is clicked
+    
+    with st.spinner("Working..."): #show a spinner while the code in this with block runs
+        response_content = glib.get_similarity_search_results(index=st.session_state.vector_index, question=input_text)
+        
+        for result in response_content:
+            st.markdown(f"### [{result['name']}]({result['url']})")
+            st.write(result['summary'])
+            with st.expander("Original"):
+                st.write(result['original'])
 ```
 
-add requirements: anthropic
+add requirements: jq
 
-Run it: `streamlit run chatbot_app.py --server.port 8080`
+Run it: `streamlit run recommendations_app.py --server.port 8080`
 
 Success
 
-![chatbot](/img/AWSBedrockLangchainWK-LabT1.png)
+You can see the recommendation summary compared to the full service documentation in the 'Original' section.
 
-### T7
+![chatbot](/img/AWSBedrockLangchainWK-LabT5.png)
+
+### T6 Extract JSON
 
 Backend functions
 
-```python title="" showLineNumbers
+```python title="json_lib.py" showLineNumbers
+import json
+from json import JSONDecodeError
+from langchain_community.llms import Bedrock
+
+# get llm
+def get_llm():
+
+    llm = Bedrock( #create a Bedrock llm client
+        model_id="ai21.j2-ultra-v1", #use the AI21 Jurassic-2 Ultra model
+        model_kwargs = {"maxTokens": 1024, "temperature": 0.0 } #for data extraction, minimum temperature is best
+    )
+
+    return llm
+
+# convert to JSON
+def validate_and_return_json(response_text):
+    try:
+        response_json = json.loads(response_text) #attempt to load text into JSON
+        return False, response_json, None #returns has_error, response_content, err 
+    
+    except JSONDecodeError as err:
+        return True, response_text, err #returns has_error, response_content, err 
+
+# call bedrock
+def get_json_response(input_content): #text-to-text client function
+    
+    llm = get_llm()
+
+    response = llm.invoke(input_content) #the text response for the prompt
+    
+    return validate_and_return_json(response)
+
 ```
 
 Frontend UI
 
-```python title="" showLineNumbers
+```python title="json_app.py" showLineNumbers
+import streamlit as st #all streamlit commands will be available through the "st" alias
+import json_lib as glib #reference to local lib script
+
+# titles
+st.set_page_config(page_title="Text to JSON", layout="wide")  #set the page width wider to accommodate columns
+st.title("Text to JSON")  #page title
+col1, col2 = st.columns(2)  #create 2 columns
+
+# inputs, col layout left
+with col1: #everything in this with block will be placed in column 1
+    st.subheader("Prompt") #subhead for this column
+    
+    input_text = st.text_area("Input text", height=500, label_visibility="collapsed")
+
+    process_button = st.button("Run", type="primary") #display a primary button
+
+# output, col layout right
+with col2: #everything in this with block will be placed in column 2
+    st.subheader("Result") #subhead for this column
+    
+    if process_button: #code in this if block will be run when the button is clicked
+        with st.spinner("Running..."): #show a spinner while the code in this with block runs
+            has_error, response_content, err = glib.get_json_response(input_content=input_text) #call the model through the supporting library
+
+        if not has_error:
+            st.json(response_content) #render JSON if there was no error
+        else:
+            st.error(err) #otherwise render the error
+            st.write(response_content) #and render the raw response from the model
+
 ```
 
-add requirements: anthropic
+add requirements:
 
-Run it: `streamlit run chatbot_app.py --server.port 8080`
+Run it: `streamlit run json_app.py --server.port 8080`
 
 Success
 
-![chatbot](/img/AWSBedrockLangchainWK-LabT1.png)
+![chatbot](/img/AWSBedrockLangchainWK-LabT6.png)
 
-### T2
+### T7 Text to CSV
 
 Backend functions
 
-```python title="" showLineNumbers
+```python title="csv_lib.py" showLineNumbers
+import pandas as pd
+from io import StringIO
+from langchain_community.llms import Bedrock
+
+# setup llm
+def get_llm():
+
+    llm = Bedrock( #create a Bedrock llm client
+        model_id="ai21.j2-ultra-v1", #use the AI21 Jurassic-2 Ultra model
+        model_kwargs = {"maxTokens": 1024, "temperature": 0.0 } #for data extraction, minimum temperature is best
+    )
+
+    return llm
+
+# convert result to pandas dataframe
+def validate_and_return_csv(response_text):
+    #returns has_error, response_content, err 
+    try:
+        csv_io = StringIO(response_text)
+        return False, pd.read_csv(csv_io), None #attempt to load response CSV into a dataframe
+    
+    except Exception as err:
+        return True, response_text, err
+
+# call bedrock
+def get_csv_response(input_content): #text-to-text client function
+    
+    llm = get_llm()
+
+    response = llm.invoke(input_content) #the text response for the prompt
+    
+    return validate_and_return_csv(response)
 ```
 
 Frontend UI
 
-```python title="" showLineNumbers
+```python title="csv_app.py" showLineNumbers
+import streamlit as st #all streamlit commands will be available through the "st" alias
+import csv_lib as glib #reference to local lib script
+
+# titles
+st.set_page_config(page_title="Text to CSV", layout="wide")  #set the page width wider to accommodate columns
+st.title("Text to CSV")  #page title
+col1, col2 = st.columns(2)  #create 2 columns
+
+# inputs
+with col1: #everything in this with block will be placed in column 1
+    st.subheader("Prompt") #subhead for this column
+    
+    input_text = st.text_area("Input text", height=500, label_visibility="collapsed")
+
+    process_button = st.button("Run", type="primary") #display a primary button
+
+# outputs col layout, result table top, raw data bottom
+
+with col2: #everything in this with block will be placed in column 2
+    st.subheader("Result") #subhead for this column
+    
+    if process_button: #code in this if block will be run when the button is clicked
+        with st.spinner("Running..."): #show a spinner while the code in this with block runs
+            has_error, response_content, err = glib.get_csv_response(input_content=input_text) #call the model through the supporting library
+        
+        if not has_error:
+            st.dataframe(response_content)
+            
+            csv_content = response_content.to_csv(index = False)
+            
+            st.markdown("#### Raw CSV")
+            st.text(csv_content)
+            
+        else:
+            st.error(err)
+            st.write(response_content)
+
+
 ```
 
 add requirements: anthropic
 
-Run it: `streamlit run chatbot_app.py --server.port 8080`
+Run it: `streamlit run csv_app.py --server.port 8080`
 
 Success
 
-![chatbot](/img/AWSBedrockLangchainWK-LabT1.png)
+![chatbot](/img/AWSBedrockLangchainWK-LabT7.png)
 
 ## Troubleshooting
 
