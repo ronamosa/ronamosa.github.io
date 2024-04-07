@@ -24,7 +24,7 @@ pull down the repo:
 
 ```bash
 cd ~/environment/
-curl 'https://static.us-east-1.prod.workshops.aws/public/f95f1813-6d7f-429e-b6ba-f9812fc16bbf/assets/workshop.zip' --output workshop.zip
+curl 'https://static.us-east-1.prod.workshops.aws/public/b41bacc3-e25c-4826-8554-b4aa2cb9a2e5/assets/workshop.zip' --output workshop.zip
 unzip workshop.zip
 ```
 
@@ -61,6 +61,8 @@ I will list my compiled requirements.txt here:
 boto3
 langchain_community
 streamlit
+langchain
+pypdf
 ```
 
 ## Foundational Concepts
@@ -934,6 +936,599 @@ Run it: `streamlit run text_app.py --server.port 8080`
 Success
 
 ![streamlit ui](/img/AWSBedrockLangchainWK-LabB2.png)
+
+### B3 RAG
+
+```python title="rag_lib.py" showLineNumbers
+from langchain_community.embeddings import BedrockEmbeddings
+from langchain.indexes import VectorstoreIndexCreator
+from langchain_community.vectorstores import FAISS
+from langchain_text_splitters import RecursiveCharacterTextSplitter
+from langchain_community.document_loaders import PyPDFLoader
+from langchain_community.llms import Bedrock
+
+def get_llm():
+    
+    model_kwargs = { #AI21
+        "maxTokens": 1024, 
+        "temperature": 0, 
+        "topP": 0.5, 
+        "stopSequences": [], 
+        "countPenalty": {"scale": 0 }, 
+        "presencePenalty": {"scale": 0 }, 
+        "frequencyPenalty": {"scale": 0 } 
+    }
+    
+    llm = Bedrock(
+        model_id="ai21.j2-ultra-v1", #set the foundation model
+        model_kwargs=model_kwargs) #configure the properties for Claude
+    
+    return llm
+
+def get_index(): #creates and returns an in-memory vector store to be used in the application
+    
+    embeddings = BedrockEmbeddings() #create a Titan Embeddings client
+    pdf_path = "2022-Shareholder-Letter.pdf" #assumes local PDF file with this name
+    loader = PyPDFLoader(file_path=pdf_path) #load the pdf file
+  
+    text_splitter = RecursiveCharacterTextSplitter( #create a text splitter
+        separators=["\n\n", "\n", ".", " "], #split chunks at (1) paragraph, (2) line, (3) sentence, or (4) word, in that order
+        chunk_size=1000, #divide into 1000-character chunks using the separators above
+        chunk_overlap=100 #number of characters that can overlap with previous chunk
+    )
+    
+    index_creator = VectorstoreIndexCreator( #create a vector store factory
+        vectorstore_cls=FAISS, #use an in-memory vector store for demo purposes
+        embedding=embeddings, #use Titan embeddings
+        text_splitter=text_splitter, #use the recursive text splitter
+    )
+    
+    index_from_loader = index_creator.from_loaders([loader]) #create an vector store index from the loaded PDF
+    
+    return index_from_loader #return the index to be cached by the client app
+
+def get_rag_response(index, question): #rag client function
+    
+    llm = get_llm()  
+    response_text = index.query(question=question, llm=llm) #search against the in-memory index, stuff results into a prompt and send to the llm
+    
+    return response_text
+```
+
+streamlit app `rag_app.py`
+
+```python title="rag_app.py" showLineNumbers
+
+import streamlit as st #all streamlit commands will be available through the "st" alias
+import rag_lib as glib #reference to local lib script
+
+# Titles
+st.set_page_config(page_title="Retrieval-Augmented Generation") #HTML title
+st.title("Retrieval-Augmented Generation") #page title
+
+# Vector Index
+if 'vector_index' not in st.session_state: #see if the vector index hasn't been created yet
+    with st.spinner("Indexing document..."): #show a spinner while the code in this with block runs
+        st.session_state.vector_index = glib.get_index() #retrieve the index through the supporting library and store in the app's session cache
+
+# Inputs
+input_text = st.text_area("Input text", label_visibility="collapsed") #display a multiline text box with no label
+go_button = st.button("Go", type="primary") #display a primary button
+
+# Outputs
+if go_button: #code in this if block will be run when the button is clicked
+    
+    with st.spinner("Working..."): #show a spinner while the code in this with block runs
+        response_content = glib.get_rag_response(index=st.session_state.vector_index, question=input_text) #call the model through the supporting library
+        
+        st.write(response_content) #display the response content
+```
+
+add requirements: faiss-cpu
+
+Run it: `streamlit run rag_app.py --server.port 8080`
+
+Success
+
+![RAG](/img/AWSBedrockLangchainWK-LabB3.png)
+
+### B4 Chatbot
+
+Create backend functions
+
+```python title="chatbot_lib.py" showLineNumbers
+from langchain.memory import ConversationSummaryBufferMemory
+from langchain_community.chat_models import BedrockChat
+from langchain.chains import ConversationChain
+
+# setup LLM
+def get_llm():
+        
+    model_kwargs = { #anthropic
+        "max_tokens": 512,
+        "temperature": 0, 
+        "top_k": 250, 
+        "top_p": 1, 
+        "stop_sequences": ["\n\nHuman:"] 
+    }
+    
+    llm = BedrockChat(
+        model_id="anthropic.claude-3-sonnet-20240229-v1:0", #set the foundation model
+        model_kwargs=model_kwargs) #configure the properties for Claude
+    
+    return llm
+
+# init a langchain memory object
+def get_memory(): #create memory for this chat session
+    
+    #ConversationSummaryBufferMemory requires an LLM for summarizing older messages
+    #this allows us to maintain the "big picture" of a long-running conversation
+    llm = get_llm()
+    
+    memory = ConversationSummaryBufferMemory(llm=llm, max_token_limit=1024) #Maintains a summary of previous messages
+    
+    return memory
+
+# call bedrock
+def get_chat_response(input_text, memory): #chat client function
+    
+    llm = get_llm()
+    
+    conversation_with_summary = ConversationChain( #create a chat client
+        llm = llm, #using the Bedrock LLM
+        memory = memory, #with the summarization memory
+        verbose = True #print out some of the internal states of the chain while running
+    )
+    
+    chat_response = conversation_with_summary.invoke(input_text) #pass the user message and summary to the model
+    
+    return chat_response['response']
+```
+
+Setup frontend UI
+
+```python title="chatbot_app.py" showLineNumbers
+
+import streamlit as st #all streamlit commands will be available through the "st" alias
+import chatbot_lib as glib #reference to local lib script
+
+# titles
+
+st.set_page_config(page_title="Chatbot") #HTML title
+st.title("Chatbot") #page title
+
+# add langchain memory to session cache
+
+if 'memory' not in st.session_state: #see if the memory hasn't been created yet
+    st.session_state.memory = glib.get_memory() #initialize the memory
+
+# add ui chat history to session cache
+
+if 'chat_history' not in st.session_state: #see if the chat history hasn't been created yet
+    st.session_state.chat_history = [] #initialize the chat history
+
+# render previous chat using a loop
+
+if 'chat_history' not in st.session_state: #see if the chat history hasn't been created yet
+    st.session_state.chat_history = [] #initialize the chat history
+
+# Inputs
+
+
+input_text = st.chat_input("Chat with your bot here") #display a chat input box
+
+if input_text: #run the code in this if block after the user submits a chat message
+    
+    with st.chat_message("user"): #display a user chat message
+        st.markdown(input_text) #renders the user's latest message
+    
+    st.session_state.chat_history.append({"role":"user", "text":input_text}) #append the user's latest message to the chat history
+    
+    chat_response = glib.get_chat_response(input_text=input_text, memory=st.session_state.memory) #call the model through the supporting library
+    
+    with st.chat_message("assistant"): #display a bot chat message
+        st.markdown(chat_response) #display bot's latest response
+    
+    st.session_state.chat_history.append({"role":"assistant", "text":chat_response}) #append the bot's latest message to the chat history
+```
+
+add requirements: anthropic
+
+Run it: `streamlit run chatbot_app.py --server.port 8080`
+
+Success
+
+![chatbot](/img/AWSBedrockLangchainWK-LabB4.png)
+
+## Text Patterns
+
+### T1 Chatbot RAG
+
+Backend functions
+
+```python title="" showLineNumbers
+from langchain.memory import ConversationBufferWindowMemory
+from langchain_community.chat_models import BedrockChat
+from langchain.chains import ConversationalRetrievalChain
+
+from langchain_community.embeddings import BedrockEmbeddings
+from langchain.indexes import VectorstoreIndexCreator
+from langchain_community.vectorstores import FAISS
+from langchain_text_splitters import RecursiveCharacterTextSplitter
+from langchain_community.document_loaders import PyPDFLoader
+
+# setup llm
+def get_llm():
+        
+    model_kwargs = { #anthropic
+        "max_tokens": 512,
+        "temperature": 0, 
+        "top_k": 250, 
+        "top_p": 1, 
+        "stop_sequences": ["\n\nHuman:"] 
+    }
+    
+    llm = BedrockChat(
+        model_id="anthropic.claude-3-sonnet-20240229-v1:0", #set the foundation model
+        model_kwargs=model_kwargs) #configure the properties for Claude
+    
+    return llm
+
+# in-memory vector store
+
+def get_index(): #creates and returns an in-memory vector store to be used in the application
+    
+    embeddings = BedrockEmbeddings() #create a Titan Embeddings client
+    
+    pdf_path = "2022-Shareholder-Letter.pdf" #assumes local PDF file with this name
+
+    loader = PyPDFLoader(file_path=pdf_path) #load the pdf file
+    
+    text_splitter = RecursiveCharacterTextSplitter( #create a text splitter
+        separators=["\n\n", "\n", ".", " "], #split chunks at (1) paragraph, (2) line, (3) sentence, or (4) word, in that order
+        chunk_size=1000, #divide into 1000-character chunks using the separators above
+        chunk_overlap=100 #number of characters that can overlap with previous chunk
+    )
+    
+    index_creator = VectorstoreIndexCreator( #create a vector store factory
+        vectorstore_cls=FAISS, #use an in-memory vector store for demo purposes
+        embedding=embeddings, #use Titan embeddings
+        text_splitter=text_splitter, #use the recursive text splitter
+    )
+    
+    index_from_loader = index_creator.from_loaders([loader]) #create an vector store index from the loaded PDF
+    
+    return index_from_loader #return the index to be cached by the client app
+
+# init langchain memory object
+
+def get_memory(): #create memory for this chat session
+    
+    memory = ConversationBufferWindowMemory(memory_key="chat_history", return_messages=True) #Maintains a history of previous messages
+    
+    return memory
+
+# call bedrock
+def get_rag_chat_response(input_text, memory, index): #chat client function
+    
+    llm = get_llm()
+    
+    conversation_with_retrieval = ConversationalRetrievalChain.from_llm(llm, index.vectorstore.as_retriever(), memory=memory, verbose=True)
+    
+    chat_response = conversation_with_retrieval.invoke({"question": input_text}) #pass the user message and summary to the model
+    
+    return chat_response['answer']
+```
+
+Frontend UI
+
+```python title="rag_chatbot_app.py" showLineNumbers
+import streamlit as st #all streamlit commands will be available through the "st" alias
+import rag_chatbot_lib as glib #reference to local lib script
+
+# titles
+st.set_page_config(page_title="RAG Chatbot") #HTML title
+st.title("RAG Chatbot") #page title
+
+# add langchain memory to session cache
+if 'memory' not in st.session_state: #see if the memory hasn't been created yet
+    st.session_state.memory = glib.get_memory() #initialize the memory
+
+# add UI history to session cache
+if 'chat_history' not in st.session_state: #see if the chat history hasn't been created yet
+    st.session_state.chat_history = [] #initialize the chat history
+
+# add vector index to session cache
+if 'vector_index' not in st.session_state: #see if the vector index hasn't been created yet
+    with st.spinner("Indexing document..."): #show a spinner while the code in this with block runs
+        st.session_state.vector_index = glib.get_index() #retrieve the index through the supporting library and store in the app's session cache
+
+# Output - render chat history
+#Re-render the chat history (Streamlit re-runs this script, so need this to preserve previous chat messages)
+for message in st.session_state.chat_history: #loop through the chat history
+    with st.chat_message(message["role"]): #renders a chat line for the given role, containing everything in the with block
+        st.markdown(message["text"]) #display the chat content
+
+# Inputs
+input_text = st.chat_input("Chat with your bot here") #display a chat input box
+
+if input_text: #run the code in this if block after the user submits a chat message
+    
+    with st.chat_message("user"): #display a user chat message
+        st.markdown(input_text) #renders the user's latest message
+    
+    st.session_state.chat_history.append({"role":"user", "text":input_text}) #append the user's latest message to the chat history
+    
+    chat_response = glib.get_rag_chat_response(input_text=input_text, memory=st.session_state.memory, index=st.session_state.vector_index,) #call the model through the supporting library
+    
+    with st.chat_message("assistant"): #display a bot chat message
+        st.markdown(chat_response) #display bot's latest response
+    
+    st.session_state.chat_history.append({"role":"assistant", "text":chat_response}) #append the bot's latest message to the chat history
+
+
+```
+
+add requirements: anthropic
+
+Run it: `streamlit run chatbot_app.py --server.port 8080`
+
+Success
+
+![chatbot](/img/AWSBedrockLangchainWK-LabT1.png)
+
+### T2 Doc Summary
+
+Backend functions
+
+```python title="summarization_lib.py" showLineNumbers
+from langchain.prompts import PromptTemplate
+from langchain_community.llms import Bedrock
+from langchain.chains.summarize import load_summarize_chain
+from langchain_text_splitters import RecursiveCharacterTextSplitter
+from langchain_community.document_loaders import PyPDFLoader
+
+# setup llm
+def get_llm():
+    
+    model_kwargs = { #AI21
+        "maxTokens": 8000, 
+        "temperature": 0, 
+        "topP": 0.5, 
+        "stopSequences": [], 
+        "countPenalty": {"scale": 0 }, 
+        "presencePenalty": {"scale": 0 }, 
+        "frequencyPenalty": {"scale": 0 } 
+    }
+    
+    llm = Bedrock(
+        model_id="ai21.j2-ultra-v1", #set the foundation model
+        model_kwargs=model_kwargs) #configure the properties for Claude
+    
+    return llm
+
+# create doc chunks of PDF
+pdf_path = "2022-Shareholder-Letter.pdf"
+
+def get_docs():
+    
+    loader = PyPDFLoader(file_path=pdf_path)
+    documents = loader.load()
+    text_splitter = RecursiveCharacterTextSplitter(
+        separators=["\n\n", "\n", ".", " "], chunk_size=4000, chunk_overlap=100 
+    )
+    docs = text_splitter.split_documents(documents=documents)
+    
+    return docs
+
+# call bedrock
+def get_summary(return_intermediate_steps=False):
+    
+    map_prompt_template = "{text}\n\nWrite a few sentences summarizing the above:"
+    map_prompt = PromptTemplate(template=map_prompt_template, input_variables=["text"])
+    
+    combine_prompt_template = "{text}\n\nWrite a detailed analysis of the above:"
+    combine_prompt = PromptTemplate(template=combine_prompt_template, input_variables=["text"])
+    
+    llm = get_llm()
+    docs = get_docs()
+    
+    chain = load_summarize_chain(llm, chain_type="map_reduce", map_prompt=map_prompt, combine_prompt=combine_prompt, return_intermediate_steps=return_intermediate_steps)
+    
+    if return_intermediate_steps:
+        return chain.invoke({"input_documents": docs}, return_only_outputs=True)
+    else:
+        return chain.invoke(docs, return_only_outputs=True)
+
+```
+
+Frontend UI
+
+```python title="summarization_app" showLineNumbers
+import streamlit as st
+import summarization_lib as glib
+
+# titles
+st.set_page_config(page_title="Document Summarization")
+st.title("Document Summarization")
+
+# summarisation elements
+return_intermediate_steps = st.checkbox("Return intermediate steps", value=True)
+summarize_button = st.button("Summarize", type="primary")
+
+
+if summarize_button:
+    st.subheader("Combined summary")
+    with st.spinner("Running..."):
+        response_content = glib.get_summary(return_intermediate_steps=return_intermediate_steps)
+
+
+    if return_intermediate_steps:
+        st.write(response_content["output_text"])
+        st.subheader("Section summaries")
+
+        for step in response_content["intermediate_steps"]:
+            st.write(step)
+            st.markdown("---")
+    else:
+        st.write(response_content["output_text"])
+```
+
+add requirements: transformers
+
+Run it: `streamlit run summarization_app.py --server.port 8080`
+
+Success
+
+![chatbot](/img/AWSBedrockLangchainWK-LabT2.png)
+
+### T3 Response Streaming
+
+Backend functions
+
+```python title="streaming_lib.py" showLineNumbers
+#imports
+from langchain.chains import ConversationChain
+from langchain_community.llms import Bedrock
+
+# setup llm
+def get_llm(streaming_callback):
+    model_kwargs = {
+        "max_tokens": 4000,
+        "temperature": 0,
+        "p": 0.01,
+        "k": 0,
+        "stop_sequences": [],
+        "return_likelihoods": "NONE",
+        "stream": True
+    }
+    
+    llm = Bedrock(
+        model_id="cohere.command-text-v14",
+        model_kwargs=model_kwargs,
+        streaming=True,
+        callbacks=[streaming_callback],
+    )
+    
+    return llm
+
+# call bedrock, stream response
+def get_streaming_response(prompt, streaming_callback):
+    conversation_with_summary = ConversationChain(
+        llm=get_llm(streaming_callback)
+    )
+    return conversation_with_summary.predict(input=prompt)
+```
+
+Frontend UI
+
+```python title="streaming_app.py" showLineNumbers
+import streaming_lib as glib  # reference to local lib script
+import streamlit as st
+from langchain_community.callbacks.streamlit import StreamlitCallbackHandler # <<<<<
+
+# titles
+st.set_page_config(page_title="Response Streaming")  # HTML title
+st.title("Response Streaming")  # page title
+
+# Inputs
+input_text = st.text_area("Input text", label_visibility="collapsed")
+go_button = st.button("Go", type="primary")  # display a primary button
+
+# Outputs
+if go_button:  # code in this if block will be run when the button is clicked
+    #use an empty container for streaming output
+    st_callback = StreamlitCallbackHandler(st.container())
+    streaming_response = glib.get_streaming_response(prompt=input_text, streaming_callback=st_callback)
+```
+
+add requirements: anthropic
+
+Run it: `streamlit run streaming_app.py --server.port 8080`
+
+Success
+
+![chatbot](/img/AWSBedrockLangchainWK-LabT3.png)
+
+### T4
+
+Backend functions
+
+```python title="" showLineNumbers
+```
+
+Frontend UI
+
+```python title="" showLineNumbers
+```
+
+add requirements: anthropic
+
+Run it: `streamlit run chatbot_app.py --server.port 8080`
+
+Success
+
+![chatbot](/img/AWSBedrockLangchainWK-LabT1.png)
+
+### T5
+
+Backend functions
+
+```python title="" showLineNumbers
+```
+
+Frontend UI
+
+```python title="" showLineNumbers
+```
+
+add requirements: anthropic
+
+Run it: `streamlit run chatbot_app.py --server.port 8080`
+
+Success
+
+![chatbot](/img/AWSBedrockLangchainWK-LabT1.png)
+
+### T7
+
+Backend functions
+
+```python title="" showLineNumbers
+```
+
+Frontend UI
+
+```python title="" showLineNumbers
+```
+
+add requirements: anthropic
+
+Run it: `streamlit run chatbot_app.py --server.port 8080`
+
+Success
+
+![chatbot](/img/AWSBedrockLangchainWK-LabT1.png)
+
+### T2
+
+Backend functions
+
+```python title="" showLineNumbers
+```
+
+Frontend UI
+
+```python title="" showLineNumbers
+```
+
+add requirements: anthropic
+
+Run it: `streamlit run chatbot_app.py --server.port 8080`
+
+Success
+
+![chatbot](/img/AWSBedrockLangchainWK-LabT1.png)
 
 ## Troubleshooting
 
