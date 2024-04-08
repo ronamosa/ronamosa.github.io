@@ -2,6 +2,8 @@
 title: "Building with Amazon Bedrock and LangChain Workshop"
 ---
 
+![header](/img/AWSBedrockLangchainWK-Header.png)
+
 :::info
 
 These are my notes for the [Workshop](https://catalog.workshops.aws/building-with-amazon-bedrock/en-US) Section.
@@ -1380,7 +1382,7 @@ Run it: `streamlit run summarization_app.py --server.port 8080`
 
 Success
 
-![chatbot](/img/AWSBedrockLangchainWK-LabT2.png)
+![docsumm](/img/AWSBedrockLangchainWK-LabT2.png)
 
 ### T3 Response Streaming
 
@@ -1448,7 +1450,7 @@ Run it: `streamlit run streaming_app.py --server.port 8080`
 
 Success
 
-![chatbot](/img/AWSBedrockLangchainWK-LabT3.png)
+![response](/img/AWSBedrockLangchainWK-LabT3.png)
 
 ### T4 Embeddings Search
 
@@ -1538,7 +1540,11 @@ Run it: `streamlit run embeddings_search_app.py --server.port 8080`
 
 Success
 
-![chatbot](/img/AWSBedrockLangchainWK-LabT4.png)
+![embeddings1](/img/AWSBedrockLangchainWK-LabT41.png)
+
+check out the embeddings values
+
+![embeddings2](/img/AWSBedrockLangchainWK-LabT42.png)
 
 ### T5 Personalised Recommendations
 
@@ -1669,7 +1675,7 @@ Success
 
 You can see the recommendation summary compared to the full service documentation in the 'Original' section.
 
-![chatbot](/img/AWSBedrockLangchainWK-LabT5.png)
+![personal](/img/AWSBedrockLangchainWK-LabT5.png)
 
 ### T6 Extract JSON
 
@@ -1751,7 +1757,7 @@ Run it: `streamlit run json_app.py --server.port 8080`
 
 Success
 
-![chatbot](/img/AWSBedrockLangchainWK-LabT6.png)
+![JSON](/img/AWSBedrockLangchainWK-LabT6.png)
 
 ### T7 Text to CSV
 
@@ -1831,8 +1837,6 @@ with col2: #everything in this with block will be placed in column 2
         else:
             st.error(err)
             st.write(response_content)
-
-
 ```
 
 add requirements: anthropic
@@ -1841,7 +1845,7 @@ Run it: `streamlit run csv_app.py --server.port 8080`
 
 Success
 
-![chatbot](/img/AWSBedrockLangchainWK-LabT7.png)
+![CSV](/img/AWSBedrockLangchainWK-LabT7.png)
 
 ## Troubleshooting
 
