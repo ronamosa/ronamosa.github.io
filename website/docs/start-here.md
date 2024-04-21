@@ -18,29 +18,35 @@ The sidebar menu and documents will grow as I continue to add more notes to the 
 
 ## 🗓️ Currently
 
-### Reading
+Things I'm working or focused on:-
 
-- ["Sapiens: A Brief History of Mankind](https://www.goodreads.com/book/show/23692271-sapiens) by Yuval Noah Harari.
-- ["Finite and Infinite Games: A Vision of Life as Play and Possibility"](https://www.goodreads.com/book/show/16117440-finite-and-infinite-games) by James P. Carse.
-
-### Studying
-
-- Solution Architect Professional (Due for work, Dec 2023)
-- ⏸️ (on hold, need to complete) [Go: The Complete Developers Guide (Golang).](https://www.udemy.com/share/101Xzy3@hziIwJOYjh6rFVCIAKG1zdfk5Eb-J9Kemb9gSJhrrXEqB7SOZamW13muBuWYkvjneg==/)
+- Newsletter: ["The Uncommon Engineer"](https://www.uncommonengineer.com/)
+- Charity: ["The Pasifika Tech Education Charity"](https://www.pasifikateched.net/)
+- Learning all things AI/LLMs
 
 ## 📚 [Books](books/reading-list.md)
 
 My reading list, what I'm currently reading and notes on books I've read.
 
+Current reading:
+
+|Title|Author|
+|:------|:-----------|
+| Unmasking AI: My Mission to Protect What Is Human          | Joy Buolamwini   |
+| Right/Wrong: How Technology Transforms Our Ethics          | Juan Enriquez    |
+
+I have a mix of kindle and physical books that I read.
+
 ## 📗 Study
 
-Study and exam notes for certifications, courses (newest->oldest)
+These are the study and exam notes for certifications, courses (newest->oldest) that I have passed.
 
-- [AWS Security Specialty S01 Certification 2023](study/SCS-C01/README.md)
-- [AWS Solution Architect Associate S03 Certification 2022](study/SAA-03/README.md)
-- [AWS Cloud Practitioner Certification 2022](study/CCP/README.md)
-- [CKS: Certified Kubernetes Security Specialist 2021](study/CKS/README.md)
-- [CKA: Certified Kubernetes Administrator 2021](study/CKA/README.md)
+- ✅ [AWS Solution Architect Professional C02 Cerfitication 2024](#)
+- ✅ [AWS Security Specialty S01 Certification 2023](study/SCS-C01/README.md)
+- ✅ [AWS Solution Architect Associate S03 Certification 2022](study/SAA-03/README.md)
+- ✅ [AWS Cloud Practitioner Certification 2022](study/CCP/README.md)
+- ✅ [CKS: Certified Kubernetes Security Specialist 2021](study/CKS/README.md)
+- ✅ [CKA: Certified Kubernetes Administrator 2021](study/CKA/README.md)
 
 ## 🏴‍☠️ Hacker
 
@@ -53,12 +59,6 @@ I work on hacking various rooms on the TryHackMe platform under ["RxHack"](https
 ### HackTheBox
 
 I started on HackTheBox on March-15-2022 and will post write-ups of my hacking efforts here as well.
-
-### Twitch
-
-⏸️ _Currently on hold_.
-
-> My hacking stream at [https://www.twitch.tv/RxHackk](https://www.twitch.tv/rxhackk) where I hack on TryHackme or HackTheBox machines and do my best to follow ['swyx'](https://www.swyx.io/about) philosophy of ["learning in public"](https://www.swyx.io/learn-in-public/).
 
 ## 💻 Engineer
 
