@@ -22,7 +22,7 @@ Things I'm working or focused on:-
 
 - Newsletter: ["The Uncommon Engineer"](https://www.uncommonengineer.com/)
 - Charity: ["The Pasifika Tech Education Charity"](https://www.pasifikateched.net/)
-- Learning all things AI/LLMs (see ["AI"](engineer/AI)
+- Learning all things AI/LLMs (see ["AI"](engineer/AI/DeepLearning.AI)
 
 ## 📚 [Books](books/reading-list.md)
 
