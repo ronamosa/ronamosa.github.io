@@ -254,7 +254,7 @@ sh-4.2$ /opt/aws/bin/cfn-signal -e $? --stack staging-cluster --resource ECSAuto
 sh: /opt/aws/bin/cfn-signal: No such file or directory
 ```
 
-Woops. Looks like the userdata didn't install it!
+Woops. Looks like the `UserData` didn't install it!
 
 Install (manually)
 
@@ -292,7 +292,218 @@ Check Cloudformation:
 
 ![CFN success](/img/AWS-CICD-ECS-CF-staging-complete.png)
 
+:::tip Fix
+
+In the cloudformation YAML file, e.g. `Cluster-ECS-EC2-2AZ-1NAT.yaml`, you need to add `sudo` to the `yum install -y aws-cfn-bootstrap` command for it to work.
+
+:::
+
+## Code Commit Lab
+
+From Cloud9 check my git is already setup:
+
+```bash
+cloudbuilderio:~/environment $ git config --global --list
+credential.helper=!aws codecommit credential-helper $@
+credential.usehttppath=true
+core.editor=nano
+```
+
+looks good.
+
+setup name, email
+
+```bash
+cloudbuilderio:~/environment/git-test (master) $ git config --global user.name "Ron Amosa"
+cloudbuilderio:~/environment/git-test (master) $ git config --global user.email ramxsa@amazon.com
+```
+
+### Create AWS Code Commit Repo
+
+```bash
+cloudbuilderio:~/environment/git-test (master) $ repo_url=$(aws codecommit create-repository --repository-name git-test --query repositoryMetadata.cloneUrlHttp --output text)
+cloudbuilderio:~/environment/git-test (master) $ echo Pushing to $repo_url
+Pushing to https://git-codecommit.us-east-1.amazonaws.com/v1/repos/git-test
+cloudbuilderio:~/environment/git-test (master) $ git remote add origin $repo_url
+cloudbuilderio:~/environment/git-test (master) $ git push -u origin master
+Enumerating objects: 3, done.
+Counting objects: 100% (3/3), done.
+Writing objects: 100% (3/3), 234 bytes | 234.00 KiB/s, done.
+Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
+remote: Validating objects: 0%
+remote: Validating objects: 100%
+To https://git-codecommit.us-east-1.amazonaws.com/v1/repos/git-test
+ * [new branch]      master -> master
+branch 'master' set up to track 'origin/master'.
+cloudbuilderio:~/environment/git-test (master) $ 
+```
+
+Check it out on AWS Console.
+
+### Branch Hotfix & Merge
+
+Create a branch, made change to `hello.txt`, commit and send branch, voila.
+
+```bash
+cloudbuilderio:~/environment/git-test (master) $ git checkout -b hotfix
+Switched to a new branch 'hotfix'
+cloudbuilderio:~/environment/git-test (hotfix) $ echo "World" >> hello.txt 
+cloudbuilderio:~/environment/git-test (hotfix) $ git commit -a -m "Fixed issue"
+[hotfix 37d6c9f] Fixed issue
+ 1 file changed, 1 insertion(+)
+cloudbuilderio:~/environment/git-test (hotfix) $ git push -u origin hotfix
+Enumerating objects: 5, done.
+Counting objects: 100% (5/5), done.
+Writing objects: 100% (3/3), 254 bytes | 254.00 KiB/s, done.
+Total 3 (delta 0), reused 0 (delta 0), pack-reused 0
+remote: Validating objects: 100%
+To https://git-codecommit.us-east-1.amazonaws.com/v1/repos/git-test
+ * [new branch]      hotfix -> hotfix
+branch 'hotfix' set up to track 'origin/hotfix'.
+cloudbuilderio:~/environment/git-test (hotfix) $ 
+```
+
+Now merge main
+
+```bash
+cloudbuilderio:~/environment/git-test (hotfix) $ git checkout master
+Switched to branch 'master'
+Your branch is up to date with 'origin/master'.
+cloudbuilderio:~/environment/git-test (master) $ git merge hotfix
+Updating 24c132b..37d6c9f
+Fast-forward
+ hello.txt | 1 +
+ 1 file changed, 1 insertion(+)
+cloudbuilderio:~/environment/git-test (master) $ git push origin master
+Total 0 (delta 0), reused 0 (delta 0), pack-reused 0
+To https://git-codecommit.us-east-1.amazonaws.com/v1/repos/git-test
+   24c132b..37d6c9f  master -> master
+cloudbuilderio:~/environment/git-test (master) $ 
+```
+
+✅ Done.
+
+### Clean Up
+
+```bash
+cloudbuilderio:~/environment/git-test (master) $ aws codecommit delete-repository --repository-name git-test
+{
+    "repositoryId": "da2bec73-702f-4fc4-ac15-9eca295514c0"
+}
+cloudbuilderio:~/environment/git-test (master) $ cd ~/environment
+cloudbuilderio:~/environment $ rm -rf git-test
+cloudbuilderio:~/environment $ ll
+total 20
+-rw-r--r--. 1 ec2-user ec2-user   569 Apr  2 09:56 README.md
+drwxr-xr-x. 9 ec2-user ec2-user 16384 Apr 23 05:57 cicd-for-ecs-workshop-code
+cloudbuilderio:~/environment $ 
+```
+
+clean up is clean. double check `aws codecommit list-repositories | grep git-test` returns nada.
+
 ## Troubleshooting
+
+### Cloudformation UserData
+
+the userdata script is not running correctly to setup the `cfn-signal` app to signal the cluster it's all good, which is causing a rollback.
+
+```bash
+h-4.2$ cd /var/lib/cloud/instance/scripts/
+sh-4.2$ ls -al
+total 4
+drwxr-xr-x 2 root root  22 Apr 24 05:31 .
+drwxr-xr-x 5 root root 218 Apr 24 05:32 ..
+-rwx------ 1 root root 304 Apr 24 05:31 part-001
+sh-4.2$ cat part-001
+cat: part-001: Permission denied
+sh-4.2$ sudo cat part-001
+#!/bin/bash -xe
+echo ECS_CLUSTER=prod >> /etc/ecs/ecs.config
+sudo yum install -y aws-cfn-bootstrap
+sudo yum install -y amazon-ssm-agent
+systemctl enable amazon-ssm-agent
+systemctl start amazon-ssm-agent
+/opt/aws/bin/cfn-signal -e $? --stack prod-cluster --resource ECSAutoScalingGroup --region us-east-1
+sh-4.2$
+```
+
+during a subsequent re-deploy, I ssm into the EC2 instance and check the logfile:
+
+```bash
+loud-init v. 19.3-46.amzn2.0.1 running 'modules:config' at Wed, 24 Apr 2024 08:48:57 +0000. Up 7.61 seconds.
+Loaded plugins: priorities, update-motd, upgrade-helper
+
+
+ One of the configured repositories failed (Unknown),
+ and yum doesn't have enough cached data to continue. At this point the only
+ safe thing yum can do is fail. There are a few ways to work "fix" this:
+
+     1. Contact the upstream for the repository and get them to fix the problem.
+
+     2. Reconfigure the baseurl/etc. for the repository, to point to a working
+        upstream. This is most often useful if you are using a newer
+        distribution release than is supported by the repository (and the
+        packages for the previous distribution release still work).
+
+     3. Run the command with the repository temporarily disabled
+            yum --disablerepo=<repoid> ...
+
+     4. Disable the repository permanently, so yum won't use it by default. Yum
+        will then just ignore the repository until you permanently enable it
+        again or use --enablerepo for temporary usage:
+
+            yum-config-manager --disable <repoid>
+        or
+            subscription-manager repos --disable=<repoid>
+
+     5. Configure the failing repository to be skipped, if it is unavailable.
+        Note that yum will try to contact the repo. when it runs most commands,
+        so will have to try and fail each time (and thus. yum will be be much
+        slower). If it is a very temporary problem though, this is often a nice
+        compromise:
+
+            yum-config-manager --save --setopt=<repoid>.skip_if_unavailable=true
+
+Cannot find a valid baseurl for repo: amzn2-core/2/x86_64
+Could not retrieve mirrorlist https://amazonlinux-2-repos-us-east-1.s3.dualstack.us-east-1.amazonaws.com/2/core/latest/x86_64/mirror.list error was
+12: Timeout on https://amazonlinux-2-repos-us-east-1.s3.dualstack.us-east-1.amazonaws.com/2/core/latest/x86_64/mirror.list: (28, 'Connection timeout after 5000 ms')
+Apr 24 08:49:33 cloud-init[3185]: util.py[WARNING]: Package upgrade failed
+Apr 24 08:49:33 cloud-init[3185]: cc_package_update_upgrade_install.py[WARNING]: 1 failed with exceptions, re-raising the last one
+Apr 24 08:49:33 cloud-init[3185]: util.py[WARNING]: Running module package-update-upgrade-install (<module 'cloudinit.config.cc_package_update_upgrade_install' from '/usr/lib/python2.7/site-packages/cloudinit/config/cc_package_update_upgrade_install.pyc'>) failed
+Cloud-init v. 19.3-46.amzn2.0.1 running 'modules:final' at Wed, 24 Apr 2024 08:49:34 +0000. Up 43.89 seconds.
++ echo ECS_CLUSTER=prod
++ sudo yum install -y aws-cfn-bootstrap
+Loaded plugins: priorities, update-motd, upgrade-helper
+```
+
+I see this error, so it's having trouble with the `yum` command, but what exactly it is can be a little deceptive because it says `Cannot find a valid baseurl for repo: amzn2-core/2/x86_64` which could be interpreted as it's a non-existant URL repo...
+
+OR, you read:
+
+```bash
+Timeout on https://amazonlinux-2-repos-us-east-1.s3.dualstack.us-east-1.amazonaws.com/2/core/latest/x86_64/mirror.list: (28, 'Connection timeout after 5000 ms')
+```
+
+And think "it's the network" i.e. the `yum` command is blocked from reaching the internet, or the internet is not available at the time of command running.
+
+:::tip Solution
+
+Add the following line to the `UserData` script to have the script wait until the network request is valid, and then proceed with the `yum` commands.
+
+```bash
+#!/bin/bash
+# Wait for network availability
+while ! curl -s --max-time 2 https://www.google.com > /dev/null; do
+  echo 'Waiting for network connection...'
+  sleep 2
+done
+# Proceed with yum update
+yum update -y
+```
+
+_*Credit to ChatGPT for suggesting this as the approach to the error message._
+
+:::
 
 ### Cloud9
 
