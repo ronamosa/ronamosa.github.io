@@ -286,7 +286,7 @@ Review code:
 Your directory should look like this:
 
 ```bash
-~/Repositories/SM-gpt-neo-125m/gpt-neo-125m-model ❯ ll                    took  6m 6s at  22:02:15
+~/Repositories/SM-gpt-neo-125m/gpt-neo-125m-model ❯ ll 
 total 332M
 -rw-rw-r-- 1 rxhackk rxhackk 1007 Apr  2 21:41 config.json
 -rw-rw-r-- 1 rxhackk rxhackk 1.2K Apr  2 22:02 inference.py
@@ -445,11 +445,11 @@ there was a bunch of [troubleshooting](#troubleshooting) that happened before th
 :::
 
 ```bash
-~/Repositories/SM-gpt-neo-125m ❯ python3 deploy.py                                     at  23:43:51
+~/Repositories/SM-gpt-neo-125m ❯ python3 deploy.py   at 23:43:51
 sagemaker.config INFO - Not applying SDK defaults from location: /etc/xdg/xdg-ubuntu/sagemaker/config.yaml
 sagemaker.config INFO - Not applying SDK defaults from location: /home/rxhackk/.config/sagemaker/config.yaml
 ----------!%                  
-~/Repositories/SM-gpt-neo-125m ❯                                         took  14m 1s at  
+~/Repositories/SM-gpt-neo-125m ❯   took 14m 1s at
 ```
 
 ⏱️ 14mins to deploy.
@@ -523,7 +523,7 @@ response:
 ✅ We have a `output.txt` file now from our LLM
 
 ```bash
-❯ cat output.txt                                                                                                        took  44s at  11:58:49
+❯ cat output.txt   took  44s at  11:58:49
 {"generated_text": "Hi, LLM!\n\nI'm a little confused about the word \"soul\" in the English language. I'm not sure what the word means in the English language, but I'm not sure what the word means in the English language. I'm not sure what the word means in the English language. I'm not sure what the word means in the English language. I'm not sure what the word means in the English language. I'm not sure what the word means in the"}%
 ```
 
@@ -627,12 +627,12 @@ predictor = pytorch_model.deploy(
 Run re-deploy: `python3 deploy.py`
 
 ```bash
-~/Repositories/SM-gpt-neo-125m ❯ python3 deploy.py                                           at  16:08:03
+~/Repositories/SM-gpt-neo-125m ❯ python3 deploy.py                                           at  16:08:03
 sagemaker.config INFO - Not applying SDK defaults from location: /etc/xdg/xdg-ubuntu/sagemaker/config.yaml
 sagemaker.config INFO - Not applying SDK defaults from location: /home/rxhackk/.config/sagemaker/config.yaml
 -
 --------!%    
-  ~/Repositories/SM-gpt-neo-125m ❯                                                       took  13m 40s
+  ~/Repositories/SM-gpt-neo-125m ❯                                                       took  13m 40s
 ```
 
 only took ⏱️ **13m40s** this time.
@@ -768,7 +768,7 @@ Invalid base64: "{"text": "Hi, LLM!"}"
 I asked Claude3 and got these solutions:
 
 ```bash
-aws sagemaker-runtime invoke-endpoint \                                                                                    ✘ 255 at  11:52:39
+aws sagemaker-runtime invoke-endpoint \          ✘ 255 at  11:52:39
   --endpoint-name pytorch-inference-2024-04-03-10-52-17-710 \
   --body $(echo '{"text": "Hi, LLM!"}' | base64) \
   --content-type application/json \
