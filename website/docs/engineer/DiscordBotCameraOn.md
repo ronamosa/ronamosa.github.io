@@ -25,20 +25,18 @@ Setting up a Discord bot consists of three things
 ## Discord Bot Application
 
 - Go to the Discord Developer Portal (<https://discord.com/developers/applications>)
-- Create a new application and add a bot to it
-- Obtain the bot token for authentication
+- Create a new application, give app (bot) a name.
+- Go to side menu `Bot`
+- reset Token and copy for later
+- disable `Public Bot`
+- Got to side menu `OAuth2`, look for the `OAuth2 URL Generator`
+- select scope `bot`
+- then select permissions `Send Messages`, `Manage Roles` and `Kick Members`
+- Go down to the generated URL and copy - this is how you add your bot to your server.
 
-get notes from here https://discord.com/developers/docs/quick-start/getting-started 
-
-1. Install the necessary dependencies:
-   - Make sure you have Node.js installed on your system
-   - Create a new directory for your bot project
-   - Initialize a new Node.js project with `npm init`
-   - Install the required dependencies:
-
-     ```
-     npm install discord.js
-     ```
+:::info Reference
+get notes from here ["Get Started"](https://discord.com/developers/docs/quick-start/getting-started) guide.
+:::
 
 ## Heroku Bot App
 
@@ -143,17 +141,6 @@ Successfully connected.
 
 ## Discord Server Setup
 
-5. Invite the bot to your Discord server:
-   - Go back to the Discord Developer Portal
-   - Navigate to the "OAuth2" section in your bot application
-   - Select the "bot" scope and the necessary permissions (e.g., "Send Messages", "Manage Roles", "Kick Members")
-   - Copy the generated invite link and use it to invite the bot to your server
-
-That's it! Your Discord bot is now ready to enforce the "camera on" policy in the specified video channels. When a user joins one of those channels without their camera enabled, the bot will send them a direct message reminding them to turn on their camera. If they don't comply within the specified time limit, the bot will kick them from the channel.
-
-Remember to handle the bot with care and ensure that it has the necessary permissions to send messages and kick members in the designated channels.
-
-Let me know if you have any further questions or if you need assistance with any specific part of the process!
 
 ## Troubleshooting
 
