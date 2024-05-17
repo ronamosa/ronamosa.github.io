@@ -34,6 +34,8 @@ Setting up a Discord bot consists of three things
 - then select permissions `Send Messages`, `Manage Roles` and `Kick Members`
 - Go down to the generated URL and copy - this is how you add your bot to your server.
 
+![Added to Discord](/img/DiscordBotCamera-AddDiscord.png)
+
 :::info Reference
 get notes from here ["Get Started"](https://discord.com/developers/docs/quick-start/getting-started) guide.
 :::
