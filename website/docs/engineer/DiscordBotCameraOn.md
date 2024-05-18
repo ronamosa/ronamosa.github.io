@@ -143,8 +143,28 @@ Successfully connected.
 
 ## Discord Server Setup
 
-
 ## Troubleshooting
+
+### Permissions
+
+First time running the basic bot code, permissions tweak needed:
+
+```bash
+2024-05-17T22:44:01.638622+00:00 app[worker.1]: /app/node_modules/discord.js/src/rest/RequestHandler.js:154
+2024-05-17T22:44:01.638692+00:00 app[worker.1]: throw new DiscordAPIError(request.path, data, request.method, res.status);
+2024-05-17T22:44:01.638693+00:00 app[worker.1]: ^
+2024-05-17T22:44:01.638693+00:00 app[worker.1]: 
+2024-05-17T22:44:01.638694+00:00 app[worker.1]: DiscordAPIError: Missing Permissions
+2024-05-17T22:44:01.638694+00:00 app[worker.1]: at RequestHandler.execute (/app/node_modules/discord.js/src/rest/RequestHandler.js:154:13)
+2024-05-17T22:44:01.638694+00:00 app[worker.1]: at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+2024-05-17T22:44:01.638696+00:00 app[worker.1]: at async RequestHandler.push (/app/node_modules/discord.js/src/rest/RequestHandler.js:39:14)
+2024-05-17T22:44:01.638696+00:00 app[worker.1]: at async GuildMember.edit (/app/node_modules/discord.js/src/structures/GuildMember.js:312:5) {
+2024-05-17T22:44:01.638697+00:00 app[worker.1]: method: 'patch',
+2024-05-17T22:44:01.638698+00:00 app[worker.1]: path: '/guilds/1086150687269847080/members/894143297050787850',
+2024-05-17T22:44:01.638698+00:00 app[worker.1]: code: 50013,
+2024-05-17T22:44:01.638698+00:00 app[worker.1]: httpStatus: 403
+2024-05-17T22:44:01.638698+00:00 app[worker.1]: }
+```
 
 ### Crashed on Heroku
 
