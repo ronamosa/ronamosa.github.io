@@ -31,8 +31,12 @@ Setting up a Discord bot consists of three things
 - disable `Public Bot`
 - Got to side menu `OAuth2`, look for the `OAuth2 URL Generator`
 - select scope `bot`
-- then select permissions `Send Messages`, `Manage Roles` and `Kick Members`
+- then select permissions `Send Messages`, `Manage Roles` and `Move Members`
 - Go down to the generated URL and copy - this is how you add your bot to your server.
+
+:::note
+Permissions-wise, "kicking" someone from a voice channel is actually to "move" them out, so you need `Move Members` and not `Kick Members` which will axe them from the disord server entirely.
+:::
 
 ![Added to Discord](/img/DiscordBotCamera-AddDiscord.png)
 
@@ -125,7 +129,23 @@ client.login(token);
 
 Do the usual things to the code, `git add . && git commit -m "initial commit"`, add remote branch as needed and push `git push origin main`.
 
-### Connect GH to Heroku
+### Connect GH to Heroku (CLI)
+
+Install Heroku cli, login.
+
+Check remotes on current repo.
+
+Add heroku remote with `heroku git:remote -a <app-name>`
+
+```bash
+~/Repos/rxbot on CameraEnabled !1 ❯ git remote -v   
+origin  git@github.com:ronamosa/rxbot.git (fetch)
+origin  git@github.com:ronamosa/rxbot.git (push)
+~/Repos/rxbot on CameraEnabled ❯ heroku git:remote -a rxbot
+set git remote heroku to https://git.heroku.com/rxbot.git
+```
+
+### Connect GH to Heroku (Manual)
 
 login to Heroku, create your app, go into your app, go to `Deploy` tab and then look for `Deployment method` and see this:
 
