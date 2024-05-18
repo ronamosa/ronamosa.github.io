@@ -24,6 +24,10 @@ Setting up a Discord bot consists of three things
 
 ## Discord Bot Application
 
+:::info Reference
+Get notes from here: ["Get Started"](https://discord.com/developers/docs/quick-start/getting-started) guide.
+:::
+
 - Go to the Discord Developer Portal (<https://discord.com/developers/applications>)
 - Create a new application, give app (bot) a name.
 - Go to side menu `Bot`
@@ -31,17 +35,11 @@ Setting up a Discord bot consists of three things
 - disable `Public Bot`
 - Got to side menu `OAuth2`, look for the `OAuth2 URL Generator`
 - select scope `bot`
-- then select permissions `Send Messages`, `Manage Roles` and `Move Members`
+- then select permissions `Send Messages`, `Manage Roles`, `Move Members` and `Read Message History`
 - Go down to the generated URL and copy - this is how you add your bot to your server.
 
 :::note
 Permissions-wise, "kicking" someone from a voice channel is actually to "move" them out, so you need `Move Members` and not `Kick Members` which will axe them from the disord server entirely.
-:::
-
-![Added to Discord](/img/DiscordBotCamera-AddDiscord.png)
-
-:::info Reference
-get notes from here ["Get Started"](https://discord.com/developers/docs/quick-start/getting-started) guide.
 :::
 
 ## Heroku Bot App
@@ -78,40 +76,90 @@ WARNING_TIMEOUT=30000
 worker: node bot.js
 ```
 
+:::note
+This is the final working bot code with a few bells & whistles. I started generating code with Claude 3, but after a few snags went back to `GPT-4o` and my honest opinion, is that GPT gave me better quality code that solved the complex use case quicker than Claude.
+:::
+
 ```javascript title=bot.js
+require('dotenv').config();
 const Discord = require('discord.js');
 const client = new Discord.Client();
 
 const token = process.env.BOT_TOKEN;
 const cameraOnChannels = process.env.CAMERA_ON_CHANNELS.split(',');
 const warningTimeout = parseInt(process.env.WARNING_TIMEOUT);
+const warnedUsers = new Map();
 
 client.on('ready', () => {
-  console.log(`Logged in as ${client.user.tag}`);
+  console.log(`Logged in as ${client.user.tag}!`);
 });
 
-client.on('voiceStateUpdate', (oldState, newState) => {
-  if (cameraOnChannels.includes(newState.channelID) && !newState.selfVideo) {
-    const member = newState.member;
-    const channel = newState.channel;
+client.on('error', (error) => {
+  console.error('The bot encountered an error:', error);
+});
 
-    member.send(`Please enable your camera in the channel "${channel.name}".`);
+client.on('voiceStateUpdate', async (oldState, newState) => {
+  console.log(`Voice state update detected for user ${newState.member.user.tag}. Old Channel: ${oldState.channelID}, New Channel: ${newState.channelID}, Camera On: ${newState.selfVideo}`);
 
-    setTimeout(() => {
-      if (!newState.selfVideo) {
-        member.voice.kick('Camera not enabled');
-      }
-    }, warningTimeout);
+  if (!cameraOnChannels.includes(newState.channelID)) return;
+
+  const member = newState.member;
+  const channel = newState.channel;
+
+  if (newState.channelID !== oldState.channelID && !newState.selfVideo) {
+    // User joined the voice channel with camera disabled
+    console.log(`User ${member.user.tag} joined the monitored channel "${channel.name}" without camera enabled.`);
+    handleCameraOff(member, channel);
+  } else if (newState.channelID === oldState.channelID && !newState.selfVideo && !warnedUsers.has(member.id)) {
+    // User disabled their camera while in the voice channel
+    console.log(`User ${member.user.tag} disabled their camera in the monitored channel "${channel.name}".`);
+    handleCameraOff(member, channel);
+  } else if (newState.selfVideo && warnedUsers.has(member.id)) {
+    // User enabled their camera
+    console.log(`User ${member.user.tag} enabled their camera in the monitored channel "${channel.name}".`);
+    clearWarning(member.id);
   }
 });
 
+async function handleCameraOff(member, channel) {
+  try {
+    const warningMessage = await member.send(`📷 Attention! Please enable your camera in the channel "**${channel.name}**" within the next ${warningTimeout / 1000} seconds, or you will be removed from the channel. 🚨`);
+    console.log(`Sent warning message to user ${member.user.tag}.`);
+
+    const timeoutId = setTimeout(async () => {
+      if (!member.voice.selfVideo) {
+        await member.voice.setChannel(null);
+        await member.send(`❌ You have been removed from the channel "**${channel.name}**" due to not enabling your camera. Please rejoin the channel and enable your camera to participate. 🙏`);
+        console.log(`User ${member.user.tag} was removed from the channel "${channel.name}" for not enabling their camera.`);
+      }
+    }, warningTimeout);
+
+    warnedUsers.set(member.id, { timeoutId, warningMessage });
+    console.log(`Set timeout for user ${member.user.tag}.`);
+  } catch (error) {
+    console.error('Error handling camera off:', error);
+  }
+}
+
+async function clearWarning(memberId) {
+  const userInfo = warnedUsers.get(memberId);
+  if (userInfo) {
+    clearTimeout(userInfo.timeoutId);
+    warnedUsers.delete(memberId);
+    console.log(`Cleared warning for user with ID ${memberId}.`);
+    
+    try {
+      await userInfo.warningMessage.edit(`✨ Thank you for enabling your camera! Your cooperation is appreciated. 😊👍`);
+      console.log(`Edited warning message for user with ID ${memberId}.`);
+    } catch (editError) {
+      console.error(`Failed to edit warning message for user with ID ${memberId}:`, editError);
+    }
+  }
+}
+
+// Log in to Discord
 client.login(token);
 ```
-
-1. Configure the bot:
-   - Replace `'YOUR_BOT_TOKEN'` with your actual bot token obtained from the Discord Developer Portal
-   - Replace the channel IDs in the `cameraOnChannels` array with the IDs of the video channels where you want to enforce the "camera on" policy
-   - Adjust the `warningTimeout` value (in milliseconds) to set the time limit for users to enable their camera before being kicked
 
 ```json title=package.json
 {
@@ -128,6 +176,20 @@ client.login(token);
 ```
 
 Do the usual things to the code, `git add . && git commit -m "initial commit"`, add remote branch as needed and push `git push origin main`.
+
+### Configure Heroku App
+
+As per `bot.js` you need to create the following three config vars in your Heroku App.
+
+- `BOT_TOKEN`
+- `CAMERA_ON_CHANNELS`
+- `WARNING_TIMEOUT`
+
+And add your bot token from discord portal, the channel IDs from your discord server and an arbitrary amount of time for the warning.
+
+It should look like this:
+
+![Config Vars](/img/DiscordBotCamera-ConfigVars.png)
 
 ### Connect GH to Heroku (CLI)
 
@@ -162,6 +224,42 @@ Successfully connected.
 ![Connect Success](/img/DiscordBotCamera-ConnectSuccess.png)
 
 ## Discord Server Setup
+
+There's not much to this, the `OAuth2` URL you generated in the Discord portal at the [beginning](#discord-bot-application).
+
+Go to that URL and you should see this
+
+![OAuth URL](/img/DiscordBotCamera-AddBot.png)
+
+Accept Permissions:
+
+![Accept Perms](/img/DiscordBotCamera-AddBotPerms.png)
+
+Success!
+
+![Added to Discord](/img/DiscordBotCamera-AddDiscord.png)
+
+:::note
+Only realised I had already doxxed myself in the last screenshot after creating my redacted shots 1 and 2 last.
+:::
+
+## Bot in Action
+
+When a user joins the hard-coded channels that are on the "cameras on" list, they get a warning if their camera is off
+
+![Warning](/img/DiscordBotCamera-Demo1.png)
+
+if they comply, the warning disappears (edited) and a thank you is in it's place
+
+![Comply](/img/DiscordBotCamera-Demo2.png)
+
+any time a user disables their camera in these rooms, they will get a warning
+
+![ReWarned](/img/DiscordBotCamera-Demo3.png)
+
+after 30s of no compliance, the user is re-"moved" from the voice channel
+
+![Removed](/img/DiscordBotCamera-Demo4.png)
 
 ## Troubleshooting
 
