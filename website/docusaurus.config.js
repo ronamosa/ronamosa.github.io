@@ -110,8 +110,15 @@ module.exports = {
     prism: {
       additionalLanguages: ['ruby', 'hcl', 'docker', 'yaml'],
       theme: require('prism-react-renderer/themes/nightOwl')
-    }
+    },
   },
+
+  scripts: [
+    {
+      src: '/js/console-clue.js',
+      async: false,
+    },
+  ],
 
   presets: [
     [
