@@ -110,6 +110,8 @@ In this setup, we design a secure AWS infrastructure to allow 10 students to acc
 
 2. **SSH from Bastion Host to Private Instance:**
 
+   Students will find a key in their home directory in the format `studentN-key.pem`
+
    ```bash
    ssh -i student1-key.pem ec2-user@<private-instance-ip>
    ```
@@ -210,8 +212,46 @@ Technically, this could've been done in the `UserData` of cloudformation, but I 
 
 I uploaded the 10 student pem keys to the bastion host, then distributed them to the student `/home/student$i` directories and `chown` for each.
 
+Now each student should be able to ssh into the Kali instance where the DVWA is also running in a container.
+
 ## Kali Container Build
 
+On the Bastion host, we build the kali-linux container and push it to ECR.
+
+```bash
+docker pull kalilinux/kali-rolling
+docker run -ti kalilinux/kali-rolling /bin/bash
+
+# inside container run...
+apt update -y
+apt install -y kali-linux-headless
+
+# answer question prompts but leave the container running.
+```
+
+in another terminal, you need to find and commit the running container with the changes in it, sort of like a snapshot.
+
+```bash
+# from another terminal
+docker ps
+docker commit ID <name_for_build>
+```
+
+for example
+
+```bash
+[ec2-user@ip-10-0-1-111 ~]$ docker ps -a
+CONTAINER ID   IMAGE                    COMMAND       CREATED       STATUS       PORTS     NAMES
+81b76c2123dc   kalilinux/kali-rolling   "/bin/bash"   3 hours ago   Up 3 hours             intelligent_mestorf
+[ec2-user@ip-10-0-1-111 ~]$ docker commit 81b7 kali-build-20240528
+
+sha256:2fdd15145e804b8c0accc779dadf22571cf78b809047d75057856cc353f0d173
+
+[ec2-user@ip-10-0-1-111 ~]$ docker images
+REPOSITORY               TAG       IMAGE ID       CREATED              SIZE
+kali-build-20240528      latest    2fdd15145e80   About a minute ago   9.08GB
+kalilinux/kali-rolling   latest    02088abe3f5c   46 hours ago         127MB
+```
 
 ## Private Instances
 
