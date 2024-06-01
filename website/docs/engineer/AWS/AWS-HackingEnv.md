@@ -1,5 +1,5 @@
 ---
-title: "AWS Hacking Environment for Class"
+title: "AWS Student Hacking Environment - Part 1"
 ---
 
 ### Overview
