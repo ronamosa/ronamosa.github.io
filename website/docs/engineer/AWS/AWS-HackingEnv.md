@@ -1,5 +1,5 @@
 ---
-title: "AWS Student Hacking Environment - Part 1"
+title: "AWS Student Hacking Environment"
 ---
 
 ### Overview
@@ -12,7 +12,16 @@ This design and content was generated with the help of `GPT-4o`. As is my workfl
 
 This architecture is designed to run multiple instances of Damn Vulnerable Web App (DVWA) and Kali Linux in an AWS private environment. The architecture includes VPC setup, networking rules, and SSH access configurations. It will also enable port forwarding to access DVWA securely.
 
-## CloudFormation
+## ✅ CDK with Python
+
+
+## ❌ CloudFormation
+
+:::danger No Deal
+
+This design was an option looking at running Kali Linux as containers and having 10x running for the lab environment. The resulting manual build of a full-featured container size is 9.8GiB. The cost and complexity of this option made it a no-go for me.
+
+:::
 
 [See Appendix](#appendix) or GitHub repo for code.
 
