@@ -12,8 +12,313 @@ This design and content was generated with the help of `GPT-4o`. As is my workfl
 
 This architecture is designed to run multiple instances of Damn Vulnerable Web App (DVWA) and Kali Linux in an AWS private environment. The architecture includes VPC setup, networking rules, and SSH access configurations. It will also enable port forwarding to access DVWA securely.
 
+:::info Key Info
+
+Most AI generated code has placeholder or outdated references like AMI IDs etc.
+
+For this build the following info is used:
+
+- Amazon Linux 2023, ap-southeast-2, AMI Id = `ami-03aa885dc6576ab5f`
+
+:::
+
+I initially tried the CloudFormation pathway when I thought Kali Linux containers were viable, but ended up going with CDK when deciding to fall back to EC2 instances using the official Kali Linux AMI
+
 ## ✅ CDK with Python
 
+This setup will create:
+
+- 1x VPC with a bastion host in the public subnet
+- 10x Kali Linux instances in the private subnet
+- 10x ECS Fargate tasks each running a DVWA container.
+
+The environment is tagged appropriately for project and billing monitoring, and the DVWA containers are only accessible from the Kali instances, ensuring they are not exposed to the public internet.
+
+### Local Setup
+
+### Architecture
+
+1. **VPC Configuration:**
+   - **VPC**: A new VPC for isolation.
+   - **Subnets**:
+     - **Public Subnet**: For the bastion host.
+     - **Private Subnets**: For Kali Linux instances and ECS tasks.
+   - **Internet Gateway**: For internet access to the public subnet.
+   - **NAT Gateway**: In the public subnet to allow outbound internet access for instances in the private subnets.
+
+2. **Security Groups:**
+   - **Bastion Host Security Group**:
+     - Inbound: Allow SSH (port 22) from anywhere.
+     - Outbound: Allow all traffic.
+   - **Kali Linux Security Group**:
+     - Inbound: Allow SSH (port 22) from the bastion host.
+     - Outbound: Allow all traffic.
+   - **ECS Security Group**:
+     - Inbound: Allow HTTP traffic from the Kali instances' security group.
+     - Outbound: Allow all traffic.
+
+3. **EC2 Instances:**
+   - **Bastion Host**:
+     - One EC2 instance in the public subnet using the AMI ID `ami-03aa885dc6576ab5f`.
+   - **Kali Linux Instances**:
+     - Ten EC2 instances in the private subnet using the AMI ID `ami-0501355d9eba31ff5`.
+
+4. **ECS Fargate Tasks**:
+   - **DVWA Containers**: Ten Fargate tasks, each running a DVWA container instance, with network configuration to connect to the specific Kali instance.
+
+### Implementation Using AWS CDK with Python
+
+#### Directory Structure
+
+```bash
+aws-dvwa-lab/
+├── app.py
+├── cdk_dvwa/
+│   ├── __init__.py
+│   └── cdk_dvwa_stack.py
+├── requirements.txt
+└── cdk.json
+```
+
+#### Step 1: Install AWS CDK
+
+First, install the AWS CDK globally using npm:
+
+```bash
+npm install -g aws-cdk
+```
+
+#### Step 2: Initialize the CDK Project
+
+Create a new directory for your project and navigate into it:
+
+```bash
+mkdir aws-dvwa-lab
+cd aws-dvwa-lab
+```
+
+Initialize a new CDK project in Python:
+
+```bash
+cdk init app --language python
+```
+
+#### Step 3: Set Up a Virtual Environment
+
+Create a virtual environment for Python dependencies:
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate  # On Windows, use `.venv\Scripts\activate`
+```
+
+#### Step 4: Install Required CDK Modules
+
+Install the necessary AWS CDK modules:
+
+```bash
+pip install aws-cdk.aws-ec2 aws-cdk.aws-ecs aws-cdk.aws-ecs-patterns
+```
+
+#### `cdk_dvwa/cdk_dvwa_stack.py`
+
+```python
+from aws_cdk import (
+    core,
+    aws_ec2 as ec2,
+    aws_ecs as ecs,
+    aws_ecs_patterns as ecs_patterns,
+)
+
+class CdkDvwaStack(core.Stack):
+
+    def __init__(self, scope: core.Construct, id: str, **kwargs) -> None:
+        super().__init__(scope, id, **kwargs)
+
+        # Tags
+        tags = {
+            "Project": "AWS-DVWA-Lab",
+            "Owner": "YourName",
+            "Environment": "Dev"
+        }
+
+        # Create VPC
+        vpc = ec2.Vpc(
+            self, "DvwaVPC",
+            max_azs=2,
+            nat_gateways=1,
+            subnet_configuration=[
+                ec2.SubnetConfiguration(
+                    name="Public",
+                    subnet_type=ec2.SubnetType.PUBLIC,
+                    cidr_mask=24
+                ),
+                ec2.SubnetConfiguration(
+                    name="Private",
+                    subnet_type=ec2.SubnetType.PRIVATE_WITH_NAT,
+                    cidr_mask=24
+                )
+            ]
+        )
+
+        # Security Group for Bastion Host
+        bastion_sg = ec2.SecurityGroup(
+            self, "BastionSG",
+            vpc=vpc,
+            description="Allow SSH access to bastion host",
+            allow_all_outbound=True
+        )
+        bastion_sg.add_ingress_rule(
+            ec2.Peer.any_ipv4(),
+            ec2.Port.tcp(22),
+            "Allow SSH access from anywhere"
+        )
+
+        # Security Group for Kali
+        kali_sg = ec2.SecurityGroup(
+            self, "KaliSG",
+            vpc=vpc,
+            description="Allow SSH access from bastion host",
+            allow_all_outbound=True
+        )
+        kali_sg.add_ingress_rule(
+            bastion_sg,
+            ec2.Port.tcp(22),
+            "Allow SSH access from bastion host"
+        )
+
+        # Security Group for ECS (DVWA)
+        dvwa_sg = ec2.SecurityGroup(
+            self, "DVWASG",
+            vpc=vpc,
+            description="Allow HTTP access from Kali instances",
+            allow_all_outbound=True
+        )
+        dvwa_sg.add_ingress_rule(
+            kali_sg,
+            ec2.Port.tcp(80),
+            "Allow HTTP access from Kali instances"
+        )
+
+        # ECS Cluster
+        cluster = ecs.Cluster(self, "DvwaCluster", vpc=vpc)
+
+        # ECS Task Definition
+        task_definition = ecs.FargateTaskDefinition(
+            self, "TaskDef",
+            memory_limit_mib=512,
+            cpu=256,
+        )
+        container = task_definition.add_container(
+            "DVWAContainer",
+            image=ecs.ContainerImage.from_registry("vulnerables/web-dvwa"),
+            memory_limit_mib=512,
+        )
+        container.add_port_mappings(
+            ecs.PortMapping(container_port=80)
+        )
+
+        # Fargate Services
+        for i in range(10):
+            ecs.FargateService(
+                self, f"FargateService{i+1}",
+                cluster=cluster,
+                task_definition=task_definition,
+                desired_count=1,
+                security_groups=[dvwa_sg],
+                vpc_subnets=ec2.SubnetSelection(
+                    subnet_type=ec2.SubnetType.PRIVATE_WITH_NAT
+                ),
+                assign_public_ip=False
+            )
+
+        # Launch Bastion Host
+        bastion_host = ec2.Instance(
+            self, "BastionHost",
+            instance_type=ec2.InstanceType("t2.micro"),
+            machine_image=ec2.MachineImage.generic_linux({
+                "ap-southeast-2": "ami-03aa885dc6576ab5f"
+            }),
+            vpc=vpc,
+            key_name="admin-key",
+            security_group=bastion_sg,
+            vpc_subnets=ec2.SubnetSelection(
+                subnet_type=ec2.SubnetType.PUBLIC
+            )
+        )
+        core.Tags.of(bastion_host).add("Name", "BastionHost", apply_to_launched_instances=True)
+
+        # Launch Kali EC2 Instances
+        kali_amis = ec2.MachineImage.generic_linux({
+            "ap-southeast-2": "ami-0501355d9eba31ff5"
+        })
+        for i in range(10):
+            kali_instance = ec2.Instance(
+                self, f"KaliInstance{i+1}",
+                instance_type=ec2.InstanceType("t2.micro"),
+                machine_image=kali_amis,
+                vpc=vpc,
+                key_name=f"student{i+1}-key",
+                security_group=kali_sg,
+                vpc_subnets=ec2.SubnetSelection(
+                    subnet_type=ec2.SubnetType.PRIVATE_WITH_NAT
+                )
+            )
+            core.Tags.of(kali_instance).add("Name", f"KaliInstance{i+1}", apply_to_launched_instances=True)
+            for key, value in tags.items():
+                core.Tags.of(kali_instance).add(key, value, apply_to_launched_instances=True)
+```
+
+#### `app.py`
+
+Update the `app.py` file to use the stack we created.
+
+```python
+#!/usr/bin/env python3
+
+import aws_cdk as cdk
+
+from cdk_dvwa.cdk_dvwa_stack import CdkDvwaStack
+
+
+app = cdk.App()
+CdkDvwaStack(app, "CdkDvwaStack", env=cdk.Environment(region="ap-southeast-2"))
+
+app.synth()
+```
+
+#### `requirements.txt`
+
+Add the required dependencies to the `requirements.txt` file.
+
+```txt
+aws-cdk-lib==2.144.0
+constructs>=10.0.0,<11.0.0
+```
+
+#### `cdk.json`
+
+Ensure your `cdk.json` file specifies the correct app entry point.
+
+```json
+{
+  "app": "python app.py"
+}
+```
+
+### Deploy the CDK Stack
+
+1. **Install Dependencies**:
+
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+2. **Deploy**:
+
+   ```bash
+   cdk deploy
+   ```
 
 ## ❌ CloudFormation
 
