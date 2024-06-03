@@ -170,7 +170,7 @@ class CdkDvwaStack(Stack):
         # Tags
         tags = {
             "Project": "AWS-DVWA-Lab",
-            "Owner": "YourName",
+            "Owner": "ramosa",
             "Environment": "Dev"
         }
 
@@ -233,11 +233,14 @@ class CdkDvwaStack(Stack):
         )
 
         # ECS Cluster
-        cluster = ecs.Cluster(self, "DvwaCluster", vpc=vpc)
+        cluster = ecs.Cluster(self, "DvwaCluster",
+                              cluster_name="DvwaCluster",  # Custom name for the cluster
+                              vpc=vpc)
 
         # ECS Task Definition
         task_definition = ecs.FargateTaskDefinition(
             self, "TaskDef",
+            family="DvwaTask",  # Custom family name for the task definition
             memory_limit_mib=512,
             cpu=256,
         )
@@ -254,6 +257,7 @@ class CdkDvwaStack(Stack):
         for i in range(10):
             ecs.FargateService(
                 self, f"FargateService{i+1}",
+                service_name=f"DvwaService{i+1}",  # Custom name for the service
                 cluster=cluster,
                 task_definition=task_definition,
                 desired_count=1,
@@ -272,13 +276,19 @@ class CdkDvwaStack(Stack):
                 "ap-southeast-2": "ami-03aa885dc6576ab5f"
             }),
             vpc=vpc,
-            key_name="admin-key",  # Update this line if needed
+            key_name="admin-key",
             security_group=bastion_sg,
             vpc_subnets=ec2.SubnetSelection(
                 subnet_type=ec2.SubnetType.PUBLIC
             )
         )
         Tags.of(bastion_host).add("Name", "BastionHost", apply_to_launched_instances=True)
+
+        # User data script to bootstrap Kali instances
+        user_data_script = """#!/bin/bash
+        apt update -y
+        DEBIAN_FRONTEND=noninteractive apt-get install -y kali-linux-headless
+        """
 
         # Launch Kali EC2 Instances
         kali_amis = ec2.MachineImage.generic_linux({
@@ -289,19 +299,19 @@ class CdkDvwaStack(Stack):
 
             kali_instance = ec2.Instance(
                 self, f"KaliInstance{i+1}",
-                instance_type=ec2.InstanceType("t2.micro"),
+                instance_type=ec2.InstanceType("t2.medium"),
                 machine_image=kali_amis,
                 vpc=vpc,
                 key_name=key_pair.key_pair_name,
                 security_group=kali_sg,
                 vpc_subnets=ec2.SubnetSelection(
                     subnet_type=ec2.SubnetType.PRIVATE_WITH_EGRESS
-                )
+                ),
+                user_data=ec2.UserData.custom(user_data_script)
             )
             Tags.of(kali_instance).add("Name", f"KaliInstance{i+1}", apply_to_launched_instances=True)
             for key, value in tags.items():
                 Tags.of(kali_instance).add(key, value, apply_to_launched_instances=True)
-
 ```
 
 #### `app.py`
@@ -419,6 +429,192 @@ ssh -i admin-key.pem student3@X.1XX.1XX.0
 [student3@ip-10-0-1-41 ~]$ 
 ```
 
+## Kali Instances
+
+Fetch Kali instance names and private IP address:
+
+```bash
+aws ec2 describe-instances \  
+    --filters "Name=tag:Name,Values=KaliInstance*" \
+    --query "Reservations[*].Instances[*].{Name:Tags[?Key=='Name']|[0].Value,PrivateIpAddress:PrivateIpAddress}" \
+    --output table
+```
+
+output looks like:
+
+```bash
+----------------------------------------
+|           DescribeInstances          |
++-----------------+--------------------+
+|      Name       | PrivateIpAddress   |
++-----------------+--------------------+
+|  KaliInstance3  |  10.0.2.155        |
+|  KaliInstance10 |  10.0.2.113        |
+|  KaliInstance7  |  10.0.2.76         |
+|  KaliInstance4  |  10.0.2.165        |
+|  KaliInstance6  |  10.0.2.156        |
+|  KaliInstance2  |  10.0.2.138        |
+|  KaliInstance1  |  10.0.2.153        |
+|  KaliInstance9  |  10.0.2.125        |
+|  KaliInstance5  |  10.0.2.126        |
+|  KaliInstance8  |  10.0.2.209        |
++-----------------+--------------------+
+```
+
+### Create Student Kali README
+
+From my local machine, because BastionHost is not authorised to `aws-cli`, I run this to create the 10x specific readmes for each student:
+
+```bash
+#!/bin/bash
+
+# Define the AWS region
+REGION="ap-southeast-2"
+
+# Loop to fetch information for each KaliInstance and create a README file for each student
+for i in {1..10}; do
+  INSTANCE_NAME="KaliInstance${i}"
+  STUDENT_NAME="Student${i}"
+  FILENAME="student${i}_kali_instance.md"
+
+  INSTANCE_INFO=$(aws ec2 describe-instances \
+    --filters "Name=tag:Name,Values=$INSTANCE_NAME" \
+    --query "Reservations[*].Instances[*].{Name:Tags[?Key=='Name']|[0].Value,PrivateIpAddress:PrivateIpAddress,PrivateDnsName:PrivateDnsName}" \
+    --output json)
+
+  NAME=$(echo $INSTANCE_INFO | jq -r '.[0][0].Name')
+  PRIVATE_IP=$(echo $INSTANCE_INFO | jq -r '.[0][0].PrivateIpAddress')
+  PRIVATE_DNS=$(echo $INSTANCE_INFO | jq -r '.[0][0].PrivateDnsName')
+
+  cat <<EOL > $FILENAME
+# README for ${STUDENT_NAME}
+
+Talofa ${STUDENT_NAME},
+
+You are on the JUMPBOX!
+
+You need to take one more step to access your Hacking Machine (Kali).
+
+Here are the details to your Kali Machine:
+
+\`\`\`
+-----------------------------------------------------------------------
+|                          DescribeInstances                          |
++-------------------+-------------------------------------------------+
+|  Name             |  ${NAME}                                        |
+|  PrivateDnsName   |  ${PRIVATE_DNS}                                 |
+|  PrivateIpAddress |  ${PRIVATE_IP}                                  |
++-------------------+-------------------------------------------------+
+\`\`\`
+
+You have a secret key in the `secret/` folder, you need to use this to connect to Kali.
+
+In the terminal, you are going to type the following command to connect:
+
+\`\`\`
+ssh -i secret/student${i}-key.pem kali@${PRIVATE_DNS}
+\`\`\`
+
+EOL
+
+  echo "Created README for $STUDENT_NAME and saved to $FILENAME"
+done
+
+echo "All README files created successfully."
+```
+
+I upload the scripts to the BastionHost `~/scripts`, and along with the PEM student keys, use this bash script to distribute them to student accounts:
+
+```bash
+#!/bin/bash
+
+# Define base paths
+KEYS_DIR="keys"
+SCRIPTS_DIR="scripts"
+
+# Loop through each student
+for i in {1..10}; do
+  STUDENT_HOME="/home/student${i}"
+  SECRET_DIR="${STUDENT_HOME}/secret"
+  
+  # Create the secret directory in the student's home directory
+  mkdir -p "${SECRET_DIR}"
+  
+  # Copy the key file to the secret directory
+  cp "${KEYS_DIR}/student${i}-key.pem" "${SECRET_DIR}/"
+  
+  # Copy the README file to the home directory
+  cp "${SCRIPTS_DIR}/student${i}_kali_instance.md" "${STUDENT_HOME}/"
+  
+  # Ensure correct ownership and permissions
+  chown -R student${i}:student${i} "${STUDENT_HOME}"
+  chmod 700 "${SECRET_DIR}"
+  chmod 600 "${SECRET_DIR}/student${i}-key.pem"
+  chmod 644 "${STUDENT_HOME}/student${i}_kali_instance.md"
+  
+  echo "Created secret directory and copied files for student${i}"
+done
+
+echo "All secret directories and files have been created and copied successfully."
+```
+
+### Student Bastion to Kali
+
+Testing this route works: `Local -> Jump -> Kali`
+
+```bash
+# local machine
+ssh -i admin-key.pem student1@BastionEc2Ip ✅
+
+# From Bastion
+# check my readme file has correct ip details ✅
+ssi -i student1-key.pem kali@KaliInstance1PrivateIp ✅
+```
+
+Success:
+
+![succesful connect to kali](/img/AWSHackingEnv-kali.png)
+
+### Install Kali Tools
+
+On login you'll see this notice:
+
+```bash
+Linux kali 6.5.0-kali3-cloud-amd64 #1 SMP PREEMPT_DYNAMIC Debian 6.5.6-1kali1 (2023-10-09) x86_64
+
+The programs included with the Kali GNU/Linux system are free software;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
+
+Kali GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
+permitted by applicable law.
+┏━(Message from Kali developers)
+┃
+┃ This is a minimal installation of Kali Linux, you likely
+┃ want to install supplementary tools. Learn how:
+┃ ⇒ https://www.kali.org/docs/troubleshooting/common-minimum-setup/
+┃
+┃ This is a cloud installation of Kali Linux. Learn more about
+┃ the specificities of the various cloud images:
+┃ ⇒ https://www.kali.org/docs/troubleshooting/common-cloud-setup/
+┃
+┗━(Run: “touch ~/.hushlogin” to hide this message)
+```
+
+We need to install minimal set of tools minus the Graphical UI.
+
+From the Kali machine, run the following:
+
+```bash
+# update system
+sudo apt update -y
+
+# install minimal headless kali
+sudo apt install -y kali-linux-headless
+
+# OR `sudo DEBIAN_FRONTEND=noninteractive apt-get install -y kali-linux-headless` to non-interactive.
+```
+
 ## ❌ CloudFormation
 
 :::danger No Deal
@@ -426,8 +622,6 @@ ssh -i admin-key.pem student3@X.1XX.1XX.0
 This design was an option looking at running Kali Linux as containers and having 10x running for the lab environment. The resulting manual build of a full-featured container size is 9.8GiB. The cost and complexity of this option made it a no-go for me.
 
 :::
-
-[See Appendix](#appendix) or GitHub repo for code.
 
 :::tip AI Assistant
 
@@ -537,7 +731,6 @@ In this setup, we design a secure AWS infrastructure to allow 10 students to acc
 
 This setup provides a robust and secure environment for students to access and interact with private instances while maintaining best practices for AWS infrastructure and security.
 
-
 Technically, this could've been done in the `UserData` of cloudformation, but I haven't tested it:
 
 ```yaml
@@ -622,8 +815,6 @@ kali-build-20240528      latest    2fdd15145e80   About a minute ago   9.08GB
 kalilinux/kali-rolling   latest    02088abe3f5c   46 hours ago         127MB
 ```
 
-## Private Instances
-
 ## Appendix
 
 :::tip AI Workflow
@@ -633,6 +824,108 @@ The process of getting an AI to generate the initial design and code does a coup
 However, it generates some interesting options, which I will document here for posterity.
 
 :::
+
+### Private DNS for internal
+
+Using DNS names instead of IP addresses can simplify the management of your instances, especially if the IP addresses change frequently. AWS provides a way to use DNS for EC2 instances by leveraging the private DNS names provided by the EC2 instances or by setting up Route 53 DNS records.
+
+#### Option 1: Using Private DNS Names
+
+Each EC2 instance has a private DNS name that can be used within the VPC. You can fetch these names using the AWS CLI:
+
+```bash
+aws ec2 describe-instances \
+    --filters "Name=tag:Name,Values=KaliInstance*" \
+    --query "Reservations[*].Instances[*].{Name:Tags[?Key=='Name']|[0].Value,PrivateDnsName:PrivateDnsName}" \
+    --output table
+```
+
+#### Example Command Output
+
+```plaintext
+-------------------------------------
+|            DescribeInstances      |
++------------------+----------------+
+|      Name        | PrivateDnsName |
++------------------+----------------+
+|  KaliInstance1   |  ip-10-0-1-10.ec2.internal |
+|  KaliInstance2   |  ip-10-0-1-11.ec2.internal |
+|  KaliInstance3   |  ip-10-0-1-12.ec2.internal |
+|  KaliInstance4   |  ip-10-0-1-13.ec2.internal |
+|  KaliInstance5   |  ip-10-0-1-14.ec2.internal |
+|  KaliInstance6   |  ip-10-0-1-15.ec2.internal |
+|  KaliInstance7   |  ip-10-0-1-16.ec2.internal |
+|  KaliInstance8   |  ip-10-0-1-17.ec2.internal |
+|  KaliInstance9   |  ip-10-0-1-18.ec2.internal |
+|  KaliInstance10  |  ip-10-0-1-19.ec2.internal |
++------------------+----------------+
+```
+
+#### Option 2: Using Route 53
+
+For a more robust solution, you can create Route 53 private hosted zone records for your instances. This way, you can use meaningful DNS names that you define.
+
+##### Step 1: Create a Private Hosted Zone
+
+1. **Create a Private Hosted Zone** in Route 53:
+
+   ```bash
+   aws route53 create-hosted-zone --name example.com --vpc VPCRegion=ap-southeast-2,VPCId=vpc-xxxxxxxx --caller-reference $(date +%s)
+   ```
+
+   Note the `HostedZoneId` from the output.
+
+##### Step 2: Create DNS Records for Each Instance
+
+2. **Create DNS Records** for each instance in the hosted zone:
+
+   ```bash
+   HOSTED_ZONE_ID=<your-hosted-zone-id>
+
+   for i in {1..10}; do
+     INSTANCE_ID=$(aws ec2 describe-instances \
+       --filters "Name=tag:Name,Values=KaliInstance${i}" \
+       --query "Reservations[*].Instances[*].InstanceId" \
+       --output text)
+     
+     PRIVATE_IP=$(aws ec2 describe-instances \
+       --instance-ids $INSTANCE_ID \
+       --query "Reservations[*].Instances[*].PrivateIpAddress" \
+       --output text)
+     
+     aws route53 change-resource-record-sets \
+       --hosted-zone-id $HOSTED_ZONE_ID \
+       --change-batch '{
+         "Changes": [{
+           "Action": "UPSERT",
+           "ResourceRecordSet": {
+             "Name": "kaliinstance'${i}'.example.com",
+             "Type": "A",
+             "TTL": 60,
+             "ResourceRecords": [{"Value": "'${PRIVATE_IP}'"}]
+           }
+         }]
+       }'
+   done
+   ```
+
+##### Step 3: Verify DNS Records
+
+3. **Verify DNS Records** to ensure they are set up correctly:
+
+   ```bash
+   aws route53 list-resource-record-sets --hosted-zone-id $HOSTED_ZONE_ID
+   ```
+
+#### Using DNS Names
+
+Once you have the DNS names set up, you can use them to SSH into your instances:
+
+```bash
+ssh -i path/to/student1-key.pem ec2-user@kaliinstance1.example.com
+```
+
+### UserData Docker
 
 This `UserData` script wasn't completely terrible, and I want to work through it to see where else I can use it:
 
