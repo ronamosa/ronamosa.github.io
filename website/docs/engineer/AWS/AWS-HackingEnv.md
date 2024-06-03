@@ -19,6 +19,7 @@ Most AI generated code has placeholder or outdated references like AMI IDs etc.
 For this build the following info is used:
 
 - Amazon Linux 2023, ap-southeast-2, AMI Id = `ami-03aa885dc6576ab5f`
+- Kali Linux AMI id = `ami-0501355d9eba31ff5` (you have to subscribe to this from the AWS Marketplace)
 
 :::
 
@@ -65,6 +66,36 @@ The environment is tagged appropriately for project and billing monitoring, and 
 
 4. **ECS Fargate Tasks**:
    - **DVWA Containers**: Ten Fargate tasks, each running a DVWA container instance, with network configuration to connect to the specific Kali instance.
+
+### Pre-requisites
+
+Each EC2 instance is configured with a unique EC2 `KeyPair` in the form "`student#-key`.pem" created beforehand and uploaded to the BastionHost to configure student access.
+
+### Create KeyPairs
+
+```bash
+#!/bin/bash
+
+# Define the AWS region
+REGION="ap-southeast-2"
+
+# Loop to create key pairs student1-key to student10-key
+for i in {1..10}; do
+  KEY_NAME="student${i}-key"
+  
+  # Create the key pair and save the private key to a file
+  aws ec2 create-key-pair --key-name "$KEY_NAME" --region "$REGION" --query "KeyMaterial" --output text > "${KEY_NAME}.pem"
+  
+  # Set permissions for the private key file
+  chmod 400 "${KEY_NAME}.pem"
+  
+  echo "Created key pair: $KEY_NAME and saved to ${KEY_NAME}.pem"
+done
+
+echo "All key pairs created successfully."
+```
+
+Ensure you create these before you create any EC2.
 
 ### Implementation Using AWS CDK with Python
 
@@ -124,15 +155,16 @@ pip install aws-cdk.aws-ec2 aws-cdk.aws-ecs aws-cdk.aws-ecs-patterns
 
 ```python
 from aws_cdk import (
-    core,
+    Stack,
     aws_ec2 as ec2,
     aws_ecs as ecs,
-    aws_ecs_patterns as ecs_patterns,
+    Tags,
 )
+from constructs import Construct
 
-class CdkDvwaStack(core.Stack):
+class CdkDvwaStack(Stack):
 
-    def __init__(self, scope: core.Construct, id: str, **kwargs) -> None:
+    def __init__(self, scope: Construct, id: str, **kwargs) -> None:
         super().__init__(scope, id, **kwargs)
 
         # Tags
@@ -155,7 +187,7 @@ class CdkDvwaStack(core.Stack):
                 ),
                 ec2.SubnetConfiguration(
                     name="Private",
-                    subnet_type=ec2.SubnetType.PRIVATE_WITH_NAT,
+                    subnet_type=ec2.SubnetType.PRIVATE_WITH_EGRESS,
                     cidr_mask=24
                 )
             ]
@@ -227,7 +259,7 @@ class CdkDvwaStack(core.Stack):
                 desired_count=1,
                 security_groups=[dvwa_sg],
                 vpc_subnets=ec2.SubnetSelection(
-                    subnet_type=ec2.SubnetType.PRIVATE_WITH_NAT
+                    subnet_type=ec2.SubnetType.PRIVATE_WITH_EGRESS
                 ),
                 assign_public_ip=False
             )
@@ -240,33 +272,36 @@ class CdkDvwaStack(core.Stack):
                 "ap-southeast-2": "ami-03aa885dc6576ab5f"
             }),
             vpc=vpc,
-            key_name="admin-key",
+            key_name="admin-key",  # Update this line if needed
             security_group=bastion_sg,
             vpc_subnets=ec2.SubnetSelection(
                 subnet_type=ec2.SubnetType.PUBLIC
             )
         )
-        core.Tags.of(bastion_host).add("Name", "BastionHost", apply_to_launched_instances=True)
+        Tags.of(bastion_host).add("Name", "BastionHost", apply_to_launched_instances=True)
 
         # Launch Kali EC2 Instances
         kali_amis = ec2.MachineImage.generic_linux({
             "ap-southeast-2": "ami-0501355d9eba31ff5"
         })
         for i in range(10):
+            key_pair = ec2.KeyPair.from_key_pair_name(self, f"KeyPair{i+1}", f"student{i+1}-key")
+
             kali_instance = ec2.Instance(
                 self, f"KaliInstance{i+1}",
                 instance_type=ec2.InstanceType("t2.micro"),
                 machine_image=kali_amis,
                 vpc=vpc,
-                key_name=f"student{i+1}-key",
+                key_name=key_pair.key_pair_name,
                 security_group=kali_sg,
                 vpc_subnets=ec2.SubnetSelection(
-                    subnet_type=ec2.SubnetType.PRIVATE_WITH_NAT
+                    subnet_type=ec2.SubnetType.PRIVATE_WITH_EGRESS
                 )
             )
-            core.Tags.of(kali_instance).add("Name", f"KaliInstance{i+1}", apply_to_launched_instances=True)
+            Tags.of(kali_instance).add("Name", f"KaliInstance{i+1}", apply_to_launched_instances=True)
             for key, value in tags.items():
-                core.Tags.of(kali_instance).add(key, value, apply_to_launched_instances=True)
+                Tags.of(kali_instance).add(key, value, apply_to_launched_instances=True)
+
 ```
 
 #### `app.py`
@@ -319,6 +354,70 @@ Ensure your `cdk.json` file specifies the correct app entry point.
    ```bash
    cdk deploy
    ```
+
+## Bastion Host
+
+This is the jump host for the students to connect and then ssh into the Kali/DVWA box.
+
+We need to find out the public address for the BastionHost using `aws-cli`, and then setup the student access:
+
+```bash
+aws ec2 describe-instances \
+    --filters "Name=tag:Name,Values=BastionHost" \
+    --query "Reservations[*].Instances[*].PublicIpAddress" \
+    --output text
+```
+
+this will give you the public IP, you might get
+
+ssh to BastionHost: `❯ ssh -i admin-key.pem ec2-user@54.XXX.165.XXX`
+
+### Setup Student Access
+
+I have the admin-key and 10x KeyPairs I created [before](#create-keypairs).
+
+Upload to BastionHost with `scp -i admin-key.pem student* ec2-user@54.XXX.165.XXX:~/`
+
+#### Create Student Accounts
+
+```bash
+#!/bin/bash
+for i in {1..10}; do
+  useradd -m student$i
+  mkdir -p /home/student$i/.ssh
+  chown -R student$i:student$i /home/student$i/.ssh
+done
+```
+
+I want to use the `admin-key.pem` which is paired with the Bastion host, to allow the students to bounce through, so I need to add `authorize_host` to each student profile
+
+```bash
+#!/bin/bash
+cp /home/ec2-user/.ssh/authorized_keys /home/student1/.ssh/
+chown student1:student1 /home/student1/.ssh/authorized_keys
+for i in {2..10}; do
+  cp /home/student1/.ssh/authorized_keys /home/student$i/.ssh/
+  chown student$i:student$i /home/student$i/.ssh/authorized_keys
+done
+```
+
+so when I do this:
+
+```bash
+ssh -i admin-key.pem student3@X.1XX.1XX.0
+   ,     #_
+   ~\_  ####_        Amazon Linux 2
+  ~~  \_#####\
+  ~~     \###|       AL2 End of Life is 2025-06-30.
+  ~~       \#/ ___
+   ~~       V~' '->
+    ~~~         /    A newer version of Amazon Linux is available!
+      ~~._.   _/
+         _/ _/       Amazon Linux 2023, GA and supported until 2028-03-15.
+       _/m/'           https://aws.amazon.com/linux/amazon-linux-2023/
+
+[student3@ip-10-0-1-41 ~]$ 
+```
 
 ## ❌ CloudFormation
 
@@ -438,50 +537,6 @@ In this setup, we design a secure AWS infrastructure to allow 10 students to acc
 
 This setup provides a robust and secure environment for students to access and interact with private instances while maintaining best practices for AWS infrastructure and security.
 
-## Bastion Host
-
-This is the jump host for the students to connect and then ssh into the Kali/DVWA box.
-
-Setup 10 student accounts
-
-```bash
-#!/bin/bash
-for i in {1..10}; do
-  useradd -m student$i
-  mkdir -p /home/student$i/.ssh
-  chown -R student$i:student$i /home/student$i/.ssh
-done
-```
-
-I want to use the `admin-key.pem` which is paired with the Bastion host, to allow the students to bounce through, so I need to add `authorize_host` to each student profile
-
-```bash
-#!/bin/bash
-cp /home/ec2-user/.ssh/authorized_keys /home/student1/.ssh/
-chown student1:student1 /home/student1/.ssh/authorized_keys
-for i in {2..10}; do
-  cp /home/student1/.ssh/authorized_keys /home/student$i/.ssh/
-  chown student$i:student$i /home/student$i/.ssh/authorized_keys
-done
-```
-
-so when I do this:
-
-```bash
-ssh -i admin-key.pem student3@X.1XX.1XX.0
-   ,     #_
-   ~\_  ####_        Amazon Linux 2
-  ~~  \_#####\
-  ~~     \###|       AL2 End of Life is 2025-06-30.
-  ~~       \#/ ___
-   ~~       V~' '->
-    ~~~         /    A newer version of Amazon Linux is available!
-      ~~._.   _/
-         _/ _/       Amazon Linux 2023, GA and supported until 2028-03-15.
-       _/m/'           https://aws.amazon.com/linux/amazon-linux-2023/
-
-[student3@ip-10-0-1-41 ~]$ 
-```
 
 Technically, this could've been done in the `UserData` of cloudformation, but I haven't tested it:
 
