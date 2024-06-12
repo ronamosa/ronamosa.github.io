@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkronamosa_github_io=self.webpackChunkronamosa_github_io||[]).push([[11580],{87369:a=>{a.exports=JSON.parse('{"permalink":"/blog/tags/personal/page/12","page":12,"postsPerPage":10,"totalPages":14,"totalCount":133,"previousPage":"/blog/tags/personal/page/11","nextPage":"/blog/tags/personal/page/13","blogDescription":"Blog","blogTitle":"Blog"}')}}]);
