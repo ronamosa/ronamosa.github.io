@@ -42,14 +42,14 @@ const projects = [
         The Pasifika Tech Network brings together Pasifika from across the technology industry in techincal and non-technical roles to share knowledge, collaborate and support our community currently in the industry, and for the incoming generation.
         </p>
         <p>
-        Get in contact to 
+        More info on our website:
         </p>
       </>
     ),
     links: [
       {
         name: "Pasifika Tech Network",
-        link: "mailto:ron@pasifikateched.net",
+        link: "https://pasifikatechnetwork.github.io/",
       },
     ],
   },

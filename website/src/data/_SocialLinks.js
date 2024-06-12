@@ -6,7 +6,7 @@ const socialLinks = [
   {
     faIcon: faMailBulk,
     alt: "Newsletter",
-    url: "https://ramosa.substack.com/",
+    url: "https://www.uncommonengineer.com/",
   },
   {
     faIcon: faLinkedin,

@@ -27,7 +27,7 @@ function About() {
               <div className="col col--9">
                 <h2>Talofa 👋</h2>
                 <p>
-                  I'm Ron, a Partner Solution Architect for the Pacific Islands, at <a href='https://aws.amazon.com/'>Amazon Web Services</a>
+                  I'm Ron, a Partner Solution Architect for the Pacific Islands, and New Zealand at <a href='https://aws.amazon.com/'>Amazon Web Services</a>
                 </p>
                 <p>
                   In a previous life I was a Platform Security Engineer at Salesforce/Heroku. And before that, an <a href="https://sre.google/">SRE</a> and DevOps Engineer building CICD environments and Production-Ready Kubernetes Infrastructure for banks and insurance companies.
