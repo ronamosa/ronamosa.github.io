@@ -26,6 +26,32 @@ EKS (Control Plane) uses "EKS-managed" ENI to talk to the Data Plane.
 
 #### LAB: Network Policies
 
+install `eksctl`:
+
+```bash
+# for ARM systems, set ARCH to: `arm64`, `armv6` or `armv7`
+ARCH=amd64
+PLATFORM=$(uname -s)_$ARCH
+
+curl -sLO "https://github.com/eksctl-io/eksctl/releases/latest/download/eksctl_$PLATFORM.tar.gz"
+
+# (Optional) Verify checksum
+curl -sL "https://github.com/eksctl-io/eksctl/releases/latest/download/eksctl_checksums.txt" | grep $PLATFORM | sha256sum --check
+
+tar -xzf eksctl_$PLATFORM.tar.gz -C /tmp && rm eksctl_$PLATFORM.tar.gz
+
+sudo mv /tmp/eksctl /usr/local/bin
+```
+
+Cluster setup from labs:
+
+```bash
+export EKS_CLUSTER_NAME=eks-workshop
+export AWS_REGION=ap-southeast-2
+curl -fsSL https://raw.githubusercontent.com/aws-samples/eks-workshop-v2/stable/cluster/eksctl/cluster.yaml | \
+envsubst | eksctl create cluster -f -
+```
+
 ```bash
 eksctl create cluster \
   --name eksworkshop-cluster \
@@ -38,3 +64,9 @@ eksctl create cluster \
   --nodes-max 4 \
   --managed
 ```
+
+:::tip kubeconfig
+
+get `~/.kube/config` file from EKS, run: `aws eks update-kubeconfig --name eksworkshop-cluster`
+
+:::
