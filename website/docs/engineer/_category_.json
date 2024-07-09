@@ -1,4 +1,14 @@
 {
+  "position": 4,
   "label": "💻 Engineer",
-  "position": 4
+  "collapsible": true,
+  "collapsed": true,
+  "className": "red",
+  "link": {
+    "type": "generated-index",
+    "title": "Engineer"
+  },
+  "customProps": {
+    "description": "This is where you can find all cloud, devops and systems engineering."
+  }
 }

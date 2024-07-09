@@ -1,4 +1,14 @@
 {
+  "position": 3,
   "label": "🏴‍☠️ Hacker",
-  "position": 3
+  "collapsible": true,
+  "collapsed": true,
+  "className": "red",
+  "link": {
+    "type": "generated-index",
+    "title": "Hacker"
+  },
+  "customProps": {
+    "description": "This is where you can find all the hacking."
+  }
 }

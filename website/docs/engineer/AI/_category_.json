@@ -1,3 +1,14 @@
 {
-  "label": "AI"
+  "position": 2.5,
+  "label": "AI",
+  "collapsible": true,
+  "collapsed": true,
+  "className": "red",
+  "link": {
+    "type": "generated-index",
+    "title": "Artificial Intelligence"
+  },
+  "customProps": {
+    "description": "This is where you can find all the information about AI."
+  }
 }

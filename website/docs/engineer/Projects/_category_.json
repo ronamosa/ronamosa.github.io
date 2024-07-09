@@ -1,3 +1,14 @@
 {
-  "label": "Projects"
+  "position": 2.5,
+  "label": "🛠️ Projects",
+  "collapsible": true,
+  "collapsed": true,
+  "className": "red",
+  "link": {
+    "type": "generated-index",
+    "title": "Projects"
+  },
+  "customProps": {
+    "description": "This is where you can find all the information about projects."
+  }
 }
