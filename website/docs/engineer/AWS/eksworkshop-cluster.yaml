@@ -1,0 +1,63 @@
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+metadata:
+  name: eksworkshop
+  region: us-west-2
+  version: "1.30"
+  tags:
+    karpenter.sh/discovery: eksworkshop
+    created-by: eksctl
+    env: eksworkshop
+iam:
+  serviceAccounts:
+    - metadata:
+        name: aws-load-balancer-controller
+        namespace: kube-system
+      wellKnownPolicies:
+        awsLoadBalancerController: true
+
+  podIdentityAssociations: 
+  # roleARN is not given, eksctl will first create an IAM role with automatically generated roleName,
+  # using the permissionPolicy inline document
+  namespace: dev
+  serviceAccountName: nginx
+  permissionPolicy:
+    Version: "2012-10-17"
+    Statement:
+    - Effect: Allow
+      Action:
+      - "autoscaling:DescribeAutoScalingGroups"
+      - "autoscaling:DescribeAutoScalingInstances"
+      - "autoscaling:DescribeLaunchConfigurations"
+      - "autoscaling:DescribeTags"
+      - "autoscaling:SetDesiredCapacity"
+      - "autoscaling:TerminateInstanceInAutoScalingGroup"
+      - "ec2:DescribeLaunchTemplateVersions"
+      Resource: '*'
+
+vpc:
+  cidr: 10.42.0.0/16
+  clusterEndpoints:
+    privateAccess: true
+    publicAccess: true
+addons:
+  - name: vpc-cni
+    version: latest
+  - name: coredns
+    version: latest
+  - name: kube-proxy
+    version: latest
+  - name: eks-pod-identity-agent
+    version: latest
+
+managedNodeGroups:
+  - name: ng-1
+    desiredCapacity: 3
+    minSize: 3
+    maxSize: 6
+    instanceType: m5.large
+    privateNetworking: true
+    updateConfig:
+      maxUnavailablePercentage: 50
+    labels:
+      managed: "yes"
