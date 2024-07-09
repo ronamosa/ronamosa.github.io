@@ -199,6 +199,20 @@ spec:
               app.kubernetes.io/name: ui
 ```
 
+### Security Groups for Pods
+
+You already know what a Security Group (SG) is, take an EC2 Instance, has multiple ENI's and all will be associated with the SG of that specific instance. `SGfP` is bringing that SG down to a granular Pod level by using the `VPC-CNI` add-on setting `ENABLE_POD_ENI=true`, the VPC controller goes and creates a trunk interface to the node. The controller then creates "branch" interfaces each associated with a security group using the `SecurityGroupPolicy` CRD.
+
+![SG4Pods Diagram](/img/AWS-EKSWorkshop-SG4Pods.png)
+
+#### Steps
+
+There's a few things to line up so this gets working:
+
+1. Setting `ENABLE_POD_ENI=true`. One way of doing it nodes-wide: `kubectl set env daemonset -n kube-system aws-node ENABLE_POD_ENI=true`
+2. Disable TCP early demux, so that the kubelet can connect to pods on branch network interfaces via TCP: `kubectl edit daemonset aws-node -n kube-system`, set `DISABLE_TCP_EARLY_DEMUX=true`
+
+
 ## Appendix
 
 ### cluster-config.yaml
