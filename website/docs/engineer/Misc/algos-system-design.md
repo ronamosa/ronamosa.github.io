@@ -36,7 +36,7 @@ Be aware of these algorithms and their relevance to systems design.
 
 - Rate limiter
 - specifically for networking.
-- makes me think of [Thinking in Systems](../books/reading-list.md) talking about reserves and rates of ebb and flow of things moving between things.
+- makes me think of [Thinking in Systems](/docs/books/reading-list) talking about reserves and rates of ebb and flow of things moving between things.
 - the bucket represents the "buffer", holds the overflow, faces the bursts
 - the leak in the bucket is the steady, stream to the system, constant rate.
 - overflow is "lost" think dropped packets.
