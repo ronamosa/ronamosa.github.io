@@ -190,4 +190,4 @@ referenced_image_ids?: string[],
 Output initialization above
 ```
 
-![hohoho](/img/kahatechlead.jpg)
+![hohoho](/img/kaha-techlead.png)
