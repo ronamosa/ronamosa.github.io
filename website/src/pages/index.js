@@ -19,15 +19,15 @@ function Home() {
         <div className="container">
           <div className={styles.heroBannerText}>
             <p className="colorSuccess">
-              <b>Hi, my name is</b>
+              <b>Hi, I'm Ron Amosa: </b>
             </p>
             <h1>
-              <span className="colorWarning">Ron</span>{" "}
-              <span className="colorDanger">Amosa.</span>
+              <span className="colorWarning">The Uncommon</span>{" "}
+              <span className="colorDanger">Engineer.</span>
             </h1>
             <p>I'm a Hacker/Engineer/Geek. 💻.</p>
-            <p>Part Blog / Part <a href="https://maggieappleton.com/garden-history">Digital Garden</a> 🌱.</p>
-            <p>This is where I learn in public 📚.</p>
+            <p>Part Lab Notes / Part <a href="https://maggieappleton.com/garden-history">Digital Garden</a> 🌱.</p>
+            <p>Learning in Public 📚.</p>
             <SocialLinks />
             <nav className={clsx("pagination-nav", styles.heroBannerButton)}>
               <div className="pagination-nav__item">
