@@ -26,16 +26,12 @@ const internetProfiles = {
   projects: {
     label: "Projects",
     to: "projects",
-  },  
-  resume: {
-    label: "Resume",
-    href: "https://ronamosa.github.io/pdf/resume.pdf",
   },
 };
 
 module.exports = {
   title: 'Ron Amosa',
-  tagline: 'Pasifika Excellence and Leadership in Cloud, DevOps and Security Engineering.',
+  tagline: 'Pasifika Excellence and Leadership in AI, Cloud, DevOps and Security Engineering.',
   url: 'https://ronamosa.io',
   baseUrl: '/',
   onBrokenLinks: 'throw',
@@ -51,7 +47,7 @@ module.exports = {
       respectPrefersColorScheme: false,
     },    
     navbar: {
-      title: 'Ron Amosa',
+      title: 'Uncommon Engineer',
       logo: {
         alt: 'ronamosa.io',
         src: 'img/logo.svg',
@@ -66,11 +62,6 @@ module.exports = {
         { to: "blog/", label: "Blog", position: "left" },
         { to: "about/", label: "About", position: "right" },
         { to: "projects/", label: "Projects", position: "right" },
-        {
-          href: "https://ronamosa.io/pdf/resume.pdf",
-          label: "Resume",
-          position: "right",
-        },
       ],
     },
 
@@ -101,7 +92,6 @@ module.exports = {
             internetProfiles.blog,
             internetProfiles.docs,
             internetProfiles.about,
-            internetProfiles.resume,
           ],
         },
       ],
