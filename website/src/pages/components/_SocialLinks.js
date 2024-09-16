@@ -14,7 +14,7 @@ import socialLinks from "../../data/_SocialLinks";
 function SocialLink({ faIcon, alt, url }) {
   return (
     <li>
-      <a className="button button--outline button--success" href={url}>
+      <a className="button button--outline button--primary" href={url}>
         <FontAwesomeIcon alt={alt} title={alt} icon={faIcon} size="1x" /> {alt}
       </a>
     </li>

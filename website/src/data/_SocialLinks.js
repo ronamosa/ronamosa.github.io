@@ -1,6 +1,5 @@
-import { faAirFreshener, faEnvelope, faNewspaper } from "@fortawesome/free-regular-svg-icons";
-import { faLinkedin, faGithub, faTwitch, faNode } from "@fortawesome/free-brands-svg-icons";
-import { faMailBulk, faVoicemail } from "@fortawesome/free-solid-svg-icons";
+import { faMailBulk } from "@fortawesome/free-solid-svg-icons";
+import { faLinkedin, faGithub, faYoutube } from "@fortawesome/free-brands-svg-icons";
 
 const socialLinks = [
   {
@@ -9,9 +8,9 @@ const socialLinks = [
     url: "https://www.uncommonengineer.com/",
   },
   {
-    faIcon: faLinkedin,
-    alt: "Linkedin",
-    url: "https://www.linkedin.com/in/ron-amosa/",
+    faIcon: faYoutube,
+    alt: "YouTube",
+    url: "https://www.youtube.com/@uncommonengineer",
   },
   {
     faIcon: faGithub,

@@ -1,12 +1,11 @@
 import React from 'react';
 import clsx from 'clsx';
-
-import Link from "@docusaurus/Link";
 import useBaseUrl from "@docusaurus/useBaseUrl";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import Layout from "@theme/Layout";
-
 import styles from "./styles.module.css";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faLinkedin, faYoutube, faTwitter } from '@fortawesome/free-brands-svg-icons';
 
 function About() {
   const context = useDocusaurusContext();
@@ -22,56 +21,38 @@ function About() {
           <div className="container">
             <div className="row padding-bottom--lg">
               <div className={clsx("col col--3", styles.profilePic)}>
-                <img src={useBaseUrl("img/profile.jpg")} />
+                <img src={useBaseUrl("img/profile.svg")} alt="Profile" />
               </div>
               <div className="col col--9">
-                <h2>Talofa 👋</h2>
                 <p>
-                  I'm Ron, a Partner Solution Architect for the Pacific Islands, and New Zealand at <a href='https://aws.amazon.com/'>Amazon Web Services</a>
+                <h2>👋🏽 Talofa!</h2>
+                <br/>
+                I'm Ali'imuamua Ron Amosa, aka <a href="https://www.uncommonengineer.com/about" target="_blank" rel="noopener noreferrer">"The Uncommon Engineer"</a>.
+                <br/>
+                <br/>
+                A Pasifika technologist with Samoan, Tuvaluan, and Chinese heritage. With over two decades of engineering experience, I currently serve as a Senior Solution Architect at AWS, specializing in AI, containers, Kubernetes, and cloud security. My journey through SRE, Cyber Security, and Solution Architecture has given me a comprehensive view of the tech stack, from infrastructure, to code, risk and business outcomes.
                 </p>
                 <p>
-                  In a previous life I was a Platform Security Engineer at Salesforce/Heroku. And before that, an <a href="https://sre.google/">SRE</a> and DevOps Engineer building CICD environments and Production-Ready Kubernetes Infrastructure for banks and insurance companies.
+                This website is my digital lab book, mainly random, unfiltered record of experiments, technical documentation, and ongoing learnings. Here, I'll scribble down anything that I find interesting, and share my thoughts on the tech industry, when it's not already in my newsletter.
+                <br/>
+                <br/>
+                I'm also a husband, father, a BJJ black belt, Drummer, tattoo and motorcycle enthusiast.
                 </p>
-                <p>
-                I am New Zealand born Samoan, Tuvalu and Chinese. 
-                </p>
-                <p>
-                When I'm not behind a computer, I play the drums, I train <a href="https://www.instagram.com/ron.amosa/">Brazilian Jiu Jitsu</a> and (once I get a new one) ride my motorbike.
-                </p>
-                <p>
-                  <i>
-                    A big thank-you and credit for the theme for my blog goes to <a href="https://evantay.com/">Evan Tay</a> who made his blog setup available on his <a href="https://github.com/DigiPie/kaya-folio">GitHub</a> for people to use 🙏.
-                  </i>
-                </p>
+                <div className={styles.socialIcons}>
+                  <a href="https://www.linkedin.com/in/ron-amosa/" target="_blank" rel="noopener noreferrer" className={styles.socialIcon}>
+                    <FontAwesomeIcon icon={faLinkedin} size="2x" />
+                  </a>
+                  <a href="https://www.youtube.com/@uncommonengineer" target="_blank" rel="noopener noreferrer" className={styles.socialIcon}>
+                    <FontAwesomeIcon icon={faYoutube} size="2x" />
+                  </a>
+                  <a href="https://x.com/uncommonengneer" target="_blank" rel="noopener noreferrer" className={styles.socialIcon}>
+                    <FontAwesomeIcon icon={faTwitter} size="2x" />
+                  </a>
+                </div>
               </div>
             </div>
           </div>
-        </div>{" "}
-        <section className={styles.directoryBody}>
-          <div className="container">
-            <h3>Continue exploring?</h3>
-            <nav className="pagination-nav">
-              <div className="pagination-nav__item">
-                <Link
-                  className="pagination-nav__link"
-                  to={useBaseUrl("projects/")}
-                >
-                  <div className="pagination-nav__sublabel">Check out</div>
-                  <div className="pagination-nav__label">My projects</div>
-                </Link>
-              </div>
-              <div className="pagination-nav__item pagination-nav__item--next">
-                <a
-                  className="pagination-nav__link"
-                  href={useBaseUrl("pdf/resume.pdf")}
-                >
-                  <div className="pagination-nav__sublabel">Download</div>
-                  <div className="pagination-nav__label">My resume</div>
-                </a>
-              </div>
-            </nav>
-          </div>
-        </section>
+        </div>
       </main>
     </Layout>
   );
