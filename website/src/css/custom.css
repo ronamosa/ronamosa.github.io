@@ -7,40 +7,39 @@
 
 /* You can override the default Infima variables here. */
 :root {
-  --ifm-color-primary: #0353a4;
-  --ifm-color-primary-dark: #034b94;
-  --ifm-color-primary-darker: #03478b;
-  --ifm-color-primary-darkest: #010409;
-  --ifm-color-primary-light: #035bb4;
-  --ifm-color-primary-lighter: #035fbd;
-  --ifm-color-primary-lightest: #0464c5;
-  --ifm-color-secondary: #878787;
-  --ifm-color-secondary-dark: #616161;
-  --ifm-color-secondary-darker: #2e2e2e;
-  --ifm-color-secondary-darkest: #161b22;
-  --ifm-color-secondary-light: #adadad;
-  --ifm-color-secondary-lighter: #d4d4d4;
-  --ifm-color-secondary-lightest: #ededed;
-  --ifm-navbar-background-color: #161b22;
-  --ifm-background-color: #0d1117;
-  --ifm-color-success: #0351a3;
-  --ifm-color-warning: #7d8597;
-  --ifm-color-danger: #da1e37;
-  --ifm-link-color: #035bb4;
+  --ifm-color-primary: #A4161A; /* Main red */
+  --ifm-color-primary-dark: #BA181B; /* Darker red */
+  --ifm-color-primary-darker: #660708; /* Even darker red */
+  --ifm-color-primary-darkest: #660708; /* Darkest red */
+  --ifm-color-primary-light: #BA181B; /* Lighter red */
+  --ifm-color-primary-lighter: #BA181B; /* Even lighter red */
+  --ifm-color-primary-lightest: #BA181B; /* Lightest red */
+  --ifm-color-secondary: #B1A7A6; /* Light gray */
+  --ifm-color-secondary-dark: #D3D3D3; /* Darker gray */
+  --ifm-color-secondary-darker: #161A1D; /* Even darker gray */
+  --ifm-color-secondary-darkest: #0B090A; /* Almost black */
+  --ifm-color-secondary-light: #D3D3D3; /* Light gray */
+  --ifm-color-secondary-lighter: #F5F3F4; /* Very light gray */
+  --ifm-color-secondary-lightest: #FFFFFF; /* White */
+  --ifm-background-color: #0B090A; /* Very dark background */
+  --ifm-navbar-background-color: #161A1D; /* Slightly lighter than background */
+  --ifm-footer-background-color: #161A1D; /* Slightly lighter than background */
+  --ifm-font-color-base: #F5F3F4; /* Light gray for better contrast */
+  --ifm-link-color: #BA181B; /* Red for links */
   --ifm-code-font-size: 95%;
 }
 
 html[data-theme='dark'] {
-  --ifm-color-primary: #0353a4;
-  --ifm-color-primary-dark: #034b94;
-  --ifm-background-color: #0d1117;
-  --ifm-footer-background-color: #0d1117;
-  /* --ifm-font-color-base-inverse: #8b949e; */
-  /* any other colors you wish to overwrite */
+  --ifm-color-primary: #A4161A;
+  --ifm-color-primary-dark: #BA181B;
+  --ifm-background-color: #0B090A;
+  --ifm-navbar-background-color: #161A1D;
+  --ifm-footer-background-color: #161A1D;
+  --ifm-font-color-base: #F5F3F4;
 }
 
 .docusaurus-highlight-code-line {
-  background-color: rgb(72, 77, 91);
+  background-color: #161A1D; /* Slightly lighter than background for code highlight */
   display: block;
   margin: 0 calc(-1 * var(--ifm-pre-padding));
   padding: 0 var(--ifm-pre-padding);
@@ -67,35 +66,35 @@ p {
 }
 
 .colorSuccess {
-  color: var(--ifm-color-success);
+  color: #A4161A; /* Main red */
 }
 
 .colorWarning {
-  color: var(--ifm-color-warning);
+  color: #BA181B; /* Darker red */
 }
 
 .colorDanger {
-  color: var(--ifm-color-danger);
+  color: #660708; /* Darkest red */
 }
 
 .bgColorSuccess {
-  background-color: var(--ifm-color-success);
+  background-color: #A4161A; /* Main red */
 }
 
 .bgColorDanger {
-  background-color: var(--ifm-color-danger);
+  background-color: #660708; /* Darkest red */
 }
 
 .underlineColorSuccess {
-  border-bottom: 4px solid var(--ifm-color-success);
+  border-bottom: 4px solid #A4161A; /* Main red */
 }
 
 .underlineColorWarning {
-  border-bottom: 4px solid var(--ifm-color-warning);
+  border-bottom: 4px solid #BA181B; /* Darker red */
 }
 
 .underlineColorDanger {
-  border-bottom: 4px solid var(--ifm-color-danger);
+  border-bottom: 4px solid #660708; /* Darkest red */
 }
 
 .admonition a,

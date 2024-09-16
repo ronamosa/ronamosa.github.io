@@ -19,6 +19,16 @@
   width: 16%;
 }
 
+.socialLinkButton {
+  color: #A4161A !important; /* Use your main red color */
+  border-color: #A4161A !important;
+}
+
+.socialLinkButton:hover {
+  background-color: #A4161A !important;
+  color: #F5F3F4 !important; /* Light gray for contrast */
+}
+
 @media screen and (max-width: 966px) {
   .socialLinkListContainer {
     margin-bottom: 1.6rem;
