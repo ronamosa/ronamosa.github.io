@@ -92,3 +92,20 @@
     text-align: center;
   }
 }
+
+.socialIcons {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.socialIcon {
+  margin-right: 1.5rem;
+  color: var(--ifm-color-primary);
+  transition: color 0.3s ease;
+}
+
+.socialIcon:hover {
+  color: var(--ifm-color-primary-dark);
+}

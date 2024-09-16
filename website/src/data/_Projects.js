@@ -29,27 +29,27 @@ const projects = [
   },
   {
     category: "Community",
-    title: "Pasifika Tech Network",
+    title: "Pasifika Tech Network (Archived)",
     slug: "#pasifika-tech-network",
     imageUrl: "img/projects/ptn.png",
     subtitle:
       "An online and in-person network of Pasifika technology professionals, students and learners.",
-    period: "EST. 2021",
+    period: "2021 - 2023",
     tech: "Discord",
     description: (
       <>
         <p>
-        The Pasifika Tech Network brings together Pasifika from across the technology industry in techincal and non-technical roles to share knowledge, collaborate and support our community currently in the industry, and for the incoming generation.
+          <em>Note: This project has been discontinued as of 2024.</em>
         </p>
         <p>
-        More info on our website:
+          The Pasifika Tech Network brought together Pasifika from across the technology industry in technical and non-technical roles to share knowledge, collaborate and support our community currently in the industry, and for the incoming generation.
         </p>
       </>
     ),
     links: [
       {
-        name: "Pasifika Tech Network",
-        link: "https://pasifikatechnetwork.github.io/",
+        name: "Project Archive",
+        link: "https://web.archive.org/web/20230513020536/https://pasifikatechnetwork.github.io/s",
       },
     ],
   },
