@@ -1,12 +1,11 @@
 import React from 'react';
 import clsx from 'clsx';
-
 import Link from "@docusaurus/Link";
 import useBaseUrl from "@docusaurus/useBaseUrl";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import Layout from "@theme/Layout";
-
 import styles from "./styles.module.css";
+import { AboutBody, WorkItems, EducationItems } from '../../data/_About';
 
 function About() {
   const context = useDocusaurusContext();
@@ -22,31 +21,33 @@ function About() {
           <div className="container">
             <div className="row padding-bottom--lg">
               <div className={clsx("col col--3", styles.profilePic)}>
-                <img src={useBaseUrl("img/profile.jpg")} />
+                <img src={useBaseUrl("img/profile.jpg")} alt="Profile" />
               </div>
               <div className="col col--9">
-                <h2>Talofa 👋</h2>
-                <p>
-                  I'm Ron, a Partner Solution Architect for the Pacific Islands, and New Zealand at <a href='https://aws.amazon.com/'>Amazon Web Services</a>
-                </p>
-                <p>
-                  In a previous life I was a Platform Security Engineer at Salesforce/Heroku. And before that, an <a href="https://sre.google/">SRE</a> and DevOps Engineer building CICD environments and Production-Ready Kubernetes Infrastructure for banks and insurance companies.
-                </p>
-                <p>
-                I am New Zealand born Samoan, Tuvalu and Chinese. 
-                </p>
-                <p>
-                When I'm not behind a computer, I play the drums, I train <a href="https://www.instagram.com/ron.amosa/">Brazilian Jiu Jitsu</a> and (once I get a new one) ride my motorbike.
-                </p>
-                <p>
-                  <i>
-                    A big thank-you and credit for the theme for my blog goes to <a href="https://evantay.com/">Evan Tay</a> who made his blog setup available on his <a href="https://github.com/DigiPie/kaya-folio">GitHub</a> for people to use 🙏.
-                  </i>
-                </p>
+                <AboutBody />
+                
+                <h2>Work Experience</h2>
+                {WorkItems.map((item, index) => (
+                  <div key={index} className="work-item">
+                    <h3><a href={item.link}>{item.location}</a></h3>
+                    <p>{item.position}</p>
+                    <p>{item.period}</p>
+                    {item.description}
+                  </div>
+                ))}
+
+                <h2>Education and Certifications</h2>
+                {EducationItems.map((item, index) => (
+                  <div key={index} className="education-item">
+                    <h3><a href={item.link}>{item.certification}</a></h3>
+                    <p>{item.period}</p>
+                    {item.description}
+                  </div>
+                ))}
               </div>
             </div>
           </div>
-        </div>{" "}
+        </div>
         <section className={styles.directoryBody}>
           <div className="container">
             <h3>Continue exploring?</h3>
