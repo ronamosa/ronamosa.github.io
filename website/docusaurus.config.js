@@ -7,10 +7,11 @@ const internetProfiles = {
     label: "GitHub",
     href: "https://github.com/ronamosa/",
   },
-  email: {
-    label: "Email",
-    href: "mailto:ron+website@cloudbuilder.io",
+  youtube: {
+    label: "YouTube",
+    href: "https://www.youtube.com/@uncommonengineer",
   },
+
   blog: {
     label: "Blog",
     to: "blog",
@@ -83,7 +84,7 @@ module.exports = {
           items: [
             internetProfiles.linkedin,
             internetProfiles.github,
-            internetProfiles.email,
+            internetProfiles.youtube,
           ],
         },
         {
