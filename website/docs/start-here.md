@@ -4,68 +4,82 @@ slug: "/"
 sidebar_position: 1
 ---
 
-## Talofa 👋
+## 👋 Talofa (That means "hello" in Samoan)
 
-That means "hello" in Samoan.
+I'm Ron Amosa, a Pasifika tech professional sharing insights on cloud computing, cybersecurity, and AI, with a focus on empowering underrepresented communities in tech.
 
-This is my make-shift [Digital Garden](https://joelhooks.com/digital-garden) 🌱 where I try to write regularly, learn in public and share the thought-process.
+This is my [Digital Garden](https://joelhooks.com/digital-garden) 🌱 where I write regularly, learn in public, and share my thought processes.
 
-## 🗒 Notes
+## 🧭 Site Navigation
 
-My notes will be on random, ad-hoc things I'm working on at any one time, but will mostly involve cloud, kubernetes, devops, automation, security.
+- Use the left sidebar to explore different content categories
+- The main content area displays the selected topic
+- The right sidebar offers quick navigation within the current page
 
-The sidebar menu and documents will grow as I continue to add more notes to the garden.
+## 📬 Newsletter: The Uncommon Engineer
 
-## 🗓️ Currently
+A newsletter written from the intersection of personal experience, professional career, technology impacts, and Pasifika communities.
 
-Things I'm working or focused on:-
+![ue newsletter](/img/ue-newsletter-snap.png)
 
-- Newsletter: ["The Uncommon Engineer"](https://www.uncommonengineer.com/)
-- Charity: ["The Pasifika Tech Education Charity"](https://www.pasifikateched.net/)
-- Learning all things AI/LLMs (see ["AI"](engineer/AI/DeepLearning.AI) section)
 
-## 📚 [Books](books/reading-list.md)
+[▶️ Sign up here](https://www.uncommonengineer.com/)
 
-My reading list, what I'm currently reading and notes on books I've read.
+## 🌟 Featured Content
 
-Current reading:
+My top performing, most searched for and accessed posts:
 
-|Title|Author|
-|:------|:-----------|
-| Unmasking AI: My Mission to Protect What Is Human          | Joy Buolamwini   |
-| Right/Wrong: How Technology Transforms Our Ethics          | Juan Enriquez    |
+1. ["Proxmox: Create a cloud-init Template VM with Packer"](/docs/engineer/LAB/proxmox-packer-vm)
+2. ["Proxmox: Cloud Init VM Setup With Ansible-Playbooks"](/docs/engineer/LAB/proxmox-cloudinit)
+3. ["Proxmox: Mount a Virtual Machine's Logical Volume (LV) from Proxmox Host"](/docs/engineer/LAB/proxmox-lvm-mount/)
+4. ["Mistral-7B using Ollama on AWS SageMaker"](/docs/engineer/AI/Mistral-7B-SageMaker/)
+5. ["Deploying LLM to SageMaker (manually)"](/docs/engineer/AI/DeployLLMToSageMaker/)
 
-I have a mix of kindle and physical books that I read.
+## 🔍 Current Focus Areas
 
-## 📗 Study
+- AI and Large Language Models (LLMs) - Check out the ["AI"](engineer/AI/DeepLearning.AI) section for my latest explorations
+- **The Pasifika Tech Education Charity** - Empowering Pacific youth through technology education. [Learn more](https://www.pasifikateched.net/)
 
-These are the study and exam notes for certifications, courses (newest->oldest) that I have passed.
+## 🏆 Certifications and Expertise
 
-- ✅ [AWS Solution Architect Professional C02 Cerfitication 2024](#)
-- ✅ [AWS Security Specialty S01 Certification 2023](study/SCS-C01/README.md)
-- ✅ [AWS Solution Architect Associate S03 Certification 2022](study/SAA-03/README.md)
-- ✅ [AWS Cloud Practitioner Certification 2022](study/CCP/README.md)
+<img src="/img/certs/aws-certified-security-speciality.png" alt="AWS Certified Security Specialty" width="200" height="200" />
+
+<img src="/img/certs/aws-certified-solutions-architect-professional.png" alt="AWS Certified Solutions Architect Professional" width="200" height="200" />
+
+<img src="/img/certs/aws-certified-solutions-architect-associate.png" alt="AWS Certified Solutions Architect Associate" width="200" height="200" />
+
 - ✅ [CKS: Certified Kubernetes Security Specialist 2021](study/CKS/README.md)
 - ✅ [CKA: Certified Kubernetes Administrator 2021](study/CKA/README.md)
+- 📜 [View all certifications](https://www.credly.com/users/ronald-amosa)
 
-## 🏴‍☠️ Hacker
+## 📚 Content Categories
 
-Breaking things. Notes and information related to Information Security, Offensive (red) and Defensive (blue) Security and DevSecOps (purple).
+- 📚 **Books**: My current reading list and book notes
+- 📗 **Study**: Exam notes and certification resources
+- 🏴‍☠️ **Hacker**: InfoSec, Red/Blue team security, and DevSecOps notes
+- 💻 **Engineer**: Software engineering and infrastructure architecture projects
 
-### TryHackMe
+## 🚀 Ongoing Projects
 
-I work on hacking various rooms on the TryHackMe platform under ["RxHack"](https://tryhackme.com/p/rxhack) and do write-ups of what I learn here.
+- Newsletter: "The Uncommon Engineer"
+- Charity: "The Pasifika Tech Education Charity"
+- AI/LLM Research and Implementation
 
-### HackTheBox
+## 📖 Current Reading
 
-I started on HackTheBox on March-15-2022 and will post write-ups of my hacking efforts here as well.
+- "Unmasking AI: My Mission to Protect What Is Human" by Joy Buolamwini
+- "Right/Wrong: How Technology Transforms Our Ethics" by Juan Enriquez
 
-## 💻 Engineer
+[View full reading list](books/reading-list.md)
 
-Building things. Applications, Software Engineering, Infrastructure Architecture and Engineering.
+## 🤝 Connect with Me
 
-All code for such projects you can find on my [GitHub](https://github.com/ronamosa) account (the public repo's anyway).
+- [LinkedIn](https://www.linkedin.com/in/ron-amosa/)
+- [GitHub](https://github.com/ronamosa/)
+- [Twitter](https://x.com/uncommonengneer)
 
-## 🗃 Archive
+## 💬 Let's Engage
 
-Old blog posts from 2016-2020.
+I update this site weekly with new content.
+
+Have questions or topics you'd like me to cover? Reach out to me on social media. Your engagement helps this Digital Garden grow!
