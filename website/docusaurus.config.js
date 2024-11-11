@@ -46,7 +46,16 @@ module.exports = {
       defaultMode: "dark",
       disableSwitch: true,
       respectPrefersColorScheme: false,
-    },    
+    },
+    head: [
+      {
+        tagName: 'script',
+        attributes: {
+          async: true,
+          src: 'https://path.to/your/script.js',
+        },
+      },
+    ],
     navbar: {
       title: 'Uncommon Engineer',
       logo: {
