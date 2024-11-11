@@ -52,7 +52,7 @@ module.exports = {
         tagName: 'script',
         attributes: {
           async: true,
-          src: 'https://path.to/your/script.js',
+          src: '/js/metricool.js',
         },
       },
     ],
