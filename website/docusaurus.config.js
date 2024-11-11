@@ -47,15 +47,6 @@ module.exports = {
       disableSwitch: true,
       respectPrefersColorScheme: false,
     },
-    head: [
-      {
-        tagName: 'script',
-        attributes: {
-          async: true,
-          src: '/js/metricool.js',
-        },
-      },
-    ],
     navbar: {
       title: 'Uncommon Engineer',
       logo: {
@@ -116,6 +107,10 @@ module.exports = {
   scripts: [
     {
       src: '/js/console-clue.js',
+      async: false,
+    },
+    {
+      src: '/js/mertricool.js',
       async: false,
     },
   ],
