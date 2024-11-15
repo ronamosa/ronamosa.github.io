@@ -23,7 +23,7 @@ A newsletter written from the intersection of personal experience, professional 
 ![ue newsletter](/img/ue-newsletter-snap.png)
 
 
-[▶️ Sign up here](https://www.uncommonengineer.com/)
+### [▶️ Sign up here](https://news.uncommonengineer.com/)
 
 ## 🌟 Featured Content
 
