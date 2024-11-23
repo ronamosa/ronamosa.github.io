@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkronamosa_github_io=self.webpackChunkronamosa_github_io||[]).push([[8893],{93907:a=>{a.exports=JSON.parse('{"label":"goals","permalink":"/blog/tags/goals","allTagsPath":"/blog/tags","count":1}')}}]);
