@@ -37,7 +37,7 @@ My top performing, most searched for and accessed posts:
 
 ## 🔍 Current Focus Areas
 
-- AI and Large Language Models (LLMs) - Check out the ["AI"](engineer/AI/DeepLearning.AI) section for my latest explorations
+- AI and Large Language Models (LLMs) - Check out the ["AI"](engineer/AI/AgenticRagLlamaIndex.md) section for my latest explorations
 - **The Pasifika Tech Education Charity** - Empowering Pacific youth through technology education. [Learn more](https://www.pasifikateched.net/)
 
 ## 🏆 Certifications and Expertise

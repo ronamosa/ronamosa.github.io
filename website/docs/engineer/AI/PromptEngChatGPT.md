@@ -1,5 +1,5 @@
 ---
-title: "DeepLearning.ai Short Course: ChatGPT Prompt Engineering for Developers"
+title: "ChatGPT Prompt Engineering for Developers"
 ---
 
 :::info
