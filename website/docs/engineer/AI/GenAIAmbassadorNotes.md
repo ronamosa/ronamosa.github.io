@@ -247,6 +247,29 @@ and show the model how to work out the answer.
 
 the other way of activating "chain of thought" is to say "let's think step by step" in the prompt.
 
+#### Tree of Thought
+
+- ToT fundamentally a search and reasoning strategy, not a knowledge generation.
+- it can do iterative steps (less common), and "mapped search" (core ToT approach).
+- first ToT maps all potential "branches" (steps) towards a solution for the problem.
+- then systematically evaluates each branch, doing sub-possibilities for each branch as it goes.
+
+advantages you can see are, it can evaluate multiples branches at once, can backtrack efficiently if it runs into a dead end.
+
+Things ToT is good for:
+
+- problem-solving
+- decision-making
+- optimization
+- strategic planning
+- code generation
+
+Not so good for:
+
+- scientific discovery
+- genuine innovation
+- creating new knowledge.
+
 #### Generate Knowledge
 
 Generate Knowledge prompting is a technique where you ask the model to generate knowledge based on some information you provide i.e. you don't give the model the answers, you just provide some facts, and the model will generate "knowledge" based on the facts.
@@ -347,3 +370,64 @@ the most relevant quotes from the document are:
 ```
 
 the output of prompt 2 is the answer to the user's question.
+
+:::tip
+
+prompt chaining is a powerful technique to improve the quality of the output.
+
+:::
+
+## COSTAR Prompt Engineering
+
+C - Context
+O - Objective
+S - Style
+T - Tone
+A - Audience
+R - Response
+
+### Context
+
+provide background information, context, and any relevant information for the scenario, to ensure relevance of the response.
+
+### Objective
+
+Clearly defining the task, directs the model to meet the specific goal.
+
+### Style
+
+specify writing style, e.g. formal, informal, technical, creative, etc. almost like personas.
+
+### Tone
+
+set the tone of the response, e.g. friendly, professional, etc. behaviour.
+
+### Audience
+
+set the audience of the response, e.g. a specific age group, a specific industry, etc.
+
+### Response
+
+set the response format, e.g. number of words, markdown, json, etc.
+
+:::tip
+
+when prompting, use the use-case of the industry your customer is in. this helps keep the interest of the customer as they can see themselves in the responses or outputs.
+
+:::
+
+### Prompt Migrations
+
+when moving prompts from one provider to another, you need to consider the following:
+
+- the model's capabilities and limitations
+- the prompt's structure and format
+- the output's structure and format
+
+the vendor will have the recommended prompt structure for their model.
+
+:::tip
+
+play to the advantages you are using.
+
+:::
