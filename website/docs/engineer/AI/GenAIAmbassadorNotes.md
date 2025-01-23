@@ -200,7 +200,7 @@ note: ^ zero shot prompt.
 
 you're essentially priming the model with a conversation history, showing it how a response should look based on a question, and also including what you want the "persona" of the model to be.
 
-e.g. 
+e.g.
 
 ```text
 the following is a conversation between a user and a model. the model is a helpful assistant.
@@ -431,3 +431,70 @@ the vendor will have the recommended prompt structure for their model.
 play to the advantages you are using.
 
 :::
+
+## Responsible AI
+
+- Traditional ML is more narrowly focused on specific tasks, and the outputs are more predictable.
+- LLMs are more broadly focused on a wide range of tasks, and the outputs are more unpredictable.
+- LLMs are more prone to hallucinations, toxicity, bias, and safety issues.
+
+because LLMs can generate more widely, they're more difficult to control.
+
+### Make it Safer?
+
+once you have a metric of "fairness" you can include it as a condition in the models training e.g. ask that the false-rejection rate - frequency with which the model predicts a default on a loan, by an applicant who is in fact creditworthy - be the same aross gender groups.
+
+another example is when generating scenarios with professionals in it, that the pronouns used are even across gender groups.
+
+:::warning
+
+unlike traditional ML, LLMs will produce content that can't be explained.
+
+:::
+
+### Challenges Specific to GenAI
+
+- hallucinations: the model makes up information that is not true.
+- toxicity: the model generates harmful or offensive content.
+- intellectual property: the model may generate content that infringes on intellectual property rights.
+- plagiarism & cheating: the model may generate content that is plagiarized from other sources.
+- disruption of work: people being replaced by AI.
+
+### How to Make it Safer?
+
+#### Toxicity & Fairness
+
+- use carefully curated datasets for training. if it's not in the data, it won't be in the model.
+- guardrails: set rules for what the model can and cannot do.
+- train "guardrail models" which then detect harmful or unwanted content in the training data.
+  - note: these models need labeled, human-annotated data to train on.
+
+#### Hallucinations
+
+- educate users on the reality of hallucinations happening.
+- augment LLMs using Retrieval Augmented Generation (RAG) to generate more accurate responses.
+- output-to-training-data attribution, allows users to see the data that the model was trained on, and then see if the output is accurate.
+
+#### Intellectual Property
+
+Model disgorgement is a set of techniques used to remove or reduce the effects of specific data from trained machine learning models[^1][^2]. It addresses issues such as reducing bias, increasing fidelity, and ensuring responsible use of intellectual property without requiring complete retraining of the model[^1][^3].
+
+There are three main approaches to model disgorgement:
+
+1. **Reactive**: Applied after model training to eliminate effects of specific samples[^1].
+2. **Proactive**: Implemented during model design to facilitate future disgorgement[^1].
+3. **Preemptive**: Techniques like differential privacy that minimize data influence during training[^1].
+
+Disgorgement methods can be either deterministic (guaranteeing complete removal) or probabilistic (reducing influence to a negligible level)[^1]. The choice of method depends on factors such as model architecture, computational resources, and desired level of certainty in data removal[^1][^2].
+
+## References
+
+[4]: [Model Disgorgement: Key to Fixing AI Bias](https://ai.seas.upenn.edu/news/model-disgorgement-the-key-to-fixing-ai-bias-and-copyright-infringement/)
+[5]: [AI Ethics and Law on AI Disgorgement](https://www.forbes.com/sites/lanceeliot/2022/05/09/ai-ethics-and-the-law-are-dabbling-with-ai-disgorgement-or-all-out-destruction-of-ai-as-a-remedy-for-ai-wrongdoing-possibly-even-for-misbehaving-self-driving-cars/)
+[6]: [Legal Framework](https://jolt.richmond.edu/files/2023/03/Goland-Final.pdf)
+[7]: [Data Stewardship Framework](https://law.stanford.edu/2023/03/09/a-data-stewardship-framework-for-generative-ai/)
+[8]: [SSRN Paper](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4382254)
+
+[^1]: [PMC Article](https://pmc.ncbi.nlm.nih.gov/articles/PMC11067471/)
+[^2]: [PubMed Article](https://pubmed.ncbi.nlm.nih.gov/38640257/)
+[^3]: [IAPP Article](https://iapp.org/news/a/explaining-model-disgorgement)
