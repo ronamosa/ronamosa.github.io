@@ -487,6 +487,15 @@ There are three main approaches to model disgorgement:
 
 Disgorgement methods can be either deterministic (guaranteeing complete removal) or probabilistic (reducing influence to a negligible level)[^1]. The choice of method depends on factors such as model architecture, computational resources, and desired level of certainty in data removal[^1][^2].
 
+some other methods are:
+
+- **Sharding**: splitting the data into multiple shards, and then training the model on each shard, makes it possible to remove specific data or shards from the model, without retraining the entire model. sharding allows:
+  - disgorgement of specific data or shards from the model.
+  - a "zero/low cost forgetting" approach, where the model is not retrained, but the data is removed from the model.
+  - serves as a foundational technique that enhances the practicality and efficiency of model disgorgement and other safety-related methods in AI.
+- **Differential Privacy**: adding noise to the data, which makes it possible to remove specific data from the model, without retraining the entire model.
+- **Watermarking**: embedding a unique identifier into the model, which makes it possible to detect if 
+
 ## References
 
 [4]: [Model Disgorgement: Key to Fixing AI Bias](https://ai.seas.upenn.edu/news/model-disgorgement-the-key-to-fixing-ai-bias-and-copyright-infringement/)
