@@ -306,6 +306,21 @@ docker exec -it pihole nslookup example.com unbound
 nslookup example.com your-pihole-ip
 ```
 
+## Block Lists
+
+Now that you've got the stock standard installation going, you want to add your choice of block lists. I use the following from [HaGeZi's](https://github.com/hagezi/dns-blocklists)
+
+```text
+https://raw.githubusercontent.com/hagezi/dns-blocklists/refs/heads/main/domains/pro.plus.txt
+https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts
+```
+
+:::tip 
+
+You can use regex lists if you follow my howto here: `COMING SOON`
+
+:::
+
 ### Check for DNS Leaks
 
 Visit [DNSLeakTest.com](https://dnsleaktest.com) and run a standard test. If set up correctly, you should only see your ISP's servers, not Google or other public DNS providers.
@@ -365,6 +380,24 @@ sudo chmod -R 755 ~/pihole/pihole
 sudo chmod -R 755 ~/pihole/dnsmasq
 sudo chmod -R 755 ~/pihole/unbound
 ```
+
+### Pihole Gravity Lists Errors
+
+If you get something like this when you try to run `pihole -g` or the `Update Gravity` links in the web-ui
+
+```text
+[i] Target: https://raw.githubusercontent.com/hagezi/dns-blocklists/refs/heads/main/wildcard/nsfw.txt
+  [✓] Status: No changes detected
+  [✓] Parsed 0 exact domains and 0 ABP-style domains (blocking, ignored 75907 non-domain entries)
+      Sample of non-domain entries:
+        - *.0-porno.com
+        - *.0000sex.com
+        - *.000freeproxy.com
+        - *.000pussy69pornxxxporno.com
+        - *.000webhostapp.co
+```
+
+it's because you're using a list that PiHole can't process, either becuase its for a DNSMASQ client or otherwise.
 
 :::tip
 
