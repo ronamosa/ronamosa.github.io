@@ -27,7 +27,7 @@ function About() {
                 <p>
                 <h2>👋🏽 Talofa!</h2>
                 <br/>
-                I'm Ali'imuamua Ron Amosa, aka <a href="https://www.uncommonengineer.com/about" target="_blank" rel="noopener noreferrer">"The Uncommon Engineer"</a>.
+                I'm Ali'imuamua Ron Amosa, aka <a href="https://news.uncommonengineer.com/about" target="_blank" rel="noopener noreferrer">"The Uncommon Engineer"</a>.
                 <br/>
                 <br/>
                 A Pasifika technologist with Samoan, Tuvaluan, and Chinese heritage. With over two decades of engineering experience, I currently serve as a Senior Solution Architect at AWS, specializing in AI, containers, Kubernetes, and cloud security. My journey through SRE, Cyber Security, and Solution Architecture has given me a comprehensive view of the tech stack, from infrastructure, to code, risk and business outcomes.
