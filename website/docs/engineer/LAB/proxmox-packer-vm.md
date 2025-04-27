@@ -99,6 +99,8 @@ proxmox_api_token_secret = "{token_goes_here}"
 
 ## Packer Folder Structure
 
+The following folders are found in Christian Lempa's packer vm boilerplates repo here: [https://github.com/ChristianLempa/boilerplates/tree/main/packer/proxmox](https://github.com/ChristianLempa/boilerplates/tree/main/packer/proxmox)
+
 Each OS VM template folder, e.g. `ubuntu-server-focal` laid out like this:
 
 ```bash
