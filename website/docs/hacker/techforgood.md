@@ -24,13 +24,13 @@ FLAGX{someword}
 
 ```
 
-Explore these sites carefully:
+Explore these sites carefully, find the flags:
 
-- 🛰️ `https://www.pasifikateched.net/` *hint:* `robots.txt`
-- 🧠 `https://www.theuncommon.ai/` *hint: what's in the source?*
-- ⚡ `https://technesianlivestream.github.io/` → (view source and hidden elements)
+- 🛰️ `https://www.pasifikateched.net/` *hint: have a look at the Tech Workshop page source...*
+- ⚡ `https://technesianlivestream.github.io/docs/` *hint: so many cool episodes! Ep4 looks interesting...*
+- - 🧠 `https://www.theuncommon.ai/` *hint: robots.txt*
 
-Write down each flag!
+Write down each flag but rememeber the order!
 
 Then, strip the `FLAGX{}` part and combine the words in order:  
 
