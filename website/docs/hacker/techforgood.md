@@ -49,21 +49,37 @@ your decryption key would be 'techforgood'
 
 Go to [CyberChef](https://gchq.github.io/CyberChef/) and follow these steps:
 
-1. **Recipe**: Add operation `AES Decrypt`
-2. **Mode**: `CBC`
-3. **Key**: the phrase from your flags (e.g., `techforgood`)
-4. **IV**: `0000000000000000`
-5. **Input Type**: `Base64`
-6. **Paste this ciphertext**:
+1. Look at the left-hand-side Menu, click "Encryption/Encoding".
+2. Drag & Drop "AES Decrypt" to the "Recipe" section
 
+![CyberChef-AESDecrypt-1](/img/CyberChef-AESDecrypt-1.png)
+
+3. Set the recipe settings to the following (drop-down menus):
+4. **Key**: your secret decription key goes here, set to `UTF-8`
+5. **IV**: paste this in the input box `1234567890abcdef`, set to `UTF-8`
+6. **Mode**: `CBC`
+7. **Input**: `Hex`
+8. **Output**: `Raw`
+
+your setup should look like this:
+
+![CyberChef-AESDecrypt-2](/img/CyberChef-AESDecrypt-2.png)
+
+### 🔓 Decryption Time!
+
+Copy & Paste the key you got from putting the 3 Flags together e.g. `techforgood` into the **Key** input box.
+
+Now, copy & paste this cipher text into the **Input** box to the right of the Recipe box...
+
+```text title="Encrypted Text"
+
+f8b61164367c7abcf793d89b001dbbc12ebce00d59b851f2b44ae0502b251e7544b6eefb2ccd1df53dd956c648fd942b4bbe1aeb015f455c8016caa06231c2130af08c41b3755d88f57157a121d4d146988bab1b1f9577b17e91903f5848ea2391a65642e91cc466d56c7ed3a8e6cafc280ba12779ba589873f2fad8dbbc67e7be12a46de0e024b0beeaa6b765a1bb9bc7382b5255e943648dbbd43170d90183
 
 ```
 
-eW3N1O6U4N8XTeKvKzogcr5pCOopjhYjC+aWEm7b9aYwPOn+ww9qb8sZlfqtqFgr
+If you’ve got the correct key — boom! 🎉 You’ll see the decrypted message in the `Output` box.
 
-```
-
-If you’ve got the correct key — boom! 🎉 You’ll unlock the message.
+![CyberChef-AESDecrypt-2](/img/CyberChef-AESDecrypt-3.png)
 
 ---
 
