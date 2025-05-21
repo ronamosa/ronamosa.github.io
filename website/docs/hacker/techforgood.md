@@ -28,7 +28,7 @@ Explore these sites carefully, find the flags:
 
 - 🛰️ `https://www.pasifikateched.net/` *hint: have a look at the Tech Workshop page source...*
 - ⚡ `https://technesianlivestream.github.io/docs/` *hint: so many cool episodes! Ep4 looks interesting...*
-- - 🧠 `https://www.theuncommon.ai/` *hint: robots.txt*
+- 🧠 `https://www.theuncommon.ai/` *hint: robots.txt*
 
 Write down each flag but rememeber the order!!
 
