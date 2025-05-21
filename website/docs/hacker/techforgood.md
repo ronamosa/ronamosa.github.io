@@ -30,7 +30,7 @@ Explore these sites carefully, find the flags:
 - ⚡ `https://technesianlivestream.github.io/docs/` *hint: so many cool episodes! Ep4 looks interesting...*
 - - 🧠 `https://www.theuncommon.ai/` *hint: robots.txt*
 
-Write down each flag but rememeber the order!
+Write down each flag but rememeber the order!!
 
 Then, strip the `FLAGX{}` part and combine the words in order:  
 
