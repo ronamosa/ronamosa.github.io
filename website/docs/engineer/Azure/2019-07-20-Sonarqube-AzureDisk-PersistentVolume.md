@@ -150,27 +150,27 @@ azureDisk:
 Place this under `/sonarqube/templates/`
 
 ```yaml title="sonarqube-pv.yaml"
-{{- if and .Values.persistence.enabled (not .Values.persistence.existingClaim) }}
+\{\{- if and .Values.persistence.enabled (not .Values.persistence.existingClaim) \}\}
 kind: PersistentVolume
 apiVersion: v1
 metadata:
-  name: pv-{{ template "sonarqube.name" . }}-data
+  name: pv-\{\{ template "sonarqube.name" . \}\}-data
   labels:
-    app: {{ template "sonarqube.name" . }}
-    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
-    release: "{{ .Release.Name }}"
-    heritage: "{{ .Release.Service }}"
+    app: \{\{ template "sonarqube.name" . \}\}
+    chart: "\{\{ .Chart.Name \}\}-\{\{ .Chart.Version \}\}"
+    release: "\{\{ .Release.Name \}\}"
+    heritage: "\{\{ .Release.Service \}\}"
 spec:
   capacity:
-    storage: {{ .Values.persistence.size }}
-  storageClassName: {{ .Values.persistence.storageClassName | quote }}
+    storage: \{\{ .Values.persistence.size \}\}
+  storageClassName: \{\{ .Values.persistence.storageClassName | quote \}\}
   azureDisk:
-    kind: {{ .Values.azureDisk.kind | quote }}
-    diskName: {{ .Values.azureDisk.diskName | quote }}
-    diskURI: {{ .Values.azureDisk.diskURI | quote }}
+    kind: \{\{ .Values.azureDisk.kind | quote \}\}
+    diskName: \{\{ .Values.azureDisk.diskName | quote \}\}
+    diskURI: \{\{ .Values.azureDisk.diskURI | quote \}\}
   accessModes:
-    - {{ .Values.persistence.accessMode | quote }}
-{{- end }}
+    - \{\{ .Values.persistence.accessMode | quote \}\}
+\{\{- end \}\}
 ```
 
 ## PostgreSQL Helm Sub Chart
@@ -203,27 +203,27 @@ azureDisk:
 Place this under `/post/templates/`:
 
 ```yaml title="sonarqube-pv.yaml"
-{{- if and .Values.persistence.enabled (not .Values.persistence.existingClaim) }}
+\{\{- if and .Values.persistence.enabled (not .Values.persistence.existingClaim) \}\}
 kind: PersistentVolume
 apiVersion: v1
 metadata:
-  name: pv-{{ template "sonarqube.name" . }}-data
+  name: pv-\{\{ template "sonarqube.name" . \}\}-data
   labels:
-    app: {{ template "sonarqube.name" . }}
-    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
-    release: "{{ .Release.Name }}"
-    heritage: "{{ .Release.Service }}"
+    app: \{\{ template "sonarqube.name" . \}\}
+    chart: "\{\{ .Chart.Name \}\}-\{\{ .Chart.Version \}\}"
+    release: "\{\{ .Release.Name \}\}"
+    heritage: "\{\{ .Release.Service \}\}"
 spec:
   capacity:
-    storage: {{ .Values.persistence.size }}
-  storageClassName: {{ .Values.persistence.storageClassName | quote }}
+    storage: \{\{ .Values.persistence.size \}\}
+  storageClassName: \{\{ .Values.persistence.storageClassName | quote \}\}
   azureDisk:
-    kind: {{ .Values.azureDisk.kind | quote }}
-    diskName: {{ .Values.azureDisk.diskName | quote }}
-    diskURI: {{ .Values.azureDisk.diskURI | quote }}
+    kind: \{\{ .Values.azureDisk.kind | quote \}\}
+    diskName: \{\{ .Values.azureDisk.diskName | quote \}\}
+    diskURI: \{\{ .Values.azureDisk.diskURI | quote \}\}
   accessModes:
-    - {{ .Values.persistence.accessMode | quote }}
-{{- end }}
+    - \{\{ .Values.persistence.accessMode | quote \}\}
+\{\{- end \}\}
 ```
 
 ## Zip PostgreSQL (optional)

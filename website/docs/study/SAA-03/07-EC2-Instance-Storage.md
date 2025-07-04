@@ -15,11 +15,11 @@ These were the topics I created flashcards for (Remnote) and would revise them u
     - high performance
     - highly redundant
     - SAN
-    - use cases: "{{boot}}"  volume, DBs
+    - use cases: "\{\{boot\}\}"  volume, DBs
   - file storage
     - NAS
     - files
-    - use cases: mixed, "{{unstructured}}"  data, apps that do lots of "{{reads}}"  and "{{writes}}" .
+    - use cases: mixed, "\{\{unstructured\}\}"  data, apps that do lots of "\{\{reads\}\}"  and "\{\{writes\}\}" .
   - Network Attached Drive
   - only mount to one instance at a time (unless using io1 or io2 disk, then you can multi-attach).
   - Snapshot features ↓
@@ -34,8 +34,8 @@ These were the topics I created flashcards for (Remnote) and would revise them u
     - root EBS delete enabled by default
     - other EBS volumes disabled by default
 - AMI
-  - are a "{{customisation}}"  of an EC2 instance"
-  - are "{{Region}}"  bound
+  - are a "\{\{customisation\}\}"  of an EC2 instance"
+  - are "\{\{Region\}\}"  bound
   - Ec2 to AMI
     - start Ec2
     - customise
@@ -43,8 +43,8 @@ These were the topics I created flashcards for (Remnote) and would revise them u
     - create AMI
     - launch Ec2 using new AMI
 - EC2 Instance Store
-  - use if you need "{{high:performance}}"  disk
-  - data "{{loss}}"  (when stopped) risk because its "{{ephemeral}}"
+  - use if you need "\{\{high:performance\}\}"  disk
+  - data "\{\{loss\}\}"  (when stopped) risk because its "\{\{ephemeral\}\}"
   - use case: buffer, cache, scratch or temporary content.
 - Volume Types
   - gp (SSD)―general purpose, balances price & performance (gypsy)
@@ -60,9 +60,9 @@ These were the topics I created flashcards for (Remnote) and would revise them u
     - can burst to 3,000 IOPS for small gp2 volumes
     - max IOPS―16,000
 - PIOPS
-  - cannot be a "{{boot}}"  volume
+  - cannot be a "\{\{boot\}\}"  volume
   - 125 GiB to 16 TiB
   - st1, is a HDD that is optimised for what?―Throughput Optimised HDD
     - use cases: DWH, Log Processing
-  - sc1 i.e. C{{old}}"  HDD
+  - sc1 i.e. C\{\{old\}\}"  HDD
     - infrequently accessed, low cost

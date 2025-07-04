@@ -7,7 +7,7 @@ author_image_url: https://github.com/ronamosa.png
 tags: [community]
 ---
 
-::note
+:::note
 
 >In the thrilling 2nd Chapter of this story, I recall the harrowing experience of the first session, trying technical difficulties and where I want to see this going in the future.
 
