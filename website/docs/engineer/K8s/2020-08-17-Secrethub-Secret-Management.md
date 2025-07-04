@@ -233,7 +233,7 @@ As a deployment-time secret, you use the file provided, `secrethub.env` which ha
 
 ```bash
 {% raw %}
-ARM_ACCESS_KEY = {{ $SECRETHUB_ACCOUNT/aks_secrets/prod/azure/arm_access_key }}
+ARM_ACCESS_KEY = \{\{ $SECRETHUB_ACCOUNT/aks_secrets/prod/azure/arm_access_key \}\}
 {% endraw %}
 ```
 

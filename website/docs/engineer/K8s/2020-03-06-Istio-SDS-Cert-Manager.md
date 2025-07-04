@@ -144,7 +144,7 @@ kubectl -n istio-system \
 patch.json:
 
 ```json title="patch.json"
-[{"op": "add","path": "/spec/servers/1","value": {"hosts": ["*"], "port": {"name": "https-443","number": 443,"protocol": "HTTPS"},"tls": {"credentialName": "ingress-cert", "mode": "SIMPLE"}}}]
+[{"op": "add","path": "/spec/servers/1","value": {"hosts": ["*"], "port": {"name": "https-443","number": 443,"protocol": "HTTPS"},"tls": {"credentialName": "ingress-cert", "mode": "SIMPLE"\}\}}]
 ```
 
 so now your `ingressgateway` gateway should look like this:

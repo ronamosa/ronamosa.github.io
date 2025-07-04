@@ -252,9 +252,9 @@ update your `templates/service.yaml` file so it looks like this:
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "www-demo.fullname" . }}
+  name: \{\{ include "www-demo.fullname" . \}\}
   labels:
-{{ include "www-demo.labels" . | indent 4 }}
+\{\{ include "www-demo.labels" . | indent 4 \}\}
   annotations:
     getambassador.io/config: |
       ---
@@ -262,17 +262,17 @@ metadata:
       kind: Mapping
       name: www_mapping
       prefix: /
-      service: {{ include "www-demo.fullname" . }}.application:80
+      service: \{\{ include "www-demo.fullname" . \}\}.application:80
 spec:
-  type: {{ .Values.service.type }}
+  type: \{\{ .Values.service.type \}\}
   ports:
-    - port: {{ .Values.service.port }}
+    - port: \{\{ .Values.service.port \}\}
       targetPort: http
       protocol: TCP
       name: http
   selector:
-    app.kubernetes.io/name: {{ include "www-demo.name" . }}
-    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/name: \{\{ include "www-demo.name" . \}\}
+    app.kubernetes.io/instance: \{\{ .Release.Name \}\}
 ```
 
 key things in this config

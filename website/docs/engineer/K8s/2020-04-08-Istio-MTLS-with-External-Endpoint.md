@@ -631,7 +631,7 @@ Anyway, I did the following:
       metadata:
         annotations:
           sidecar.istio.io/userVolumeMount: '[{"name":"nginx-client-certs", "mountPath":"/etc/istio/nginx-client-certs", "readonly":true},{"name":"nginx-ca-certs", "mountPath":"/etc/istio/nginx-ca-certs", "readonly":true}]'
-          sidecar.istio.io/userVolume: '[{"name":"nginx-client-certs", "secret":{"secretName":"nginx-client-certs"}},{"name":"nginx-ca-certs", "secret":{"secretName":"nginx-ca-certs"}}]'
+          sidecar.istio.io/userVolume: '[{"name":"nginx-client-certs", "secret":{"secretName":"nginx-client-certs"\}\},{"name":"nginx-ca-certs", "secret":{"secretName":"nginx-ca-certs"\}\}]'
         labels:
           app: sleep
       spec:

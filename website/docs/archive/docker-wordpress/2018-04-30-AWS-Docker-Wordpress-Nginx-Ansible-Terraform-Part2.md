@@ -139,7 +139,7 @@ the main event, is **tasks/main.yml**. this is where docker and docker-compose g
 # tasks file for docker
 
 - name: check docker installed
-  stat: path={{ docker_service }}
+  stat: path=\{\{ docker_service \}\}
   register: install_result
 
 - debug: var=install_result
@@ -159,7 +159,7 @@ the main event, is **tasks/main.yml**. this is where docker and docker-compose g
 
 - name: Install Docker Compose
   get_url:
-    url: "https://github.com/docker/compose/releases/download/{{ docker_compose_version }}/docker-compose-Linux-x86_64"
+    url: "https://github.com/docker/compose/releases/download/\{\{ docker_compose_version \}\}/docker-compose-Linux-x86_64"
     dest: "/usr/local/bin/docker-compose"
     force: True
     owner: "root"

@@ -8,7 +8,7 @@ These were the topics I created flashcards for (Remnote) and would revise them u
 
 :::
 
-- Amazon Relational Database Service, collection of `{{managed}}` services to `{{deploy}}`, `{{operate}}` and `{{scale}}` databases in the cloud. Choose from `{{seven}}` database engines available e.g. MySQL, PostgreSQL, SQL Server.
+- Amazon Relational Database Service, collection of `\{\{managed\}\}` services to `\{\{deploy\}\}`, `\{\{operate\}\}` and `\{\{scale\}\}` databases in the cloud. Choose from `\{\{seven\}\}` database engines available e.g. MySQL, PostgreSQL, SQL Server.
 - RDS backups
   - automated backups are enabled by **default**
   - the two types of backups are?
@@ -28,7 +28,7 @@ These were the topics I created flashcards for (Remnote) and would revise them u
     - Read Replicas ‒ Read capability
 - Read Replicas
   - max RR's per Region?―5.
-  - data replication is  __"__ `{{ __eventually__ }}` __consistent"__  i.e. `{{ __asynchronous__ }}`.
+  - data replication is  __"__ `\{\{ __eventually__ \}\}` __consistent"__  i.e. `\{\{ __asynchronous__ \}\}`.
   - data transfer costs: out to the internet; in the same Region; and Region to Region ‒ which one costs nothing?―in the same Region.
 - Multi-AZ
   - what is the main use-case for MAZ?―Disaster Recovery (DR)
@@ -54,7 +54,7 @@ These were the topics I created flashcards for (Remnote) and would revise them u
   - Storage auto scales up to what max (TiB)?―128TiB.
   - In a normal setup, how many masters can an Aurora cluster have?―one.
   - how many RRs max can a cluster have, in a single Region?―15.
-  - Aurora makes `{{6}}` copies of your data across `{{3}}` Availability Zones to make your data really `{{durable}}`.
+  - Aurora makes `\{\{6\}\}` copies of your data across `\{\{3\}\}` Availability Zones to make your data really `\{\{durable\}\}`.
   - If I used mixed sized Instances in my Aurora Read Replicas to provide different levels of compute power for different types of work, what would I use to ensure only specific requests access these instances?―Custom Endpoints.
   - If my workloads were unpredictable but needed high compute power, and I wanted to optimise costs when using Aurora, what feature could I use to help me?―Aurora Serverless.
   - Disaster Recovery & High-Availability   #[[Disaster Recovery]]

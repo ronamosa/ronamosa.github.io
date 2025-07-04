@@ -41,7 +41,7 @@ These were the topics I created flashcards for (Remnote) and would revise them u
       - single AZ
       - single rack
     - low-latency network performance (10gb)
-    - riskiest due to no {{redundancy}} if single rack or AZ {{fails}}
+    - riskiest due to no \{\{redundancy\}\} if single rack or AZ \{\{fails\}\}
     - what kind of applications is a cluster placement group good for?―High Performance Computing (HPC)
   - Partition
     - instances
@@ -57,7 +57,7 @@ These were the topics I created flashcards for (Remnote) and would revise them u
       - separate hardware
       - multi-AZ
         - 7 x VM per AZ per Placement Group
-    - use case: {{critical}} applications reduce risk of {{simultaneous}} failures.
+    - use case: \{\{critical\}\} applications reduce risk of \{\{simultaneous\}\} failures.
 - Elastic Network Interface (ENI)
   - possible attributes
     - primary (private) IPv4 + secondary IPv4

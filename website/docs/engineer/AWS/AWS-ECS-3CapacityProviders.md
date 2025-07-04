@@ -228,11 +228,11 @@ Resources
 [+] AWS::EC2::SecurityGroupIngress FargateCapacityProviderService/Service/SecurityGroup/from ecsworkshopcapacityprovidersfargateFargateCapacityProviderServiceLBSecurityGroupE024A5C0:5000 FargateCapacityProviderServiceSecurityGroupfromecsworkshopcapacityprovidersfargateFargateCapacityProviderServiceLBSecurityGroupE024A5C050001D9B585F
 
 Outputs
-[+] Output FargateCapacityProviderService/LoadBalancerDNS FargateCapacityProviderServiceLoadBalancerDNS1BE52BC6: {"Value":{"Fn::GetAtt":["FargateCapacityProviderServiceLB3C8F1707","DNSName"]}}
-[+] Output FargateCapacityProviderService/ServiceURL FargateCapacityProviderServiceServiceURL128E9753: {"Value":{"Fn::Join":["",["http://",{"Fn::GetAtt":["FargateCapacityProviderServiceLB3C8F1707","DNSName"]}]]}}
+[+] Output FargateCapacityProviderService/LoadBalancerDNS FargateCapacityProviderServiceLoadBalancerDNS1BE52BC6: {"Value":{"Fn::GetAtt":["FargateCapacityProviderServiceLB3C8F1707","DNSName"]\}\}
+[+] Output FargateCapacityProviderService/ServiceURL FargateCapacityProviderServiceServiceURL128E9753: {"Value":{"Fn::Join":["",["http://",{"Fn::GetAtt":["FargateCapacityProviderServiceLB3C8F1707","DNSName"]}]]\}\}
 
 Other Changes
-[+] Unknown Rules: {"CheckBootstrapVersion":{"Assertions":[{"Assert":{"Fn::Not":[{"Fn::Contains":[["1","2","3","4","5"],{"Ref":"BootstrapVersion"}]}]},"AssertDescription":"CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI."}]}}
+[+] Unknown Rules: {"CheckBootstrapVersion":{"Assertions":[{"Assert":{"Fn::Not":[{"Fn::Contains":[["1","2","3","4","5"],{"Ref":"BootstrapVersion"}]}]},"AssertDescription":"CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI."}]\}\}
 
 
 ✨  Number of stacks with differences: 1
@@ -404,8 +404,8 @@ Resources
 [+] AWS::AutoScaling::LifecycleHook ECSCluster/ECSEC2Capacity/LifecycleHookDrainHook ECSClusterECSEC2CapacityLifecycleHookDrainHook247A252F
 
 Outputs
-[+] Output EC2AutoScalingGroupName EC2AutoScalingGroupName: {"Value":{"Ref":"ECSClusterECSEC2CapacityASG0360B1DE"},"Export":{"Name":"EC2ASGName"}}
-[~] Output ECSClusterSecGrp ECSClusterSecGrp: {"Value":"[]","Export":{"Name":"ECSSecGrpList"}} to {"Value":{"Fn::GetAtt":["ECSClusterECSEC2CapacityInstanceSecurityGroupDAADD78F","GroupId"]},"Export":{"Name":"ECSSecGrpList"}}
+[+] Output EC2AutoScalingGroupName EC2AutoScalingGroupName: {"Value":{"Ref":"ECSClusterECSEC2CapacityASG0360B1DE"},"Export":{"Name":"EC2ASGName"\}\}
+[~] Output ECSClusterSecGrp ECSClusterSecGrp: {"Value":"[]","Export":{"Name":"ECSSecGrpList"\}\} to {"Value":{"Fn::GetAtt":["ECSClusterECSEC2CapacityInstanceSecurityGroupDAADD78F","GroupId"]},"Export":{"Name":"ECSSecGrpList"\}\}
 
 
 ✨  Number of stacks with differences: 1
@@ -636,11 +636,11 @@ Resources
 [+] AWS::ECS::Service EC2CapacityProviderService/Service/Service EC2CapacityProviderServiceF75CB01B
 
 Outputs
-[+] Output EC2CapacityProviderService/LoadBalancerDNS EC2CapacityProviderServiceLoadBalancerDNS3B55F46D: {"Value":{"Fn::GetAtt":["EC2CapacityProviderServiceLBDC92E31F","DNSName"]}}
-[+] Output EC2CapacityProviderService/ServiceURL EC2CapacityProviderServiceServiceURL81036241: {"Value":{"Fn::Join":["",["http://",{"Fn::GetAtt":["EC2CapacityProviderServiceLBDC92E31F","DNSName"]}]]}}
+[+] Output EC2CapacityProviderService/LoadBalancerDNS EC2CapacityProviderServiceLoadBalancerDNS3B55F46D: {"Value":{"Fn::GetAtt":["EC2CapacityProviderServiceLBDC92E31F","DNSName"]\}\}
+[+] Output EC2CapacityProviderService/ServiceURL EC2CapacityProviderServiceServiceURL81036241: {"Value":{"Fn::Join":["",["http://",{"Fn::GetAtt":["EC2CapacityProviderServiceLBDC92E31F","DNSName"]}]]\}\}
 
 Other Changes
-[+] Unknown Rules: {"CheckBootstrapVersion":{"Assertions":[{"Assert":{"Fn::Not":[{"Fn::Contains":[["1","2","3","4","5"],{"Ref":"BootstrapVersion"}]}]},"AssertDescription":"CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI."}]}}
+[+] Unknown Rules: {"CheckBootstrapVersion":{"Assertions":[{"Assert":{"Fn::Not":[{"Fn::Contains":[["1","2","3","4","5"],{"Ref":"BootstrapVersion"}]}]},"AssertDescription":"CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI."}]\}\}
 
 
 ✨  Number of stacks with differences: 1

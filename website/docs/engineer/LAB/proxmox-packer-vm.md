@@ -19,7 +19,7 @@ These are the steps:
 3. the VM pulls down `NFS-SERVER:iso/ubuntu-20.04.3-live-server-amd64.iso` and begins the install
 4. with `cloud-init=true` the VM will boot and run the `boot_command` to pull down the initial configuration for the blank VM
 5. packer will start a web server on the client machine, to serve the `http/user-data` file for the proxmox VM to download
-6. this line `autoinstall ds=nocloud-net;s=http://{{ .HTTPIP }}:{{ .HTTPPort }}/` in the `boot_command` tells the VM where to get the init configs
+6. this line `autoinstall ds=nocloud-net;s=http://\{\{ .HTTPIP \}\}:\{\{ .HTTPPort \}\}/` in the `boot_command` tells the VM where to get the init configs
 7. the `http/user-data` config will install openssh, and create user `rxhackk` with public key auth enabled.
 8. when the VM finishes intial install, it will reboot.
 9. once rebooted, `packer` will ssh into the newly created, rebooted VM, and run the commanmds in `provisioner "shell" { inline =[` (or at least this is what I think it's doing after the reboot and requies a working ssh connection)
@@ -214,7 +214,7 @@ source "proxmox" "ubuntu-server-focal-template" {
         "<esc /><wait /><esc /><wait />",
         "<f6 /><wait /><esc /><wait />",
         "<bs /><bs /><bs /><bs /><bs />",
-        "autoinstall ds=nocloud-net;s=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ ",
+        "autoinstall ds=nocloud-net;s=http://\{\{ .HTTPIP \}\}:\{\{ .HTTPPort \}\}/ ",
         "--- <enter />"
     ]
     boot = "c"

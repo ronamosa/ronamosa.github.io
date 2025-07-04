@@ -159,7 +159,7 @@ spec:
     - target: admission.k8s.gatekeeper.sh
       rego: |
         package k8srequiredlabels
-        violation[{"msg": msg, "details": {"missing_labels": missing}}] {
+        violation[{"msg": msg, "details": {"missing_labels": missing\}\}] {
           provided := {label | input.review.object.metadata.labels[label]}
           required := {label | label := input.parameters.labels[_]}
           missing := required - provided
@@ -234,7 +234,7 @@ spec:
     - target: admission.k8s.gatekeeper.sh
       rego: |
         package k8sminreplicacount
-        violation[{"msg": msg, "details": {"missing_replicas": missing}}] {
+        violation[{"msg": msg, "details": {"missing_replicas": missing\}\}] {
           provided := input.review.object.spec.replicas
           required := input.parameters.min
           missing := required - provided

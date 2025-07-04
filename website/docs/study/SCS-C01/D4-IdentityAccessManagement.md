@@ -27,7 +27,7 @@ This is an export from my Remnote with flashcard syntax included.
       - can Identity Pool use User Pool as an IdP?→Yes.
       - can Identity Pool be configured to provide unauthenticated access?→Yes.
   - IAM
-    - account best practice for access management never use the {{root}} account and even delete any {{access}} keys owned by root.
+    - account best practice for access management never use the \{\{root\}\} account and even delete any \{\{access\}\} keys owned by root.
     - when you give an external party IAM Role to access your accounts, what THREE things to check for issues? ↓
       - use the correct External ID
       - attached permission policy has `sts:AssumeRole` action
