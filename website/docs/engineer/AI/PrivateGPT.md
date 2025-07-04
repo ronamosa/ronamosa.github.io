@@ -77,38 +77,38 @@ Downloading Python-3.11.6.tar.xz...
 Installing Python-3.11.6...
 
 Traceback (most recent call last):
-  File "<string>", line 1, in <module>
-  File "/home/bot/.pyenv/versions/3.11.6/lib/python3.11/bz2.py", line 17, in <module>
+  File "<string />", line 1, in <module />
+  File "/home/bot/.pyenv/versions/3.11.6/lib/python3.11/bz2.py", line 17, in <module />
     from _bz2 import BZ2Compressor, BZ2Decompressor
 ModuleNotFoundError: No module named '_bz2'
 WARNING: The Python bz2 extension was not compiled. Missing the bzip2 lib?
 Traceback (most recent call last):
-  File "<string>", line 1, in <module>
-  File "/home/bot/.pyenv/versions/3.11.6/lib/python3.11/curses/__init__.py", line 13, in <module>
+  File "<string />", line 1, in <module />
+  File "/home/bot/.pyenv/versions/3.11.6/lib/python3.11/curses/__init__.py", line 13, in <module />
     from _curses import *
 ModuleNotFoundError: No module named '_curses'
 WARNING: The Python curses extension was not compiled. Missing the ncurses lib?
 Traceback (most recent call last):
-  File "<string>", line 1, in <module>
-  File "/home/bot/.pyenv/versions/3.11.6/lib/python3.11/ctypes/__init__.py", line 8, in <module>
+  File "<string />", line 1, in <module />
+  File "/home/bot/.pyenv/versions/3.11.6/lib/python3.11/ctypes/__init__.py", line 8, in <module />
     from _ctypes import Union, Structure, Array
 ModuleNotFoundError: No module named '_ctypes'
 WARNING: The Python ctypes extension was not compiled. Missing the libffi lib?
 Traceback (most recent call last):
-  File "<string>", line 1, in <module>
+  File "<string />", line 1, in <module />
 ModuleNotFoundError: No module named 'readline'
 WARNING: The Python readline extension was not compiled. Missing the GNU readline lib?
 Traceback (most recent call last):
-  File "<string>", line 1, in <module>
-  File "/home/bot/.pyenv/versions/3.11.6/lib/python3.11/sqlite3/__init__.py", line 57, in <module>
+  File "<string />", line 1, in <module />
+  File "/home/bot/.pyenv/versions/3.11.6/lib/python3.11/sqlite3/__init__.py", line 57, in <module />
     from sqlite3.dbapi2 import *
-  File "/home/bot/.pyenv/versions/3.11.6/lib/python3.11/sqlite3/dbapi2.py", line 27, in <module>
+  File "/home/bot/.pyenv/versions/3.11.6/lib/python3.11/sqlite3/dbapi2.py", line 27, in <module />
     from _sqlite3 import *
 ModuleNotFoundError: No module named '_sqlite3'
 WARNING: The Python sqlite3 extension was not compiled. Missing the SQLite3 lib?
 Traceback (most recent call last):
-  File "<string>", line 1, in <module>
-  File "/home/bot/.pyenv/versions/3.11.6/lib/python3.11/lzma.py", line 27, in <module>
+  File "<string />", line 1, in <module />
+  File "/home/bot/.pyenv/versions/3.11.6/lib/python3.11/lzma.py", line 27, in <module />
     from _lzma import *
 ModuleNotFoundError: No module named '_lzma'
 WARNING: The Python lzma extension was not compiled. Missing the lzma lib?
@@ -420,7 +420,7 @@ llama_model_loader: - tensor    5:            blk.0.ffn_gate.weight q4_K     [  
 ...
 
 llama_new_context_with_model: compute buffer total size = 276.93 MB
-AVX = 0 | AVX2 = 0 | AVX512 = 0 | AVX512_VBMI = 0 | AVX512_VNNI = 0 | FMA = 0 | NEON = 0 | ARM_FMA = 0 | F16C = 0 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | SSSE3 = 0 | VSX = 0 | 
+AVX = 0 | AVX2 = 0 | AVX512 = 0 | AVX512_VBMI = 0 | AVX512_VNNI = 0 | FMA = 0 | NEON = 0 | ARM_FMA = 0 | F16C = 0 | FP16_VA = 0 | WASM_SIMD = 0 | BLAS = 0 | SSE3 = 1 | SSSE3 = 0 | VSX = 0 |
 20:05:13.917 [INFO    ] private_gpt.components.embedding.embedding_component - Initializing the embedding model in mode=local
 20:05:37.693 [INFO    ] llama_index.indices.loading - Loading all indices.
 20:05:38.059 [INFO    ]         private_gpt.ui.ui - Mounting the gradio UI, at path=/
@@ -479,10 +479,9 @@ Traceback (most recent call last):
 # if you build with poetry, but try to run it locally = errors, no deps.
 bot@ai:~/projects/privateGPT$ python3.11 -m private_gpt
 Traceback (most recent call last):
-  File "<frozen runpy>", line 198, in _run_module_as_main
-  File "<frozen runpy>", line 88, in _run_code
-  File "/home/bot/projects/privateGPT/private_gpt/__main__.py", line 3, in <module>
+  File "<frozen runpy />", line 198, in _run_module_as_main
+  File "<frozen runpy />", line 88, in _run_code
+  File "/home/bot/projects/privateGPT/private_gpt/__main__.py", line 3, in <module />
     import uvicorn
 ModuleNotFoundError: No module named 'uvicorn'
 ```
-

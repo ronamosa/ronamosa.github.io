@@ -25,11 +25,13 @@ The terraform files you should have to work with are as follows
 
 ## Video Example of Launch
 
-The Plan is good, it's time to launch our plan into the Cloud/AWS. 
+The Plan is good, it's time to launch our plan into the Cloud/AWS.
 
 The bottom screen shows a `watch aws ec2 describe-instance-status` command which shows the moment an EC2 instance is born:
 
-<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/bEFVLyw-jtk?rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<!-- markdownlint-disable MD033 -->
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/bEFVLyw-jtk?rel=0&amp;controls=0&amp;showinfo=0" frameBorder="0" allow="autoplay; encrypted-media" allowFullScreen></iframe>
+<!-- markdownlint-enable MD033 -->
 
 The `output.tf` config had the ELB's public DNS outputted so we can go and connect to it.
 
@@ -37,13 +39,17 @@ The `output.tf` config had the ELB's public DNS outputted so we can go and conne
 
 Check everything's launched as we needed and the web servers are serving our web page:
 
-<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/tqxlnkwOFhE?rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<!-- markdownlint-disable MD033 -->
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/tqxlnkwOFhE?rel=0&amp;controls=0&amp;showinfo=0" frameBorder="0" allow="autoplay; encrypted-media" allowFullScreen></iframe>
+<!-- markdownlint-enable MD033 -->
 
 ## Test Auto Scaling Setting
 
 Let's test the Autoscaling Group by killing one instance, and watch ASG launch another instance (remember the minimum acceptable instances is 2):
 
-<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/SX7Os5gWoyQ?rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<!-- markdownlint-disable MD033 -->
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/SX7Os5gWoyQ?rel=0&amp;controls=0&amp;showinfo=0" frameBorder="0" allow="autoplay; encrypted-media" allowFullScreen></iframe>
+<!-- markdownlint-enable MD033 -->
 
 What was new/different from the previous configs? I've noted some of the changes below.
 
@@ -55,21 +61,21 @@ These are cool. It tells the Load Balancer what's a "healthy" number of EC2 inst
 # elastic.load.balancer.tf
 resource "aws_elb" "ElasticLoadBalancer" {
   name = "ELBAutoScalingGroup"
-  security_groups = ["${aws_security_group.ELBSecurityGroup.id}"]
-  availability_zones = ["${data.aws_availability_zones.available.names}"]
+  security_groups = ["$\{aws_security_group.ELBSecurityGroup.id}"]
+  availability_zones = ["$\{data.aws_availability_zones.available.names}"]
 
   health_check {
     healthy_threshold = 2
     unhealthy_threshold = 2
     timeout = 3
     interval = 30
-    target = "HTTP:${var.inbound_port}/"
+    target = "HTTP:$\{var.inbound_port}/"
   }
 
   listener {
     lb_port = 80
     lb_protocol = "http"
-    instance_port = "${var.inbound_port}"
+    instance_port = "$\{var.inbound_port}"
     instance_protocol = "http"
   }
 }
@@ -101,7 +107,7 @@ variable "count" {
 
 ```hcl
 tags {
-    Name = "${format("ASG-%03d", count.index + 1)}"
+    Name = "$\{format("ASG-%03d", count.index + 1)}"
     propagate_at_launch = true
 }
 ```

@@ -125,11 +125,11 @@ arn:aws:cloudformation:us-east-1:REDACTED:stack/ecsworkshop-base/ca39eeb0-ed8d-1
 Running commands from the workshop as is gets me an error
 
 ```bash
-~/Repos/AWSECS/ecsdemo-frontend/cdk on main ❯              
+~/Repos/AWSECS/ecsdemo-frontend/cdk on main ❯
 cdk context --clear && cdk deploy --require-approval never
 All context values cleared.
 
-jsii.errors.JavaScriptError: 
+jsii.errors.JavaScriptError:
   @jsii/kernel.RuntimeError: Error: Cannot retrieve value from context provider vpc-provider since account/region are not specified at the stack level. Configure "env" with an account and region when you define your stack.See https://docs.aws.amazon.com/cdk/latest/guide/environments.html for more details.
       at Kernel._Kernel_ensureSync (/private/var/folders/kd/2pwbps0n4tl4cz7km7wm63100000gn/T/tmpdqe_wrcc/lib/program.js:10491:23)
       at Kernel.sinvoke (/private/var/folders/kd/2pwbps0n4tl4cz7km7wm63100000gn/T/tmpdqe_wrcc/lib/program.js:9876:102)
@@ -300,7 +300,7 @@ arn:aws:cloudformation:us-east-1:REDACTED:stack/ecsworkshop-crystal/98faa490-ed9
 setup variables
 
 ```bash
-~/Repos/AWSECS/ecsdemo-crystal/cdk on main !1 ?1 ❯ 
+~/Repos/AWSECS/ecsdemo-crystal/cdk on main !1 ?1 ❯
 cluster_arn=$(aws ecs list-clusters | jq -r '.clusterArns[] | select(contains("container-demo"))')
 clustername=$(aws ecs describe-clusters --clusters $cluster_arn | jq -r '.clusters[].clusterName')
 
@@ -310,16 +310,16 @@ clustername=$(aws ecs describe-clusters --clusters $cluster_arn | jq -r '.cluste
 check
 
 ```bash
-~/Repos/AWSECS/ecsdemo-crystal/cdk on main !1 ?1 ❯ echo ${cluster_arn}                                                                                     at  20:46:50
+~/Repos/AWSECS/ecsdemo-crystal/cdk on main !1 ?1 ❯ echo $\{cluster_arn}                                                                                     at  20:46:50
 arn:aws:ecs:us-east-1:REDACTED:cluster/container-demo
-~/Repos/AWSECS/ecsdemo-crystal/cdk on main !1 ?1 ❯ echo ${clustername}                                                                                     at  20:47:20
+~/Repos/AWSECS/ecsdemo-crystal/cdk on main !1 ?1 ❯ echo $\{clustername}                                                                                     at  20:47:20
 container-demo
 ~/Repos/AWSECS/ecsdemo-crystal/cdk on main !1 ?1 ❯
 ```
 
 ### enable container insights
 
-command: `aws ecs update-cluster-settings --cluster ${clustername}  --settings name=containerInsights,value=enabled --region ${AWS_DEFAULT_REGION}`
+command: `aws ecs update-cluster-settings --cluster $\{clustername}  --settings name=containerInsights,value=enabled --region $\{AWS_DEFAULT_REGION}`
 
 ```bash
 {
@@ -349,7 +349,7 @@ command: `aws ecs update-cluster-settings --cluster ${clustername}  --settings n
 ### enable instance insights
 
 ```bash
-aws cloudformation create-stack --stack-name CWAgentECS-$clustername-${AWS_DEFAULT_REGION} --template-body "$(curl -Ls https://raw.githubusercontent.com/aws-samples/amazon-cloudwatch-container-insights/latest/ecs-task-definition-templates/deployment-mode/daemon-service/cwagent-ecs-instance-metric/cloudformation-quickstart/cwagent-ecs-instance-metric-cfn.json)" --parameters ParameterKey=ClusterName,ParameterValue=$clustername ParameterKey=CreateIAMRoles,ParameterValue=True --capabilities CAPABILITY_NAMED_IAM --region ${AWS_DEFAULT_REGION}
+aws cloudformation create-stack --stack-name CWAgentECS-$clustername-$\{AWS_DEFAULT_REGION} --template-body "$(curl -Ls https://raw.githubusercontent.com/aws-samples/amazon-cloudwatch-container-insights/latest/ecs-task-definition-templates/deployment-mode/daemon-service/cwagent-ecs-instance-metric/cloudformation-quickstart/cwagent-ecs-instance-metric-cfn.json)" --parameters ParameterKey=ClusterName,ParameterValue=$clustername ParameterKey=CreateIAMRoles,ParameterValue=True --capabilities CAPABILITY_NAMED_IAM --region $\{AWS_DEFAULT_REGION}
 ```
 
 output
@@ -362,7 +362,7 @@ output
 
 ### verify enabled
 
-command: `aws ecs describe-clusters --cluster ${clustername} --include SETTINGS`
+command: `aws ecs describe-clusters --cluster $\{clustername} --include SETTINGS`
 
 ```bash
 {
@@ -408,7 +408,7 @@ alb_url=$(aws cloudformation describe-stacks --stack-name container-demo-alb --q
 check
 
 ```bash
-~/Repos/AWSECS/ecsdemo-crystal/cdk on   main !1 ?1 ❯ echo ${alb_url}
+~/Repos/AWSECS/ecsdemo-crystal/cdk on   main !1 ?1 ❯ echo $\{alb_url}
 http://ecswor-Front-gwdgFnVMYQrg-1215657672.us-east-1.elb.amazonaws.com
 ```
 

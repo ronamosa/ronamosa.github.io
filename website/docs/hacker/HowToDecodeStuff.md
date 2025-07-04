@@ -18,7 +18,7 @@ def decrypt(enc, key):
     cipher = AES.new(key.encode('utf-8'), AES.MODE_CBC, iv)
     return cipher.decrypt(enc[16:]).decode('utf-8').strip()
 
-encrypted_message = "<paste encrypted message here>"
+encrypted_message = "<paste encrypted message here />"
 key = "mysecretdecryptionkey1234"  # Replace this with the key you found
 print(decrypt(encrypted_message, key))
 ```

@@ -45,11 +45,11 @@ filename: `launch.configuration.tf`
 resource "aws_launch_configuration" "LaunchConfiguration" {
   image_id = "ami-2d39803a"
   instance_type = "t2.micro"
-  security_groups = ["${aws_security_group.instance.id}"]
+  security_groups = ["$\{aws_security_group.instance.id}"]
   user_data = <<-EOF
               #!/bin/bash
-              echo "<h1>CLUSTER: AUTOSCALING GROUPS INSTANCE</h1>" > index.html
-              nohup busybox httpd -f -p "${var.inbound_port}" &
+              echo "<h1 />CLUSTER: AUTOSCALING GROUPS INSTANCE</h1>" > index.html
+              nohup busybox httpd -f -p "$\{var.inbound_port}" &
               EOF
   lifecycle {
     create_before_destroy = true
@@ -78,8 +78,8 @@ data "aws_availability_zones" "available" {}
 # autoscaling group configuration
 
 resource "aws_autoscaling_group" "AutoScalingGroup" {
-  launch_configuration = "${aws_launch_configuration.LaunchConfiguration.id}"
-  availability_zones = ["${data.aws_availability_zones.available.names}"]
+  launch_configuration = "$\{aws_launch_configuration.LaunchConfiguration.id}"
+  availability_zones = ["$\{data.aws_availability_zones.available.names}"]
   min_size = 2
   max_size = 10
   tag {
@@ -107,11 +107,11 @@ filename: `elastic.load.balancer.tf`
 ```hcl
 resource "aws_elb" "ElasticLoadBalancer" {
   name = "ELBAutoScalingGroup"
-  availability_zones = ["${data.aws_availability_zones.available.names}"]
+  availability_zones = ["$\{data.aws_availability_zones.available.names}"]
   listener {
     lb_port = 80
     lb_protocol = "http"
-    instance_port = "${var.inbound_port}"
+    instance_port = "$\{var.inbound_port}"
     instance_protocol = "http"
   }
 }
@@ -129,7 +129,7 @@ Error: aws_elb.elastic_load_balancer: "name" cannot be longer than 32 characters
 
 * also needs the `data` availability zones reference
 * port 80, no SSL (yet)
-* make sure the "${var}"'s match variables.tf
+* make sure the `"$\{var}"` values match variables.tf
 
 The new ELB is a hop in our network path between CLIENT/USER and SERVER/SERVICE. What does this mean? It means security-wise we need to add another security group. [AWS Security Groups](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-network-security.html#security-group-rules) are how inbound and outbound rules are permitted for instances.
 
@@ -145,8 +145,8 @@ filename: `security.groups.tf` now looks like this
 resource "aws_security_group" "instance" {
   name = "EC2WebSG"
   ingress {
-    from_port = "${var.inbound_port}"
-    to_port = "${var.inbound_port}"
+    from_port = "$\{var.inbound_port}"
+    to_port = "$\{var.inbound_port}"
     protocol = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
@@ -181,13 +181,13 @@ Make sure your ELB is now using this Security Group so it can be allowed network
 resource "aws_elb" "ElasticLoadBalancer" {
   name = "ELBAutoScalingGroup"
 
-  security_groups = ["${aws_security_group.ELBSecurityGroup.id}"]
+  security_groups = ["$\{aws_security_group.ELBSecurityGroup.id}"]
 
-  availability_zones = ["${data.aws_availability_zones.available.names}"]
+  availability_zones = ["$\{data.aws_availability_zones.available.names}"]
   listener {
     lb_port = 80
     lb_protocol = "http"
-    instance_port = "${var.inbound_port}"
+    instance_port = "$\{var.inbound_port}"
     instance_protocol = "http"
   }
 }
@@ -214,8 +214,8 @@ Resource actions are indicated with the following symbols:
 Terraform will perform the following actions:
 
   + aws_autoscaling_group.AutoScalingGroup
-      id:                                     <computed>
-      arn:                                    <computed>
+      id:                                     <computed />
+      arn:                                    <computed />
       availability_zones.#:                   "6"
       availability_zones.1252502072:          "us-east-1f"
       availability_zones.1305112097:          "us-east-1b"
@@ -223,30 +223,30 @@ Terraform will perform the following actions:
       availability_zones.3551460226:          "us-east-1e"
       availability_zones.3569565595:          "us-east-1a"
       availability_zones.986537655:           "us-east-1c"
-      default_cooldown:                       <computed>
-      desired_capacity:                       <computed>
+      default_cooldown:                       <computed />
+      desired_capacity:                       <computed />
       force_delete:                           "false"
       health_check_grace_period:              "300"
-      health_check_type:                      <computed>
-      launch_configuration:                   "${aws_launch_configuration.LaunchConfiguration.id}"
-      load_balancers.#:                       <computed>
+      health_check_type:                      <computed />
+      launch_configuration:                   "$\{aws_launch_configuration.LaunchConfiguration.id}"
+      load_balancers.#:                       <computed />
       max_size:                               "10"
       metrics_granularity:                    "1Minute"
       min_size:                               "2"
-      name:                                   <computed>
+      name:                                   <computed />
       protect_from_scale_in:                  "false"
-      service_linked_role_arn:                <computed>
+      service_linked_role_arn:                <computed />
       tag.#:                                  "1"
       tag.2818487965.key:                     "Name"
       tag.2818487965.propagate_at_launch:     "true"
       tag.2818487965.value:                   "ASG_EC2-Insance"
-      target_group_arns.#:                    <computed>
-      vpc_zone_identifier.#:                  <computed>
+      target_group_arns.#:                    <computed />
+      vpc_zone_identifier.#:                  <computed />
       wait_for_capacity_timeout:              "10m"
 
   + aws_elb.ElasticLoadBalancer
-      id:                                     <computed>
-      arn:                                    <computed>
+      id:                                     <computed />
+      arn:                                    <computed />
       availability_zones.#:                   "6"
       availability_zones.1252502072:          "us-east-1f"
       availability_zones.1305112097:          "us-east-1b"
@@ -257,11 +257,11 @@ Terraform will perform the following actions:
       connection_draining:                    "false"
       connection_draining_timeout:            "300"
       cross_zone_load_balancing:              "true"
-      dns_name:                               <computed>
-      health_check.#:                         <computed>
+      dns_name:                               <computed />
+      health_check.#:                         <computed />
       idle_timeout:                           "60"
-      instances.#:                            <computed>
-      internal:                               <computed>
+      instances.#:                            <computed />
+      internal:                               <computed />
       listener.#:                             "1"
       listener.3931999347.instance_port:      "8080"
       listener.3931999347.instance_protocol:  "http"
@@ -269,96 +269,96 @@ Terraform will perform the following actions:
       listener.3931999347.lb_protocol:        "http"
       listener.3931999347.ssl_certificate_id: ""
       name:                                   "ELBAutoScalingGroup"
-      security_groups.#:                      <computed>
-      source_security_group:                  <computed>
-      source_security_group_id:               <computed>
-      subnets.#:                              <computed>
-      zone_id:                                <computed>
+      security_groups.#:                      <computed />
+      source_security_group:                  <computed />
+      source_security_group_id:               <computed />
+      subnets.#:                              <computed />
+      zone_id:                                <computed />
 
   + aws_instance.SingleEC2
-      id:                                     <computed>
+      id:                                     <computed />
       ami:                                    "ami-2d39803a"
-      associate_public_ip_address:            <computed>
-      availability_zone:                      <computed>
-      ebs_block_device.#:                     <computed>
-      ephemeral_block_device.#:               <computed>
+      associate_public_ip_address:            <computed />
+      availability_zone:                      <computed />
+      ebs_block_device.#:                     <computed />
+      ephemeral_block_device.#:               <computed />
       get_password_data:                      "false"
-      instance_state:                         <computed>
+      instance_state:                         <computed />
       instance_type:                          "t2.micro"
-      ipv6_address_count:                     <computed>
-      ipv6_addresses.#:                       <computed>
-      key_name:                               <computed>
-      network_interface.#:                    <computed>
-      network_interface_id:                   <computed>
-      password_data:                          <computed>
-      placement_group:                        <computed>
-      primary_network_interface_id:           <computed>
-      private_dns:                            <computed>
-      private_ip:                             <computed>
-      public_dns:                             <computed>
-      public_ip:                              <computed>
-      root_block_device.#:                    <computed>
-      security_groups.#:                      <computed>
+      ipv6_address_count:                     <computed />
+      ipv6_addresses.#:                       <computed />
+      key_name:                               <computed />
+      network_interface.#:                    <computed />
+      network_interface_id:                   <computed />
+      password_data:                          <computed />
+      placement_group:                        <computed />
+      primary_network_interface_id:           <computed />
+      private_dns:                            <computed />
+      private_ip:                             <computed />
+      public_dns:                             <computed />
+      public_ip:                              <computed />
+      root_block_device.#:                    <computed />
+      security_groups.#:                      <computed />
       source_dest_check:                      "true"
-      subnet_id:                              <computed>
+      subnet_id:                              <computed />
       tags.%:                                 "1"
       tags.Name:                              "single"
-      tenancy:                                <computed>
-      volume_tags.%:                          <computed>
-      vpc_security_group_ids.#:               <computed>
+      tenancy:                                <computed />
+      volume_tags.%:                          <computed />
+      vpc_security_group_ids.#:               <computed />
 
   + aws_instance.SingleWebEC2
-      id:                                     <computed>
+      id:                                     <computed />
       ami:                                    "ami-2d39803a"
-      associate_public_ip_address:            <computed>
-      availability_zone:                      <computed>
-      ebs_block_device.#:                     <computed>
-      ephemeral_block_device.#:               <computed>
+      associate_public_ip_address:            <computed />
+      availability_zone:                      <computed />
+      ebs_block_device.#:                     <computed />
+      ephemeral_block_device.#:               <computed />
       get_password_data:                      "false"
-      instance_state:                         <computed>
+      instance_state:                         <computed />
       instance_type:                          "t2.micro"
-      ipv6_address_count:                     <computed>
-      ipv6_addresses.#:                       <computed>
-      key_name:                               <computed>
-      network_interface.#:                    <computed>
-      network_interface_id:                   <computed>
-      password_data:                          <computed>
-      placement_group:                        <computed>
-      primary_network_interface_id:           <computed>
-      private_dns:                            <computed>
-      private_ip:                             <computed>
-      public_dns:                             <computed>
-      public_ip:                              <computed>
-      root_block_device.#:                    <computed>
-      security_groups.#:                      <computed>
+      ipv6_address_count:                     <computed />
+      ipv6_addresses.#:                       <computed />
+      key_name:                               <computed />
+      network_interface.#:                    <computed />
+      network_interface_id:                   <computed />
+      password_data:                          <computed />
+      placement_group:                        <computed />
+      primary_network_interface_id:           <computed />
+      private_dns:                            <computed />
+      private_ip:                             <computed />
+      public_dns:                             <computed />
+      public_ip:                              <computed />
+      root_block_device.#:                    <computed />
+      security_groups.#:                      <computed />
       source_dest_check:                      "true"
-      subnet_id:                              <computed>
+      subnet_id:                              <computed />
       tags.%:                                 "1"
       tags.Name:                              "single-web"
-      tenancy:                                <computed>
+      tenancy:                                <computed />
       user_data:                              "bb39081f46f182d0c939da0ddc7f19ebe347546b"
-      volume_tags.%:                          <computed>
-      vpc_security_group_ids.#:               <computed>
+      volume_tags.%:                          <computed />
+      vpc_security_group_ids.#:               <computed />
 
   + aws_launch_configuration.LaunchConfiguration
-      id:                                     <computed>
+      id:                                     <computed />
       associate_public_ip_address:            "false"
-      ebs_block_device.#:                     <computed>
-      ebs_optimized:                          <computed>
+      ebs_block_device.#:                     <computed />
+      ebs_optimized:                          <computed />
       enable_monitoring:                      "true"
       image_id:                               "ami-2d39803a"
       instance_type:                          "t2.micro"
-      key_name:                               <computed>
-      name:                                   <computed>
-      root_block_device.#:                    <computed>
-      security_groups.#:                      <computed>
+      key_name:                               <computed />
+      name:                                   <computed />
+      root_block_device.#:                    <computed />
+      security_groups.#:                      <computed />
       user_data:                              "7a3ce9d995656c1f1cc3c2b83effb561549ff9d3"
 
   + aws_security_group.ELBSecurityGroup
-      id:                                     <computed>
-      arn:                                    <computed>
+      id:                                     <computed />
+      arn:                                    <computed />
       description:                            "Managed by Terraform"
-      egress.#:                               <computed>
+      egress.#:                               <computed />
       ingress.#:                              "1"
       ingress.2214680975.cidr_blocks.#:       "1"
       ingress.2214680975.cidr_blocks.0:       "0.0.0.0/0"
@@ -370,15 +370,15 @@ Terraform will perform the following actions:
       ingress.2214680975.self:                "false"
       ingress.2214680975.to_port:             "80"
       name:                                   "ELBSecurityGroup1"
-      owner_id:                               <computed>
+      owner_id:                               <computed />
       revoke_rules_on_delete:                 "false"
-      vpc_id:                                 <computed>
+      vpc_id:                                 <computed />
 
   + aws_security_group.instance
-      id:                                     <computed>
-      arn:                                    <computed>
+      id:                                     <computed />
+      arn:                                    <computed />
       description:                            "Managed by Terraform"
-      egress.#:                               <computed>
+      egress.#:                               <computed />
       ingress.#:                              "1"
       ingress.516175195.cidr_blocks.#:        "1"
       ingress.516175195.cidr_blocks.0:        "0.0.0.0/0"
@@ -390,9 +390,9 @@ Terraform will perform the following actions:
       ingress.516175195.self:                 "false"
       ingress.516175195.to_port:              "8080"
       name:                                   "EC2WebSG"
-      owner_id:                               <computed>
+      owner_id:                               <computed />
       revoke_rules_on_delete:                 "false"
-      vpc_id:                                 <computed>
+      vpc_id:                                 <computed />
 
 
 Plan: 7 to add, 0 to change, 0 to destroy.

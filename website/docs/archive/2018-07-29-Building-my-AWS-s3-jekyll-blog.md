@@ -161,10 +161,10 @@ pipelines:
     master:
       - step:
           script:
-            - echo "<<MASTER>> build is running..."
+            - echo "<<MASTER />> build is running..."
             - bundler --version
             - bundle install
-            - JEKYLL_ENV=production jekyll build  
+            - JEKYLL_ENV=production jekyll build
             - gem install s3_website
             - apt-get update
             - apt-get install --assume-yes openjdk-7-jre-headless
@@ -266,9 +266,9 @@ bundle exec jekyll serve --increment
 
 Now you can open a browser and go to http://localhost:4000 to preview the site. Any changes you make to any files will automatically be picked up by jekyll and you can refresh your browser to keep preview your changes as you work.
 
-here's a video demonstrating this:
-
-<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/FS7y_rv30wM?rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<!-- markdownlint-disable MD033 -->
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/FS7y_rv30wM?rel=0&amp;controls=0&amp;showinfo=0" frameBorder="0" allow="autoplay; encrypted-media" allowFullScreen></iframe>
+<!-- markdownlint-enable MD033 -->
 
 ## Deploying my site
 

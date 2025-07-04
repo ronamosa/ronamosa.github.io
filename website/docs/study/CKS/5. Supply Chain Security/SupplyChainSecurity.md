@@ -100,9 +100,11 @@ see cks course folder for `ImagePolicyWebhook` setup files.
 
 the flow of where policy webhook works --
 
+```bash
 `api request` --> [1] ApiServer --> [3] Allow/Deny
 
 [2] ApiServer <--> AdmissionContollers <--> ImagePolicyWebhook <--> External Service
+```
 
 ### Enable Admission Controller and Policy Webhook
 

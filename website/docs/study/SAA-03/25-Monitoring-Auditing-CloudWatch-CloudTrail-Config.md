@@ -9,12 +9,12 @@ These were the topics I created flashcards for (Remnote) and would revise them u
 :::
 
 - CloudWatch
-  - Metric is a {{variable}} to monitor
+  - Metric is a `{{variable}}` to monitor
   - A metric goes in a namespace.. what's a namespace?―like a bucket or category for each service.
   - What is an attribute of a metric?―A Dimension
   - Create one of these when you need a custom variable to monitor?―CloudWatch Custom Metric.
   - Where can you stream, near-real-time CloudWatch metrics to?―Kinesis Data Firehose.
-    - you also have the option to {{filter}} metrics to a subset.
+    - you also have the option to `{{filter}}` metrics to a subset.
   - CloudWatch Logs
     - "an arbitrary name, usually representing an application"―Log groups
     - "instances  __within__  those applications"...―Log streams
@@ -25,7 +25,7 @@ These were the topics I created flashcards for (Remnote) and would revise them u
       - Lambda (xform)
       - ElasticSearch (store & search)
     - S3 Export
-      - log data can take up to {{12}} hours to be available for export.
+      - log data can take up to `{{12}}` hours to be available for export.
         - API call used?―`CreateExportTask`
     - Subscriptions
       - what does a Logs Subscription do?―It forwards log events from CloudWatch Logs to some destination like Lambda, or ElasticSearch.
@@ -38,9 +38,9 @@ These were the topics I created flashcards for (Remnote) and would revise them u
   - Logs Agent & Unified Agent
     - what are the two agents? ↓
       - Logs Agent
-        - Can only send to {{CloudWatch Logs}}.
+        - Can only send to `{{CloudWatch Logs}}`.
       - Unified Agent
-        - collects additional {{system}}-level metrics e.g. {{RAM}}
+        - collects additional `{{system}}`-level metrics e.g. `{{RAM}}`
         - What metrics can Unified Agent collect? (hint: C D R N P S)― ↓
           - CPU
           - Disk
@@ -82,20 +82,20 @@ These were the topics I created flashcards for (Remnote) and would revise them u
   - CloudWatch Container Insights
     - collects, aggregates and summarises what from containers?―Metrics & Logs.
   - CloudWatch Lambda Insights
-    - Monitoring and {{troubleshooting}} solution for serverless applications running on AWS Lambda
-    - Collects, {{aggregates}}, and summarizes {{system}}-level metrics including CPU time, {{memory}}, disk, and {{network}}.
+    - Monitoring and `{{troubleshooting}}` solution for serverless applications running on AWS Lambda
+    - Collects, `{{aggregates}}`, and summarizes `{{system}}`-level metrics including CPU time, `{{memory}}`, disk, and `{{network}}`.
   - CloudWatch Contributor Insights
     - what metrics can you see with these insights and where does it get it from?―Top-N contributors via CloudWatch Logs
     - what kind of network users can you identify from these insights?―heaviest network users.
   - CloudWatch Application Insights
-    - Provides automated {{dashboards}} that show potential {{problems}} with monitored applications, to help isolate ongoing issues.
+    - Provides automated `{{dashboards}}` that show potential `{{problems}}` with monitored applications, to help isolate ongoing issues.
 - AWS CloudTrail
   - what does CloudTrail provide for your AWS account? (hint: C G A)― ↓
     - Governance
     - Compliance
     - Audit
-  - CloudTrail gives you a history of your {{events}} and {{API}} calls made {{within}} your AWS account.
-  - A trail can apply to {{All}} Regions or a {{single}} Region.
+  - CloudTrail gives you a history of your `{{events}}` and `{{API}}` calls made `{{within}}` your AWS account.
+  - A trail can apply to `{{All}}` Regions or a `{{single}}` Region.
   - What are the THREE types of CloudTrail Events? ↓
     - Management Events
       - are management events logged by default?―Yes.
@@ -115,7 +115,7 @@ These were the topics I created flashcards for (Remnote) and would revise them u
     - Compliance of your AWS Resources
     - Configurations and changes over time
   - what's an example using SSH that AWS Config can help with?―check if there is unrestricted SSH access and then trigger a remediation to this non-compliance.
-  - Rule of thumb, AWS Config Rules {{do not}} prevent actions from happening (no {{deny}}).
+  - Rule of thumb, AWS Config Rules `{{do not}}` prevent actions from happening (no `{{deny}}`).
   - what are Config Rule Remediation?―automate remediation of non-compliance resources.
     - what can you set to enhance the remediation?―Remediation Retries.
   - What two services can you use to send out __Config Rule Notifications__?― ↓

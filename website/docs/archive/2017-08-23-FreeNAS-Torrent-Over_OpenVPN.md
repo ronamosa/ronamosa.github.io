@@ -44,7 +44,7 @@ Sun Aug  6 23:56:51 2017 /etc/openvpn/update-resolv-conf tun0 1500 1553 10.14.0.
 + + [ tun0 ]
 + + NMSRVRS=''
 + + SRCHS=''
-+ /etc/openvpn/update-resolv-conf: ${!f...}: Bad substitution
++ /etc/openvpn/update-resolv-conf: $\{!f...}: Bad substitution
 + Sun Aug  6 23:56:51 2017 WARNING: Failed running command (--up/--down): external program exited with error status: 2
 + Sun Aug  6 23:56:51 2017 Exiting due to fatal error
 
@@ -108,7 +108,7 @@ this is a hack and possibly not a good long term solution
 in /etc/openvpn/update-resolv-conf script, the 'up' part of my openvpn config file (i.e. /usr/local/etc/openvpn/mullvad/mullvad_linux.conf) worked fine, but the 'down' process basically did this on the tun0 interface and walked away:
 
 ```bash
-/sbin/resolvconf -d "${dev}.openvpn"
+/sbin/resolvconf -d "$\{dev}.openvpn"
 ```
 
 after not being able to find a solution i came across a forum where dude just added copy and mv commands to backup then restore the default resolv.conf file

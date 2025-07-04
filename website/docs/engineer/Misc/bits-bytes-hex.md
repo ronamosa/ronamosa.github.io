@@ -53,7 +53,7 @@ N bits = 2^N numbers
 
 Take this binary number `10011101` and convert to decimal.
 
-Read this as, "left most" position --> `10011101` <-- count positions starting from the "right most" position where the `1` is the "zero position", and moving to the left from there the `0` is the "first" position.
+Read this as, "left most" position --> `10011101` ← count positions starting from the "right most" position where the `1` is the "zero position", and moving to the left from there the `0` is the "first" position.
 
 :::info Calculate position
 

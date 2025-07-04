@@ -55,7 +55,7 @@ spec:
     name: app-xyz
     ports:
     - containerPort: 3306
-    volumeMounts: 
+    volumeMounts:
     - name: secret-volume
       mountPath: /mnt/connector/password
       readOnly: true
@@ -69,7 +69,7 @@ spec:
 
 Grab all images: `kubectl get pods --namespace default --output=custom-columns="NAME:.metadata.name,IMAGE:.spec.containers[*].image"`
 
-Scan for CRITICAL: `trivy i -s <LEVEL> <image> | grep Total` - just look for `Total` from the trivy report to make decisions.
+Scan for CRITICAL: `trivy i -s <LEVEL /> <image /> | grep Total` - just look for `Total` from the trivy report to make decisions.
 
 ### seccomp profiles
 
@@ -104,7 +104,7 @@ Drill
 
 create `runtimeClass.yaml` (if required)
 
-add `runtimeClassName: <rcName>` in-line with `containers`
+add `runtimeClassName: <rcName />` in-line with `containers`
 
 ### ImagePolicyWebhook
 
@@ -336,7 +336,7 @@ spec:
   volumes:
   - configMap
   - secret
-  - emptyDir  
+  - emptyDir
   - hostPath
 ```
 

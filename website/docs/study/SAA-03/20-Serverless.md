@@ -8,9 +8,9 @@ These were the topics I created flashcards for (Remnote) and would revise them u
 
 :::
 
-- serverless doesn't mean servers don't exist, it means you don't {{provision}} or {{manage}} servers.
+- serverless doesn't mean servers don't exist, it means you don't `{{provision}}` or `{{manage}}` servers.
 - AWS Lambda
-  - lambda is a virtual {{function}} .
+  - lambda is a virtual `{{function}}` .
   - lambdas provide two main functions... ↓
     - transformations
     - job scheduling (cron)
@@ -18,10 +18,10 @@ These were the topics I created flashcards for (Remnote) and would revise them u
     - short execution
     - on-demand
     - scale automatically
-  - lambda pricing is per {{request}} plus {{compute or execution}} time.
-  - compute time is {{GB}} per second of {{execution}} time.
-  - a good rule of thumb is if the process takes longer than {{15}} mins, don't use lambda.
-    - why? because lambda's maximum execution time is {{15}} mins.
+  - lambda pricing is per `{{request}}` plus `{{compute or execution}}` time.
+  - compute time is `{{GB}}` per second of `{{execution}}` time.
+  - a good rule of thumb is if the process takes longer than `{{15}}` mins, don't use lambda.
+    - why? because lambda's maximum execution time is `{{15}}` mins.
   - programming languages supported? (hint: N P J C G C R c)― ↓
     - node.js
     - python
@@ -32,10 +32,10 @@ These were the topics I created flashcards for (Remnote) and would revise them u
     - Ruby
     - Custom Runtime API
   - Lambda Container Image
-    - use, only if "{{lambda runtime}} API" is enabled or installed.
-    - otherwise, use {{ECS}} or {{Fargate}}.
+    - use, only if "`{{lambda runtime}}` API" is enabled or installed.
+    - otherwise, use `{{ECS}}` or `{{Fargate}}`.
   - Limits
-    - Lambda limits apply per {{Region}}.
+    - Lambda limits apply per `{{Region}}`.
     - Execution limit
       - RAM limit?―128MB to 10GB
       - Execution time limit?―900s or 15 mins
@@ -66,7 +66,7 @@ These were the topics I created flashcards for (Remnote) and would revise them u
       - if you need to access external services
       - if you need to access a filesystem or HTTP body of a request
   - Lambda & the Network
-    - by default Lambda is deployed {{outside}} of a (your) VPC.
+    - by default Lambda is deployed `{{outside}}` of a (your) VPC.
     - to deploy a Lambda inside your VPC you need to define the following: ↓
       - VPC ID
       - Subnets
@@ -82,38 +82,38 @@ These were the topics I created flashcards for (Remnote) and would revise them u
       - RDS Proxy is sometimes publicly accessible. True of False?―False. RDS Proxy is never publicly accessible.
       - Will your Lambda be able to access RDS Proxy from outside your VPC?―No. Lambda must be deployed  ____inside____  your VPC.
 - Amazon DynamoDB
-  - Fully {{managed}}, highly {{available}} with {{replication}} across multiple {{AZs}}.
+  - Fully `{{managed}}`, highly `{{available}}` with `{{replication}}` across multiple `{{AZs}}`.
   - DynamoDB is a NoSQL or Relational Database?―NoSQL.
   - can handle 100's? 1000's or millions of requests per second?―Millions.
-  - always {{available}}, no {{maintenance}} or patching.
-  - uses {{Standard}} and {{Infrequent}}-Access Table Class.
-  - with DynamoDB you get {{single}} digit {{ms}} performance.
+  - always `{{available}}`, no `{{maintenance}}` or patching.
+  - uses `{{Standard}}` and `{{Infrequent}}`-Access Table Class.
+  - with DynamoDB you get `{{single}}` digit `{{ms}}` performance.
   - Tables
-    - DynamoDB is made up of {{Tables}}.
+    - DynamoDB is made up of `{{Tables}}`.
     - Each table is made up of the following:― ↓
       - Primary Key
       - Items (aka rows)
-    - An item is also known as a {{row}}.
-    - An item has {{attributes}} and you can have {{infinite}} number of items.
+    - An item is also known as a `{{row}}`.
+    - An item has `{{attributes}}` and you can have `{{infinite}}` number of items.
     - Max size of an item?―400KB
     - Supported Data Types? (hint: S D S)― ↓
       - __Scalar__ (string, number, bool, null)
       - __Document__ (list, map)
       - __Set__ (string set, number set, binary set)
-    - If you need to {{rapidly}} evolve schemas, use {{DynamoDB}}.
+    - If you need to `{{rapidly}}` evolve schemas, use `{{DynamoDB}}`.
   - Read+Write Capacity Modes
     - what are the two modes available for DynamoDB read & write capacity? ↓
       - Provisioned Mode (default)
       - On-Demand Mode
-    - if your capacity needs are unpredictable and you need to scale suddenly, use {{On-demand}} mode.
-    - if your capacity needs are predictable use {{Provisioned}} mode.
+    - if your capacity needs are unpredictable and you need to scale suddenly, use `{{On-demand}}` mode.
+    - if your capacity needs are predictable use `{{Provisioned}}` mode.
     - what does RCU and WCU stand for?―Read Capacity Units, Write Capacity Units
     - Can you scale RCU without scaling WCU?―Yes. RCU and WCU are separate so can scale independently.
   - Advanced Features
     - DAX (DynamoDB Accelerator)
       - DAX is an in-memory cache __cluster__ for DynamoDB
-      - DAX has {{ms}} latency for cached data.
-      - DAX is good when you have {{read}} congestion issues.
+      - DAX has `{{ms}}` latency for cached data.
+      - DAX is good when you have `{{read}}` congestion issues.
       - DAX default cache TTL?―5 minutes.
       - DAX vs Elasticache
         - What should you use when you need individual objects caching or query and scan cache needs?―DAX
@@ -122,17 +122,17 @@ These were the topics I created flashcards for (Remnote) and would revise them u
       - DDB has TWO options for processing data streams ↓
         - DynamoDB Streams
           - data retention?―24 hours.
-          - {{limited}} number of consumers.
+          - `{{limited}}` number of consumers.
         - Kinesis Data Streams
           - data retention?―365 days.
-          - {{high}} number of consumers.
+          - `{{high}}` number of consumers.
     - Global Table
-      - basically a DDB table that spans multiple {{Regions}}.
-      - uses {{active}}-{{active}} replication.
-      - applications can {{read}} and {{write}} from {{any}} Region.
+      - basically a DDB table that spans multiple `{{Regions}}`.
+      - uses `{{active}}`-`{{active}}` replication.
+      - applications can `{{read}}` and `{{write}}` from `{{any}}` Region.
       - what must you enable before you can use Global Tables?―DDB Streams.
     - TTL
-      - like any TTL, set {{expiry}}, data gets {{deleted}}.
+      - like any TTL, set `{{expiry}}`, data gets `{{deleted}}`.
       - use cases? ↓
         - keep items current
         - regulatory needs
@@ -142,9 +142,9 @@ These were the topics I created flashcards for (Remnote) and would revise them u
         - Continuous using PITR
         - On-Demand
           - long-term retention, when does it delete?―explicitly requested.
-      - Both backup options will create {{new}} tables during the {{recovery}} process.
+      - Both backup options will create `{{new}}` tables during the `{{recovery}}` process.
   - Amazon S3 Integration
-    - Export to S3 requires {{PITR}} (continuous backup option).
+    - Export to S3 requires `{{PITR}}` (continuous backup option).
     - Export formats? ↓
       - DDB JSON
       - ION
@@ -152,10 +152,10 @@ These were the topics I created flashcards for (Remnote) and would revise them u
       - CSV
       - DDB JSON
       - ION
-    - Import errors logged in {{CloudWatch}}.
+    - Import errors logged in `{{CloudWatch}}`.
     - will an import from S3 create a new table in DDB?―Yes.
 - AWS API Gateway
-  - AWS Lambda + API Gateway is a completely {{serverless}} solution.
+  - AWS Lambda + API Gateway is a completely `{{serverless}}` solution.
   - API Gateway can manage these API operations (hint: env, sec, keys, rates, x & v, save)― ↓
     - Environment Routing (dev, test, prod)
     - Security (AuthN, AuthZ)
@@ -174,12 +174,12 @@ These were the topics I created flashcards for (Remnote) and would revise them u
       - AWS Service (expose any AWS API via GW)
         - A good way to "wrap" a backend API in the API GW features like AuthN and AuthZ, throttling etc.
         - Also a good way to make a backend API publicly available safely.
-  - Deployment Types  
+  - Deployment Types
     - what are the three TYPES of API GW deployments? (hint: E R P)― ↓
-      - __Edge__-optimised (default) i.e. routed through {{CloudFront}} {{Edge}} locations.
+      - __Edge__-optimised (default) i.e. routed through `{{CloudFront}}` `{{Edge}}` locations.
       - __Regional__ for clients same Region.
       - __Private__ limited to your VPC using VPC endpoints (ENI)
-    - no matter which type of Deployment is used, API Gateway still lives in {{ONE}} Region.
+    - no matter which type of Deployment is used, API Gateway still lives in `{{ONE}}` Region.
   - Security
     - API Gateway can do AuthN via? (hint: I C C)― ↓
       - IAM Roles
@@ -187,5 +187,5 @@ These were the topics I created flashcards for (Remnote) and would revise them u
       - Custom Authenticators (write your own)
     - What does API Gateway use to implement HTTPS on custom domain names?―AWS Certificate Manager (ACM)
 - AWS Step Functions
-  - give you "{{serverless}} visual {{workflows}} to {{orchestrate}} your Lambda functions"
-  - if you need a "human approval" step in an automation process, use {{step functions}}.
+  - give you "`{{serverless}}` visual `{{workflows}}` to `{{orchestrate}}` your Lambda functions"
+  - if you need a "human approval" step in an automation process, use `{{step functions}}`.

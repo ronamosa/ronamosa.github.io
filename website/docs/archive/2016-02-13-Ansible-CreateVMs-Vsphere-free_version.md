@@ -68,7 +68,7 @@ copy this EXACTLY to your esxi section below
   - vsphere_guest:
       vcenter_hostname: esxi.darksyde.net
       username: root
-      password: <your_root_password>
+      password: <your_root_password />
       guest: newvm001
       state: powered_on
       vm_extra_config:

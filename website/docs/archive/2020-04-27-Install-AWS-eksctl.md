@@ -135,8 +135,8 @@ output:
 
 ```bash
 NAME                                           STATUS   ROLES    AGE     VERSION
-ip-192-168-55-170.us-west-2.compute.internal   Ready    <none>   4h18m   v1.14.9-eks-1f0ca9
-ip-192-168-83-228.us-west-2.compute.internal   Ready    <none>   4h18m   v1.14.9-eks-1f0ca9
+ip-192-168-55-170.us-west-2.compute.internal   Ready    <none />   4h18m   v1.14.9-eks-1f0ca9
+ip-192-168-83-228.us-west-2.compute.internal   Ready    <none />   4h18m   v1.14.9-eks-1f0ca9
 ```
 
 ## troubleshooting
@@ -144,17 +144,17 @@ ip-192-168-83-228.us-west-2.compute.internal   Ready    <none>   4h18m   v1.14.9
 if you see this, it means your aws-cli version doesn't have the required subcommand `get-token` in it cos its too old
 
 ```bash
-[✖]  unable to use kubectl with the EKS cluster (check 'kubectl version'): usage: aws [options] <command> <subcommand> [<subcommand> ...] [parameters]
+[✖]  unable to use kubectl with the EKS cluster (check 'kubectl version'): usage: aws [options] <command /> <subcommand /> [<subcommand /> ...] [parameters]
 To see help text, you can run:
 
   aws help
-  aws <command> help
-  aws <command> <subcommand> help
+  aws <command /> help
+  aws <command /> <subcommand /> help
 aws: error: argument operation: Invalid choice, valid choices are:
 
-create-cluster                           | delete-cluster                          
-describe-cluster                         | list-clusters                           
-help                                    
+create-cluster                           | delete-cluster
+describe-cluster                         | list-clusters
+help
 Unable to connect to the server: getting credentials: exec: exit status 2
 ```
 

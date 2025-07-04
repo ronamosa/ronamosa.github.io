@@ -28,13 +28,13 @@ As soon as you specific a NP e.g. an ingress from pod group A to pod group B -->
 
 NP flow example `namespaceSelector`:
 
-`podSelector` <-- `policyType:Ingress` <-- `namespaceSelector`
+`podSelector` ← `policyType:Ingress` ← `namespaceSelector`
 
 NP flow example `ipBlock`:
 
-`podSelector` --> `policyType:Egress` --> `ipBlock:10.0.0.0/24`
+`podSelector` → `policyType:Egress` → `ipBlock:10.0.0.0/24`
 
-`podSelector` <-- `policyType:Inress` <-- `ipBlock:10.0.0.0/24`
+`podSelector` ← `policyType:Inress` ← `ipBlock:10.0.0.0/24`
 
 You can put the rules in two separate policies (which will get merged) or just in a single yaml file.
 
@@ -67,11 +67,11 @@ this policy right now
 kind: NetworkPolicy
 metadata:
   name: 'example'
-  namespace: 'default' # <-- policy applies to this namespace
+  namespace: 'default' # ← policy applies to this namespace
 spec:
   podSelector:
     matchLabels:
-      id: 'frontend' # <-- applied to these pods as the SUBJECT/TARGET
+      id: 'frontend' # ← applied to these pods as the SUBJECT/TARGET
     policyTypes:
     - Egress
     egress:
@@ -89,7 +89,7 @@ spec:
     - to:
       - podSelector:
           matchLabels:
-            id: 'backend' # <-- applies to these pods in SAME namespace where the policy lives, unless otherwise specified with a `namespaceSelector` label here.
+            id: 'backend' # ← applies to these pods in SAME namespace where the policy lives, unless otherwise specified with a `namespaceSelector` label here.
 ```
 
 Rule 1 and Rule 1 are OR'd.
@@ -127,9 +127,9 @@ pod/backend    1/1     Running   0          3m41s
 pod/frontend   1/1     Running   0          3m53s
 
 NAME                 TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)   AGE
-service/backend      ClusterIP   10.107.165.22   <none>        80/TCP    8s
-service/frontend     ClusterIP   10.103.184.90   <none>        80/TCP    14s
-service/kubernetes   ClusterIP   10.96.0.1       <none>        443/TCP   14d
+service/backend      ClusterIP   10.107.165.22   &lt;none&gt;        80/TCP    8s
+service/frontend     ClusterIP   10.103.184.90   &lt;none&gt;        80/TCP    14s
+service/kubernetes   ClusterIP   10.96.0.1       &lt;none&gt;        443/TCP   14d
 ```
 
 check connectivity `frontend --> backend`
@@ -138,31 +138,31 @@ check connectivity `frontend --> backend`
 root@cks-master:~# k exec frontend -- curl backend
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0<!DOCTYPE html>
-<html>
-<head>
-<title>Welcome to nginx!</title>
-<style>
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;Welcome to nginx!&lt;/title&gt;
+&lt;style&gt;
     body {
         width: 35em;
         margin: 0 auto;
         font-family: Tahoma, Verdana, Arial, sans-serif;
     }
-</style>
-</head>
-<body>
-<h1>Welcome to nginx!</h1>
-<p>If you see this page, the nginx web server is successfully installed and
-working. Further configuration is required.</p>
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h1&gt;Welcome to nginx!&lt;/h1&gt;
+&lt;p&gt;If you see this page, the nginx web server is successfully installed and
+working. Further configuration is required.&lt;/p&gt;
 
-<p>For online documentation and support please refer to
-<a href="http://nginx.org/">nginx.org</a>.<br/>
+&lt;p&gt;For online documentation and support please refer to
+&lt;a href="http://nginx.org/"&gt;nginx.org&lt;/a&gt;.&lt;br/&gt;
 Commercial support is available at
-<a href="http://nginx.com/">nginx.com</a>.</p>
+&lt;a href="http://nginx.com/"&gt;nginx.com&lt;/a&gt;.&lt;/p&gt;
 
-<p><em>Thank you for using nginx.</em></p>
-</body>
-</html>
+&lt;p&gt;&lt;em&gt;Thank you for using nginx.&lt;/em&gt;&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
 100   612  100   612    0     0    99k      0 --:--:-- --:--:-- --:--:--  119k
 ```
 
@@ -173,31 +173,31 @@ root@cks-master:~# k exec backend -- curl frontend
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
 100   612  100   612    0     0    99k      0 --:--:-- --:--:-- --:--:--   99k
-<!DOCTYPE html>
-<html>
-<head>
-<title>Welcome to nginx!</title>
-<style>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;Welcome to nginx!&lt;/title&gt;
+&lt;style&gt;
     body {
         width: 35em;
         margin: 0 auto;
         font-family: Tahoma, Verdana, Arial, sans-serif;
     }
-</style>
-</head>
-<body>
-<h1>Welcome to nginx!</h1>
-<p>If you see this page, the nginx web server is successfully installed and
-working. Further configuration is required.</p>
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h1&gt;Welcome to nginx!&lt;/h1&gt;
+&lt;p&gt;If you see this page, the nginx web server is successfully installed and
+working. Further configuration is required.&lt;/p&gt;
 
-<p>For online documentation and support please refer to
-<a href="http://nginx.org/">nginx.org</a>.<br/>
+&lt;p&gt;For online documentation and support please refer to
+&lt;a href="http://nginx.org/"&gt;nginx.org&lt;/a&gt;.&lt;br/&gt;
 Commercial support is available at
-<a href="http://nginx.com/">nginx.com</a>.</p>
+&lt;a href="http://nginx.com/"&gt;nginx.com&lt;/a&gt;.&lt;/p&gt;
 
-<p><em>Thank you for using nginx.</em></p>
-</body>
-</html>
+&lt;p&gt;&lt;em&gt;Thank you for using nginx.&lt;/em&gt;&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
 ```
 
 create our default deny policy
@@ -218,7 +218,7 @@ spec:
 apply
 
 ```bash
-root@cks-master:~# k apply -f ./default-deny.yaml 
+root@cks-master:~# k apply -f ./default-deny.yaml
 networkpolicy.networking.k8s.io/default-deny created
 ```
 
@@ -240,7 +240,7 @@ blocked!
 
 now allow frontend-to-backend traffic with a single policy
 
-## 
+##
 
 new policy `frontend.yaml`
 
@@ -266,7 +266,7 @@ spec:
 create
 
 ```bash
-root@cks-master:~# k create -f ./frontend.yaml 
+root@cks-master:~# k create -f ./frontend.yaml
 networkpolicy.networking.k8s.io/frontend created
 ```
 
@@ -290,12 +290,12 @@ create `backend.yaml`
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
-  name: 'backend' 
+  name: 'backend'
   namespace: 'default'
 spec:
   podSelector:
     matchLabels:
-      run: 'backend' 
+      run: 'backend'
   policyTypes:
   - Ingress
   ingress:
@@ -308,7 +308,7 @@ spec:
 create, test
 
 ```bash
-root@cks-master:~# k create -f backend.yaml 
+root@cks-master:~# k create -f backend.yaml
 networkpolicy.networking.k8s.io/backend created
 root@cks-master:~# k exec frontend -- curl backend
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
@@ -327,8 +327,8 @@ lookup the IP address of our pods and try to hit frontend-->backend via IP
 ```bash
 root@cks-master:~# k get pods --show-labels -owide
 NAME       READY   STATUS    RESTARTS   AGE     IP          NODE         NOMINATED NODE   READINESS GATES   LABELS
-backend    1/1     Running   0          5h35m   10.44.0.2   cks-worker   <none>           <none>            run=backend
-frontend   1/1     Running   0          5h36m   10.44.0.1   cks-worker   <none>           <none>            run=frontend
+backend    1/1     Running   0          5h35m   10.44.0.2   cks-worker   <none />           <none />            run=backend
+frontend   1/1     Running   0          5h36m   10.44.0.1   cks-worker   <none />           <none />            run=frontend
 ```
 
 curl works!!
@@ -339,10 +339,10 @@ root@cks-master:~# k exec frontend -- curl 10.44.0.2
                                  Dload  Upload   Total   Spent    Left  Speed
 100   612  100   612    0     0   597k      0 --:--:-- --:--:-- --:--:--  597k
 <!DOCTYPE html>
-<html>
-<head>
-<title>Welcome to nginx!</title>
-<style>
+<html />
+<head />
+<title />Welcome to nginx!</title>
+<style />
     body {
         width: 35em;
         margin: 0 auto;
@@ -350,17 +350,17 @@ root@cks-master:~# k exec frontend -- curl 10.44.0.2
     }
 </style>
 </head>
-<body>
-<h1>Welcome to nginx!</h1>
-<p>If you see this page, the nginx web server is successfully installed and
+<body />
+<h1 />Welcome to nginx!</h1>
+<p />If you see this page, the nginx web server is successfully installed and
 working. Further configuration is required.</p>
 
-<p>For online documentation and support please refer to
-<a href="http://nginx.org/">nginx.org</a>.<br/>
+<p />For online documentation and support please refer to
+<a href="http://nginx.org/" />nginx.org</a>.<br/>
 Commercial support is available at
-<a href="http://nginx.com/">nginx.com</a>.</p>
+<a href="http://nginx.com/" />nginx.com</a>.</p>
 
-<p><em>Thank you for using nginx.</em></p>
+<p /><em />Thank you for using nginx.</em></p>
 </body>
 </html>
 ```
@@ -392,16 +392,16 @@ spec:
 apply and test
 
 ```bash
-root@cks-master:~# k apply -f ./default-deny.yaml 
+root@cks-master:~# k apply -f ./default-deny.yaml
 networkpolicy.networking.k8s.io/default-deny configured
 root@cks-master:~# k exec frontend -- curl backend
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0<!DOCTYPE html>
-<html>
-<head>
-<title>Welcome to nginx!</title>
-<style>
+<html />
+<head />
+<title />Welcome to nginx!</title>
+<style />
     body {
         width: 35em;
         margin: 0 auto;
@@ -409,17 +409,17 @@ root@cks-master:~# k exec frontend -- curl backend
     }
 </style>
 </head>
-<body>
-<h1>Welcome to nginx!</h1>
-<p>If you see this page, the nginx web server is successfully installed and
+<body />
+<h1 />Welcome to nginx!</h1>
+<p />If you see this page, the nginx web server is successfully installed and
 working. Further configuration is required.</p>
 
-<p>For online documentation and support please refer to
-<a href="http://nginx.org/">nginx.org</a>.<br/>
+<p />For online documentation and support please refer to
+<a href="http://nginx.org/" />nginx.org</a>.<br/>
 Commercial support is available at
-<a href="http://nginx.com/">nginx.com</a>.</p>
+<a href="http://nginx.com/" />nginx.com</a>.</p>
 
-<p><em>Thank you for using nginx.</em></p>
+<p /><em />Thank you for using nginx.</em></p>
 </body>
 </html>
 100   612  100   612    0     0   149k      0 --:--:-- --:--:-- --:--:--  149k
@@ -448,7 +448,7 @@ allow a cassandra backend connection
 root@cks-master:~# k create ns cassandra
 namespace/cassandra created
 
-root@cks-master:~# k edit ns cassandra 
+root@cks-master:~# k edit ns cassandra
 namespace/cassandra edited
 
 root@cks-master:~# k -n cassandra run cassandra --image=nginx
@@ -456,7 +456,7 @@ pod/cassandra created
 
 root@cks-master:~# k -n cassandra get pods -owide
 NAME        READY   STATUS    RESTARTS   AGE   IP          NODE         NOMINATED NODE   READINESS GATES
-cassandra   1/1     Running   0          8s    10.44.0.3   cks-worker   <none>           <none>
+cassandra   1/1     Running   0          8s    10.44.0.3   cks-worker   <none />           <none />
 
 root@cks-master:~# k exec backend -- curl 10.44.0.3
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
@@ -472,12 +472,12 @@ new `backend.yaml`
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
-  name: 'backend' 
+  name: 'backend'
   namespace: 'default'
 spec:
   podSelector:
     matchLabels:
-      run: 'backend' 
+      run: 'backend'
   policyTypes:
   - Ingress
   - Egress
@@ -496,7 +496,7 @@ spec:
 create/apply
 
 ```bash
-root@cks-master:~# k create -f ./backend.yaml 
+root@cks-master:~# k create -f ./backend.yaml
 networkpolicy.networking.k8s.io/backend created
 ```
 
@@ -507,10 +507,10 @@ root@cks-master:~# k exec backend -- curl 10.44.0.3
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0<!DOCTYPE html>
-<html>
-<head>
-<title>Welcome to nginx!</title>
-<style>
+<html />
+<head />
+<title />Welcome to nginx!</title>
+<style />
     body {
         width: 35em;
         margin: 0 auto;
@@ -518,17 +518,17 @@ root@cks-master:~# k exec backend -- curl 10.44.0.3
     }
 </style>
 </head>
-<body>
-<h1>Welcome to nginx!</h1>
-<p>If you see this page, the nginx web server is successfully installed and
+<body />
+<h1 />Welcome to nginx!</h1>
+<p />If you see this page, the nginx web server is successfully installed and
 working. Further configuration is required.</p>
 
-<p>For online documentation and support please refer to
-<a href="http://nginx.org/">nginx.org</a>.<br/>
+<p />For online documentation and support please refer to
+<a href="http://nginx.org/" />nginx.org</a>.<br/>
 Commercial support is available at
-<a href="http://nginx.com/">nginx.com</a>.</p>
+<a href="http://nginx.com/" />nginx.com</a>.</p>
 
-<p><em>Thank you for using nginx.</em></p>
+<p /><em />Thank you for using nginx.</em></p>
 </body>
 </html>
 100   612  100   612    0     0   597k      0 --:--:-- --:--:-- --:--:--  597k
@@ -590,10 +590,10 @@ magic!!
 ```bash
 root@cks-master:~# k exec backend -- curl 10.44.0.3
 <!DOCTYPE html>
-<html>
-<head>
-<title>Welcome to nginx!</title>
-<style>
+<html />
+<head />
+<title />Welcome to nginx!</title>
+<style />
     body {
         width: 35em;
         margin: 0 auto;
@@ -601,17 +601,17 @@ root@cks-master:~# k exec backend -- curl 10.44.0.3
     }
 </style>
 </head>
-<body>
-<h1>Welcome to nginx!</h1>
-<p>If you see this page, the nginx web server is successfully installed and
+<body />
+<h1 />Welcome to nginx!</h1>
+<p />If you see this page, the nginx web server is successfully installed and
 working. Further configuration is required.</p>
 
-<p>For online documentation and support please refer to
-<a href="http://nginx.org/">nginx.org</a>.<br/>
+<p />For online documentation and support please refer to
+<a href="http://nginx.org/" />nginx.org</a>.<br/>
 Commercial support is available at
-<a href="http://nginx.com/">nginx.com</a>.</p>
+<a href="http://nginx.com/" />nginx.com</a>.</p>
 
-<p><em>Thank you for using nginx.</em></p>
+<p /><em />Thank you for using nginx.</em></p>
 </body>
 </html>
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current

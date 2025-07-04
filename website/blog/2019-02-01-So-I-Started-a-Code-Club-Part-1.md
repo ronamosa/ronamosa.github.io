@@ -35,7 +35,7 @@ I needed a venue. I needed some computers and I needed to find some kids who wan
 
 I'm not a teacher so I don't have access to a classroom, or school ties etc. At first I used a few local contacts to go meet a couple private education institutes and discuss a mutual exchange of some venue space and time for collaborating with them on boosting diversity at their institute, maybe even giving a few talks.
 
-Those didn't quite feel right, in my opinion, for who I was targeting and the kind of club I wanted to host. So it wasn't until my brothers friend Dayne of '[I <3 Avondale](https://www.facebook.com/ILoveAvondale)' recommended I reach out to a local primary school's new Principal, Paul Pirihi to see if he would be interested hosting a 1-hour weekly code club session at his school.
+Those didn't quite feel right, in my opinion, for who I was targeting and the kind of club I wanted to host. So it wasn't until my brothers friend Dayne of '[I ❤️ Avondale](https://www.facebook.com/ILoveAvondale)' recommended I reach out to a local primary school's new Principal, Paul Pirihi to see if he would be interested hosting a 1-hour weekly code club session at his school.
 
 _[Rosebank Primary School](https://www.rosebank.school.nz/)_
 
@@ -91,7 +91,7 @@ In the end I figured it's best to just start with an already accessible audience
 
 > Online you say?
 
-Yes. As much as Facebook is the anti-christ, it has its usefulness in reaching the audiences I needed to reach. And so a Facebook page was stood up and now operating as the '[Avondale Code Club](https://www.facebook.com/avondalecodeclub/)'.  
+Yes. As much as Facebook is the anti-christ, it has its usefulness in reaching the audiences I needed to reach. And so a Facebook page was stood up and now operating as the '[Avondale Code Club](https://www.facebook.com/avondalecodeclub/)'.
 
 So, we've got 10 kids ready to roll for our first session... but hold on, who's going to be teaching these kids??
 

@@ -76,17 +76,17 @@ export AWS_REGION=us-east-1
 aws ecr create-repository \
 --repository-name cats \
 --image-scanning-configuration scanOnPush=true \
---region ${AWS_REGION}
+--region $\{AWS_REGION}
 
 aws ecr create-repository \
 --repository-name dogs \
 --image-scanning-configuration scanOnPush=true \
---region ${AWS_REGION}
+--region $\{AWS_REGION}
 
 aws ecr create-repository \
 --repository-name web \
 --image-scanning-configuration scanOnPush=true \
---region ${AWS_REGION}
+--region $\{AWS_REGION}
 ```
 
 ## Docker build
@@ -98,13 +98,13 @@ user:~/environment/ecsworkshop/cats $ docker build -t cats .
 Sending build context to Docker daemon   5.12kB
 Step 1/6 : FROM public.ecr.aws/nginx/nginx:latest
 latest: Pulling from nginx/nginx
-8a1e25ce7c4f: Pull complete 
-e78b137be355: Pull complete 
-39fc875bd2b2: Pull complete 
-035788421403: Pull complete 
-87c3fb37cbf2: Pull complete 
-c5cdd1ce752d: Pull complete 
-33952c599532: Pull complete 
+8a1e25ce7c4f: Pull complete
+e78b137be355: Pull complete
+39fc875bd2b2: Pull complete
+035788421403: Pull complete
+87c3fb37cbf2: Pull complete
+c5cdd1ce752d: Pull complete
+33952c599532: Pull complete
 Digest: sha256:7e909dd89927167110bb7325be08affb2f838b809da86ed47b5d7d90c0319d7d
 Status: Downloaded newer image for public.ecr.aws/nginx/nginx:latest
 ```
@@ -117,7 +117,7 @@ export AWS_ACCOUNT_ID=830XXXXXX771
 export AWS_REGION=us-east-1
 
 # docker login
-aws ecr get-login-password --region ${AWS_REGION} | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com
+aws ecr get-login-password --region $\{AWS_REGION} | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com
 WARNING! Your password will be stored unencrypted in /home/ec2-user/.docker/config.json.
 Configure a credential helper to remove this warning. See
 https://docs.docker.com/engine/reference/commandline/login/#credentials-store
@@ -134,16 +134,16 @@ For each container image- cats, dogs, web- tag with `image:latest` --> `ECR.amaz
 user:~/environment/ecsworkshop/cats $ docker tag cats:latest $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/cats:latest
 user:~/environment/ecsworkshop/cats $ docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/cats:latest
 The push refers to repository [830XXXXXX771.dkr.ecr.us-east-1.amazonaws.com/cats]
-12c5e4098b11: Pushed 
-a2dbe6b10df4: Pushed 
-146ff8002d8b: Pushed 
-fd31601f0be4: Pushed 
-93b4c8c4ac05: Pushed 
-b7df9f234b50: Pushed 
-ab75a0b61bd1: Pushed 
-c1b1bf2f95dc: Pushed 
-4d99aab1eed4: Pushed 
-a483da8ab3e9: Pushed 
+12c5e4098b11: Pushed
+a2dbe6b10df4: Pushed
+146ff8002d8b: Pushed
+fd31601f0be4: Pushed
+93b4c8c4ac05: Pushed
+b7df9f234b50: Pushed
+ab75a0b61bd1: Pushed
+c1b1bf2f95dc: Pushed
+4d99aab1eed4: Pushed
+a483da8ab3e9: Pushed
 latest: digest: sha256:b071d6ba52dacc1b43b4c3afa2a8cec67190124fe4b3d5983869671797b3a5bc size: 2404
 ```
 
@@ -719,7 +719,7 @@ Resources:
             !Ref 'AWS::NoValue',
           ],
         ]
-      #!Sub arn:aws:sts::${AWS::AccountId}:assumed-role/WSParticipantRole/Participant
+      #!Sub arn:aws:sts::$\{AWS::AccountId}:assumed-role/WSParticipantRole/Participant
       #OwnerArn: !Ref ParticipantRoleArn
       Description: Use this to work with ECS cats & dogs workshop
       InstanceType: !Ref Cloud9IDEInstanceType
@@ -732,7 +732,7 @@ Resources:
         - Key: SSMBootstrapECS
           Value: Active
         - Key: Environment
-          Value: !Sub ${Cloud9EnvironmentName}
+          Value: !Sub $\{Cloud9EnvironmentName}
 
   C9LambdaExecutionRole:
     Type: AWS::IAM::Role
@@ -764,13 +764,13 @@ Resources:
                   - cloudformation:DescribeStackEvents
                   - cloudformation:DescribeStackResource
                   - cloudformation:DescribeStackResources
-                Resource: !Sub 'arn:aws:cloudformation:${AWS::Region}:${AWS::AccountId}:stack/*'
+                Resource: !Sub 'arn:aws:cloudformation:$\{AWS::Region}:$\{AWS::AccountId}:stack/*'
               - Effect: Allow
                 Action:
                   - ec2:AssociateIamInstanceProfile
                   - ec2:ModifyInstanceAttribute
                   - ec2:ReplaceIamInstanceProfileAssociation
-                Resource: !Sub 'arn:aws:ec2:${AWS::Region}:${AWS::AccountId}:instance/*'
+                Resource: !Sub 'arn:aws:ec2:$\{AWS::Region}:$\{AWS::AccountId}:instance/*'
               - Effect: Allow
                 Action:
                   - ec2:DescribeInstances
@@ -780,11 +780,11 @@ Resources:
               - Effect: Allow
                 Action:
                   - ec2:ModifyVolume
-                Resource: !Sub 'arn:aws:ec2:${AWS::Region}:${AWS::AccountId}:volume/*'
+                Resource: !Sub 'arn:aws:ec2:$\{AWS::Region}:$\{AWS::AccountId}:volume/*'
               - Effect: Allow
                 Action:
                   - iam:ListInstanceProfiles
-                Resource: !Sub arn:aws:iam::${AWS::AccountId}:instance-profile/*
+                Resource: !Sub arn:aws:iam::$\{AWS::AccountId}:instance-profile/*
               - Effect: Allow
                 Action:
                   - iam:PassRole
@@ -800,7 +800,7 @@ Resources:
     Properties:
       Tags:
         - Key: Environment
-          Value: !Sub ${Cloud9EnvironmentName}
+          Value: !Sub $\{Cloud9EnvironmentName}
       ServiceToken:
         Fn::GetAtt:
           - C9BootstrapInstanceLambdaFunction
@@ -855,10 +855,10 @@ Resources:
               responseData = {}
 
               status = cfnresponse.SUCCESS
-              
+
               if event['RequestType'] == 'Delete':
                   responseData = {'Success': 'Custom Resource removed'}
-                  cfnresponse.send(event, context, status, responseData, 'CustomResourcePhysicalID')              
+                  cfnresponse.send(event, context, status, responseData, 'CustomResourcePhysicalID')
 
               if event['RequestType'] == 'Create':
                   try:
@@ -866,7 +866,7 @@ Resources:
                       ec2 = boto3.client('ec2')
 
                       # Get the InstanceId of the Cloud9 IDE
-                      instance = ec2.describe_instances(Filters=[{'Name': 'tag:SSMBootstrapECS', 'Values': ['Active']},{'Name': 'tag:Environment', 'Values': ['${Cloud9EnvironmentName}']}])['Reservations'][0]['Instances'][0]
+                      instance = ec2.describe_instances(Filters=[{'Name': 'tag:SSMBootstrapECS', 'Values': ['Active']},{'Name': 'tag:Environment', 'Values': ['$\{Cloud9EnvironmentName}']}])['Reservations'][0]['Instances'][0]
                       logger.info('instance: {}'.format(instance))
 
                       # Create the IamInstanceProfile request object
@@ -891,7 +891,7 @@ Resources:
 
                       responseData = {'Success': 'Started bootstrapping for instance: '+instance['InstanceId']}
                       cfnresponse.send(event, context, status, responseData, 'CustomResourcePhysicalID')
-                      
+
                   except Exception as e:
                       status = cfnresponse.FAILED
                       print(traceback.format_exc())
@@ -942,7 +942,7 @@ Resources:
     Properties:
       Tags:
         - Key: Environment
-          Value: !Sub ${Cloud9EnvironmentName}
+          Value: !Sub $\{Cloud9EnvironmentName}
       DocumentType: Command
       Content:
         schemaVersion: '2.2'
@@ -982,15 +982,15 @@ Resources:
                 - yum -y install terraform
                 - echo '=== Configure cats and dogs source code ==='
                 - !Sub |
-                  mkdir -p /home/ec2-user/environment/ecsworkshop ; 
-                  cd /home/ec2-user/environment/ecsworkshop ; 
-                  aws s3 sync s3://${AssetsBucketName}/${AssetsBucketPrefix} .
+                  mkdir -p /home/ec2-user/environment/ecsworkshop ;
+                  cd /home/ec2-user/environment/ecsworkshop ;
+                  aws s3 sync s3://$\{AssetsBucketName}/$\{AssetsBucketPrefix} .
                 - chown -R 1000:1000 /home/ec2-user/environment/ecsworkshop ; ls -la
                 - echo '=== Installing c9 ==='
                 - /home/ec2-user/.nvm/versions/node/v16.20.0/bin/npm install -g c9
                 - echo '=== Exporting ENV Vars ==='
-                - export AWS_ACCOUNT_ID="$(aws sts get-caller-identity --query Account --output text)" && echo "export AWS_ACCOUNT_ID=${AWS_ACCOUNT_ID}" >> /home/ec2-user/.bashrc
-                - export AWS_REGION="$(curl -s http://169.254.169.254/latest/dynamic/instance-identity/document | grep region | cut -d'"' -f4)" && echo "export AWS_REGION=${AWS_REGION}" >> /home/ec2-user/.bashrc
+                - export AWS_ACCOUNT_ID="$(aws sts get-caller-identity --query Account --output text)" && echo "export AWS_ACCOUNT_ID=$\{AWS_ACCOUNT_ID}" >> /home/ec2-user/.bashrc
+                - export AWS_REGION="$(curl -s http://169.254.169.254/latest/dynamic/instance-identity/document | grep region | cut -d'"' -f4)" && echo "export AWS_REGION=$\{AWS_REGION}" >> /home/ec2-user/.bashrc
                 - echo "export AWS_DEFAULT_REGION=\$AWS_REGION" >>  /home/ec2-user/.bashrc
                 - echo 'aws cloud9 update-environment  --environment-id $C9_PID --managed-credentials-action DISABLE' >> /home/ec2-user/.bashrc
                 - echo 'alias ll="ls -la"' >> /home/ec2-user/.bashrc
@@ -1011,7 +1011,7 @@ Resources:
             - Active
         - Key: tag:Environment
           Values:
-            - !Sub ${Cloud9EnvironmentName}
+            - !Sub $\{Cloud9EnvironmentName}
 
 Outputs:
   PrivateSubnet1:
@@ -1035,5 +1035,5 @@ Outputs:
       Fn::FindInMap: [CidrMappings, vpc, CIDR]
   ECSCloud9EnvId:
     Description: ID of the ECS Lab IDE
-    Value: !Sub https://${AWS::Region}.console.aws.amazon.com/cloud9/ide/${cloud9Environment}?region=${AWS::Region}
+    Value: !Sub https://$\{AWS::Region}.console.aws.amazon.com/cloud9/ide/$\{cloud9Environment}?region=$\{AWS::Region}
 ```

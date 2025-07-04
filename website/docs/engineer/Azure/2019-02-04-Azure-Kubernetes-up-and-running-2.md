@@ -215,25 +215,26 @@ That's it. pretty anti-climatic huh.
 
 ## Method 2: Terraform
 
-_**This post has been updated from here on: 03/06/2019.**_
-{: .notice--info}
+:::info Update Note
+**This post has been updated from here on: 03/06/2019.**
+:::
 
 Ok, let's try doing it with terraform.
 
 ### main.tf
 
-```go
+```hcl
 # Azure Container Registry (managed)
 
 resource "azurerm_resource_group" "rg" {
-  name     = "${var.resource_group_name-acr}"
-  location = "${var.location}"
+  name     = "$\{var.resource_group_name-acr}"
+  location = "$\{var.location}"
 }
 
 resource "azurerm_container_registry" "acr" {
-  name                     = "${var.acr_name}"
-  resource_group_name      = "${azurerm_resource_group.rg.name}"
-  location                 = "${azurerm_resource_group.rg.location}"
+  name                     = "$\{var.acr_name}"
+  resource_group_name      = "$\{azurerm_resource_group.rg.name}"
+  location                 = "$\{azurerm_resource_group.rg.location}"
   sku                      = "Basic"
   admin_enabled            = true
 }
@@ -241,7 +242,7 @@ resource "azurerm_container_registry" "acr" {
 
 ### variables.tf
 
-```go
+```hcl
 # variables
 
 variable "resource_group_name-acr" {
@@ -264,19 +265,19 @@ variable "acr_name" {
 
 _note: only outputs admin username & password if you have admin_enabled=true._
 
-```go
+```hcl
 # ACR Outputs
 
 output "login_server" {
-  value = "${azurerm_container_registry.acr.login_server}"
+  value = "$\{azurerm_container_registry.acr.login_server}"
 }
 
 output "admin_password" {
-  value = "${azurerm_container_registry.acr.admin_password}"
+  value = "$\{azurerm_container_registry.acr.admin_password}"
 }
 
 output "admin_username" {
-  value = "${azurerm_container_registry.acr.admin_username}"
+  value = "$\{azurerm_container_registry.acr.admin_username}"
 }
 ```
 

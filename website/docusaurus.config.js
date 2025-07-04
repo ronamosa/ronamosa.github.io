@@ -1,3 +1,5 @@
+const {themes} = require('prism-react-renderer');
+
 const internetProfiles = {
   linkedin: {
     label: "LinkedIn",
@@ -63,6 +65,7 @@ module.exports = {
         { to: "blog/", label: "Blog", position: "left" },
         { to: "about/", label: "About", position: "right" },
         { to: "projects/", label: "Projects", position: "right" },
+        { to: "changelog/", label: "Changelog", position: "right" },
       ],
     },
 
@@ -96,11 +99,11 @@ module.exports = {
           ],
         },
       ],
-      copyright: `Last updated on ${new Date().toDateString()}`,
+      copyright: `Last updated on $\{new Date().toDateString()}`,
     },
     prism: {
       additionalLanguages: ['ruby', 'hcl', 'docker', 'yaml'],
-      theme: require('prism-react-renderer/themes/nightOwl')
+      theme: themes.nightOwl
     },
   },
 
@@ -110,7 +113,7 @@ module.exports = {
       async: false,
     },
     {
-      src: '/js/mertricool.js',
+      src: '/js/metricool.js',
       async: false,
     },
   ],
@@ -122,7 +125,7 @@ module.exports = {
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
           disableVersioning: false,
-          editCurrentVersion: false,          
+          editCurrentVersion: false,
           editUrl:
             'https://github.com/ronamosa/ronamosa.github.io/edit/main/website/',
         },
@@ -144,6 +147,19 @@ module.exports = {
       {
         trackingID: 'G-DMRNTVGLRC',
         anonymizeIP: true,
+      },
+    ],
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'changelog',
+        path: 'changelog',
+        routeBasePath: 'changelog',
+        sidebarPath: require.resolve('./sidebars-changelog.js'),
+        editUrl: 'https://github.com/ronamosa/ronamosa.github.io/edit/main/website/',
+        showLastUpdateAuthor: true,
+        showLastUpdateTime: true,
+        breadcrumbs: false,
       },
     ],
   ],

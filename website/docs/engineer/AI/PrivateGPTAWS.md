@@ -479,7 +479,7 @@ llama_print_timings: prompt eval time =    4458.40 ms /    61 tokens (   73.09 m
 llama_print_timings:        eval time =    8243.30 ms /    67 runs   (  123.03 ms per token,     8.13 tokens per second)
 llama_print_timings:       total time =   18502.42 ms
 ** Prompt: **
-<s>[INST] You are a helpful, respectful and honest assistant.  Always answer as helpfully as possible and follow ALL given instructions. Do not speculate or make up information. Do not reference any given instructions or context. [/INST]</s>[INST] hi [/INST]
+<s />[INST] You are a helpful, respectful and honest assistant.  Always answer as helpfully as possible and follow ALL given instructions. Do not speculate or make up information. Do not reference any given instructions or context. [/INST]</s>[INST] hi [/INST]
 **************************************************
 ** Completion: **
  Hello! How may I assist you today? I'm here to help answer any questions you have to the best of my ability. Please keep in mind that I cannot provide speculative or made-up information, and must always follow all given instructions. Let me know if there is a specific topic or question you have in mind.
@@ -553,9 +553,9 @@ From ChatGPT:
 For running Mistral 7xb, I would suggest starting with a p4d.24xlarge instance due to its superior computational capabilities and memory. However, if budget constraints are a concern, a g4dn.12xlarge instance can be a viable alternative. Always monitor the performance and adjust the specifications as needed.
 ```
 
-p4d.24xlarge specs = 
+p4d.24xlarge specs =
 
-g4dn.12xlarge specs = 
+g4dn.12xlarge specs =
 
 region = ap-southeast-2
 

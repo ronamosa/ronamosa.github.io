@@ -9,10 +9,10 @@ This is an export from my Remnote
 :::
 
 - **Data Protection**
-  - if you need "full control over how the KMS keys are used" dont use AWS {{managed}} keys, instead use what? ↓
+  - if you need "full control over how the KMS keys are used" dont use AWS `{{managed}}` keys, instead use what? ↓
     - Symmetric Customer Managed Keys
   - Kinesis Data Streams
-    - Kinesis Data Analytics {{encrypts}} all data both in {{transit}} and at {{rest}}.
+    - Kinesis Data Analytics `{{encrypts}}` all data both in `{{transit}}` and at `{{rest}}`.
     - Can you encrypt a Kinesis Data Stream coming into KDA?→Yes.
       - How? `StartStreamEncryption`API.
   - **Amazon CloudFront**
@@ -43,7 +43,7 @@ This is an export from my Remnote
       - If you want a single store for config and secrets - use...?→Parameter Store
       - what reason would you use systems manager parameter store over aws systems manager for storing secrets?→Cost. Parameter Store is cheaper per item than Secrets Manager
   - **Lambda Function Security**
-    - Code signing for lambda functions {{checks}} every code deployment and {{verifies}} code is signed by a {{trusted}} source, once enabled, you just need to sign the code with AWS {{Signer}} profile, package code in {{zip}} and upload to an s3 bucket.
+    - Code signing for lambda functions `{{checks}}` every code deployment and `{{verifies}}` code is signed by a `{{trusted}}` source, once enabled, you just need to sign the code with AWS `{{Signer}}` profile, package code in `{{zip}}` and upload to an s3 bucket.
   - **AWS KMS**
     - If you need key material to expire automatically after a certain date, what kind of KMS key do you use?→Customer-managed KMS key with imported key material.
     - What kind of KMS keys do you have full control over i.e. create, own and manage?→Customer Managed KMS Key (CMK)
@@ -57,7 +57,7 @@ This is an export from my Remnote
       - in key and IAM policies what can you use, additionally to control access to AWS KMS resources?→Conditions
         - how do you specify conditions?→use Condition Keys element of the policy statement e.g. **`kms:EncryptionContextKeys`**
     - can you import new key material into an existing KMS key?→No.
-    - imported key material means annual {{manual}} key rotation by creating a new key and {{importing}} new key material into it and finally pointing the key {{alias}} to the new KMS key.
+    - imported key material means annual `{{manual}}` key rotation by creating a new key and `{{importing}}` new key material into it and finally pointing the key `{{alias}}` to the new KMS key.
     - `GenerateDataKeyWithoutPlaintext` is identical to `GenerateDataKey`except that...?→it returns only the encrypted copy of the data key.
     - I want to use a data key for encryption, I want to fetch a copy of the data key that is encrypted (without the unencrypted copy), what KMS API call do I use? `GenerateDataKeyWithoutPlaintext` or `GenerateDataKey` ?→`GenerateDataKeyWithoutPlaintext`
     - `Access Denied`error when uploading 10GiB file to S3, what permission are you missing?→`kms:Decrypt` action permission on the key.
@@ -94,7 +94,7 @@ This is an export from my Remnote
     - are HSM's used by AWS KMS single or multi-tenant?→Multi-Tenant
     - can the CloudHSM APIs that come with the AWS SDK perform cryptographic operations?→No. Only CloudHSM Cluster Management capabilities.
   - **Encryption**
-    - envelope encryption = encrypt plaintext data with a {{data}} key and encrypt the data key with a top-level {{plaintext}} master key.
+    - envelope encryption = encrypt plaintext data with a `{{data}}` key and encrypt the data key with a top-level `{{plaintext}}` master key.
     - can SSE-C and SSE-S3 do automatic key rotation?→Yes.
     - can SSE-C and SSE-S3 do audit trails telling you who and when CMK was used?→No.
     - if you need an audit trail and have to choose between, SSE-C, SSE-S3, SSE-KMS?→SSE-KMS
@@ -102,12 +102,12 @@ This is an export from my Remnote
       - Amazon CloudFront
       - Elastic Load Balancers
     - DynamoDB (DDB) can encrypt data in flight before being sent to DDB using...?→Amazon DynamoDB Encryption Client.
-      - DDB Encryption Client provides {{client}}-side encryption.
-      - DDB itself provides {{server}}-side encryption.
+      - DDB Encryption Client provides `{{client}}`-side encryption.
+      - DDB itself provides `{{server}}`-side encryption.
   - **IAM**
     - you need to create system to manage access keys in AWS account e.g. disable all access keys >90 days old, what API call can you call for a report?→`GenerateCredentialReport` API.
       - what API call will disable the old keys?→`UpdateAccessKey` API
-    - if you want users to be able to assume roles with permissions to do things like upload to s3 use {{`AssumeRole`}} and not {{`AssumeRoleWithSAML`}}
+    - if you want users to be able to assume roles with permissions to do things like upload to s3 use `{{`AssumeRole`}}` and not `{{`AssumeRoleWithSAML`}}`
     - if you want to give users IAM permissions but prevent from having too many or creating a security issue what should you use?→Permission Boundaries
       - why not Service Control Policies?→SCP just set limits or guardrails, they don't grant permissions.
     - what is the hierarchy of permissions in IAM? ↓
@@ -120,7 +120,7 @@ This is an export from my Remnote
       - set `PUT` response hop limit
       - Turn off access to instance metadata
   - **AWS Config**
-    - AWS Config enables you to assess, a{{udit}}, e{{valuate}} configurations on your AWS resources.
+    - AWS Config enables you to assess, a`{{udit}}`, e`{{valuate}}` configurations on your AWS resources.
   - **Amazon CloudWatch**
     - if instances stop sending logs to CloudWatch what logfile should you check?→CloudWatch Logs Agent log files `/var/log/awslogs.log`
   - **Bucket Policy**
@@ -139,7 +139,7 @@ This is an export from my Remnote
         - call `abort-vault-lock` (this is a must!)
         - re-call `initiate-vault-lock`again.
   - AWS Systems Manager Parameter Store
-    - To perform any operation on a Parameter Store SSP (secure string parameter), the Parameter Store must be able to use the AWS KMS {{CMK}} you specify with the required {{operations}} (access and authZ).
+    - To perform any operation on a Parameter Store SSP (secure string parameter), the Parameter Store must be able to use the AWS KMS `{{CMK}}` you specify with the required `{{operations}}` (access and authZ).
     - when Parameter Store CMK-related failures are due to mainly THREE things ↓
       - credentials your app is using dont have permissions to do the action on the CMK
       - CMK not found - wrong identifier

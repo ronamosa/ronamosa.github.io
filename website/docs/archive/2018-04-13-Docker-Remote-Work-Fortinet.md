@@ -183,12 +183,12 @@ the vpn inside docker would complain about kernel not supporting pppd if you don
 
 ```bash
 docker run -dP --name=workvpn --privileged companyname/vpn:centos7
-docker exec -u loginid -ti <name_of_container> /bin/bash
+docker exec -u loginid -ti <name_of_container /> /bin/bash
 ```
 
 ## Example of output success
 
-Run `$ docker logs <name_of_container>` and see if you can see the following
+Run `$ docker logs <name_of_container />` and see if you can see the following
 
 ```bash
 $ docker logs workvpn

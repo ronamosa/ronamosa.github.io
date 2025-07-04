@@ -38,7 +38,9 @@ K8s storage took a bit to wrap my head around but essentially when I understood 
 
 This [video](https://www.youtube.com/watch?v=OulmwTYTauI) by "IBM FSS FCI and Counter Fraud Management" (no idea why they're called this?!) is probably the clearest explanation I've seen online.
 
-<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/OulmwTYTauI?controls=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<!-- markdownlint-disable MD033 -->
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/OulmwTYTauI?controls=0" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+<!-- markdownlint-enable MD033 -->
 
 ### The abstractions: Volumes, PV, StorageClasses and PVC's
 

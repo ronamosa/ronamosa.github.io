@@ -28,7 +28,7 @@ Setting up a Discord bot consists of three things
 Get notes from here: ["Get Started"](https://discord.com/developers/docs/quick-start/getting-started) guide.
 :::
 
-- Go to the Discord Developer Portal (<https://discord.com/developers/applications>)
+- Go to the [Discord Developer Portal](https://discord.com/developers/applications)
 - Create a new application, give app (bot) a name.
 - Go to side menu `Bot`
 - reset Token and copy for later
@@ -91,7 +91,7 @@ const warningTimeout = parseInt(process.env.WARNING_TIMEOUT);
 const warnedUsers = new Map();
 
 client.on('ready', () => {
-  console.log(`Logged in as ${client.user.tag}!`);
+  console.log(`Logged in as $\{client.user.tag}!`);
 });
 
 client.on('error', (error) => {
@@ -99,7 +99,7 @@ client.on('error', (error) => {
 });
 
 client.on('voiceStateUpdate', async (oldState, newState) => {
-  console.log(`Voice state update detected for user ${newState.member.user.tag}. Old Channel: ${oldState.channelID}, New Channel: ${newState.channelID}, Camera On: ${newState.selfVideo}`);
+  console.log(`Voice state update detected for user $\{newState.member.user.tag}. Old Channel: $\{oldState.channelID}, New Channel: $\{newState.channelID}, Camera On: $\{newState.selfVideo}`);
 
   if (!cameraOnChannels.includes(newState.channelID)) return;
 
@@ -108,34 +108,34 @@ client.on('voiceStateUpdate', async (oldState, newState) => {
 
   if (newState.channelID !== oldState.channelID && !newState.selfVideo) {
     // User joined the voice channel with camera disabled
-    console.log(`User ${member.user.tag} joined the monitored channel "${channel.name}" without camera enabled.`);
+    console.log(`User $\{member.user.tag} joined the monitored channel "$\{channel.name}" without camera enabled.`);
     handleCameraOff(member, channel);
   } else if (newState.channelID === oldState.channelID && !newState.selfVideo && !warnedUsers.has(member.id)) {
     // User disabled their camera while in the voice channel
-    console.log(`User ${member.user.tag} disabled their camera in the monitored channel "${channel.name}".`);
+    console.log(`User $\{member.user.tag} disabled their camera in the monitored channel "$\{channel.name}".`);
     handleCameraOff(member, channel);
   } else if (newState.selfVideo && warnedUsers.has(member.id)) {
     // User enabled their camera
-    console.log(`User ${member.user.tag} enabled their camera in the monitored channel "${channel.name}".`);
+    console.log(`User $\{member.user.tag} enabled their camera in the monitored channel "$\{channel.name}".`);
     clearWarning(member.id);
   }
 });
 
 async function handleCameraOff(member, channel) {
   try {
-    const warningMessage = await member.send(`📷 Attention! Please enable your camera in the channel "**${channel.name}**" within the next ${warningTimeout / 1000} seconds, or you will be removed from the channel. 🚨`);
-    console.log(`Sent warning message to user ${member.user.tag}.`);
+    const warningMessage = await member.send(`📷 Attention! Please enable your camera in the channel "**$\{channel.name}**" within the next $\{warningTimeout / 1000} seconds, or you will be removed from the channel. 🚨`);
+    console.log(`Sent warning message to user $\{member.user.tag}.`);
 
     const timeoutId = setTimeout(async () => {
       if (!member.voice.selfVideo) {
         await member.voice.setChannel(null);
-        await member.send(`❌ You have been removed from the channel "**${channel.name}**" due to not enabling your camera. Please rejoin the channel and enable your camera to participate. 🙏`);
-        console.log(`User ${member.user.tag} was removed from the channel "${channel.name}" for not enabling their camera.`);
+        await member.send(`❌ You have been removed from the channel "**$\{channel.name}**" due to not enabling your camera. Please rejoin the channel and enable your camera to participate. 🙏`);
+        console.log(`User $\{member.user.tag} was removed from the channel "$\{channel.name}" for not enabling their camera.`);
       }
     }, warningTimeout);
 
     warnedUsers.set(member.id, { timeoutId, warningMessage });
-    console.log(`Set timeout for user ${member.user.tag}.`);
+    console.log(`Set timeout for user $\{member.user.tag}.`);
   } catch (error) {
     console.error('Error handling camera off:', error);
   }
@@ -146,13 +146,13 @@ async function clearWarning(memberId) {
   if (userInfo) {
     clearTimeout(userInfo.timeoutId);
     warnedUsers.delete(memberId);
-    console.log(`Cleared warning for user with ID ${memberId}.`);
-    
+    console.log(`Cleared warning for user with ID $\{memberId}.`);
+
     try {
       await userInfo.warningMessage.edit(`✨ Thank you for enabling your camera! Your cooperation is appreciated. 😊👍`);
-      console.log(`Edited warning message for user with ID ${memberId}.`);
+      console.log(`Edited warning message for user with ID $\{memberId}.`);
     } catch (editError) {
-      console.error(`Failed to edit warning message for user with ID ${memberId}:`, editError);
+      console.error(`Failed to edit warning message for user with ID $\{memberId}:`, editError);
     }
   }
 }
@@ -197,10 +197,10 @@ Install Heroku cli, login.
 
 Check remotes on current repo.
 
-Add heroku remote with `heroku git:remote -a <app-name>`
+Add heroku remote with `heroku git:remote -a &lt;app-name&gt;`
 
 ```bash
-~/Repos/rxbot on CameraEnabled !1 ❯ git remote -v   
+~/Repos/rxbot on CameraEnabled !1 ❯ git remote -v
 origin  git@github.com:ronamosa/rxbot.git (fetch)
 origin  git@github.com:ronamosa/rxbot.git (push)
 ~/Repos/rxbot on CameraEnabled ❯ heroku git:remote -a rxbot
@@ -271,7 +271,7 @@ First time running the basic bot code, permissions tweak needed:
 2024-05-17T22:44:01.638622+00:00 app[worker.1]: /app/node_modules/discord.js/src/rest/RequestHandler.js:154
 2024-05-17T22:44:01.638692+00:00 app[worker.1]: throw new DiscordAPIError(request.path, data, request.method, res.status);
 2024-05-17T22:44:01.638693+00:00 app[worker.1]: ^
-2024-05-17T22:44:01.638693+00:00 app[worker.1]: 
+2024-05-17T22:44:01.638693+00:00 app[worker.1]:
 2024-05-17T22:44:01.638694+00:00 app[worker.1]: DiscordAPIError: Missing Permissions
 2024-05-17T22:44:01.638694+00:00 app[worker.1]: at RequestHandler.execute (/app/node_modules/discord.js/src/rest/RequestHandler.js:154:13)
 2024-05-17T22:44:01.638694+00:00 app[worker.1]: at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
@@ -288,12 +288,12 @@ First time running the basic bot code, permissions tweak needed:
 
 ```bash
 2024-05-16T04:45:28.045293+00:00 heroku[web.1]: Starting process with command `npm start`
-2024-05-16T04:45:29.006096+00:00 app[web.1]: 
-2024-05-16T04:45:29.006148+00:00 app[web.1]: > rxbot@1.0.0 start /app
-2024-05-16T04:45:29.006148+00:00 app[web.1]: > node bot.js
-2024-05-16T04:45:29.006149+00:00 app[web.1]: 
+2024-05-16T04:45:29.006096+00:00 app[web.1]:
+2024-05-16T04:45:29.006148+00:00 app[web.1]: &gt; rxbot@1.0.0 start /app
+2024-05-16T04:45:29.006148+00:00 app[web.1]: &gt; node bot.js
+2024-05-16T04:45:29.006149+00:00 app[web.1]:
 2024-05-16T04:45:29.563611+00:00 app[web.1]: Logged in as RXBOT#4425
-2024-05-16T04:46:28.333745+00:00 heroku[web.1]: Error R10 (Boot timeout) -> Web process failed to bind to $PORT within 60 seconds of launch
+2024-05-16T04:46:28.333745+00:00 heroku[web.1]: Error R10 (Boot timeout) -&gt; Web process failed to bind to $PORT within 60 seconds of launch
 2024-05-16T04:46:28.345690+00:00 heroku[web.1]: Stopping process with SIGKILL
 2024-05-16T04:46:28.449933+00:00 heroku[web.1]: Process exited with status 137
 2024-05-16T04:46:28.474043+00:00 heroku[web.1]: State changed from starting to crashed

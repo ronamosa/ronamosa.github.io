@@ -60,8 +60,8 @@ pod/ingress-nginx-admission-patch-wdvrk         0/1     Completed   2          5
 pod/ingress-nginx-controller-655cc55649-5rnxl   1/1     Running     0          57s
 
 NAME                                         TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)                      AGE
-service/ingress-nginx-controller             NodePort    10.105.163.30    <none>        80:32677/TCP,443:31926/TCP   57s
-service/ingress-nginx-controller-admission   ClusterIP   10.107.227.109   <none>        443/TCP                      57s
+service/ingress-nginx-controller             NodePort    10.105.163.30    <none />        80:32677/TCP,443:31926/TCP   57s
+service/ingress-nginx-controller-admission   ClusterIP   10.107.227.109   <none />        443/TCP                      57s
 ```
 
 get worker external IP address from GCP: `gcloud compute instances describe cks-worker`
@@ -70,11 +70,11 @@ curl the external IP + http NodePort
 
 ```bash
 $ curl http://35.244.67.113:32677
-<html>
-<head><title>404 Not Found</title></head>
-<body>
-<center><h1>404 Not Found</h1></center>
-<hr><center>nginx</center>
+<html />
+<head /><title />404 Not Found</title></head>
+<body />
+<center /><h1 />404 Not Found</h1></center>
+<hr /><center />nginx</center>
 </body>
 </html>
 ```
@@ -136,11 +136,11 @@ spec:
 check
 
 ```bash
-root@cks-master:~# k create -f ingress.yaml 
+root@cks-master:~# k create -f ingress.yaml
 ingress.networking.k8s.io/secure-ingress created
 root@cks-master:~# k get ing
 NAME             CLASS    HOSTS   ADDRESS   PORTS   AGE
-secure-ingress   <none>   *                 80      9s
+secure-ingress   <none />   *                 80      9s
 ```
 
 now create our pods for the services, and expose them
@@ -163,10 +163,10 @@ checking with curl service1 (nginx)
 ```bash
 curl http://35.244.67.113:32677/service1
 <!DOCTYPE html>
-<html>
-<head>
-<title>Welcome to nginx!</title>
-<style>
+<html />
+<head />
+<title />Welcome to nginx!</title>
+<style />
     body {
         width: 35em;
         margin: 0 auto;
@@ -174,17 +174,17 @@ curl http://35.244.67.113:32677/service1
     }
 </style>
 </head>
-<body>
-<h1>Welcome to nginx!</h1>
-<p>If you see this page, the nginx web server is successfully installed and
+<body />
+<h1 />Welcome to nginx!</h1>
+<p />If you see this page, the nginx web server is successfully installed and
 working. Further configuration is required.</p>
 
-<p>For online documentation and support please refer to
-<a href="http://nginx.org/">nginx.org</a>.<br/>
+<p />For online documentation and support please refer to
+<a href="http://nginx.org/" />nginx.org</a>.<br/>
 Commercial support is available at
-<a href="http://nginx.com/">nginx.com</a>.</p>
+<a href="http://nginx.com/" />nginx.com</a>.</p>
 
-<p><em>Thank you for using nginx.</em></p>
+<p /><em />Thank you for using nginx.</em></p>
 </body>
 </html>
 ```
@@ -193,7 +193,7 @@ service2 (httpd)
 
 ```bash
 curl http://35.244.67.113:32677/service2
-<html><body><h1>It works!</h1></body></html>
+<html /><body /><h1 />It works!</h1></body></html>
 ```
 
 ## Secure the Ingress
@@ -214,16 +214,16 @@ use `-k`
 
 ```bash
 curl -k https://35.244.67.113:31926
-<html>
-<head><title>404 Not Found</title></head>
-<body>
-<center><h1>404 Not Found</h1></center>
-<hr><center>nginx</center>
+<html />
+<head /><title />404 Not Found</title></head>
+<body />
+<center /><h1 />404 Not Found</h1></center>
+<hr /><center />nginx</center>
 </body>
 </html>
 
 curl -k https://35.244.67.113:31926/service2
-<html><body><h1>It works!</h1></body></html>
+<html /><body /><h1 />It works!</h1></body></html>
 ```
 
 seems to be working! check out `-kv` for more details
@@ -264,12 +264,12 @@ curl -vk https://35.244.67.113:31926/service2
 > Host: 35.244.67.113:31926
 > user-agent: curl/7.68.0
 > accept: */*
-> 
+>
 * TLSv1.3 (IN), TLS handshake, Newsession Ticket (4):
 * TLSv1.3 (IN), TLS handshake, Newsession Ticket (4):
 * old SSL session ID is stale, removing
 * Connection state changed (MAX_CONCURRENT_STREAMS == 128)!
-< HTTP/2 200 
+< HTTP/2 200
 < date: Mon, 30 Aug 2021 06:08:43 GMT
 < content-type: text/html
 < content-length: 45
@@ -277,8 +277,8 @@ curl -vk https://35.244.67.113:31926/service2
 < etag: "2d-432a5e4a73a80"
 < accept-ranges: bytes
 < strict-transport-security: max-age=15724800; includeSubDomains
-< 
-<html><body><h1>It works!</h1></body></html>
+<
+<html /><body /><h1 />It works!</h1></body></html>
 * Connection #0 to host 35.244.67.113 left intact
 ```
 
@@ -297,7 +297,7 @@ let's create our own [TLS](https://kubernetes.io/docs/concepts/services-networki
 
 create cert: `openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -days 365 -nodes` (Common Name (e.g. server FQDN or YOUR name) []:secure-ingress.com)
 
-create secret: 
+create secret:
 
 ```bash
 k create secret tls secure-ingress --cert=./cert.pem --key=./key.pem
@@ -377,12 +377,12 @@ curl -vk https://secure-ingress.com:31926/service2 --resolve secure-ingress.com:
 > Host: secure-ingress.com:31926
 > user-agent: curl/7.68.0
 > accept: */*
-> 
+>
 * TLSv1.3 (IN), TLS handshake, Newsession Ticket (4):
 * TLSv1.3 (IN), TLS handshake, Newsession Ticket (4):
 * old SSL session ID is stale, removing
 * Connection state changed (MAX_CONCURRENT_STREAMS == 128)!
-< HTTP/2 200 
+< HTTP/2 200
 < date: Mon, 30 Aug 2021 06:21:57 GMT
 < content-type: text/html
 < content-length: 45
@@ -390,8 +390,8 @@ curl -vk https://secure-ingress.com:31926/service2 --resolve secure-ingress.com:
 < etag: "2d-432a5e4a73a80"
 < accept-ranges: bytes
 < strict-transport-security: max-age=15724800; includeSubDomains
-< 
-<html><body><h1>It works!</h1></body></html>
+<
+<html /><body /><h1 />It works!</h1></body></html>
 * Connection #0 to host secure-ingress.com left intact
 ```
 
