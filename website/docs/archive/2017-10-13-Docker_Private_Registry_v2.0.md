@@ -15,7 +15,7 @@ mkdir -p /opt/registry/{auth,data,ssl,config}
 (optional) if you have selinux running, you need to change permissions on your registry directory
 
 ```bash
-chcon -Rt svirt_sandbox_file_t <registry_dir>
+chcon -Rt svirt_sandbox_file_t <registry_dir />
 ```
 
 replace the 'SSL_SUBJECT' with your own and run this command to generate your SSL files
@@ -86,7 +86,7 @@ health:
 
 docker-compose file for the cert generating image:
 
-```yaml 
+```yaml
 # docker trusted registry (private) compose
 
 registry:
@@ -280,7 +280,7 @@ See [Redhat](https://access.redhat.com/documentation/en-us/red_hat_enterprise_li
 check ca.crt for expiry:
 
 ```bash
-openssl x509 -in /etc/docker/cert.d/<registry>/ca.crt -text -noout
+openssl x509 -in /etc/docker/cert.d/<registry />/ca.crt -text -noout
 ```
 
 #### docker login failed - bad certificate

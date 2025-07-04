@@ -97,8 +97,8 @@ nginx   2         2         2            2           81s
 ```bash
 $ kubectl get pods -lapp=nginx -o wide
 NAME                     READY   STATUS    RESTARTS   AGE     IP           NODE                   NOMINATED NODE
-nginx-5cd6d46846-cr5m7   1/1     Running   0          6m10s   10.244.0.9   aks-nodes-28201024-2   <none>
-nginx-5cd6d46846-ntszh   1/1     Running   0          6m10s   10.244.2.3   aks-nodes-28201024-1   <none>
+nginx-5cd6d46846-cr5m7   1/1     Running   0          6m10s   10.244.0.9   aks-nodes-28201024-2   <none />
+nginx-5cd6d46846-ntszh   1/1     Running   0          6m10s   10.244.2.3   aks-nodes-28201024-1   <none />
 ```
 
 ## K8s Service
@@ -116,7 +116,7 @@ check our service is up & running
 ```bash
 $ kubectl get svc nginx
 NAME    TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)   AGE
-nginx   ClusterIP   10.0.154.171   <none>        80/TCP    24s
+nginx   ClusterIP   10.0.154.171   <none />        80/TCP    24s
 ```
 
 ## Delete deployment

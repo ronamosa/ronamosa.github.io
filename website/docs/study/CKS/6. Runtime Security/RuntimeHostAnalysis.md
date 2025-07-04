@@ -6,7 +6,7 @@ title: Runtime Host Forensics
 
 - kernel vs user space
 - call syscalls via direct or libs
-- can use seccomp between libs <--> linux kernel
+- can use seccomp between libs & linux kernel
 
 have a read of [syscalls manpage](https://man7.org/linux/man-pages/man2/syscalls.2.html)
 
@@ -111,7 +111,7 @@ ls: cannot read symbolic link '/proc/33122/exe': Permission denied
 lrwxrwxrwx 1 root root 0 Sep  8 15:30 /proc/33122/exe
 
 $ sudo ls -l /proc/33122/exe
-[sudo] password for darthvaldr: 
+[sudo] password for darthvaldr:
 lrwxrwxrwx 1 root root 0 Sep  8 15:30 /proc/33122/exe -> /usr/local/bin/containerd-shim-runc-v2
 ```
 
@@ -259,8 +259,8 @@ httpd(1094514)─┬─httpd(1094539)─┬─{httpd}(1094544)
                │                ├─{httpd}(1094565)
 
 # see our SECRET?
-$ root@hazard:/proc/1094514# cat environ 
-HTTPD_VERSION=2.4.48KUBERNETES_PORT=tcp://10.96.0.1:443KUBERNETES_SERVICE_PORT=443HOSTNAME=apacheHOME=/rootHTTPD_PATCHES=KUBERNETES_PORT_443_TCP_ADDR=10.96.0.1PATH=/usr/local/apache2/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/binKUBERNETES_PORT_443_TCP_PORT=443HTTPD_SHA256=1bc826e7b2e88108c7e4bf43c026636f77a41d849cfb667aa7b5c0b86dbf966cKUBERNETES_PORT_443_TCP_PROTO=tcpSECRET=098273450928734509872345HTTPD_PREFIX=/usr/local/apache2KUBERNETES_PORT_443_TCP=tcp://10.96.0.1:443KUBERNETES_SERVICE_PORT_HTTPS=443KUBERNETES_SERVICE_HOST=10.96.0.1PWD=/usr/local/apache2   
+$ root@hazard:/proc/1094514# cat environ
+HTTPD_VERSION=2.4.48KUBERNETES_PORT=tcp://10.96.0.1:443KUBERNETES_SERVICE_PORT=443HOSTNAME=apacheHOME=/rootHTTPD_PATCHES=KUBERNETES_PORT_443_TCP_ADDR=10.96.0.1PATH=/usr/local/apache2/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/binKUBERNETES_PORT_443_TCP_PORT=443HTTPD_SHA256=1bc826e7b2e88108c7e4bf43c026636f77a41d849cfb667aa7b5c0b86dbf966cKUBERNETES_PORT_443_TCP_PROTO=tcpSECRET=098273450928734509872345HTTPD_PREFIX=/usr/local/apache2KUBERNETES_PORT_443_TCP=tcp://10.96.0.1:443KUBERNETES_SERVICE_PORT_HTTPS=443KUBERNETES_SERVICE_HOST=10.96.0.1PWD=/usr/local/apache2
 ```
 
 ## Tools & Secnarios - Falco

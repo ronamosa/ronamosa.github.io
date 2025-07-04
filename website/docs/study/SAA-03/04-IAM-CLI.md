@@ -8,16 +8,16 @@ These were the topics I created flashcards for (Remnote) and would revise them u
 
 :::
 
-- IAM is a service at the {{global}} level
+- IAM is a service at the \{\{global\}\} level
 - Root account
   - best practice: dont use root account, create user account and use that.
 - Groups
-  - can only hold users, not {{other groups}}
+  - can only hold users, not \{\{other groups\}\}
   - users can be member of >1 group
   - easier to apply policies
 - Policies
-  - helps with "least privilege" by granular control of permission  
-  - are in {{JSON}} format
+  - helps with "least privilege" by granular control of permission
+  - are in \{\{JSON\}\} format
   - structure ↓
     - version
     - id (optional)

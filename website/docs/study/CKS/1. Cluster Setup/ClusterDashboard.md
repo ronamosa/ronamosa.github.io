@@ -61,8 +61,8 @@ pod/dashboard-metrics-scraper-856586f554-x2m9b   1/1     Running   0          52
 pod/kubernetes-dashboard-67484c44f6-zbhmn        1/1     Running   0          52s
 
 NAME                                TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)    AGE
-service/dashboard-metrics-scraper   ClusterIP   10.98.132.195   <none>        8000/TCP   52s
-service/kubernetes-dashboard        ClusterIP   10.105.25.220   <none>        443/TCP    52s
+service/dashboard-metrics-scraper   ClusterIP   10.98.132.195   <none />        8000/TCP   52s
+service/kubernetes-dashboard        ClusterIP   10.105.25.220   <none />        443/TCP    52s
 ```
 
 ## External Access
@@ -214,7 +214,7 @@ only allows access to cluster-role view in the kubernetes-dashboard namespace...
 if we change `rolebinding` to `clusterrolebinding` -- now we have view across the WHOLE CLUSTER
 
 ```bash
-root@cks-master:~# k -n kubernetes-dashboard create clusterrolebinding insecure --serviceaccount kubernetes-dashboard:kubernetes-dashboard --clusterrole view 
+root@cks-master:~# k -n kubernetes-dashboard create clusterrolebinding insecure --serviceaccount kubernetes-dashboard:kubernetes-dashboard --clusterrole view
 clusterrolebinding.rbac.authorization.k8s.io/insecure created
 ```
 

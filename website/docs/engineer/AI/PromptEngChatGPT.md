@@ -52,7 +52,7 @@ This can be anything\
 You want it to be\
 """
 prompt = f"""
-Summarize the text delimited by triple backticks \ 
+Summarize the text delimited by triple backticks \
 into a single sentence.
 ```{text}```
 """
@@ -64,9 +64,9 @@ print(response)
 
 ```python
 prompt = f"""
-Generate a list of three made-up book titles along \ 
-with their authors and genres. 
-Provide them in JSON format with the following keys: 
+Generate a list of three made-up book titles along \
+with their authors and genres.
+Provide them in JSON format with the following keys:
 book_id, title, author, genre.
 """
 response = get_completion(prompt)
@@ -82,20 +82,20 @@ here's another example where you instruct it on how you want it to structure the
 # Everything under 'Use the following format:'
 
 prompt_2 = f"""
-Your task is to perform the following actions: 
-1 - Summarize the following text delimited by 
+Your task is to perform the following actions:
+1 - Summarize the following text delimited by
   <> with 1 sentence.
 2 - Translate the summary into French.
 3 - List each name in the French summary.
-4 - Output a json object that contains the 
+4 - Output a json object that contains the
   following keys: french_summary, num_names.
 
 Use the following format:
-Text: <text to summarize>
-Summary: <summary>
-Translation: <summary translation>
-Names: <list of names in Italian summary>
-Output JSON: <json with summary and num_names>
+Text: <text to summarize />
+Summary: <summary />
+Translation: <summary translation />
+Names: <list of names in Italian summary />
+Output JSON: <json with summary and num_names />
 
 Text: <{text}>
 """
@@ -108,14 +108,14 @@ print(response)
 
 ```python
 text_1 = f"""
-Making a cup of tea is easy! First, you need to get some \ 
-water boiling. While that's happening, \ 
-grab a cup and put a tea bag in it. Once the water is \ 
-hot enough, just pour it over the tea bag. \ 
-Let it sit for a bit so the tea can steep. After a \ 
-few minutes, take out the tea bag. If you \ 
-like, you can add some sugar or milk to taste. \ 
-And that's it! You've got yourself a delicious \ 
+Making a cup of tea is easy! First, you need to get some \
+water boiling. While that's happening, \
+grab a cup and put a tea bag in it. Once the water is \
+hot enough, just pour it over the tea bag. \
+Let it sit for a bit so the tea can steep. After a \
+few minutes, take out the tea bag. If you \
+like, you can add some sugar or milk to taste. \
+And that's it! You've got yourself a delicious \
 cup of tea to enjoy.
 """
 
@@ -126,8 +126,8 @@ cup of tea to enjoy.
 # You tell it the "else" = then simply write...
 
 prompt = f"""
-You will be provided with text delimited by triple quotes. 
-If it contains a sequence of instructions, \ 
+You will be provided with text delimited by triple quotes.
+If it contains a sequence of instructions, \
 re-write those instructions in the following format:
 
 Step 1 - ...
@@ -135,7 +135,7 @@ Step 2 - …
 …
 Step N - …
 
-If the text does not contain a sequence of instructions, \ 
+If the text does not contain a sequence of instructions, \
 then simply write \"No steps provided.\"
 
 \"\"\"{text_1}\"\"\"
@@ -153,14 +153,14 @@ This is where you "model" the types (style?) of answers you want the LLM to give
 prompt = f"""
 Your task is to answer in a consistent style.
 
-<child>: Teach me about patience.
+<child />: Teach me about patience.
 
-<grandparent>: The river that carves the deepest \ 
-valley flows from a modest spring; the \ 
-grandest symphony originates from a single note; \ 
+<grandparent />: The river that carves the deepest \
+valley flows from a modest spring; the \
+grandest symphony originates from a single note; \
 the most intricate tapestry begins with a solitary thread.
 
-<child>: Teach me about resilience.
+<child />: Teach me about resilience.
 """
 response = get_completion(prompt)
 print(response)
@@ -181,7 +181,7 @@ Whatever....
 
 # example 1
 prompt_1 = f"""
-Perform the following actions: 
+Perform the following actions:
 1 - Summarize the following text delimited by triple \
 backticks with 1 sentence.
 2 - Translate the summary into French.
@@ -223,10 +223,10 @@ prompt = f"""
 Your task is to determine if the student's solution \
 is correct or not.
 To solve the problem do the following:
-- First, work out your own solution to the problem. 
-- Then compare your solution to the student's solution \ 
-and evaluate if the student's solution is correct or not. 
-Don't decide if the student's solution is correct until 
+- First, work out your own solution to the problem.
+- Then compare your solution to the student's solution \
+and evaluate if the student's solution is correct or not.
+Don't decide if the student's solution is correct until
 you have done the problem yourself.
 ```
 

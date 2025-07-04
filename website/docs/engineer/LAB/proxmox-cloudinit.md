@@ -164,7 +164,7 @@ And then, a very simple playbook, let's call it `playbook/create-cloud-vm.yml`
       storage: ZFS01
       timeout: 90
 
-  - name: Start VM 
+  - name: Start VM
     community.general.proxmox_kvm:
       node: proxmox
       name: cloud-1
@@ -205,9 +205,9 @@ Checking Proxmox API is working: `curl -k -d "username=root@pam&password=yourpas
 ### Proxmox: VM wont stop
 
 1. console into the proxmox server
-2. try `qemu stop <VMID>`
+2. try `qemu stop <VMID />`
 3. if it says "can't lock file '/var/lock/..." do `rm -f /var/lock/....` whatever that file is
-4. do `qm stop <VIMID>` again.
+4. do `qm stop <VIMID />` again.
 
 One other place to look for the lock file is `/run/lock/qemu-server/*`
 

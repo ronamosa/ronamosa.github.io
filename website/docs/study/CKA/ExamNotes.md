@@ -75,8 +75,8 @@ schedule pod on _master nodes only_
 find resource types && look at type
 
 ```sh
-kubectl -n <namespace> get deploy,ds,sts ...
-kubectl -n <namespace> get pod --show-labels | grep <pod_name>
+kubectl -n <namespace /> get deploy,ds,sts ...
+kubectl -n <namespace /> get pod --show-labels | grep <pod_name />
 ```
 
 ### sa, roles, rolebinding
@@ -121,7 +121,7 @@ spec:
         command:
         - sh
         - -c
-        - 'wget -T2 -O- http://service-am-i-ready:80'    
+        - 'wget -T2 -O- http://service-am-i-ready:80'
 ```
 
 ### pv & pvc
@@ -161,7 +161,7 @@ spec:
 use in a deployment
 
 ```sh
-k -n <namepsace> create deploy <name> --image=httpd:2.4.41-alpine $do > dep.yaml
+k -n <namepsace /> create deploy <name /> --image=httpd:2.4.41-alpine $do > dep.yaml
 ```
 
 edit
@@ -279,7 +279,7 @@ sudo kubeadm upgrade apply v1.20.x
 
 troubleshooting steps relevant to k8s
 
-1. check `systemctl status <service>` - error messages?
+1. check `systemctl status <service />` - error messages?
 2. check `/etc/kubernetes/manifest` of services having issues - where does error say the problem is?
 3. view another nodes config files and status to compare to the troubled node
 4. correct any typos etc in config files and restart services (assuming they are handled by `systemd`)

@@ -233,19 +233,19 @@ aws iam get-role --role-name AmazonEKSClusterRole --query 'Role.Arn'
 aws ec2 describe-subnets --filters "Name=vpc-id,Values=vpc-068959db5aa05a1bb" --query 'Subnets[*].SubnetId'
 
 # Security Group based VPC id
-aws ec2 describe-security-groups --filters "Name=vpc-id,Values=<VPC-ID>"
+aws ec2 describe-security-groups --filters "Name=vpc-id,Values=<VPC-ID />"
 ```
 
 ### Create Node Group using CLI
 
 ```bash
 aws eks create-nodegroup \
-  --cluster-name <CLUSTER-NAME> \
-  --nodegroup-name <NODEGROUP-NAME> \
-  --subnets <SUBNET-ID1> <SUBNET-ID2> \
-  --node-role <NODE-ROLE-ARN> \
-  --ami-type <AMI-TYPE> \
-  --scaling-config minSize=<MIN-SIZE>,maxSize=<MAX-SIZE>,desiredSize=<DESIRED-SIZE>
+  --cluster-name <CLUSTER-NAME /> \
+  --nodegroup-name <NODEGROUP-NAME /> \
+  --subnets <SUBNET-ID1 /> <SUBNET-ID2 /> \
+  --node-role <NODE-ROLE-ARN /> \
+  --ami-type <AMI-TYPE /> \
+  --scaling-config minSize=<MIN-SIZE />,maxSize=<MAX-SIZE />,desiredSize=<DESIRED-SIZE />
 ```
 
 e.g.

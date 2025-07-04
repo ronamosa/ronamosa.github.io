@@ -43,20 +43,20 @@ Use this bash script to create a service account and a `account.json` file for t
 ```bash
 #!/usr/bin/env bash
 
-project="<your_project_name>"
+project="<your_project_name />"
 
 gcloud iam service-accounts create terraform \
     --display-name "Terraform Service Account" \
     --description "Service account to use with Terraform"
 
 echo "Create IAM policy binding for the Terraform service account"
-gcloud projects add-iam-policy-binding "${project}" \
-  --member serviceAccount:"terraform@${project}.iam.gserviceaccount.com" \
+gcloud projects add-iam-policy-binding "$\{project}" \
+  --member serviceAccount:"terraform@$\{project}.iam.gserviceaccount.com" \
   --role roles/editor
 
 echo "Create IAM service policy key 'account.json'"
 gcloud iam service-accounts keys create account.json \
-    --iam-account "terraform@${project}.iam.gserviceaccount.com"
+    --iam-account "terraform@$\{project}.iam.gserviceaccount.com"
 ```
 
 ## Terraform
@@ -67,8 +67,8 @@ Now that we have our `account.json` key file for our `terraform` service account
 
 ```terraform
 provider "google" {
-  credentials = "${file("account.json")}"
-  project = "<your_project_name>"
+  credentials = "$\{file("account.json")}"
+  project = "<your_project_name />"
   region  = "us-east1"
 }
 
@@ -120,8 +120,8 @@ _Your terraform user needs the `Project IAM Admin` role enabled to be able to ad
 :::
 
 ```bash
-gcloud projects add-iam-policy-binding <your_project_name> \
-  --member serviceAccount:terraform@<your_project_name>.iam.gserviceaccount.com \
+gcloud projects add-iam-policy-binding <your_project_name /> \
+  --member serviceAccount:terraform@<your_project_name />.iam.gserviceaccount.com \
   --role roles/resourcemanager.projectIamAdmin
 ```
 
@@ -129,13 +129,13 @@ Terraform for setting up OS Login
 
 ```terraform
 resource "google_compute_project_metadata_item" "oslogin" {
-  project = "<your_project_name>"
+  project = "<your_project_name />"
   key     = "enable-oslogin"
   value   = "TRUE"
 }
 
 resource "google_project_iam_member" "owner_binding" {
-  project = "<your_project_name>"
+  project = "<your_project_name />"
   role    = "roles/compute.osAdminLogin"
   member  = "user:me@mydomain.com"
 }
@@ -143,7 +143,7 @@ resource "google_project_iam_member" "owner_binding" {
 
 :::info
 
-_I'm using my GCP account owner account as the one that's going to login to any GCE instances created in this project, so the syntax is `user:...` whereas if I were using a service account it would be e.g. `serviceAccount:terraform@${project}.iam.gserviceaccount.com`._
+_I'm using my GCP account owner account as the one that's going to login to any GCE instances created in this project, so the syntax is `user:...` whereas if I were using a service account it would be e.g. `serviceAccount:terraform@$\{project}.iam.gserviceaccount.com`._
 
 :::
 
@@ -177,9 +177,9 @@ google_compute_instance.demo: Creating...
 google_compute_project_metadata_item.oslogin: Still creating... [10s elapsed]
 google_project_iam_member.owner_binding: Still creating... [10s elapsed]
 google_compute_instance.demo: Still creating... [10s elapsed]
-google_project_iam_member.owner_binding: Creation complete after 13s [id=<your_project_name>/roles/compute.osAdminLogin/user:me@mydomain.com]
+google_project_iam_member.owner_binding: Creation complete after 13s [id=<your_project_name />/roles/compute.osAdminLogin/user:me@mydomain.com]
 google_compute_project_metadata_item.oslogin: Creation complete after 14s [id=enable-oslogin]
-google_compute_instance.demo: Creation complete after 18s [id=projects/<your_project_name>/zones/us-east1-c/instances/oslogin-demo]
+google_compute_instance.demo: Creation complete after 18s [id=projects/<your_project_name />/zones/us-east1-c/instances/oslogin-demo]
 
 ```
 

@@ -6,8 +6,9 @@ Setup basic 2 party VLAN (inside, outside) to my ASA can play MITM between an xD
 
 ## Cisco Adaptive Security Device Manager (ASDM)
 
-_Note: wanted to set this up as most CISCO documentation relies on this guy to make config easier.. but f##k me just getting java and browsers to figure it the f##k out was f##king tedious! and then trying to get these EOL application images from the CISCO download site requires a customer contract. sure, maybe its out of date and you guys dont want to be responsible for it, i'd just be happy to get a copy of the software anyway and sign a waiver. long story short, CISCO outside of being a corp customer w/ an account = waste of time._
-{: .notice--warning}
+:::warning ASDM Setup Issues
+**Note:** wanted to set this up as most CISCO documentation relies on this guy to make config easier.. but f##k me just getting java and browsers to figure it the f##k out was f##king tedious! and then trying to get these EOL application images from the CISCO download site requires a customer contract. sure, maybe its out of date and you guys dont want to be responsible for it, i'd just be happy to get a copy of the software anyway and sign a waiver. long story short, CISCO outside of being a corp customer w/ an account = waste of time.
+:::
 
 ```bash
 hostname(config)# crypto key generate rsa modulus 1024 # generate crypto keys for HTTPS

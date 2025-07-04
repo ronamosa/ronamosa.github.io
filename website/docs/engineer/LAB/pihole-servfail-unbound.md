@@ -19,7 +19,7 @@ Access to `console.aws.amazon.com` failed, and Pi-hole logs showed:
 
 ```bash
 query\[A] console.aws.amazon.com from 172.16.2.35
-cached console.aws.amazon.com is <CNAME>
+cached console.aws.amazon.com is <CNAME />
 ...
 forwarded console.aws.amazon.com to 192.168.0.2
 reply error is SERVFAIL

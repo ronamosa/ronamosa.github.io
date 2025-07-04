@@ -5,7 +5,7 @@ title: Troubleshooting Docker issues on a Jenkins Pipeline
 
 I am trying to run a jenkins docker pipeline plugin script on a slave node which creates a docker image and runs some commands inside the container. script runs into problems at this point in the script:
 
-`docker.image('<image name>').inside {`
+`docker.image('<image name />').inside {`
 
 ## Classic Docker Issue
 

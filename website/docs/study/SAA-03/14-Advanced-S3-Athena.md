@@ -13,7 +13,7 @@ These were the topics I created flashcards for (Remnote) and would revise them u
     - encrypts objects that are not encrypted when sent to S3, are already-encrypted objects re-encrypted?―No.
     - What is the other way to force encryption when objects are pushed to S3?―Bucket Policies.
   - MFA Delete
-    - Protects from accidentally deleting objects by requiring {{MFA}} to delete objects.
+    - Protects from accidentally deleting objects by requiring `{{MFA}}` to delete objects.
     - what has to be enabled first before you can enable MFA Delete?―Versioning.
     - you can only enable MFA Delete using what tool?―CLI
   - S3 Replication
@@ -27,7 +27,7 @@ These were the topics I created flashcards for (Remnote) and would revise them u
       - SDK
       - CLI
   - S3 Access Logs
-    - Enable "server {{access}} logging" on one S3 bucket, and specify a 2nd bucket as the "logging" bucket. When you do this it will automatically update the logging buckets '{{bucket policy}}'.
+    - Enable "server `{{access}}` logging" on one S3 bucket, and specify a 2nd bucket as the "logging" bucket. When you do this it will automatically update the logging buckets '`{{bucket policy}}`'.
     - What service can you use to query the logging bucket for data?―Amazon Athena.
 - S3 Storage Classes
   - What do the different tiers balance?
@@ -42,18 +42,18 @@ These were the topics I created flashcards for (Remnote) and would revise them u
     - Glacier Standard
     - Glacier Flexible Retrieve
     - Glacier Deep Archive
-  - Intelligent Tiering is good for {{unpredictable}} access patterns.
-  - Intelligent Tiering has both {{frequently}} and {{infrequently}} accessed storage types.
+  - Intelligent Tiering is good for `{{unpredictable}}` access patterns.
+  - Intelligent Tiering has both `{{frequently}}` and `{{infrequently}}` accessed storage types.
   - What mechanism do you use to move objects between different storage tiers?―Lifecycle Rules.
   - What else can you do with Lifecycle Rules other than move objects?―Delete objects.
-  - When you read "deletable but recoverable" think "enable {{versioning}}".
-  - When you read "non current versions" think "S3 {{IA}}".
+  - When you read "deletable but recoverable" think "enable `{{versioning}}`".
+  - When you read "non current versions" think "S3 `{{IA}}`".
   - What's a good first step to understanding whether objects should go from S to S_IA and before writing your Lifecycle Rules?―Use S3 Analytics to understand data behaviour e.g. how long has an object been sitting there?
 - S3 Performance
   - Baseline speeds
-    - generally accessing S3 objects is in the {{100}}-{{200}}ms range.
-    - COPY/PUT/POST/DELETE are about {{3.5k}} requests per second.
-    - GET/HEAD are about {{5.5k}} requests per second.
+    - generally accessing S3 objects is in the `{{100}}`-`{{200}}`ms range.
+    - COPY/PUT/POST/DELETE are about `{{3.5k}}` requests per second.
+    - GET/HEAD are about `{{5.5k}}` requests per second.
   - Things that impact performance
     - Encryption
       - KMS
@@ -68,7 +68,7 @@ These were the topics I created flashcards for (Remnote) and would revise them u
     - Big Files
       - If you are uploading big files, what is the recommended size to use MULTI-PART uploading?―100MB
       - what size of file is a MUST (i.e. you have no choice) to use MULTI-PART uploading?―5GiB.
-      - when the pieces of the big file are broken up they are transferred to S3 in "{{parallel}}".
+      - when the pieces of the big file are broken up they are transferred to S3 in "`{{parallel}}`".
     - Public Networks
       - What service can you use to speed up transfer of a file over the internet to your S3 bucket (STA)?―S3 Transfer Accelerator.
       - Where do you upload your files to in order to use this feature?―Edge Location.

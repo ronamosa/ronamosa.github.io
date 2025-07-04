@@ -66,7 +66,7 @@ telemetry                          1.0.6
 Python location '/opt/az/bin/python3'
 Extensions directory '/home/darthvaldr/.azure/cliextensions'
 
-Python (Linux) 3.6.10 (default, Sep 28 2020, 08:40:52) 
+Python (Linux) 3.6.10 (default, Sep 28 2020, 08:40:52)
 [GCC 7.5.0]
 
 Legal docs and information: aka.ms/AzureCliLegal
@@ -132,7 +132,7 @@ variable "address_space" {
   default     = ["10.0.0.0/16"]
 }
 
-# If no values specified, this defaults to Azure DNS 
+# If no values specified, this defaults to Azure DNS
 variable "dns_servers" {
   description = "The DNS servers to be used with vNet."
   default     = []
@@ -198,7 +198,7 @@ data "azuread_group" "aks" {
 
 ### Modules: issues with outputs
 
-I wanted to note something I ran into when using modules and my terraform code in the following layout. 
+I wanted to note something I ran into when using modules and my terraform code in the following layout.
 
 This line `vnet_subnet_id = data.terraform_remote_state.vnet.outputs.vnet_subnet_id[0]` caused a few headaches as I am using the `terraform_remote_state` data source imports an external terraform state file of another infrastructure component so I can reference existing infrastructure. It's important to make sure the module `output.tf` externalizes the information from inside the module's `main.tf` because `terraform_remote_state`'s "outputs" function can only reference what's been defined by the `output` resource function.
 
@@ -288,7 +288,7 @@ Now we need to see these authentication and authorization layers in action- we n
 
 Now that the AKS Cluster is AAD integrated users will need to be logged into Azure to talk to the cluster.
 
-First, pull down a non-admin kubeconfig 
+First, pull down a non-admin kubeconfig
 
 * `az aks get-credentials --name prod-aks-cluster --resource-group prod-aks-cluster-rg`
 
@@ -306,15 +306,16 @@ But if your account doesn't have any permissions to the cluster, it's a no-go fo
 
 ![kubectl az login](/img/aad-kubectl-azlogin5.png)
 
-Here's the thing though... my login _does_ have permission because its in the Azure AD Group I specified in the AKS build above... so this isn't right. 
+Here's the thing though... my login _does_ have permission because its in the Azure AD Group I specified in the AKS build above... so this isn't right.
 
 And that error message is not the "you don't have the right permission" error, its saying I'm not authenticated- which I just did successfully before, so what's happened to my auth?
 
 ## Issue with Azure AD & Kubernetes v1.19.0
 
-**Update**: Issue was fixed by [[AKS] Release 2020-10-12 #245](https://github.com/p7t/actus/issues/245) -
+:::info Update
+Issue was fixed by [[AKS] Release 2020-10-12 #245](https://github.com/p7t/actus/issues/245) -
 _"Fixed an issue with Managed-AAD and kubernetes v1.19 preview. Closes #1891"_.
-{: .notice--success}
+:::
 
 So, in the course of building this thing and updating my Terraform code to use the new AKS-AAD integration method, I run into this issue.
 
@@ -437,7 +438,7 @@ subjects:
   name: 5c9624fd-xxxx-4808-xxxx-a8xx518xxx2d
 ```
 
-Create the two `dev` namespaces 
+Create the two `dev` namespaces
 
 ```bash
 $ kubectl create ns dev1

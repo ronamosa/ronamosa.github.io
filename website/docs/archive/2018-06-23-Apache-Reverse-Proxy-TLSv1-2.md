@@ -93,7 +93,7 @@ Description in the comments.
 Listen 7090
 
 # access scope for URLs matching '/externalget' (no trailing slash)
-<Location /externalget>
+<Location /externalget />
 Order deny,allow
 Deny from all
 Allow from all

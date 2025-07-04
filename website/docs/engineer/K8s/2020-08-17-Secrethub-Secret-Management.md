@@ -51,22 +51,22 @@ First, create a resource group:
 ```bash
 export RESOURCE_GROUP_NAME="terraform-rg"
 export LOCATION="australiasoutheast"
-az group create --name ${RESOURCE_GROUP_NAME} --location ${LOCATION}
+az group create --name $\{RESOURCE_GROUP_NAME} --location $\{LOCATION}
 ```
 
 Now create the storage account:
 
 ```bash
 export STORAGE_ACCOUNT_NAME="terraform"
-az storage account create --resource-group ${RESOURCE_GROUP_NAME} --name ${STORAGE_ACCOUNT_NAME} --sku Standard_LRS --encryption-services blob
+az storage account create --resource-group $\{RESOURCE_GROUP_NAME} --name $\{STORAGE_ACCOUNT_NAME} --sku Standard_LRS --encryption-services blob
 ```
 
 Get the ARM access key from the storage account and use it to create a storage account container:
 
 ```bash
 CONTAINER_NAME="tfstate"
-export ARM_ACCESS_KEY=$(az storage account keys list --resource-group ${RESOURCE_GROUP_NAME} --account-name ${STORAGE_ACCOUNT_NAME} --query [0].value -o tsv)
-az storage container create --name ${CONTAINER_NAME} --account-name ${STORAGE_ACCOUNT_NAME} --account-key ${ARM_ACCESS_KEY}
+export ARM_ACCESS_KEY=$(az storage account keys list --resource-group $\{RESOURCE_GROUP_NAME} --account-name $\{STORAGE_ACCOUNT_NAME} --query [0].value -o tsv)
+az storage container create --name $\{CONTAINER_NAME} --account-name $\{STORAGE_ACCOUNT_NAME} --account-key $\{ARM_ACCESS_KEY}
 ```
 
 Note the value of your `ARM_ACCESS_KEY` somewhere for later.
@@ -174,12 +174,12 @@ secrethub mkdir $SECRETHUB_ACCOUNT/aks_secrets/prod/azure
 
 ```bash
 # azure secrets directory
-echo ${ARM_ACCESS_KEY} | secrethub write $SECRETHUB_ACCOUNT/aks_secrets/prod/azure/arm_access_key
+echo $\{ARM_ACCESS_KEY} | secrethub write $SECRETHUB_ACCOUNT/aks_secrets/prod/azure/arm_access_key
 
 # terraform secrets directory
-echo ${SPN_ID} | secrethub write $SECRETHUB_ACCOUNT/aks_secrets/prod/terraform/aks_service_principal_id
-echo ${SPN_SECRET} | secrethub write $SECRETHUB_ACCOUNT/aks_secrets/prod/terraform/aks_service_principal_secret
-cat ${SSH_KEYPAIR} | secrethub write $SECRETHUB_ACCOUNT/aks_secrets/prod/terraform/aks_ssh_key
+echo $\{SPN_ID} | secrethub write $SECRETHUB_ACCOUNT/aks_secrets/prod/terraform/aks_service_principal_id
+echo $\{SPN_SECRET} | secrethub write $SECRETHUB_ACCOUNT/aks_secrets/prod/terraform/aks_service_principal_secret
+cat $\{SSH_KEYPAIR} | secrethub write $SECRETHUB_ACCOUNT/aks_secrets/prod/terraform/aks_ssh_key
 ```
 
 ## Terraform AKS Setup

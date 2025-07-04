@@ -16,7 +16,7 @@ Recently, DNS lookups for websites when I'm browsing have been returning "unsecu
 
 ```bash
 docker ps -a
-docker inspect <pihole_container_id>
+docker inspect <pihole_container_id />
 ```
 
 Look for:
@@ -28,7 +28,7 @@ Look for:
 ### ✅ *Audit running processes inside the container*
 
 ```bash
-docker exec -it <pihole_container> ps aux
+docker exec -it <pihole_container /> ps aux
 ```
 
 Look for unexpected or non-Pi-hole processes like reverse shells, cryptominers, or Python scripts.
@@ -36,7 +36,7 @@ Look for unexpected or non-Pi-hole processes like reverse shells, cryptominers, 
 ### ✅ *Check for modified binaries or injected scripts*
 
 ```bash
-docker exec -it <pihole_container> find / -type f -name "*.sh" -o -name "*.py" -exec ls -l {} \;
+docker exec -it <pihole_container /> find / -type f -name "*.sh" -o -name "*.py" -exec ls -l {} \;
 ```
 
 Scan for recently modified or unusual files.
@@ -48,7 +48,7 @@ Scan for recently modified or unusual files.
 ### ✅ *Check Pi-hole query logs for anomalies*
 
 ```bash
-docker exec -it <pihole_container> cat /var/log/pihole.log | less
+docker exec -it <pihole_container /> cat /var/log/pihole.log | less
 ```
 
 Look for:
@@ -69,7 +69,7 @@ verbosity: 3
 Then tail the logs:
 
 ```bash
-docker exec -it <unbound_container> tail -f /var/log/unbound/unbound.log
+docker exec -it <unbound_container /> tail -f /var/log/unbound/unbound.log
 ```
 
 Look for:
@@ -84,7 +84,7 @@ Look for:
 ### ✅ *Check for modified files inside the container*
 
 ```bash
-docker diff <pihole_container>
+docker diff <pihole_container />
 ```
 
 Shows which files were added/modified/deleted compared to the original image.

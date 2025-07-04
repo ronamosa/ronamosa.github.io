@@ -13,7 +13,7 @@ This is basically my (abbreviated) walk-through of that with the troubleshooting
 ## create TLS certs, keys using a special-purpose container
 
 ```bash
-docker run --rm -v /opt/registry/ssl:/certs -e SSL_SUBJECT=<FQDN-of-your-registry-host> paulczar/omgwtfssl
+docker run --rm -v /opt/registry/ssl:/certs -e SSL_SUBJECT=<FQDN-of-your-registry-host /> paulczar/omgwtfssl
 ```
 
 find your files in ''/opt/registry/ssl' (ca-key.pem, ca.pem, ca.srl, cert.pem, key.csr, key.pem, openssl.cnf)
@@ -214,7 +214,7 @@ random doesnt-fit-anywhere-else note: if you wanted to go HTTP, skip TLS, you ne
 
 ```bash
 # Use DOCKER_OPTS to modify the daemon startup options.
-DOCKER_OPTS="--insecure-registry <FQDN-of-your-registry-host>:<PORT>"
+DOCKER_OPTS="--insecure-registry <FQDN-of-your-registry-host />:<PORT />"
 ```
 
 then restart docker daemon: `$ systemctl restart docker`

@@ -115,8 +115,9 @@ Once the EdgeRouterX is rebooted, you can do the following:
 3. your PC/laptop should pick up a _'172.16.1.x'_ address due to the DHCP server we setup on that network.
 4. open a browser to _'https://172.16.1.1'_ - this is your new management interface IP.
 
+:::info Factory Reset
 If you need to factory reset your EdgeRouterX (I did a couple of times) to get to a known state, see _"EdgeRouterX Reset to Factory Defaults"_ in [References](##References) section below.
-{: .notice--info}
+:::
 
 #### OOB-MGMT Port
 

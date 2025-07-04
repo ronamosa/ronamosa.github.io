@@ -247,7 +247,7 @@ This is the error you see when aws can't find the terraform aws creds
 from your terraform outout...
 
 ```sh
-Error: Error running command 'aws eks --region us-west-2 update-kubeconfig --name prod-eks-cluster': exit status 255. Output: 
+Error: Error running command 'aws eks --region us-west-2 update-kubeconfig --name prod-eks-cluster': exit status 255. Output:
 An error occurred (ResourceNotFoundException) when calling the DescribeCluster operation: No cluster found for name: prod-eks-cluster.
 ```
 
@@ -271,8 +271,8 @@ The solution was to add the `[default]` block to `~/.aws/credentials` and voila:
 ```sh
 kubectl --kubeconfig ./kubeconfig_prod-eks-cluster get nodes
 NAME                                       STATUS   ROLES    AGE     VERSION
-ip-10-0-1-130.us-east-2.compute.internal   Ready    <none>   4m56s   v1.16.13-eks-2ba888
-ip-10-0-3-180.us-east-2.compute.internal   Ready    <none>   4m53s   v1.16.13-eks-2ba888
+ip-10-0-1-130.us-east-2.compute.internal   Ready    <none />   4m56s   v1.16.13-eks-2ba888
+ip-10-0-3-180.us-east-2.compute.internal   Ready    <none />   4m53s   v1.16.13-eks-2ba888
 ```
 
 and configure `kubectl`
@@ -287,8 +287,8 @@ run it
 ```sh
 kubectl get nodes
 NAME                                       STATUS   ROLES    AGE   VERSION
-ip-10-0-1-130.us-east-2.compute.internal   Ready    <none>   32m   v1.16.13-eks-2ba888
-ip-10-0-3-180.us-east-2.compute.internal   Ready    <none>   32m   v1.16.13-eks-2ba888
+ip-10-0-1-130.us-east-2.compute.internal   Ready    <none />   32m   v1.16.13-eks-2ba888
+ip-10-0-3-180.us-east-2.compute.internal   Ready    <none />   32m   v1.16.13-eks-2ba888
 ```
 
 ## IAM: minimum permissions

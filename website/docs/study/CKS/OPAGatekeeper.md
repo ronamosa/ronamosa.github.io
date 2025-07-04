@@ -64,7 +64,7 @@ pod/gatekeeper-audit-6ffc8f5544-br7lt                1/1     Running   0        
 pod/gatekeeper-controller-manager-6f9c99b4d7-jwd8d   1/1     Running   0          46s
 
 NAME                                 TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)   AGE
-service/gatekeeper-webhook-service   ClusterIP   10.103.154.120   <none>        443/TCP   46s
+service/gatekeeper-webhook-service   ClusterIP   10.103.154.120   <none />        443/TCP   46s
 ```
 
 types of webhooks:
@@ -132,7 +132,7 @@ parameters:
   message: "whatever you like"
 ```
 
-Describe our CRD: `k describe <ConstraintKind> <podName>` e.g. `k describe K8sAlwaysDeny pod-always-deny`
+Describe our CRD: `k describe <ConstraintKind /> <podName />` e.g. `k describe K8sAlwaysDeny pod-always-deny`
 
 ## Enforce Namespace Labels
 

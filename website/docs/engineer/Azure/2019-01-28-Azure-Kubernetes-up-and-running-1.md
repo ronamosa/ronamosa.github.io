@@ -141,7 +141,7 @@ Key approaches include:
 
 _Best Practice Tip: use terraform workspaces to separate you infra code per environment/project._
 
-run `terraform workspace new <environment name>`
+run `terraform workspace new <environment name />`
 e.g.
 
 ```bash
@@ -166,8 +166,8 @@ this is the Azure provider
 ```go
 provider "azurerm" {
   version = "=1.27.0"
-  subscription_id = "${var.subscription_id}"
-  tenant_id="${var.tenant_id}"
+  subscription_id = "$\{var.subscription_id}"
+  tenant_id="$\{var.tenant_id}"
 }
 ```
 
@@ -180,49 +180,49 @@ main includes setup for resource groups and cluster resources
 
 # resource group for cluster
 resource "azurerm_resource_group" "aks" {
-  name     = "${var.resource_group_name}"
-  location = "${var.location}"
+  name     = "$\{var.resource_group_name}"
+  location = "$\{var.location}"
 }
 
 # k8s cluster
 resource "azurerm_kubernetes_cluster" "k8s" {
-  name                = "AKS-${ terraform.workspace }"
-  kubernetes_version  = "${var.kubernetes_version}"
-  location            = "${azurerm_resource_group.aks.location}"
-  resource_group_name = "${azurerm_resource_group.aks.name}"
-  dns_prefix          = "AKS-${var.dns_prefix}"
+  name                = "AKS-$\{ terraform.workspace }"
+  kubernetes_version  = "$\{var.kubernetes_version}"
+  location            = "$\{azurerm_resource_group.aks.location}"
+  resource_group_name = "$\{azurerm_resource_group.aks.name}"
+  dns_prefix          = "AKS-$\{var.dns_prefix}"
 
 
   linux_profile {
-    admin_username = "${var.linux_login_user}"
+    admin_username = "$\{var.linux_login_user}"
 
     ssh_key {
-      key_data = "${var.ssh_public_key}"
+      key_data = "$\{var.ssh_public_key}"
     }
   }
 
   agent_pool_profile {
-    name            = "${var.node_pool_name}"
-    count           = "${var.node_pool_size}"
-    vm_size         = "${var.node_pool_vmsize}"
-    os_type         = "${var.node_pool_os}"
+    name            = "$\{var.node_pool_name}"
+    count           = "$\{var.node_pool_size}"
+    vm_size         = "$\{var.node_pool_vmsize}"
+    os_type         = "$\{var.node_pool_os}"
     os_disk_size_gb = 30
   }
 
   service_principal {
-    client_id     = "${var.sp_client_id}"
-    client_secret = "${var.sp_client_secret}"
+    client_id     = "$\{var.sp_client_id}"
+    client_secret = "$\{var.sp_client_secret}"
   }
 
   tags = {
-    environment = "${var.env_tag}"
+    environment = "$\{var.env_tag}"
   }
 }
 
 # setup to output your kubeconfig from your terraform build
 resource "local_file" "kubeconfig" {
-  content = "${azurerm_kubernetes_cluster.k8s.kube_config_raw}"
-  filename = "./${ terraform.workspace }-kubeconfig"
+  content = "$\{azurerm_kubernetes_cluster.k8s.kube_config_raw}"
+  filename = "./$\{ terraform.workspace }-kubeconfig"
 }
 ```
 
@@ -236,17 +236,17 @@ some debugging output to make sure we're seeing the kubeconfig details come back
 
 ```go
 output "kube_config" {
-  value = "${azurerm_kubernetes_cluster.k8s.kube_config_raw}"
+  value = "$\{azurerm_kubernetes_cluster.k8s.kube_config_raw}"
 }
 
 output "host" {
-  value = "${azurerm_kubernetes_cluster.k8s.kube_config.0.host}"
+  value = "$\{azurerm_kubernetes_cluster.k8s.kube_config.0.host}"
 }
 ```
 
 #### Variables (variables.tf)
 
-Ok, we need to know what the "${var.}" values in our tf files resolve to, so here they all are in the variables.tf files
+Ok, we need to know what the `"$\{var.}"` values in our tf files resolve to, so here they all are in the variables.tf files
 
 ```go
 # Variables
