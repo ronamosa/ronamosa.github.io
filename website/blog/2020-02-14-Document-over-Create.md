@@ -11,7 +11,7 @@ tags: [personal]
 
 I'm at a point in my career, and life in general where I find myself failing to start.
 
-To start the side project, or business or venture. I started a blog a couple years back to document and log the various tech things I'd work on. I then added to the technical blog with my thoughts & musings on my career in I.T., and the experiences I've had. 
+To start the side project, or business or venture. I started a blog a couple years back to document and log the various tech things I'd work on. I then added to the technical blog with my thoughts & musings on my career in I.T., and the experiences I've had.
 
 But despite the things I've done, there's a lot more that I wanted to do, but have always found some reason not to pull the trigger. So, its now 2020,and I'm going to start.
 
@@ -27,13 +27,15 @@ Done. You've started.
 
 Love him or hate him, over the last 4-5 years I've listened to a lot of Gary Vee aka [Gary Vaynerchuk](https://www.garyvaynerchuk.com/).
 
-Gary is a businessman, pure-bred entrepreneur, hustler and over-all motivational person. 
+Gary is a businessman, pure-bred entrepreneur, hustler and over-all motivational person.
 
 But one piece of content in particular (and he makes a sh*t-load, daily), that really resonated with me in the context of "failing to start" was the idea of "Document versus create".
 
 But I'll let Gary explain it in his own words:
 
-<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/RVKofRN1dyI?controls=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<!-- markdownlint-disable MD033 -->
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/RVKofRN1dyI?controls=0" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+<!-- markdownlint-enable MD033 -->
 
 And that's what I want to do. Just document what I'm trying to do.
 
