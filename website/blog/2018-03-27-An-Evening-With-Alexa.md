@@ -76,7 +76,9 @@ There's a million [sites with a laundry list of uses](http://www.trustedreviews.
 
 And this guy does a cool top 10
 
-<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/G2P_jFN0Pr8?controls=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
+<!-- markdownlint-disable MD033 -->
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/G2P_jFN0Pr8?controls=0&amp;showinfo=0" frameBorder="0" allowFullScreen></iframe>
+<!-- markdownlint-enable MD033 -->
 
 so I'm just going to list a few I think are pretty cool.
 
@@ -85,7 +87,9 @@ so I'm just going to list a few I think are pretty cool.
 The whole point of Amazon putting Alexa out is to help us buy more things. From Amazon. I like that fact you can (after setting up payment methods first) just tell Alexa to buy stuff and it sorts it out while you run around doing something else
 
 Obviously this is the propaganda for it, but it illustrates my point:
-<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/mCjvV3iFsuw?controls=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
+<!-- markdownlint-disable MD033 -->
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/mCjvV3iFsuw?controls=0&amp;showinfo=0" frameBorder="0" allowFullScreen></iframe>
+<!-- markdownlint-enable MD033 -->
 
 ### Workouts
 
@@ -97,7 +101,9 @@ Some example of workouts include: [Five Minute Workout: Core and Cardio](https:/
 
 I think these are by far the most popular one. And it doesn't surprise me. Remember that movie [Her](https://www.imdb.com/title/tt1798709/) with [Joaquin Phoenix](https://www.imdb.com/name/nm0001618/?ref_=tt_ov_st_sm)?
 
-<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/6QRvTv_tpw0?rel=0&amp;controls=0&amp;showinfo=0&amp;start=42" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<!-- markdownlint-disable MD033 -->
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/6QRvTv_tpw0?rel=0&amp;controls=0&amp;showinfo=0&amp;start=42" frameBorder="0" allow="autoplay; encrypted-media" allowFullScreen></iframe>
+<!-- markdownlint-enable MD033 -->
 
 Now I couldn't get myself through the whole movie, but I got the gist of it. And having a personal assistant be there as someone to comfort and soothe you was absolutely how I saw these voice-buddies being used the most.
 

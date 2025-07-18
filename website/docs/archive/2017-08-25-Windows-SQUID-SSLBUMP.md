@@ -285,7 +285,7 @@ acl step1 at_step SslBump1
 ssl_bump peek step1
 ssl_bump bump all
 
-# Uncomment the line below to enable disk caching - path format is /cygdrive/<full path to cache folder>, i.e.
+# Uncomment the line below to enable disk caching - path format is /cygdrive/<full path to cache folder />, i.e.
 #cache_dir aufs /cygdrive/d/squid/cache 3000 16 256
 
 

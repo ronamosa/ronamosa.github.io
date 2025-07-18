@@ -24,8 +24,8 @@ These were the topics I created flashcards for (Remnote) and would revise them u
     - Classic Load Balancer
     - Application Load Balancer
       - operates at the Application Layer (Layer 7)
-      - "target groups" are {{downstream}} {{logical}} groups to send traffic to.
-      - health checks happens at the {{TARGET}} GROUP level.
+      - "target groups" are \{\{downstream\}\} \{\{logical\}\} groups to send traffic to.
+      - health checks happens at the \{\{TARGET\}\} GROUP level.
       - target groups for ALB can be― ↓
         - IP addresses (must be private)
         - EC2 Instances

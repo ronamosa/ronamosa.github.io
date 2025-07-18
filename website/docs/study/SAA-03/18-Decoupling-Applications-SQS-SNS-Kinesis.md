@@ -30,15 +30,15 @@ These were the topics I created flashcards for (Remnote) and would revise them u
   - Consumer
     - Up to how many messages at a time can consumers poll SQS for?―10.
     - What API does does a consumer use from SDK to delete a message from SQS?―`DeleteMessage` API
-    - Consumer EC2 instances will {{scale}} on-demand using {{cloudwatch}} metric and a cloudwatch {{alarm}} and EC2 {{autoscaling}} service.
+    - Consumer EC2 instances will `\{\{scale\}\}` on-demand using `\{\{cloudwatch\}\}` metric and a cloudwatch `\{\{alarm\}\}` and EC2 `\{\{autoscaling\}\}` service.
       - how can we improve processing throughput?―scale consumer horizontally.
   - Security
     - what type of in-transit encryption?―HTTPS to API
     - what at-rest encryption used?―KMS
-      - {{client}}-{{side}} encryption is available option.
+      - `\{\{client\}\}`-`\{\{side\}\}` encryption is available option.
     - what is used for access control on the SQS API?―IAM
     - what kind of policies does SQS use that are similar to S3 bucket policies?―SQS Access Policies.
-  - SQS is a good way to {{decouple}} app tiers.
+  - SQS is a good way to `\{\{decouple\}\}` app tiers.
   - Message Visibility
     - what parameter do you change to make a message "invisible" longer for consumers?―Visibility Timeout.
     - who can view the message that got polled?―Only the consumer who polled it first.
@@ -53,12 +53,12 @@ These were the topics I created flashcards for (Remnote) and would revise them u
     - average wait time?―1 to 20 seconds.
     - LP can be enabled at what level?― ↓
       - Queue Level
-      - API Level (using {{`WaitTimeSeconds`}})
-    - Long Polling is preferred to {{Short}} Polling.
+      - API Level (using `\{\{`WaitTimeSeconds`\}\}`)
+    - Long Polling is preferred to `\{\{Short\}\}` Polling.
   - FIFO Queues
-    - message order is {{guaranteed}} but throughput is {{limited}}.
-    - removes {{duplicates}} by using "{{exactly once}}" delivery.
-    - queue name must end in ".{{fifo}}"
+    - message order is `\{\{guaranteed\}\}` but throughput is `\{\{limited\}\}`.
+    - removes `\{\{duplicates\}\}` by using "`\{\{exactly once\}\}`" delivery.
+    - queue name must end in ".`\{\{fifo\}\}`"
   - SQS + ASG
     - 3 scaling scenarios for SQS
       - Scale if too many messages in Queue
@@ -69,7 +69,7 @@ These were the topics I created flashcards for (Remnote) and would revise them u
         - example frontend ASG (web tier) ‒> SQS ‒> backend ASG (batch processing)
 - Amazon SNS
   - use when you have a "one-to-many" scenario i.e. one message to many receivers.
-  - SNS is known as "{{pub-sub}}" which means {{publisher}} and {{subscriber}}.
+  - SNS is known as "`\{\{pub-sub\}\}`" which means `\{\{publisher\}\}` and `\{\{subscriber\}\}`.
   - event producer (publisher) only sends message to?―SNS Topic
   - how does a consumer get the messages from the topic?―by subscribing to the topic.
   - which subscribers will get the messages on the topic?―All of them (if not filtered)
@@ -92,7 +92,7 @@ These were the topics I created flashcards for (Remnote) and would revise them u
 - SQS + SNS: Fan Out
   - The **SNS** part allows a "push once, receive all" to subscribers
   - **SQS** part allows for... (hint: persist, delay, work)― ↓
-    - data  **persistence**  
+    - data  **persistence**
     - **delayed**  processing
     - **retries**  of work
   - What do you need to check on the SQS queue to allow SNS to write to the Queue?―SQS Access Policy
@@ -103,7 +103,7 @@ These were the topics I created flashcards for (Remnote) and would revise them u
   - SNS Fifo Topic Fan Out
     - Same as SQS Fifo, but only compatible with SQS Fifo Queues i.e. SQS Fifo topic ⇒ SQS Fifo Queue.
 - Kinesis
-  - "...easy to {{collect}}, {{process}} and {{analyse}} streaming data in {{real}}-time" (hint: c p a)
+  - "...easy to `\{\{collect\}\}`, `\{\{process\}\}` and `\{\{analyse\}\}` streaming data in `\{\{real\}\}`-time" (hint: c p a)
   - The FOUR Kinesis Products are? ↓
     - Kinesis Data Stream
     - Kinesis Firehose
@@ -116,12 +116,12 @@ These were the topics I created flashcards for (Remnote) and would revise them u
     - What are the two types of speeds available at 2 MB per second, per shard?― ↓
       - "Shared", to ALL consumers.
       - "Enhanced" per consumer.
-    - KDS is a series of {{shards}}.
+    - KDS is a series of `\{\{shards\}\}`.
     - Can you scale the number of shards?―Yes.
     - KDS retention period?―between 1 to 365 days.
-    - Because data is {{stored}} in KDS you have the ability to {{replay}} data.
-    - Data in Kinesis is "{{immutable}}" i.e. it can't be {{deleted}}.
-    - Same partition (key) = Same {{shard}}.
+    - Because data is `\{\{stored\}\}` in KDS you have the ability to `\{\{replay\}\}` data.
+    - Data in Kinesis is "`\{\{immutable\}\}`" i.e. it can't be `\{\{deleted\}\}`.
+    - Same partition (key) = Same `\{\{shard\}\}`.
     - Producers are (hint: dev, dev, K_):― ↓
     - What are the TWO Capacity Modes for KDS? ↓
     - Security
@@ -140,26 +140,26 @@ These were the topics I created flashcards for (Remnote) and would revise them u
       - Kinesis Data Streams
       - Amazon CloudWatch
       - AWS IoT
-    - KDF is {{fully}} managed, {{auto}} scaling and {{serverless}} and provides {{near}} real time data processing.
+    - KDF is `\{\{fully\}\}` managed, `\{\{auto\}\}` scaling and `\{\{serverless\}\}` and provides `\{\{near\}\}` real time data processing.
     - What are the 3 destination categories KDF sends data to? ↓
       - 3rd party destinations e.g. datadog, splunk, new relic, mongoDB
       - AWS service destinations e.g. Amazon Redshift, Amazon S3, Amazon ElasticSearch
       - custom destinations e.g. API HTTP endpoint
     - How is KDF different from KDS?
-      - KDF is {{fully managed}} (serverless) KDS you {{manage yourself}} e.g. provisioning, scaling, write your own code
-      - KDF has no {{storage}} (serverless), so no {{replay}}. KDS has {{storage }} (1-365 days) so can {{replay}} data.
-      - KDF is {{near real time}} data processing. KDS is {{real time}} data processing.
+      - KDF is `\{\{fully managed\}\}` (serverless) KDS you `\{\{manage yourself\}\}` e.g. provisioning, scaling, write your own code
+      - KDF has no `\{\{storage\}\}` (serverless), so no `\{\{replay\}\}`. KDS has `\{\{storage \}\}` (1-365 days) so can `\{\{replay\}\}` data.
+      - KDF is `\{\{near real time\}\}` data processing. KDS is `\{\{real time\}\}` data processing.
   - Ordering Data into Kinesis
-    - if each truck uses "truck_id" as their Partition Key for sending to KDS, the same {{key}} will go to the same {{shard}} every time.
+    - if each truck uses "truck_id" as their Partition Key for sending to KDS, the same `\{\{key\}\}` will go to the same `\{\{shard\}\}` every time.
     - consumers
       - how many consumers per shard can you have in KDS?―One per shard.
-      - in the example, truck data will be ordered at the {{shard}} level.
-      - KDS intake speed is {{1}} MB per {{second}}, per shard (fast).
+      - in the example, truck data will be ordered at the `\{\{shard\}\}` level.
+      - KDS intake speed is `\{\{1\}\}` MB per `\{\{second\}\}`, per shard (fast).
     - Ordering in SQS
       - for comparison, SQS standard has no ordering
-      - SQS FIFO you can only have {{ONE}} queue for our trucking example.
-      - you "partition" the SQS FIFO queue using {{GROUP IDs}}.
-        - if you have 100 {{group}} ids you can have up to {{100}} consumers.
+      - SQS FIFO you can only have `\{\{ONE\}\}` queue for our trucking example.
+      - you "partition" the SQS FIFO queue using `\{\{GROUP IDs\}\}`.
+        - if you have 100 `\{\{group\}\}` ids you can have up to `\{\{100\}\}` consumers.
     - SQS FIFO vs Kinesis
       - if you have LOTS of incoming data and need processing speed, and ordering in your stream (and number of consumers is set or limited)- use KDS.
       - if you need have a dynamic number of consumers, you can use SQS FIFO.
@@ -168,5 +168,5 @@ These were the topics I created flashcards for (Remnote) and would revise them u
   - Use this when customer migrates to the cloud but doesn't want (or can) re-engineer applications to use "cloud-native" services SNS and SQS.
   - Does Amazon MQ scale as much as SQS or SNS?―No.
   - Can Amazon MQ run in Multi-AZ with failover?―Yes.
-  - Amazon MQ has {{queue}} feature like SQS and {{topic}} feature like SNS.
+  - Amazon MQ has `\{\{queue\}\}` feature like SQS and `\{\{topic\}\}` feature like SNS.
   - Amazon MQ High-Availability with failover

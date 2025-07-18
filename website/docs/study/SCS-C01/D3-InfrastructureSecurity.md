@@ -9,10 +9,10 @@ This is an export from my Remnote with flashcard syntax included.
 :::
 
 - Infrastructure Security
-  - You can configure AWS Config {{Multi}}-Account {{Multi}}-Region Data {{Aggregator}} to review configurations of your secrets across all accounts and {{regions}} in your organization, and then review your secret {{configurations}} and compare to secrets {{management}} best practices.
+  - You can configure AWS Config `\{\{Multi\}\}`-Account `\{\{Multi\}\}`-Region Data `\{\{Aggregator\}\}` to review configurations of your secrets across all accounts and `\{\{regions\}\}` in your organization, and then review your secret `\{\{configurations\}\}` and compare to secrets `\{\{management\}\}` best practices.
   - If you see  __**"dedicated storage with lifecycle management and key rotation."**__  think..?→AWS Secrets Manager
   - Amazon GuardDuty
-    - users from a master account {{can}} upload and further manage trusted IP lists and threat lists in their {{own}} account.
+    - users from a master account `\{\{can\}\}` upload and further manage trusted IP lists and threat lists in their `\{\{own\}\}` account.
   - AWS Service Catalog
     - safely launch products by end users by applying what to individual products in a portfolio?→launch constraints.
     - without a launch constraint, user end up launching and managing products using which IAM credentials?→their own.
@@ -36,11 +36,11 @@ This is an export from my Remnote with flashcard syntax included.
       - Can AWS Network Firewall pass through only known AWS services like Amazon S3?→Yes.
       - Can AWS Network Firewall use custom lists of known bad domains to limit access?→Yes.
   - __OAI (Origin Access Identity)__
-    - Valid Principal: `"Principal": {   "`{{`CanonicalUser`}}`": "79a59df900b949e55d96a1e698fbacedfd6e09d98eacf8f8d5218e7cd47ef2be" }`
-    - If you see `Principal` and `CanonicalUser` use the {{Canonical}} {{User}} ID
-    - Valid Principal: `"Principal": {   "`{{`AWS`}}`": "arn:aws:iam::cloudfront:user/CloudFront Origin Access Identity EH1HDMB1FH2TC" }`
-    - If you see `Principal`and `AWS`use the {{Origin}} {{Access}} ID
-  - AWS Certificate Manager Private Certificate Authority is a {{managed}} private CA service that {{extends}} ACM certificate management to {{private}} certificates.
+    - Valid Principal: `"Principal": {   "``\{\{`CanonicalUser`\}\}``": "79a59df900b949e55d96a1e698fbacedfd6e09d98eacf8f8d5218e7cd47ef2be" }`
+    - If you see `Principal` and `CanonicalUser` use the `\{\{Canonical\}\}` `\{\{User\}\}` ID
+    - Valid Principal: `"Principal": {   "``\{\{`AWS`\}\}``": "arn:aws:iam::cloudfront:user/CloudFront Origin Access Identity EH1HDMB1FH2TC" }`
+    - If you see `Principal`and `AWS`use the `\{\{Origin\}\}` `\{\{Access\}\}` ID
+  - AWS Certificate Manager Private Certificate Authority is a `\{\{managed\}\}` private CA service that `\{\{extends\}\}` ACM certificate management to `\{\{private\}\}` certificates.
   - If you are tasked with managing AWS WAF, AWS Shield Advanced, and Amazon VPC security groups, and multiple accounts, use...?→AWS Firewall Manager.
   - where can you IMPORT a SSL/TLS certificate INTO?↓ ↓
     - Amazon Certificate Manager (ACM)
@@ -49,7 +49,7 @@ This is an export from my Remnote with flashcard syntax included.
     - Amazon CloudFront
     - Elastic Load Balancers
   - IAM Policy Access
-    - if users in account A need access to service in account B you create an IAM Role in account {{B}}, and allow users in account {{A}} to assume that Role.
+    - if users in account A need access to service in account B you create an IAM Role in account `\{\{B\}\}`, and allow users in account `\{\{A\}\}` to assume that Role.
   - Amazon CloudFront
     - when creating HTTPS from client ⇒ CDN ⇒ origin, how many certificates are always created?→2 - one in `us-east-1` for CloudFront, and one in the Region your origin is.
   - If you have ENI issues that are behind an ALB, and all networking configs are correct e.g. NACL, SG's, what other things to check?↓ ↓

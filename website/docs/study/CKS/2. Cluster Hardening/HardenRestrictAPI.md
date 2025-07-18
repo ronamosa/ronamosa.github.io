@@ -93,7 +93,7 @@ it checks out that the cert only allows the two ip addresses local to the node..
 add a host entry in your local machine `/etc/hosts`
 
 ```bash
-<external-ip> kubernetes
+&lt;external-ip&gt; kubernetes
 ```
 
 now try use the local external access via: `k --kubeconfig ~/config get ns` and it should work.
@@ -113,7 +113,7 @@ do this on worker node.
 
 check in kube-apiserver manifest that `NodeRestriction` is enabled.
 
-on the worker node, `export KUBECONFIG=/etc/kubernetes/kubelet.conf` <-- this is the kubelets `kubeconfg` file for talking to the k8sAPI.
+on the worker node, `export KUBECONFIG=/etc/kubernetes/kubelet.conf` ← this is the kubelets `kubeconfg` file for talking to the k8sAPI.
 
 ```bash
 worker$ export KUBECONFIG=/etc/kubernetes/kubelet.conf

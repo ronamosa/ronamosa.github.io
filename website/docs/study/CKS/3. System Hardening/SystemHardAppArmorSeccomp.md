@@ -40,10 +40,10 @@ update `/etc/apparmor.d/usr.bin.curl` profile
 
 ```c
 # Last Modified: Sun Sep 12 00:21:00 2021
-#include <tunables/global>
+#include <tunables/global />
 
 /usr/bin/curl {
-  #include <abstractions/base>
+  #include <abstractions/base />
 
   /lib/x86_64-linux-gnu/ld-*.so mr,
   /usr/bin/curl mr,
@@ -54,7 +54,7 @@ update `/etc/apparmor.d/usr.bin.curl` profile
 by running `aa-logprof` which scans log files for apparmor events not covered by a profile (e.g. new curl profile), and prompt user if they want to modify/augement the policy accordingly, then saves changes to disk.
 
 ```bash
-root@cks-worker:~# aa-logprof 
+root@cks-worker:~# aa-logprof
 Reading log entries from /var/log/syslog.
 Updating AppArmor profiles in /etc/apparmor.d.
 Enforce-mode changes:
@@ -64,13 +64,13 @@ Path:     /etc/ssl/openssl.cnf
 New Mode: owner r
 Severity: 2
 
- [1 - #include <abstractions/lxc/container-base>]
-  2 - #include <abstractions/lxc/start-container> 
-  3 - #include <abstractions/openssl> 
-  4 - #include <abstractions/ssl_keys> 
-  5 - owner /etc/ssl/openssl.cnf r, 
+ [1 - #include <abstractions/lxc/container-base />]
+  2 - #include <abstractions/lxc/start-container />
+  3 - #include <abstractions/openssl />
+  4 - #include <abstractions/ssl_keys />
+  5 - owner /etc/ssl/openssl.cnf r,
 (A)llow / [(D)eny] / (I)gnore / (G)lob / Glob with (E)xtension / (N)ew / Audi(t) / (O)wner permissions off / Abo(r)t / (F)inish
-Adding #include <abstractions/lxc/container-base> to profile.
+Adding #include <abstractions/lxc/container-base /> to profile.
 Deleted 2 previous matching profile entries.
 
 = Changed Local Profiles =
@@ -86,12 +86,12 @@ curl now works
 
 ```bash
 root@cks-worker:~# curl killer.sh
-<HTML><HEAD><meta http-equiv="content-type" content="text/html;charset=utf-8">
-<TITLE>301 Moved</TITLE></HEAD><BODY>
-<H1>301 Moved</H1>
+&lt;HTML&gt;&lt;HEAD&gt;&lt;meta http-equiv="content-type" content="text/html;charset=utf-8"&gt;
+&lt;TITLE&gt;301 Moved&lt;/TITLE&gt;&lt;/HEAD&gt;&lt;BODY&gt;
+&lt;H1&gt;301 Moved&lt;/H1&gt;
 The document has moved
-<A HREF="https://killer.sh/">here</A>.
-</BODY></HTML>
+&lt;A HREF="https://killer.sh/"&gt;here&lt;/A&gt;.
+&lt;/BODY&gt;&lt;/HTML&gt;
 ```
 
 ### AA in docker
@@ -134,7 +134,7 @@ spec:
 status: {}
 ```
 
-`localhost/docker-nginx` <-- NOT the filename, but the profile's name i.e. "docker-nginx"
+`localhost/docker-nginx` ← NOT the filename, but the profile's name i.e. "docker-nginx"
 
 ## Seccomp
 

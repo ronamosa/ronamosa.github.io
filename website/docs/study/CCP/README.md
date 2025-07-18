@@ -29,21 +29,21 @@ After each practice exam question, I would study the ones I got wrong, and why. 
 This is an export of the the final flashcards I created to pass my exam:
 
 ```
-- Snowball is a {{Peta}}-byte scale Data {{Transfer}} Device.
-- Snowmobile is a {{Exa}}-byte scale Data Transfer Device.
-- Snowcone is a {{Tera}}-byte scale Data Transfer and Edge Computing Device.
+- Snowball is a \{\{Peta\}\}-byte scale Data \{\{Transfer\}\} Device.
+- Snowmobile is a \{\{Exa\}\}-byte scale Data Transfer Device.
+- Snowcone is a \{\{Tera\}\}-byte scale Data Transfer and Edge Computing Device.
 - what S3 storage type is best for data with unpredictable access patterns?―S3 Intelligent Tiering.
-- S3 {{Intelligent}} Tiering has two tiers, {{in-frequently accessed}} and {{frequent access}} .
+- S3 \{\{Intelligent\}\} Tiering has two tiers, \{\{in-frequently accessed\}\} and \{\{frequent access\}\} .
 - What are the 3 examples of "Shared Control" (from the Shared Responsibility Model)? ↓ 
     - Patch Management ‒ AWS patches infrastructure, Customer patches guest OS
     - Config Management ‒ AWS configs infrastructure, Customer configures services on top.
     - Awareness & Training ‒ AWS trains its employees, customer trains their own employees.
-- AWS Health Dashboard is a single place to learn about the {{availability}} and {{operations}} of AWS Services.
+- AWS Health Dashboard is a single place to learn about the \{\{availability\}\} and \{\{operations\}\} of AWS Services.
 - AWS Health Dashboard includes the following ↓ 
     - personalised view of service health
     - proactive notifications
     - troubleshooting guidance
-- AWS Organisation’s centrally {{govern}} and {{manage}} customers environments across {{billing}} management, {{access}} control, {{compliance}} and security; and to share resources across accounts.
+- AWS Organisation’s centrally \{\{govern\}\} and \{\{manage\}\} customers environments across \{\{billing\}\} management, \{\{access\}\} control, \{\{compliance\}\} and security; and to share resources across accounts.
 - AWS Organisations five main benefits ↓ 
     - **manage** access policies across multiple accounts
     - **automate** creating and managing AWS accounts
@@ -54,7 +54,7 @@ This is an export of the the final flashcards I created to pass my exam:
     - application performance
     - resource utilisation
     - operational health
-- AWS Config is a fully {{managed}} service that gives you config {{history}} and {{change}} notification enabling {{security}} and governance.
+- AWS Config is a fully \{\{managed\}\} service that gives you config \{\{history\}\} and \{\{change\}\} notification enabling \{\{security\}\} and governance.
 - AWS Support Plans
     - What are the 4 Support Plan types? ↓ 
         - Developer
@@ -65,7 +65,7 @@ This is an export of the the final flashcards I created to pass my exam:
     - Business
     - Enterprise On-Ramp
     - Enterprise
-- Business Support includes {{24x7}} support and {{IEM}} for a {{fee}}.
+- Business Support includes \{\{24x7\}\} support and \{\{IEM\}\} for a \{\{fee\}\}.
 - What other programs do all four plans have access to (even if at different levels)?―Support Automation Workflows
     - What's the difference between Developer Support Automation Workflows and the other plans?―prefixes AWSSupport only (other plans include AWSPremiumSupport prefixes).
 - Savings Plans are available for which AWS Compute Services? ↓ 
@@ -95,8 +95,8 @@ This is an export of the the final flashcards I created to pass my exam:
 - How are SCP different from IAM policies?―IAM is at the resource level of a single account. SCP is at the Account level. Org combines both for "net" permission.
 - What's the minimum cost support plan that provides 24x7 support?―Business Support (Enterprise On-Ramp and Enterprise offer it, but more expensive)
 - What support plans offer Concierge?―Enterprise & Enterprise On-Ramp (it's an Enterprise-focused service)
-- AZ are {{isolated}} locations within AWS {{Regions}} whereas Edge Locations are located in {{multiple}} cities {{worldwide}}.
-- IAM best practice is to create a {{User}} account for employees and then assign or attach the relevant {{policies}}.
+- AZ are \{\{isolated\}\} locations within AWS \{\{Regions\}\} whereas Edge Locations are located in \{\{multiple\}\} cities \{\{worldwide\}\}.
+- IAM best practice is to create a \{\{User\}\} account for employees and then assign or attach the relevant \{\{policies\}\}.
 - What are the only Amazon Machine Images (AMI) that are billed per-second? ↓ 
     - Amazon Linux
     - Windows

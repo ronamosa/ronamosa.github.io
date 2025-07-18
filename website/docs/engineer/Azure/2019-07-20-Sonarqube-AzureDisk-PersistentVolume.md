@@ -38,7 +38,9 @@ K8s storage took a bit to wrap my head around but essentially when I understood 
 
 This [video](https://www.youtube.com/watch?v=OulmwTYTauI) by "IBM FSS FCI and Counter Fraud Management" (no idea why they're called this?!) is probably the clearest explanation I've seen online.
 
-<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/OulmwTYTauI?controls=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<!-- markdownlint-disable MD033 -->
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/OulmwTYTauI?controls=0" frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+<!-- markdownlint-enable MD033 -->
 
 ### The abstractions: Volumes, PV, StorageClasses and PVC's
 
@@ -148,27 +150,27 @@ azureDisk:
 Place this under `/sonarqube/templates/`
 
 ```yaml title="sonarqube-pv.yaml"
-{{- if and .Values.persistence.enabled (not .Values.persistence.existingClaim) }}
+\{\{- if and .Values.persistence.enabled (not .Values.persistence.existingClaim) \}\}
 kind: PersistentVolume
 apiVersion: v1
 metadata:
-  name: pv-{{ template "sonarqube.name" . }}-data
+  name: pv-\{\{ template "sonarqube.name" . \}\}-data
   labels:
-    app: {{ template "sonarqube.name" . }}
-    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
-    release: "{{ .Release.Name }}"
-    heritage: "{{ .Release.Service }}"
+    app: \{\{ template "sonarqube.name" . \}\}
+    chart: "\{\{ .Chart.Name \}\}-\{\{ .Chart.Version \}\}"
+    release: "\{\{ .Release.Name \}\}"
+    heritage: "\{\{ .Release.Service \}\}"
 spec:
   capacity:
-    storage: {{ .Values.persistence.size }}
-  storageClassName: {{ .Values.persistence.storageClassName | quote }}
+    storage: \{\{ .Values.persistence.size \}\}
+  storageClassName: \{\{ .Values.persistence.storageClassName | quote \}\}
   azureDisk:
-    kind: {{ .Values.azureDisk.kind | quote }}
-    diskName: {{ .Values.azureDisk.diskName | quote }}
-    diskURI: {{ .Values.azureDisk.diskURI | quote }}
+    kind: \{\{ .Values.azureDisk.kind | quote \}\}
+    diskName: \{\{ .Values.azureDisk.diskName | quote \}\}
+    diskURI: \{\{ .Values.azureDisk.diskURI | quote \}\}
   accessModes:
-    - {{ .Values.persistence.accessMode | quote }}
-{{- end }}
+    - \{\{ .Values.persistence.accessMode | quote \}\}
+\{\{- end \}\}
 ```
 
 ## PostgreSQL Helm Sub Chart
@@ -201,27 +203,27 @@ azureDisk:
 Place this under `/post/templates/`:
 
 ```yaml title="sonarqube-pv.yaml"
-{{- if and .Values.persistence.enabled (not .Values.persistence.existingClaim) }}
+\{\{- if and .Values.persistence.enabled (not .Values.persistence.existingClaim) \}\}
 kind: PersistentVolume
 apiVersion: v1
 metadata:
-  name: pv-{{ template "sonarqube.name" . }}-data
+  name: pv-\{\{ template "sonarqube.name" . \}\}-data
   labels:
-    app: {{ template "sonarqube.name" . }}
-    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
-    release: "{{ .Release.Name }}"
-    heritage: "{{ .Release.Service }}"
+    app: \{\{ template "sonarqube.name" . \}\}
+    chart: "\{\{ .Chart.Name \}\}-\{\{ .Chart.Version \}\}"
+    release: "\{\{ .Release.Name \}\}"
+    heritage: "\{\{ .Release.Service \}\}"
 spec:
   capacity:
-    storage: {{ .Values.persistence.size }}
-  storageClassName: {{ .Values.persistence.storageClassName | quote }}
+    storage: \{\{ .Values.persistence.size \}\}
+  storageClassName: \{\{ .Values.persistence.storageClassName | quote \}\}
   azureDisk:
-    kind: {{ .Values.azureDisk.kind | quote }}
-    diskName: {{ .Values.azureDisk.diskName | quote }}
-    diskURI: {{ .Values.azureDisk.diskURI | quote }}
+    kind: \{\{ .Values.azureDisk.kind | quote \}\}
+    diskName: \{\{ .Values.azureDisk.diskName | quote \}\}
+    diskURI: \{\{ .Values.azureDisk.diskURI | quote \}\}
   accessModes:
-    - {{ .Values.persistence.accessMode | quote }}
-{{- end }}
+    - \{\{ .Values.persistence.accessMode | quote \}\}
+\{\{- end \}\}
 ```
 
 ## Zip PostgreSQL (optional)

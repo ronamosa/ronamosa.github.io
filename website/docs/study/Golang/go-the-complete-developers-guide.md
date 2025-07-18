@@ -79,7 +79,7 @@ the TYPES in a slice **must be of the same type.**
 
 declare a slice: `cards := []string{"elements","inside","slice"}`. the `[]` and `string` declares its a "slice" of type "string", and then `{}` to hold the elements of the slice.
 
-adding elements to a slice: `cards = append(cards, "newElement")` <-- important to note here that the original "cards" slice is not modified with this new element, instead a NEW slice with the appended element is returned.
+adding elements to a slice: `cards = append(cards, "newElement")` important to note here that the original "cards" slice is not modified with this new element, instead a NEW slice with the appended element is returned.
 
 iterate over a slice, print every element: `for i, card := range cards { fmt.Println(i, card)}`
 
@@ -115,7 +115,7 @@ we can do something like this to sort of simulate "extends" from OO approach
 ```go
 // in a separate .go file
 
-// declare new type 
+// declare new type
 type deck []string
 
 // create custom method for new type
@@ -130,7 +130,7 @@ We declared a custom type with `type deck []string` and can now use `deck` "type
 
 Printing the new type out now made easier with our `print()` function.
 
-`(d deck)` is the bit that makes this func a _**"receiver function"**_. 
+`(d deck)` is the bit that makes this func a _**"receiver function"**_.
 
 A receiver sets up methods on variables we create e.g. we create var `card` of type `deck`, and now the print func can be setup on ANY var of type `deck` e.g. `card.print()`
 
@@ -158,7 +158,7 @@ for a subset, or range of the slice: `fruits[0:2]` will give you fruits of index
 
 shorthand for this can be `[:2]` is the same as `[0:2]`, another example is `[2:]` is the same as `[2:n]` i.e. "from index 2 until the end of the index"
 
-when returning 2 x type deck values from the function, you assign them to two variables like this: `hand, remainingDeck := deal(cards, 5)` <-- because `deal(cards, 5)` gets `(deck, deck)` from the receiver function.
+when returning 2 x type deck values from the function, you assign them to two variables like this: `hand, remainingDeck := deal(cards, 5)`, because `deal(cards, 5)` gets `(deck, deck)` from the receiver function.
 
 ### deck to string
 

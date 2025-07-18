@@ -109,9 +109,9 @@ the new config and setup new credentials
 * setup your login credentials
 
 ```bash
-ciscoasa(config)# password <password>
-ciscoasa(config)# enable password <password>
-ciscoasa(config)# username <name> password <password>
+ciscoasa(config)# password <password />
+ciscoasa(config)# enable password <password />
+ciscoasa(config)# username <name /> password <password />
 ```
 
 ### Reload edited config

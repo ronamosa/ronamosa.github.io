@@ -25,5 +25,5 @@ This is an export from my Remnote with flashcard syntax included.
   - If EC2 and SQS are involved and an IAM change impacts it, what should you check? ↓
     - SQS Policy for explicit DENY to the EC2 Instance IAM Role
     - EC2 Instance IAM Role has permissions for SQS
-  - Amazon Inspector is for "a{{utomated}} security {{assessment}}" whereas Amazon GuardDuty is for "threat {{detection}}".
-  - Any time you see threats such as "unauthorised access" and "suspicious access patterns" think "Amazon {{GuardDuty}}".
+  - Amazon Inspector is for "a\{\{utomated\}\} security \{\{assessment\}\}" whereas Amazon GuardDuty is for "threat \{\{detection\}\}".
+  - Any time you see threats such as "unauthorised access" and "suspicious access patterns" think "Amazon \{\{GuardDuty\}\}".

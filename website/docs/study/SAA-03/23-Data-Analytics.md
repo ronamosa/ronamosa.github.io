@@ -9,17 +9,17 @@ These were the topics I created flashcards for (Remnote) and would revise them u
 :::
 
 - Amazon Athena
-  - use Amazon Athena when you're asked to analyse something using "{{serverless}} SQL"
+  - use Amazon Athena when you're asked to analyse something using "`\{\{serverless\}\}` SQL"
   - features
-    - {{columnar}} data for cost savings
-    - {{compresses}} data for smaller retrieval
-    - use {{larger}} files to minimise overhead
+    - `\{\{columnar\}\}` data for cost savings
+    - `\{\{compresses\}\}` data for smaller retrieval
+    - use `\{\{larger\}\}` files to minimise overhead
   - Federated Query
-    - you can run {{SQL}} queries across data in {{relational}} & {{non-relational}} DBs, on-prem and cloud.
+    - you can run `\{\{SQL\}\}` queries across data in `\{\{relational\}\}` & `\{\{non-relational\}\}` DBs, on-prem and cloud.
 - Amazon Redshift
   - based on PostgreSQL
   - used for Data Warehousing (DWH)
-    - is {{10}}x faster than other DWH.
+    - is `\{\{10\}\}`x faster than other DWH.
   - why is Redshift faster than Athena in terms of queries, joins, aggregations?―Redshift uses Indexes.
   - What kind of queries is Athena better for than Redshift?―Ad-hoc query's
   - Redshift Cluster
@@ -35,15 +35,15 @@ These were the topics I created flashcards for (Remnote) and would revise them u
     - what are the three options for loading data into Redshift (hint: near, copy, vm)?― ↓
       - Kinesis Data Firehose (KDF)
       - S3 Copy
-        - via "enhanced routing" through {{VPC}}
-        - without "enhanced routing" over the {{internet}}
+        - via "enhanced routing" through `\{\{VPC\}\}`
+        - without "enhanced routing" over the `\{\{internet\}\}`
       - EC2 Instance (JDBC driver)
     - which is better? Large inserts or small inserts?―Large.
   - Redshift Spectrum
-    - this is useful for when you want to {{query}} data in S3 without {{loading}} it into your Redshift Cluster
+    - this is useful for when you want to `\{\{query\}\}` data in S3 without `\{\{loading\}\}` it into your Redshift Cluster
 - Amazon OpenSearch
-  - aka {{ElasticSearch}}
-  - ... you can search any {{field}}, even {{partial}} matches..
+  - aka `\{\{ElasticSearch\}\}`
+  - ... you can search any `\{\{field\}\}`, even `\{\{partial\}\}` matches..
   - is OpenSearch serverless?―No. it requires a cluster of instances.
   - does OpenSearch support SQL?―No. has its own query language.
   - what are the three main INGESTION sources for OpenSearch (hint: near-realtime, I C)?― ↓
@@ -62,8 +62,8 @@ These were the topics I created flashcards for (Remnote) and would revise them u
       - Kinesis Data Firehose
       - Kinesis Data Streams
 - Amazon EMR
-  - helps create {{Hadoop}} cluster (**Big Data**).
-  - think of EMR scale in terms of {{hundreds}} of EC2 instances.
+  - helps create `\{\{Hadoop\}\}` cluster (**Big Data**).
+  - think of EMR scale in terms of `\{\{hundreds\}\}` of EC2 instances.
   - EMR comes bundled with (RDBMS)― ↓
     - Apache Spark
     - HBase
@@ -76,13 +76,13 @@ These were the topics I created flashcards for (Remnote) and would revise them u
       - Task Node (optional) i.e. run tasks (short usually spot)
     - pricing think on-demand, RI's, spot.
 - Amazon QuickSight
-  - Serverless {{machine}} learning-powered {{business}} intelligence service to create {{interactive}} dashboards.
+  - Serverless `\{\{machine\}\}` learning-powered `\{\{business\}\}` intelligence service to create `\{\{interactive\}\}` dashboards.
   - uses what engine for in-memory compute?―SPICE
   - in enterprise edition, what kind of security is available?―Column-Level Security (CLS)
   - Dashboards
-    - can be shared with {{Users}} or {{Groups}} (note: these are not {{ __**IAM**__ }} users)
+    - can be shared with `\{\{Users\}\}` or `\{\{Groups\}\}` (note: these are not `\{\{ __**IAM**__ \}\}` users)
 - AWS Glue
-  - managed {{extract}}, {{transform}}, {{load}} service
+  - managed `\{\{extract\}\}`, `\{\{transform\}\}`, `\{\{load\}\}` service
   - is Glue fully serverless?―Yes.
   - can Glue convert data to Parquet format?―Yes.
   - Glue functions, what do these do?
@@ -91,7 +91,7 @@ These were the topics I created flashcards for (Remnote) and would revise them u
     - DataBrew?―clean & normalise data
     - Streaming ETL?―continuous ETL streaming
 - AWS Lake Formation
-  - A Data lake is a {{central}} data store for the purposes of {{analytics}}.
+  - A Data lake is a `\{\{central\}\}` data store for the purposes of `\{\{analytics\}\}`.
   - TWO key features of AWS Lake formation (hint: quickly start with..., security)?― ↓
     - (Data) Source **Blueprints** e.g. S3, RDS, Relational & NoSQL DBs
     - Fine-grained **Access Controls** for your apps at row and column-level.
@@ -110,7 +110,7 @@ These were the topics I created flashcards for (Remnote) and would revise them u
 - Amazon Managed Streaming Kafka(MSK)
   - TWO options for running Apache Kafka on AWS ↓
     - Fully Managed (MSK)
-      - Data is stored for {{as long as you want}}.
+      - Data is stored for `\{\{as long as you want\}\}`.
     - Serverless (MSK)
   - List MSK downstream consumers? (hint: think analytics + K G L A)― ↓
     - KDA for Apache Flink

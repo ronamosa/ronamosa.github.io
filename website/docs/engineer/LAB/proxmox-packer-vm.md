@@ -19,7 +19,7 @@ These are the steps:
 3. the VM pulls down `NFS-SERVER:iso/ubuntu-20.04.3-live-server-amd64.iso` and begins the install
 4. with `cloud-init=true` the VM will boot and run the `boot_command` to pull down the initial configuration for the blank VM
 5. packer will start a web server on the client machine, to serve the `http/user-data` file for the proxmox VM to download
-6. this line `autoinstall ds=nocloud-net;s=http://{{ .HTTPIP }}:{{ .HTTPPort }}/` in the `boot_command` tells the VM where to get the init configs
+6. this line `autoinstall ds=nocloud-net;s=http://\{\{ .HTTPIP \}\}:\{\{ .HTTPPort \}\}/` in the `boot_command` tells the VM where to get the init configs
 7. the `http/user-data` config will install openssh, and create user `rxhackk` with public key auth enabled.
 8. when the VM finishes intial install, it will reboot.
 9. once rebooted, `packer` will ssh into the newly created, rebooted VM, and run the commanmds in `provisioner "shell" { inline =[` (or at least this is what I think it's doing after the reboot and requies a working ssh connection)
@@ -99,6 +99,8 @@ proxmox_api_token_secret = "{token_goes_here}"
 
 ## Packer Folder Structure
 
+The following folders are found in Christian Lempa's packer vm boilerplates repo here: [https://github.com/ChristianLempa/boilerplates/tree/main/packer/proxmox](https://github.com/ChristianLempa/boilerplates/tree/main/packer/proxmox)
+
 Each OS VM template folder, e.g. `ubuntu-server-focal` laid out like this:
 
 ```bash
@@ -117,7 +119,7 @@ Each OS VM template folder, e.g. `ubuntu-server-focal` laid out like this:
 This variables file holds our creds, and presumably other vars to inject into our vm template below:
 
 ```json
-proxmox_api_url = "https://${proxmox.host}:8006/api2/json"
+proxmox_api_url = "https://$\{proxmox.host}:8006/api2/json"
 proxmox_api_token_id = "packer@pve!packer"
 proxmox_api_token_secret = "1692cd56-e9aa-413e-9637-84debaa9eff7"
 ```
@@ -151,13 +153,13 @@ variable "proxmox_api_token_secret" {
 
 # Resource Definition for the VM Template
 source "proxmox" "ubuntu-server-focal-template" {
- 
+
     # Proxmox Connection Settings
-    proxmox_url = "${var.proxmox_api_url}"
-    username = "${var.proxmox_api_token_id}"
-    token = "${var.proxmox_api_token_secret}"
+    proxmox_url = "$\{var.proxmox_api_url}"
+    username = "$\{var.proxmox_api_token_id}"
+    token = "$\{var.proxmox_api_token_secret}"
     insecure_skip_tls_verify = true
-    
+
     # VM General Settings
     node = "pve1"
     vm_id = "500"
@@ -172,7 +174,7 @@ source "proxmox" "ubuntu-server-focal-template" {
     # (Option 2) Download ISO
     # iso_url = "https://releases.ubuntu.com/20.04/ubuntu-20.04.3-live-server-amd64.iso"
     # iso_checksum = "f8e3086f3cea0fb3fefb29937ab5ed9d19e767079633960ccb50e76153effc98"
-    
+
     iso_storage_pool = "local"
     unmount_iso = true
 
@@ -192,16 +194,16 @@ source "proxmox" "ubuntu-server-focal-template" {
 
     # VM CPU Settings
     cores = "1"
-    
+
     # VM Memory Settings
-    memory = "4096" 
+    memory = "4096"
 
     # VM Network Settings
     network_adapters {
         model = "virtio"
         bridge = "vmbr0"
         firewall = "false"
-    } 
+    }
 
     # VM Cloud-Init Settings
     cloud_init = true
@@ -209,17 +211,17 @@ source "proxmox" "ubuntu-server-focal-template" {
 
     # PACKER Boot Commands
     boot_command = [
-        "<esc><wait><esc><wait>",
-        "<f6><wait><esc><wait>",
-        "<bs><bs><bs><bs><bs>",
-        "autoinstall ds=nocloud-net;s=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ ",
-        "--- <enter>"
+        "<esc /><wait /><esc /><wait />",
+        "<f6 /><wait /><esc /><wait />",
+        "<bs /><bs /><bs /><bs /><bs />",
+        "autoinstall ds=nocloud-net;s=http://\{\{ .HTTPIP \}\}:\{\{ .HTTPPort \}\}/ ",
+        "--- <enter />"
     ]
     boot = "c"
     boot_wait = "5s"
 
     # PACKER Autoinstall Settings
-    http_directory = "http" 
+    http_directory = "http"
     http_bind_address = "172.16.2.209"
     http_port_min = 8802
     http_port_max = 8802

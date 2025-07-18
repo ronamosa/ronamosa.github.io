@@ -127,7 +127,7 @@ i3wm is a tiled window manager for linux. So it's my desktop UI for all things L
 
 It's light and efficient. Highly customizable so whatever key presses you want to do whatever is available to you. You can tile every application window out exactly how you want it to appear every time, and other than the fact you can do whatever you like with it, it just looks leet ;)
 
-I mean, just look at it <3
+I mean, just look at it `<3`
 
 ### [Remote Desktop Connection Manager (RDCM)](https://www.microsoft.com/en-us/download/confirmation.aspx?id=44989)
 

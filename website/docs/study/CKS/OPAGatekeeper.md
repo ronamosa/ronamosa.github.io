@@ -64,7 +64,7 @@ pod/gatekeeper-audit-6ffc8f5544-br7lt                1/1     Running   0        
 pod/gatekeeper-controller-manager-6f9c99b4d7-jwd8d   1/1     Running   0          46s
 
 NAME                                 TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)   AGE
-service/gatekeeper-webhook-service   ClusterIP   10.103.154.120   <none>        443/TCP   46s
+service/gatekeeper-webhook-service   ClusterIP   10.103.154.120   <none />        443/TCP   46s
 ```
 
 types of webhooks:
@@ -132,7 +132,7 @@ parameters:
   message: "whatever you like"
 ```
 
-Describe our CRD: `k describe <ConstraintKind> <podName>` e.g. `k describe K8sAlwaysDeny pod-always-deny`
+Describe our CRD: `k describe <ConstraintKind /> <podName />` e.g. `k describe K8sAlwaysDeny pod-always-deny`
 
 ## Enforce Namespace Labels
 
@@ -159,7 +159,7 @@ spec:
     - target: admission.k8s.gatekeeper.sh
       rego: |
         package k8srequiredlabels
-        violation[{"msg": msg, "details": {"missing_labels": missing}}] {
+        violation[{"msg": msg, "details": {"missing_labels": missing\}\}] {
           provided := {label | input.review.object.metadata.labels[label]}
           required := {label | label := input.parameters.labels[_]}
           missing := required - provided
@@ -234,7 +234,7 @@ spec:
     - target: admission.k8s.gatekeeper.sh
       rego: |
         package k8sminreplicacount
-        violation[{"msg": msg, "details": {"missing_replicas": missing}}] {
+        violation[{"msg": msg, "details": {"missing_replicas": missing\}\}] {
           provided := input.review.object.spec.replicas
           required := input.parameters.min
           missing := required - provided

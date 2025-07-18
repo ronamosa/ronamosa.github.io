@@ -20,7 +20,7 @@ What are the steps I'm trying to do here?
 3. lambda function takes the channel_id and fetches all the videos listed for that channel, with key `video_id`
 4. puts this list of videos, for that channel, into another DDB table, partition key = `channel_id`, as new separate items, with a `video_id`
 5. another lambda function takes this the `channel_id` and for each `video_id`, fetches the transcript for that video in text format
-6. this text format transcript is saved to an S3 bucket, with prefix=`${channel_id}/${video_id}/transcript.txt`
+6. this text format transcript is saved to an S3 bucket, with prefix=`$\{channel_id}/$\{video_id}/transcript.txt`
 7. another process is kicked off to analyse each video for sentiment, and save the "score" for it somewhere
 8. another process is kicked off to analyse each channel (prefix) for whole of channel sentiment "score", and saved somewhere.
 
@@ -107,11 +107,11 @@ mkdir -p layers/python
 
 # change into, and install libraries to the folder
 cd layers/python
-pip install --target . <libraries>
+pip install --target . <libraries />
 
 # change up a directory, create a zip file of the `python/` folder
 cd ..
-zip -r <layername>.zip python
+zip -r <layername />.zip python
 ```
 
 The zip contents should have the `python/` directory as root.

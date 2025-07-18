@@ -44,7 +44,7 @@ For me in MobaXterm that looks like this:
 
 grab that UUID and delete it from then delete it from VirtualBox
 
-`vboxmanage closemedium disk <uuid> --delete`
+`vboxmanage closemedium disk <uuid /> --delete`
 
 for some reason when I did this, I got an error
 ![mobaxterm](/img/virtualboxhdd-moba-error.png)

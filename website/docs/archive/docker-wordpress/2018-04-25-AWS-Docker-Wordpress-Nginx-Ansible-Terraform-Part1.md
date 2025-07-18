@@ -49,7 +49,7 @@ resource "aws_instance" "web01" {
   # ubuntu ami
   ami = "ami-2d39803a"
   instance_type = "t2.micro"
-  vpc_security_group_ids = ["${aws_security_group.web_server_sg.id}"]
+  vpc_security_group_ids = ["$\{aws_security_group.web_server_sg.id}"]
 
   root_block_device {
     volume_size = "8"
@@ -77,8 +77,8 @@ resource "aws_ebs_volume" "web01-ebs-volume1" {
 
 resource "aws_volume_attachment" "web01-ebs1" {
     device_name = "/dev/xvdb"
-    volume_id = "${aws_ebs_volume.web01-ebs-volume1.id}"
-    instance_id = "${aws_instance.web01.id}"
+    volume_id = "$\{aws_ebs_volume.web01-ebs-volume1.id}"
+    instance_id = "$\{aws_instance.web01.id}"
 }
 ```
 
@@ -111,15 +111,15 @@ resource "aws_db_instance" "backend_db" {
     identifier = "wordpressdb"
     username = "wpress"
     password = "wpress_247x"
-    parameter_group_name = "${aws_db_parameter_group.rds_param_group.id}"
+    parameter_group_name = "$\{aws_db_parameter_group.rds_param_group.id}"
     license_model = "general-public-license"
 
     # set to 'true' so we can destroy
     skip_final_snapshot = true
 
     # network config
-    db_subnet_group_name = "${aws_db_subnet_group.rds_subnet_group.id}"
-    vpc_security_group_ids = ["${aws_security_group.db_server_sg.id}"]
+    db_subnet_group_name = "$\{aws_db_subnet_group.rds_subnet_group.id}"
+    vpc_security_group_ids = ["$\{aws_security_group.db_server_sg.id}"]
 
     tags {
         Name = "Backend Database"
@@ -196,7 +196,7 @@ resource "aws_security_group_rule" "ssh" {
     cidr_blocks = ["0.0.0.0/0"]
 
     # add to the WEB GROUP above
-    security_group_id = "${aws_security_group.web_server_sg.id}"
+    security_group_id = "$\{aws_security_group.web_server_sg.id}"
 }
 
 resource "aws_security_group_rule" "web_http" {
@@ -207,7 +207,7 @@ resource "aws_security_group_rule" "web_http" {
     cidr_blocks = ["0.0.0.0/0"]
 
     # add to the WEB GROUP above
-    security_group_id = "${aws_security_group.web_server_sg.id}"
+    security_group_id = "$\{aws_security_group.web_server_sg.id}"
 }
 
 resource "aws_security_group_rule" "web_https" {
@@ -218,7 +218,7 @@ resource "aws_security_group_rule" "web_https" {
     cidr_blocks = ["0.0.0.0/0"]
 
     # add to the WEB GROUP above
-    security_group_id = "${aws_security_group.web_server_sg.id}"
+    security_group_id = "$\{aws_security_group.web_server_sg.id}"
 }
 
 resource "aws_security_group_rule" "anywhere_outbound" {
@@ -229,7 +229,7 @@ resource "aws_security_group_rule" "anywhere_outbound" {
     cidr_blocks = ["0.0.0.0/0"]
 
     # add to the WEB GROUP above
-    security_group_id = "${aws_security_group.web_server_sg.id}"
+    security_group_id = "$\{aws_security_group.web_server_sg.id}"
 }
 
 ################ DB RULES ###############
@@ -241,10 +241,10 @@ resource "aws_security_group_rule" "db_rds_sg-1" {
     protocol = "tcp"
 
     # allow inbound from the WEB GROUP
-    source_security_group_id = "${aws_security_group.web_server_sg.id}"
+    source_security_group_id = "$\{aws_security_group.web_server_sg.id}"
 
     # references the DB GROUP above
-    security_group_id = "${aws_security_group.db_server_sg.id}"
+    security_group_id = "$\{aws_security_group.db_server_sg.id}"
 }
 
 resource "aws_security_group_rule" "db_rds_sg-2" {
@@ -255,7 +255,7 @@ resource "aws_security_group_rule" "db_rds_sg-2" {
     cidr_blocks = ["0.0.0.0/0"]
 
     # references the DB GROUP above
-    security_group_id = "${aws_security_group.db_server_sg.id}"
+    security_group_id = "$\{aws_security_group.db_server_sg.id}"
 }
 
 ```
@@ -268,9 +268,9 @@ Standard setup:
 
 ```hcl
 provider "aws" {
-  access_key = "${var.access_key}"
-  secret_key = "${var.secret_key}"
-  region     = "${var.aws_region}"
+  access_key = "$\{var.access_key}"
+  secret_key = "$\{var.secret_key}"
+  region     = "$\{var.aws_region}"
 }
 ```
 
@@ -308,11 +308,11 @@ these can be whatever you need outputted to stdout (i.e. your screen) and also t
 
 ```hcl
 output "ec2_public_ips" {
-  value = ["${aws_instance.web01.*.public_ip}"]
+  value = ["$\{aws_instance.web01.*.public_ip}"]
 }
 
 output "rds_mysql_db_name" {
-  value = "${aws_db_instance.backend_db.address}"
+  value = "$\{aws_db_instance.backend_db.address}"
 }
 ```
 
@@ -322,11 +322,15 @@ A rather long video of running `terraform plan`, and when all looks good, no err
 
 Don't let the thumbnail fool you, I switch screens while the RDS database is being created and show the AWS console where things are magically showing up:
 
-<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/c9ufJAYuaZ8?rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<!-- markdownlint-disable MD033 -->
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/c9ufJAYuaZ8?rel=0&amp;controls=0&amp;showinfo=0" frameBorder="0" allow="autoplay; encrypted-media" allowFullScreen></iframe>
+<!-- markdownlint-enable MD033 -->
 
 After all's up & running, login to the new EC2 instance and check it can connect to the new RDS/Maridadb database! (grab the database name from the terraform output):
 
-<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/U4CsQX3ksoE?rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<!-- markdownlint-disable MD033 -->
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/U4CsQX3ksoE?rel=0&amp;controls=0&amp;showinfo=0" frameBorder="0" allow="autoplay; encrypted-media" allowFullScreen></iframe>
+<!-- markdownlint-enable MD033 -->
 
 ## A few Quirky Points
 
@@ -334,7 +338,7 @@ A few things I ran into while working through this which were good to note:
 
 - mariadb complained with I tried to use db.t2.small. Setting it to db.t2.medium fixed the issue.
 - db password must be longer than 8 char (no kidding)
-- `vpc_security_group_ids` in the terraform variables needs to be inside '[]' i.e. `[${aws_security_groups.x.id}]` or it won't recognize your reference as a 'list'
+- `vpc_security_group_ids` in the terraform variables needs to be inside '[]' i.e. `[$\{aws_security_groups.x.id}]` or it won't recognize your reference as a 'list'
 
 ```bash
 # set to 'true' so we can destroy

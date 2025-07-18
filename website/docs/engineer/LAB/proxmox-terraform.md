@@ -23,7 +23,7 @@ pveum role add TerraformProv -privs "Datastore.AllocateSpace Datastore.Audit Poo
 # - note the command balks at special characters in the terminal
 # - ended up resetting to strong password via GUI
 
-pveum user add terraform-prov@pve --password <password>
+pveum user add terraform-prov@pve --password <password />
 
 # 3. Associate Role & User
 pveum aclmod / -user terraform-prov@pve -role TerraformProv
@@ -114,7 +114,7 @@ provider "proxmox" {
   # pm_debug = true
   # pm_tls_insecure = true
 
-  pm_api_url = "https://${PROXMOX_HOST}:8006/api2/json"
+  pm_api_url = "https://$\{PROXMOX_HOST}:8006/api2/json"
 }
 ```
 
@@ -198,10 +198,10 @@ Initializing provider plugins...
 - Finding latest version of hashicorp/proxmox...
 ╷
 │ Error: Failed to query available provider packages
-│ 
+│
 │ Could not retrieve the list of available versions for provider hashicorp/proxmox: provider registry registry.terraform.io does not have a provider named
 │ registry.terraform.io/hashicorp/proxmox
-│ 
+│
 │ All modules should specify their required_providers so that external consumers will get the correct providers when using a module. To see which modules are
 │ currently depending on hashicorp/proxmox, run the following command:
 │     terraform providers
@@ -243,11 +243,11 @@ Planning failed. Terraform encountered an error while generating this plan.
 
 ╷
 │ Error: 501 no such file '/json/access/users'
-│ 
+│
 │   with provider["registry.terraform.io/telmate/proxmox"],
 │   on providers.tf line 10, in provider "proxmox":
 │   10: provider "proxmox" {
-│ 
+│
 ╵
 ```
 
@@ -269,7 +269,7 @@ solution: I had
 
 ```bash
 provider "proxmox" {
-  pm_api_url = "https://pve1.darksyde.lan:8006//api2/json" # 
+  pm_api_url = "https://pve1.darksyde.lan:8006//api2/json" #
 }
 ```
 
@@ -290,11 +290,11 @@ Planning failed. Terraform encountered an error while generating this plan.
 
 ╷
 │ Error: user terraform-prov@pve has valid credentials but cannot retrieve user list, check privilege separation of api token
-│ 
+│
 │   with provider["registry.terraform.io/telmate/proxmox"],
 │   on providers.tf line 10, in provider "proxmox":
 │   10: provider "proxmox" {
-│ 
+│
 ```
 
 

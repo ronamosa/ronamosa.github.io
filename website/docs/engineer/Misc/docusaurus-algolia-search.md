@@ -139,7 +139,7 @@ new Crawler({
         "exact",
         "custom",
       ],
-      highlightPreTag: '<span class="algolia-docsearch-suggestion--highlight">',
+      highlightPreTag: '<span class="algolia-docsearch-suggestion--highlight" />',
       highlightPostTag: "</span>",
       minWordSizefor1Typo: 3,
       minWordSizefor2Typos: 7,
@@ -180,12 +180,12 @@ module.exports = {
     //...
     algolia: {
       // The application ID provided by Algolia
-      appId: '<YOUR_APP_ID>',
+      appId: '<YOUR_APP_ID />',
 
       // Public API key: it is safe to commit it
-      apiKey: '<YOUR_API_KEY>',
+      apiKey: '<YOUR_API_KEY />',
 
-      indexName: '<YOUR_CRAWLER_INDEX_NAME>',
+      indexName: '<YOUR_CRAWLER_INDEX_NAME />',
 
     },
 ```

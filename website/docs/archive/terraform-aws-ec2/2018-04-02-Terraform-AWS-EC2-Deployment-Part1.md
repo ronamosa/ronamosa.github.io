@@ -8,7 +8,7 @@ I found myself wanting to convert a cloudformation config file to terraform and 
 
 So let's fix that by finding a beginner's guide to getting your hands dirty with Terrafom.
 
-I found and started following @gruntwork's ["Introduction to Terraform"](https://blog.gruntwork.io/an-introduction-to-terraform-f17df9c6d180). 
+I found and started following @gruntwork's ["Introduction to Terraform"](https://blog.gruntwork.io/an-introduction-to-terraform-f17df9c6d180).
 
 Admittedly its from 2016 and was bit outdated, but I was already halfway through it before I checked how current it was :)
 
@@ -42,7 +42,7 @@ make sure you've got terraform installed
 
 ```bash
 $ terraform
-Usage: terraform [--version] [--help] <command> [args]
+Usage: terraform [--version] [--help] <command /> [args]
 
 The available commands for execution are listed below.
 The most common, useful commands are shown first, followed by
@@ -119,9 +119,9 @@ Create a file named `main.tf` with this in it:
 
 ```hcl
 provider "aws" {
-  access_key = "${var.access_key}"
-  secret_key = "${var.secret_key}"
-  region     = "${var.region}"
+  access_key = "$\{var.access_key}"
+  secret_key = "$\{var.secret_key}"
+  region     = "$\{var.region}"
 }
 
 resource "aws_instance" "single" {
@@ -150,34 +150,34 @@ Resource actions are indicated with the following symbols:
 Terraform will perform the following actions:
 
   + aws_instance.example
-      id:                           <computed>
+      id:                           <computed />
       ami:                          "ami-2d39803a"
-      associate_public_ip_address:  <computed>
-      availability_zone:            <computed>
-      ebs_block_device.#:           <computed>
-      ephemeral_block_device.#:     <computed>
+      associate_public_ip_address:  <computed />
+      availability_zone:            <computed />
+      ebs_block_device.#:           <computed />
+      ephemeral_block_device.#:     <computed />
       get_password_data:            "false"
-      instance_state:               <computed>
+      instance_state:               <computed />
       instance_type:                "t2.micro"
-      ipv6_address_count:           <computed>
-      ipv6_addresses.#:             <computed>
-      key_name:                     <computed>
-      network_interface.#:          <computed>
-      network_interface_id:         <computed>
-      password_data:                <computed>
-      placement_group:              <computed>
-      primary_network_interface_id: <computed>
-      private_dns:                  <computed>
-      private_ip:                   <computed>
-      public_dns:                   <computed>
-      public_ip:                    <computed>
-      root_block_device.#:          <computed>
-      security_groups.#:            <computed>
+      ipv6_address_count:           <computed />
+      ipv6_addresses.#:             <computed />
+      key_name:                     <computed />
+      network_interface.#:          <computed />
+      network_interface_id:         <computed />
+      password_data:                <computed />
+      placement_group:              <computed />
+      primary_network_interface_id: <computed />
+      private_dns:                  <computed />
+      private_ip:                   <computed />
+      public_dns:                   <computed />
+      public_ip:                    <computed />
+      root_block_device.#:          <computed />
+      security_groups.#:            <computed />
       source_dest_check:            "true"
-      subnet_id:                    <computed>
-      tenancy:                      <computed>
-      volume_tags.%:                <computed>
-      vpc_security_group_ids.#:     <computed>
+      subnet_id:                    <computed />
+      tenancy:                      <computed />
+      volume_tags.%:                <computed />
+      vpc_security_group_ids.#:     <computed />
 
 
 Plan: 1 to add, 0 to change, 0 to destroy.
@@ -193,11 +193,15 @@ can't guarantee that exactly these actions will be performed if
 
 Now run `terraform apply` to deploy our config
 
-<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/eaZK8k095Gc?rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<!-- markdownlint-disable MD033 -->
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/eaZK8k095Gc?rel=0&amp;controls=0&amp;showinfo=0" frameBorder="0" allow="autoplay; encrypted-media" allowFullScreen></iframe>
+<!-- markdownlint-enable MD033 -->
 
 login to your AWS GUI console and see a new EC2 is now up & running
 
-<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/KNLv1uw72Zk?rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<!-- markdownlint-disable MD033 -->
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/KNLv1uw72Zk?rel=0&amp;controls=0&amp;showinfo=0" frameBorder="0" allow="autoplay; encrypted-media" allowFullScreen></iframe>
+<!-- markdownlint-enable MD033 -->
 
 ### Update plan and re-apply
 
@@ -205,9 +209,9 @@ You can update your terraform plan on the fly, and push changes out pretty easil
 
 ```hcl
 provider "aws" {
-  access_key = "${var.access_key}"
-  secret_key = "${var.secret_key}"
-  region     = "${var.region}"
+  access_key = "$\{var.access_key}"
+  secret_key = "$\{var.secret_key}"
+  region     = "$\{var.region}"
 }
 
 resource "aws_instance" "single" {
@@ -274,8 +278,8 @@ abstract out the vars and refer to them instead
 resource "aws_security_group" "ec2-web" {
   name = "EC2WebSG"
   ingress {
-    from_port = ${var.inbound_port}
-    to_port = ${var.inbound_port}
+    from_port = $\{var.inbound_port}
+    to_port = $\{var.inbound_port}
     protocol = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
@@ -297,7 +301,7 @@ Now you need to just change your EC2 `user_data` to use the new security group (
 resource "aws_instance" "web-1" {
   ami = "ami-2d39803a"
   instance_type = "t2.micro"
-  vpc_security_group_ids = ["${aws_security_group.instance.id}"]
+  vpc_security_group_ids = ["$\{aws_security_group.instance.id}"]
 
   user_data = <<-EOF
               #!/bin/bash
@@ -316,13 +320,13 @@ run `terraform plan`, see what we're changing:
 Terraform will perform the following actions:
 
   ~ aws_instance.web-1
-      vpc_security_group_ids.#:             "" => <computed>
+      vpc_security_group_ids.#:             "" => <computed />
 
   + aws_security_group.instance
-      id:                                   <computed>
-      arn:                                  <computed>
+      id:                                   <computed />
+      arn:                                  <computed />
       description:                          "Managed by Terraform"
-      egress.#:                             <computed>
+      egress.#:                             <computed />
       ingress.#:                            "1"
       ingress.516175195.cidr_blocks.#:      "1"
       ingress.516175195.cidr_blocks.0:      "0.0.0.0/0"
@@ -334,9 +338,9 @@ Terraform will perform the following actions:
       ingress.516175195.self:               "false"
       ingress.516175195.to_port:            "8080"
       name:                                 "EC2WebSG"
-      owner_id:                             <computed>
+      owner_id:                             <computed />
       revoke_rules_on_delete:               "false"
-      vpc_id:                               <computed>
+      vpc_id:                               <computed />
 
 
 Plan: 1 to add, 1 to change, 0 to destroy.
@@ -345,7 +349,9 @@ Plan: 1 to add, 1 to change, 0 to destroy.
 
 perfect. run it (`'terraform apply'`)
 
-<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/se7Rlgg8MAE?rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<!-- markdownlint-disable MD033 -->
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/se7Rlgg8MAE?rel=0&amp;controls=0&amp;showinfo=0" frameBorder="0" allow="autoplay; encrypted-media" allowFullScreen></iframe>
+<!-- markdownlint-enable MD033 -->
 
 ### outputs.tf
 
@@ -355,7 +361,7 @@ put this in it:
 
 ```hcl
 output "public_ip" {
-  value = "${aws_instance.web-1.public_ip}"
+  value = "$\{aws_instance.web-1.public_ip}"
 }
 
 ```
@@ -379,7 +385,9 @@ public_ip = 54.89.22.195
 
 have a browse to `https://54.89.22.195:8080` and see the output of the 'index.html' you setup.
 
-<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/SbMS9ZIhWfg?rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<!-- markdownlint-disable MD033 -->
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/SbMS9ZIhWfg?rel=0&amp;controls=0&amp;showinfo=0" frameBorder="0" allow="autoplay; encrypted-media" allowFullScreen></iframe>
+<!-- markdownlint-enable MD033 -->
 
 wow, so this took me a while sorting out a few things as I tried to go through this so we'll leave it there today.
 

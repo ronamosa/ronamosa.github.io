@@ -42,7 +42,7 @@ As per Istio's documentation, we will use the following repo by [Nicholas Jackso
 
 To create your certs, as per the website run:
 
-`./generate.sh <domain_name> <some-password>`
+`./generate.sh <domain_name /> <some-password />`
 
 for the example they use `localhost` to run it, and connect to it locally via `https://localhost`.
 
@@ -56,8 +56,8 @@ with the following directories:
 
 * root cert (`ca.cert.pem`) & private key
 * intermediate certs (`ca-chain.pem` and `intermediate.cert.pem`) & private key
-* application (aka "server") cert (`<domain_name>.cert.pem`) & private key -- e.g. `mtls.cloudbuild.site.cert.pem`
-* client cert (`<domain_name>.cert.pem`) & {: .notice--info}private key -- e.g. `mtls.cloudbuild.site.cert.pem`
+* application (aka "server") cert (`<domain_name />.cert.pem`) & private key -- e.g. `mtls.cloudbuild.site.cert.pem`
+* client cert (`<domain_name />.cert.pem`) & private key -- e.g. `mtls.cloudbuild.site.cert.pem`
 
 now that your certs are created and you understand what each one does,
 
@@ -629,9 +629,9 @@ Anyway, I did the following:
         app: sleep
     template:
       metadata:
-        annotations:                                                                                       
+        annotations:
           sidecar.istio.io/userVolumeMount: '[{"name":"nginx-client-certs", "mountPath":"/etc/istio/nginx-client-certs", "readonly":true},{"name":"nginx-ca-certs", "mountPath":"/etc/istio/nginx-ca-certs", "readonly":true}]'
-          sidecar.istio.io/userVolume: '[{"name":"nginx-client-certs", "secret":{"secretName":"nginx-client-certs"}},{"name":"nginx-ca-certs", "secret":{"secretName":"nginx-ca-certs"}}]'
+          sidecar.istio.io/userVolume: '[{"name":"nginx-client-certs", "secret":{"secretName":"nginx-client-certs"\}\},{"name":"nginx-ca-certs", "secret":{"secretName":"nginx-ca-certs"\}\}]'
         labels:
           app: sleep
       spec:
@@ -875,10 +875,10 @@ $ kubectl -n mesh-internal exec sleep-74997ffb46-cxs77 -c sleep -- curl  http://
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0<!DOCTYPE html>
-<html>
-<head>
-<title>Welcome to nginx!</title>
-<style>
+<html />
+<head />
+<title />Welcome to nginx!</title>
+<style />
     body {
         width: 35em;
         margin: 0 auto;
@@ -886,16 +886,16 @@ $ kubectl -n mesh-internal exec sleep-74997ffb46-cxs77 -c sleep -- curl  http://
     }
 </style>
 </head>
-<body>
-<h1>Welcome to the Mutual TLS Server!</h1>
+<body />
+<h1 />Welcome to the Mutual TLS Server!</h1>
 
-<p>If you see this page, you have successfully used the correct client-side certificates that match the ones
+<p />If you see this page, you have successfully used the correct client-side certificates that match the ones
   deployed on this server.
 </p>
 
-<p>For more information please visit my website:<a href="https://iamronamo.io/">iamronamo.io</a>.
+<p />For more information please visit my website:<a href="https://iamronamo.io/" />iamronamo.io</a>.
 
-<p><em>Thank you and goodnight.</em></p>
+<p /><em />Thank you and goodnight.</em></p>
 </body>
 </html>
 ```

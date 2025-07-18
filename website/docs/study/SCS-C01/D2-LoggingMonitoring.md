@@ -9,7 +9,7 @@ This is an export from my Remnote with flashcard syntax included.
 :::
 
 - Logging & Monitoring
-  - AWS Config does not need a {{Lambda}} Function for remediation, instead it can use `AWS`{{`Managed SSM`}}` Automation `{{`Document`}} with a {{`Remediation`}}`Action` to fix or remediate configurations.
+  - AWS Config does not need a `\{\{Lambda\}\}` Function for remediation, instead it can use `AWS``\{\{`Managed SSM`\}\}`` Automation ``\{\{`Document`\}\}` with a `\{\{`Remediation`\}\}``Action` to fix or remediate configurations.
   - "trace the integrity of each file and prevent the files from being tampered." in CloudTrail, enable what?→Log File Integrity Validation.
   - if you need to troubleshoot on Windows and need to collect memory dumps, use what?→EC2Rescue tool for Windows Server.
   - what Amazon EventBridge pattern can build you the most efficient ACM certificate expiring monitoring system?→`ACM Certificate Approaching Expiration`

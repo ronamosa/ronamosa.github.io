@@ -77,7 +77,7 @@ These were the topics I created flashcards for (Remnote) and would revise them u
     - Agent-based Discovery
 - AWS Application Migration Service
   - "lift-and-shift" approach
-  - minimum {{downtime}}, reduced {{costs}}.
+  - minimum \{\{downtime\}\}, reduced \{\{costs\}\}.
 - VMWare Cloud on AWS
   - use case?―Customer wants to extend their data centre but keep using their on-prem VMWare setup.
 - Transfer Large Data

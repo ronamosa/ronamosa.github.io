@@ -48,9 +48,9 @@ test it
 ```bash
 ubuntudevbox:~/GCP$ kubectl get nodes
 NAME                                                  STATUS   ROLES    AGE   VERSION
-gke-development-cluster--default-pool-d0e1b087-llxh   Ready    <none>   32m   v1.13.11-gke.14
-gke-development-cluster--default-pool-d0e1b087-z8gh   Ready    <none>   32m   v1.13.11-gke.14
-gke-development-cluster--default-pool-d0e1b087-z8s7   Ready    <none>   32m   v1.13.11-gke.14
+gke-development-cluster--default-pool-d0e1b087-llxh   Ready    <none />   32m   v1.13.11-gke.14
+gke-development-cluster--default-pool-d0e1b087-z8gh   Ready    <none />   32m   v1.13.11-gke.14
+gke-development-cluster--default-pool-d0e1b087-z8s7   Ready    <none />   32m   v1.13.11-gke.14
 ```
 
 ## Setup charts : helm version 2
@@ -165,8 +165,8 @@ ambassador-d7fbbd8f6-xhcgs  0/1    ContainerCreating  0         1s
 
 ==> v1/Service
 NAME              TYPE          CLUSTER-IP  EXTERNAL-IP  PORT(S)                     AGE
-ambassador        LoadBalancer  10.4.14.46  <pending>    80:30491/TCP,443:30181/TCP  1s
-ambassador-admin  ClusterIP     10.4.9.233  <none>       8877/TCP                    1s
+ambassador        LoadBalancer  10.4.14.46  <pending />    80:30491/TCP,443:30181/TCP  1s
+ambassador-admin  ClusterIP     10.4.9.233  <none />       8877/TCP                    1s
 
 ==> v1/ServiceAccount
 NAME        SECRETS  AGE
@@ -252,9 +252,9 @@ update your `templates/service.yaml` file so it looks like this:
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "www-demo.fullname" . }}
+  name: \{\{ include "www-demo.fullname" . \}\}
   labels:
-{{ include "www-demo.labels" . | indent 4 }}
+\{\{ include "www-demo.labels" . | indent 4 \}\}
   annotations:
     getambassador.io/config: |
       ---
@@ -262,17 +262,17 @@ metadata:
       kind: Mapping
       name: www_mapping
       prefix: /
-      service: {{ include "www-demo.fullname" . }}.application:80
+      service: \{\{ include "www-demo.fullname" . \}\}.application:80
 spec:
-  type: {{ .Values.service.type }}
+  type: \{\{ .Values.service.type \}\}
   ports:
-    - port: {{ .Values.service.port }}
+    - port: \{\{ .Values.service.port \}\}
       targetPort: http
       protocol: TCP
       name: http
   selector:
-    app.kubernetes.io/name: {{ include "www-demo.name" . }}
-    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/name: \{\{ include "www-demo.name" . \}\}
+    app.kubernetes.io/instance: \{\{ .Release.Name \}\}
 ```
 
 key things in this config
@@ -301,7 +301,7 @@ www-demo-8895fbdcb-gj8bh  1/1    Running  0         7m8s
 
 ==> v1/Service
 NAME      TYPE       CLUSTER-IP  EXTERNAL-IP  PORT(S)  AGE
-www-demo  ClusterIP  10.4.2.172  <none>       80/TCP   7m8s
+www-demo  ClusterIP  10.4.2.172  <none />       80/TCP   7m8s
 
 
 NOTES:

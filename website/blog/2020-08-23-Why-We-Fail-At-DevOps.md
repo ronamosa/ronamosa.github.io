@@ -76,8 +76,9 @@ I think everything stems from this macro lack of knowledge on the methodology an
 
 For example if you don't understand why we parameterise variables in our infrastructure-as-code you're going to impact the easy of managing consistent, repeatable infrastructure without duplicating code and risking configuration sprawl. There is a knock-on effect from this initial lack of knowledge that results in tech debt and inefficiences, possible security risks and operational overheads.
 
-_**Disclaimer**: its perfectly fine to make choices that end up compromising or violating Agile/DevOps principles, but the key here is that you know what you're making the choices between. Informed decision making always._
-{: .notice--info}
+:::info Disclaimer
+**Disclaimer**: its perfectly fine to make choices that end up compromising or violating Agile/DevOps principles, but the key here is that you know what you're making the choices between. Informed decision making always.
+:::
 
 Education informs Design; Design impacts Architecture and Systems, which affects Operations which follows on through to the customer (BAU, performance, availability, speed of improved features delivered etc) . This includes the business who are aware of what the cost-benefit is of investing time & money into creating the systems that come out of this new DevOps knowledge. And will then go on to facilitate delivering the promise of DevOps and Agile in the company.
 

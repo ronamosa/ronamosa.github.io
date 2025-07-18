@@ -194,7 +194,7 @@ Filtering content: 100% (4/4), 1.93 GiB | 21.55 MiB/s, done.
 the file list of r `gpt-neo-125m` looks more manageable and not sharded
 
 ```bash
-~/R/gpt-neo-125m on main ❯ ll      
+~/R/gpt-neo-125m on main ❯ ll
 total 1.3G
 -rw-rw-r-- 1 rxhackk rxhackk 1007 Apr  2 19:01 config.json
 -rw-rw-r-- 1 rxhackk rxhackk 478M Apr  2 19:03 flax_model.msgpack
@@ -286,7 +286,7 @@ Review code:
 Your directory should look like this:
 
 ```bash
-~/Repositories/SM-gpt-neo-125m/gpt-neo-125m-model ❯ ll 
+~/Repositories/SM-gpt-neo-125m/gpt-neo-125m-model ❯ ll
 total 332M
 -rw-rw-r-- 1 rxhackk rxhackk 1007 Apr  2 21:41 config.json
 -rw-rw-r-- 1 rxhackk rxhackk 1.2K Apr  2 22:02 inference.py
@@ -448,7 +448,7 @@ there was a bunch of [troubleshooting](#troubleshooting) that happened before th
 ~/Repositories/SM-gpt-neo-125m ❯ python3 deploy.py   at 23:43:51
 sagemaker.config INFO - Not applying SDK defaults from location: /etc/xdg/xdg-ubuntu/sagemaker/config.yaml
 sagemaker.config INFO - Not applying SDK defaults from location: /home/rxhackk/.config/sagemaker/config.yaml
-----------!%                  
+----------!%
 ~/Repositories/SM-gpt-neo-125m ❯   took 14m 1s at
 ```
 
@@ -474,7 +474,7 @@ aws sagemaker-runtime invoke-endpoint \
 
 I need my new endpoint name. I can get it via AWS Console, or use cli to grab it,:
 
-To get ALL info: 
+To get ALL info:
 
 `aws sagemaker list-endpoints`
 
@@ -631,7 +631,7 @@ Run re-deploy: `python3 deploy.py`
 sagemaker.config INFO - Not applying SDK defaults from location: /etc/xdg/xdg-ubuntu/sagemaker/config.yaml
 sagemaker.config INFO - Not applying SDK defaults from location: /home/rxhackk/.config/sagemaker/config.yaml
 -
---------!%    
+--------!%
   ~/Repositories/SM-gpt-neo-125m ❯                                                       took  13m 40s
 ```
 
@@ -657,7 +657,7 @@ looks like its actually stop up a different endpoint:
 picking the new endpoint in our invoke method
 
 ```bash
-aws sagemaker-runtime invoke-endpoint \ 
+aws sagemaker-runtime invoke-endpoint \
   --endpoint-name pytorch-inference-2024-04-04-03-16-43-017 \
   --cli-binary-format raw-in-base64-out \
   --body '{"text": "Hi! how are you?"}' \
@@ -668,8 +668,8 @@ aws sagemaker-runtime invoke-endpoint \
 new output, but probably just as sh! as the previous, think it needs a lot more config attention, but that's for another post.
 
 ```bash
-cat output.txt  
-{"generated_text": "Hi! how are you?\n\nI'm back! I'm back! I'm back! I'm back! I'm back! I'm back! I'm back! I'm back! I'm back! I'm back! I'm back! I'm back! I'm back! I'm back! I'm back! I'm back! I'm back! I'm back! I'm back! I'm back! I'm back! I'm back! I'm back! I'm back! I'm back! I'm back! I'm back! I'm back! I'm back! I'm back! I'm back! I'm back! I'm back! I'm back! I'm back! I'm"}% 
+cat output.txt
+{"generated_text": "Hi! how are you?\n\nI'm back! I'm back! I'm back! I'm back! I'm back! I'm back! I'm back! I'm back! I'm back! I'm back! I'm back! I'm back! I'm back! I'm back! I'm back! I'm back! I'm back! I'm back! I'm back! I'm back! I'm back! I'm back! I'm back! I'm back! I'm back! I'm back! I'm back! I'm back! I'm back! I'm back! I'm back! I'm back! I'm back! I'm back! I'm back! I'm"}%
 ```
 
 ## Troubleshooting
@@ -727,7 +727,7 @@ error message:
 sagemaker.config INFO - Not applying SDK defaults from location: /etc/xdg/xdg-ubuntu/sagemaker/config.yaml
 sagemaker.config INFO - Not applying SDK defaults from location: /home/rxhackk/.config/sagemaker/config.yaml
 Traceback (most recent call last):
-  File "/home/rxhackk/Repositories/SM-gpt-neo-125m/deploy.py", line 14, in <module>
+  File "/home/rxhackk/Repositories/SM-gpt-neo-125m/deploy.py", line 14, in <module />
     predictor = pytorch_model.deploy(
   File "/home/rxhackk/.local/lib/python3.10/site-packages/sagemaker/model.py", line 1610, in deploy
     self._create_sagemaker_model(

@@ -4,7 +4,7 @@ title: "Proxmox: Mount a Virtual Machine's Logical Volume (LV) from Proxmox Host
 
 ## Background
 
-I created an Ubuntu VM using Packer, which was supposed to bootstrap my username & ssh_key access when the VM was running but instead the packer build process would time out and rollback destroying the VM and any logs I needed to troubleshoot what was happening. I managed to clone the VM before it was destroyed again, but there was no root account and I could see my username had made it into the `/etc/passwd` file by using `qm guest exec <vmid> cat /etc/passwd` from the proxmox host. I couldn't use the `qm` command to try to set a password for my user, so I decided to go old school and mount the VM disk (volume) and edit things from there.
+I created an Ubuntu VM using Packer, which was supposed to bootstrap my username & ssh_key access when the VM was running but instead the packer build process would time out and rollback destroying the VM and any logs I needed to troubleshoot what was happening. I managed to clone the VM before it was destroyed again, but there was no root account and I could see my username had made it into the `/etc/passwd` file by using `qm guest exec <vmid /> cat /etc/passwd` from the proxmox host. I couldn't use the `qm` command to try to set a password for my user, so I decided to go old school and mount the VM disk (volume) and edit things from there.
 
 ## Overview
 
@@ -17,11 +17,11 @@ Check out your logical volumes, in volume group (VG) `pve`:
 ```bash
 root@pve1:~# lvs
   LV            VG  Attr       LSize    Pool Origin Data%  Meta%  Move Log Cpy%Sync Convert
-  data          pve twi-aotz-- <794.79g             3.17   0.32                            
-  root          pve -wi-ao----   96.00g                                                    
-  swap          pve -wi-ao----    8.00g                                                    
-  vm-101-disk-0 pve Vwi-a-tz--   20.00g data        100.00                                 
-  vm-200-disk-0 pve Vwi-aotz--   32.00g data        16.17               
+  data          pve twi-aotz-- <794.79g             3.17   0.32
+  root          pve -wi-ao----   96.00g
+  swap          pve -wi-ao----    8.00g
+  vm-101-disk-0 pve Vwi-a-tz--   20.00g data        100.00
+  vm-200-disk-0 pve Vwi-aotz--   32.00g data        16.17
 ```
 
 use `lvdisplay` for more detailed info on each volume.
@@ -34,8 +34,8 @@ I'm not 100% sure you need this step, but it's one I did.
 root@pve1:~# vgchange --help
   vgchange - Change volume group attributes
 
-  Change a general VG attribute. 
-  For options listed in parentheses, any one is 
+  Change a general VG attribute.
+  For options listed in parentheses, any one is
   required, after which the others are optional.
   vgchange
 ```
@@ -121,7 +121,7 @@ drwxr-xr-x  2 root root       4096 Apr 15  2020 sys
 drwxrwxrwt  8 root root       4096 Apr 27 22:20 tmp
 drwxr-xr-x 14 root root       4096 Apr 27 09:38 usr
 drwxr-xr-x 13 root root       4096 Aug 24  2021 var
-root@pve1:/mnt# 
+root@pve1:/mnt#
 ```
 
 You can now make the changes you need to the filesystem, save, unmount and try rebooting the vm again with the edited volume. For me, I just needed to see what happed to the `sshd` config under `/etc/ssh/sshd_config` because Packer `autoinstall` was supposed to have set it to accept PubKey AuthN, instead I found this -> `#PubkeyAuthentication yes`.
@@ -141,6 +141,6 @@ to reverse the kpartx mappings: `root@pve1:~# kpartx -av /dev/mapper/pve-vm--101
 some useful `qm` commands:
 
 ```bash
-qm guest exec <vmid> <command>
+qm guest exec <vmid /> <command />
 # more to come
 ```

