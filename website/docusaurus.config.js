@@ -33,7 +33,7 @@ const internetProfiles = {
 };
 
 module.exports = {
-  title: 'Ron Amosa',
+  title: 'The Uncommon Engineer',
   tagline: 'Pasifika Excellence and Leadership in AI, Cloud, DevOps and Security Engineering.',
   url: 'https://ronamosa.io',
   baseUrl: '/',
@@ -99,7 +99,7 @@ module.exports = {
           ],
         },
       ],
-      copyright: `Last updated on $\{new Date().toDateString()}`,
+      copyright: `Last updated on ${new Date().toDateString()}`,
     },
     prism: {
       additionalLanguages: ['ruby', 'hcl', 'docker', 'yaml'],

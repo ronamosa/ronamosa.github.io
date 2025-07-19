@@ -1,0 +1,154 @@
+# Cursor Rules for ronamosa.github.io
+
+## Changelog Management
+
+When making changes to this website, ALWAYS update the changelog. Follow these rules:
+
+### 1. Automatic Changelog Updates
+
+- After making ANY significant change (new docs, blog posts, site improvements, bug fixes), update the appropriate changelog file
+- Use the current month's changelog file: `website/changelog/{YEAR}/{month}.md`
+- If the current month file doesn't exist, create it using the template
+
+### 2. Changelog Entry Format
+
+```markdown
+## 📅 YYYY-MM-DD
+
+### {CATEGORY}
+- **Title**: Brief description of the change
+  - Additional details if needed
+  - **Link**: [Link Text](/path/to/content)
+```
+
+### 3. Category Icons & Types
+
+- 🛠️ **Site Improvements**: Technical enhancements, performance improvements, infrastructure changes
+- 📚 **Documentation Updates**: New guides, tutorials, technical documentation
+- 📝 **Blog Posts**: New blog articles and content
+- 🔧 **Bug Fixes**: Corrections and fixes to existing content
+- 🎨 **Design Changes**: UI/UX improvements and visual updates
+- ⚡ **Performance Improvements**: Speed and optimization enhancements
+- 🔒 **Security Updates**: Security fixes and improvements
+- 📦 **Dependencies**: Package updates and dependency management
+
+### 4. When to Update Changelog
+
+- ✅ Adding new documentation files
+- ✅ Creating new blog posts
+- ✅ Updating existing documentation with significant changes
+- ✅ Site configuration changes
+- ✅ Adding new features or components
+- ✅ Dependency updates (major versions)
+- ❌ Minor typo fixes
+- ❌ Formatting-only changes
+- ❌ Commit message updates
+
+### 5. Changelog Workflow
+
+1. Make your changes to the website
+2. Before committing, update the changelog:
+   - Open `website/changelog/{YEAR}/{month}.md`
+   - Add new entry at the TOP (most recent first)
+   - Use today's date in format: `## 📅 YYYY-MM-DD`
+   - Include links to new content when applicable
+3. Commit both your changes AND the changelog update together
+
+### 6. Creating New Monthly Changelog Files
+
+If the current month file doesn't exist, create it with this template:
+
+```markdown
+---
+sidebar_position: 1
+title: {Month YYYY}
+description: Changes and additions for {Month YYYY}
+---
+
+# {Month YYYY}
+
+## 📅 YYYY-MM-DD
+
+### {CATEGORY}
+- **Your Change**: Description of what was added/changed
+  - Additional details
+  - **Link**: [Link Text](/path/to/content)
+
+---
+
+## Template for Future Entries
+
+When adding new changelog entries, use this format:
+
+\`\`\`markdown
+## 📅 YYYY-MM-DD
+
+### {CATEGORY}
+- **Title**: Brief description of the change
+  - Additional details if needed
+  - Links to related content: [Link Text](URL)
+\`\`\`
+
+### Change Type Icons
+- 🛠️ Site Improvements
+- 📚 Documentation Updates
+- 📝 Blog Posts
+- 🔧 Bug Fixes
+- 🎨 Design Changes
+- ⚡ Performance Improvements
+- 🔒 Security Updates
+- 📦 Dependencies
+```
+
+### 7. Git Commit Messages
+
+When updating changelog, use descriptive commit messages:
+
+- `docs: add {feature} documentation and update changelog`
+- `feat: implement {feature} and document in changelog`
+- `fix: resolve {issue} and update changelog`
+
+### 8. Link Guidelines
+
+- Use relative links starting with `/docs/` or `/blog/`
+- Always include links to new documentation or blog posts
+- Use descriptive link text, not "here" or "click here"
+
+## File Naming Conventions
+
+### Documentation Files
+
+- Use descriptive kebab-case names: `feature-name-guide.md`
+- Include dates for time-sensitive content: `2025-01-15-new-feature.md`
+- Group related files in appropriate subdirectories
+
+### Blog Posts
+
+- Always include date prefix: `YYYY-MM-DD-Post-Title.md`
+- Use title case for post titles
+- Keep filenames concise but descriptive
+
+## General Website Rules
+
+### Content Quality
+
+- Always include proper frontmatter in markdown files
+- Use consistent heading structure (start with h1, proper nesting)
+- Include alt text for images
+- Test all links before publishing
+
+### Code Examples
+
+- Use proper syntax highlighting
+- Include complete, runnable examples when possible
+- Explain context and prerequisites
+- Use consistent formatting and indentation
+
+### Documentation Structure
+
+- Start with clear overview/introduction
+- Include table of contents for longer docs
+- Use consistent section headers
+- End with related links or next steps
+
+Remember: The changelog is a key part of the website's value - it helps visitors discover new content and shows the site's evolution over time!

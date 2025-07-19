@@ -6,20 +6,42 @@ description: Changes and additions for January 2025
 
 # January 2025
 
-## 📅 2025-01-04
+## 📅 2025-01-24
 
-### 🛠️ Site Improvements
-- **Upgraded Docusaurus**: Updated from v2.3.1 to v3.8.1 for better performance and React 18 support
-  - Improved build times and modern React features
-  - Better plugin architecture for extensibility
-  - Enhanced development experience
+### 📚 Documentation Updates
 
-### 🛠️ Added Changelog System
-- **Implemented Changelog Plugin**: Added dedicated changelog functionality with separate `/changelog/` route
-  - Created structured changelog system with yearly organization
-  - Added navigation menu item for easy access
-  - Set up templates for consistent changelog entries
-  - Proper sidebar navigation for changelog sections
+- **GenAI Ambassador Notes - Model Safety**: Added model disgorgement methods for AI safety
+  - Enhanced documentation on responsible AI practices
+  - **Link**: [GenAI Ambassador Notes](/docs/engineer/AI/GenAIAmbassadorNotes)
+
+- **GenAI Ambassador Notes - Responsible AI**: Enhanced with Responsible AI guidelines and challenges
+  - Added comprehensive ethical AI considerations
+  - **Link**: [GenAI Ambassador Notes](/docs/engineer/AI/GenAIAmbassadorNotes)
+
+---
+
+## 📅 2025-01-22
+
+### 📚 Documentation Updates
+
+- **GenAI Ambassador Notes - Advanced Techniques**: Added Tree of Thought strategy and COSTAR framework
+  - Tree of Thought strategy for complex reasoning
+  - COSTAR framework for structured prompt engineering
+  - **Link**: [GenAI Ambassador Notes](/docs/engineer/AI/GenAIAmbassadorNotes)
+
+- **GenAI Ambassador Notes - Prompt Engineering**: Added detailed sections on prompt engineering techniques
+  - Comprehensive prompt engineering methodology
+  - **Link**: [GenAI Ambassador Notes](/docs/engineer/AI/GenAIAmbassadorNotes)
+
+---
+
+## 📅 2025-01-21
+
+### 📚 Documentation Updates
+
+- **GenAI Ambassador Notes - Started**: Initial creation of comprehensive GenAI documentation
+  - Started comprehensive AI/ML ambassador training notes
+  - **Link**: [GenAI Ambassador Notes](/docs/engineer/AI/GenAIAmbassadorNotes)
 
 ---
 
@@ -30,17 +52,19 @@ When adding new changelog entries, use this format:
 ```markdown
 ## 📅 YYYY-MM-DD
 
-### 🛠️ Site Improvements / 📚 Documentation Updates / 📝 Blog Posts / 🔧 Bug Fixes / 🎨 Design Changes
+### {CATEGORY}
 - **Title**: Brief description of the change
   - Additional details if needed
   - Links to related content: [Link Text](URL)
 ```
 
 ### Change Type Icons
+
 - 🛠️ Site Improvements
 - 📚 Documentation Updates
 - 📝 Blog Posts
 - 🔧 Bug Fixes
 - 🎨 Design Changes
 - ⚡ Performance Improvements
-- �� Security Updates
+- 🔒 Security Updates
+- 📦 Dependencies
