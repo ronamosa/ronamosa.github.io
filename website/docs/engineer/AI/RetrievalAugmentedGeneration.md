@@ -35,7 +35,7 @@ Looking at each step of the process - data, embeddings, retrieval and synthesis 
 
 Can you optimize... the data used? The way its embeddings are generated? The retrieval algorithm, can it be improved? Sythesis - can it be used to "reason over the data" and not just "generate and serve" the answer?
 
-::tip
+:::tip
 
 in order to improve anything you need to be task specific in what you're going to measure and why.
 

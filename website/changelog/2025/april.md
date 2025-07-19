@@ -14,7 +14,7 @@ description: Changes and additions for April 2025
   - Step-by-step CursorAI AppImage setup on GNOME Desktop
   - Desktop integration and shortcut creation
   - Application launcher configuration
-  - **Link**: [GNOME Desktop Shortcuts](/docs/engineer/LAB/gnome-desktop-shortcut.md)
+  - **Link**: [GNOME Desktop Shortcuts](/docs/engineer/LAB/gnome-desktop-shortcut)
 
 ---
 
