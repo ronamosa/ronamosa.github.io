@@ -13,11 +13,11 @@ description: Changes and additions for June 2025
 - **Pi-hole Security Guide**: Added comprehensive Pi-hole security documentation
   - **Pi-hole Compromise Detection**: Guide for checking and securing compromised Pi-hole instances
     - Detection methods and security indicators
-    - **Link**: [Pi-hole Compromise Check](/docs/engineer/LAB/pihole-compromise)
+    - **Link**: [Pi-hole Compromise Check](/docs/engineer/LAB/pihole-compromise.md)
   - **Pi-hole SERVFAIL Fix**: Documentation for fixing SERVFAIL errors with Unbound
     - Troubleshooting DNS resolution issues
     - Unbound configuration for Pi-hole
-    - **Link**: [Pi-hole SERVFAIL Fix](/docs/engineer/LAB/pihole-servfail-unbound)
+    - **Link**: [Pi-hole SERVFAIL Fix](/docs/engineer/LAB/pihole-servfail-unbound.md)
 
 ---
 
