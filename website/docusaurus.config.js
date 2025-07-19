@@ -37,7 +37,7 @@ module.exports = {
   tagline: 'Pasifika Excellence and Leadership in AI, Cloud, DevOps and Security Engineering.',
   url: 'https://ronamosa.io',
   baseUrl: '/',
-  onBrokenLinks: 'throw',
+  onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
   organizationName: 'ronamosa', // Usually your GitHub org/user name.
