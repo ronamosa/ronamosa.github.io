@@ -5,7 +5,7 @@ const socialLinks = [
   {
     faIcon: faMailBulk,
     alt: "Newsletter",
-    url: "https://www.uncommonengineer.com/",
+    url: "https://news.uncommonengineer.com/",
   },
   {
     faIcon: faYoutube,
