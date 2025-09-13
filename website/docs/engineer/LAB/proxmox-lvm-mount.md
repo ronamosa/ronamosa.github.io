@@ -1,10 +1,27 @@
 ---
-title: "Proxmox: Mount a Virtual Machine's Logical Volume (LV) from Proxmox Host"
+title: "Mount Proxmox VM Logical Volumes for Direct Filesystem Access"
+description: "Technical guide to mount and access Proxmox virtual machine logical volumes from the host system for troubleshooting, recovery, and filesystem modifications."
+keywords: ["proxmox", "lvm", "logical volume", "vm mount", "filesystem access", "vm recovery", "proxmox troubleshooting", "vm disk access"]
+tags: ["proxmox", "lvm", "troubleshooting", "virtualization", "system-admin"]
+sidebar_position: 4
 ---
 
 ## Background
 
 I created an Ubuntu VM using Packer, which was supposed to bootstrap my username & ssh_key access when the VM was running but instead the packer build process would time out and rollback destroying the VM and any logs I needed to troubleshoot what was happening. I managed to clone the VM before it was destroyed again, but there was no root account and I could see my username had made it into the `/etc/passwd` file by using `qm guest exec <vmid /> cat /etc/passwd` from the proxmox host. I couldn't use the `qm` command to try to set a password for my user, so I decided to go old school and mount the VM disk (volume) and edit things from there.
+
+## Related Proxmox Troubleshooting & Automation
+
+🔧 **Proxmox Troubleshooting Context**: This advanced technique complements the automation workflow:
+
+- **Root Cause**: [Packer VM Template Creation](./proxmox-packer-vm) - The original Packer process that led to this troubleshooting
+- **Prevention**: [Ansible VM Automation](./proxmox-cloudinit) - Automated deployment to avoid manual VM issues
+- **Complete Workflow**: [Proxmox Virtualization Hub](./proxmox-hub) - End-to-end Proxmox automation and management
+
+🏗️ **Advanced Infrastructure Skills**: Build comprehensive troubleshooting capabilities:
+
+- **Container Debugging**: [Kubernetes Troubleshooting](/docs/engineer/K8s/) - Similar debugging techniques for containers
+- **Home Lab Context**: [Home Lab Infrastructure Hub](./home-lab-hub) - Complete infrastructure troubleshooting strategies
 
 ## Overview
 

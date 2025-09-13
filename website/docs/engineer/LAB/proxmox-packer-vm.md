@@ -1,16 +1,31 @@
 ---
-title: "Proxmox: Create a cloud-init Template VM with Packer."
+title: "Create Cloud-Init VM Templates with Packer on Proxmox"
+description: "Complete guide to automate Proxmox VM template creation using Packer and cloud-init for Infrastructure as Code home lab setup. Includes troubleshooting and best practices."
+keywords: ["proxmox", "packer", "cloud-init", "vm template", "infrastructure as code", "home lab", "virtualization", "automation"]
+tags: ["proxmox", "packer", "iac", "virtualization", "home-lab"]
+sidebar_position: 1
 ---
 
 I wanted to setup IaC for my home lab Proxmox server to create VM templates first using Packer, and then Terraform for deploying 3-node K8s clusters for demos and learning. I originally followed ["Christian Lempa"](https://www.youtube.com/watch?v=1nf3WOEFq1Y) video and [boilerplates](https://github.com/ChristianLempa/boilerplates/tree/main/packer/proxmox), but couldn't get them to work so went on a long winding journey trying different configs and reading up on cloud-config, autoinstall and read a bunch of other blogs.
 
 I got it to finally work, which came back to almost the original configs by Christian, but with a lot more understanding.
 
+## Related Proxmox Guides
+
+📚 **Complete Proxmox Workflow**: This guide is part of a comprehensive Proxmox automation series:
+
+- **Next Step**: [Automate VM Deployment with Ansible](./proxmox-cloudinit) - Deploy VMs from your templates using Ansible playbooks
+- **Advanced**: [Proxmox Infrastructure with Terraform](./proxmox-terraform) - Orchestrate entire infrastructure deployments
+- **Troubleshooting**: [Mount VM Logical Volumes](./proxmox-lvm-mount) - Direct filesystem access for debugging
+- **Complete Collection**: [Proxmox Virtualization Hub](./proxmox-hub) - All Proxmox guides and best practices
+
+🏠 **Home Lab Integration**: [Home Lab Infrastructure Hub](./home-lab-hub) - Complete home lab setup with networking and automation
+
 ## Packer Process
 
 This is what the process looks like in a diagram as I understand it:
 
-![packer proxmox process](/img/packer-proxmox-process.png)
+![Packer Proxmox VM creation process flow diagram showing Packer API calls, VM creation, cloud-init configuration, and template conversion](/img/packer-proxmox-process.png)
 
 These are the steps:
 
@@ -335,7 +350,7 @@ TBC: I will screen record the process and embed it here.
 
 This is what success looks like:
 
-![packer proxmox success](/img/packer-proxmox-success.png)
+![Packer build success output showing successful Proxmox VM template creation with cloud-init configuration](/img/packer-proxmox-success.png)
 
 ## Troubleshooting
 

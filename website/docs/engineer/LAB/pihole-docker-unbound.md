@@ -1,5 +1,9 @@
 ---
-title: "Setting up Pi-hole with Unbound for Privacy-Focused DNS in Docker"
+title: "Pi-hole with Unbound DNS: Complete Docker Setup for Privacy & Ad-Blocking"
+description: "Deploy Pi-hole and Unbound recursive DNS resolver in Docker for private, ad-free networking. Comprehensive guide with Docker Compose configuration and troubleshooting."
+keywords: ["pi-hole", "unbound", "dns", "docker", "ad blocking", "privacy", "recursive dns", "docker-compose"]
+tags: ["pi-hole", "dns", "docker", "privacy", "networking", "home-lab"]
+sidebar_position: 5
 ---
 
 This guide walks through setting up Pi-hole with Unbound as a recursive DNS resolver using Docker. This combination provides ad-blocking functionality while ensuring DNS privacy by avoiding third-party DNS providers.
@@ -7,6 +11,20 @@ This guide walks through setting up Pi-hole with Unbound as a recursive DNS reso
 :::info
 This guide is based on real-world implementation and troubleshooting. Each step represents hard-earned knowledge from overcoming various challenges.
 :::
+
+## Related Networking & Infrastructure Guides
+
+🌐 **DNS & Network Security**: Expand your networking infrastructure:
+
+- **DNS Optimization**: [Pi-hole DNS Configuration](./pihole-dns) - Advanced DNS setup and performance tuning
+- **Security Monitoring**: [Pi-hole Compromise Detection](./pihole-compromise) - Network security and intrusion detection
+- **DNS Troubleshooting**: [Pi-hole SERVFAIL Issues](./pihole-servfail-unbound) - Resolve common DNS problems
+
+🏗️ **Infrastructure Integration**: Connect with broader home lab setup:
+
+- **Virtualization Platform**: [Proxmox Virtualization Hub](./proxmox-hub) - Host Pi-hole on Proxmox VMs
+- **Container Orchestration**: [Kubernetes Deployment](/docs/engineer/K8s/) - Scale DNS services with K8s
+- **Complete Lab Guide**: [Home Lab Infrastructure Hub](./home-lab-hub) - Full networking and automation setup
 
 ## Prerequisites
 
@@ -199,11 +217,11 @@ Access the Pi-hole web interface at `http://host-server-ip/admin/` (password is 
    - Set your local domain (example: "playtime.lan")
    - Enable "Expand hostnames" if you want to use simple hostnames in your local network
 
-![Domain Settings](/img/pihole-docker-dns1.png)
+![Pi-hole admin interface DNS settings showing upstream DNS server configuration for Unbound integration](/img/pihole-docker-dns1.png)
 
 Custom settings, `unbound` is our upstream:
 
-![Domain Custom Settings](/img/pihole-docker-dns2.png)
+![Pi-hole custom DNS configuration panel with conditional forwarding and upstream resolver settings](/img/pihole-docker-dns2.png)
 
 ## Host Configuration
 
@@ -329,7 +347,7 @@ Success!! ...
 
 but only if you see 1x ISP there and it's yours.
 
-![DNS Leak Test Results](/img/pihole-docker-leak1.png)
+![DNS leak test results showing successful privacy configuration with no DNS leaks detected](/img/pihole-docker-leak1.png)
 
 ## Troubleshooting
 

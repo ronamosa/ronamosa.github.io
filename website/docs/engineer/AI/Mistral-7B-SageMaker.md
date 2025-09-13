@@ -1,5 +1,9 @@
 ---
-title: "Mistral-7B using Ollama on AWS SageMaker"
+title: "Deploy Mistral-7B LLM with Ollama on AWS SageMaker"
+description: "Complete tutorial for deploying and running Mistral-7B large language model using Ollama on AWS SageMaker. Includes setup, configuration, and usage examples."
+keywords: ["mistral-7b", "ollama", "aws sagemaker", "llm deployment", "large language model", "ai", "machine learning", "aws ai"]
+tags: ["ai", "llm", "aws", "sagemaker", "mistral", "ollama"]
+sidebar_position: 1
 ---
 
 :::info
@@ -8,25 +12,40 @@ Playing with OpenSource LLMs on some super-powered AWS instances.
 
 :::
 
+## Related AI & Machine Learning Projects
+
+🤖 **AI Infrastructure & Deployment**: Expand your AI/ML capabilities:
+
+- **Local AI Setup**: [PrivateGPT Local Deployment](/docs/engineer/AI/PrivateGPT) - Privacy-focused AI on your own hardware
+- **AWS Private AI**: [PrivateGPT on AWS](/docs/engineer/AI/PrivateGPTAWS) - Secure cloud-based AI deployment
+- **Production AI**: [Deploy LLMs to SageMaker](/docs/engineer/AI/DeployLLMToSageMaker) - Scale AI models in production
+- **AI Services Integration**: [AWS Bedrock + LangChain](/docs/engineer/AI/BedrockLangChainWorkshop1) - Enterprise AI workflows
+
+🏗️ **Infrastructure Context**: Power your AI workloads with robust infrastructure:
+
+- **AI Hub**: [AI & Machine Learning Projects Hub](/docs/engineer/AI/ai-projects-hub) - Complete AI project collection and roadmap
+- **Infrastructure Hosting**: [Home Lab Infrastructure Hub](/docs/engineer/LAB/home-lab-hub) - Self-hosted AI infrastructure
+- **Cloud Integration**: [AWS Services](/docs/engineer/AWS/) - Cloud-native AI deployment strategies
+
 ## Login to AWS
 
 Login to your AWS account.
 
 Go to SageMaker, Studio, click `Open Studio`
 
-![Sagemaker](/img/Mistral7B-SageMaker.png)
+![AWS SageMaker console dashboard showing Studio access button for launching machine learning environment](/img/Mistral7B-SageMaker.png)
 
 This is SageMaker Studio
 
-![Sagemaker](/img/Mistral7B-SageMaker-Studio.png)
+![SageMaker Studio main interface displaying JupyterLab spaces and development environment options](/img/Mistral7B-SageMaker-Studio.png)
 
 View JupyterLab spaces
 
-![Sagemaker](/img/Mistral7B-JupyterLab.png)
+![SageMaker JupyterLab spaces overview showing available computing environments for machine learning projects](/img/Mistral7B-JupyterLab.png)
 
 Create JupyterLab space - "OpenSourceLLM"
 
-![Sagemaker](/img/Mistral7B-JupyterLab-CreateSpace.png)
+![Create new JupyterLab space dialog for setting up OpenSource LLM development environment](/img/Mistral7B-JupyterLab-CreateSpace.png)
 
 In the workspace, I chose:
 
