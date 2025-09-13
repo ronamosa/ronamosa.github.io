@@ -1,10 +1,7 @@
 ---
 title: "Building an AI Twitter Bot Project Using GPT2 and Google Cloud."
-author: Ron Amosa
-author_title: Platform Security Engineer @ Salesforce U.S.
-author_url: https://github.com/ronamosa
-author_image_url: https://github.com/ronamosa.png
 tags: [project, bot]
+authors: [ronamosa]
 ---
 
 As I’m prone to do, I started a new project. Yes, without finishing my other projects.

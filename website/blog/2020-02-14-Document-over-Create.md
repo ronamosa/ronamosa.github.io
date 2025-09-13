@@ -1,10 +1,7 @@
 ---
 title: "Documenting the Journey: The Hardest Thing About Getting Anywhere, Is Starting Somewhere."
-author: Ron Amosa
-author_title: Platform Security Engineer @ Salesforce U.S.
-author_url: https://github.com/ronamosa
-author_image_url: https://github.com/ronamosa.png
 tags: [personal]
+authors: [ronamosa]
 ---
 
 ## Failing to Start

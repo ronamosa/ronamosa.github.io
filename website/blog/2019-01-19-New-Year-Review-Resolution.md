@@ -1,10 +1,7 @@
 ---
 title: "Starting the Year With a New Contract: Resolutions, Goals and Doing Good Work. "
-author: Ron Amosa
-author_title: Platform Security Engineer @ Salesforce U.S.
-author_url: https://github.com/ronamosa
-author_image_url: https://github.com/ronamosa.png
 tags: [career, goals]
+authors: [ronamosa]
 ---
 
 Going over the holiday period and into the new year, as a contractor, usually means time off work, which means you're not getting paid. If you haven't been keeping your finances in check, this might be cause for alarm, anxiety, even panic. Otherwise, its par for the course of the contractors life.

@@ -1,10 +1,7 @@
 ---
 title: "2022. Remember Death."
-author: Ron Amosa
-author_title: Platform Security Engineer @ Salesforce U.S.
-author_url: https://github.com/ronamosa
-author_image_url: https://github.com/ronamosa.png
 tags: [personal]
+authors: [ronamosa]
 ---
 
 Today starts another year, and as much as I don't believe in new years resolutions (basically just plans you end up forgetting about by Feb), "making plans" and trying to see them through, is something I believe in. And the fact it just happens to coincide with the beginning of the year is more a convenience than anything.

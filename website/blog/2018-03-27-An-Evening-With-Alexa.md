@@ -1,10 +1,7 @@
 ---
 title: "An Evening with Alexa, Privacy and the Voice of the Future."
-author: Ron Amosa
-author_title: Platform Security Engineer @ Salesforce U.S.
-author_url: https://github.com/ronamosa
-author_image_url: https://github.com/ronamosa.png
 tags: [privacy, project]
+authors: [ronamosa]
 ---
 
 I bought myself an Amazon Echo Dot.

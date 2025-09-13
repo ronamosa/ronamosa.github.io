@@ -1,10 +1,7 @@
 ---
 title: "I Started a Twitch Stream Today and the Goal Is Not to Be a Streamer."
-author: Ron Amosa
-author_title: Platform Security Engineer @ Salesforce U.S.
-author_url: https://github.com/ronamosa
-author_image_url: https://github.com/ronamosa.png
 tags: [personal]
+authors: [ronamosa]
 ---
 
 I started a [Twitch](https://www.twitch.tv/rxhackk) stream today.

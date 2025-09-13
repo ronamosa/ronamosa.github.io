@@ -1,10 +1,7 @@
 ---
 title: "Understanding and Navigating Workplace Stress and When to Get Out"
-author: Ron Amosa
-author_title: Platform Security Engineer @ Salesforce U.S.
-author_url: https://github.com/ronamosa
-author_image_url: https://github.com/ronamosa.png
 tags: [career, working]
+authors: [ronamosa]
 ---
 
 One thing I used to see a lot of when I was a permanent employee, and experience myself, was the pressure to deliver some pretty crazy project requirements in a short amount of time and the stress management that needs to happen alongside it.

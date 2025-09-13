@@ -1,10 +1,25 @@
 ---
-title: "Proxmox: Cloud Init VM Setup With Ansible-Playbooks"
+title: "Automate Proxmox VM Deployment with Ansible Cloud-Init Playbooks"
+description: "Step-by-step guide to configure Proxmox for automated VM provisioning using Ansible playbooks and cloud-init templates. Includes API setup and troubleshooting."
+keywords: ["proxmox", "ansible", "cloud-init", "vm automation", "playbooks", "infrastructure automation", "proxmox api", "vm provisioning"]
+tags: ["proxmox", "ansible", "automation", "cloud-init", "iac"]
+sidebar_position: 2
 ---
 
 ## Overview
 
 Basically what we're trying to setup is a Proxmox Host that can run Ansible playbooks against to create cloud-init enabled virtual machines from a pre-made template we source from official cloud sources.
+
+## Related Proxmox Guides
+
+📚 **Complete Automation Workflow**: This guide builds on previous Proxmox automation:
+
+- **Prerequisites**: [Create VM Templates with Packer](./proxmox-packer-vm) - Build the cloud-init templates first
+- **Next Level**: [Infrastructure Orchestration with Terraform](./proxmox-terraform) - Manage entire environments declaratively  
+- **Troubleshooting**: [Mount VM Logical Volumes](./proxmox-lvm-mount) - Debug VM issues with direct filesystem access
+- **Complete Collection**: [Proxmox Virtualization Hub](./proxmox-hub) - All Proxmox automation guides
+
+🏠 **Infrastructure Context**: [Home Lab Infrastructure Hub](./home-lab-hub) - Complete home lab networking and automation setup
 
 ### Systems / Architecture Diagram
 
@@ -14,7 +29,7 @@ What you can see here is the following:
 * a console session as `root@pam` user which sources an official cloud image and create a cloud-init enabled template from it
 * the playbook successfully creates `clone vm 1` and `clone vm 2` from the template.
 
-![proxmox architecture](/img/proxmox-architecture.png)
+![Proxmox Ansible automation architecture diagram showing desktop client, Proxmox host with API, and automated VM deployment workflow](/img/proxmox-architecture.png)
 
 ## Proxmox Host Setup
 
@@ -38,15 +53,15 @@ I've opted to use API tokens instead of my users account credentials for securit
 
 On your proxmox host, go to `Datacenter-> API Tokens`:
 
-![api tokens](/img/proxmox-apitoken1.png)
+![Proxmox datacenter permissions interface showing API token creation and user permission configuration](/img/proxmox-apitoken1.png)
 
 and create a token under your chosen user:
 
-![api tokens](/img/proxmox-usertoken.png)
+![Proxmox API token creation dialog with user selection and privilege configuration options](/img/proxmox-usertoken.png)
 
 here are your token id and secret, make a note as you'll need them later on in our ansible playbooks:
 
-![api tokens](/img/proxmox-usertokensecret.png)
+![Proxmox generated API token secret display with security warning and copy functionality](/img/proxmox-usertokensecret.png)
 
 :::info tokenid
 
@@ -125,7 +140,7 @@ qm template 9000
 
 You should now have a template in your GUI that looks like this:
 
-![api tokens](/img/proxmox-template9000.png)
+![Proxmox VM list showing cloud-init template VM 9000 with Ubuntu configuration ready for cloning](/img/proxmox-template9000.png)
 
 ## Create VMs from cloud-init template
 

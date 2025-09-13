@@ -1,10 +1,7 @@
 ---
 title: "Why Its Important to ‘What You Know’ When Everyone Else Is Doing ‘Who You Know'"
-author: Ron Amosa
-author_title: Platform Security Engineer @ Salesforce U.S.
-author_url: https://github.com/ronamosa
-author_image_url: https://github.com/ronamosa.png
 tags: [career]
+authors: [ronamosa]
 ---
 
 I've been thinking about the idea behind the saying _"it's not what you know, its who you know"_ as I've gone about various tasks over the last couple of weeks.

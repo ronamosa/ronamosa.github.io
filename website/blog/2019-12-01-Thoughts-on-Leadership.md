@@ -1,10 +1,7 @@
 ---
 title: "What I’ve Learned About Good Leaders, Bad Leaders in My Time in Technology."
-author: Ron Amosa
-author_title: Platform Security Engineer @ Salesforce U.S.
-author_url: https://github.com/ronamosa
-author_image_url: https://github.com/ronamosa.png
 tags: [career]
+authors: [ronamosa]
 ---
 
 In recent times the issue of leadership has been a factor in the quality and felt experience of projects I have been across in my contracting career. These have ranged from feeling like everyone's a leader, having their own say and ideas on where the project should be going, to completely zero ideas on what the team is doing and everyone suddenly wants to know what the floor looks like when they're asked who's supposed to be doing what.

@@ -1,10 +1,7 @@
 ---
 title: "How a Broader Range of Specific Skills Kept Me in-Demand as an Engineer."
-author: Ron Amosa
-author_title: Platform Security Engineer @ Salesforce U.S.
-author_url: https://github.com/ronamosa
-author_image_url: https://github.com/ronamosa.png
 tags: [career]
+authors: [ronamosa]
 ---
 
 Guys in my position are generally pretty busy people. We're usually outnumbered by requests, situations, questions, tasks and people to help, manage or get back to.

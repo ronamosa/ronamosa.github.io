@@ -1,10 +1,7 @@
 ---
 title: "Working Through the Holidays as a Contractor: Make Hay While the Sun Shines."
-author: Ron Amosa
-author_title: Platform Security Engineer @ Salesforce U.S.
-author_url: https://github.com/ronamosa
-author_image_url: https://github.com/ronamosa.png
 tags: [career, contractor]
+authors: [ronamosa]
 ---
 
 ## Holidays and Contracting

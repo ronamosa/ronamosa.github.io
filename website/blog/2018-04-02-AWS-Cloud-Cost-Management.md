@@ -1,10 +1,7 @@
 ---
 title: "AWS and the Real Cost of Running Your Infrastructure in the Cloud."
-author: Ron Amosa
-author_title: Platform Security Engineer @ Salesforce U.S.
-author_url: https://github.com/ronamosa
-author_image_url: https://github.com/ronamosa.png
 tags: [cloud, aws]
+authors: [ronamosa]
 ---
 
 Monitoring AWS costs is tricker than you may think. Cloud cost management as a general topic is the bane of a lot of business expenses.

@@ -1,10 +1,7 @@
 ---
 title: "How Patience and Perseverance Play Their Part in Progressing Your Career."
-author: Ron Amosa
-author_title: Platform Security Engineer @ Salesforce U.S.
-author_url: https://github.com/ronamosa
-author_image_url: https://github.com/ronamosa.png
 tags: [career, personal]
+authors: [ronamosa]
 ---
 
 Now you might be saying "no duh", because you'll see a version of this very notion every which way but loose.

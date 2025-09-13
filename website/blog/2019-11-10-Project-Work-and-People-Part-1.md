@@ -1,10 +1,7 @@
 ---
 title: "The Project Delivery Space and the People That Make and Break It - Pt. 1"
-author: Ron Amosa
-author_title: Platform Security Engineer @ Salesforce U.S.
-author_url: https://github.com/ronamosa
-author_image_url: https://github.com/ronamosa.png
 tags: [working]
+authors: [ronamosa]
 ---
 
 I've worked in the _Project Delivery_ space for almost 10 years now. I'm not even sure that's an official "space".

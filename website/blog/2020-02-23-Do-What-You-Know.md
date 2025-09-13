@@ -1,10 +1,7 @@
 ---
 title: "When Starting Out and in Doubt About What You Should Do? Do What You Know."
-author: Ron Amosa
-author_title: Platform Security Engineer @ Salesforce U.S.
-author_url: https://github.com/ronamosa
-author_image_url: https://github.com/ronamosa.png
 tags: [personal]
+authors: [ronamosa]
 ---
 
 I've been doing infrastructure in some way for a while now. I started with Linux System Administration, web servers, setting up routers, switches and how the network is setup to feed all devices that live there. Working on cloud infrastructure itself is relatively new for me but then again, its the same thing...

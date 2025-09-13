@@ -1,10 +1,7 @@
 ---
 title: "So I Decided to Run a Code Club - Part 1"
-author: Ron Amosa
-author_title: Platform Security Engineer @ Salesforce U.S.
-author_url: https://github.com/ronamosa
-author_image_url: https://github.com/ronamosa.png
 tags: [community]
+authors: [ronamosa]
 ---
 
 ## So I Started a Code Club Last Year

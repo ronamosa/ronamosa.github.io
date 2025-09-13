@@ -1,10 +1,7 @@
 ---
 title: "My Career Start as an Accidental Systems Engineer"
-author: Ron Amosa
-author_title: Platform Security Engineer @ Salesforce U.S.
-author_url: https://github.com/ronamosa
-author_image_url: https://github.com/ronamosa.png
 tags: [career]
+authors: [ronamosa]
 ---
 
 Understandably [Morpheus](http://www.imdb.com/title/tt0133093/characters/nm0000401?ref_=tt_cl_t2) had a bleak outlook on Systems, but it doesn't have to be our enemy.

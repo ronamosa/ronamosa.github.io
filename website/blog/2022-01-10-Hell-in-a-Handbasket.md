@@ -1,10 +1,7 @@
 ---
 title: "Going to Hell in a Handbasket"
-author: Ron Amosa
-author_title: Platform Security Engineer @ Salesforce U.S.
-author_url: https://github.com/ronamosa
-author_image_url: https://github.com/ronamosa.png
 tags: [personal]
+authors: [ronamosa]
 ---
 
 I remember this saying from many years back- growing up in rural, very white, South Canterbury will expose you to a lot of weird phrases like this.

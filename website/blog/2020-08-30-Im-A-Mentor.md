@@ -1,10 +1,7 @@
 ---
 title: "Mentoring: Because Everyone Has Something They Can Give."
-author: Ron Amosa
-author_title: Platform Security Engineer @ Salesforce U.S.
-author_url: https://github.com/ronamosa
-author_image_url: https://github.com/ronamosa.png
 tags: [personal, mentoring]
+authors: [ronamosa]
 ---
 
 I'm a mentor.

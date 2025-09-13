@@ -1,10 +1,7 @@
 ---
 title: "Deep Work, Problem Solving and Workplace Interruption."
-author: Ron Amosa
-author_title: Platform Security Engineer @ Salesforce U.S.
-author_url: https://github.com/ronamosa
-author_image_url: https://github.com/ronamosa.png
 tags: [career, working]
+authors: [ronamosa]
 ---
 
 If you work in an office, especially in I.T., a big part of your day is problem solving and trying to do some ["deep work"](https://www.amazon.com/Deep-Work-Focused-Success-Distracted/dp/1455586692).

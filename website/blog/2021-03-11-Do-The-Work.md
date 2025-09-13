@@ -1,10 +1,7 @@
 ---
 title: "The Distance Between Thinking and Knowing Is Bridged Only by This: Doing the Work."
-author: Ron Amosa
-author_title: Platform Security Engineer @ Salesforce U.S.
-author_url: https://github.com/ronamosa
-author_image_url: https://github.com/ronamosa.png
 tags: [personal]
+authors: [ronamosa]
 ---
 
 A lot of anxiety comes from uncertainty.
