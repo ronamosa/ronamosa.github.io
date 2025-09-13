@@ -1,10 +1,7 @@
 ---
 title: "A Runaway AWS EC2 Instance Blows up My Cloud Costs."
-author: Ron Amosa
-author_title: Platform Security Engineer @ Salesforce U.S.
-author_url: https://github.com/ronamosa
-author_image_url: https://github.com/ronamosa.png
 tags: [cloud, aws]
+authors: [ronamosa]
 ---
 
 AWS have this little note on their "[Avoiding Unexpected Charges](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/checklistforunwantedcharges.html)" page that reads...

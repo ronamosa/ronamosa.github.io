@@ -1,10 +1,7 @@
 ---
 title: "New Technology and Devops Is Useless If We Keep Applying the Same Thinking and Mindset That Devops Came to Fix."
-author: Ron Amosa
-author_title: Platform Security Engineer @ Salesforce U.S.
-author_url: https://github.com/ronamosa
-author_image_url: https://github.com/ronamosa.png
 tags: [career, devops]
+authors: [ronamosa]
 ---
 
 I only heard of DevOps maybe just over a year ago.

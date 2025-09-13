@@ -1,10 +1,7 @@
 ---
 title: "Productivity Tools & Tips for the Professional DevOps Engineer - Part 2."
-author: Ron Amosa
-author_title: Platform Security Engineer @ Salesforce U.S.
-author_url: https://github.com/ronamosa
-author_image_url: https://github.com/ronamosa.png
 tags: [career, devops, tools]
+authors: [ronamosa]
 ---
 
 In Part 1, we looked at the apps and other tools that I come across and use not only in my day to day work as a contractor, but also in my personal projects as well.

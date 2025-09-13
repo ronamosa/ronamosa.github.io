@@ -1,10 +1,7 @@
 ---
 title: "The Wonderful World of Contracting: Its Not Personal. Its Business."
-author: Ron Amosa
-author_title: Platform Security Engineer @ Salesforce U.S.
-author_url: https://github.com/ronamosa
-author_image_url: https://github.com/ronamosa.png
 tags: [career, contractor]
+authors: [ronamosa]
 ---
 
 You work for a company. It's a business. It's trying to make money.

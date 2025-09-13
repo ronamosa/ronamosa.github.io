@@ -4,7 +4,7 @@ description: "Comprehensive collection of Proxmox virtualization guides covering
 keywords: ["proxmox", "virtualization", "vm automation", "infrastructure as code", "packer", "ansible", "terraform", "home lab"]
 tags: ["proxmox", "virtualization", "automation", "iac", "home-lab"]
 sidebar_position: 0
-slug: /engineer/LAB/proxmox
+slug: /engineer/LAB/proxmox-hub
 ---
 
 # Proxmox Virtualization Hub

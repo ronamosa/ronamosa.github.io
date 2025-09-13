@@ -1,10 +1,7 @@
 ---
 title: "The Pain and Reality of How Legacy Systems Prop Up and Hold Back Businesses."
-author: Ron Amosa
-author_title: Platform Security Engineer @ Salesforce U.S.
-author_url: https://github.com/ronamosa
-author_image_url: https://github.com/ronamosa.png
 tags: [working]
+authors: [ronamosa]
 ---
 
 To tell you the truth legacy systems have been the bane of my career. The technology is outdated, limited, often restricted by surrounding legacy systems and then vulnerable security-wise. Often in my role I'll be tasked with figuring out and delivering a re-configuring, upgrade, migration of old applications, using old software running on outdated operating systems.

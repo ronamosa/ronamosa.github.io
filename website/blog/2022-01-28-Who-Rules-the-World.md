@@ -1,10 +1,7 @@
 ---
 title: "Who Rules the World and What We Do About It."
-author: Ron Amosa
-author_title: Platform Security Engineer @ Salesforce U.S.
-author_url: https://github.com/ronamosa
-author_image_url: https://github.com/ronamosa.png
 tags: [personal]
+authors: [ronamosa]
 ---
 
 I just got finished Noam Chomsky's ["Who Rules the World?"](https://www.goodreads.com/book/show/28514478-who-rules-the-world) and boy what a harrowing read.

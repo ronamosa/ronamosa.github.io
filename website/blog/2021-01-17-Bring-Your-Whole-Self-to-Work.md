@@ -1,10 +1,7 @@
 ---
 title: "When the Environment Is Right You Can Bring Your Whole Self to Work"
-author: Ron Amosa
-author_title: Platform Security Engineer @ Salesforce U.S.
-author_url: https://github.com/ronamosa
-author_image_url: https://github.com/ronamosa.png
 tags: [personal, working]
+authors: [ronamosa]
 ---
 
 It's not something I think people often think about.

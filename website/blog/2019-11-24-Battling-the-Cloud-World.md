@@ -1,10 +1,7 @@
 ---
 title: "The True Cloud Revolution and How Its Disrupting the Whole Organization."
-author: Ron Amosa
-author_title: Platform Security Engineer @ Salesforce U.S.
-author_url: https://github.com/ronamosa
-author_image_url: https://github.com/ronamosa.png
 tags: [cloud]
+authors: [ronamosa]
 ---
 
 I'm not 100% sure "Where I was when cloud became a thing", but I clearly remember life before cloud and life as it is now. It's a cloud world. And we're all just trying to figure out what that means for most of us and the companies we work for.

@@ -1,10 +1,7 @@
 ---
 title: "Why I’m Okay With Being the Dumbest Guy on the Team"
-author: Ron Amosa
-author_title: Platform Security Engineer @ Salesforce U.S.
-author_url: https://github.com/ronamosa
-author_image_url: https://github.com/ronamosa.png
 tags: [career]
+authors: [ronamosa]
 ---
 
 "Dumbest" is probably a harsh way of putting it.

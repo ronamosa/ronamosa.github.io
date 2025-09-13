@@ -1,10 +1,7 @@
 ---
 title: "The Pros, Cons and WTF of Life as a DevOps Engineer"
-author: Ron Amosa
-author_title: Platform Security Engineer @ Salesforce U.S.
-author_url: https://github.com/ronamosa
-author_image_url: https://github.com/ronamosa.png
 tags: [career, devops]
+authors: [ronamosa]
 ---
 
 With all this crazy technology around working as a devops engineer it's easy to get caught up designing and building something really complex that does a lot of stuff.

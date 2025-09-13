@@ -1,10 +1,7 @@
 ---
 title: "Why You and Your Company Are Failing at DevOps."
-author: Ron Amosa
-author_title: Platform Security Engineer @ Salesforce U.S.
-author_url: https://github.com/ronamosa
-author_image_url: https://github.com/ronamosa.png
 tags: [career, working, devops]
+authors: [ronamosa]
 ---
 
 

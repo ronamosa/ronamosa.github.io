@@ -1,10 +1,7 @@
 ---
 title: "Checking Your Privilege: An Exercise in Not Lying to Yourself About How You Got to Where You Are Now."
-author: Ron Amosa
-author_title: Platform Security Engineer @ Salesforce U.S.
-author_url: https://github.com/ronamosa
-author_image_url: https://github.com/ronamosa.png
 tags: [personal]
+authors: [ronamosa]
 ---
 
 I read this brilliantly written piece by media theorist [Douglas Rushkoff](https://en.wikipedia.org/wiki/Douglas_Rushkoff) called _["The Privileged Have Entered Their Escape Pods"](https://onezero.medium.com/the-privileged-have-entered-their-escape-pods-4706b4893af7)_.

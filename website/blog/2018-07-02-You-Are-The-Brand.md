@@ -1,10 +1,7 @@
 ---
 title: "You Are the Brand."
-author: Ron Amosa
-author_title: Platform Security Engineer @ Salesforce U.S.
-author_url: https://github.com/ronamosa
-author_image_url: https://github.com/ronamosa.png
 tags: [career]
+authors: [ronamosa]
 ---
 
 In this day there's little privacy, everyone's information and what they're up to is all over social media and if you want to find out what people are saying, where they work what they do - its all online.

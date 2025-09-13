@@ -1,10 +1,7 @@
 ---
 title: "Thinking About Market Validation During the Slow Code Weeks."
-author: Ron Amosa
-author_title: Platform Security Engineer @ Salesforce U.S.
-author_url: https://github.com/ronamosa
-author_image_url: https://github.com/ronamosa.png
 tags: []
+authors: [ronamosa]
 ---
 
 It's been a busy work at work, but definitely a grind to make progress on the infrastructure code this week. And the balancing act between work and the side hustle has cost me a bit of sleep. Nothing I'm not already used to being a career computer geek - staying up late trying to make something work, or playing with some new tech, or surfing tech twitter is standard operating procedure.

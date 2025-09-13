@@ -128,6 +128,8 @@ module.exports = {
           editCurrentVersion: false,
           editUrl:
             'https://github.com/ronamosa/ronamosa.github.io/edit/main/website/',
+          showLastUpdateTime: true,
+          showLastUpdateAuthor: true,
         },
         blog: {
           showReadingTime: true,

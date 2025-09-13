@@ -1,10 +1,7 @@
 ---
 title: "Reading More, Writing Better and Learning in Public During Lock-Down."
-author: Ron Amosa
-author_title: Platform Security Engineer @ Salesforce U.S.
-author_url: https://github.com/ronamosa
-author_image_url: https://github.com/ronamosa.png
 tags: [personal]
+authors: [ronamosa]
 ---
 
 I'm not a great reader.

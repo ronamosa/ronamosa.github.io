@@ -1,10 +1,7 @@
 ---
 title: "How Writing My First Tech Talk About Cloud Security Benefits More Than Just Technical People"
-author: Ron Amosa
-author_title: Platform Security Engineer @ Salesforce U.S.
-author_url: https://github.com/ronamosa
-author_image_url: https://github.com/ronamosa.png
 tags: [personal, talk]
+authors: [ronamosa]
 ---
 
 I was asked to give a talk at an upcoming DevOps event, so I'm in the first stages of planning what I'm going to present.

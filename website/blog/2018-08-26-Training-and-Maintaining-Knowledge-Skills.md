@@ -1,10 +1,7 @@
 ---
 title: "Investing in Yourself, Your Education and Skills to Stay Ahead of the Game."
-author: Ron Amosa
-author_title: Platform Security Engineer @ Salesforce U.S.
-author_url: https://github.com/ronamosa
-author_image_url: https://github.com/ronamosa.png
 tags: [career]
+authors: [ronamosa]
 ---
 
 > “There may be people that have more talent than you, but theres no excuse for anyone to work harder than you do.” - Derek Jeter.

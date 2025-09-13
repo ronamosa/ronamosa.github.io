@@ -8,8 +8,19 @@ description: Changes and additions for September 2025
 
 ## 📅 2025-09-13
 
+### 🔧 Bug Fixes
+- **Blog Authors Configuration**: Created centralized authors.yml file and updated blog posts to use author keys instead of inline author information, resolving Docusaurus warnings about author configuration
+
+---
+
+
+## 📅 2025-09-13
+
 ### 🛠️ Site Improvements
 - **SEO Optimization**: Comprehensive SEO improvements including enhanced frontmatter metadata, optimized image alt text, strategic internal linking, and topic hub landing pages for better search visibility and user navigation
+
+### 🔧 Bug Fixes
+- **Blog Authors Configuration**: Created centralized `authors.yml` file and updated blog posts to use author keys instead of inline author information, resolving Docusaurus warnings about author configuration
 
 ---
 

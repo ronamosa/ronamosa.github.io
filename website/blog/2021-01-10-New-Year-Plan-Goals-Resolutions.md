@@ -1,10 +1,7 @@
 ---
 title: "2021: New Year, Goals, Plans and Resolutions to Make the Most of the New Pandemic World Order."
-author: Ron Amosa
-author_title: Platform Security Engineer @ Salesforce U.S.
-author_url: https://github.com/ronamosa
-author_image_url: https://github.com/ronamosa.png
 tags: [personal]
+authors: [ronamosa]
 ---
 
 Happy New Year!

@@ -1,10 +1,7 @@
 ---
 title: "Too Busy Being Busy: Documenting the Whole Journey, Even the Rubbish Parts. "
-author: Ron Amosa
-author_title: Platform Security Engineer @ Salesforce U.S.
-author_url: https://github.com/ronamosa
-author_image_url: https://github.com/ronamosa.png
 tags: [personal]
+authors: [ronamosa]
 ---
 
 I have to be honest, this side project journey isn't going how I had imagined.

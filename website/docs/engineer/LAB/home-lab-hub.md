@@ -52,9 +52,9 @@ Automate your entire lab environment:
 - **[Terraform Orchestration](./proxmox-terraform)**: Declarative infrastructure
 
 **Container Orchestration**
-- **[Kubernetes Deployment](/docs/engineer/K8s/)**: Container platform setup
-- **[Docker Swarm](/docs/engineer/K8s/)**: Alternative orchestration
-- **[Service Mesh](/docs/engineer/K8s/)**: Advanced networking
+- **Kubernetes Deployment**: Container platform setup and management
+- **Docker Swarm**: Alternative orchestration platform
+- **Service Mesh**: Advanced networking and service management
 
 ### CI/CD Pipeline Infrastructure
 Development and deployment automation:
@@ -162,10 +162,10 @@ graph LR
 ### Phase 2: Automation (Weeks 3-4)
 1. **[Ansible Integration](./proxmox-cloudinit)**: Configuration management
 2. **[Terraform Deployment](./proxmox-terraform)**: Infrastructure orchestration
-3. **[CI/CD Pipeline](/docs/engineer/K8s/)**: Development automation
+3. **CI/CD Pipeline**: Development automation and deployment
 
 ### Phase 3: Advanced Services (Weeks 5-8)
-1. **[Kubernetes Cluster](/docs/engineer/K8s/)**: Container orchestration
+1. **Kubernetes Cluster**: Container orchestration and management
 2. **[AI/ML Platform](/docs/engineer/AI/)**: Machine learning infrastructure
 3. **[Security Hardening](/docs/hacker/)**: Comprehensive security
 
@@ -201,9 +201,9 @@ graph LR
 ## 🔗 Related Engineering Domains
 
 **Cloud Integration**
-- [AWS Infrastructure](/docs/engineer/AWS/) - Hybrid cloud architectures
-- [Azure Services](/docs/engineer/Azure/) - Microsoft cloud integration
-- [GCP Platform](/docs/engineer/GCP/) - Google Cloud connectivity
+- **AWS Infrastructure** - Hybrid cloud architectures and services
+- **Azure Services** - Microsoft cloud integration and platforms
+- **GCP Platform** - Google Cloud connectivity and services
 
 **Security & Penetration Testing**
 - [Security Lab Setup](/docs/hacker/) - Isolated testing environments

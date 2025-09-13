@@ -1,10 +1,7 @@
 ---
 title: "How Toxic Egos and Expectations Make For Bad Workplaces"
-author: Ron Amosa
-author_title: Platform Security Engineer @ Salesforce U.S.
-author_url: https://github.com/ronamosa
-author_image_url: https://github.com/ronamosa.png
 tags: [career, working]
+authors: [ronamosa]
 ---
 
 Having worked in I.T. for over a decade, in my experience ego is very much part of the technology landscape. I've had the privilege of working with and learning from some really smart people.Unchecked egos and badly managed expectations create a hostile workplaces people who could knew the ins and outs of obscure Unix systems and could work out IP ranges with a subnet mask or slash notation (I still suck at this).

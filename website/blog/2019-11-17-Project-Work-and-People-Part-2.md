@@ -1,10 +1,7 @@
 ---
 title: "The Project Delivery Space and the People That Make and Break It - Pt. 2"
-author: Ron Amosa
-author_title: Platform Security Engineer @ Salesforce U.S.
-author_url: https://github.com/ronamosa
-author_image_url: https://github.com/ronamosa.png
 tags: [working]
+authors: [ronamosa]
 ---
 
 Projects have a lot of moving parts. This definitely includes the technology landscape (understatement of the year), but also a big human resource factor as well. I think if you've followed any of my writing and experiences you'll know that "people" are (always) often the big under-estimated factor in my whole I.T. career - but that's probably a post for another time.

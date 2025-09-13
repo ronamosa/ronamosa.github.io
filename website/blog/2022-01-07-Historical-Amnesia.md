@@ -1,10 +1,7 @@
 ---
 title: "Historical Amnesia."
-author: Ron Amosa
-author_title: Platform Security Engineer @ Salesforce U.S.
-author_url: https://github.com/ronamosa
-author_image_url: https://github.com/ronamosa.png
 tags: [personal]
+authors: [ronamosa]
 ---
 
 "Historical amnesia is a dangerous phenomenon not only because it
