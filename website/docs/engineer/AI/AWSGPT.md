@@ -1,5 +1,9 @@
 ---
-title: "AWS GPT Docs"
+title: "AWS GPT Documentation Assistant - AI-Powered AWS Learning Tool"
+description: "Custom GPT model trained on AWS documentation to accelerate learning and provide instant answers to AWS service questions. Based on Alex Simas' awsdocsgpt project."
+keywords: ["aws gpt", "aws documentation", "ai learning", "aws assistant", "custom gpt", "aws study tool", "cloud documentation"]
+tags: ["ai", "aws", "documentation", "learning", "gpt"]
+sidebar_position: 6
 ---
 
 :::info

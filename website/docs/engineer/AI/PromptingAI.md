@@ -1,7 +1,11 @@
 ---
-title: "AI System, User and other Prompts"
+title: "AI Prompting Collection - System, User, and Advanced Prompt Templates"
+description: "Comprehensive collection of AI prompts including system prompts, user prompts, and advanced prompting techniques for various AI applications and use cases."
+keywords: ["ai prompts", "system prompts", "user prompts", "prompt templates", "ai prompting", "prompt engineering", "llm prompts"]
+tags: ["ai", "prompts", "templates", "prompting", "llm"]
 hide_title: false
 hide_table_of_contents: false
+sidebar_position: 11
 pagination_label: Markdown features
 description: System Prompt Notes
 keywords:

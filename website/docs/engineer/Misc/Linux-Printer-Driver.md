@@ -1,5 +1,9 @@
 ---
-title: "Brother MFC-JW4330DW Printer Setup Linux"
+title: "Brother MFC-J4330DW Printer Setup on Linux - Complete Driver Installation Guide"
+description: "Step-by-step guide to installing and configuring Brother MFC-J4330DW printer drivers on Linux systems. Includes troubleshooting and wireless setup."
+keywords: ["brother printer linux", "mfc-j4330dw linux", "linux printer driver", "brother printer setup", "linux printing", "printer configuration"]
+tags: ["linux", "printer", "brother", "drivers", "hardware"]
+sidebar_position: 5
 ---
 
 Setting up my Brother MFC-J5330DW Network Printer on Ubuntu.
