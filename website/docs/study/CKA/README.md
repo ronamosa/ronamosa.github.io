@@ -1,6 +1,10 @@
 ---
-title: Certified Kubernetes Administrator
+title: "Certified Kubernetes Administrator (CKA) - Complete Study Guide"
+description: "Comprehensive CKA certification guide covering Kubernetes administration, troubleshooting, and cluster management. Includes practical labs and exam preparation strategies."
+keywords: ["cka certification", "kubernetes administrator", "k8s admin", "cluster management", "kubernetes troubleshooting", "cka exam prep", "kubernetes certification"]
+tags: ["kubernetes", "administration", "certification", "cka", "cluster-management", "devops"]
 sidebar_position: 0
+slug: "kubernetes-administrator-cka-study-guide"
 ---
 
 On July 13, 2021 I earned my CKA: Certified Kubernetes Administrator [certification](https://www.credly.com/badges/ffeeb3bd-7506-4154-8730-943867fca56f/public_url).

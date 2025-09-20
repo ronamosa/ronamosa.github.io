@@ -1,5 +1,9 @@
 ---
-title: "AD Basics"
+title: "Active Directory Basics - TryHackMe Walkthrough and Study Notes"
+description: "Complete walkthrough of TryHackMe's Active Directory Basics room. Learn AD fundamentals, domain controllers, forests, authentication protocols, and Azure AD."
+keywords: ["active directory", "tryhackme", "AD basics", "domain controller", "kerberos", "NTLM", "azure ad", "windows security"]
+tags: ["active-directory", "tryhackme", "windows", "security", "authentication"]
+sidebar_position: 1
 ---
 
 :::info Description

@@ -1,5 +1,10 @@
 ---
-title: "Deploying LLM to SageMaker (manually)"
+title: "Deploy Large Language Models to AWS SageMaker - Complete Manual Guide"
+description: "Step-by-step tutorial for manually deploying LLMs to AWS SageMaker endpoints. Learn model preparation, inference code setup, and endpoint deployment for production AI."
+keywords: ["aws sagemaker", "llm deployment", "large language model", "machine learning", "ai deployment", "pytorch", "sagemaker endpoints", "model serving"]
+tags: ["ai", "aws", "sagemaker", "llm", "machine-learning", "pytorch"]
+sidebar_position: 5
+slug: "deploy-llm-sagemaker-manual-guide"
 ---
 
 :::note

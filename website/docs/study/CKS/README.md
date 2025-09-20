@@ -1,6 +1,10 @@
 ---
-title: Certified Kubernetes Security Specialist
+title: "Certified Kubernetes Security Specialist (CKS) - Complete Study Guide"
+description: "Complete CKS certification study guide covering Kubernetes security, cluster hardening, and microservice vulnerabilities. Includes exam tips, practice resources, and hands-on labs."
+keywords: ["cks certification", "kubernetes security", "k8s security specialist", "cluster hardening", "container security", "cks exam prep", "kubernetes certification"]
+tags: ["kubernetes", "security", "certification", "cks", "container-security", "devops"]
 sidebar_position: 0
+slug: "kubernetes-security-specialist-cks-study-guide"
 ---
 
 On September 26, 2021 I earned my CKS: Certified Kubernetes Security Specialist [certification](https://www.credly.com/badges/1fe5f731-1d6a-48c1-8d2c-60db0ca73f88).

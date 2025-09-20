@@ -1,5 +1,9 @@
 ---
-title: "AWS EKS Networking"
+title: "AWS EKS Networking Best Practices - VPC CNI and Container Networking"
+description: "Complete guide to AWS EKS networking best practices including VPC CNI configuration, pod networking, security groups, and network policies for Kubernetes clusters."
+keywords: ["aws eks networking", "vpc cni", "kubernetes networking", "pod networking", "eks security groups", "container networking", "aws networking"]
+tags: ["aws", "eks", "networking", "vpc", "kubernetes"]
+sidebar_position: 2
 ---
 
 :::tip

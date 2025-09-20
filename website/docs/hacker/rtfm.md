@@ -1,5 +1,9 @@
 ---
-title: "RTFM"
+title: "Red Team Field Manual (RTFM) - Essential Commands and Techniques"
+description: "Comprehensive red team field manual with essential penetration testing commands, techniques, and methodologies learned from TryHackMe and practical engagements."
+keywords: ["red team", "penetration testing", "rtfm", "field manual", "hacking commands", "pentest methodology", "cyber security", "ethical hacking"]
+tags: ["red-team", "pentest", "commands", "methodology", "reference"]
+sidebar_position: 2
 ---
 
 :::info

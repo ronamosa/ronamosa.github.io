@@ -1,6 +1,10 @@
 ---
-title: "AWS Incident Response"
-slug: /aws-incident-response
+title: "AWS Security Incident Response Guide - Cloud Security and Forensics"
+description: "Comprehensive AWS security incident response guide covering cloud forensics, security monitoring, incident playbooks, and threat response in AWS environments."
+keywords: ["aws security", "incident response", "cloud forensics", "aws monitoring", "security playbooks", "threat response", "aws investigation"]
+tags: ["aws", "security", "incident-response", "forensics", "monitoring"]
+slug: "aws-incident-response"
+sidebar_position: 4
 ---
 
 Summarize this whitepaper: [AWS Security Incident Response Guide - AWS Technical Guide](https://docs.aws.amazon.com/pdfs/whitepapers/latest/aws-security-incident-response-guide/aws-security-incident-response-guide.pdf#aws-security-incident-response-guide)
