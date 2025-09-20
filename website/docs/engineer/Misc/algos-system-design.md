@@ -1,5 +1,9 @@
 ---
-title: "Algorithms for Systems Design"
+title: "Algorithms for Systems Design - Scalable Architecture Patterns and Data Structures"
+description: "Essential algorithms and data structures for system design interviews and scalable architecture. Learn system design patterns, performance optimization, and distributed systems concepts."
+keywords: ["system design algorithms", "scalable architecture", "data structures", "system design interview", "distributed systems", "performance optimization", "software architecture"]
+tags: ["algorithms", "system-design", "architecture", "performance", "scalability"]
+sidebar_position: 1
 ---
 
 :::info Reference

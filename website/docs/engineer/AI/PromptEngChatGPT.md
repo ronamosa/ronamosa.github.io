@@ -1,5 +1,9 @@
 ---
-title: "ChatGPT Prompt Engineering for Developers"
+title: "ChatGPT Prompt Engineering for Developers - Complete AI Interaction Guide"
+description: "Comprehensive guide to prompt engineering for developers using ChatGPT. Learn advanced prompting techniques, best practices, and practical examples for software development."
+keywords: ["prompt engineering", "chatgpt developers", "ai prompting", "gpt prompts", "ai development", "llm interaction", "chatgpt best practices"]
+tags: ["ai", "prompt-engineering", "chatgpt", "development", "llm"]
+sidebar_position: 7
 ---
 
 :::info

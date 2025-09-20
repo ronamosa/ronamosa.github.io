@@ -1,5 +1,9 @@
 ---
-title: "Linux Terminal on Chromebook"
+title: "Linux Terminal Setup on Chromebook - Developer Environment Configuration"
+description: "Complete guide to setting up a Linux terminal environment on Chromebook for development. Enable Linux apps, configure terminal, and set up development tools."
+keywords: ["chromebook linux", "chromebook terminal", "chromebook development", "linux on chromebook", "chromebook developer mode", "crostini", "chrome os linux"]
+tags: ["chromebook", "linux", "terminal", "development", "chrome-os"]
+sidebar_position: 4
 ---
 
 Follow these screenshots and instructions to enable Linux on your Chromebook and then use the Linux Terminal to do cool sh*t!

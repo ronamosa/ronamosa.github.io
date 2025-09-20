@@ -1,5 +1,9 @@
 ---
-title: "AKS Cluster Part.2"
+title: "Azure Kubernetes Service (AKS) Setup Guide - Part 2: Application Deployment and Services"
+description: "Continue AKS setup with application deployment, service configuration, and ingress controllers. Part 2 of comprehensive Azure Kubernetes Service guide."
+keywords: ["aks deployment", "kubernetes applications", "aks services", "azure ingress", "k8s deployment", "aks configuration", "azure kubernetes"]
+tags: ["azure", "aks", "kubernetes", "deployment", "part-2"]
+sidebar_position: 4
 ---
 
 :::info

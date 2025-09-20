@@ -1,5 +1,9 @@
 ---
-title: "Retrieval Augmented Generation (RAG) Notes"
+title: "Retrieval Augmented Generation (RAG) - Production-Ready AI Applications Guide"
+description: "Complete guide to building production-ready RAG applications. Learn retrieval-augmented generation techniques, implementation best practices, and enterprise AI deployment strategies."
+keywords: ["retrieval augmented generation", "rag applications", "production ai", "enterprise ai", "ai retrieval", "llm applications", "ai implementation"]
+tags: ["ai", "rag", "production", "enterprise", "llm"]
+sidebar_position: 8
 ---
 
 :::tip Source

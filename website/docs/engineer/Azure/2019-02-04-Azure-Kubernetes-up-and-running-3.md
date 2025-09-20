@@ -1,5 +1,9 @@
 ---
-title: "AKS Cluster Part.3"
+title: "Azure Kubernetes Service (AKS) Setup Guide - Part 3: Monitoring, Scaling, and Security"
+description: "Complete AKS setup with monitoring, auto-scaling, and security best practices. Final part of comprehensive Azure Kubernetes Service deployment guide."
+keywords: ["aks monitoring", "kubernetes scaling", "aks security", "azure monitor", "k8s autoscaling", "aks best practices", "azure kubernetes"]
+tags: ["azure", "aks", "kubernetes", "monitoring", "security", "part-3"]
+sidebar_position: 5
 ---
 
 :::info

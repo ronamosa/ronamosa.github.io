@@ -1,5 +1,9 @@
 ---
-title: "Bits, Bytes, Hex"
+title: "Computer Science Fundamentals - Bits, Bytes, Hex, and Memory Management"
+description: "Essential computer science fundamentals covering bits, bytes, hexadecimal, memory management, and assembly debugging. Learn low-level programming concepts and system internals."
+keywords: ["computer science fundamentals", "bits bytes hex", "memory management", "assembly debugging", "low level programming", "system internals", "binary representation"]
+tags: ["computer-science", "fundamentals", "memory", "assembly", "debugging"]
+sidebar_position: 2
 ---
 
 ## Overview

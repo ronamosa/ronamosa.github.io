@@ -1,5 +1,9 @@
 ---
-title: "Azure AKS Security: Azure Active Directory (AAD) Integration and K8s RBAC"
+title: "AKS Azure AD Integration - Complete Security Setup with Kubernetes RBAC"
+description: "Comprehensive guide to integrating Azure Active Directory (AAD) with AKS for enhanced security. Configure Kubernetes RBAC, user authentication, and access control."
+keywords: ["aks azure ad", "kubernetes rbac", "aks security", "azure active directory", "k8s authentication", "aks rbac", "azure security"]
+tags: ["azure", "aks", "security", "azure-ad", "rbac"]
+sidebar_position: 6
 ---
 
 :::info

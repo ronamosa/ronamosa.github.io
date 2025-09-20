@@ -1,5 +1,9 @@
 ---
-title: "Setup Istio to handle Mutual TLS (mTLS) with an external site using an Egress gateway."
+title: "Istio mTLS with External Endpoints - Egress Gateway Configuration Guide"
+description: "Configure Istio service mesh to handle mutual TLS (mTLS) with external sites using egress gateways. Learn secure external service communication and traffic management."
+keywords: ["istio mtls", "egress gateway", "external endpoints", "istio external services", "service mesh security", "istio traffic management", "kubernetes security"]
+tags: ["istio", "service-mesh", "mtls", "egress", "external-services"]
+sidebar_position: 3
 ---
 
 :::info

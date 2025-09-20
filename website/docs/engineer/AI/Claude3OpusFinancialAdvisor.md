@@ -1,5 +1,9 @@
 ---
-title: "Claude 3 Opus: Finanical Advisor"
+title: "Claude 3 Opus Financial Advisor - AI-Powered Personal Finance Assistant"
+description: "Building a personal financial advisor using Claude 3 Opus for intelligent money management, investment advice, and financial planning with AI-powered insights."
+keywords: ["claude 3 opus", "ai financial advisor", "personal finance ai", "financial planning", "investment ai", "money management", "ai finance assistant"]
+tags: ["ai", "finance", "claude", "personal-finance", "advisor"]
+sidebar_position: 10
 ---
 
 :::info

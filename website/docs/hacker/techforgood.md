@@ -1,5 +1,9 @@
 ---
-title: "Tech for Good: 🕵️‍♀️ Decrypt the Secret Message Challenge"
+title: "Tech for Good Cryptography Challenge - Secret Message Decryption CTF"
+description: "Solve the Tech for Good cryptography challenge by decrypting secret messages. Learn cipher techniques, cryptanalysis, and puzzle-solving for social impact."
+keywords: ["cryptography challenge", "tech for good", "secret message", "cipher solving", "ctf challenge", "cryptanalysis", "puzzle solving"]
+tags: ["cryptography", "challenge", "ctf", "tech-for-good", "puzzle"]
+sidebar_position: 6
 ---
 
 ## Mission Brief

@@ -1,5 +1,9 @@
 ---
-title: "Ambassador: Disable TLS 1.0, TLS 1.1"
+title: "Ambassador API Gateway TLS Security - Disable TLS 1.0 and 1.1 for Better Security"
+description: "Configure Ambassador API Gateway to disable insecure TLS 1.0 and 1.1 protocols. Improve Kubernetes ingress security with modern TLS configuration."
+keywords: ["ambassador api gateway", "tls security", "disable tls 1.0", "kubernetes ingress", "api gateway security", "tls configuration", "kubernetes security"]
+tags: ["ambassador", "tls", "security", "kubernetes", "api-gateway"]
+sidebar_position: 4
 ---
 
 :::info

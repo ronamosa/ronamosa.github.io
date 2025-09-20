@@ -1,5 +1,9 @@
 ---
-title: "Traverxec"
+title: "HackTheBox Traverxec Walkthrough - Complete Linux Exploitation Guide"
+description: "Complete walkthrough of HackTheBox Traverxec machine. Learn web application exploitation, privilege escalation, and Linux penetration testing techniques."
+keywords: ["hackthebox traverxec", "linux exploitation", "web application security", "privilege escalation", "penetration testing", "ctf walkthrough"]
+tags: ["hackthebox", "linux", "web-exploitation", "privilege-escalation", "walkthrough"]
+sidebar_position: 1
 ---
 
 ## Brief

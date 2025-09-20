@@ -1,5 +1,9 @@
 ---
-title: "Brainstorm"
+title: "TryHackMe Brainstorm Walkthrough - Windows Buffer Overflow Challenge"
+description: "Complete walkthrough of TryHackMe's Brainstorm room. Learn Windows buffer overflow exploitation, shellcode development, and exploit creation techniques."
+keywords: ["tryhackme brainstorm", "windows buffer overflow", "shellcode", "exploit development", "windows exploitation", "immunity debugger"]
+tags: ["tryhackme", "buffer-overflow", "windows", "shellcode", "exploitation"]
+sidebar_position: 6
 ---
 
 :::info Description

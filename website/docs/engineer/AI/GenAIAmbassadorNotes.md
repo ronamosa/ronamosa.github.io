@@ -1,5 +1,9 @@
 ---
-title: "AWS GenAI Ambassador Notes"
+title: "AWS GenAI Ambassador Program - AI Leadership and Community Building Notes"
+description: "Notes and insights from the AWS GenAI Ambassador program covering AI leadership, community building, and generative AI best practices for enterprise adoption."
+keywords: ["aws genai ambassador", "ai leadership", "generative ai", "aws ai community", "ai adoption", "enterprise ai", "ai best practices"]
+tags: ["aws", "genai", "leadership", "community", "ambassador"]
+sidebar_position: 9
 ---
 
 ## AWS GenAI Stack

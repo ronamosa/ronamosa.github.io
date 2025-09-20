@@ -1,5 +1,9 @@
 ---
-title: "ACME Evil Corp: Top Secret"
+title: "ACME Evil Corp Investigation - Digital Forensics and Threat Analysis"
+description: "Digital forensics investigation of ACME Evil Corp suspicious activities. Learn threat analysis, evidence collection, and investigative techniques."
+keywords: ["digital forensics", "threat analysis", "investigation", "corporate security", "incident response", "forensics analysis"]
+tags: ["forensics", "investigation", "threat-analysis", "incident-response", "security"]
+sidebar_position: 5
 ---
 
 ## Research Notes

@@ -1,5 +1,9 @@
 ---
-title: "Gatekeeper"
+title: "TryHackMe Gatekeeper Walkthrough - Windows Buffer Overflow and Exploitation"
+description: "Complete walkthrough of TryHackMe's Gatekeeper room focusing on Windows buffer overflow exploitation, reverse engineering, and privilege escalation."
+keywords: ["tryhackme gatekeeper", "windows buffer overflow", "windows exploitation", "reverse engineering", "privilege escalation", "immunity debugger"]
+tags: ["tryhackme", "windows", "buffer-overflow", "exploitation", "reverse-engineering"]
+sidebar_position: 5
 ---
 
 :::info Description
