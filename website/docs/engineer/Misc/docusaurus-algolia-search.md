@@ -1,5 +1,9 @@
 ---
-title: "Adding Algolia Search to Docusaurus Site"
+title: "Algolia Search Integration for Docusaurus - Complete Setup with Cloudflare CDN"
+description: "Step-by-step guide to integrating Algolia search into Docusaurus sites with Cloudflare CDN configuration. Enable powerful site search for better user experience."
+keywords: ["algolia search", "docusaurus search", "site search", "cloudflare cdn", "documentation search", "static site search", "search integration"]
+tags: ["docusaurus", "algolia", "search", "cloudflare", "integration"]
+sidebar_position: 3
 ---
 
 ## Introduction

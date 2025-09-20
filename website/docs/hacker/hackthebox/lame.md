@@ -1,5 +1,9 @@
 ---
-title: "Lame"
+title: "HackTheBox Lame Walkthrough - Classic Linux Exploitation and SMB Attacks"
+description: "Complete walkthrough of HackTheBox Lame machine. Learn classic Linux exploitation techniques, SMB vulnerabilities, and beginner penetration testing methods."
+keywords: ["hackthebox lame", "linux exploitation", "smb vulnerabilities", "samba exploitation", "penetration testing", "beginner ctf"]
+tags: ["hackthebox", "linux", "smb", "samba", "beginner"]
+sidebar_position: 4
 ---
 
 :::info Description

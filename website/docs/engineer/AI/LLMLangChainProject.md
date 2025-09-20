@@ -1,5 +1,9 @@
 ---
-title: "Learning LLM LangChain: Building an AutoGPT"
+title: "LangChain AutoGPT Development - Building Autonomous AI Agents"
+description: "Complete guide to building AutoGPT-style autonomous AI agents using LangChain. Learn agent architectures, tool integration, and autonomous AI system development."
+keywords: ["langchain autogpt", "autonomous ai agents", "ai agents", "langchain development", "autogpt", "ai automation", "agent frameworks"]
+tags: ["langchain", "autogpt", "ai-agents", "automation", "development"]
+sidebar_position: 13
 ---
 
 :::info

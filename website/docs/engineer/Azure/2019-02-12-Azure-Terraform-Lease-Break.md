@@ -1,5 +1,9 @@
 ---
-title: "Azure Blob Storage: Break Lease"
+title: "Azure Blob Storage Lease Management - Break Terraform State Lock Issues"
+description: "Resolve Azure Blob storage lease issues that prevent Terraform operations. Learn how to break storage leases and recover from locked Terraform state files."
+keywords: ["azure blob storage", "terraform lease", "break lease", "azure storage lock", "terraform state lock", "azure troubleshooting"]
+tags: ["azure", "terraform", "blob-storage", "troubleshooting", "state-management"]
+sidebar_position: 2
 ---
 
 :::info

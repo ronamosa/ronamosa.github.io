@@ -1,5 +1,9 @@
 ---
-title: "SecretHub: Secrets Management"
+title: "SecretHub Kubernetes Secrets Management - Secure Secret Storage and Distribution"
+description: "Complete guide to using SecretHub for Kubernetes secrets management. Learn secure secret storage, distribution, and access control for containerized applications."
+keywords: ["secrethub", "kubernetes secrets", "secret management", "secure storage", "k8s security", "secrets distribution", "container security"]
+tags: ["kubernetes", "secrets", "security", "secrethub", "management"]
+sidebar_position: 5
 ---
 
 :::info

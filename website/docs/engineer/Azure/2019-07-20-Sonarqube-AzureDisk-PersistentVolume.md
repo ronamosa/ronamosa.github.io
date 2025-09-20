@@ -1,5 +1,9 @@
 ---
-title: "Sonarqube Scanner Helm Chart with AzureDisk PersistentVolume Setup."
+title: "SonarQube on AKS with Azure Disk - Helm Chart and Persistent Volume Setup"
+description: "Deploy SonarQube scanner on Azure Kubernetes Service (AKS) using Helm charts with Azure Disk persistent volumes. Complete setup guide for code quality analysis."
+keywords: ["sonarqube aks", "azure disk", "helm chart", "persistent volume", "code quality", "azure kubernetes", "sonarqube deployment"]
+tags: ["azure", "aks", "sonarqube", "helm", "persistent-storage"]
+sidebar_position: 1
 ---
 
 :::info
