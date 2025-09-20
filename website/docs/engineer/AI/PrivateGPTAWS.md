@@ -1,12 +1,11 @@
 ---
-title: "PrivateGPT on AWS: Cloud, Secure, Private, Chat with My Docs."
+title: "PrivateGPT on AWS EC2 - Secure Cloud-Based Document Chat with LLMs"
+description: "Deploy PrivateGPT on AWS EC2 for secure, scalable document chat in the cloud. Complete setup guide for private LLM deployment with document processing capabilities."
+keywords: ["privategpt aws", "aws ec2 llm", "cloud llm deployment", "private gpt aws", "document chat aws", "llm ec2", "aws ai deployment"]
+tags: ["ai", "aws", "llm", "ec2", "document-processing"]
 hide_title: false
 hide_table_of_contents: false
-pagination_label: Markdown features
-description: Installing PrivateGPT on AWS Cloud, EC2.
-keywords:
-  - aws
-  - gpt
+sidebar_position: 2
 last_update:
   date: 01/20/2024
   author: R. Amosa
