@@ -1,5 +1,9 @@
 ---
-title: "MR Robot"
+title: "TryHackMe Mr. Robot Walkthrough - Complete CTF Solution and Exploitation Guide"
+description: "Complete walkthrough of TryHackMe's Mr. Robot room. Learn web application security, WordPress exploitation, privilege escalation, and CTF techniques."
+keywords: ["tryhackme mr robot", "wordpress exploitation", "web application security", "privilege escalation", "ctf walkthrough", "penetration testing"]
+tags: ["tryhackme", "ctf", "wordpress", "web-security", "privilege-escalation"]
+sidebar_position: 4
 ---
 
 :::info Description

@@ -1,5 +1,9 @@
 ---
-title: "Shocker"
+title: "HackTheBox Shocker Walkthrough - Shellshock Vulnerability Exploitation"
+description: "Complete walkthrough of HackTheBox Shocker machine. Learn Shellshock (CVE-2014-6271) vulnerability exploitation and Linux penetration testing."
+keywords: ["hackthebox shocker", "shellshock", "cve-2014-6271", "bash vulnerability", "linux exploitation", "web application security"]
+tags: ["hackthebox", "shellshock", "vulnerability", "linux", "web-exploitation"]
+sidebar_position: 3
 ---
 
 :::info Description

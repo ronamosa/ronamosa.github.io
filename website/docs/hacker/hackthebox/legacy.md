@@ -1,5 +1,9 @@
 ---
-title: "Legacy"
+title: "HackTheBox Legacy Walkthrough - Windows SMB Exploitation and MS08-067"
+description: "Complete walkthrough of HackTheBox Legacy machine. Learn Windows SMB exploitation, MS08-067 vulnerability, and classic Windows penetration testing."
+keywords: ["hackthebox legacy", "windows exploitation", "smb exploitation", "ms08-067", "windows vulnerabilities", "penetration testing"]
+tags: ["hackthebox", "windows", "smb", "ms08-067", "vulnerability"]
+sidebar_position: 2
 ---
 
 :::info Description

@@ -1,5 +1,9 @@
 ---
-title: "Corp"
+title: "TryHackMe Corp Walkthrough - Corporate Network Penetration Testing"
+description: "Complete walkthrough of TryHackMe's Corp room. Learn corporate network penetration testing, Active Directory attacks, and enterprise security assessment."
+keywords: ["tryhackme corp", "corporate pentest", "active directory", "network penetration", "enterprise security", "domain attacks"]
+tags: ["tryhackme", "corporate", "active-directory", "network-pentest", "enterprise"]
+sidebar_position: 7
 ---
 
 :::info Description

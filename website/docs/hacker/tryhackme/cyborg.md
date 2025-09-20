@@ -1,5 +1,9 @@
 ---
-title: "Cyborg"
+title: "TryHackMe Cyborg Walkthrough - Complete CTF Solution and Learning Guide"
+description: "Complete walkthrough of TryHackMe's Cyborg room. Learn penetration testing techniques, vulnerability exploitation, and privilege escalation methods."
+keywords: ["tryhackme cyborg", "ctf walkthrough", "penetration testing", "linux exploitation", "privilege escalation", "cyber security", "ethical hacking"]
+tags: ["tryhackme", "ctf", "walkthrough", "penetration-testing", "linux"]
+sidebar_position: 1
 ---
 
 :::info Description

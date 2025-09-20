@@ -1,5 +1,9 @@
 ---
-title: "Attacktive Directory"
+title: "TryHackMe Attacktive Directory Walkthrough - Active Directory Exploitation Guide"
+description: "Complete walkthrough of TryHackMe's Attacktive Directory room. Learn Active Directory attacks, Kerberos exploitation, and Windows domain security assessment."
+keywords: ["tryhackme attacktive directory", "active directory attacks", "kerberos exploitation", "domain attacks", "windows security", "ad exploitation"]
+tags: ["tryhackme", "active-directory", "kerberos", "domain-attacks", "windows"]
+sidebar_position: 8
 ---
 
 :::info Description

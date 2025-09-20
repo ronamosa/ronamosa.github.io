@@ -1,5 +1,9 @@
 ---
-title: "Brainpan 1"
+title: "TryHackMe Brainpan 1 Walkthrough - Buffer Overflow Exploitation Challenge"
+description: "Complete walkthrough of TryHackMe's Brainpan 1 buffer overflow challenge. Learn stack-based buffer overflow exploitation and reverse engineering techniques."
+keywords: ["tryhackme brainpan", "buffer overflow", "stack overflow", "exploitation", "reverse engineering", "ctf challenge", "binary exploitation"]
+tags: ["tryhackme", "buffer-overflow", "exploitation", "reverse-engineering", "ctf"]
+sidebar_position: 2
 ---
 
 :::info Description
