@@ -1,5 +1,9 @@
 ---
-title: "AKS Cluster Part.1"
+title: "Azure Kubernetes Service (AKS) Setup Guide - Part 1: Cluster Creation and Configuration"
+description: "Complete guide to setting up Azure Kubernetes Service (AKS) cluster from scratch. Part 1 covers cluster creation, networking, and initial configuration."
+keywords: ["azure kubernetes service", "aks setup", "kubernetes azure", "aks cluster", "azure container service", "k8s azure", "aks deployment"]
+tags: ["azure", "aks", "kubernetes", "cluster-setup", "part-1"]
+sidebar_position: 3
 ---
 
 :::info

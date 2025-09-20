@@ -1,5 +1,9 @@
 ---
-title: "Setting Up Beehiiv DNS with Cloudflare (www.uncommonengineer.com)"
+title: "Beehiiv Custom Domain Setup with Cloudflare - Complete DNS Configuration Guide"
+description: "Step-by-step guide to setting up Beehiiv custom domain with Cloudflare DNS. Includes CNAME records, proxy settings, CAA configuration, and troubleshooting for newsletter hosting."
+keywords: ["beehiiv custom domain", "cloudflare dns", "newsletter domain setup", "beehiiv cloudflare", "custom domain newsletter", "dns configuration", "beehiiv hosting"]
+tags: ["beehiiv", "cloudflare", "dns", "newsletter", "custom-domain"]
+sidebar_position: 6
 ---
 
 
