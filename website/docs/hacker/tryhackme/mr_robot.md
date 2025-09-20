@@ -262,7 +262,7 @@ payload
 
 this one kept loading/freezing, need to tweak it maybe.
 
-this person has some great notes [n0a110w](https://n0a110w.github.io/notes/security-stuff/shells/php.html) and from their blog I ended up using [pentestmonkey php reverse shell](git clone [https://github.com/pentestmonkey/php-reverse-shell.git](https://github.com/pentestmonkey/php-reverse-shell.git)).
+this person has some great notes [n0a110w](https://n0a110w.github.io/notes/security-stuff/shells/php.html) and from their blog I ended up using [pentestmonkey php reverse shell](https://github.com/pentestmonkey/php-reverse-shell.git).
 
 :::tip
 We need to be able to edit php source code, not html pages, so you need to hit the editor in the Theme section. I replaced the entire `footer.php` file with the pentestmonkey reverse shell file.
