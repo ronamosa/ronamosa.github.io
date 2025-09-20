@@ -6,11 +6,6 @@ tags: ["ai", "prompts", "templates", "prompting", "llm"]
 hide_title: false
 hide_table_of_contents: false
 sidebar_position: 11
-pagination_label: Markdown features
-description: System Prompt Notes
-keywords:
-- prompt
-- gpt
 last_update:
   date: 01/20/2024
   author: R. Amosa
