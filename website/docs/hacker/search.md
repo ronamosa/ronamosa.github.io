@@ -1,5 +1,9 @@
 ---
-title: "Search Engines"
+title: "16 Essential Search Engines for Penetration Testing and Reconnaissance"
+description: "Comprehensive guide to specialized search engines for OSINT, penetration testing, and red team reconnaissance. Includes Google dorking, Shodan, Censys, and more."
+keywords: ["penetration testing", "osint", "search engines", "reconnaissance", "shodan", "censys", "google dorking", "red team", "information gathering"]
+tags: ["pentest", "osint", "reconnaissance", "security", "hacking"]
+sidebar_position: 1
 ---
 
 :::info

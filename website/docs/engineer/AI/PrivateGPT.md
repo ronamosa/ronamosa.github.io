@@ -1,5 +1,9 @@
 ---
-title: "PrivateGPT on Linux (ProxMox): Local, Secure, Private, Chat with My Docs."
+title: "PrivateGPT Local Deployment on Linux - Secure Document Chat Without Cloud"
+description: "Complete guide to deploying PrivateGPT locally on Linux and Proxmox for secure, private document chat. No data leaves your network - chat with PDFs, TXT, HTML locally."
+keywords: ["privategpt", "local llm", "private ai", "document chat", "local gpt", "offline ai", "linux deployment", "proxmox ai"]
+tags: ["ai", "llm", "privacy", "local-deployment", "document-processing"]
+sidebar_position: 1
 ---
 
 ![header](/img/privategpt-header.png)

@@ -1,5 +1,9 @@
 ---
-title: "Terminal and OMZ Prompt Setup"
+title: "Ultimate Linux Terminal Setup - Oh My Zsh, Powerlevel10k, and Productivity Tools"
+description: "Complete guide to setting up a beautiful and productive Linux terminal with Oh My Zsh, Powerlevel10k theme, tmux, and essential plugins for developers."
+keywords: ["oh my zsh", "powerlevel10k", "terminal setup", "linux terminal", "zsh configuration", "tmux", "developer terminal", "terminal productivity"]
+tags: ["terminal", "zsh", "productivity", "linux", "development"]
+sidebar_position: 3
 ---
 
 ![terminal](/img/terminal-omz-p10k.png)

@@ -1,5 +1,9 @@
 ---
-title: "Docusaurus + GitHub Pages"
+title: "Docusaurus GitHub Pages Deployment - Complete Setup Guide"
+description: "Step-by-step guide to deploying Docusaurus static sites to GitHub Pages with automated CI/CD, custom domains, and deployment configurations."
+keywords: ["docusaurus", "github pages", "static site deployment", "documentation site", "react documentation", "gh-pages", "static site generator"]
+tags: ["docusaurus", "deployment", "github-pages", "documentation", "ci-cd"]
+sidebar_position: 1
 ---
 
 I can't believe I haven't documented this before.

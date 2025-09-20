@@ -1,5 +1,9 @@
 ---
-title: "Building Agentic RAG with Llamaindex - Notes"
+title: "Building Agentic RAG with LlamaIndex - Advanced AI Agent Development"
+description: "Complete guide to building agentic RAG systems with LlamaIndex. Learn advanced AI agent development, retrieval-augmented generation, and intelligent document processing."
+keywords: ["agentic rag", "llamaindex", "ai agents", "rag system", "retrieval augmented generation", "llm agents", "intelligent agents", "ai development"]
+tags: ["ai", "rag", "llamaindex", "agents", "llm"]
+sidebar_position: 3
 ---
 
 :::info

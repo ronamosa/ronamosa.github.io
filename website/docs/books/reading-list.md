@@ -1,5 +1,8 @@
 ---
-title: "📑 Reading list"
+title: "📑 Tech Professional Reading List - Books for Engineers and Leaders"
+description: "Curated reading list for technology professionals covering software engineering, leadership, AI ethics, and career development. Current reading and book recommendations."
+keywords: ["tech books", "software engineering books", "leadership books", "ai ethics", "technology reading", "professional development", "engineering books"]
+tags: ["books", "reading", "professional-development", "technology", "leadership"]
 slug: "reading-list"
 sidebar_position: 0
 ---

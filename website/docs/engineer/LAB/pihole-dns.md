@@ -1,5 +1,9 @@
 ---
-title: "PiHole DNS"
+title: "Pi-hole DNS Setup - Network-wide Ad Blocking and DNS Filtering"
+description: "Complete guide to setting up Pi-hole DNS for network-wide ad blocking and DNS filtering on Ubuntu. Includes installation, configuration, and troubleshooting."
+keywords: ["pihole", "dns filtering", "ad blocking", "network dns", "ubuntu dns", "dns server", "home network", "privacy"]
+tags: ["pihole", "dns", "networking", "privacy", "ubuntu"]
+sidebar_position: 1
 ---
 
 ## Installation

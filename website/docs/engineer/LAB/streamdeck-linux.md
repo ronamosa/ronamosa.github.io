@@ -1,5 +1,9 @@
 ---
-title: "Streamdeck XL for Linux"
+title: "Stream Deck XL Linux Setup - Complete Configuration Guide for Ubuntu"
+description: "Step-by-step guide to setting up Elgato Stream Deck XL on Linux with streamdeck-ui, systemd services, and custom configurations for productivity and streaming."
+keywords: ["stream deck linux", "elgato linux", "streamdeck ubuntu", "linux productivity", "streaming linux", "streamdeck-ui", "systemd service"]
+tags: ["linux", "productivity", "streaming", "hardware", "ubuntu"]
+sidebar_position: 2
 ---
 
 My quick setup notes for getting streamdeck XL going on Linux.

@@ -1,6 +1,10 @@
 ---
-title: AWS Certified Solution Architect Associate
+title: "AWS Certified Solutions Architect Associate (SAA-C03) - Complete Study Guide"
+description: "Comprehensive AWS SAA-C03 certification study guide with exam tips, resources, and hands-on experience. Learn cloud architecture design patterns and AWS services for the associate exam."
+keywords: ["aws certification", "saa-c03", "solutions architect associate", "aws study guide", "cloud architecture", "aws exam prep", "aws services", "cloud certification"]
+tags: ["aws", "certification", "cloud-architecture", "study-guide", "saa-c03"]
 sidebar_position: 0
+slug: "aws-solutions-architect-associate-study-guide"
 ---
 
 :::info

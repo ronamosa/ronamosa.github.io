@@ -1,5 +1,9 @@
 ---
-title: "AWS EKS Creating Clusters"
+title: "AWS EKS Cluster Creation - Complete Guide to Kubernetes Cluster Setup"
+description: "Step-by-step guide to creating AWS EKS clusters including IAM permissions, VPC configuration, and cluster management. Learn EKS cluster deployment best practices."
+keywords: ["aws eks cluster", "kubernetes cluster creation", "eks setup", "k8s cluster deployment", "aws kubernetes", "eks permissions", "cluster management"]
+tags: ["aws", "eks", "kubernetes", "cluster-setup", "iam"]
+sidebar_position: 5
 ---
 
 :::tip

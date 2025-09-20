@@ -1,5 +1,9 @@
 ---
-title: "AWS EKS Workshop"
+title: "AWS EKS Workshop - Complete Kubernetes Container Orchestration Guide"
+description: "Comprehensive walkthrough of the AWS EKS Workshop covering Kubernetes networking, VPC CNI, network policies, and cluster management on Amazon EKS."
+keywords: ["aws eks", "kubernetes", "eks workshop", "container orchestration", "vpc cni", "network policies", "aws networking", "k8s cluster"]
+tags: ["aws", "eks", "kubernetes", "workshop", "networking"]
+sidebar_position: 1
 ---
 
 :::tip

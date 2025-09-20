@@ -1,5 +1,9 @@
 ---
-title: "AWS Workshop ECS Microservices"
+title: "AWS ECS Microservices Workshop - Container Orchestration and Service Architecture"
+description: "Complete AWS ECS microservices workshop covering container deployment, service mesh architecture, load balancing, and scalable microservice patterns on Amazon ECS."
+keywords: ["aws ecs", "microservices", "container orchestration", "service architecture", "ecs workshop", "docker containers", "service mesh"]
+tags: ["aws", "ecs", "microservices", "containers", "workshop"]
+sidebar_position: 3
 ---
 
 :::tip Workshop Links

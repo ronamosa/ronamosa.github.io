@@ -1,5 +1,9 @@
 ---
-title: "Helm3: The Kubernetes Package Manager."
+title: "Helm 3 Complete Guide - Kubernetes Package Manager and Application Deployment"
+description: "Comprehensive guide to Helm 3 for Kubernetes application deployment, package management, and chart development. Learn Helm installation, configuration, and best practices."
+keywords: ["helm 3", "kubernetes package manager", "helm charts", "k8s deployment", "application management", "kubernetes helm", "chart development"]
+tags: ["kubernetes", "helm", "package-manager", "deployment", "charts"]
+sidebar_position: 1
 ---
 
 :::info

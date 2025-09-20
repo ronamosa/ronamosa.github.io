@@ -1,5 +1,9 @@
 ---
-title: "Setup Istio mTLS with Secret Discovery Service (SDS) and AzureDNS using Cert-Manager for LetsEncrypt Certs."
+title: "Istio mTLS with SDS and Cert-Manager - Complete Service Mesh Security Guide"
+description: "Advanced guide to setting up Istio mutual TLS with Secret Discovery Service (SDS) and automated certificate management using Cert-Manager and Let's Encrypt."
+keywords: ["istio mtls", "service mesh security", "cert-manager", "sds", "letsencrypt", "kubernetes security", "istio certificates", "mutual tls"]
+tags: ["istio", "service-mesh", "security", "certificates", "mtls"]
+sidebar_position: 2
 ---
 
 :::info

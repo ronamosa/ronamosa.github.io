@@ -1,5 +1,9 @@
 ---
-title: "How to Decode Stuff."
+title: "Cryptography and Decoding Techniques for CTF and Penetration Testing"
+description: "Essential decoding techniques and cryptography methods for CTF challenges and penetration testing. Includes Python scripts and practical examples."
+keywords: ["cryptography", "decoding", "ctf", "penetration testing", "cipher", "encoding", "python", "hacking challenges"]
+tags: ["cryptography", "ctf", "decoding", "python", "challenges"]
+sidebar_position: 3
 ---
 
 Just some quick notes that someone might find useful, if they were, I dunno, doing a hacking challenge and needed a clue:
