@@ -130,7 +130,7 @@ services:
     container_name: unbound
     image: klutchell/unbound:latest
     volumes:
-      - ./unbound:/opt/unbound/etc/unbound/custom
+      - ./unbound:/etc/unbound/custom.conf.d
     restart: unless-stopped
     networks:
       dns_network:
@@ -144,7 +144,7 @@ networks:
 1. Create the Unbound configuration file:
 
 ```bash
-cat > unbound/custom.conf << EOF
+cat > unbound/unbound.conf << EOF
 server:
     verbosity: 1
     interface: 0.0.0.0
@@ -152,24 +152,64 @@ server:
     do-ip4: yes
     do-udp: yes
     do-tcp: yes
-    
+
     # May be set to yes if you have IPv6 connectivity
     do-ip6: no
 
-    # Use DNSSEC
+    # Use this only when you downloaded the list of primary root servers!
+    root-hints: /etc/unbound/custom.conf.d/root.hints
+
+    # Trust glue only if it is within the servers authority
     harden-glue: yes
+
+    # Require DNSSEC data for trust-anchored zones, if no DNSSEC data for an answer,
+    # with trust anchors enabled, the zone becomes Bogus
     harden-dnssec-stripped: yes
+
+    # Don't use capitalization randomization
     use-caps-for-id: no
+
+    # Reduce EDNS reassembly buffer size
     edns-buffer-size: 1472
+
+    # Perform prefetching of close to expired message cache entries
     prefetch: yes
+
+    # One thread should be sufficient
     num-threads: 1
-    so-rcvbuf: 1m
+
+    # Ensure kernel buffer is large enough (reduced to avoid permission warnings)
+    so-rcvbuf: 400k
+
+    # Ensure privacy of local IP ranges
     private-address: 192.168.0.0/16
     private-address: 169.254.0.0/16
     private-address: 172.16.0.0/12
     private-address: 10.0.0.0/8
+    private-address: fd00::/8
+    private-address: fe80::/10
 EOF
 ```
+
+:::tip Verifying Custom Configuration Loading
+
+After starting Unbound, check the logs to confirm your custom configuration is being loaded:
+
+```bash
+# Check startup logs for your custom settings
+docker logs unbound --tail=20
+
+# Look for these indicators that your config is working:
+# - "so-rcvbuf" warnings (shows your buffer size setting is applied)
+# - Verbosity level messages (info/debug logs if verbosity > 0)
+# - "start of service" message
+# - Any errors about your specific config paths
+```
+
+**Good signs:** Warnings about buffer sizes, detailed log messages, successful startup
+**Bad signs:** Only basic startup messages, no mention of your custom settings
+
+:::
 
 2. Download the root hints file:
 
@@ -333,7 +373,7 @@ https://raw.githubusercontent.com/hagezi/dns-blocklists/refs/heads/main/domains/
 https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts
 ```
 
-:::tip 
+:::tip
 
 You can use regex lists if you follow my howto here: `COMING SOON`
 
@@ -377,7 +417,69 @@ docker logs unbound
 docker exec -it unbound netstat -tulpn | grep LISTEN
 ```
 
-3. Ensure your `custom.conf` file has the correct configuration.
+3. **Common Issue: Incorrect Mount Path**
+
+If Unbound isn't loading your custom configuration, verify your mount path matches the directory structure:
+
+```bash
+# Check if your config files are in the right place inside the container
+docker exec -it unbound ls -la /etc/unbound/custom.conf.d/
+
+# Should show your unbound.conf and root.hints files
+```
+
+The klutchell/unbound image expects custom configuration files to be in `/etc/unbound/custom.conf.d/` directory. Make sure:
+
+- Your local directory structure is `./unbound/`
+- Your docker-compose.yml mounts `./unbound:/etc/unbound/custom.conf.d`
+- Configuration files are directly in the `unbound` directory and named `*.conf`
+
+4. Ensure your `custom.conf` file has the correct configuration.
+
+### Common Unbound Warnings (Normal Behavior)
+
+These warnings are common and don't indicate problems:
+
+#### Buffer Size Warning
+
+```
+warning: so-rcvbuf 1048576 was not granted. Got 425984. To fix: start with root permissions(linux) or sysctl bigger net.core.rmem_max(linux)
+```
+
+**What it means:** Unbound requested a 1MB receive buffer but only got ~400KB due to container limitations.
+
+**Impact:** None - 400KB is sufficient for most home networks.
+
+**Fix (optional):** Reduce the buffer size in your config:
+
+```yaml
+so-rcvbuf: 400k  # Instead of 1m
+```
+
+#### Duplicate Root Hints Warning
+
+```
+error: second hints for zone . ignored.
+```
+
+**What it means:** Unbound found multiple root hint configurations (built-in + your custom file).
+
+**Impact:** None - Unbound uses the first valid hints and ignores duplicates.
+
+**Fix (optional):** This is normal when using custom root hints files.
+
+#### Subnetcache Module Warnings
+
+```
+warning: subnetcache: serve-expired is set but not working for data originating from the subnet module cache.
+warning: subnetcache: prefetch is set but not working for data originating from the subnet module cache.
+```
+
+**What it means:** Some advanced caching features don't work with the subnet cache module.
+
+**Impact:** None - basic caching and DNS resolution work perfectly.
+
+**Fix:** These are informational and can be safely ignored.
 
 ### Pi-hole Container Permission Issues
 
@@ -397,6 +499,12 @@ sudo chown -R 1001:1001 ~/pihole/unbound
 sudo chmod -R 755 ~/pihole/pihole
 sudo chmod -R 755 ~/pihole/dnsmasq
 sudo chmod -R 755 ~/pihole/unbound
+```
+
+3. Specifically for Unbound config files:
+
+```bash
+sudo chmod 644 ~/pihole/unbound/*.conf
 ```
 
 ### Pihole Gravity Lists Errors
