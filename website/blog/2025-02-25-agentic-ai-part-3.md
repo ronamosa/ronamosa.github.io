@@ -11,15 +11,13 @@ image: /img/blog/agentic-ai-part3-cover.jpg
 description: "Take a technical deep dive into AI agent anatomy, examining specific security vulnerabilities in the Brain and Perception modules and their implications for enterprise security."
 ---
 
-## Introduction
+In [Part 1](/blog/2025/02/12/agentic-ai-part-1) of this series, we explored how AI agents are transforming enterprise technology with their ability to perceive, decide, and act autonomously.
 
-In Part 1 of this series, we explored how AI agents are transforming enterprise technology with their ability to perceive, decide, and act autonomously.
+In [Part 2](/blog/2025/02/18/agentic-ai-part-2), we examined three critical shifts in AI system evolution that have fundamentally altered the security landscape: the transition from rules-based to learning-based systems, the progression from single-task to multi-task capabilities, and the advancement from tool-using to tool-creating agents.
 
-In Part 2, we examined three critical shifts in AI system evolution that have fundamentally altered the security landscape: the transition from rules-based to learning-based systems, the progression from single-task to multi-task capabilities, and the advancement from tool-using to tool-creating agents.
+Today, we'll take a technical deep dive into the anatomy of modern AI agents, examining what's happening under the hood and the specific security vulnerabilities in each core component. As organizations rapidly adopt these powerful systems, understanding these vulnerabilities becomes essential for security professionals tasked with protecting their environments.
 
-Today, we'll take a technical deep dive into the anatomy of modern AI agents, examining what's happening under the hood and the specific security vulnerabilities in each core component. As organisations rapidly adopt these powerful systems, understanding these vulnerabilities becomes essential for security professionals tasked with protecting their environments.
-
-At its core, an AI agent consists of three primary components: the Brain (typically an LLM) that handles reasoning and decision-making, the Perception module that processes environmental inputs, and the Action module that interacts with systems and tools. Each component introduces unique security challenges that, when combined, create a complex attack surface unlike anything we've seen in traditional systems!
+At its core, an AI agent consists of three primary components: the Brain (typically an LLM) that handles reasoning and decision-making, the Perception module that processes environmental inputs, and the Action module that interacts with systems and tools. Each component introduces unique security challenges that, when combined, create a complex attack surface unlike anything we've seen in traditional systems.
 
 <!-- truncate -->
 
@@ -156,6 +154,22 @@ The Action module is where the AI agent's decisions translate into real-world im
 
 The Action module presents unique security challenges because it represents the point where AI decisions directly impact systems and data. A compromised Action module might execute harmful commands while appearing to operate normally, making detection particularly challenging. As agents gain capabilities to create and use tools dynamically, the security considerations around the Action module become increasingly complex.
 
-## Continue?
+## Key Takeaways
 
-"In Part 3.2, we'll continue our exploration of AI agent security by examining the practical implications of these vulnerabilities, including how they can cascade through systems and create complex attack scenarios. We'll also cover key security principles and defence strategies specifically designed for AI agents."
+Understanding AI agent vulnerabilities requires a component-by-component analysis:
+
+1. **Brain Module (LLM)**: Vulnerable to prompt injection, memory manipulation, and hierarchical instruction processing weaknesses
+2. **Perception Module**: Susceptible to multi-modal attacks, preprocessing manipulation, and sensor spoofing
+3. **Action Module**: Exposed to privilege escalation, unvalidated output execution, and feedback loop vulnerabilities
+
+These vulnerabilities become particularly dangerous when they cascade across components, creating attack chains that can compromise entire systems.
+
+---
+
+## Continue the Series
+
+**Next up**: [Part 4: Practical Security Implications](/blog/2025/03/04/agentic-ai-part-4), where we'll examine how these vulnerabilities create practical security challenges and discuss approaches for mitigating these risks.
+
+**Previous**: [Part 2: Evolution - Three Critical Shifts in the AI Security Landscape](/blog/2025/02/18/agentic-ai-part-2)
+
+*Questions about AI agent vulnerabilities? Reach out via [LinkedIn](https://linkedin.com/in/ron-amosa) or [email](mailto:ron@ronamosa.io).*

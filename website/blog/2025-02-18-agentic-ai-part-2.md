@@ -11,15 +11,17 @@ image: /img/blog/agentic-ai-part2-cover.jpg
 description: "Examine three fundamental shifts in AI system evolution that have dramatically altered the security landscape: from rules-based to learning-based systems, single-task to multi-task capabilities, and tool-using to tool-creating agents."
 ---
 
-_In_ [_Part 1_](https://www.linkedin.com/pulse/part-1-rise-agentic-ai-security-perspective-the-uncommon-engineer-0gvqc/?trackingId=8J3ifJPg81Ms%2FDfKIYwTCQ%3D%3D) _of this series, we explored how AI agents - autonomous systems capable of perceiving, deciding, and acting - are transforming enterprise technology. We looked at their core components (Brain, Perception, and Action modules) and examined why these systems matter now more than ever. As companies race to adopt agentic AI, with industry leaders predicting 25% of companies launching pilots by 2025, understanding the security implications becomes crucial._
+In [Part 1](/blog/2025/02/12/agentic-ai-part-1) of this series, we explored how AI agents—autonomous systems capable of perceiving, deciding, and acting—are transforming enterprise technology. We examined their core components (Brain, Perception, and Action modules) and why these systems matter now more than ever.
 
-_Today, we'll examine three fundamental shifts in how AI systems have evolved - transitions that have dramatically altered the security landscape. These aren't just technical changes; they represent fundamental transformations in how AI systems operate, the risks they pose, and the challenges organisations face in securing them._
+Today, we'll examine three fundamental shifts in how AI systems have evolved—transitions that have dramatically altered the security landscape. These aren't just technical changes; they represent fundamental transformations in how AI systems operate, the risks they pose, and the challenges organizations face in securing them.
 
 <!-- truncate -->
 
-## Introduction
+<!-- truncate -->
 
-The evolution of artificial intelligence has brought about fundamental changes in how AI systems are architected and deployed. As these systems become more sophisticated, they've gained significant capabilities and as you can imagine, they've also introduced new attack surfaces and vulnerabilities that could put organisations at risk. At the heart of many modern AI systems are pre-trained language models (PLMs), which serve as the foundation for increasingly sophisticated AI agents.
+## The Evolution Creates New Attack Surfaces
+
+The evolution of artificial intelligence has brought about fundamental changes in how AI systems are architected and deployed. As these systems become more sophisticated, they've gained significant capabilities while also introducing new attack surfaces and vulnerabilities that could put organizations at risk. At the heart of many modern AI systems are pre-trained language models (PLMs), which serve as the foundation for increasingly sophisticated AI agents.
 
 ## Understanding PLM Vulnerabilities in Modern AI Systems
 
@@ -160,19 +162,25 @@ What changes is not these fundamental principles, but rather how we apply them t
 
 The 'beast' may look different, but the principles of securing interconnected systems remain the same. Organisations that maintain strong security fundamentals while understanding AI's specific characteristics will be better positioned to manage these emerging technologies safely.
 
-## Looking Ahead
+## Key Takeaways
 
-As we've seen, each evolutionary shift in AI agent architecture has introduced new security challenges that organisations must address. In Part 3 of this series, we'll take a technical deep dive into the anatomy of modern AI agents, examining specific vulnerabilities in each core component - from the LLM-based Brain module to the Perception and Action modules that interface with the real world. We'll look at exactly how these systems can be compromised and what that means for organisations deploying them.
+Understanding these three evolutionary shifts is crucial for security professionals:
 
+1. **Learning-based systems** introduce unpredictability and new attack vectors like prompt injection
+2. **Multi-task capabilities** expand attack surfaces and create complex interaction patterns
+3. **Tool-creating abilities** enable novel threats that traditional security models weren't designed to handle
 
-
-Thanks for reading! See you in the next one.
+The fundamental security principles remain valid, but their application must evolve to address AI's unique characteristics.
 
 ---
 
-_This article is Part 2 of a four-part series on_ **_Agentic AI Security_**_._
+## Continue the Series
 
-_Subscribe to The Uncommon Engineer newsletter at_ [**_news.uncommonengineer.com_**](http://news.uncommonengineer.com/) _and join the discussion about AI, security, at the intersection of technology and society._
+**Next up**: [Part 3: The Anatomy of AI Agents - Security Vulnerabilities](/blog/2025/02/25/agentic-ai-part-3), where we'll take a technical deep dive into the anatomy of modern AI agents, examining specific vulnerabilities in each core component.
+
+**Previous**: [Part 1: The Rise of Agentic AI - A Security Perspective](/blog/2025/02/12/agentic-ai-part-1)
+
+*Questions about AI evolution and security? Reach out via [LinkedIn](https://linkedin.com/in/ron-amosa) or [email](mailto:ron@ronamosa.io).*
 
 ---
 

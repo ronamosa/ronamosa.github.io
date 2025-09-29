@@ -11,21 +11,15 @@ image: /img/blog/agentic-ai-part1-cover.jpg
 description: "Explore how AI agents are transforming enterprise technology and the security implications of autonomous systems capable of perceiving, deciding, and acting."
 ---
 
-Imagine in a modern enterprise, an autonomous system designed to manage supply chains and production becomes the target of a sophisticated attack. A zero-day vulnerability in its third-party component is exploited. The attacker injects adversarial data via compromised vendor APIs, manipulating the system's decision-making. This triggers erroneous production adjustments and disrupts inventory management. As the breach extends through the system's wide-reaching network privileges, the enterprise experiences significant operational downtime, financial losses, and reputational damage.
+Artificial Intelligence agents are transforming how enterprises operate, but they're also introducing unprecedented security challenges. These autonomous systems can perceive their environment, make decisions, and take actions—capabilities that make them incredibly powerful and potentially dangerous.
 
-Now imagine the "attacker" is not a person, but a computer programme. And it's smarter than a human.
-
-Now imagine it's not just one agent but thousands, millions.
-
-And they're everywhere.
+As organizations rush to adopt agentic AI systems, with industry predictions of 25% of companies launching pilots by 2025, understanding the security implications becomes critical. This four-part series examines agentic AI from a security professional's perspective, exploring both the opportunities and the risks these systems present.
 
 <!-- truncate -->
 
-This might sound like something from a fantastical hacker nightmare, but with the rise of current AI technologies, particularly Agentic systems or Agentic AI, this scenario is becoming less science fiction and more science fact. The shift isn't just happening because the technology is becoming more capable.
+The rise of autonomous AI agents represents more than just technological advancement—it's a fundamental shift in how we think about AI systems. Unlike traditional software that follows predetermined paths, AI agents can adapt, learn, and make independent decisions. When these capabilities are compromised, the consequences extend far beyond typical software vulnerabilities.
 
-It's also happening because we (humans) have a tendency to ignore or misunderstand what technology is capable of, and risk of abdicating our moral and ethical responsibility to oversee and address the risks associated with these systems.
-
-To understand how this scenario could become reality, we need to start with the fundamental building block: the AI Agent.
+To understand how these systems create new security paradigms, we need to start with the fundamental building block: the AI Agent.
 
 ## Understanding AI Agents
 
@@ -41,7 +35,7 @@ Yes, it is a computer programme - but the key distinguishing feature is "autonom
 
 Recent research agrees with this view. ["Exploring Large Language Model based Intelligent Agents"](https://arxiv.org/html/2401.03428v1) emphasises that the key aspect of agents is their autonomy to carry out tasks in diverse environments, using past experiences and knowledge . They can even modify their plans during execution.
 
-Very cool, also kind of scary.
+This capability represents both tremendous potential and significant risk.
 
 So, how does the agent do this? An AI agent has three primary components:
 
@@ -59,11 +53,22 @@ For this series, we'll focus on this "weaker" notion of agents. Rather than gett
 
 While there are complex aspects of agent architecture involving various types of memory, reasoning, and planning, we'll keep it high level for now. Part 3 of this series will provide a technical deep dive into the agent architecture.
 
+## Why This Matters for Security Professionals
+
+Before diving deeper into the series, it's worth understanding why agentic AI represents a paradigm shift for cybersecurity:
+
+- **Expanded Attack Surface**: Agents interact with multiple systems, APIs, and data sources
+- **Autonomous Decision Making**: Compromised agents can make harmful decisions without human oversight
+- **Dynamic Behavior**: Agent actions aren't always predictable, making traditional security monitoring challenging
+- **Cascading Effects**: A vulnerability in one agent component can impact entire connected systems
+
+These characteristics require security professionals to think beyond traditional application security models.
+
 ## From Agents to Agentic Systems
 
 In researching "Agentic AI," I discovered a confusing landscape of terms often used interchangeably, leading to misunderstandings about what exactly constitutes an Agentic system.
 
-Among various perspectives, Anthropic's blog post ["Building effective agents"](https://www.anthropic.com/research/building-effective-agents) offers probably, in my opinion, the clearest framework for understanding the relationship between agents and agentic systems.
+Among various perspectives, Anthropic's blog post ["Building effective agents"](https://www.anthropic.com/research/building-effective-agents) offers the clearest framework for understanding the relationship between agents and agentic systems.
 
 Their customers often describe "AI agents" in two distinct ways:
 
@@ -115,25 +120,27 @@ What makes this shift significant is the evolution from human-directed tools to 
 - Make and execute decisions
 - Accomplish goals without human intervention
 
-While Artificial General Intelligence (AGI) and Artificial Super Intelligence (ASI) remain distant goals, industry leaders like Sam Altman and Dario Amodei [^3] view agentic AI as an essential stepping-stone toward AGI. This makes understanding these systems crucial - not just for their immediate impact on technology and business, but for their role in what could be a historic breakthrough.
+While Artificial General Intelligence (AGI) and Artificial Super Intelligence (ASI) remain distant goals, industry leaders like Sam Altman and Dario Amodei view agentic AI as an essential stepping-stone toward AGI. This makes understanding these systems crucial - not just for their immediate impact on technology and business, but for their role in what could be a historic breakthrough.
 
 However, these new capabilities bring new risks. While agents can dramatically improve efficiency and automation, they also introduce novel attack vectors and security considerations that many organisations aren't prepared to address.
 
-## Looking Ahead to the Series
+## What's Coming in This Series
 
-Over the next few weeks, I'll be sharing a four-part deep dive into the security implications of agentic AI systems:
+This is the first in a four-part exploration of agentic AI security:
 
-- **Part 1** (this article) sets the foundation by defining what these systems are and why they matter
-- **Part 2** will explore three critical transitions in AI agent evolution that have dramatically changed the security landscape
-- **Part 3** takes us under the hood of AI agents, examining core vulnerabilities in their architecture
-- **Part 4** concludes with practical guidance on protecting against agent-related threats and a call to action for the industry
+1. **Understanding AI Agents** (this post) - Foundational concepts and definitions
+2. **Evolution and Security Shifts** - How AI system changes have altered the threat landscape
+3. **Technical Deep Dive** - Vulnerabilities in agent architecture components
+4. **Defense Strategies** - Practical security approaches and recommendations
 
-Whether you're a security professional, business leader, or simply interested in the future of AI, understanding these systems isn't optional anymore – it's becoming a crucial part of our technological literacy.
-
-Thanks for reading! See you in the next one.
+Each post builds on the previous ones, providing both theoretical understanding and practical insights for security professionals working with these emerging technologies.
 
 ---
 
-_This article is Part 1 of a four-part series on_ **_Agentic AI Security_**_._
+## Continue the Discussion
 
-_Subscribe to The Uncommon Engineer newsletter at_ [**_news.uncommonengineer.com_**](http://news.uncommonengineer.com/) _and join the discussion about AI, security, at the intersection of technology and society._
+This post is part of an ongoing exploration of AI security challenges. If you're working with AI agents in your organization or have insights to share about agentic AI security, I'd love to hear about your experiences.
+
+**Next up**: [Part 2: Evolution - Three Critical Shifts in the AI Security Landscape](/blog/2025/02/18/agentic-ai-part-2), where we'll examine how fundamental changes in AI systems have created new security paradigms.
+
+*Have questions or thoughts on agentic AI security? Feel free to reach out via [LinkedIn](https://linkedin.com/in/ron-amosa) or [email](mailto:ron@ronamosa.io).*
