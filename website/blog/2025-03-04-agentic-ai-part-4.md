@@ -13,8 +13,6 @@ description: "Explore practical security implications of AI agent vulnerabilitie
 
 ![Practical AI Agent Security Implications and Defense Strategies](/img/blog/agentic-ai-part4-cover.png)
 
-![AI Architecture Vulnerabilities](/img/blog/ai-architecture-vulnerabilities.png)
-
 In [Part 3](/blog/2025/02/25/agentic-ai-part-3), we explored the core components of AI agents—the Brain, Perception, and Action modules—and the specific security vulnerabilities each introduces. Now, let's examine how these vulnerabilities create practical security challenges and discuss approaches for mitigating these risks.
 
 ## Practical Security Implications
