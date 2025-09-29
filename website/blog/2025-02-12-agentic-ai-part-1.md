@@ -3,13 +3,15 @@ title: "Part 1: The Rise of Agentic AI - A Security Perspective"
 date: 2025-02-12
 authors:
   - name: Ron Amosa
-    title: Security Engineer & AI Researcher
-    url: https://ronamosa.io
+    title: Hacker/Engineer/Geek
+    url: /about/
     image_url: /img/profile.svg
 tags: [agentic-ai, security, ai-agents, artificial-intelligence, cybersecurity]
 image: /img/blog/agentic-ai-part1-cover.jpg
 description: "Explore how AI agents are transforming enterprise technology and the security implications of autonomous systems capable of perceiving, deciding, and acting."
 ---
+
+![The Rise of Agentic AI](/img/blog/agentic-ai-part1-cover.jpg)
 
 Artificial Intelligence agents are transforming how enterprises operate, but they're also introducing unprecedented security challenges. These autonomous systems can perceive their environment, make decisions, and take actions—capabilities that make them incredibly powerful and potentially dangerous.
 
@@ -143,4 +145,4 @@ This post is part of an ongoing exploration of AI security challenges. If you're
 
 **Next up**: [Part 2: Evolution - Three Critical Shifts in the AI Security Landscape](/blog/2025/02/18/agentic-ai-part-2), where we'll examine how fundamental changes in AI systems have created new security paradigms.
 
-*Have questions or thoughts on agentic AI security? Feel free to reach out via [LinkedIn](https://linkedin.com/in/ron-amosa) or [email](mailto:ron@ronamosa.io).*
+*Have questions or thoughts on agentic AI security? Feel free to reach out via [LinkedIn](https://linkedin.com/in/ron-amosa) or [email](mailto:hello@theuncommon.ai).*

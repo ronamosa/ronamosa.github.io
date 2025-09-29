@@ -3,13 +3,17 @@ title: "Part 4: The Anatomy of AI Agents - Practical Security Implications"
 date: 2025-03-04
 authors:
   - name: Ron Amosa
-    title: Security Engineer & AI Researcher
-    url: https://ronamosa.io
+    title: Hacker/Engineer/Geek
+    url: /about/
     image_url: /img/profile.svg
-tags: [agentic-ai, security, ai-defense, security-principles, cybersecurity-strategy]
-image: /img/blog/part4-ai-security-implications.png
+tags: [agentic-ai, security, ai-defense, security-principles, cybersecurity-strategy, ai-security-framework, enterprise-ai-security]
+image: /img/blog/agentic-ai-part4-cover.png
 description: "Explore practical security implications of AI agent vulnerabilities and learn about defense strategies, security principles, and approaches for protecting against agent-related threats in enterprise environments."
 ---
+
+![Practical AI Agent Security Implications and Defense Strategies](/img/blog/agentic-ai-part4-cover.png)
+
+![AI Architecture Vulnerabilities](/img/blog/ai-architecture-vulnerabilities.png)
 
 In [Part 3](/blog/2025/02/25/agentic-ai-part-3), we explored the core components of AI agents—the Brain, Perception, and Action modules—and the specific security vulnerabilities each introduces. Now, let's examine how these vulnerabilities create practical security challenges and discuss approaches for mitigating these risks.
 
@@ -132,7 +136,7 @@ This concludes our four-part exploration of agentic AI security. If you're imple
 - [Part 3: The Anatomy of AI Agents - Security Vulnerabilities](/blog/2025/02/25/agentic-ai-part-3)
 - Part 4: Practical Security Implications (this post)
 
-*Questions about AI agent security? Reach out via [LinkedIn](https://linkedin.com/in/ron-amosa) or [email](mailto:ron@ronamosa.io).*
+*Questions about AI agent security? Reach out via [LinkedIn](https://linkedin.com/in/ron-amosa) or [email](mailto:hello@theuncommon.ai).*
 
 ## Further Reading/References
 

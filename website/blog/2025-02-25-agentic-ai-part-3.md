@@ -1,15 +1,17 @@
 ---
-title: "Part 3: The Anatomy of AI Agents - Security Vulnerabilities (The Brain & Perception)"
+title: "Part 3: AI Agent Security Vulnerabilities - Brain and Perception Module Analysis"
 date: 2025-02-25
 authors:
   - name: Ron Amosa
-    title: Security Engineer & AI Researcher
-    url: https://ronamosa.io
+    title: Hacker/Engineer/Geek
+    url: /about/
     image_url: /img/profile.svg
-tags: [agentic-ai, security, ai-vulnerabilities, llm-security, ai-architecture]
+tags: [agentic-ai, security, ai-vulnerabilities, llm-security, ai-architecture, prompt-injection-attacks, enterprise-ai-security]
 image: /img/blog/agentic-ai-part3-cover.jpg
 description: "Take a technical deep dive into AI agent anatomy, examining specific security vulnerabilities in the Brain and Perception modules and their implications for enterprise security."
 ---
+
+![AI Agent Architecture and Security Vulnerabilities Analysis](/img/blog/agentic-ai-part3-cover.jpg)
 
 In [Part 1](/blog/2025/02/12/agentic-ai-part-1) of this series, we explored how AI agents are transforming enterprise technology with their ability to perceive, decide, and act autonomously.
 
@@ -172,4 +174,4 @@ These vulnerabilities become particularly dangerous when they cascade across com
 
 **Previous**: [Part 2: Evolution - Three Critical Shifts in the AI Security Landscape](/blog/2025/02/18/agentic-ai-part-2)
 
-*Questions about AI agent vulnerabilities? Reach out via [LinkedIn](https://linkedin.com/in/ron-amosa) or [email](mailto:ron@ronamosa.io).*
+*Questions about AI agent vulnerabilities? Reach out via [LinkedIn](https://linkedin.com/in/ron-amosa) or [email](mailto:hello@theuncommon.ai).*

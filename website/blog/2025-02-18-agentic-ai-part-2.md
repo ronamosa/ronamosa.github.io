@@ -3,13 +3,15 @@ title: "Part 2: Evolution - Three Critical Shifts in the AI Security Landscape"
 date: 2025-02-18
 authors:
   - name: Ron Amosa
-    title: Security Engineer & AI Researcher
-    url: https://ronamosa.io
+    title: Hacker/Engineer/Geek
+    url: /about/
     image_url: /img/profile.svg
 tags: [agentic-ai, security, ai-evolution, machine-learning, threat-landscape]
 image: /img/blog/agentic-ai-part2-cover.jpg
 description: "Examine three fundamental shifts in AI system evolution that have dramatically altered the security landscape: from rules-based to learning-based systems, single-task to multi-task capabilities, and tool-using to tool-creating agents."
 ---
+
+![Three Critical Shifts in the AI Security Landscape](/img/blog/agentic-ai-part2-cover.jpg)
 
 In [Part 1](/blog/2025/02/12/agentic-ai-part-1) of this series, we explored how AI agents—autonomous systems capable of perceiving, deciding, and acting—are transforming enterprise technology. We examined their core components (Brain, Perception, and Action modules) and why these systems matter now more than ever.
 
@@ -27,7 +29,7 @@ The evolution of artificial intelligence has brought about fundamental changes i
 
 Researchers have found that pre-trained language models (PLMs) are particularly susceptible to adversarial attacks, manipulating the models behaviour to produce intentionally wrong outputs, or evade safety controls. While adversarial attacks on standard LLMs might be contained to a single system or task, LLM-based agents integrate with multiple systems through their action modules - accessing tools, databases, and APIs. This broader system access means a single compromised decision can trigger multiple downstream actions across connected systems.
 
-![AI Architecture Vulnerabilities](/img/blog/ai-architecture-vulnerabilities.png)
+
 
 AI Architecture Vulnerabilities
 
@@ -180,7 +182,7 @@ The fundamental security principles remain valid, but their application must evo
 
 **Previous**: [Part 1: The Rise of Agentic AI - A Security Perspective](/blog/2025/02/12/agentic-ai-part-1)
 
-*Questions about AI evolution and security? Reach out via [LinkedIn](https://linkedin.com/in/ron-amosa) or [email](mailto:ron@ronamosa.io).*
+*Questions about AI evolution and security? Reach out via [LinkedIn](https://linkedin.com/in/ron-amosa) or [email](mailto:hello@theuncommon.ai).*
 
 ---
 
