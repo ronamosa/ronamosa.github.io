@@ -128,6 +128,36 @@ When updating changelog, use descriptive commit messages:
 - Use title case for post titles
 - Keep filenames concise but descriptive
 
+## Blog Post Style and Philosophy
+
+Ron's blog posts are **experiential documentation**, not just "how-to" guides. While they show readers how to accomplish tasks, they equally prioritize:
+
+- **Logging the journey**: Document the discovery process, not just the final solution
+- **Real-world quirks**: Include gotchas, edge cases, and unexpected challenges encountered
+- **What didn't work**: Explain failed approaches and why they were abandoned
+- **Decision rationale**: Why certain approaches were chosen over alternatives
+- **Testing results**: Show what was actually tried and tested, with evidence
+- **Troubleshooting**: Real problems faced and how they were resolved
+
+This style makes content more authentic and valuable by sharing the complete problem-solving process. Readers benefit from the author's experimentation and can avoid the same pitfalls.
+
+**Example sections that reflect this style:**
+
+- "What Works: Testing Results"
+- "What Doesn't Work Reliably"
+- "Troubleshooting Common Issues"
+- Technical details about race conditions, permission quirks, etc.
+
+### AI Assistance Disclaimer
+
+When content has been formatted or co-written with AI assistance, include this disclaimer:
+
+```markdown
+:::info 🤖 AI Collaboration
+This post was co-written with AI assistance. All technical testing, troubleshooting, and real-world insights are from the author's direct experience. AI helped with structure, clarity, and documentation formatting.
+:::
+```
+
 ## General Website Rules
 
 ### Content Quality
