@@ -1,11 +1,7 @@
 ---
 title: "Part 1: The Rise of Agentic AI - A Security Perspective"
 date: 2025-02-12
-authors:
-  - name: Ron Amosa
-    title: Hacker/Engineer/Geek
-    url: /about/
-    image_url: /img/profile.svg
+authors: [ron]
 tags: [agentic-ai, security, ai-agents, artificial-intelligence, cybersecurity]
 image: /img/blog/agentic-ai-part1-cover.jpg
 description: "Explore how AI agents are transforming enterprise technology and the security implications of autonomous systems capable of perceiving, deciding, and acting."

@@ -15,11 +15,11 @@ const internetProfiles = {
   },
 
   blog: {
-    label: "Blog",
+    label: "Analysis & Essays",
     to: "blog",
   },
   docs: {
-    label: "Docs",
+    label: "Technical",
     to: "docs",
   },
   about: {
@@ -34,7 +34,7 @@ const internetProfiles = {
 
 module.exports = {
   title: 'The Uncommon Engineer',
-  tagline: 'Pasifika Excellence and Leadership in AI, Cloud, DevOps and Security Engineering.',
+  tagline: 'Mastery before rebellion. Builder. Anarchist. Pasifika.',
   url: 'https://ronamosa.io',
   baseUrl: '/',
   onBrokenLinks: 'warn',
@@ -52,17 +52,17 @@ module.exports = {
     navbar: {
       title: 'Uncommon Engineer',
       logo: {
-        alt: 'ronamosa.io',
-        src: 'img/logo.svg',
+        alt: 'The Uncommon Engineer',
+        src: 'img/profile.svg',
       },
       items: [
         {
           to: "docs/",
           activeBasePath: "docs",
-          label: "Docs",
+          label: "Technical",
           position: "left",
         },
-        { to: "blog/", label: "Blog", position: "left" },
+        { to: "blog/", label: "Analysis & Essays", position: "left" },
         { to: "about/", label: "About", position: "right" },
         { to: "projects/", label: "Projects", position: "right" },
         { to: "changelog/", label: "Changelog", position: "right" },
@@ -116,6 +116,10 @@ module.exports = {
       src: '/js/metricool.js',
       async: false,
     },
+    {
+      src: 'https://subscribe-forms.beehiiv.com/embed.js',
+      async: true,
+    },
   ],
 
   presets: [
@@ -135,6 +139,9 @@ module.exports = {
           showReadingTime: true,
           editUrl:
             'https://github.com/ronamosa/ronamosa.github.io/edit/main/website/',
+          postsPerPage: 10,
+          blogSidebarTitle: 'All Posts',
+          blogSidebarCount: 'ALL',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),

@@ -1,11 +1,7 @@
 ---
 title: "Part 3: AI Agent Security Vulnerabilities - Brain and Perception Module Analysis"
 date: 2025-02-25
-authors:
-  - name: Ron Amosa
-    title: Hacker/Engineer/Geek
-    url: /about/
-    image_url: /img/profile.svg
+authors: [ron]
 tags: [agentic-ai, security, ai-vulnerabilities, llm-security, ai-architecture, prompt-injection-attacks, enterprise-ai-security]
 image: /img/blog/agentic-ai-part3-cover.jpg
 description: "Take a technical deep dive into AI agent anatomy, examining specific security vulnerabilities in the Brain and Perception modules and their implications for enterprise security."

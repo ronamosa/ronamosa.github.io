@@ -1,11 +1,7 @@
 ---
 title: "The Complexity Wall: My Half-Day Experiment with Spec-Driven Development (SDD)"
 date: 2025-09-16
-authors:
-  - name: Ron Amosa
-    title: Hacker/Engineer/Geek
-    url: /about/
-    image_url: /img/profile.svg
+authors: [ron]
 tags: [spec-driven-development, software-engineering, mvp, prototyping, complexity, lessons-learned, chrome-extension, development-process]
 image: /img/blog/complexity-wall-cover.png
 description: "How a simple bias highlighter became a 96-task enterprise project in 4 hours. A practical lesson in over-engineering, spec-driven development pitfalls, and the value of starting embarrassingly simple."
