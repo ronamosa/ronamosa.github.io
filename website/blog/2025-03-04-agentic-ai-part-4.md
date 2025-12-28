@@ -1,11 +1,7 @@
 ---
 title: "Part 4: The Anatomy of AI Agents - Practical Security Implications"
 date: 2025-03-04
-authors:
-  - name: Ron Amosa
-    title: Hacker/Engineer/Geek
-    url: /about/
-    image_url: /img/profile.svg
+authors: [ron]
 tags: [agentic-ai, security, ai-defense, security-principles, cybersecurity-strategy, ai-security-framework, enterprise-ai-security]
 image: /img/blog/agentic-ai-part4-cover.png
 description: "Explore practical security implications of AI agent vulnerabilities and learn about defense strategies, security principles, and approaches for protecting against agent-related threats in enterprise environments."

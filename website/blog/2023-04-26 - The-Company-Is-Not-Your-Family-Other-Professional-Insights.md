@@ -1,0 +1,123 @@
+---
+slug: company-not-your-family-other-professional-insights
+title: The Company Is Not Your Family & Other Professional Insights.
+description: Advises treating companies as legal entities playing economic games not families to manage expectations and navigate corporate reality. Essential reading for un
+date: 2023-04-26
+authors: [ron]
+keywords:
+- AI governance
+tags:
+- AI-Sovereignty-Governance
+- career
+reading_time: 12
+word_count: 2313
+hide_table_of_contents: false
+draft: false
+---
+Talofa reader,
+
+Over the last few weeks, I've had things either in my periphery or right in front of me that all looked like different things, but I could thread the same theme through each of them.
+
+I've read stories of layoffs in Silicon Valley and Big Tech, newsletters analysing these events, motivations of these companies, and the historical events that preceded them. I've seen local companies decimate whole teams and watched green "opentowork" rings popping up frequently on social media. In the last week, I've had friends made redundant from their remote U.S. roles, and other friends' roles disestablished in big insurance companies in the current economic climate.
+
+The theme I would thread through all these events, zoomed right out, could be described as*"how the world works."*None of what is happening is necessarily shocking or surprising to people who see the world, and the things in it, a particular way and expect these kinds of outcomes.
+
+In this weeks newsletter, I'm not quite digging into the bigger picture of*"how the world works"*, but into the smaller*"how companies work"*and how I think about them, in this or any other economic climate, and what has served me in navigating my professional career.
+
+<!-- truncate -->
+
+## A Company Is a Company
+
+This has been an important one in my experience, especially with hearing of friends being "loyal to the company" for years and then getting let go and feeling betrayed by the company. I understand the feeling; getting made redundant sucks. I've been there, and it's not a good feeling. In my experience, my level of disappointment was directly proportional to the level of my expectations of the company.
+
+But that’s the problem: a company is a company, it's not a family. It can't be, and we should (especially the company) be okay with accepting those boundaries. A company is an organisation playing an economic game where it's building a product or service and supplying a market. It uses all the tools at its disposal, including humans, and is not in and of itself evil. It's just a company.
+
+You can be loyal to people and your team, and go the extra mile or above and beyond to help the "people" of the company, which ultimately helps the company, but never get this twisted. A person will help you move, shout you lunch, and listen to your personal problems at work, and the company can help facilitate these things to help maintain an organisation of happy people producing goods and services for the company. A company will not give you an interest-free loan for a business idea or house you in one of its buildings because you got evicted. And you wouldn't expect it to, because it's a company, not your family. It's a legal entity that uses humans to conduct business.
+
+## Understand Organisational Structures
+
+This might be getting into the weeds a bit in how to simply look at what you need to understand about "working in tech" or in organisations in general. But there's a lot about how the organisation is structured that helps you understand how things are going to be in that org.
+
+We can take a traditional view of structures as horizontal vs vertical, where a horizontal hierarchy brings improved communications and autonomy for employees (because it's flatter), but because everyone's on the same "level," the roles and responsibilities become unclear. On the other hand, a vertical hierarchy provides clear lines of authority up the chain, better control and oversight, but increases bureaucracy because it needs to go up the chain to get action.
+
+Just understanding that the structure of an organisation can immediately give you clues as to how it operates, by the very nature of the structure, to me at least, is important to understand or at least be aware of to set your expectations on how decisions get made, and where the power lies. For example, if you're in one of several operations teams which has a flatter hierarchy amongst them, the manager with the most influence and political savvy will be the one with the power. But if a "weaker" manager has the ear of a manager at a level up from their hierarchy (i.e. vertical), then they may be able to swing some influence that way.
+
+And this is just my observations being in the tech industry, working for many companies, big and small, and watching how these things play out for various scenarios.
+
+I think the "Executive Sponsorship" best practice in the AWS Well-Architected Framework's Operational Excellence Pillar illustrates just how important understanding the power of the organisational structure of the company is, in order to have a high level of confidence in the success of any business initiative.
+
+The"Executive Sponsorship"best practice talks about the importance of getting senior leadership to "sponsor" the adoption of best practices being proposed to ensure the successful delivery of what's being sought. And you see this in any organization where engineering teams might want to do or build something or set a standard tech stack or infrastructure to use, but if they don't get that high-level "cover" or backing, i.e., "sponsorship" from an executive (or high enough) level, those ideas and initiatives don't have a good chance of succeeding.
+
+Understand what structure you're working within and know how to operate it.
+
+## Organisations is Politics
+
+Every time I hear "I don't do office politics" or "I avoid office politics," I'm not sure the person really understands what they're talking about. It's like saying "When I go to the office, I avoid breathing" or "When I'm swimming, I avoid the water." If you work in an organization, public, private, not-for-profit – you will be subjected to whatever policies apply to that organization whether you like it or not.
+
+If you're a grad, fresh out of university, bright-eyed and bushy-tailed, I can expect you might think, "Oh no, no negativity and bad corporate vibes for me, thank you," so of course, "I don't do office politics." But the "seasoned professionals" I've heard this from is umm… “thought-provoking” 😂 . Even if you're a contractor, which I have been for several years, you will still operate inside an organisation that determines what you work on and how you work on it, influenced by – office politics. I'm guessing what seasoned pros mean by not doing office politics is maybe the company "rah-rah's" where they don't buy into the company propaganda. That I can understand. But I digress...
+
+Politics is inherently a part of decision-making processes that shape the organization and is crucial in determining the policies and systems that impact daily work life.
+
+You don't have to be Frank Underwood from House of Cards, but please keep your eyes and ears open to where the political breezes are blowing.
+
+## The Nature of the Beast
+
+I might sound like I'm repeating myself here, where I could have said this in the "company is a company" section up top, but this point is really about the company itself. The first section was about your relationship to the company, how you see the relationship, and how it dictates your behavior and feelings towards it. When I think about wild animals and see videos of lions attacking people or elephants trampling folks or sharks eating people in the ocean, I just think to myself, "Yo, that's a wild animal. It's supposed to do wild animal stuff."
+
+I think of companies the same way. It's a beast. It's going to behave according to its**environment**(country, culture, legal, political), its**inputs**(quality of executives, skill levels of workers),**incentives**(moral, economic), and**objectives**(make a lot of money, make a lot of money responsibly, make a lot of money at all cost).
+
+A company will make decisions that best serve the company. These include paying you as little as possible for your labor while trying to maximize the most profit from the same labor; preventing you from working for the competition when you leave their employment; layoffs for shareholder profit instead of just accepting less profit; presenting you every year with something they called a pay rise that coincidentally roughly matched whatever inflation was that year; employee of the month certificates with a gift card instead of a well-deserved pay rise.
+
+Now, you probably got the impression from the last paragraph that I'm bitter and jaded about the examples I gave. But in all honesty, I'm not. There was a time when I was jaded earlier in my career, but that was before I understood the nature of companies and what they're about. Big disclaimer obviously, "not all companies." In fact, I'm pretty happy with the company I'm at now because I haven't experienced any of these. The point is, I expect companies to do everything that is in the best interest of making the company the most profit. They can choose long-term gains over short-term profits if they want. That makes good business sense (except where a business has to scrap it out in the short-term to survive and see a long-term), but again they're doing what's best for the business.
+
+## Recommendations
+
+So, what do we do? I like to take a big page out of the Stoic handbook of "Don't trouble yourself with things outside your control," and while you should vote and provide your input and feedback at work and in your community, a lot of this stuff (above) is the status quo that you're currently living in, so you might as well turn your focus on things you can do to mitigate the risks associated with living and working in society as we know it today.
+
+First, as a technical person, keep your game tight. Stay on top of your discipline, stay on the tools, or near them, or at the very least understand where the tools are and where they're going. If you mean to move to another discipline, i.e., management, be intentional about it. Don't wake up one day and realize you're a people herder with crap people skills and rusty engineering skills. Nothing is worse than being moved around roles, skills, and responsibilities that serve the company but make you as a worker anywhere else pretty much useless because you became the IBM XML gateway expert and you can't find a single other company in the market that lists that as a skill they're after (true story).
+
+Second, keep your finances in a strong position. If you work in tech, earning market rate, I really don't see any good reason why you shouldn't have the means to get yourself into a position where you have little to no debt and 3-6 months worth of expenses saved up for a rainy day, i.e., your "f*** you" money. Financial literacy and people's spending behavior are out of scope for today's newsletter. Whatever you need to tell yourself to get to a strong position, get there. It'll give you the mechanism to exit a toxic company, a bad manager as well as the buffer to weather a layoff or restructure. It gives you options basically.
+
+And finally, keep your network strong. The old adage "it's not what you know, it's who you know" is true. If you're part of a community or club, then be part of it. My mum always says*"don't ask 'what's in it for me?' ask how you can be of service"*(pretty sure she got that from JFK 😂). One of my pet peeves is folks who only use their network when they want something out of it. We're social creatures, do you think that kind of behaviour signals someone you’d want to work with? My professional network is pretty small, it's a handful of people whose opinions and insights in the industry I value, so I check in with a coffee or lunch - and I'm talking a few times a year, not a weekly meeting. That’s just me though.
+
+## Conclusion
+
+As I was working my way through each section, thinking about the nature of companies and their behaviours, the idea that a company is not a real thing reminded me of this passage from Yuval Noah Harari’s“Sapiens: A Brief History of Humankind”
+
+A company is neither good nor bad; it’s a "legal fiction." It is the vehicle through which actual real-life people carry out the "economic game," infused and imbued with all that is good and bad about people, on the company’s behalf.
+
+So maybe it was people all along ;)
+
+*Thanks for reading. I'll see you in the next episode.*
+
+Share### Learning
+
+*Things I’m actively studying or learning this week…*
+
+- Studying for the‘AWS Certified Security - Speciality’certificate - 40% through the course, Internet Gateways this week.
+
+### Building
+
+*Things I’m building or working on this week…*
+
+- Hashicorp Packer + Proxmox for Cloud-init VM images for the Home lab, this week.
+
+- Setup myProxmoxlab for someK8srefresher and infrastructure work.
+
+- Revisited myAWS YouTube Analyzing projectto progress it a bit more with Step Functions.
+
+### Interesting Reads
+
+*Articles or other writing that stood out to me this week…*
+
+- “Does Experience Matter?”by Abi Noda.
+
+### Community
+
+*Other projects in community I’m working on…*
+
+- Pasifika Tech Education Charity-*Providing Tech Learning Opportunities for the Pasifika Community.*
+
+- Pasifika Tech Network-*A Network for Pasifika Tech Professionals & Learners.*
+
+
