@@ -19,7 +19,7 @@ const internetProfiles = {
     to: "blog",
   },
   docs: {
-    label: "Docs",
+    label: "Technical",
     to: "docs",
   },
   about: {
@@ -34,7 +34,7 @@ const internetProfiles = {
 
 module.exports = {
   title: 'The Uncommon Engineer',
-  tagline: 'Pasifika Excellence and Leadership in AI, Cloud, DevOps and Security Engineering.',
+  tagline: 'Mastery before rebellion. Builder. Anarchist. Pasifika.',
   url: 'https://ronamosa.io',
   baseUrl: '/',
   onBrokenLinks: 'warn',
@@ -52,14 +52,14 @@ module.exports = {
     navbar: {
       title: 'Uncommon Engineer',
       logo: {
-        alt: 'ronamosa.io',
-        src: 'img/logo.svg',
+        alt: 'The Uncommon Engineer',
+        src: 'img/profile.svg',
       },
       items: [
         {
           to: "docs/",
           activeBasePath: "docs",
-          label: "Docs",
+          label: "Technical",
           position: "left",
         },
         { to: "blog/", label: "Analysis & Essays", position: "left" },
