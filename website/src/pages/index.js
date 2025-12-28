@@ -31,8 +31,16 @@ function ContentCard({ icon, title, count, countLabel, description, linkText, li
 }
 
 function NewsletterCard() {
+  const openSubscribePopup = () => {
+    window.open(
+      '/subscribe',
+      'subscribe',
+      'width=550,height=650,scrollbars=yes'
+    );
+  };
+
   return (
-    <div className={styles.card}>
+    <div className={styles.card + ' ' + styles.newsletterCard}>
       <div className={styles.cardHeader}>
         <span className={styles.cardIcon}>📬</span>
         <span className={styles.cardCount}>{CONTENT_COUNTS.subscribers}+ Subscribers</span>
@@ -41,14 +49,12 @@ function NewsletterCard() {
       <p className={styles.cardDescription}>
         Fortnightly analysis delivered to your inbox.
       </p>
-      <a 
-        href="https://www.uncommonengineer.com/" 
-        target="_blank" 
-        rel="noopener noreferrer"
-        className={styles.cardLink}
+      <button 
+        onClick={openSubscribePopup}
+        className={styles.subscribeButton}
       >
         Subscribe <span className={styles.arrow}>→</span>
-      </a>
+      </button>
     </div>
   );
 }

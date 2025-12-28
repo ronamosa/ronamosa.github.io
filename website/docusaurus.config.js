@@ -116,6 +116,10 @@ module.exports = {
       src: '/js/metricool.js',
       async: false,
     },
+    {
+      src: 'https://subscribe-forms.beehiiv.com/embed.js',
+      async: true,
+    },
   ],
 
   presets: [

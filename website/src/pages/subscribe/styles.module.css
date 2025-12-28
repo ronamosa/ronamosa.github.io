@@ -1,0 +1,56 @@
+/* Subscribe Page */
+
+.subscribePage {
+  min-height: calc(100vh - 60px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background-color: var(--ifm-background-color);
+}
+
+.subscribeContainer {
+  max-width: 450px;
+  width: 100%;
+  text-align: center;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--ifm-font-color-base);
+  margin: 0 0 0.75rem;
+  letter-spacing: -0.02em;
+}
+
+.subtitle {
+  font-size: 1rem;
+  color: #888;
+  line-height: 1.5;
+  margin: 0 0 1.5rem;
+}
+
+.embedContainer {
+  /* Let Beehiiv's styling show through */
+  margin-bottom: 1rem;
+}
+
+.note {
+  font-size: 0.8rem;
+  color: #555;
+  margin: 0;
+}
+
+@media screen and (max-width: 600px) {
+  .subscribePage {
+    padding: 1.5rem;
+  }
+
+  .title {
+    font-size: 1.75rem;
+  }
+
+  .subtitle {
+    font-size: 0.95rem;
+  }
+}
