@@ -1,13 +1,82 @@
-import React, { useEffect, useRef, useState } from "react";
-import clsx from 'clsx';
-
+import React from "react";
 import Link from '@docusaurus/Link';
-import useBaseUrl from "@docusaurus/useBaseUrl";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import Layout from '@theme/Layout';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faLinkedin, faGithub, faYoutube } from "@fortawesome/free-brands-svg-icons";
 
 import styles from './index.module.css';
-import SocialLinks from "./components/_SocialLinks";
+
+// Dynamic counts
+const CONTENT_COUNTS = {
+  essays: 56,
+  docs: 170,
+  subscribers: 180,
+};
+
+function ContentCard({ icon, title, count, countLabel, description, linkText, linkTo }) {
+  return (
+    <Link className={styles.card} to={linkTo}>
+      <div className={styles.cardHeader}>
+        <span className={styles.cardIcon}>{icon}</span>
+        <span className={styles.cardCount}>{count}+ {countLabel}</span>
+      </div>
+      <h3 className={styles.cardTitle}>{title}</h3>
+      <p className={styles.cardDescription}>{description}</p>
+      <span className={styles.cardLink}>
+        {linkText} <span className={styles.arrow}>→</span>
+      </span>
+    </Link>
+  );
+}
+
+function NewsletterCard() {
+  return (
+    <div className={styles.card}>
+      <div className={styles.cardHeader}>
+        <span className={styles.cardIcon}>📬</span>
+        <span className={styles.cardCount}>{CONTENT_COUNTS.subscribers}+ Subscribers</span>
+      </div>
+      <h3 className={styles.cardTitle}>Newsletter</h3>
+      <p className={styles.cardDescription}>
+        Fortnightly analysis delivered to your inbox.
+      </p>
+      <a 
+        href="https://www.uncommonengineer.com/" 
+        target="_blank" 
+        rel="noopener noreferrer"
+        className={styles.cardLink}
+      >
+        Subscribe <span className={styles.arrow}>→</span>
+      </a>
+    </div>
+  );
+}
+
+function SocialIcons() {
+  const socials = [
+    { icon: faLinkedin, url: "https://www.linkedin.com/in/ron-amosa/", label: "LinkedIn" },
+    { icon: faGithub, url: "https://github.com/ronamosa", label: "GitHub" },
+    { icon: faYoutube, url: "https://www.youtube.com/@uncommonengineer", label: "YouTube" },
+  ];
+
+  return (
+    <div className={styles.socialIcons}>
+      {socials.map((social, idx) => (
+        <a 
+          key={idx}
+          href={social.url} 
+          target="_blank" 
+          rel="noopener noreferrer"
+          className={styles.socialIcon}
+          aria-label={social.label}
+        >
+          <FontAwesomeIcon icon={social.icon} />
+        </a>
+      ))}
+    </div>
+  );
+}
 
 function Home() {
   const context = useDocusaurusContext();
@@ -15,31 +84,59 @@ function Home() {
 
   return (
     <Layout title="Home" description={siteConfig.tagline}>
-      <header className={styles.heroBanner}>
-        <div className="container">
-          <div className={styles.heroBannerText}>
-            <p className="colorSuccess">
-              <b>Hi, I'm Ron Amosa: </b>
-            </p>
-            <h1>
-              <span className="colorWarning">The Uncommon</span>{" "}
-              <span className="colorDanger">Engineer.</span>
-            </h1>
-            <p>I'm a Hacker/Engineer/Geek. 💻.</p>
-            <p>Part Lab Notes / Part <a href="https://maggieappleton.com/garden-history">Digital Garden</a> 🌱.</p>
-            <p>Learning in Public 📚.</p>
-            <SocialLinks />
-            <nav className={clsx("pagination-nav", styles.heroBannerButton)}>
-              <div className="pagination-nav__item">
-                <Link className="pagination-nav__link" to={useBaseUrl("/docs/")}>
-                  <div className="pagination-nav__sublabel">ready to go?</div>
-                  <div className="pagination-nav__label">Start Here</div>
-                </Link>
-              </div>
-            </nav>
+      <main className={styles.mainContainer}>
+        {/* Hero Section */}
+        <section className={styles.heroSection}>
+          <div className={styles.heroContainer}>
+            <div className={styles.heroImageWrapper}>
+              <img 
+                src="/img/profile.svg" 
+                alt="Ron Amosa" 
+                className={styles.heroImage}
+              />
+            </div>
+
+            <div className={styles.heroContent}>
+              <span className={styles.heroName}>Ron Amosa</span>
+              <h1 className={styles.heroTitle}>The Uncommon Engineer</h1>
+              <p className={styles.heroSubtitle}>
+                Mastery before rebellion.
+              </p>
+              <p className={styles.heroTagline}>
+                Builder. Anarchist. Pasifika.
+              </p>
+              <SocialIcons />
+            </div>
           </div>
-        </div>
-      </header>
+        </section>
+
+        {/* Cards Section */}
+        <section className={styles.cardsSection}>
+          <div className={styles.cardsContainer}>
+            <ContentCard
+              icon="📰"
+              title="Analysis & Essays"
+              count={CONTENT_COUNTS.essays}
+              countLabel="Essays"
+              description="Political analysis, AI sovereignty, digital colonialism."
+              linkText="Browse Analysis"
+              linkTo="/blog"
+            />
+
+            <ContentCard
+              icon="🔧"
+              title="Technical Docs"
+              count={CONTENT_COUNTS.docs}
+              countLabel="Guides"
+              description="Cloud architecture, Kubernetes, security, infrastructure."
+              linkText="Browse Docs"
+              linkTo="/docs"
+            />
+
+            <NewsletterCard />
+          </div>
+        </section>
+      </main>
     </Layout>
   );
 }

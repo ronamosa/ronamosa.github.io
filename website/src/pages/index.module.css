@@ -1,138 +1,251 @@
-/* stylelint-disable docusaurus/copyright-header */
+/* Homepage - The Uncommon Engineer */
 
-.heroBanner {
-  align-items: flex-start;
+.mainContainer {
+  min-height: calc(100vh - 60px);
   background-color: var(--ifm-background-color);
-  color: var(--ifm-color-secondary-lightest);
   display: flex;
-  overflow: hidden;
-  padding: 4rem 0 2rem;
-  position: relative;
-  text-align: left;
+  flex-direction: column;
 }
 
-.heroBannerName {
-  font-size: 3.6rem;
-}
-
-.heroBanner h2 {
-  font-size: 2rem;
-  margin-left: 2px;
-}
-
-.heroBanner p {
-  font-size: 1.2rem;
-  margin: 4px;
-  max-width: 512px;
-}
-
-.heroBanner ul {
-  margin: 4px;
-  padding: 0;
-}
-
-.heroBannerText {
-  min-height: 1024px;
-}
-
-.heroBannerButton {
-  margin: 0rem 0.6rem 0 4px;
-}
-
-.aboutHeader {
-  background-color: var(--ifm-color-secondary-darkest);
-  color: var(--ifm-color-secondary-lighter);
-  padding: 3.6rem 0 1rem;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-  display: block;
-}
-
-.aboutHeader h2 {
-  display: inline-block;
-  padding-bottom: 6px;
-}
-
-.aboutBody,
-.directoryBody {
+/* ===== HERO SECTION ===== */
+.heroSection {
+  padding: 4rem 2rem;
+  display: flex;
+  justify-content: center;
   align-items: center;
+  flex: 1;
+}
+
+.heroContainer {
   display: flex;
-  padding: 3.6rem 0;
+  align-items: center;
+  gap: 4rem;
+  max-width: 1000px;
   width: 100%;
 }
 
-.aboutBody {
-  background-color: var(--ifm-color-secondary-lightest);
-  color: var(--ifm-color-secondary-darkest);
+.heroImageWrapper {
+  flex-shrink: 0;
 }
 
-.aboutBody a {
-  font-weight: bold;
+.heroImage {
+  width: 280px;
+  height: 280px;
+  border-radius: 12px;
+  filter: grayscale(20%);
+  transition: filter 0.3s ease;
 }
 
-.aboutBody p {
-  max-width: 640px;
+.heroImage:hover {
+  filter: grayscale(0%);
 }
 
-.aboutBodyButton {
-  margin: 16px 0 0;
+.heroContent {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
-.directoryBody {
-  background-color: var(--ifm-color-secondary-darkest);
-  color: var(--ifm-color-secondary-lightest);
+.heroName {
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--ifm-color-primary);
+  font-weight: 600;
 }
 
-.directoryBody h3 {
-  font-weight: normal;
+.heroTitle {
+  font-size: 3.5rem;
+  font-weight: 800;
+  color: var(--ifm-font-color-base);
+  margin: 0;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
 }
 
-.profilePic {
-  text-align: right;
+.heroSubtitle {
+  font-size: 1.25rem;
+  color: var(--ifm-font-color-base);
+  line-height: 1.5;
+  margin: 0.5rem 0 0;
+  max-width: 440px;
 }
 
-.profilePic img {
-  border-radius: 5%;
-  max-height: 196px;
-  max-width: 196px;
+.heroTagline {
+  font-size: 1rem;
+  color: var(--ifm-color-primary);
+  font-weight: 500;
+  margin: 0.25rem 0 0;
+  letter-spacing: 0.05em;
 }
 
-.featureImage {
-  max-height: 384px;
-  max-width: 384px;
+.socialIcons {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
 }
 
-.featureText {
-  padding: 1rem;
-}
-
-.ctaButtons {
+.socialIcon {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 1.2rem 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  background-color: #161A1D;
+  border: 1px solid #2a2a2a;
+  color: #b0b0b0;
+  font-size: 1.1rem;
+  transition: all 0.2s ease;
 }
 
-@media screen and (max-width: 966px) {
-  .heroBanner {
-    padding: 2rem 0;
-  }
+.socialIcon:hover {
+  border-color: var(--ifm-color-primary);
+  color: var(--ifm-color-primary);
+  transform: translateY(-2px);
+}
 
-  .heroBanner h1 {
-    font-size: 3.2rem;
-  }
+/* ===== CARDS SECTION ===== */
+.cardsSection {
+  background-color: #0d0d0d;
+  padding: 3rem 2rem 4rem;
+  border-top: 1px solid #1a1a1a;
+}
 
-  .heroBanner h2 {
-    font-size: 1.8rem;
-  }
+.cardsContainer {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
 
-  .heroBanner p {
-    font-size: 1rem;
-  }
+/* Card Styles */
+.card {
+  background-color: #161A1D;
+  border: 1px solid #2a2a2a;
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.25s ease;
+  display: flex;
+  flex-direction: column;
+}
 
-  .profilePic {
-    margin: 4px 0 24px;
+.card:hover {
+  border-color: var(--ifm-color-primary);
+  box-shadow: 0 0 30px rgba(164, 22, 26, 0.15);
+  transform: translateY(-3px);
+  text-decoration: none;
+  color: inherit;
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.cardIcon {
+  font-size: 1.25rem;
+}
+
+.cardCount {
+  font-size: 0.75rem;
+  color: var(--ifm-color-primary);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.cardTitle {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--ifm-font-color-base);
+  margin: 0 0 0.5rem;
+}
+
+.cardDescription {
+  font-size: 0.9rem;
+  color: #888;
+  line-height: 1.5;
+  margin: 0 0 1rem;
+  flex: 1;
+}
+
+.cardLink {
+  font-size: 0.9rem;
+  color: var(--ifm-color-primary);
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+}
+
+.cardLink:hover {
+  text-decoration: none;
+}
+
+.arrow {
+  transition: transform 0.2s ease;
+}
+
+.card:hover .arrow {
+  transform: translateX(4px);
+}
+
+/* ===== RESPONSIVE ===== */
+@media screen and (max-width: 900px) {
+  .heroContainer {
+    flex-direction: column;
     text-align: center;
+    gap: 2rem;
+  }
+
+  .heroContent {
+    align-items: center;
+  }
+
+  .heroTitle {
+    font-size: 2.75rem;
+  }
+
+  .heroSubtitle {
+    text-align: center;
+  }
+
+  .socialIcons {
+    justify-content: center;
+  }
+
+  .cardsContainer {
+    grid-template-columns: 1fr;
+    max-width: 400px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .heroSection {
+    padding: 3rem 1.5rem;
+  }
+
+  .heroImage {
+    width: 200px;
+    height: 200px;
+  }
+
+  .heroTitle {
+    font-size: 2.25rem;
+  }
+
+  .heroSubtitle {
+    font-size: 1.1rem;
+  }
+
+  .cardsSection {
+    padding: 2rem 1.5rem 3rem;
   }
 }

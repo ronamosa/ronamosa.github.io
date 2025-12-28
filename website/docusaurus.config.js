@@ -15,7 +15,7 @@ const internetProfiles = {
   },
 
   blog: {
-    label: "Blog",
+    label: "Analysis & Essays",
     to: "blog",
   },
   docs: {
@@ -62,7 +62,7 @@ module.exports = {
           label: "Docs",
           position: "left",
         },
-        { to: "blog/", label: "Blog", position: "left" },
+        { to: "blog/", label: "Analysis & Essays", position: "left" },
         { to: "about/", label: "About", position: "right" },
         { to: "projects/", label: "Projects", position: "right" },
         { to: "changelog/", label: "Changelog", position: "right" },
