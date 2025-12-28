@@ -72,36 +72,4 @@ Stay tuned I guess.
 
 *Thanks for reading. I'll see you in the next episode.*
 
-Share### Learning
-
-*Things I’m actively studying or learning this week…*
-
-- Studying for the‘AWS Certified Security - Speciality’certificate - S3 Bucket Policies now.
-
-### Building
-
-*Things I’m building or working on this week…*
-
-- S3 Archive Solution with Lifecycle Policies, using CDK and golang- Random project cos I wanted to learn more CDK.
-
-- I’m creating a Cyber Security CTF for a High School after school programme that my charity ‘Pasifika Tech Education Charity‘ runs during the school term. -Completed this, trying it out this week.
-
-- Work through a fewWell-Architected Labs— I did***not***do this last week.
-
-### Interesting Reads
-
-*Articles or other writing that stood out to me this week…*
-
-- ‘Fooled’- Seth Godin.
-
-- Gain Respect by Giving it - Tom Peters.
-
-### Community
-
-*Other projects in community I’m working on…*
-
-- Pasifika Tech Education Charity-*Providing Tech Learning Opportunities for the Pasifika Community.*
-
-- Pasifika Tech Network-*A Network for Pasifika Tech Professionals & Learners.*
-
-
+Ron.

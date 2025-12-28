@@ -90,34 +90,4 @@ So maybe it was people all along ;)
 
 *Thanks for reading. I'll see you in the next episode.*
 
-Share### Learning
-
-*Things I’m actively studying or learning this week…*
-
-- Studying for the‘AWS Certified Security - Speciality’certificate - 40% through the course, Internet Gateways this week.
-
-### Building
-
-*Things I’m building or working on this week…*
-
-- Hashicorp Packer + Proxmox for Cloud-init VM images for the Home lab, this week.
-
-- Setup myProxmoxlab for someK8srefresher and infrastructure work.
-
-- Revisited myAWS YouTube Analyzing projectto progress it a bit more with Step Functions.
-
-### Interesting Reads
-
-*Articles or other writing that stood out to me this week…*
-
-- “Does Experience Matter?”by Abi Noda.
-
-### Community
-
-*Other projects in community I’m working on…*
-
-- Pasifika Tech Education Charity-*Providing Tech Learning Opportunities for the Pasifika Community.*
-
-- Pasifika Tech Network-*A Network for Pasifika Tech Professionals & Learners.*
-
-
+Ron.

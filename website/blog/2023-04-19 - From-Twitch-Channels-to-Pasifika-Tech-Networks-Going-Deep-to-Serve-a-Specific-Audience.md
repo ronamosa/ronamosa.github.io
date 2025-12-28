@@ -78,34 +78,4 @@ I really need to sort out my schedule to post this out on time.
 
 *Thanks for reading. I'll see you in the next episode.*
 
-Share### Learning
-
-*Things I’m actively studying or learning this week…*
-
-- Studying for the‘AWS Certified Security - Speciality’certificate - going slowly - but it’s going: Security Groups.
-
-### Building
-
-*Things I’m building or working on this week…*
-
-- Setup myProxmoxlab for someK8srefresher and infrastructure work.
-
-- Revisited myAWS YouTube Analyzing projectto progress it a bit more with Step Functions.
-
-- S3 Archive Solution with Lifecycle Policies, using CDK and golang- Random project cos I wanted to learn more CDK.
-
-### Interesting Reads
-
-*Articles or other writing that stood out to me this week…*
-
-- “How Do I make my sure my work is visible?”- definitely a working in Big Tech dilemma, a lot of talent and great work flying around, how do you compete in that space?
-
-### Community
-
-*Other projects in community I’m working on…*
-
-- Pasifika Tech Education Charity-*Providing Tech Learning Opportunities for the Pasifika Community.*
-
-- Pasifika Tech Network-*A Network for Pasifika Tech Professionals & Learners.*
-
-
+Ron.

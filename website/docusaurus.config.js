@@ -135,6 +135,9 @@ module.exports = {
           showReadingTime: true,
           editUrl:
             'https://github.com/ronamosa/ronamosa.github.io/edit/main/website/',
+          postsPerPage: 10,
+          blogSidebarTitle: 'All Posts',
+          blogSidebarCount: 'ALL',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),

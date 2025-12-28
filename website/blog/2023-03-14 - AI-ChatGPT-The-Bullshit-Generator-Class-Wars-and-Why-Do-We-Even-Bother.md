@@ -159,34 +159,4 @@ My “always” take on new tech and it’s almost guaranteed potential for harm
 
 *Thanks for reading. I'll see you in the next episode.*
 
-Share### Learning
-
-*Things I’m actively studying or learning this week…*
-
-- Studying for the‘AWS Certified Security - Speciality’certificate.
-
-### Building
-
-*Things I’m building or working on this week…*
-
-- reviving a recent side-project on a sentiment-analysis pipeline for YouTube channels:https://github.com/ronamosa/aws-youtube-analyze-arch
-
-- Updating myblogto be searchable and add more docs.
-
-### Interesting Reads
-
-*Articles or other writing that stood out to me this week…*
-
-- ‘AI Search Engines And The Quest For Ignorance’- by Marcus Hutchins
-
-- ‘Have I Been Trained’— tool for artists to check if their artwork has been used to train AI models likeStable Diffusionand flag them for removal i.e. opt-out.
-
-### Community
-
-*Other projects in community I’m working on…*
-
-- Pasifika Tech Education Charity-*Providing Tech Learning Opportunities for the Pasifika Community.*
-
-- Pasifika Tech Network-*A Network for Pasifika Tech Professionals & Learners.*
-
-
+Ron.

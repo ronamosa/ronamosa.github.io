@@ -63,34 +63,4 @@ Ultimately, I'm not about telling people what they should or shouldn't do (had e
 
 *Thanks for reading. I'll see you in the next episode.*
 
-Share### Learning
-
-*Things I’m actively studying or learning this week…*
-
-- Studying for the‘AWS Certified Security - Speciality’certificate - going slowly… EC2 Instance Metadata.
-
-### Building
-
-*Things I’m building or working on this week…*
-
-- Revisited myAWS YouTube Analyzing projectto progress it a bit more with Step Functions.
-
-- S3 Archive Solution with Lifecycle Policies, using CDK and golang- Random project cos I wanted to learn more CDK.
-
-- I’m creating a Cyber Security CTF for a High School after school programme that my charity ‘Pasifika Tech Education Charity‘ runs during the school term. -Completed this, trying it out this week.
-
-### Interesting Reads
-
-*Articles or other writing that stood out to me this week…*
-
-- The Causes of Unreliable Softwareby Abi Noda — this was a great read and a topic for future newsletter i.e. the organisations effect on the tech outcomes and application.
-
-### Community
-
-*Other projects in community I’m working on…*
-
-- Pasifika Tech Education Charity-*Providing Tech Learning Opportunities for the Pasifika Community.*
-
-- Pasifika Tech Network-*A Network for Pasifika Tech Professionals & Learners.*
-
-
+Ron.

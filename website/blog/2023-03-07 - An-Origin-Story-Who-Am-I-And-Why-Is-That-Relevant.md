@@ -45,30 +45,4 @@ I grew up in a Samoan, Christian household in South Canterbury not fitting in th
 
 Thanks for reading. I'll see you in the next episode.
 
-Share### Learning
-
-*Things I’m actively studying or learning this week…*
-
-- Studying for the‘AWS Certified Security - Speciality’certificate.
-
-### Building
-
-*Things I’m building or working on this week…*
-
-- Updating myblogto be searchable and add more docs.
-
-### Interesting Reads
-
-*Articles or other writing that stood out to me this week…*
-
-- Race and erasure: Why the world's other humanitarian crises don't see the same response as Ukraine.
-
-- We come to bury ChatGPT, not to praise it.
-
-### Community
-
-*Other projects in community I’m working on…*
-
-- Pasifika Tech Education Charity-*Providing Tech Learning Opportunities for the Pasifika Community.*
-
-- Pasifika Tech Network-*A Network for Pasifika Tech Professionals & Learners.*
+Ron.

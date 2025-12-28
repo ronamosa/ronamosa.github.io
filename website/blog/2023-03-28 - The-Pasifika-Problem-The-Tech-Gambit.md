@@ -130,32 +130,4 @@ then I may have some answers for that.
 
 *Thanks for reading. I'll see you in the next episode.*
 
-Share### Learning
-
-*Things I’m actively studying or learning this week…*
-
-- Studying for the‘AWS Certified Security - Speciality’certificate - I’m up to AWS Identity Center!
-
-### Building
-
-*Things I’m building or working on this week…*
-
-- Work through a fewWell-Architected Labs— I did***not***do this last week.
-
-- I’m creating a Cyber Security CTF for a High School after school programme that my charity ‘Pasifika Tech Education Charity‘ runs during the school term.
-
-### Interesting Reads
-
-*Articles or other writing that stood out to me this week…*
-
-- '**RSE: Not an easy conversation**' by e-tangata
-
-### Community
-
-*Other projects in community I’m working on…*
-
-- Pasifika Tech Education Charity-*Providing Tech Learning Opportunities for the Pasifika Community.*
-
-- Pasifika Tech Network-*A Network for Pasifika Tech Professionals & Learners.*
-
-
+Ron.

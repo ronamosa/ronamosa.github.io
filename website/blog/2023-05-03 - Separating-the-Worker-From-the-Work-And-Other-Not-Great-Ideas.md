@@ -42,34 +42,4 @@ Anyway, that was at the top of my thoughts this past week. How the work is linke
 
 *Thanks for reading. I'll see you in the next episode.*
 
-Share
-
-### Learning
-
-*Things I’m actively studying or learning this week…*
-
-- Studying for the‘AWS Certified Security - Speciality’certificate - 51% through the course, Site-to-Site VPNs and Endpoints this week.
-
-### Building
-
-*Things I’m building or working on this week…*
-
-- Hashicorp Packer + Proxmox for Cloud-init VM images for the Home lab, this week - still working on this.
-
-- Setup myProxmoxlab for someK8srefresher and infrastructure work.
-
-### Interesting Reads
-
-*Articles or other writing that stood out to me this week…*
-
-- Another one by Abi Noda -
-
-### Community
-
-*Other projects in community I’m working on…*
-
-- Pasifika Tech Education Charity-*Providing Tech Learning Opportunities for the Pasifika Community.*
-
-- Pasifika Tech Network-*A Network for Pasifika Tech Professionals & Learners.*
-
-
+Ron.
