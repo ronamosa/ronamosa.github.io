@@ -24,19 +24,19 @@ function About() {
                 <img src={useBaseUrl("img/profile.svg")} alt="Profile" />
               </div>
               <div className="col col--9">
-                <p>
                 <h2>👋🏽 Talofa!</h2>
-                <br/>
-                I'm Ali'imuamua Ron Amosa, aka <a href="https://news.uncommonengineer.com/about" target="_blank" rel="noopener noreferrer">"The Uncommon Engineer"</a>.
-                <br/>
-                <br/>
-                A Pasifika technologist with Samoan, Tuvaluan, and Chinese heritage. With over two decades of engineering experience, I currently serve as a Senior Solution Architect at AWS, specializing in AI, containers, Kubernetes, and cloud security. My journey through SRE, Cyber Security, and Solution Architecture has given me a comprehensive view of the tech stack, from infrastructure, to code, risk and business outcomes.
+                <p>
+                I'm Ali'imuamua Ron Amosa — <strong>The Uncommon Engineer</strong>.
                 </p>
                 <p>
-                This website is my digital lab book, mainly random, unfiltered record of experiments, technical documentation, and ongoing learnings. Here, I'll scribble down anything that I find interesting, and share my thoughts on the tech industry, when it's not already in my newsletter.
-                <br/>
-                <br/>
-                I'm also a husband, father, a BJJ black belt, Drummer, tattoo and motorcycle enthusiast.
+                I'm a Pasifika technologist of Samoan, Tuvaluan, and Chinese heritage. For more than two decades I've worked across SRE, cyber security, and solution architecture. Today I'm a Senior Solutions Architect at AWS, focused on AI, containers, Kubernetes, and cloud security — the full stack from infrastructure and code, through risk, governance, and business outcomes.
+                </p>
+                <h3>This site is my working lab book.</h3>
+                <p>
+                It's where I document experiments, random projects, lab builds, hacking walk-throughs, hard-won technical lessons, things I'm still figuring out, and thoughts on the tech industry, which is usually part of my newsletter.
+                </p>
+                <p>
+                Outside of work, I'm a husband and father, a BJJ black belt, drummer, and a tattoo and motorcycle enthusiast.
                 </p>
                 <div className={styles.socialIcons}>
                   <a href="https://www.linkedin.com/in/ron-amosa/" target="_blank" rel="noopener noreferrer" className={styles.socialIcon}>
