@@ -10,11 +10,15 @@ keywords:
 - newsletter
 tags:
 - AI-Systems-Infrastructure
+image: /img/blog/making-a-move.png
 reading_time: 3
 word_count: 654
 hide_table_of_contents: false
 draft: false
 ---
+
+![Making a move...](/img/blog/making-a-move.png)
+
 Talofa reader,
 
 I often don’t appreciate that there’s a couple of 100 people still subscribed to this newsletter.

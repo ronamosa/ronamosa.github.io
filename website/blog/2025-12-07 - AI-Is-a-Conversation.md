@@ -8,11 +8,15 @@ keywords:
 - AI governance
 tags:
 - AI-Sovereignty-Governance
+image: /img/blog/ai-conversation.png
 reading_time: 7
 word_count: 1302
 hide_table_of_contents: false
 draft: false
 ---
+
+![AI Is a Conversation](/img/blog/ai-conversation.png)
+
 Talofa reader,
 
 I remember one of my first AI-related engagements with one of my highly capable AWS Partners, a multi-national, multi-billion dollar company, highly resourced. It was early 2024, and I was delivering a workshop on GenAI. I was talking with one of the company tech leaders, and I was a little surprised at how they were thinking about AI—essentially, off-loading a good chunk of the problem decisions to the LLMs, and little to no emphasis on context details and scope going either way: to, from and back to the LLM.

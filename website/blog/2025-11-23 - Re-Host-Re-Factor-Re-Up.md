@@ -11,11 +11,15 @@ tags:
 - AI-Sovereignty-Governance
 - pasifika
 - tech-politics
+image: /img/blog/rehost-refactor.png
 reading_time: 4
 word_count: 709
 hide_table_of_contents: false
 draft: false
 ---
+
+![Re-Host. Re-Factor. Re-Up.](/img/blog/rehost-refactor.png)
+
 Talofa reader,
 
 I know it's been some time between posts, but thanks for making the move with me from Substack to Beehiiv.

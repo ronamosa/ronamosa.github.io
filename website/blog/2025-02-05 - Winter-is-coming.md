@@ -8,11 +8,15 @@ keywords:
 - AI governance
 tags:
 - AI-Sovereignty-Governance
+image: /img/blog/winter-is-coming.png
 reading_time: 2
 word_count: 371
 hide_table_of_contents: false
 draft: false
 ---
+
+![Winter is coming...](/img/blog/winter-is-coming.png)
+
 Talofa reader,
 
 It’s February already, but happy 2025, and gong xi fa chai 🐍 all the same!

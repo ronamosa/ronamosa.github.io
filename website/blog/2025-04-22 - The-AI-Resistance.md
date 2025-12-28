@@ -11,11 +11,15 @@ keywords:
 tags:
 - AI-Security-Exploitation
 - hacker-culture
+image: /img/blog/ai-resistance.png
 reading_time: 9
 word_count: 1764
 hide_table_of_contents: false
 draft: false
 ---
+
+![The AI Resistance](/img/blog/ai-resistance.png)
+
 Talofa reader,
 
 I guess the first thing I should say about "AI" as a concept, an idea and a thing that's taken over the world as we know it, is- I'm not pro AI.

@@ -8,11 +8,15 @@ keywords:
 - AI governance
 tags:
 - AI-Sovereignty-Governance
+image: /img/blog/live-and-die-simulation.png
 reading_time: 6
 word_count: 1172
 hide_table_of_contents: false
 draft: false
 ---
+
+![To Live and Die in the Simulation](/img/blog/live-and-die-simulation.png)
+
 Talofa Reader,
 
 We live in a simulation.
