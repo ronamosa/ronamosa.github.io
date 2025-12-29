@@ -35,7 +35,7 @@ const internetProfiles = {
 module.exports = {
   title: 'The Uncommon Engineer',
   tagline: 'Mastery before rebellion. Builder. Anarchist. Pasifika.',
-  url: 'https://ronamosa.io',
+  url: 'https://www.uncommonengineer.com',
   baseUrl: '/',
   onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
