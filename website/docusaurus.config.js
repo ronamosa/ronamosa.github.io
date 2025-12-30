@@ -74,9 +74,9 @@ module.exports = {
       appId: '9UFF3RBJQ9',
 
       // Public API key: it is safe to commit it
-      apiKey: '1f53a6f7e7f331786250c1b092794deb',
+      apiKey: '11dc3d0610ed31a45de0fbf30160d945',
 
-      indexName: 'ronamosa',
+      indexName: 'uncommonengineer.com',
 
     },
 
