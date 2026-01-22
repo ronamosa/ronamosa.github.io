@@ -15,6 +15,11 @@ description: Changes and additions for January 2026
   - Documents CLI vs Console workarounds and trust policy configurations
   - **Link**: [Amplify SSR IAM Debugging](/docs/engineer/AWS/amplify-ssr-iam-debugging)
 
+- **NextAuth Session Caching Bug Guide**: Added documentation for CloudFront session caching issue
+  - Debugging critical bug where CloudFront cached authenticated responses
+  - Covers cache-control headers, auth middleware, and Amplify fixes
+  - **Link**: [NextAuth Session Caching Bug](/docs/engineer/AWS/amplify-nextauth-session-caching-bug)
+
 ### 🛠️ Site Improvements
 
 - **AWS Documentation Cleanup**: Renamed all AWS documentation files to follow kebab-case naming convention
