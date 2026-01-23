@@ -6,6 +6,16 @@ description: Changes and additions for January 2026
 
 # January 2026
 
+## 📅 2026-01-23
+
+### 📚 Documentation Updates
+
+- **RNZ "New Gaza" Article Complaint**: Added guide for submitting formal complaints about RNZ's coverage of the US "New Gaza" proposal
+  - Step-by-step instructions for the RNZ complaint form
+  - Ready-to-use complaint text addressing Principles 1, 4, 6, and 7
+  - Challenges the article's lack of Palestinian perspectives and legal context
+  - **Link**: [Complaint: RNZ 'New Gaza' Article](/docs/hacker/RNZ-online-complaint)
+
 ## 📅 2026-01-22
 
 ### 📚 Documentation Updates
@@ -39,6 +49,7 @@ description: Changes and additions for January 2026
     - `CloudDemoNotes.md` → `cloud-demo-notes.md`
     - `CloudDemoCF.yaml` → `cloud-demo-cf.yaml`
     - `UPNG.md` → `upng.md`
+
 
 ---
 
