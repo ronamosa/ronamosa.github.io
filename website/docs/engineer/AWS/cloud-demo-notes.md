@@ -88,7 +88,7 @@ Remember to Change Region to `ap-southeast-1` before running cloudformation
 :::
 
 1. Create Stack
-2. Upload file `CloudDemoCF.yaml`
+2. Upload file `cloud-demo-cf.yaml`
 3. Launch
 4. Review the YAML on the stream
 
