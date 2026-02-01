@@ -1,0 +1,32 @@
+.newsletterCta {
+  margin-top: 2.5rem;
+  padding: 1.25rem 1.5rem;
+  border-radius: 10px;
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.15) 0%, rgba(168, 85, 247, 0.12) 100%);
+  border: 1px solid rgba(99, 102, 241, 0.25);
+  border-left: 4px solid var(--ifm-color-primary);
+}
+
+.newsletterCta p {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--ifm-font-color-base);
+  line-height: 1.6;
+}
+
+.emoji {
+  font-size: 1.1rem;
+  margin-right: 0.35rem;
+}
+
+.newsletterCta a {
+  color: var(--ifm-color-primary);
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.newsletterCta a:hover {
+  text-decoration: underline;
+  color: var(--ifm-color-primary-darker);
+}

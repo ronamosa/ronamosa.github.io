@@ -13,7 +13,7 @@ function Subscribe() {
         <div className={styles.subscribeContainer}>
           <h1 className={styles.title}>Subscribe to the Newsletter</h1>
           <p className={styles.subtitle}>
-            Fortnightly analysis from inside Big Tech. AI sovereignty, infrastructure patterns, digital colonialism.
+            You're a smart person building or using technology, and you're not getting the critical perspective you need from mainstream tech media. I write from inside the machine for people who want to think harder about what we're building and why.
           </p>
           
           <div className={styles.embedContainer}>
