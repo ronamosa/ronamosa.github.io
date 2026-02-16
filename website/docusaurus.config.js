@@ -43,6 +43,10 @@ module.exports = {
   organizationName: 'ronamosa', // Usually your GitHub org/user name.
   projectName: 'ronamosa.github.io', // Usually your repo name.
 
+  clientModules: [
+    require.resolve('./src/clientModules/blogEngagementTracker.js'),
+  ],
+
   themeConfig: {
     colorMode: {
       defaultMode: "dark",

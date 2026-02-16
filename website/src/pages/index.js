@@ -14,9 +14,24 @@ const CONTENT_COUNTS = {
   subscribers: 180,
 };
 
+function trackCardClick(cardName, destination) {
+  if (typeof window !== 'undefined' && window.gtag) {
+    window.gtag('event', 'homepage_card_click', {
+      card_name: cardName,
+      link_destination: destination,
+      event_category: 'homepage_engagement',
+      event_label: cardName,
+    });
+  }
+}
+
 function ContentCard({ icon, title, count, countLabel, description, linkText, linkTo }) {
   return (
-    <Link className={styles.card} to={linkTo}>
+    <Link
+      className={styles.card}
+      to={linkTo}
+      onClick={() => trackCardClick(title, linkTo)}
+    >
       <div className={styles.cardHeader}>
         <span className={styles.cardIcon}>{icon}</span>
         <span className={styles.cardCount}>{count}+ {countLabel}</span>
@@ -32,6 +47,7 @@ function ContentCard({ icon, title, count, countLabel, description, linkText, li
 
 function NewsletterCard() {
   const openSubscribePopup = () => {
+    trackCardClick('Newsletter', '/subscribe');
     window.open(
       '/subscribe',
       'subscribe',

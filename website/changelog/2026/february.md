@@ -6,6 +6,18 @@ description: Changes and additions for February 2026
 
 # February 2026
 
+## 📅 2026-02-16
+
+### 🛠️ Site Improvements
+- **Google Analytics Event Tracking for Homepage Cards**: Added GA4 custom event tracking to all three homepage content cards
+  - Tracks `homepage_card_click` events with card name and destination for each card (Analysis & Essays, Technical Docs, Newsletter)
+  - Enables click-through rate analysis from homepage to each section
+- **Blog Section Engagement Tracker**: Added client-side module to measure multi-page sessions within Analysis & Essays
+  - Fires `blog_section_enter`, `blog_page_view` (with depth counter), and `blog_deep_engagement` (3+ pages) events
+  - Uses sessionStorage for per-session page depth tracking
+
+---
+
 ## 📅 2026-02-01
 
 ### 🛠️ Site Improvements
