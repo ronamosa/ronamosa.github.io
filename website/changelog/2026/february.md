@@ -15,6 +15,12 @@ description: Changes and additions for February 2026
 - **Blog Section Engagement Tracker**: Added client-side module to measure multi-page sessions within Analysis & Essays
   - Fires `blog_section_enter`, `blog_page_view` (with depth counter), and `blog_deep_engagement` (3+ pages) events
   - Uses sessionStorage for per-session page depth tracking
+- **Newsletter Conversion Funnel Tracking**: Added `newsletter_page_view` event on subscribe page with referral source detection, and `newsletter_cta_click` event on doc footer CTA
+- **Content Section Tagging**: Added client module that tags every page view with its content section (analysis, docs, newsletter, etc.) for traffic source segmentation in GA4
+  - Tracks cross-section exploration with `sections_visited_count` and `sections_visited` parameters
+
+### 🔧 Bug Fixes
+- **Removed accidentally committed `articles.json`**: Removed 7,600-line Beehiiv feed export from repo and added to `.gitignore`
 
 ---
 
