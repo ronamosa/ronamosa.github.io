@@ -45,6 +45,7 @@ module.exports = {
 
   clientModules: [
     require.resolve('./src/clientModules/blogEngagementTracker.js'),
+    require.resolve('./src/clientModules/contentSectionTracker.js'),
   ],
 
   themeConfig: {

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import Layout from "@theme/Layout";
 import styles from "./styles.module.css";
@@ -6,6 +6,20 @@ import styles from "./styles.module.css";
 function Subscribe() {
   const context = useDocusaurusContext();
   const { siteConfig = {} } = context;
+
+  useEffect(() => {
+    if (typeof window !== 'undefined' && window.gtag) {
+      const referrer = document.referrer || 'direct';
+      const source = referrer.includes(window.location.hostname)
+        ? new URL(referrer).pathname
+        : referrer;
+
+      window.gtag('event', 'newsletter_page_view', {
+        event_category: 'newsletter_funnel',
+        referral_source: source,
+      });
+    }
+  }, []);
 
   return (
     <Layout title="Subscribe" description="Subscribe to The Uncommon Engineer newsletter">
