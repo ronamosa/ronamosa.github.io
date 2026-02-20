@@ -105,7 +105,10 @@ function Home() {
   const { siteConfig = {} } = context;
 
   return (
-    <Layout title="Home" description={siteConfig.tagline}>
+    <Layout
+      title="Cloud Engineering, Kubernetes Guides & Political Analysis"
+      description="170+ technical guides on cloud architecture, Kubernetes, and infrastructure security. 56+ essays on AI sovereignty, digital colonialism, and Pacific identity. By Ron Amosa."
+    >
       <main className={styles.mainContainer}>
         {/* Hero Section */}
         <section className={styles.heroSection}>
