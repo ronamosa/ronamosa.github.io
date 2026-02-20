@@ -6,6 +6,20 @@ description: Changes and additions for February 2026
 
 # February 2026
 
+## 📅 2026-02-21
+
+### 🛠️ Site Improvements
+- **Homepage SEO Metadata Overhaul**: Replaced generic "Home" title with keyword-rich title and meta description targeting cloud engineering, Kubernetes, and political analysis search terms
+- **JSON-LD Structured Data**: Added WebSite + Person schema.org markup with linked social profiles for rich snippet eligibility
+- **Social Card for Link Previews**: Generated branded og:image (1200x630) and configured Open Graph/Twitter Card meta tags in Docusaurus config
+- **Homepage Design & UX Improvements**: Reduced hero section padding and image size to push content cards above the fold; added "Explore my work" CTA button and animated scroll indicator
+- **Cards Section Heading & Hero Intro**: Added keyword-rich h2 section heading above cards and introductory paragraph describing the site's focus areas
+- **Improved Card Descriptions**: Rewrote terse keyword-list card descriptions into compelling sentences; unified newsletter card hover behavior with other cards; improved text contrast from #888 to #aaa
+- **Dynamic Content Counts Plugin**: Created build-time Docusaurus plugin that counts blog/docs markdown files automatically, replacing hardcoded numbers
+- **Latest Blog Post on Homepage**: Extended content-counts plugin to parse and display the latest blog post title on the Analysis card
+
+---
+
 ## 📅 2026-02-16
 
 ### 🛠️ Site Improvements
