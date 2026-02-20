@@ -22,7 +22,7 @@ function trackCardClick(cardName, destination) {
   }
 }
 
-function ContentCard({ icon, title, count, countLabel, description, linkText, linkTo }) {
+function ContentCard({ icon, title, count, countLabel, description, linkText, linkTo, latestLabel }) {
   return (
     <Link
       className={styles.card}
@@ -35,6 +35,9 @@ function ContentCard({ icon, title, count, countLabel, description, linkText, li
       </div>
       <h3 className={styles.cardTitle}>{title}</h3>
       <p className={styles.cardDescription}>{description}</p>
+      {latestLabel && (
+        <p className={styles.latestPost}>Latest: {latestLabel}</p>
+      )}
       <span className={styles.cardLink}>
         {linkText} <span className={styles.arrow}>→</span>
       </span>
@@ -104,7 +107,7 @@ function SocialIcons() {
 function Home() {
   const context = useDocusaurusContext();
   const { siteConfig = {} } = context;
-  const { blogCount, docsCount } = usePluginData('content-counts');
+  const { blogCount, docsCount, latestPost } = usePluginData('content-counts');
 
   return (
     <Layout
@@ -183,6 +186,7 @@ function Home() {
               description="Deep-dive essays exploring how technology intersects with power, sovereignty, and Pacific identity."
               linkText="Browse Analysis"
               linkTo="/blog"
+              latestLabel={latestPost?.title}
             />
 
             <ContentCard

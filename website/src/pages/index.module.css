@@ -249,6 +249,17 @@
   flex: 1;
 }
 
+.latestPost {
+  font-size: 0.8rem;
+  color: #777;
+  font-style: italic;
+  margin: 0 0 0.75rem;
+  line-height: 1.4;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .cardLink {
   font-size: 0.9rem;
   color: var(--ifm-color-primary);
