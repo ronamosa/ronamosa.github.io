@@ -57,21 +57,25 @@ function NewsletterCard() {
   };
 
   return (
-    <div className={styles.card + ' ' + styles.newsletterCard}>
+    <div
+      className={styles.card}
+      onClick={openSubscribePopup}
+      role="button"
+      tabIndex={0}
+      onKeyDown={(e) => { if (e.key === 'Enter') openSubscribePopup(); }}
+      style={{ cursor: 'pointer' }}
+    >
       <div className={styles.cardHeader}>
         <span className={styles.cardIcon}>📬</span>
         <span className={styles.cardCount}>{CONTENT_COUNTS.subscribers}+ Subscribers</span>
       </div>
       <h3 className={styles.cardTitle}>Newsletter</h3>
       <p className={styles.cardDescription}>
-        Fortnightly analysis delivered to your inbox.
+        Fortnightly analysis on tech, culture, and power -- delivered to your inbox.
       </p>
-      <button 
-        onClick={openSubscribePopup}
-        className={styles.subscribeButton}
-      >
+      <span className={styles.cardLink}>
         Subscribe <span className={styles.arrow}>→</span>
-      </button>
+      </span>
     </div>
   );
 }
@@ -158,9 +162,9 @@ function Home() {
                 AI sovereignty, and the politics of technology through a Pacific lens.
               </p>
               <SocialIcons />
-              <Link className={styles.heroCta} to="#explore">
+              <a className={styles.heroCta} href="#explore">
                 Explore my work <span className={styles.arrow}>→</span>
-              </Link>
+              </a>
             </div>
           </div>
           <div className={styles.scrollIndicator}>
@@ -179,7 +183,7 @@ function Home() {
               title="Analysis & Essays"
               count={CONTENT_COUNTS.essays}
               countLabel="Essays"
-              description="Political analysis, AI sovereignty, digital colonialism."
+              description="Deep-dive essays exploring how technology intersects with power, sovereignty, and Pacific identity."
               linkText="Browse Analysis"
               linkTo="/blog"
             />
@@ -189,7 +193,7 @@ function Home() {
               title="Technical Docs"
               count={CONTENT_COUNTS.docs}
               countLabel="Guides"
-              description="Cloud architecture, Kubernetes, security, infrastructure."
+              description="Battle-tested guides on cloud architecture, Kubernetes, security, and infrastructure automation."
               linkText="Browse Docs"
               linkTo="/docs"
             />
