@@ -9,17 +9,17 @@
 
 /* ===== HERO SECTION ===== */
 .heroSection {
-  padding: 4rem 2rem;
+  padding: 2.5rem 2rem 1.5rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  flex: 1;
+  flex: none;
 }
 
 .heroContainer {
   display: flex;
   align-items: center;
-  gap: 4rem;
+  gap: 3rem;
   max-width: 1000px;
   width: 100%;
 }
@@ -29,8 +29,8 @@
 }
 
 .heroImage {
-  width: 280px;
-  height: 280px;
+  width: 220px;
+  height: 220px;
   border-radius: 12px;
   filter: grayscale(20%);
   transition: filter 0.3s ease;
@@ -103,6 +103,28 @@
   border-color: var(--ifm-color-primary);
   color: var(--ifm-color-primary);
   transform: translateY(-2px);
+}
+
+.heroCta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+  padding: 0.65rem 1.5rem;
+  background-color: var(--ifm-color-primary);
+  color: #fff;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.heroCta:hover {
+  background-color: var(--ifm-color-primary-dark);
+  transform: translateY(-1px);
+  text-decoration: none;
+  color: #fff;
 }
 
 /* ===== CARDS SECTION ===== */

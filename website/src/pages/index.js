@@ -154,6 +154,9 @@ function Home() {
                 Builder. Anarchist. Pasifika.
               </p>
               <SocialIcons />
+              <Link className={styles.heroCta} to="#explore">
+                Explore my work <span className={styles.arrow}>→</span>
+              </Link>
             </div>
           </div>
         </section>
