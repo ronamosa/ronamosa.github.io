@@ -49,6 +49,10 @@ module.exports = {
   ],
 
   themeConfig: {
+    image: 'img/social-card.png',
+    metadata: [
+      { name: 'twitter:card', content: 'summary_large_image' },
+    ],
     colorMode: {
       defaultMode: "dark",
       disableSwitch: true,
