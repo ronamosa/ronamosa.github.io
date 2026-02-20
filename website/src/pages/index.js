@@ -2,6 +2,7 @@ import React from "react";
 import Link from '@docusaurus/Link';
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import Layout from '@theme/Layout';
+import Head from '@docusaurus/Head';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLinkedin, faGithub, faYoutube } from "@fortawesome/free-brands-svg-icons";
 
@@ -109,6 +110,28 @@ function Home() {
       title="Cloud Engineering, Kubernetes Guides & Political Analysis"
       description="170+ technical guides on cloud architecture, Kubernetes, and infrastructure security. 56+ essays on AI sovereignty, digital colonialism, and Pacific identity. By Ron Amosa."
     >
+      <Head>
+        <script type="application/ld+json">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            "name": "The Uncommon Engineer",
+            "url": "https://www.uncommonengineer.com",
+            "description": "Technical guides on cloud engineering and Kubernetes, plus essays on AI sovereignty, digital colonialism, and Pacific identity.",
+            "author": {
+              "@type": "Person",
+              "name": "Ron Amosa",
+              "url": "https://www.uncommonengineer.com/about",
+              "jobTitle": "Platform Engineer",
+              "sameAs": [
+                "https://www.linkedin.com/in/ron-amosa/",
+                "https://github.com/ronamosa",
+                "https://www.youtube.com/@uncommonengineer"
+              ]
+            }
+          })}
+        </script>
+      </Head>
       <main className={styles.mainContainer}>
         {/* Hero Section */}
         <section className={styles.heroSection}>
