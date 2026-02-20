@@ -5,15 +5,11 @@ import Layout from '@theme/Layout';
 import Head from '@docusaurus/Head';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLinkedin, faGithub, faYoutube } from "@fortawesome/free-brands-svg-icons";
+import { usePluginData } from '@docusaurus/useGlobalData';
 
 import styles from './index.module.css';
 
-// Dynamic counts
-const CONTENT_COUNTS = {
-  essays: 56,
-  docs: 170,
-  subscribers: 180,
-};
+const SUBSCRIBER_COUNT = 180;
 
 function trackCardClick(cardName, destination) {
   if (typeof window !== 'undefined' && window.gtag) {
@@ -67,7 +63,7 @@ function NewsletterCard() {
     >
       <div className={styles.cardHeader}>
         <span className={styles.cardIcon}>📬</span>
-        <span className={styles.cardCount}>{CONTENT_COUNTS.subscribers}+ Subscribers</span>
+        <span className={styles.cardCount}>{SUBSCRIBER_COUNT}+ Subscribers</span>
       </div>
       <h3 className={styles.cardTitle}>Newsletter</h3>
       <p className={styles.cardDescription}>
@@ -108,6 +104,7 @@ function SocialIcons() {
 function Home() {
   const context = useDocusaurusContext();
   const { siteConfig = {} } = context;
+  const { blogCount, docsCount } = usePluginData('content-counts');
 
   return (
     <Layout
@@ -181,7 +178,7 @@ function Home() {
             <ContentCard
               icon="📰"
               title="Analysis & Essays"
-              count={CONTENT_COUNTS.essays}
+              count={blogCount}
               countLabel="Essays"
               description="Deep-dive essays exploring how technology intersects with power, sovereignty, and Pacific identity."
               linkText="Browse Analysis"
@@ -191,7 +188,7 @@ function Home() {
             <ContentCard
               icon="🔧"
               title="Technical Docs"
-              count={CONTENT_COUNTS.docs}
+              count={docsCount}
               countLabel="Guides"
               description="Battle-tested guides on cloud architecture, Kubernetes, security, and infrastructure automation."
               linkText="Browse Docs"
