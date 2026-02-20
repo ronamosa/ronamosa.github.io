@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkronamosa_github_io=self.webpackChunkronamosa_github_io||[]).push([[38947],{56600:e=>{e.exports=JSON.parse('{"authors":[{"name":"Ron Amosa","title":"Hacker/Engineer/Geek","url":"/about/","imageURL":"/img/profile.svg","key":"ron","page":null,"count":56}]}')}}]);
