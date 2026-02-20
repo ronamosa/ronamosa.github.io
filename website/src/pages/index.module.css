@@ -79,6 +79,14 @@
   letter-spacing: 0.05em;
 }
 
+.heroDescription {
+  font-size: 1rem;
+  color: #aaa;
+  line-height: 1.6;
+  margin: 0.5rem 0 0;
+  max-width: 460px;
+}
+
 .socialIcons {
   display: flex;
   gap: 0.75rem;
@@ -166,6 +174,16 @@
   background-color: #0d0d0d;
   padding: 3rem 2rem 4rem;
   border-top: 1px solid #1a1a1a;
+}
+
+.sectionHeading {
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: #666;
+  text-align: center;
+  margin: 0 0 2rem;
 }
 
 .cardsContainer {

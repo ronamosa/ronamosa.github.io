@@ -153,6 +153,10 @@ function Home() {
               <p className={styles.heroTagline}>
                 Builder. Anarchist. Pasifika.
               </p>
+              <p className={styles.heroDescription}>
+                Platform engineer and writer exploring cloud infrastructure,
+                AI sovereignty, and the politics of technology through a Pacific lens.
+              </p>
               <SocialIcons />
               <Link className={styles.heroCta} to="#explore">
                 Explore my work <span className={styles.arrow}>→</span>
@@ -167,7 +171,8 @@ function Home() {
         </section>
 
         {/* Cards Section */}
-        <section className={styles.cardsSection}>
+        <section id="explore" className={styles.cardsSection}>
+          <h2 className={styles.sectionHeading}>What You'll Find Here</h2>
           <div className={styles.cardsContainer}>
             <ContentCard
               icon="📰"
