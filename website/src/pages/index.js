@@ -159,6 +159,11 @@ function Home() {
               </Link>
             </div>
           </div>
+          <div className={styles.scrollIndicator}>
+            <a href="#explore" aria-label="Scroll to content">
+              <div className={styles.scrollChevron} />
+            </a>
+          </div>
         </section>
 
         {/* Cards Section */}
