@@ -6,6 +6,15 @@ description: Changes and additions for February 2026
 
 # February 2026
 
+## 📅 2026-02-24
+
+### 📚 Documentation Updates
+- **Proxmox pmxcfs Cluster Rollback (Part 1)**: New technical documentation covering Proxmox pmxcfs cluster filesystem rollback after power failure, investigation process, and recovery strategy for orphaned VM disks
+  - Added SEO-optimized frontmatter with title, description, keywords, and tags
+  - **Link**: [Proxmox pmxcfs Rollback](/docs/engineer/LAB/proxmox-pmxcfs)
+
+---
+
 ## 📅 2026-02-21
 
 ### 🛠️ Site Improvements

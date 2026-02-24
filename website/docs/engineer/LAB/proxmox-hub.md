@@ -41,7 +41,12 @@ Expert-level Proxmox management techniques:
    - LVM volume mounting procedures
    - VM recovery and debugging techniques
 
-5. **[Proxmox System Administration Guide](./proxmox-sysad)**
+5. **[pmxcfs Cluster Rollback: When VMs Lose Configuration](./proxmox-pmxcfs)** ⭐
+   - Diagnosing pmxcfs cluster filesystem rollback after power failure
+   - Recovering orphaned VM disks and Docker data
+   - Converting broken clusters to standalone nodes
+
+6. **[Proxmox System Administration Guide](./proxmox-sysad)**
    - Advanced configuration and optimization
    - Performance tuning and monitoring
    - Security hardening practices
