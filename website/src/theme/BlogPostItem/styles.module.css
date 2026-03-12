@@ -1,13 +1,59 @@
-/**
- * Copyright (c) Facebook, Inc. and its affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
 .blogPostData {
   font-size: 0.9rem;
 }
 
 .blogPostDetailsFull {
   flex-direction: column;
+}
+
+.newsletterCta {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-top: 2.5rem;
+  padding: 1.5rem 1.75rem;
+  border-radius: 10px;
+  background: linear-gradient(135deg, rgba(164, 22, 26, 0.12) 0%, rgba(186, 24, 27, 0.08) 100%);
+  border: 1px solid rgba(164, 22, 26, 0.25);
+  border-left: 4px solid var(--ifm-color-primary);
+}
+
+.emoji {
+  font-size: 1.5rem;
+  line-height: 1;
+  flex-shrink: 0;
+  margin-top: 0.15rem;
+}
+
+.ctaContent {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.ctaText {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--ifm-font-color-base);
+  line-height: 1.6;
+}
+
+.ctaButton {
+  display: inline-block;
+  width: fit-content;
+  padding: 0.5rem 1.25rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #fff;
+  background-color: var(--ifm-color-primary);
+  border-radius: 6px;
+  text-decoration: none;
+  transition: background-color 0.2s ease, transform 0.15s ease;
+}
+
+.ctaButton:hover {
+  background-color: var(--ifm-color-primary-dark);
+  color: #fff;
+  text-decoration: none;
+  transform: translateY(-1px);
 }
