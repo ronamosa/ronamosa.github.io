@@ -126,7 +126,7 @@ function Home() {
               "@type": "Person",
               "name": "Ron Amosa",
               "url": "https://www.uncommonengineer.com/about",
-              "jobTitle": "Platform Engineer",
+              "jobTitle": "Senior Solutions Architect",
               "sameAs": [
                 "https://www.linkedin.com/in/ron-amosa/",
                 "https://github.com/ronamosa",
@@ -158,7 +158,7 @@ function Home() {
                 Builder. Anarchist. Pasifika.
               </p>
               <p className={styles.heroDescription}>
-                Platform engineer and writer exploring cloud infrastructure,
+                Senior Solutions Architect and writer exploring cloud infrastructure,
                 AI sovereignty, and the politics of technology through a Pacific lens.
               </p>
               <SocialIcons />
