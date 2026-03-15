@@ -1,0 +1,1 @@
+"use strict";(globalThis.webpackChunkronamosa_github_io=globalThis.webpackChunkronamosa_github_io||[]).push([[38947],{56600(a){a.exports=JSON.parse('{"authors":[{"name":"Ron Amosa","title":"Hacker/Engineer/Geek","url":"/about/","imageURL":"/img/profile.svg","key":"ron","page":null,"count":60}]}')}}]);
