@@ -107,10 +107,10 @@ export function RecentDocs() {
 export function Pathways() {
   const paths = [
     {
-      label: 'Infrastructure',
-      title: 'Technical Docs',
-      desc: 'Kubernetes, AWS, Proxmox, security, and more.',
-      to: '/docs',
+      label: 'Engineer',
+      title: 'Cloud & Infrastructure',
+      desc: 'AWS, Kubernetes, AI, security, and architecture projects.',
+      to: '/docs/engineer',
     },
     {
       label: 'Essays',
@@ -122,7 +122,7 @@ export function Pathways() {
       label: 'Certifications',
       title: 'Study Notes',
       desc: 'CKA, CKS, AWS SA Pro — exam prep and walkthroughs.',
-      to: '/docs/study/CKA/README',
+      to: '/docs/study',
     },
     {
       label: 'Homelab',
