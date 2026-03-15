@@ -9,6 +9,7 @@ description: Changes and additions for March 2026
 ## 📅 2026-03-14
 
 ### 🛠️ Site Improvements
+- **Mermaid Diagram Support**: Added `@docusaurus/theme-mermaid` for rendering Mermaid diagrams in markdown/MDX code blocks site-wide
 - **Dynamic Start Here Page**: Rebuilt `/docs/` landing page as a living "Now" page that auto-populates latest blog posts and recently updated docs at build time. Extended `content-counts` plugin to collect recent content metadata, created new React components (`RecentPosts`, `RecentDocs`, `SiteStats`), and converted `start-here.md` to MDX.
   - Sharpened intro voice to match the evolved site identity
   - Added curated "Where to Start" section with thematic entry points
