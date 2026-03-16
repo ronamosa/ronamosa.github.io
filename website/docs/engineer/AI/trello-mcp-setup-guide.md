@@ -15,7 +15,7 @@ A quick guide to connecting your Trello boards to Claude using the MCP Server Tr
 ### Get Your API Key
 
 1. **Visit the Trello Developer Portal**
-   Go to: **<https://trello.com/app-key>**
+   Go to: **[https://trello.com/app-key](https://trello.com/app-key)**
    (Make sure you're logged into Trello first!)
 
 2. **Copy Your API Key**
@@ -241,7 +241,7 @@ claude mcp add trello -e TRELLO_API_KEY=... -e TRELLO_TOKEN=... --scope user -- 
 
 ### Token Expired
 
-If you used a temporary token (30 days), regenerate it by visiting the Token link on <https://trello.com/app-key> again.
+If you used a temporary token (30 days), regenerate it by visiting the Token link on [https://trello.com/app-key](https://trello.com/app-key) again.
 
 ### JSON Syntax Errors (Manual Config Edit)
 
@@ -326,16 +326,16 @@ For containerized environments, see the [full installation guide](https://github
 - ✅ Never commit your `.env` file or config with credentials to git
 - ✅ Use `expiration=30days` for tokens in production environments and rotate regularly
 - ✅ Store credentials in a password manager
-- ✅ Review authorized apps periodically at <https://trello.com/my/account>
+- ✅ Review authorized apps periodically at [https://trello.com/my/account](https://trello.com/my/account)
 
 ---
 
 ## Additional Resources
 
-- **GitHub Repository**: <https://github.com/delorenj/mcp-server-trello>
-- **npm Package**: <https://www.npmjs.com/package/@delorenj/mcp-server-trello>
-- **Trello API Documentation**: <https://developer.atlassian.com/cloud/trello/guides/rest-api/api-introduction/>
-- **MCP Documentation**: <https://modelcontextprotocol.io>
+- **GitHub Repository**: [https://github.com/delorenj/mcp-server-trello](https://github.com/delorenj/mcp-server-trello)
+- **npm Package**: [https://www.npmjs.com/package/@delorenj/mcp-server-trello](https://www.npmjs.com/package/@delorenj/mcp-server-trello)
+- **Trello API Documentation**: [https://developer.atlassian.com/cloud/trello/guides/rest-api/api-introduction/](https://developer.atlassian.com/cloud/trello/guides/rest-api/api-introduction/)
+- **MCP Documentation**: [https://modelcontextprotocol.io](https://modelcontextprotocol.io)
 
 ---
 
@@ -344,4 +344,5 @@ For containerized environments, see the [full installation guide](https://github
 MCP Server Trello is developed by [Jarad DeLorenzo](https://github.com/delorenj) and is available under the MIT License.
 
 ---
+
 
