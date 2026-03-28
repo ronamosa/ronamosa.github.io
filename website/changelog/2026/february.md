@@ -6,6 +6,18 @@ description: Changes and additions for February 2026
 
 # February 2026
 
+## 📅 2026-02-28
+
+### 📝 Blog Posts
+- **Getting Paid For Your Data Sounds Great**: Essay examining data marketplace promises vs real data sovereignty, comparing River's individual monetisation model with Māori-led collective governance (Whare Hauora) and community-owned infrastructure
+  - **Link**: [Getting Paid For Your Data Sounds Great](/blog/getting-paid-for-your-data-sounds-great)
+- **Everyone Was Logged Into the Same Session**: Essay on the experience of building and debugging a production React app with an AI co-pilot, and why fundamentals matter more than ever in the orchestrating intelligence era
+  - **Link**: [Everyone Was Logged Into the Same Session](/blog/everyone-was-logged-into-the-same-session)
+- **The Inevitability of AI**: Essay challenging the narrative that AI is inevitable, distinguishing between unavoidable and inevitable, and questioning whose agenda is being slipstreamed into blind acceptance
+  - **Link**: [The Inevitability of AI](/blog/the-inevitability-of-ai)
+
+---
+
 ## 📅 2026-02-24
 
 ### 📚 Documentation Updates

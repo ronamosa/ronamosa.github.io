@@ -43,6 +43,11 @@ module.exports = {
   organizationName: 'ronamosa', // Usually your GitHub org/user name.
   projectName: 'ronamosa.github.io', // Usually your repo name.
 
+  markdown: {
+    mermaid: true,
+  },
+  themes: ['@docusaurus/theme-mermaid'],
+
   clientModules: [
     require.resolve('./src/clientModules/blogEngagementTracker.js'),
     require.resolve('./src/clientModules/contentSectionTracker.js'),
