@@ -6,6 +6,14 @@ description: Changes and additions for March 2026
 
 # March 2026
 
+## 📅 2026-03-29
+
+### 📝 Blog Posts
+- **The Blue Pill Doesn't Work Here**: Essay on why there is no neutral political position for Pasifika people in tech — the apolitical stance won't protect you when biased algorithms and facial recognition systems show up at your door
+  - **Link**: [The Blue Pill Doesn't Work Here](/blog/the-blue-pill-doesnt-work-here)
+
+---
+
 ## 📅 2026-03-28
 
 ### 📚 Documentation Updates
