@@ -54,7 +54,7 @@ module.exports = {
   ],
 
   themeConfig: {
-    image: 'img/social-card.png',
+    image: 'img/social-card.jpg',
     metadata: [
       { name: 'twitter:card', content: 'summary_large_image' },
     ],

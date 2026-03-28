@@ -1,12 +1,16 @@
 ---
 slug: re-host-re-factor-re-up
 title: Re-Host. Re-Factor. Re-Up.
-description: Newsletter relaunch on Beehiiv clarifying Uncommon Engineer's focus on technology power and insider Pasifika tech perspective. Essential reading for understandi
+description: "Relaunching the newsletter on Beehiiv at uncommonengineer.com. Clarifying what The Uncommon Engineer is — technology, power, and what it's like being one of the few Pasifika at this level in tech."
 date: 2025-11-23
 authors: [ron]
 keywords:
-- AI governance
-- pasifika
+  - newsletter relaunch
+  - Beehiiv
+  - Uncommon Engineer
+  - Pasifika in tech
+  - technology and power
+  - Samoan
 tags:
 - AI-Sovereignty-Governance
 - pasifika

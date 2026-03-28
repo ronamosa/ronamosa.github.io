@@ -5,6 +5,18 @@ authors: [ron]
 tags: [agentic-ai, security, ai-defense, security-principles, cybersecurity-strategy, ai-security-framework, enterprise-ai-security]
 image: /img/blog/agentic-ai-part4-cover.png
 description: "Explore practical security implications of AI agent vulnerabilities and learn about defense strategies, security principles, and approaches for protecting against agent-related threats in enterprise environments."
+keywords:
+  - AI defense strategies
+  - AI security framework
+  - cybersecurity strategy
+  - AI agent vulnerabilities
+  - enterprise security
+  - security principles
+  - AI threat mitigation
+reading_time: 7
+word_count: 1300
+hide_table_of_contents: false
+draft: false
 ---
 
 ![Practical AI Agent Security Implications and Defense Strategies](/img/blog/agentic-ai-part4-cover.png)
