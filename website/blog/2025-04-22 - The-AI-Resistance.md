@@ -1,13 +1,18 @@
 ---
 slug: the-ai-resistance
 title: The AI Resistance
-description: Critiques anti-AI arguments showing AI unlike NFT scams has real value while defending against strawman comparisons. Essential reading for understanding this cr
+description: "Not pro-AI, not anti-AI — but the 'AI is a scam like NFTs' argument doesn't hold up. On the real value AI delivers, the real problems it creates, and why abstaining from the technology is not the move."
 date: 2025-04-22
 authors: [ron]
 keywords:
-- AI
-- technology adoption
-- criticism
+  - AI criticism
+  - AI value
+  - NFTs
+  - technology adoption
+  - AI hype
+  - AI ethics
+  - AI productivity
+  - Pasifika tech
 tags:
 - AI-Security-Exploitation
 - hacker-culture

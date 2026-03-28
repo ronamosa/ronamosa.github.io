@@ -1,13 +1,18 @@
 ---
 slug: making-a-move
 title: Making a move...
-description: Announcement moving newsletter off Substack to more ethical platform while reflecting on hyper-focus imbalance and pe'a journey. Essential reading for understan
+description: "Moving the newsletter off Substack to a more ethical platform. On gratitude for subscribers, stepping back from hyper-focus, and receiving my pe'a."
 date: 2025-09-03
 authors: [ron]
 keywords:
-- substack
-- platform migration
-- newsletter
+  - Substack
+  - platform migration
+  - newsletter
+  - pe'a
+  - Samoan tattoo
+  - Pasifika
+  - ethical tech
+  - Beehiiv
 tags:
 - AI-Systems-Infrastructure
 image: /img/blog/making-a-move.png

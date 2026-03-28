@@ -1,11 +1,17 @@
 ---
 slug: winter-is-coming
 title: Winter is coming...
-description: Brief check-in teasing upcoming newsletter content and sharing 2025 intentions around AI building and community involvement. Essential reading for understanding
+description: "Quick check-in for 2025 — leaning into AI builds, community projects, pe'a journey, and plenty of rants incoming on politics and the state of the world."
 date: 2025-02-05
 authors: [ron]
 keywords:
-- AI governance
+  - newsletter
+  - 2025 goals
+  - Pasifika
+  - pe'a
+  - AI
+  - community
+  - tech careers
 tags:
 - AI-Sovereignty-Governance
 image: /img/blog/winter-is-coming.png

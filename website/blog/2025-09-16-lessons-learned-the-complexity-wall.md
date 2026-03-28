@@ -3,8 +3,21 @@ title: "The Complexity Wall: My Half-Day Experiment with Spec-Driven Development
 date: 2025-09-16
 authors: [ron]
 tags: [spec-driven-development, software-engineering, mvp, prototyping, complexity, lessons-learned, chrome-extension, development-process]
-image: /img/blog/complexity-wall-cover.png
+image: /img/complexity-wall-cover.png
 description: "How a simple bias highlighter became a 96-task enterprise project in 4 hours. A practical lesson in over-engineering, spec-driven development pitfalls, and the value of starting embarrassingly simple."
+keywords:
+  - spec-driven development
+  - over-engineering
+  - MVP
+  - prototyping
+  - complexity
+  - Chrome extension
+  - Claude Code
+  - software engineering
+reading_time: 6
+word_count: 1230
+hide_table_of_contents: false
+draft: false
 ---
 
 ![The Complexity Wall - Spec-Driven Development Experiment](/img/complexity-wall-cover.png)

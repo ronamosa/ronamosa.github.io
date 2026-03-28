@@ -1,11 +1,17 @@
 ---
 slug: ai-is-a-conversation
 title: AI Is a Conversation
-description: Argues quality AI results depend on user communication skills exposing broader problem with collaborative thinking and perspective-taking. Essential reading for
+description: "Most people getting bad results from AI aren't facing a technology problem — they're facing a communication problem. On why AI is a conversation, and why most of us are worse at those than we think."
 date: 2025-12-07
 authors: [ron]
 keywords:
-- AI governance
+  - AI communication
+  - context engineering
+  - vibe coding
+  - AI prompting
+  - collaborative thinking
+  - AI literacy
+  - LLM interaction
 tags:
 - AI-Sovereignty-Governance
 image: /img/blog/ai-conversation.png

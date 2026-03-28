@@ -5,6 +5,18 @@ authors: [ron]
 tags: [agentic-ai, security, ai-agents, artificial-intelligence, cybersecurity]
 image: /img/blog/agentic-ai-part1-cover.jpg
 description: "Explore how AI agents are transforming enterprise technology and the security implications of autonomous systems capable of perceiving, deciding, and acting."
+keywords:
+  - agentic AI
+  - AI agents
+  - AI security
+  - autonomous systems
+  - enterprise AI
+  - cybersecurity
+  - AI architecture
+reading_time: 7
+word_count: 1300
+hide_table_of_contents: false
+draft: false
 ---
 
 ![The Rise of Agentic AI](/img/blog/agentic-ai-part1-cover.jpg)

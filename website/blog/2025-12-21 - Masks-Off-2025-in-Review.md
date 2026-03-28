@@ -1,11 +1,20 @@
 ---
 slug: masks-off-2025-in-review
 title: 'Masks Off: 2025 in Review'
-description: 'Year-end review analyzing power consolidation imperial impunity and inherent untrustworthiness of tech industry leadership. Essential reading for understanding '
+description: "2025 in review — AI industry consolidation, 126k tech layoffs, far-right surges, and a genocide unfolding. On being honest about our place in the system and building alternatives to the corporate tech fantasy."
 date: 2025-12-21
 authors: [ron]
 keywords:
-- AI governance
+  - 2025 review
+  - AI industry
+  - tech layoffs
+  - power consolidation
+  - Gaza
+  - far-right politics
+  - NZ politics
+  - systemic change
+  - Pasifika
+  - tech politics
 tags:
 - AI-Sovereignty-Governance
 - tech-politics

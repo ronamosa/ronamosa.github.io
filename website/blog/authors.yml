@@ -3,4 +3,9 @@ ron:
   title: Hacker/Engineer/Geek
   url: /about/
   image_url: /img/profile.svg
+  socials:
+    linkedin: ron-amosa
+    github: ronamosa
+    youtube: "@uncommonengineer"
+    bluesky: uncommonengineer.com
 

@@ -12,6 +12,13 @@ description: Changes and additions for March 2026
 - **The Blue Pill Doesn't Work Here**: Essay on why there is no neutral political position for Pasifika people in tech — the apolitical stance won't protect you when biased algorithms and facial recognition systems show up at your door
   - **Link**: [The Blue Pill Doesn't Work Here](/blog/the-blue-pill-doesnt-work-here)
 
+### 🛠️ Site Improvements
+- **Blog SEO overhaul**: Rewrote truncated/AI-generated meta descriptions on 7 older posts, expanded generic keywords across 12 posts, added missing frontmatter fields to 5 posts, fixed a broken OG image path
+- **New social card**: Replaced 4.9MB social card with a compressed 122KB version featuring updated brand copy — "Mastery before rebellion. Cloud Engineering | AI Sovereignty | Pasifika"
+- **robots.txt**: Added `robots.txt` pointing crawlers to the sitemap
+- **Author metadata**: Added social links (LinkedIn, GitHub, YouTube, X) to `authors.yml` for richer structured data
+- **Build safety**: Identified 20+ pre-existing broken links across docs and changelog; `onBrokenLinks` remains `warn` pending a dedicated link cleanup
+
 ---
 
 ## 📅 2026-03-28

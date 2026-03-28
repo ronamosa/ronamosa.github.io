@@ -5,6 +5,18 @@ authors: [ron]
 tags: [agentic-ai, security, ai-evolution, machine-learning, threat-landscape]
 image: /img/blog/agentic-ai-part2-cover.jpg
 description: "Examine three fundamental shifts in AI system evolution that have dramatically altered the security landscape: from rules-based to learning-based systems, single-task to multi-task capabilities, and tool-using to tool-creating agents."
+keywords:
+  - agentic AI
+  - AI evolution
+  - machine learning security
+  - AI threat landscape
+  - rules-based vs learning-based
+  - multi-task AI
+  - tool-creating agents
+reading_time: 7
+word_count: 1450
+hide_table_of_contents: false
+draft: false
 ---
 
 ![Three Critical Shifts in the AI Security Landscape](/img/blog/agentic-ai-part2-cover.jpg)

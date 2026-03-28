@@ -5,6 +5,18 @@ authors: [ron]
 tags: [agentic-ai, security, ai-vulnerabilities, llm-security, ai-architecture, prompt-injection-attacks, enterprise-ai-security]
 image: /img/blog/agentic-ai-part3-cover.jpg
 description: "Take a technical deep dive into AI agent anatomy, examining specific security vulnerabilities in the Brain and Perception modules and their implications for enterprise security."
+keywords:
+  - AI vulnerabilities
+  - LLM security
+  - prompt injection
+  - AI agent architecture
+  - brain module
+  - perception module
+  - enterprise AI security
+reading_time: 11
+word_count: 2150
+hide_table_of_contents: false
+draft: false
 ---
 
 ![AI Agent Architecture and Security Vulnerabilities Analysis](/img/blog/agentic-ai-part3-cover.jpg)

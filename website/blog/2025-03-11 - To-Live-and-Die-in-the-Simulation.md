@@ -1,11 +1,18 @@
 ---
 slug: to-live-die-in-simulation
 title: To Live and Die in the Simulation
-description: 'Examines living in simulated normalcy while real world suffers documenting contradiction between everyday routine and global catastrophe. Essential reading for '
+description: "We brush our teeth and take the rubbish out while genocide unfolds and governments dismantle public services. On the contradiction of normalcy, the catharsis of writing, and figuring out what this newsletter actually is."
 date: 2025-03-11
 authors: [ron]
 keywords:
-- AI governance
+  - simulation
+  - normalcy
+  - Palestine
+  - political consciousness
+  - newsletter
+  - catharsis
+  - NZ politics
+  - Pasifika
 tags:
 - AI-Sovereignty-Governance
 image: /img/blog/live-and-die-simulation.png
