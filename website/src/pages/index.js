@@ -70,7 +70,7 @@ function NewsletterCard() {
       </div>
       <h3 className={styles.cardTitle}>Newsletter</h3>
       <p className={styles.cardDescription}>
-        Fortnightly analysis on tech, culture, and power -- delivered to your inbox.
+        Unfiltered takes on AI, power, and tech from a Pasifika engineer twenty-plus years inside the machine. No polish. Fortnightly.
       </p>
       <span className={styles.cardLink}>
         Subscribe <span className={styles.arrow}>→</span>

@@ -27,10 +27,7 @@ function Subscribe() {
         <div className={styles.subscribeContainer}>
           <h1 className={styles.title}>Subscribe to the Newsletter</h1>
           <p className={styles.subtitle}>
-            A Pacific Islander inside big tech, writing my thoughts on learning about, building, and deploying the machines that educate, empower, and exploit our society.
-          </p>
-          <p className={styles.subtitle}>
-            A new essay in your inbox every fortnight. Free. Unsubscribe anytime.
+            Unfiltered takes on AI, power, and tech from a Pasifika engineer twenty-plus years inside the machine. No polish. Fortnightly.
           </p>
           
           <div className={styles.embedContainer}>
