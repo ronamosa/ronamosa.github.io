@@ -1,0 +1,70 @@
+---
+title: "The Complete Pi-hole Guide: Docker, Unbound DNS, and Troubleshooting"
+description: "Everything you need to run Pi-hole with Unbound recursive DNS in Docker. Setup guides, DNS configuration, SERVFAIL troubleshooting, and FAQ."
+keywords: ["pihole", "unbound", "pihole unbound", "pihole docker", "unbound pihole", "recursive dns", "pihole unbound docker compose", "pihole servfail"]
+tags: ["pihole", "dns", "docker", "unbound", "privacy", "networking", "home-lab"]
+sidebar_position: 0
+---
+
+import { FAQSchema } from '@site/src/components/StructuredData';
+
+<FAQSchema items={[
+  { question: "What is Unbound and why use it with Pi-hole?", answer: "Unbound is a recursive DNS resolver. Instead of forwarding your DNS queries to a third party like Google (8.8.8.8) or Cloudflare (1.1.1.1), Unbound resolves queries by walking the DNS hierarchy from the root nameservers down. Pairing it with Pi-hole means your DNS is both ad-free and private." },
+  { question: "Why run Pi-hole and Unbound in Docker?", answer: "Docker Compose makes the setup reproducible and portable. You get isolated containers for Pi-hole and Unbound that communicate over a shared Docker network, with all configuration version-controlled in a single docker-compose.yml." },
+  { question: "How do I fix SERVFAIL errors with Pi-hole and Unbound?", answer: "SERVFAIL usually means Unbound can't complete recursive resolution for certain domains. Common causes include DNSSEC validation failures, network-level issues blocking UDP on port 53, or Docker's internal DNS interfering with resolution." },
+  { question: "What Docker images should I use for Unbound?", answer: "The most commonly referenced images are mvance/unbound and klutchell/unbound. Both work well with Pi-hole in Docker Compose configurations." }
+]} />
+
+# The Complete Pi-hole Guide
+
+Pi-hole combined with Unbound gives you network-wide ad blocking backed by a fully recursive DNS resolver — no third-party DNS provider required. Every DNS query your network makes gets resolved directly from the root nameservers, cutting out Google DNS, Cloudflare, and everyone else in between.
+
+This hub links to all the Pi-hole guides on this site, from initial Docker Compose setup through to DNS configuration and real-world troubleshooting.
+
+---
+
+## Setup Guides
+
+### [Pi-hole + Unbound Docker Compose Setup](./pihole-docker-unbound)
+
+The main guide. Walks through deploying Pi-hole and Unbound as side-by-side Docker containers with Docker Compose. Covers the full `docker-compose.yml`, Unbound configuration, network setup, and container communication. Start here if you're building from scratch.
+
+### [Pi-hole DNS Configuration](./pihole-dns)
+
+Once Pi-hole is running, this guide covers DNS configuration details — setting Pi-hole as your network's DNS server, configuring upstream resolvers, and tuning query performance for your local network.
+
+---
+
+## Troubleshooting
+
+### [Fixing SERVFAIL with Pi-hole + Unbound on AWS](./pihole-servfail-unbound)
+
+If you're running Pi-hole + Unbound in Docker and hitting `SERVFAIL` errors when resolving certain domains (especially AWS Console), this guide diagnoses the root cause and walks through the fix. Based on a real issue encountered in production.
+
+---
+
+## Frequently Asked Questions
+
+### What is Unbound and why use it with Pi-hole?
+
+Unbound is a recursive DNS resolver. Instead of forwarding your DNS queries to a third party like Google (8.8.8.8) or Cloudflare (1.1.1.1), Unbound resolves queries by walking the DNS hierarchy from the root nameservers down. Pairing it with Pi-hole means your DNS is both ad-free and private — no external resolver sees your query history.
+
+### Why run Pi-hole and Unbound in Docker?
+
+Docker Compose makes the setup reproducible and portable. You get isolated containers for Pi-hole and Unbound that can communicate over a shared Docker network, with all configuration version-controlled in a single `docker-compose.yml`. If something breaks, tear it down and spin it back up.
+
+### How do I fix SERVFAIL errors with Pi-hole + Unbound?
+
+SERVFAIL usually means Unbound can't complete recursive resolution for certain domains. Common causes include DNSSEC validation failures, network-level issues blocking UDP on port 53, or Docker's internal DNS interfering with resolution. See the [SERVFAIL troubleshooting guide](./pihole-servfail-unbound) for step-by-step diagnosis.
+
+### What Docker images should I use for Unbound?
+
+The most commonly referenced images are `mvance/unbound` and `klutchell/unbound`. The guides on this site use configurations that work with either. Check the [main setup guide](./pihole-docker-unbound) for the specific image and version used.
+
+---
+
+## Related Infrastructure
+
+- **[Proxmox Virtualization Hub](./proxmox-hub)** — Host Pi-hole on Proxmox VMs for dedicated DNS infrastructure
+- **[Home Lab Hub](./home-lab-hub)** — Full networking, automation, and infrastructure setup
+- **[Kubernetes Guides](/docs/engineer/K8s/)** — Scale DNS services with container orchestration

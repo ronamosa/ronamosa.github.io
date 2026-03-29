@@ -1,3 +1,10 @@
+---
+title: "MCP Server Trello Setup with Claude — Connect Trello Boards to AI"
+description: "Connect Trello boards to Claude using MCP Server Trello. Covers API credentials, Claude Code and Desktop configuration, and board access setup."
+keywords: ["mcp server trello", "claude trello", "trello api", "mcp integration", "claude code", "ai automation"]
+tags: ["ai", "mcp", "trello", "claude", "automation"]
+---
+
 # How to Set Up MCP Server Trello with Claude
 
 A quick guide to connecting your Trello boards to Claude using the MCP Server Trello integration.

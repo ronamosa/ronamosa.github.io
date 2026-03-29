@@ -64,7 +64,7 @@ Data files in `src/data/` (`_Projects.js`, `_SocialLinks.js`) define structured 
 
 ### Static Assets
 
-- `static/img/` — All images (referenced as `/img/...` in content), includes `social-card.png` for Open Graph/Twitter
+- `static/img/` — All images (referenced as `/img/...` in content), includes `social-card.jpg` for Open Graph/Twitter
 - `static/js/console-clue.js` — Easter egg for PTEC community
 - `static/js/metricool.js` — Metricool analytics tracking
 - `static/CNAME` — Custom domain (`www.uncommonengineer.com`)

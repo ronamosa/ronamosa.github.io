@@ -1,5 +1,6 @@
 ---
 title: "UPNG: AWS Workshops"
+description: "AWS workshop links and notes for UPNG sessions covering Amazon Rekognition, Connect, Lex, and other AI/ML services."
 slug: /upng
 ---
 

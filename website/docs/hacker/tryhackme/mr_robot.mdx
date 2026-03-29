@@ -1,10 +1,20 @@
 ---
-title: "TryHackMe Mr. Robot Walkthrough - Complete CTF Solution and Exploitation Guide"
-description: "Complete walkthrough of TryHackMe's Mr. Robot room. Learn web application security, WordPress exploitation, privilege escalation, and CTF techniques."
+title: "Mr Robot CTF Walkthrough — TryHackMe (All 3 Keys)"
+description: "Complete Mr Robot TryHackMe walkthrough covering all 3 keys — WordPress enumeration, reverse shell, SUID nmap privilege escalation. Step-by-step with screenshots."
 keywords: ["tryhackme mr robot", "wordpress exploitation", "web application security", "privilege escalation", "ctf walkthrough", "penetration testing"]
 tags: ["tryhackme", "ctf", "wordpress", "web-security", "privilege-escalation"]
 sidebar_position: 4
 ---
+
+import { FAQSchema } from '@site/src/components/StructuredData';
+
+<FAQSchema items={[
+  { question: "Where is key-1-of-3 in Mr Robot TryHackMe?", answer: "Key 1 is found by checking robots.txt on the web server. It reveals two files: fsocity.dic (a wordlist) and key-1-of-3.txt. Navigate to /key-1-of-3.txt to retrieve the first flag." },
+  { question: "What are the WordPress credentials in the Mr Robot CTF?", answer: "The username Elliot is discovered by brute-forcing wp-login.php with Hydra using the fsocity.dic wordlist. The password is found as a base64-encoded string hidden in the /license page — decode it to get elliot:ER28-0652." },
+  { question: "How do you get key-2-of-3 in Mr Robot TryHackMe?", answer: "After logging into WordPress as Elliot, inject a PHP reverse shell via the Theme Editor (replace footer.php). Once you have a shell as daemon, find /home/robot/password.raw-md5, crack the MD5 hash with John the Ripper, then su to the robot user to read key-2-of-3.txt." },
+  { question: "How do you escalate privileges to root in Mr Robot THM?", answer: "Search for SUID binaries with find / -perm /4000. The key binary is /usr/local/bin/nmap which has the SUID bit set. Run nmap --interactive and then !sh to drop into a root shell. Key 3 is at /root/key-3-of-3.txt." },
+  { question: "What tools are needed for the Mr Robot TryHackMe room?", answer: "The walkthrough uses nmap for port scanning, Gobuster for directory enumeration, Hydra for brute-forcing WordPress login, pentestmonkey PHP reverse shell for initial foothold, John the Ripper for MD5 hash cracking, and nmap interactive mode for SUID privilege escalation." }
+]} />
 
 :::info Description
 
@@ -514,3 +524,25 @@ cat /root/key-3-of-3.txt
 cat /root/key-3-of-3.txt
 04787ddef27c3dee1ee161b21670b4e4
 ```
+
+## Frequently Asked Questions
+
+### Where is key-1-of-3 in Mr Robot TryHackMe?
+
+Key 1 is found by checking `robots.txt` on the web server. It reveals two files: `fsocity.dic` (a wordlist) and `key-1-of-3.txt`. Navigate to `/key-1-of-3.txt` to retrieve the first flag.
+
+### What are the WordPress credentials in the Mr Robot CTF?
+
+The username `Elliot` is discovered by brute-forcing `wp-login.php` with Hydra using the `fsocity.dic` wordlist. The password is found as a base64-encoded string hidden in the `/license` page — decode it to get `elliot:ER28-0652`.
+
+### How do you get key-2-of-3?
+
+After logging into WordPress as Elliot, inject a PHP reverse shell via the Theme Editor (replace `footer.php` with a reverse shell payload). Once you have a shell as `daemon`, find `/home/robot/password.raw-md5`, crack the MD5 hash with John the Ripper, then `su` to the `robot` user to read `key-2-of-3.txt`.
+
+### How do you escalate privileges to root in Mr Robot THM?
+
+Search for SUID binaries with `find / -perm /4000`. The key binary is `/usr/local/bin/nmap` which has the SUID bit set. Run `nmap --interactive` and then `!sh` to drop into a root shell. Key 3 is at `/root/key-3-of-3.txt`.
+
+### What tools are needed for the Mr Robot TryHackMe room?
+
+The full walkthrough uses: **nmap** for port scanning, **Gobuster** for directory enumeration, **Hydra** for brute-forcing WordPress login, **pentestmonkey PHP reverse shell** for initial foothold, **John the Ripper** for MD5 hash cracking, and **nmap interactive mode** for SUID privilege escalation.

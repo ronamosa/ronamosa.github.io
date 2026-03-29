@@ -1,5 +1,6 @@
 ---
-title: "Microservices"
+title: "Microservices Project — Containerised Service Architecture"
+description: "Microservices project notes covering containerised service architecture, Docker Compose setup, and inter-service communication patterns."
 ---
 
 :::info

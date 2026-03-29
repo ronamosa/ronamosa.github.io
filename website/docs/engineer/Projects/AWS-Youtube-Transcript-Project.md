@@ -1,5 +1,6 @@
 ---
-title: "AWS Youtube Transcript Project"
+title: "AWS YouTube Transcript Analyser — Lambda, DynamoDB, and Transcribe"
+description: "Automated system using AWS Lambda, DynamoDB, S3, SQS, and Amazon Transcribe to fetch YouTube transcripts and analyse channel sentiment."
 slug: /aws-youtube-transcripts
 ---
 

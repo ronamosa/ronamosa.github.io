@@ -1,5 +1,6 @@
 ---
-title: "Personal AI"
+title: "Personal AI — Private Offline Assistant Project Notes"
+description: "Research notes for building a personal AI assistant trained on private documents, using PrivateGPT and local LLMs for offline, private conversations."
 tags: [ai]
 ---
 

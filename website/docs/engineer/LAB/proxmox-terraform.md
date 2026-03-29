@@ -1,5 +1,9 @@
 ---
-title: "Proxmox: Deploying Infrastructure with Terraform"
+title: "Terraform Proxmox Provider — Deploy VMs with Telmate"
+description: "Use the Telmate Terraform provider to deploy and manage Proxmox VMs as code. Full .tf examples, cloud-init integration, and provider configuration walkthrough."
+keywords: ["proxmox terraform", "telmate proxmox provider", "terraform vm deployment", "proxmox infrastructure as code", "terraform proxmox cloud-init"]
+tags: ["proxmox", "terraform", "iac", "virtualization", "home-lab"]
+sidebar_position: 3
 ---
 
 Nerd-sniped by someone in the PTN playing with this, so I decided to give it a go. Objective is to create an OPNsense Firewall VM, in proxmox, using the terraform proxmox provider.

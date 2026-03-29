@@ -1,9 +1,10 @@
 ---
-title: "Amazon Bedrock and LangChain Workshop - Enterprise AI Application Development"
-description: "Complete workshop guide for building enterprise AI applications using Amazon Bedrock and LangChain. Learn serverless AI deployment and advanced LLM integration patterns."
+title: "LangChain + AWS Bedrock Workshop — Deploy LLMs on AWS"
+description: "Build and deploy a LangChain application with Amazon Bedrock. Covers LLM integration, BedrockChat setup, prompt templates, and AWS deployment. Full working code."
 keywords: ["amazon bedrock", "langchain", "enterprise ai", "serverless ai", "aws bedrock", "llm integration", "ai applications", "bedrock workshop"]
 tags: ["aws", "bedrock", "langchain", "enterprise", "workshop"]
 sidebar_position: 12
+noindex: true
 ---
 
 ![header](/img/AWSBedrockLangchainWK-Header.png)

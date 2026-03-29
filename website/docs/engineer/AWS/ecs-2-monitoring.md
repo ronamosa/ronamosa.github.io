@@ -1,5 +1,6 @@
 ---
-title: "AWS Workshop ECS Monitoring"
+title: "AWS ECS Monitoring Workshop — CloudWatch, Container Insights, and Prometheus"
+description: "Notes from the AWS ECS monitoring workshop covering CloudWatch Container Insights, Prometheus metrics collection, and ECS service monitoring setup."
 ---
 
 :::tip Workshop Links

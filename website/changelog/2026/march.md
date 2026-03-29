@@ -15,6 +15,15 @@ description: Changes and additions for March 2026
 ### 🎨 Design Changes
 - **Newsletter description refresh**: Updated newsletter copy on homepage card and subscribe page to new tagline — "Unfiltered takes on AI, power, and tech from a Pasifika engineer twenty-plus years inside the machine. No polish. Fortnightly."
 
+### ⚡ SEO Optimisations
+- **Meta title/description rewrite**: Rewrote frontmatter for the 10 highest-impression pages based on Google Search Console query intent data — Mr Robot CTF, Pi-hole + Unbound, iPhone to Linux, Oh My Zsh, Chromebook terminal, LangChain Bedrock, PrivateGPT, and 3 Proxmox guides
+- **Pi-hole pillar page**: Created `/docs/engineer/LAB/pihole-guide` hub page linking all Pi-hole guides with FAQ section and internal backlinks from each sub-page
+- **Proxmox hub SEO**: Updated title/description on existing Proxmox hub page to target homelab search queries
+- **Structured data component**: Built reusable `StructuredData.jsx` component (`FAQSchema` + `HowToSchema`) and added JSON-LD to 6 pages — Mr Robot (FAQ), Pi-hole guide (FAQ), iPhone backup (HowTo), Oh My Zsh (HowTo), Chromebook terminal (HowTo), Proxmox cloud-init (HowTo)
+- **AI docs audit**: Noindexed Bedrock LangChain workshop (0.07% CTR), added version warning to PrivateGPT, fixed Mistral-7B SageMaker title, added missing frontmatter to trello-mcp-setup-guide
+- **Missing descriptions**: Added meta descriptions to 13 active docs pages (engineer/LAB, engineer/AWS, engineer/Projects, hacker/tryhackme) that had none
+- **Open Graph tags**: Added `og:type`, `og:site_name`, and `og:locale` to `docusaurus.config.js` themeConfig metadata
+
 ### 🛠️ Site Improvements
 - **Blog SEO overhaul**: Rewrote truncated/AI-generated meta descriptions on 7 older posts, expanded generic keywords across 12 posts, added missing frontmatter fields to 5 posts, fixed a broken OG image path
 - **New social card**: Replaced 4.9MB social card with a compressed 122KB version featuring updated brand copy — "Mastery before rebellion. Cloud Engineering | AI Sovereignty | Pasifika"
