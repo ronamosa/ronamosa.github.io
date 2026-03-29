@@ -1,6 +1,6 @@
 ---
-title: "Create Cloud-Init VM Templates with Packer on Proxmox"
-description: "Complete guide to automate Proxmox VM template creation using Packer and cloud-init for Infrastructure as Code home lab setup. Includes troubleshooting and best practices."
+title: "Build Proxmox VM Templates with Packer — Complete Guide"
+description: "Automate Proxmox VM template creation using HashiCorp Packer. HCL config, cloud-init integration, and CI/CD pipeline setup. Step-by-step with full source."
 keywords: ["proxmox", "packer", "cloud-init", "vm template", "infrastructure as code", "home lab", "virtualization", "automation"]
 tags: ["proxmox", "packer", "iac", "virtualization", "home-lab"]
 sidebar_position: 1

@@ -1,10 +1,14 @@
 ---
-title: "Pi-hole with Unbound DNS: Complete Docker Setup for Privacy & Ad-Blocking"
-description: "Deploy Pi-hole and Unbound recursive DNS resolver in Docker for private, ad-free networking. Comprehensive guide with Docker Compose configuration and troubleshooting."
+title: "Pi-hole + Unbound Docker Compose Setup Guide (2026)"
+description: "Run Pi-hole with Unbound as a recursive DNS resolver in Docker Compose. Full docker-compose.yml, Unbound config, and network setup included. Tested and updated for 2026."
 keywords: ["pi-hole", "unbound", "dns", "docker", "ad blocking", "privacy", "recursive dns", "docker-compose"]
 tags: ["pi-hole", "dns", "docker", "privacy", "networking", "home-lab"]
 sidebar_position: 5
 ---
+
+:::tip Part of the Complete Pi-hole Guide
+This is one of several Pi-hole guides on this site. See the **[Complete Pi-hole Guide](./pihole-guide)** for the full collection including DNS config and troubleshooting.
+:::
 
 This guide walks through setting up Pi-hole with Unbound as a recursive DNS resolver using Docker. This combination provides ad-blocking functionality while ensuring DNS privacy by avoiding third-party DNS providers.
 

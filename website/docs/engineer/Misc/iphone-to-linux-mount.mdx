@@ -1,10 +1,24 @@
 ---
-title: "iPhone Photo Backup to Linux - Complete Native Guide"
-description: "Step-by-step guide to backing up iPhone photos and files to Linux using libimobiledevice and ifuse. Mount iPhone DCIM, app containers, and create automated backup workflows without iTunes or Finder."
+title: "iPhone Photo Backup to Linux — Complete Guide (No iTunes)"
+description: "Back up iPhone photos to Ubuntu or Debian Linux using libimobiledevice and ifuse. Mount DCIM, automate transfers with rsync. No iTunes or Finder needed."
 keywords: ["iphone backup linux", "libimobiledevice", "ifuse", "iphone photos linux", "ios backup ubuntu", "iphone mount linux", "apple file conduit", "iphone usb linux", "ios file transfer"]
 tags: ["iphone", "linux", "backup", "ios", "ubuntu", "file-transfer", "mobile"]
 sidebar_position: 2
 ---
+
+import { HowToSchema } from '@site/src/components/StructuredData';
+
+<HowToSchema
+  name="iPhone Photo Backup to Linux"
+  description="Back up iPhone photos to Ubuntu or Debian Linux using libimobiledevice and ifuse. No iTunes or Finder needed."
+  steps={[
+    { name: "Install dependencies", text: "Install libimobiledevice, ifuse, and usbmuxd on your Linux system using apt." },
+    { name: "Pair the iPhone", text: "Connect the iPhone via USB, trust the computer on the device, and pair using idevicepair." },
+    { name: "Mount the filesystem", text: "Create a mount point and use ifuse to mount the iPhone DCIM directory." },
+    { name: "Transfer photos", text: "Copy photos from the mounted DCIM directory using cp or rsync for incremental backups." },
+    { name: "Unmount and disconnect", text: "Unmount the filesystem with fusermount -u and safely disconnect the iPhone." }
+  ]}
+/>
 
 iPhone Photo Backup to Linux - Complete Native Guide
 

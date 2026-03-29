@@ -1,5 +1,6 @@
 ---
-title: Pihole Checking for Compromise
+title: "Pi-hole Compromise Detection — Investigating Suspicious DNS Behaviour"
+description: "How to investigate a suspected Pi-hole compromise — inspecting Docker containers, checking DNS logs, verifying upstream resolvers, and auditing network traffic."
 ---
 
 :::danger Compromise?

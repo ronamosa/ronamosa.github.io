@@ -1,6 +1,6 @@
 ---
-title: "PrivateGPT Local Deployment on Linux - Secure Document Chat Without Cloud"
-description: "Complete guide to deploying PrivateGPT locally on Linux and Proxmox for secure, private document chat. No data leaves your network - chat with PDFs, TXT, HTML locally."
+title: "PrivateGPT Local Setup — Chat with Documents Privately"
+description: "Set up PrivateGPT for local RAG — chat with your documents using a local LLM. Covers installation, document ingestion, and FAISS vector store configuration."
 keywords: ["privategpt", "local llm", "private ai", "document chat", "local gpt", "offline ai", "linux deployment", "proxmox ai"]
 tags: ["ai", "llm", "privacy", "local-deployment", "document-processing"]
 sidebar_position: 1
@@ -8,10 +8,12 @@ sidebar_position: 1
 
 ![header](/img/privategpt-header.png)
 
+:::warning Version Note
+This guide was written for **PrivateGPT 2.0** (the `imartinez/privateGPT` repository). The project has since undergone significant changes. Check the [current PrivateGPT repository](https://github.com/zylon-ai/private-gpt) for the latest version and installation instructions.
+:::
+
 :::info
-
 Following [PrivateGPT 2.0 - FULLY LOCAL Chat With Docs (PDF, TXT, HTML, PPTX, DOCX, and more)](https://www.youtube.com/watch?v=XFiof0V3nhA&ab_channel=MatthewBerman) by Matthew Berman.
-
 :::
 
 ## Requirements

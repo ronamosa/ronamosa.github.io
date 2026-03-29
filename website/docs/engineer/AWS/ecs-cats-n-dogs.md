@@ -1,5 +1,6 @@
 ---
-title: "AWS Workshop ECS Cats and Dogs - Part 1"
+title: "AWS ECS Cats and Dogs Workshop — Microservices on ECS"
+description: "Walkthrough of the AWS ECS Cats and Dogs workshop deploying containerised microservices with ECS, ALB, service discovery, and CI/CD pipelines."
 ---
 
 :::tip Workshop Links

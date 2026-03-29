@@ -7,6 +7,10 @@ description: Diagnosing and fixing SERVFAIL errors when resolving AWS console do
 image: /img/blog/pihole-unbound.png
 ---
 
+:::tip Part of the Complete Pi-hole Guide
+This is one of several Pi-hole guides on this site. See the **[Complete Pi-hole Guide](./pihole-guide)** for the full collection including Docker setup and DNS config.
+:::
+
 If you're running [Pi-hole](https://pi-hole.net/) with [Unbound](https://nlnetlabs.nl/projects/unbound/about/) in Docker containers and hit a `SERVFAIL` when trying to access the AWS Console, this post is for you.
 
 I run Pi-hole and Unbound in side-by-side containers using Docker Compose. Recently, DNS lookups to `console.aws.amazon.com` began failing intermittently with a `SERVFAIL`.

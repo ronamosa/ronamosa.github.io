@@ -57,6 +57,9 @@ module.exports = {
     image: 'img/social-card.jpg',
     metadata: [
       { name: 'twitter:card', content: 'summary_large_image' },
+      { property: 'og:type', content: 'website' },
+      { property: 'og:site_name', content: 'The Uncommon Engineer' },
+      { property: 'og:locale', content: 'en_US' },
     ],
     colorMode: {
       defaultMode: "dark",

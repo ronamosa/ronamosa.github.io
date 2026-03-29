@@ -1,5 +1,6 @@
 ---
-title: "Proxmox: Systems Administration Notes"
+title: "Proxmox Systems Administration — Disk Resize, GPU Passthrough, and More"
+description: "Proxmox sysadmin reference covering hard disk resize, GPU passthrough, network configuration, and common maintenance tasks for homelab VMs."
 ---
 
 ## Hard Disk Resize

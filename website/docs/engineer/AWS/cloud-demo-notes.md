@@ -1,5 +1,6 @@
 ---
 title: "TechNesian Live Stream: Cloud Demo Notes"
+description: "Demo notes for creating EC2 web servers across 3 AWS regions using manual console, CLI, and CloudFormation methods. Prepared for TechNesian live stream."
 ---
 
 You want to demonstrate creating cloud resources, i.e. 3 x EC2 Web Servers, in 3 x Regions, using 3 x methods.

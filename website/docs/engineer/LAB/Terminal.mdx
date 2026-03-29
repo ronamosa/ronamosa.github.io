@@ -1,10 +1,24 @@
 ---
-title: "Ultimate Linux Terminal Setup - Oh My Zsh, Powerlevel10k, and Productivity Tools"
-description: "Complete guide to setting up a beautiful and productive Linux terminal with Oh My Zsh, Powerlevel10k theme, tmux, and essential plugins for developers."
+title: "Oh My Zsh + Powerlevel10k Setup Guide for Linux"
+description: "Install and configure Oh My Zsh with Powerlevel10k theme, autosuggestions, and syntax highlighting on Ubuntu/Debian. Includes tmux integration and full dotfile config."
 keywords: ["oh my zsh", "powerlevel10k", "terminal setup", "linux terminal", "zsh configuration", "tmux", "developer terminal", "terminal productivity"]
 tags: ["terminal", "zsh", "productivity", "linux", "development"]
 sidebar_position: 3
 ---
+
+import { HowToSchema } from '@site/src/components/StructuredData';
+
+<HowToSchema
+  name="Oh My Zsh + Powerlevel10k Setup for Linux"
+  description="Install and configure Oh My Zsh with Powerlevel10k theme, autosuggestions, and syntax highlighting on Ubuntu/Debian."
+  steps={[
+    { name: "Install Zsh", text: "Install Zsh using your package manager (apt install zsh) and set it as your default shell with chsh." },
+    { name: "Install Oh My Zsh", text: "Run the Oh My Zsh install script to set up the Zsh framework with plugin and theme management." },
+    { name: "Install Powerlevel10k theme", text: "Clone the Powerlevel10k repository into the Oh My Zsh custom themes directory and set ZSH_THEME in .zshrc." },
+    { name: "Install plugins", text: "Add zsh-autosuggestions and zsh-syntax-highlighting plugins to your Oh My Zsh configuration." },
+    { name: "Configure tmux", text: "Install and configure tmux for terminal multiplexing and session management." }
+  ]}
+/>
 
 ![terminal](/img/terminal-omz-p10k.png)
 

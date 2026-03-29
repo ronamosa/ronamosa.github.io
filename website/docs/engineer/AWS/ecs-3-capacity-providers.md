@@ -1,5 +1,6 @@
 ---
-title: "AWS Workshop ECS Capacity Providers"
+title: "AWS ECS Capacity Providers Workshop — Auto Scaling and Spot Instances"
+description: "Notes from the AWS ECS capacity providers workshop covering auto scaling groups, Spot instance integration, and capacity provider strategies for ECS clusters."
 ---
 
 :::tip Workshop Links

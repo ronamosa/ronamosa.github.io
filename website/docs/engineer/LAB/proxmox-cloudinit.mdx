@@ -1,10 +1,24 @@
 ---
-title: "Automate Proxmox VM Deployment with Ansible Cloud-Init Playbooks"
-description: "Step-by-step guide to configure Proxmox for automated VM provisioning using Ansible playbooks and cloud-init templates. Includes API setup and troubleshooting."
+title: "Proxmox Cloud-Init VM Template — Ansible Automation Guide"
+description: "Create reusable Proxmox VM templates with cloud-init. Automate provisioning with Ansible, clean machine-id, and deploy Ubuntu cloud images. Full playbook included."
 keywords: ["proxmox", "ansible", "cloud-init", "vm automation", "playbooks", "infrastructure automation", "proxmox api", "vm provisioning"]
 tags: ["proxmox", "ansible", "automation", "cloud-init", "iac"]
 sidebar_position: 2
 ---
+
+import { HowToSchema } from '@site/src/components/StructuredData';
+
+<HowToSchema
+  name="Create Proxmox Cloud-Init VM Templates with Ansible"
+  description="Create reusable Proxmox VM templates with cloud-init and automate provisioning with Ansible playbooks."
+  steps={[
+    { name: "Configure Proxmox API access", text: "Create an API token in Proxmox with the required permissions for VM management and template creation." },
+    { name: "Download a cloud image", text: "Download an Ubuntu cloud image and import it as a Proxmox VM disk for use as a template base." },
+    { name: "Create the VM template", text: "Configure the VM with cloud-init settings (SSH keys, network, user data) and convert it to a template." },
+    { name: "Clean machine-id", text: "Reset machine-id and clear cloud-init state to ensure each clone gets unique identifiers." },
+    { name: "Write Ansible playbook", text: "Create an Ansible playbook that automates the full template creation and VM cloning workflow using the Proxmox API." }
+  ]}
+/>
 
 ## Overview
 

@@ -1,5 +1,5 @@
 ---
-title: "Deploy Mistral-7B LLM with Ollama on AWS SageMaker"
+title: "Deploy Mistral-7B on AWS SageMaker with Ollama"
 description: "Complete tutorial for deploying and running Mistral-7B large language model using Ollama on AWS SageMaker. Includes setup, configuration, and usage examples."
 keywords: ["mistral-7b", "ollama", "aws sagemaker", "llm deployment", "large language model", "ai", "machine learning", "aws ai"]
 tags: ["ai", "llm", "aws", "sagemaker", "mistral", "ollama"]

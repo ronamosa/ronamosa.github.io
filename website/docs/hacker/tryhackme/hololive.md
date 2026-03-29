@@ -1,3 +1,8 @@
+---
+title: "Holo Live Network — TryHackMe Walkthrough"
+description: "TryHackMe Holo Live network walkthrough covering Active Directory enumeration, lateral movement, and domain controller compromise."
+---
+
 # Holo Live
 
 ## RECON

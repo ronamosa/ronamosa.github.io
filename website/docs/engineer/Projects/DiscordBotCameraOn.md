@@ -1,5 +1,6 @@
 ---
-title: "Discord Bot: Camera's On"
+title: "Discord Bot: Camera's On — Enforcing Video Policy with a Bot"
+description: "Building a Discord bot to enforce cameras-on policy in voice channels. Developed with Claude 3 Opus, covers bot setup, event handling, and deployment."
 ---
 
 :::info

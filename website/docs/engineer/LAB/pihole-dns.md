@@ -6,6 +6,10 @@ tags: ["pihole", "dns", "networking", "privacy", "ubuntu"]
 sidebar_position: 1
 ---
 
+:::tip Part of the Complete Pi-hole Guide
+This is one of several Pi-hole guides on this site. See the **[Complete Pi-hole Guide](./pihole-guide)** for the full collection including Docker setup and troubleshooting.
+:::
+
 ## Installation
 
 installed on proxmox with Ubuntu 22.04.3

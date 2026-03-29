@@ -1,6 +1,6 @@
 ---
-title: "Proxmox Virtualization Hub: Complete Guide Collection"
-description: "Comprehensive collection of Proxmox virtualization guides covering automation, templates, VM management, troubleshooting, and Infrastructure as Code best practices."
+title: "Proxmox Homelab Guide: Cloud-Init, Packer, Terraform, and LVM"
+description: "Complete Proxmox homelab guide covering VM template automation with Packer, Ansible cloud-init provisioning, Terraform orchestration, and LVM troubleshooting."
 keywords: ["proxmox", "virtualization", "vm automation", "infrastructure as code", "packer", "ansible", "terraform", "home lab"]
 tags: ["proxmox", "virtualization", "automation", "iac", "home-lab"]
 sidebar_position: 0
