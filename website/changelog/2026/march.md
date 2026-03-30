@@ -6,6 +6,14 @@ description: Changes and additions for March 2026
 
 # March 2026
 
+## 📅 2026-03-30
+
+### 📝 Blog Posts
+- **I Filed a Complaint Against RNZ. Here's What Happened.**: The full record of a formal complaint to the NZ Media Council about RNZ's editorial standards — the arguments made, how RNZ responded, what the Council ruled, and what the process reveals about media self-regulation in New Zealand
+  - **Link**: [I Filed a Complaint Against RNZ](/blog/i-filed-a-complaint-against-rnz)
+
+---
+
 ## 📅 2026-03-29
 
 ### 📝 Blog Posts
