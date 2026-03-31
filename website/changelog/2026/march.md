@@ -12,6 +12,12 @@ description: Changes and additions for March 2026
 - **Debugging Kiro IDE Agent Terminal Hang**: Documented a multi-layered debugging session fixing Kiro IDE's AI agent hanging on terminal commands — root causes were a missing GLIBCXX native library on Ubuntu 22.04 and zsh/Powerlevel10k interfering with OSC 633 shell integration sequences.
   - **Link**: [Debugging Kiro IDE Agent Terminal Hang](/docs/engineer/AI/debugging-kiro-ide-agent-terminal)
 
+### 🛠️ Site Improvements
+- **Docs RSS Feed Plugin**: Added a custom Docusaurus plugin that generates an RSS feed from docs at build time. Walks the docs directory, sorts by git last-updated date, and writes `/docs/rss.xml` with the 50 most recent entries. Includes `<link rel="alternate">` head tag for feed discovery.
+
+### 🔧 Bug Fixes
+- **Fixed incorrect "Last updated" dates on all doc pages**: Added `fetch-depth: 0` to both CI and deploy GitHub Actions workflows. The shallow clone default (`depth: 1`) was causing every doc page footer and RSS pubDate to show the build date instead of the file's actual last-committed date.
+
 ---
 
 ## 📅 2026-03-30
