@@ -6,6 +6,14 @@ description: Changes and additions for March 2026
 
 # March 2026
 
+## 📅 2026-03-31
+
+### 📚 Documentation Updates
+- **Debugging Kiro IDE Agent Terminal Hang**: Documented a multi-layered debugging session fixing Kiro IDE's AI agent hanging on terminal commands — root causes were a missing GLIBCXX native library on Ubuntu 22.04 and zsh/Powerlevel10k interfering with OSC 633 shell integration sequences.
+  - **Link**: [Debugging Kiro IDE Agent Terminal Hang](/docs/engineer/AI/debugging-kiro-ide-agent-terminal)
+
+---
+
 ## 📅 2026-03-30
 
 ### 📝 Blog Posts
