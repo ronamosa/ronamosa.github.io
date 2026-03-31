@@ -1,5 +1,5 @@
 ---
-sidebar_position: 1
+sidebar_position: 2
 title: November 2025
 description: Changes and additions for November 2025
 ---

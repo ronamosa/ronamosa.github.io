@@ -1,5 +1,5 @@
 ---
-sidebar_position: 1
+sidebar_position: 12
 title: January 2025
 description: Changes and additions for January 2025
 ---

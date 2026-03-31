@@ -1,5 +1,5 @@
 ---
-sidebar_position: 4
+sidebar_position: 9
 title: April 2025
 description: Changes and additions for April 2025
 ---

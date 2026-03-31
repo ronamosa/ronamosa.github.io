@@ -1,5 +1,5 @@
 ---
-sidebar_position: 1
+sidebar_position: 10
 title: March 2026
 description: Changes and additions for March 2026
 ---
@@ -17,6 +17,7 @@ description: Changes and additions for March 2026
 
 ### 🔧 Bug Fixes
 - **Fixed incorrect "Last updated" dates on all doc pages**: Added `fetch-depth: 0` to both CI and deploy GitHub Actions workflows. The shallow clone default (`depth: 1`) was causing every doc page footer and RSS pubDate to show the build date instead of the file's actual last-committed date.
+- **Fixed changelog sidebar ordering**: "Changelog" now appears above year folders, and months within each year are sorted most-recent-first (December at top, January at bottom).
 
 ---
 

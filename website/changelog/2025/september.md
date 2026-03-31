@@ -1,5 +1,5 @@
 ---
-sidebar_position: 1
+sidebar_position: 4
 title: September 2025
 description: Changes and additions for September 2025
 ---
