@@ -1,5 +1,5 @@
 ---
-sidebar_position: 1
+sidebar_position: 11
 title: February 2026
 description: Changes and additions for February 2026
 ---

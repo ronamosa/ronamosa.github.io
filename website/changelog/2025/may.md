@@ -1,5 +1,5 @@
 ---
-sidebar_position: 5
+sidebar_position: 8
 title: May 2025
 description: Changes and additions for May 2025
 ---

@@ -1,5 +1,5 @@
 ---
-sidebar_position: 1
+sidebar_position: 0
 title: Changelog
 description: A running journal of documentation updates and blog changes
 ---

@@ -1,5 +1,5 @@
 ---
-sidebar_position: 7
+sidebar_position: 6
 title: July 2025
 description: Changes and additions for July 2025
 ---

@@ -1,5 +1,5 @@
 ---
-sidebar_position: 1
+sidebar_position: 3
 title: October 2025
 description: Changes and additions for October 2025
 ---
