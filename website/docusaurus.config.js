@@ -169,6 +169,7 @@ module.exports = {
 
   plugins: [
     require.resolve('./plugins/content-counts'),
+    require.resolve('./plugins/docs-rss-feed'),
     [
       '@docusaurus/plugin-google-gtag',
       {
