@@ -6,6 +6,13 @@ description: Changes and additions for March 2026
 
 # March 2026
 
+## 📅 2026-03-31
+
+### 🛠️ Site Improvements
+- **Docs RSS Feed Plugin**: Added a custom Docusaurus plugin that generates an RSS feed from docs at build time. Walks the docs directory, sorts by git last-updated date, and writes `/docs/rss.xml` with the 50 most recent entries. Includes `<link rel="alternate">` head tag for feed discovery.
+
+---
+
 ## 📅 2026-03-30
 
 ### 📝 Blog Posts
