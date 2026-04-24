@@ -65,6 +65,7 @@ Data files in `src/data/` (`_Projects.js`, `_SocialLinks.js`) define structured 
 ### Static Assets
 
 - `static/img/` — All images (referenced as `/img/...` in content), includes `social-card.jpg` for Open Graph/Twitter
+- `static/robots.txt` — Crawl directives and sitemap reference for search engines
 - `static/js/console-clue.js` — Easter egg for PTEC community
 - `static/js/metricool.js` — Metricool analytics tracking
 - `static/CNAME` — Custom domain (`www.uncommonengineer.com`)
@@ -154,6 +155,29 @@ Organized under `website/docs/` in category directories: `engineer/`, `hacker/`,
 ### Frontmatter
 
 All content files require proper frontmatter. Use relative links starting with `/docs/` or `/blog/`.
+
+Blog posts should include the full set of frontmatter fields. Here is the standard template:
+
+```yaml
+slug: kebab-case-slug
+title: "Post Title"
+description: "Compelling 150-160 char description for search snippets — avoid generic filler."
+date: YYYY-MM-DD
+authors: [ron]
+keywords:
+  - 4-8 specific keywords
+  - relevant to actual content
+tags:
+  - AI-Sovereignty-Governance
+  - tech-politics
+image: /img/blog/post-image.png
+reading_time: 6
+word_count: 1200
+hide_table_of_contents: false
+draft: false
+```
+
+The `authors.yml` file in `website/blog/` defines author metadata including social links (LinkedIn, GitHub, YouTube, Bluesky).
 
 ### Git Commit Messages
 
