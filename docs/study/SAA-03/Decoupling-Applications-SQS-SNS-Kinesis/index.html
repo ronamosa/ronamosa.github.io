@@ -1,0 +1,350 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-study/SAA-03/Decoupling-Applications-SQS-SNS-Kinesis" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.9.2">
+<title data-rh="true">Decoupling Applications, SQS, SNS, Kinesis, ActiveMQ | The Uncommon Engineer</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" property="og:image" content="https://www.uncommonengineer.com/img/social-card.jpg"><meta data-rh="true" name="twitter:image" content="https://www.uncommonengineer.com/img/social-card.jpg"><meta data-rh="true" property="og:url" content="https://www.uncommonengineer.com/docs/study/SAA-03/Decoupling-Applications-SQS-SNS-Kinesis"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:type" content="website"><meta data-rh="true" property="og:site_name" content="The Uncommon Engineer"><meta data-rh="true" property="og:locale" content="en_US"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Decoupling Applications, SQS, SNS, Kinesis, ActiveMQ | The Uncommon Engineer"><meta data-rh="true" name="description" content="These were the topics I created flashcards for (Remnote) and would revise them using spaced repetition. The formatting is an export from Remnote."><meta data-rh="true" property="og:description" content="These were the topics I created flashcards for (Remnote) and would revise them using spaced repetition. The formatting is an export from Remnote."><link data-rh="true" rel="icon" href="/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://www.uncommonengineer.com/docs/study/SAA-03/Decoupling-Applications-SQS-SNS-Kinesis"><link data-rh="true" rel="alternate" href="https://www.uncommonengineer.com/docs/study/SAA-03/Decoupling-Applications-SQS-SNS-Kinesis" hreflang="en"><link data-rh="true" rel="alternate" href="https://www.uncommonengineer.com/docs/study/SAA-03/Decoupling-Applications-SQS-SNS-Kinesis" hreflang="x-default"><link data-rh="true" rel="preconnect" href="https://9UFF3RBJQ9-dsn.algolia.net" crossorigin="anonymous"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"☁️ SAA-03","item":"https://www.uncommonengineer.com/docs/study/SAA-03/aws-solutions-architect-associate-study-guide"},{"@type":"ListItem","position":2,"name":"Decoupling Applications, SQS, SNS, Kinesis, ActiveMQ","item":"https://www.uncommonengineer.com/docs/study/SAA-03/Decoupling-Applications-SQS-SNS-Kinesis"}]}</script><link rel="alternate" type="application/rss+xml" href="/blog/rss.xml" title="The Uncommon Engineer RSS Feed">
+<link rel="alternate" type="application/atom+xml" href="/blog/atom.xml" title="The Uncommon Engineer Atom Feed">
+
+
+
+
+<link rel="search" type="application/opensearchdescription+xml" title="The Uncommon Engineer" href="/opensearch.xml">
+
+<link rel="alternate" type="application/rss+xml" title="The Uncommon Engineer — Docs" href="https://www.uncommonengineer.com/docs/rss.xml">
+<link rel="preconnect" href="https://www.google-analytics.com">
+<link rel="preconnect" href="https://www.googletagmanager.com">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DMRNTVGLRC"></script>
+<script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","G-DMRNTVGLRC",{anonymize_ip:!0})</script>
+
+
+<script src="/js/console-clue.js"></script>
+<script src="/js/metricool.js"></script>
+<script src="https://subscribe-forms.beehiiv.com/embed.js" async></script><link rel="stylesheet" href="/assets/css/styles.408ae1c7.css">
+<script src="/assets/js/runtime~main.e957919c.js" defer="defer"></script>
+<script src="/assets/js/main.17aba030.js" defer="defer"></script>
+</head>
+<body class="navigation-with-keyboard">
+<svg style="display: none;"><defs>
+<symbol id="theme-svg-external-link" viewBox="0 0 24 24"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"/></symbol>
+</defs></svg>
+<script>document.documentElement.setAttribute("data-theme","dark"),document.documentElement.setAttribute("data-theme-choice","dark"),function(){try{const c=new URLSearchParams(window.location.search).entries();for(var[t,e]of c)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="theme-layout-navbar navbar navbar--fixed-top"><div class="navbar__inner"><div class="theme-layout-navbar-left navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/"><div class="navbar__logo"><img src="/img/profile.svg" alt="The Uncommon Engineer" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/img/profile.svg" alt="The Uncommon Engineer" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate">Uncommon Engineer</b></a><a aria-current="page" class="navbar__item navbar__link navbar__link--active" href="/docs/">Technical</a><a class="navbar__item navbar__link" href="/blog/">Analysis &amp; Essays</a></div><div class="theme-layout-navbar-right navbar__items navbar__items--right"><a class="navbar__item navbar__link" href="/about/">About</a><a class="navbar__item navbar__link" href="/projects/">Projects</a><a class="navbar__item navbar__link" href="/changelog/">Changelog</a><div class="navbarSearchContainer_Bca1"><button type="button" class="DocSearch DocSearch-Button" aria-label="Search (Meta+k)" aria-keyshortcuts="Meta+k"><span class="DocSearch-Button-Container"><svg width="20" height="20" class="DocSearch-Search-Icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="8" stroke="currentColor" fill="none" stroke-width="1.4"></circle><path d="m21 21-4.3-4.3" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"></path></svg><span class="DocSearch-Button-Placeholder">Search</span></span><span class="DocSearch-Button-Keys"></span></button></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="theme-layout-main main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><aside class="theme-doc-sidebar-container docSidebarContainer_YfHR"><div class="sidebarViewport_aRkj"><div class="sidebar_njMd"><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/docs/"><span title="▶ Start Here" class="linkLabel_WmDU">▶ Start Here</span></a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/docs/books/reading-list"><span title="📚 Books &amp; Papers" class="categoryLinkLabel_W154">📚 Books &amp; Papers</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret menu__link--active" role="button" aria-expanded="true" href="/docs/study/SCS-C01/"><span title="📗 Study" class="categoryLinkLabel_W154">📗 Study</span></a></div><ul class="menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/docs/study/SCS-C01/"><span title="☁️ SCS-01" class="categoryLinkLabel_W154">☁️ SCS-01</span></a><button aria-label="Expand sidebar category &#x27;☁️ SCS-01&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--active" tabindex="0" href="/docs/study/SAA-03/aws-solutions-architect-associate-study-guide"><span title="☁️ SAA-03" class="categoryLinkLabel_W154">☁️ SAA-03</span></a><button aria-label="Collapse sidebar category &#x27;☁️ SAA-03&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/docs/study/SAA-03/IAM-CLI"><span title="IAM &amp; AWS CLI" class="linkLabel_WmDU">IAM &amp; AWS CLI</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/docs/study/SAA-03/EC2-Fundamentals"><span title="EC2 Fundamentals" class="linkLabel_WmDU">EC2 Fundamentals</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/docs/study/SAA-03/EC2-Associate-Level"><span title="EC2 Associate Level" class="linkLabel_WmDU">EC2 Associate Level</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/docs/study/SAA-03/EC2-Instance-Storage"><span title="EC2 Instance Storage" class="linkLabel_WmDU">EC2 Instance Storage</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/docs/study/SAA-03/HA-Scale-ELB-ASG"><span title="High Availability, Scalability, ELB, ASG" class="linkLabel_WmDU">High Availability, Scalability, ELB, ASG</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/docs/study/SAA-03/AWS-Fundamentals-RDS-Aurora-Elasticache"><span title="AWS Fundamentals, RDS, Aurora, ElastiCache" class="linkLabel_WmDU">AWS Fundamentals, RDS, Aurora, ElastiCache</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/docs/study/SAA-03/Route53-DNS"><span title="Route53 DNS" class="linkLabel_WmDU">Route53 DNS</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/docs/study/SAA-03/Classic-Architectures"><span title="Classic Solution Architectures" class="linkLabel_WmDU">Classic Solution Architectures</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/docs/study/SAA-03/AWS-SDK-IamRoles-Policies"><span title="AWS SDK, IAM Roles &amp; Policies" class="linkLabel_WmDU">AWS SDK, IAM Roles &amp; Policies</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/docs/study/SAA-03/Advanced-S3-Athena"><span title="Advanced Amazon S3 &amp; Athena" class="linkLabel_WmDU">Advanced Amazon S3 &amp; Athena</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" tabindex="0" href="/docs/study/SAA-03/Decoupling-Applications-SQS-SNS-Kinesis"><span title="Decoupling Applications, SQS, SNS, Kinesis, ActiveMQ" class="linkLabel_WmDU">Decoupling Applications, SQS, SNS, Kinesis, ActiveMQ</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/docs/study/SAA-03/Serverless"><span title="Serverless" class="linkLabel_WmDU">Serverless</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/docs/study/SAA-03/Serverless-Architecture-Discussion"><span title="Serverless Architecture Discussion" class="linkLabel_WmDU">Serverless Architecture Discussion</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/docs/study/SAA-03/Data-Analytics"><span title="Data &amp; Analytics" class="linkLabel_WmDU">Data &amp; Analytics</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/docs/study/SAA-03/Machine-Learning"><span title="Machine Learning" class="linkLabel_WmDU">Machine Learning</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/docs/study/SAA-03/Monitoring-Auditing-CloudWatch-CloudTrail-Config"><span title="AWS Monitoring &amp; Auditing, CloudWatch, CloudTrail &amp; Config" class="linkLabel_WmDU">AWS Monitoring &amp; Auditing, CloudWatch, CloudTrail &amp; Config</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/docs/study/SAA-03/Disaster-Recovery-Migrations"><span title="Disaster Recovery &amp; Migrations." class="linkLabel_WmDU">Disaster Recovery &amp; Migrations.</span></a></li></ul></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/docs/study/CCP/"><span title="☁️ CCP" class="linkLabel_WmDU">☁️ CCP</span></a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/docs/study/CKS/kubernetes-security-specialist-cks-study-guide"><span title="☸ CKS" class="categoryLinkLabel_W154">☸ CKS</span></a><button aria-label="Expand sidebar category &#x27;☸ CKS&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/docs/study/CKA/kubernetes-administrator-cka-study-guide"><span title="☸ CKA" class="categoryLinkLabel_W154">☸ CKA</span></a><button aria-label="Expand sidebar category &#x27;☸ CKA&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/docs/study/Golang/go-the-complete-developers-guide"><span title="Golang" class="categoryLinkLabel_W154">Golang</span></a></div></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed red"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" href="/docs/category/️-hacker"><span title="🏴‍☠️ Hacker" class="categoryLinkLabel_W154">🏴‍☠️ Hacker</span></a><button aria-label="Expand sidebar category &#x27;🏴‍☠️ Hacker&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed red"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" href="/docs/category/-engineer"><span title="💻 Engineer" class="categoryLinkLabel_W154">💻 Engineer</span></a><button aria-label="Expand sidebar category &#x27;💻 Engineer&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/docs/archive/docker-wordpress/docker-wordpress-1"><span title="🗃 Archive" class="categoryLinkLabel_W154">🗃 Archive</span></a></div></li></ul></nav></div></div></aside><main class="docMainContainer_TBSr"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_VOVn"><div class="docItemContainer_Djhp"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_Z_bl" aria-label="Breadcrumbs"><ul class="breadcrumbs"><li class="breadcrumbs__item"><a aria-label="Home page" class="breadcrumbs__link" href="/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_YNFT"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li class="breadcrumbs__item"><span class="breadcrumbs__link">📗 Study</span></li><li class="breadcrumbs__item"><a class="breadcrumbs__link" href="/docs/study/SAA-03/aws-solutions-architect-associate-study-guide"><span>☁️ SAA-03</span></a></li><li class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link">Decoupling Applications, SQS, SNS, Kinesis, ActiveMQ</span></li></ul></nav><div class="theme-doc-markdown markdown"><header><h1>Decoupling Applications, SQS, SNS, Kinesis, ActiveMQ</h1></header><div class="theme-admonition theme-admonition-info admonition_xJq3 alert alert--info"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 14 16"><path fill-rule="evenodd" d="M7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7zm1 3H6v5h2V4zm0 6H6v2h2v-2z"></path></svg></span>info</div><div class="admonitionContent_BuS1"><p>These were the topics I created flashcards for (Remnote) and would revise them using spaced repetition. The formatting is an export from Remnote.</p></div></div>
+<ul>
+<li class="">App Communication Patterns = Sync, Async</li>
+<li class="">Middleware<!-- -->
+<ul>
+<li class="">Queue<!-- -->
+<ul>
+<li class="">Active MQ</li>
+<li class="">SQS</li>
+</ul>
+</li>
+<li class="">Pub-Sub<!-- -->
+<ul>
+<li class="">SNS</li>
+</ul>
+</li>
+<li class="">Stream<!-- -->
+<ul>
+<li class="">Kinesis</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="">SQS - Standard<!-- -->
+<ul>
+<li class="">unlimited throughput &amp; messages</li>
+<li class="">standard message retention?―4 days</li>
+<li class="">max message retention (hint: PS4 Game)?―14 days</li>
+<li class="">are messages ordered?―No.<!-- -->
+<ul>
+<li class="">what kind of ordering is it?―&quot;best effort&quot; ordering.</li>
+</ul>
+</li>
+<li class="">can there be duplicates?―Yes.<!-- -->
+<ul>
+<li class="">what kind of delivery is it?―&quot;at least one&quot; delivery.</li>
+</ul>
+</li>
+<li class="">Producer<!-- -->
+<ul>
+<li class="">What API will a producer use from SDK to push message to SQS?―<code>SendMessage</code> API</li>
+</ul>
+</li>
+<li class="">Consumer<!-- -->
+<ul>
+<li class="">Up to how many messages at a time can consumers poll SQS for?―10.</li>
+<li class="">What API does does a consumer use from SDK to delete a message from SQS?―<code>DeleteMessage</code> API</li>
+<li class="">Consumer EC2 instances will <code>\{\{scale\}\}</code> on-demand using <code>\{\{cloudwatch\}\}</code> metric and a cloudwatch <code>\{\{alarm\}\}</code> and EC2 <code>\{\{autoscaling\}\}</code> service.<!-- -->
+<ul>
+<li class="">how can we improve processing throughput?―scale consumer horizontally.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="">Security<!-- -->
+<ul>
+<li class="">what type of in-transit encryption?―HTTPS to API</li>
+<li class="">what at-rest encryption used?―KMS<!-- -->
+<ul>
+<li class=""><code>\{\{client\}\}</code>-<code>\{\{side\}\}</code> encryption is available option.</li>
+</ul>
+</li>
+<li class="">what is used for access control on the SQS API?―IAM</li>
+<li class="">what kind of policies does SQS use that are similar to S3 bucket policies?―SQS Access Policies.</li>
+</ul>
+</li>
+<li class="">SQS is a good way to <code>\{\{decouple\}\}</code> app tiers.</li>
+<li class="">Message Visibility<!-- -->
+<ul>
+<li class="">what parameter do you change to make a message &quot;invisible&quot; longer for consumers?―Visibility Timeout.</li>
+<li class="">who can view the message that got polled?―Only the consumer who polled it first.</li>
+<li class="">what API needs to be called to change the visibility timeout?―<code>ChangeMessageVisibility</code></li>
+<li class="">timeout too high = holds up processing if anything happens to the consumer who initially polled the message.</li>
+<li class="">timeout too low = get duplicates.</li>
+</ul>
+</li>
+<li class="">Long Polling<!-- -->
+<ul>
+<li class="">main benefits of Long Polling (hint: like RDS proxy, api calls, efficiency, latency)?― ↓<!-- -->
+<ul>
+<li class="">Decrease number of API calls to SQS</li>
+<li class="">Improves efficiency</li>
+<li class="">Reduces latency</li>
+</ul>
+</li>
+<li class="">average wait time?―1 to 20 seconds.</li>
+<li class="">LP can be enabled at what level?― ↓<!-- -->
+<ul>
+<li class="">Queue Level</li>
+<li class="">API Level (using <code>\{\{</code>WaitTimeSeconds<code>\}\}</code>)</li>
+</ul>
+</li>
+<li class="">Long Polling is preferred to <code>\{\{Short\}\}</code> Polling.</li>
+</ul>
+</li>
+<li class="">FIFO Queues<!-- -->
+<ul>
+<li class="">message order is <code>\{\{guaranteed\}\}</code> but throughput is <code>\{\{limited\}\}</code>.</li>
+<li class="">removes <code>\{\{duplicates\}\}</code> by using &quot;<code>\{\{exactly once\}\}</code>&quot; delivery.</li>
+<li class="">queue name must end in &quot;.<code>\{\{fifo\}\}</code>&quot;</li>
+</ul>
+</li>
+<li class="">SQS + ASG<!-- -->
+<ul>
+<li class="">3 scaling scenarios for SQS<!-- -->
+<ul>
+<li class="">Scale if too many messages in Queue<!-- -->
+<ul>
+<li class="">example of setup is set a cloudwatch alarm on <code>ApproximateNumberOfMessages</code> to 1000 and when that gets triggered, scale the ASG.</li>
+</ul>
+</li>
+<li class="">As Queue for DB writes to prevent data loss if load is too big...<!-- -->
+<ul>
+<li class="">scale enqueue and dequeue on either side of SQS going into DB writes.</li>
+</ul>
+</li>
+<li class="">Decouple between tiers<!-- -->
+<ul>
+<li class="">example frontend ASG (web tier) ‒&gt; SQS ‒&gt; backend ASG (batch processing)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="">Amazon SNS<!-- -->
+<ul>
+<li class="">use when you have a &quot;one-to-many&quot; scenario i.e. one message to many receivers.</li>
+<li class="">SNS is known as &quot;<code>\{\{pub-sub\}\}</code>&quot; which means <code>\{\{publisher\}\}</code> and <code>\{\{subscriber\}\}</code>.</li>
+<li class="">event producer (publisher) only sends message to?―SNS Topic</li>
+<li class="">how does a consumer get the messages from the topic?―by subscribing to the topic.</li>
+<li class="">which subscribers will get the messages on the topic?―All of them (if not filtered)</li>
+<li class="">up to how many subscribers per topic?―12.5M</li>
+<li class="">how many topics can SNS have?―100k.</li>
+<li class="">Publishers<!-- -->
+<ul>
+<li class="">what TWO ways can a producer publish to an SNS Topic? ↓<!-- -->
+<ul>
+<li class="">Topic Publish (SDK)</li>
+<li class="">Direct Publish (Mobile SDK)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="">Security<!-- -->
+<ul>
+<li class="">Encryption ↓<!-- -->
+<ul>
+<li class="">(in transit) HTTPS API</li>
+<li class="">(at rest) KMS<!-- -->
+<ul>
+<li class="">Client-side option available</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="">Access Controls for the API?― ↓<!-- -->
+<ul>
+<li class="">IAM Policies control SNS API</li>
+</ul>
+</li>
+<li class="">SNS Access Policies allow you to do these to topics― ↓<!-- -->
+<ul>
+<li class="">cross-account access to SNS topics</li>
+<li class="">allow services to write to SNS topic</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="">SQS + SNS: Fan Out<!-- -->
+<ul>
+<li class="">The <strong>SNS</strong> part allows a &quot;push once, receive all&quot; to subscribers</li>
+<li class=""><strong>SQS</strong> part allows for... (hint: persist, delay, work)― ↓<!-- -->
+<ul>
+<li class="">data  <strong>persistence</strong></li>
+<li class=""><strong>delayed</strong>  processing</li>
+<li class=""><strong>retries</strong>  of work</li>
+</ul>
+</li>
+<li class="">What do you need to check on the SQS queue to allow SNS to write to the Queue?―SQS Access Policy</li>
+<li class="">Application Fan Out<!-- -->
+<ul>
+<li class="">scenario: you have a combination of &quot;event type&quot; and &quot;prefix&quot; but <code>S3 Event rule</code> only allows ONE rule for this- what do you do?―Use Fan Out (SNS+SQS)</li>
+</ul>
+</li>
+<li class="">Kinesis Data Firehose Fan Out<!-- -->
+<ul>
+<li class="">Option to use SNS Topic ⇒ Kinesis Data Firehose ⇒ Amazon S3 (or other supported KDF destination)</li>
+</ul>
+</li>
+<li class="">SNS Fifo Topic Fan Out<!-- -->
+<ul>
+<li class="">Same as SQS Fifo, but only compatible with SQS Fifo Queues i.e. SQS Fifo topic ⇒ SQS Fifo Queue.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="">Kinesis<!-- -->
+<ul>
+<li class="">&quot;...easy to <code>\{\{collect\}\}</code>, <code>\{\{process\}\}</code> and <code>\{\{analyse\}\}</code> streaming data in <code>\{\{real\}\}</code>-time&quot; (hint: c p a)</li>
+<li class="">The FOUR Kinesis Products are? ↓<!-- -->
+<ul>
+<li class="">Kinesis Data Stream</li>
+<li class="">Kinesis Firehose</li>
+<li class="">Kinesis Analytics</li>
+<li class="">Kinesis Streams (not in the SAA exam)</li>
+</ul>
+</li>
+<li class="">Kinesis Data Streams<!-- -->
+<ul>
+<li class="">Describe components of the RECORD a  <strong>producer</strong>  will send to KDS?― ↓</li>
+<li class="">Speed of KDS intake?―1 MB (or 1000 msg) per second, per shard.</li>
+<li class="">Describe components of the RECORD KDS will send to consumers?― ↓</li>
+<li class="">What are the two types of speeds available at 2 MB per second, per shard?― ↓<!-- -->
+<ul>
+<li class="">&quot;Shared&quot;, to ALL consumers.</li>
+<li class="">&quot;Enhanced&quot; per consumer.</li>
+</ul>
+</li>
+<li class="">KDS is a series of <code>\{\{shards\}\}</code>.</li>
+<li class="">Can you scale the number of shards?―Yes.</li>
+<li class="">KDS retention period?―between 1 to 365 days.</li>
+<li class="">Because data is <code>\{\{stored\}\}</code> in KDS you have the ability to <code>\{\{replay\}\}</code> data.</li>
+<li class="">Data in Kinesis is &quot;<code>\{\{immutable\}\}</code>&quot; i.e. it can&#x27;t be <code>\{\{deleted\}\}</code>.</li>
+<li class="">Same partition (key) = Same <code>\{\{shard\}\}</code>.</li>
+<li class="">Producers are (hint: dev, dev, K_):― ↓</li>
+<li class="">What are the TWO Capacity Modes for KDS? ↓</li>
+<li class="">Security<!-- -->
+<ul>
+<li class="">What are all the security controls for a Kinesis Data Stream architecture? ↓<!-- -->
+<ul>
+<li class=""><strong>IAM</strong> access control</li>
+<li class=""><strong>KMS</strong> encryption at rest (option client-side)</li>
+<li class=""><strong>HTTPS</strong> endpoints into KDS</li>
+<li class=""><strong>VPC EndPoints</strong> available within VPCs</li>
+<li class=""><strong>CloudTrail</strong> monitor API calls (audit)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="">Kinesis Data Firehose (KDF)<!-- -->
+<ul>
+<li class="">KDF can receive ingest from which Producers? (hint: A C S K K C I)― ↓<!-- -->
+<ul>
+<li class="">Applications</li>
+<li class="">Client</li>
+<li class="">SDK, KPL</li>
+<li class="">Kinesis Agent</li>
+<li class="">Kinesis Data Streams</li>
+<li class="">Amazon CloudWatch</li>
+<li class="">AWS IoT</li>
+</ul>
+</li>
+<li class="">KDF is <code>\{\{fully\}\}</code> managed, <code>\{\{auto\}\}</code> scaling and <code>\{\{serverless\}\}</code> and provides <code>\{\{near\}\}</code> real time data processing.</li>
+<li class="">What are the 3 destination categories KDF sends data to? ↓<!-- -->
+<ul>
+<li class="">3rd party destinations e.g. datadog, splunk, new relic, mongoDB</li>
+<li class="">AWS service destinations e.g. Amazon Redshift, Amazon S3, Amazon ElasticSearch</li>
+<li class="">custom destinations e.g. API HTTP endpoint</li>
+</ul>
+</li>
+<li class="">How is KDF different from KDS?<!-- -->
+<ul>
+<li class="">KDF is <code>\{\{fully managed\}\}</code> (serverless) KDS you <code>\{\{manage yourself\}\}</code> e.g. provisioning, scaling, write your own code</li>
+<li class="">KDF has no <code>\{\{storage\}\}</code> (serverless), so no <code>\{\{replay\}\}</code>. KDS has <code>\{\{storage \}\}</code> (1-365 days) so can <code>\{\{replay\}\}</code> data.</li>
+<li class="">KDF is <code>\{\{near real time\}\}</code> data processing. KDS is <code>\{\{real time\}\}</code> data processing.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="">Ordering Data into Kinesis<!-- -->
+<ul>
+<li class="">if each truck uses &quot;truck_id&quot; as their Partition Key for sending to KDS, the same <code>\{\{key\}\}</code> will go to the same <code>\{\{shard\}\}</code> every time.</li>
+<li class="">consumers<!-- -->
+<ul>
+<li class="">how many consumers per shard can you have in KDS?―One per shard.</li>
+<li class="">in the example, truck data will be ordered at the <code>\{\{shard\}\}</code> level.</li>
+<li class="">KDS intake speed is <code>\{\{1\}\}</code> MB per <code>\{\{second\}\}</code>, per shard (fast).</li>
+</ul>
+</li>
+<li class="">Ordering in SQS<!-- -->
+<ul>
+<li class="">for comparison, SQS standard has no ordering</li>
+<li class="">SQS FIFO you can only have <code>\{\{ONE\}\}</code> queue for our trucking example.</li>
+<li class="">you &quot;partition&quot; the SQS FIFO queue using <code>\{\{GROUP IDs\}\}</code>.<!-- -->
+<ul>
+<li class="">if you have 100 <code>\{\{group\}\}</code> ids you can have up to <code>\{\{100\}\}</code> consumers.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="">SQS FIFO vs Kinesis<!-- -->
+<ul>
+<li class="">if you have LOTS of incoming data and need processing speed, and ordering in your stream (and number of consumers is set or limited)- use KDS.</li>
+<li class="">if you need have a dynamic number of consumers, you can use SQS FIFO.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="">Amazon MQ<!-- -->
+<ul>
+<li class="">Amazon MQ is a managed message broker service for RabbitMQ and ActiveMQ</li>
+<li class="">Use this when customer migrates to the cloud but doesn&#x27;t want (or can) re-engineer applications to use &quot;cloud-native&quot; services SNS and SQS.</li>
+<li class="">Does Amazon MQ scale as much as SQS or SNS?―No.</li>
+<li class="">Can Amazon MQ run in Multi-AZ with failover?―Yes.</li>
+<li class="">Amazon MQ has <code>\{\{queue\}\}</code> feature like SQS and <code>\{\{topic\}\}</code> feature like SNS.</li>
+<li class="">Amazon MQ High-Availability with failover</li>
+</ul>
+</li>
+</ul></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_WFHX"><a href="https://github.com/ronamosa/ronamosa.github.io/edit/main/website/docs/study/SAA-03/18-Decoupling-Applications-SQS-SNS-Kinesis.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_Z9Sw" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div><div class="col lastUpdated_JAkA"><span class="theme-last-updated">Last updated<!-- --> on <b><time datetime="2025-07-04T07:33:22.000Z" itemprop="dateModified">Jul 4, 2025</time></b> by <b>Ron Amosa</b></span></div></div></footer><div class="newsletterCta_rTTm"><p><span class="emoji_bVKv">📬</span> I also write a fortnightly newsletter — my thoughts on the machines that educate, empower, and exploit our society.<!-- --> <a href="/subscribe">Subscribe here.</a></p></div></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/docs/study/SAA-03/Advanced-S3-Athena"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">Advanced Amazon S3 &amp; Athena</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/docs/study/SAA-03/Serverless"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">Serverless</div></a></nav></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Connect</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://www.linkedin.com/in/ron-amosa/" target="_blank" rel="noopener noreferrer" class="footer__link-item">LinkedIn<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://github.com/ronamosa/" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://www.youtube.com/@uncommonengineer" target="_blank" rel="noopener noreferrer" class="footer__link-item">YouTube<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Discover</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/blog">Analysis &amp; Essays</a></li><li class="footer__item"><a class="footer__link-item" href="/docs">Technical</a></li><li class="footer__item"><a class="footer__link-item" href="/about">About</a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Last updated on Sun Apr 26 2026</div></div></div></footer></div>
+</body>
+</html>

@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>The Uncommon Engineer — Docs</title>
+    <link>https://www.uncommonengineer.com/docs</link>
+    <description>Technical documentation from The Uncommon Engineer</description>
+    <language>en</language>
+    <lastBuildDate>Sun, 26 Apr 2026 00:35:57 GMT</lastBuildDate>
+    <atom:link href="https://www.uncommonengineer.com/docs/rss.xml" rel="self" type="application/rss+xml"/>
+    <item>
+      <title>Beehiiv Custom Domain Setup with Cloudflare - Complete DNS Configuration Guide</title>
+      <link>https://www.uncommonengineer.com/docs/engineer/Misc/beehiiv-dns</link>
+      <guid isPermaLink="true">https://www.uncommonengineer.com/docs/engineer/Misc/beehiiv-dns</guid>
+      <pubDate>Sat, 25 Apr 2026 11:54:01 GMT</pubDate>
+      <description>Step-by-step guide to setting up Beehiiv custom domain with Cloudflare DNS. Includes CNAME records, proxy settings, CAA configuration, and troubleshooting for newsletter hosting.</description>
+    </item>
+    <item>
+      <title>KLV Metadata Loss in MPEG-TS — Debugging a One-Byte PES Header Bug with PyAV and ffmpeg</title>
+      <link>https://www.uncommonengineer.com/docs/engineer/Misc/klv-investigation-postmortem</link>
+      <guid isPermaLink="true">https://www.uncommonengineer.com/docs/engineer/Misc/klv-investigation-postmortem</guid>
+      <pubDate>Fri, 24 Apr 2026 10:12:30 GMT</pubDate>
+      <description>Debugging KLV metadata loss in an MPEG-TS drone pipeline where PyAV and klvdata fail with &apos;cannot fit int into an index-sized integer&apos;. Root cause: a single missing byte in the PES packet header.</description>
+    </item>
+    <item>
+      <title>Debugging Kiro IDE Agent Terminal Hang</title>
+      <link>https://www.uncommonengineer.com/docs/engineer/AI/debugging-kiro-ide-agent-terminal</link>
+      <guid isPermaLink="true">https://www.uncommonengineer.com/docs/engineer/AI/debugging-kiro-ide-agent-terminal</guid>
+      <pubDate>Tue, 31 Mar 2026 08:25:06 GMT</pubDate>
+      <description>Debugging Kiro IDE&apos;s AI agent hanging on terminal commands — root causes were a missing GLIBCXX native library and zsh/Powerlevel10k interfering with shell integration OSC 633 sequences.</description>
+    </item>
+    <item>
+      <title>LangChain + AWS Bedrock Workshop — Deploy LLMs on AWS</title>
+      <link>https://www.uncommonengineer.com/docs/engineer/AI/BedrockLangChainWorkshop1</link>
+      <guid isPermaLink="true">https://www.uncommonengineer.com/docs/engineer/AI/BedrockLangChainWorkshop1</guid>
+      <pubDate>Sun, 29 Mar 2026 22:56:39 GMT</pubDate>
+      <description>Build and deploy a LangChain application with Amazon Bedrock. Covers LLM integration, BedrockChat setup, prompt templates, and AWS deployment. Full working code.</description>
+    </item>
+    <item>
+      <title>Deploy Mistral-7B on AWS SageMaker with Ollama</title>
+      <link>https://www.uncommonengineer.com/docs/engineer/AI/Mistral-7B-SageMaker</link>
+      <guid isPermaLink="true">https://www.uncommonengineer.com/docs/engineer/AI/Mistral-7B-SageMaker</guid>
+      <pubDate>Sun, 29 Mar 2026 22:56:39 GMT</pubDate>
+      <description>Complete tutorial for deploying and running Mistral-7B large language model using Ollama on AWS SageMaker. Includes setup, configuration, and usage examples.</description>
+    </item>
+    <item>
+      <title>PrivateGPT Local Setup — Chat with Documents Privately</title>
+      <link>https://www.uncommonengineer.com/docs/engineer/AI/PrivateGPT</link>
+      <guid isPermaLink="true">https://www.uncommonengineer.com/docs/engineer/AI/PrivateGPT</guid>
+      <pubDate>Sun, 29 Mar 2026 22:56:39 GMT</pubDate>
+      <description>Set up PrivateGPT for local RAG — chat with your documents using a local LLM. Covers installation, document ingestion, and FAISS vector store configuration.</description>
+    </item>
+    <item>
+      <title>MCP Server Trello Setup with Claude — Connect Trello Boards to AI</title>
+      <link>https://www.uncommonengineer.com/docs/engineer/AI/trello-mcp-setup-guide</link>
+      <guid isPermaLink="true">https://www.uncommonengineer.com/docs/engineer/AI/trello-mcp-setup-guide</guid>
+      <pubDate>Sun, 29 Mar 2026 22:56:39 GMT</pubDate>
+      <description>Connect Trello boards to Claude using MCP Server Trello. Covers API credentials, Claude Code and Desktop configuration, and board access setup.</description>
+    </item>
+    <item>
+      <title>TechNesian Live Stream: Cloud Demo Notes</title>
+      <link>https://www.uncommonengineer.com/docs/engineer/AWS/cloud-demo-notes</link>
+      <guid isPermaLink="true">https://www.uncommonengineer.com/docs/engineer/AWS/cloud-demo-notes</guid>
+      <pubDate>Sun, 29 Mar 2026 22:56:39 GMT</pubDate>
+      <description>Demo notes for creating EC2 web servers across 3 AWS regions using manual console, CLI, and CloudFormation methods. Prepared for TechNesian live stream.</description>
+    </item>
+    <item>
+      <title>AWS ECS Monitoring Workshop — CloudWatch, Container Insights, and Prometheus</title>
+      <link>https://www.uncommonengineer.com/docs/engineer/AWS/ecs-2-monitoring</link>
+      <guid isPermaLink="true">https://www.uncommonengineer.com/docs/engineer/AWS/ecs-2-monitoring</guid>
+      <pubDate>Sun, 29 Mar 2026 22:56:39 GMT</pubDate>
+      <description>Notes from the AWS ECS monitoring workshop covering CloudWatch Container Insights, Prometheus metrics collection, and ECS service monitoring setup.</description>
+    </item>
+    <item>
+      <title>AWS ECS Capacity Providers Workshop — Auto Scaling and Spot Instances</title>
+      <link>https://www.uncommonengineer.com/docs/engineer/AWS/ecs-3-capacity-providers</link>
+      <guid isPermaLink="true">https://www.uncommonengineer.com/docs/engineer/AWS/ecs-3-capacity-providers</guid>
+      <pubDate>Sun, 29 Mar 2026 22:56:39 GMT</pubDate>
+      <description>Notes from the AWS ECS capacity providers workshop covering auto scaling groups, Spot instance integration, and capacity provider strategies for ECS clusters.</description>
+    </item>
+    <item>
+      <title>AWS ECS Cats and Dogs Workshop — Microservices on ECS</title>
+      <link>https://www.uncommonengineer.com/docs/engineer/AWS/ecs-cats-n-dogs</link>
+      <guid isPermaLink="true">https://www.uncommonengineer.com/docs/engineer/AWS/ecs-cats-n-dogs</guid>
+      <pubDate>Sun, 29 Mar 2026 22:56:39 GMT</pubDate>
+      <description>Walkthrough of the AWS ECS Cats and Dogs workshop deploying containerised microservices with ECS, ALB, service discovery, and CI/CD pipelines.</description>
+    </item>
+    <item>
+      <title>UPNG: AWS Workshops</title>
+      <link>https://www.uncommonengineer.com/upng</link>
+      <guid isPermaLink="true">https://www.uncommonengineer.com/upng</guid>
+      <pubDate>Sun, 29 Mar 2026 22:56:39 GMT</pubDate>
+      <description>AWS workshop links and notes for UPNG sessions covering Amazon Rekognition, Connect, Lex, and other AI/ML services.</description>
+    </item>
+    <item>
+      <title>Oh My Zsh + Powerlevel10k Setup Guide for Linux</title>
+      <link>https://www.uncommonengineer.com/docs/engineer/LAB/Terminal</link>
+      <guid isPermaLink="true">https://www.uncommonengineer.com/docs/engineer/LAB/Terminal</guid>
+      <pubDate>Sun, 29 Mar 2026 22:56:39 GMT</pubDate>
+      <description>Install and configure Oh My Zsh with Powerlevel10k theme, autosuggestions, and syntax highlighting on Ubuntu/Debian. Includes tmux integration and full dotfile config.</description>
+    </item>
+    <item>
+      <title>Pi-hole Compromise Detection — Investigating Suspicious DNS Behaviour</title>
+      <link>https://www.uncommonengineer.com/docs/engineer/LAB/pihole-compromise</link>
+      <guid isPermaLink="true">https://www.uncommonengineer.com/docs/engineer/LAB/pihole-compromise</guid>
+      <pubDate>Sun, 29 Mar 2026 22:56:39 GMT</pubDate>
+      <description>How to investigate a suspected Pi-hole compromise — inspecting Docker containers, checking DNS logs, verifying upstream resolvers, and auditing network traffic.</description>
+    </item>
+    <item>
+      <title>Pi-hole DNS Setup - Network-wide Ad Blocking and DNS Filtering</title>
+      <link>https://www.uncommonengineer.com/docs/engineer/LAB/pihole-dns</link>
+      <guid isPermaLink="true">https://www.uncommonengineer.com/docs/engineer/LAB/pihole-dns</guid>
+      <pubDate>Sun, 29 Mar 2026 22:56:39 GMT</pubDate>
+      <description>Complete guide to setting up Pi-hole DNS for network-wide ad blocking and DNS filtering on Ubuntu. Includes installation, configuration, and troubleshooting.</description>
+    </item>
+    <item>
+      <title>Pi-hole + Unbound Docker Compose Setup Guide (2026)</title>
+      <link>https://www.uncommonengineer.com/docs/engineer/LAB/pihole-docker-unbound</link>
+      <guid isPermaLink="true">https://www.uncommonengineer.com/docs/engineer/LAB/pihole-docker-unbound</guid>
+      <pubDate>Sun, 29 Mar 2026 22:56:39 GMT</pubDate>
+      <description>Run Pi-hole with Unbound as a recursive DNS resolver in Docker Compose. Full docker-compose.yml, Unbound config, and network setup included. Tested and updated for 2026.</description>
+    </item>
+    <item>
+      <title>The Complete Pi-hole Guide: Docker, Unbound DNS, and Troubleshooting</title>
+      <link>https://www.uncommonengineer.com/docs/engineer/LAB/pihole-guide</link>
+      <guid isPermaLink="true">https://www.uncommonengineer.com/docs/engineer/LAB/pihole-guide</guid>
+      <pubDate>Sun, 29 Mar 2026 22:56:39 GMT</pubDate>
+      <description>Everything you need to run Pi-hole with Unbound recursive DNS in Docker. Setup guides, DNS configuration, SERVFAIL troubleshooting, and FAQ.</description>
+    </item>
+    <item>
+      <title>Fixing SERVFAIL DNS Resolution for AWS Console with Pi-hole + Unbound</title>
+      <link>https://www.uncommonengineer.comfixing-pihole-unbound-servfail-aws</link>
+      <guid isPermaLink="true">https://www.uncommonengineer.comfixing-pihole-unbound-servfail-aws</guid>
+      <pubDate>Sun, 29 Mar 2026 22:56:39 GMT</pubDate>
+      <description>Diagnosing and fixing SERVFAIL errors when resolving AWS console domains via Pi-hole + Unbound in a Docker setup.</description>
+    </item>
+    <item>
+      <title>Proxmox Cloud-Init VM Template — Ansible Automation Guide</title>
+      <link>https://www.uncommonengineer.com/docs/engineer/LAB/proxmox-cloudinit</link>
+      <guid isPermaLink="true">https://www.uncommonengineer.com/docs/engineer/LAB/proxmox-cloudinit</guid>
+      <pubDate>Sun, 29 Mar 2026 22:56:39 GMT</pubDate>
+      <description>Create reusable Proxmox VM templates with cloud-init. Automate provisioning with Ansible, clean machine-id, and deploy Ubuntu cloud images. Full playbook included.</description>
+    </item>
+    <item>
+      <title>Proxmox Homelab Guide: Cloud-Init, Packer, Terraform, and LVM</title>
+      <link>https://www.uncommonengineer.com/engineer/LAB/proxmox-hub</link>
+      <guid isPermaLink="true">https://www.uncommonengineer.com/engineer/LAB/proxmox-hub</guid>
+      <pubDate>Sun, 29 Mar 2026 22:56:39 GMT</pubDate>
+      <description>Complete Proxmox homelab guide covering VM template automation with Packer, Ansible cloud-init provisioning, Terraform orchestration, and LVM troubleshooting.</description>
+    </item>
+    <item>
+      <title>Build Proxmox VM Templates with Packer — Complete Guide</title>
+      <link>https://www.uncommonengineer.com/docs/engineer/LAB/proxmox-packer-vm</link>
+      <guid isPermaLink="true">https://www.uncommonengineer.com/docs/engineer/LAB/proxmox-packer-vm</guid>
+      <pubDate>Sun, 29 Mar 2026 22:56:39 GMT</pubDate>
+      <description>Automate Proxmox VM template creation using HashiCorp Packer. HCL config, cloud-init integration, and CI/CD pipeline setup. Step-by-step with full source.</description>
+    </item>
+    <item>
+      <title>Proxmox Systems Administration — Disk Resize, GPU Passthrough, and More</title>
+      <link>https://www.uncommonengineer.com/docs/engineer/LAB/proxmox-sysad</link>
+      <guid isPermaLink="true">https://www.uncommonengineer.com/docs/engineer/LAB/proxmox-sysad</guid>
+      <pubDate>Sun, 29 Mar 2026 22:56:39 GMT</pubDate>
+      <description>Proxmox sysadmin reference covering hard disk resize, GPU passthrough, network configuration, and common maintenance tasks for homelab VMs.</description>
+    </item>
+    <item>
+      <title>Terraform Proxmox Provider — Deploy VMs with Telmate</title>
+      <link>https://www.uncommonengineer.com/docs/engineer/LAB/proxmox-terraform</link>
+      <guid isPermaLink="true">https://www.uncommonengineer.com/docs/engineer/LAB/proxmox-terraform</guid>
+      <pubDate>Sun, 29 Mar 2026 22:56:39 GMT</pubDate>
+      <description>Use the Telmate Terraform provider to deploy and manage Proxmox VMs as code. Full .tf examples, cloud-init integration, and provider configuration walkthrough.</description>
+    </item>
+    <item>
+      <title>How to Enable Linux Terminal on Chromebook (2026)</title>
+      <link>https://www.uncommonengineer.com/docs/engineer/Misc/chomebook-terminal</link>
+      <guid isPermaLink="true">https://www.uncommonengineer.com/docs/engineer/Misc/chomebook-terminal</guid>
+      <pubDate>Sun, 29 Mar 2026 22:56:39 GMT</pubDate>
+      <description>Step-by-step guide to enabling the Linux development environment on Chromebook, customising the Penguin terminal prompt, and installing dev tools on Chrome OS.</description>
+    </item>
+    <item>
+      <title>iPhone Photo Backup to Linux — Complete Guide (No iTunes)</title>
+      <link>https://www.uncommonengineer.com/docs/engineer/Misc/iphone-to-linux-mount</link>
+      <guid isPermaLink="true">https://www.uncommonengineer.com/docs/engineer/Misc/iphone-to-linux-mount</guid>
+      <pubDate>Sun, 29 Mar 2026 22:56:39 GMT</pubDate>
+      <description>Back up iPhone photos to Ubuntu or Debian Linux using libimobiledevice and ifuse. Mount DCIM, automate transfers with rsync. No iTunes or Finder needed.</description>
+    </item>
+    <item>
+      <title>AWS YouTube Transcript Analyser — Lambda, DynamoDB, and Transcribe</title>
+      <link>https://www.uncommonengineer.com/aws-youtube-transcripts</link>
+      <guid isPermaLink="true">https://www.uncommonengineer.com/aws-youtube-transcripts</guid>
+      <pubDate>Sun, 29 Mar 2026 22:56:39 GMT</pubDate>
+      <description>Automated system using AWS Lambda, DynamoDB, S3, SQS, and Amazon Transcribe to fetch YouTube transcripts and analyse channel sentiment.</description>
+    </item>
+    <item>
+      <title>Discord Bot: Camera&apos;s On — Enforcing Video Policy with a Bot</title>
+      <link>https://www.uncommonengineer.com/docs/engineer/Projects/DiscordBotCameraOn</link>
+      <guid isPermaLink="true">https://www.uncommonengineer.com/docs/engineer/Projects/DiscordBotCameraOn</guid>
+      <pubDate>Sun, 29 Mar 2026 22:56:39 GMT</pubDate>
+      <description>Building a Discord bot to enforce cameras-on policy in voice channels. Developed with Claude 3 Opus, covers bot setup, event handling, and deployment.</description>
+    </item>
+    <item>
+      <title>Microservices Project — Containerised Service Architecture</title>
+      <link>https://www.uncommonengineer.com/docs/engineer/Projects/microservices</link>
+      <guid isPermaLink="true">https://www.uncommonengineer.com/docs/engineer/Projects/microservices</guid>
+      <pubDate>Sun, 29 Mar 2026 22:56:39 GMT</pubDate>
+      <description>Microservices project notes covering containerised service architecture, Docker Compose setup, and inter-service communication patterns.</description>
+    </item>
+    <item>
+      <title>Personal AI — Private Offline Assistant Project Notes</title>
+      <link>https://www.uncommonengineer.com/docs/engineer/Projects/personal-ai</link>
+      <guid isPermaLink="true">https://www.uncommonengineer.com/docs/engineer/Projects/personal-ai</guid>
+      <pubDate>Sun, 29 Mar 2026 22:56:39 GMT</pubDate>
+      <description>Research notes for building a personal AI assistant trained on private documents, using PrivateGPT and local LLMs for offline, private conversations.</description>
+    </item>
+    <item>
+      <title>Holo Live Network — TryHackMe Walkthrough</title>
+      <link>https://www.uncommonengineer.com/docs/hacker/tryhackme/hololive</link>
+      <guid isPermaLink="true">https://www.uncommonengineer.com/docs/hacker/tryhackme/hololive</guid>
+      <pubDate>Sun, 29 Mar 2026 22:56:39 GMT</pubDate>
+      <description>TryHackMe Holo Live network walkthrough covering Active Directory enumeration, lateral movement, and domain controller compromise.</description>
+    </item>
+    <item>
+      <title>Mr Robot CTF Walkthrough — TryHackMe (All 3 Keys)</title>
+      <link>https://www.uncommonengineer.com/docs/hacker/tryhackme/mr_robot</link>
+      <guid isPermaLink="true">https://www.uncommonengineer.com/docs/hacker/tryhackme/mr_robot</guid>
+      <pubDate>Sun, 29 Mar 2026 22:56:39 GMT</pubDate>
+      <description>Complete Mr Robot TryHackMe walkthrough covering all 3 keys — WordPress enumeration, reverse shell, SUID nmap privilege escalation. Step-by-step with screenshots.</description>
+    </item>
+    <item>
+      <title>Lab Notes: AI Bias Mitigation in Gemini - A Geopolitical Stress Test</title>
+      <link>https://www.uncommonengineer.com/docs/engineer/AI/AI-Bias-Mitigation-Gemini</link>
+      <guid isPermaLink="true">https://www.uncommonengineer.com/docs/engineer/AI/AI-Bias-Mitigation-Gemini</guid>
+      <pubDate>Sat, 28 Mar 2026 01:33:54 GMT</pubDate>
+      <description>An experiment testing whether prompting techniques and Gemini Gems can mitigate Western bias in geopolitical analysis. Spoiler: the bias is architectural, not configurable.</description>
+    </item>
+    <item>
+      <title>Proxmox pmxcfs Rollback: When Pi-hole Disappears After a Power Failure (Part 1)</title>
+      <link>https://www.uncommonengineer.com/docs/engineer/LAB/proxmox-pmxcfs</link>
+      <guid isPermaLink="true">https://www.uncommonengineer.com/docs/engineer/LAB/proxmox-pmxcfs</guid>
+      <pubDate>Tue, 24 Feb 2026 10:32:54 GMT</pubDate>
+      <description>Diagnosing a Proxmox pmxcfs cluster filesystem rollback after a power outage that caused Docker and Pi-hole to vanish from a VM. Covers investigation, root cause analysis, and recovery strategy for orphaned VM disks.</description>
+    </item>
+    <item>
+      <title>NextAuth Session Caching Bug: How CloudFront Gave Everyone the Same Login</title>
+      <link>https://www.uncommonengineer.com/docs/engineer/AWS/amplify-nextauth-session-caching-bug</link>
+      <guid isPermaLink="true">https://www.uncommonengineer.com/docs/engineer/AWS/amplify-nextauth-session-caching-bug</guid>
+      <pubDate>Mon, 26 Jan 2026 19:26:51 GMT</pubDate>
+      <description>Debugging a critical session caching issue where CloudFront cached authenticated responses, causing all users to share the same NextAuth session. Covers cache-control headers, auth middleware, and AWS Amplify fixes.</description>
+    </item>
+    <item>
+      <title>Complaint: RNZ &apos;New Gaza&apos; Article</title>
+      <link>https://www.uncommonengineer.com/docs/hacker/RNZ-online-complaint</link>
+      <guid isPermaLink="true">https://www.uncommonengineer.com/docs/hacker/RNZ-online-complaint</guid>
+      <pubDate>Fri, 23 Jan 2026 08:47:02 GMT</pubDate>
+      <description>How to submit a formal complaint to RNZ about their &apos;US touts New Gaza filled with luxury real estate&apos; article. Includes step-by-step instructions and complaint text you can use.</description>
+    </item>
+    <item>
+      <title>Debugging AWS Amplify SSR: Unable to Assume IAM Role</title>
+      <link>https://www.uncommonengineer.com/docs/engineer/AWS/amplify-ssr-iam-debugging</link>
+      <guid isPermaLink="true">https://www.uncommonengineer.com/docs/engineer/AWS/amplify-ssr-iam-debugging</guid>
+      <pubDate>Thu, 22 Jan 2026 06:23:54 GMT</pubDate>
+      <description>Troubleshooting guide for &apos;Unable to assume specified IAM Role&apos; errors when deploying Next.js SSR apps to AWS Amplify. Covers trust policies, service roles, and the CLI vs Console workaround.</description>
+    </item>
+    <item>
+      <title>AWS ECS Microservices Workshop - Container Orchestration and Service Architecture</title>
+      <link>https://www.uncommonengineer.com/docs/engineer/AWS/ecs-1-microservices</link>
+      <guid isPermaLink="true">https://www.uncommonengineer.com/docs/engineer/AWS/ecs-1-microservices</guid>
+      <pubDate>Thu, 22 Jan 2026 06:23:54 GMT</pubDate>
+      <description>Complete AWS ECS microservices workshop covering container deployment, service mesh architecture, load balancing, and scalable microservice patterns on Amazon ECS.</description>
+    </item>
+    <item>
+      <title>AWS EKS Cluster Creation - Complete Guide to Kubernetes Cluster Setup</title>
+      <link>https://www.uncommonengineer.com/docs/engineer/AWS/eks-create-clusters</link>
+      <guid isPermaLink="true">https://www.uncommonengineer.com/docs/engineer/AWS/eks-create-clusters</guid>
+      <pubDate>Thu, 22 Jan 2026 06:23:54 GMT</pubDate>
+      <description>Step-by-step guide to creating AWS EKS clusters including IAM permissions, VPC configuration, and cluster management. Learn EKS cluster deployment best practices.</description>
+    </item>
+    <item>
+      <title>AWS EKS Networking Best Practices - VPC CNI and Container Networking</title>
+      <link>https://www.uncommonengineer.com/docs/engineer/AWS/eks-networking</link>
+      <guid isPermaLink="true">https://www.uncommonengineer.com/docs/engineer/AWS/eks-networking</guid>
+      <pubDate>Thu, 22 Jan 2026 06:23:54 GMT</pubDate>
+      <description>Complete guide to AWS EKS networking best practices including VPC CNI configuration, pod networking, security groups, and network policies for Kubernetes clusters.</description>
+    </item>
+    <item>
+      <title>AWS EKS Workshop - Complete Kubernetes Container Orchestration Guide</title>
+      <link>https://www.uncommonengineer.com/docs/engineer/AWS/eks-workshop</link>
+      <guid isPermaLink="true">https://www.uncommonengineer.com/docs/engineer/AWS/eks-workshop</guid>
+      <pubDate>Thu, 22 Jan 2026 06:23:54 GMT</pubDate>
+      <description>Comprehensive walkthrough of the AWS EKS Workshop covering Kubernetes networking, VPC CNI, network policies, and cluster management on Amazon EKS.</description>
+    </item>
+    <item>
+      <title>AWS Security Incident Response Guide - Cloud Security and Forensics</title>
+      <link>https://www.uncommonengineer.comaws-incident-response</link>
+      <guid isPermaLink="true">https://www.uncommonengineer.comaws-incident-response</guid>
+      <pubDate>Thu, 22 Jan 2026 06:23:54 GMT</pubDate>
+      <description>Comprehensive AWS security incident response guide covering cloud forensics, security monitoring, incident playbooks, and threat response in AWS environments.</description>
+    </item>
+    <item>
+      <title>AI Prompting Collection - System, User, and Advanced Prompt Templates</title>
+      <link>https://www.uncommonengineer.com/docs/engineer/AI/PromptingAI</link>
+      <guid isPermaLink="true">https://www.uncommonengineer.com/docs/engineer/AI/PromptingAI</guid>
+      <pubDate>Sat, 20 Sep 2025 02:21:06 GMT</pubDate>
+      <description>Comprehensive collection of AI prompts including system prompts, user prompts, and advanced prompting techniques for various AI applications and use cases.</description>
+    </item>
+    <item>
+      <title>ACME Evil Corp Investigation - Digital Forensics and Threat Analysis</title>
+      <link>https://www.uncommonengineer.com/docs/hacker/acme</link>
+      <guid isPermaLink="true">https://www.uncommonengineer.com/docs/hacker/acme</guid>
+      <pubDate>Sat, 20 Sep 2025 02:16:35 GMT</pubDate>
+      <description>Digital forensics investigation of ACME Evil Corp suspicious activities. Learn threat analysis, evidence collection, and investigative techniques.</description>
+    </item>
+    <item>
+      <title>Linux x86-64 Buffer Overflow Exploitation - Complete GDB and Pwntools Guide</title>
+      <link>https://www.uncommonengineer.com/docs/hacker/bufferoverflow/2.x86</link>
+      <guid isPermaLink="true">https://www.uncommonengineer.com/docs/hacker/bufferoverflow/2.x86</guid>
+      <pubDate>Sat, 20 Sep 2025 02:16:35 GMT</pubDate>
+      <description>Comprehensive guide to Linux buffer overflow exploitation on x86-64 architecture using GDB, pwntools, and modern exploitation techniques.</description>
+    </item>
+    <item>
+      <title>Buffer Overflow Resources, Tips, and Techniques - Exploitation Learning Materials</title>
+      <link>https://www.uncommonengineer.com/docs/hacker/bufferoverflow/99.resources</link>
+      <guid isPermaLink="true">https://www.uncommonengineer.com/docs/hacker/bufferoverflow/99.resources</guid>
+      <pubDate>Sat, 20 Sep 2025 02:16:35 GMT</pubDate>
+      <description>Comprehensive collection of buffer overflow resources, tips, tricks, and learning materials for exploit development and penetration testing.</description>
+    </item>
+    <item>
+      <title>HackTheBox Lame Walkthrough - Classic Linux Exploitation and SMB Attacks</title>
+      <link>https://www.uncommonengineer.com/docs/hacker/hackthebox/lame</link>
+      <guid isPermaLink="true">https://www.uncommonengineer.com/docs/hacker/hackthebox/lame</guid>
+      <pubDate>Sat, 20 Sep 2025 02:16:35 GMT</pubDate>
+      <description>Complete walkthrough of HackTheBox Lame machine. Learn classic Linux exploitation techniques, SMB vulnerabilities, and beginner penetration testing methods.</description>
+    </item>
+    <item>
+      <title>HackTheBox Legacy Walkthrough - Windows SMB Exploitation and MS08-067</title>
+      <link>https://www.uncommonengineer.com/docs/hacker/hackthebox/legacy</link>
+      <guid isPermaLink="true">https://www.uncommonengineer.com/docs/hacker/hackthebox/legacy</guid>
+      <pubDate>Sat, 20 Sep 2025 02:16:35 GMT</pubDate>
+      <description>Complete walkthrough of HackTheBox Legacy machine. Learn Windows SMB exploitation, MS08-067 vulnerability, and classic Windows penetration testing.</description>
+    </item>
+    <item>
+      <title>HackTheBox Shocker Walkthrough - Shellshock Vulnerability Exploitation</title>
+      <link>https://www.uncommonengineer.com/docs/hacker/hackthebox/shocker</link>
+      <guid isPermaLink="true">https://www.uncommonengineer.com/docs/hacker/hackthebox/shocker</guid>
+      <pubDate>Sat, 20 Sep 2025 02:16:35 GMT</pubDate>
+      <description>Complete walkthrough of HackTheBox Shocker machine. Learn Shellshock (CVE-2014-6271) vulnerability exploitation and Linux penetration testing.</description>
+    </item>
+    <item>
+      <title>HackTheBox Traverxec Walkthrough - Complete Linux Exploitation Guide</title>
+      <link>https://www.uncommonengineer.com/docs/hacker/hackthebox/traverxec</link>
+      <guid isPermaLink="true">https://www.uncommonengineer.com/docs/hacker/hackthebox/traverxec</guid>
+      <pubDate>Sat, 20 Sep 2025 02:16:35 GMT</pubDate>
+      <description>Complete walkthrough of HackTheBox Traverxec machine. Learn web application exploitation, privilege escalation, and Linux penetration testing techniques.</description>
+    </item>
+    <item>
+      <title>Tech for Good Cryptography Challenge - Secret Message Decryption CTF</title>
+      <link>https://www.uncommonengineer.com/docs/hacker/techforgood</link>
+      <guid isPermaLink="true">https://www.uncommonengineer.com/docs/hacker/techforgood</guid>
+      <pubDate>Sat, 20 Sep 2025 02:16:35 GMT</pubDate>
+      <description>Solve the Tech for Good cryptography challenge by decrypting secret messages. Learn cipher techniques, cryptanalysis, and puzzle-solving for social impact.</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-study/SCS-C01/D3-InfrastructureSecurity" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.9.2">
+<title data-rh="true">Domain 3 - Infrastructure Security | The Uncommon Engineer</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" property="og:image" content="https://www.uncommonengineer.com/img/social-card.jpg"><meta data-rh="true" name="twitter:image" content="https://www.uncommonengineer.com/img/social-card.jpg"><meta data-rh="true" property="og:url" content="https://www.uncommonengineer.com/docs/study/SCS-C01/D3-InfrastructureSecurity"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:type" content="website"><meta data-rh="true" property="og:site_name" content="The Uncommon Engineer"><meta data-rh="true" property="og:locale" content="en_US"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Domain 3 - Infrastructure Security | The Uncommon Engineer"><meta data-rh="true" name="description" content="This is an export from my Remnote with flashcard syntax included."><meta data-rh="true" property="og:description" content="This is an export from my Remnote with flashcard syntax included."><link data-rh="true" rel="icon" href="/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://www.uncommonengineer.com/docs/study/SCS-C01/D3-InfrastructureSecurity"><link data-rh="true" rel="alternate" href="https://www.uncommonengineer.com/docs/study/SCS-C01/D3-InfrastructureSecurity" hreflang="en"><link data-rh="true" rel="alternate" href="https://www.uncommonengineer.com/docs/study/SCS-C01/D3-InfrastructureSecurity" hreflang="x-default"><link data-rh="true" rel="preconnect" href="https://9UFF3RBJQ9-dsn.algolia.net" crossorigin="anonymous"><script data-rh="true" type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"☁️ SCS-01","item":"https://www.uncommonengineer.com/docs/study/SCS-C01/"},{"@type":"ListItem","position":2,"name":"Domain 3 - Infrastructure Security","item":"https://www.uncommonengineer.com/docs/study/SCS-C01/D3-InfrastructureSecurity"}]}</script><link rel="alternate" type="application/rss+xml" href="/blog/rss.xml" title="The Uncommon Engineer RSS Feed">
+<link rel="alternate" type="application/atom+xml" href="/blog/atom.xml" title="The Uncommon Engineer Atom Feed">
+
+
+
+
+<link rel="search" type="application/opensearchdescription+xml" title="The Uncommon Engineer" href="/opensearch.xml">
+
+<link rel="alternate" type="application/rss+xml" title="The Uncommon Engineer — Docs" href="https://www.uncommonengineer.com/docs/rss.xml">
+<link rel="preconnect" href="https://www.google-analytics.com">
+<link rel="preconnect" href="https://www.googletagmanager.com">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DMRNTVGLRC"></script>
+<script>function gtag(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],gtag("js",new Date),gtag("config","G-DMRNTVGLRC",{anonymize_ip:!0})</script>
+
+
+<script src="/js/console-clue.js"></script>
+<script src="/js/metricool.js"></script>
+<script src="https://subscribe-forms.beehiiv.com/embed.js" async></script><link rel="stylesheet" href="/assets/css/styles.408ae1c7.css">
+<script src="/assets/js/runtime~main.e957919c.js" defer="defer"></script>
+<script src="/assets/js/main.17aba030.js" defer="defer"></script>
+</head>
+<body class="navigation-with-keyboard">
+<svg style="display: none;"><defs>
+<symbol id="theme-svg-external-link" viewBox="0 0 24 24"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"/></symbol>
+</defs></svg>
+<script>document.documentElement.setAttribute("data-theme","dark"),document.documentElement.setAttribute("data-theme-choice","dark"),function(){try{const c=new URLSearchParams(window.location.search).entries();for(var[t,e]of c)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="theme-layout-navbar navbar navbar--fixed-top"><div class="navbar__inner"><div class="theme-layout-navbar-left navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/"><div class="navbar__logo"><img src="/img/profile.svg" alt="The Uncommon Engineer" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/img/profile.svg" alt="The Uncommon Engineer" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate">Uncommon Engineer</b></a><a aria-current="page" class="navbar__item navbar__link navbar__link--active" href="/docs/">Technical</a><a class="navbar__item navbar__link" href="/blog/">Analysis &amp; Essays</a></div><div class="theme-layout-navbar-right navbar__items navbar__items--right"><a class="navbar__item navbar__link" href="/about/">About</a><a class="navbar__item navbar__link" href="/projects/">Projects</a><a class="navbar__item navbar__link" href="/changelog/">Changelog</a><div class="navbarSearchContainer_Bca1"><button type="button" class="DocSearch DocSearch-Button" aria-label="Search (Meta+k)" aria-keyshortcuts="Meta+k"><span class="DocSearch-Button-Container"><svg width="20" height="20" class="DocSearch-Search-Icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="8" stroke="currentColor" fill="none" stroke-width="1.4"></circle><path d="m21 21-4.3-4.3" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"></path></svg><span class="DocSearch-Button-Placeholder">Search</span></span><span class="DocSearch-Button-Keys"></span></button></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="theme-layout-main main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><aside class="theme-doc-sidebar-container docSidebarContainer_YfHR"><div class="sidebarViewport_aRkj"><div class="sidebar_njMd"><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/docs/"><span title="▶ Start Here" class="linkLabel_WmDU">▶ Start Here</span></a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/docs/books/reading-list"><span title="📚 Books &amp; Papers" class="categoryLinkLabel_W154">📚 Books &amp; Papers</span></a></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret menu__link--active" role="button" aria-expanded="true" href="/docs/study/SCS-C01/"><span title="📗 Study" class="categoryLinkLabel_W154">📗 Study</span></a></div><ul class="menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--active" tabindex="0" href="/docs/study/SCS-C01/"><span title="☁️ SCS-01" class="categoryLinkLabel_W154">☁️ SCS-01</span></a><button aria-label="Collapse sidebar category &#x27;☁️ SCS-01&#x27;" aria-expanded="true" type="button" class="clean-btn menu__caret"></button></div><ul class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/docs/study/SCS-C01/D1-IncidentResponse"><span title="Domain 1 - Incident Response" class="linkLabel_WmDU">Domain 1 - Incident Response</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/docs/study/SCS-C01/D2-LoggingMonitoring"><span title="Domain 2 - Logging and Monitoring" class="linkLabel_WmDU">Domain 2 - Logging and Monitoring</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" tabindex="0" href="/docs/study/SCS-C01/D3-InfrastructureSecurity"><span title="Domain 3 - Infrastructure Security" class="linkLabel_WmDU">Domain 3 - Infrastructure Security</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/docs/study/SCS-C01/D4-IdentityAccessManagement"><span title="Domain 4 - Identity and Access Management" class="linkLabel_WmDU">Domain 4 - Identity and Access Management</span></a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-3 menu__list-item"><a class="menu__link" tabindex="0" href="/docs/study/SCS-C01/D5-DataProtection"><span title="Domain 5 - Data Protection" class="linkLabel_WmDU">Domain 5 - Data Protection</span></a></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/docs/study/SAA-03/aws-solutions-architect-associate-study-guide"><span title="☁️ SAA-03" class="categoryLinkLabel_W154">☁️ SAA-03</span></a><button aria-label="Expand sidebar category &#x27;☁️ SAA-03&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/docs/study/CCP/"><span title="☁️ CCP" class="linkLabel_WmDU">☁️ CCP</span></a></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/docs/study/CKS/kubernetes-security-specialist-cks-study-guide"><span title="☸ CKS" class="categoryLinkLabel_W154">☸ CKS</span></a><button aria-label="Expand sidebar category &#x27;☸ CKS&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" tabindex="0" href="/docs/study/CKA/kubernetes-administrator-cka-study-guide"><span title="☸ CKA" class="categoryLinkLabel_W154">☸ CKA</span></a><button aria-label="Expand sidebar category &#x27;☸ CKA&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-2 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" tabindex="0" href="/docs/study/Golang/go-the-complete-developers-guide"><span title="Golang" class="categoryLinkLabel_W154">Golang</span></a></div></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed red"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" href="/docs/category/️-hacker"><span title="🏴‍☠️ Hacker" class="categoryLinkLabel_W154">🏴‍☠️ Hacker</span></a><button aria-label="Expand sidebar category &#x27;🏴‍☠️ Hacker&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed red"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist" href="/docs/category/-engineer"><span title="💻 Engineer" class="categoryLinkLabel_W154">💻 Engineer</span></a><button aria-label="Expand sidebar category &#x27;💻 Engineer&#x27;" aria-expanded="false" type="button" class="clean-btn menu__caret"></button></div></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item menu__list-item--collapsed"><div class="menu__list-item-collapsible"><a class="categoryLink_byQd menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="false" href="/docs/archive/docker-wordpress/docker-wordpress-1"><span title="🗃 Archive" class="categoryLinkLabel_W154">🗃 Archive</span></a></div></li></ul></nav></div></div></aside><main class="docMainContainer_TBSr"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_VOVn"><div class="docItemContainer_Djhp"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_Z_bl" aria-label="Breadcrumbs"><ul class="breadcrumbs"><li class="breadcrumbs__item"><a aria-label="Home page" class="breadcrumbs__link" href="/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_YNFT"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li class="breadcrumbs__item"><span class="breadcrumbs__link">📗 Study</span></li><li class="breadcrumbs__item"><a class="breadcrumbs__link" href="/docs/study/SCS-C01/"><span>☁️ SCS-01</span></a></li><li class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link">Domain 3 - Infrastructure Security</span></li></ul></nav><div class="theme-doc-markdown markdown"><header><h1>Domain 3 - Infrastructure Security</h1></header><div class="theme-admonition theme-admonition-info admonition_xJq3 alert alert--info"><div class="admonitionHeading_Gvgb"><span class="admonitionIcon_Rf37"><svg viewBox="0 0 14 16"><path fill-rule="evenodd" d="M7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7zm1 3H6v5h2V4zm0 6H6v2h2v-2z"></path></svg></span>info</div><div class="admonitionContent_BuS1"><p>This is an export from my Remnote with flashcard syntax included.</p></div></div>
+<ul>
+<li class="">Infrastructure Security<!-- -->
+<ul>
+<li class="">You can configure AWS Config <code>\{\{Multi\}\}</code>-Account <code>\{\{Multi\}\}</code>-Region Data <code>\{\{Aggregator\}\}</code> to review configurations of your secrets across all accounts and <code>\{\{regions\}\}</code> in your organization, and then review your secret <code>\{\{configurations\}\}</code> and compare to secrets <code>\{\{management\}\}</code> best practices.</li>
+<li class="">If you see  <strong><strong>&quot;dedicated storage with lifecycle management and key rotation.&quot;</strong></strong>  think..?→AWS Secrets Manager</li>
+<li class="">Amazon GuardDuty<!-- -->
+<ul>
+<li class="">users from a master account <code>\{\{can\}\}</code> upload and further manage trusted IP lists and threat lists in their <code>\{\{own\}\}</code> account.</li>
+</ul>
+</li>
+<li class="">AWS Service Catalog<!-- -->
+<ul>
+<li class="">safely launch products by end users by applying what to individual products in a portfolio?→launch constraints.</li>
+<li class="">without a launch constraint, user end up launching and managing products using which IAM credentials?→their own.</li>
+</ul>
+</li>
+<li class="">Can a salted HMAC value be used to derive encryption keys or decrypt things?→No. It&#x27;s just used to validate future encryption requests.</li>
+<li class="">can an s3 bucket policy restrict access to private IPs?→No. only specific public and elastic IPs.</li>
+<li class="">if I need a direct and private (non public internet) connection to s3 e.g. to bypass a possible compromised app situation (involving proxy) without disrupting the apps other calls, what endpoint should I use?→VPC Gateway Endpoint.</li>
+<li class="">If you have to choose between AWS Secrets Manager and AWS Systems Manager Parameter Store for storing secrets but need  <strong>&quot;dedicated storage with lifecycle management and key rotation&quot;</strong> , which one should you use?→AWS Secrets Manager.</li>
+<li class="">least complex way of organising and managing multiple AWS accounts? ↓<!-- -->
+<ul>
+<li class="">AWS Organisations</li>
+<li class="">SCPs</li>
+</ul>
+</li>
+<li class="">if you need full end-to-end unbroken encryption only terminating on the backend EC2, what Load Balancer gives you this?→Network Load Balancer (NLB)</li>
+<li class="">VPC Endpoints are secure non-internet connections, you have VPC Interface Endpoints and VPC Gateway Endpoints - which one is charged per hour?→VPC Interface Endpoint</li>
+<li class="">which VPC Endpoint is free?→VPC Gateway Endpoint.</li>
+<li class="">Any question needing to verify i.e. capture and analyse network traffic (e.g. check that configs are working properly) in an S3 bucket, look out for these two services ↓<!-- -->
+<ul>
+<li class="">VPC Flow Logs</li>
+<li class="">Amazon Athena (query &amp; analyse logs)</li>
+</ul>
+</li>
+<li class="">Can you use an EC2 Instance Profile on a Lambda function?→No. Use an IAM Role for execution.</li>
+<li class="">what service can you use to track and audit an IAM User permission changes, and at specific times?→AWS Config</li>
+<li class=""><strong>VPC Security</strong>
+<ul>
+<li class="">What service gives you IDS and can perform deep packet inspection at the VPC level?→AWS Network Firewall<!-- -->
+<ul>
+<li class="">Can AWS Network Firewall pass through only known AWS services like Amazon S3?→Yes.</li>
+<li class="">Can AWS Network Firewall use custom lists of known bad domains to limit access?→Yes.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class=""><strong>OAI (Origin Access Identity)</strong>
+<ul>
+<li class="">Valid Principal: <code>&quot;Principal&quot;: {   &quot;``\{\{</code>CanonicalUser<code>\}\}``&quot;: &quot;79a59df900b949e55d96a1e698fbacedfd6e09d98eacf8f8d5218e7cd47ef2be&quot; }</code></li>
+<li class="">If you see <code>Principal</code> and <code>CanonicalUser</code> use the <code>\{\{Canonical\}\}</code> <code>\{\{User\}\}</code> ID</li>
+<li class="">Valid Principal: <code>&quot;Principal&quot;: {   &quot;``\{\{</code>AWS<code>\}\}``&quot;: &quot;arn:aws:iam::cloudfront:user/CloudFront Origin Access Identity EH1HDMB1FH2TC&quot; }</code></li>
+<li class="">If you see <code>Principal</code>and <code>AWS</code>use the <code>\{\{Origin\}\}</code> <code>\{\{Access\}\}</code> ID</li>
+</ul>
+</li>
+<li class="">AWS Certificate Manager Private Certificate Authority is a <code>\{\{managed\}\}</code> private CA service that <code>\{\{extends\}\}</code> ACM certificate management to <code>\{\{private\}\}</code> certificates.</li>
+<li class="">If you are tasked with managing AWS WAF, AWS Shield Advanced, and Amazon VPC security groups, and multiple accounts, use...?→AWS Firewall Manager.</li>
+<li class="">where can you IMPORT a SSL/TLS certificate INTO?↓ ↓<!-- -->
+<ul>
+<li class="">Amazon Certificate Manager (ACM)</li>
+<li class="">IAM Certificate Store.</li>
+</ul>
+</li>
+<li class="">What services can offer SSL/TLS cipher suites for Perfect Forward Security? ↓<!-- -->
+<ul>
+<li class="">Amazon CloudFront</li>
+<li class="">Elastic Load Balancers</li>
+</ul>
+</li>
+<li class="">IAM Policy Access<!-- -->
+<ul>
+<li class="">if users in account A need access to service in account B you create an IAM Role in account <code>\{\{B\}\}</code>, and allow users in account <code>\{\{A\}\}</code> to assume that Role.</li>
+</ul>
+</li>
+<li class="">Amazon CloudFront<!-- -->
+<ul>
+<li class="">when creating HTTPS from client ⇒ CDN ⇒ origin, how many certificates are always created?→2 - one in <code>us-east-1</code> for CloudFront, and one in the Region your origin is.</li>
+</ul>
+</li>
+<li class="">If you have ENI issues that are behind an ALB, and all networking configs are correct e.g. NACL, SG&#x27;s, what other things to check?↓ ↓<!-- -->
+<ul>
+<li class="">ENI&#x27;s are properly mapped to SG&#x27;s</li>
+<li class="">instance ENI&#x27;s attached to are registered to a ALB target group.</li>
+</ul>
+</li>
+<li class="">Hybrid on-prem &amp; AWS, DNSSEC setup<!-- -->
+<ul>
+<li class="">how do you prevent AWS resources using the VPC DNS service and use the DNSSEC setup instead?→set <code>enableDnsHostnames</code> and <code>enableDnsSupport</code> to false in the VPC.</li>
+</ul>
+</li>
+<li class="">what can you use to check for unintended network accessibility from your instances?→AWS Security Hub.</li>
+<li class="">Can you use AWS Systems Manager State Manager to access your remote instances?→No. Use AWS Systems Manager Session Manager.</li>
+<li class="">How can you inject HTTP security headers to traffic going through CloudFront inbound to Lambda Functions?→Add them to Lambda@Edge &amp; CloudFront.</li>
+<li class="">If you find users are changing configs without permission, what service can assess and evaluate these configs continuously for you?→AWS Config.</li>
+<li class="">What can you use to stop S3 objects being accessed directly and lock it down to accept from CloudFront only?→Use OAI</li>
+<li class="">if you&#x27;ve setup custom NACL inbound for your application on the correct ports, and you&#x27;re still not able to connect, what should you check for?→that ephemeral ports are allowed OUTBOUND from your NACL.</li>
+<li class="">if you see &quot;common web vulnerabilities&quot; and &quot;DDoS&quot; protection, what services should you look for? ↓<!-- -->
+<ul>
+<li class="">AWS WAF</li>
+<li class="">AWS Shield Advanced</li>
+</ul>
+</li>
+<li class="">What TWO policy types to restrict S3 bucket to authorised users only? ↓<!-- -->
+<ul>
+<li class="">Bucket Policy (for the resources)</li>
+<li class="">IAM Policy (for the users)</li>
+</ul>
+</li>
+<li class="">If you need an HSM that runs INSIDE a VPC and available across multiple AZ&#x27;s what should you use?→AWS CloudHSM.<!-- -->
+<ul>
+<li class="">Why not AWS KMS?→AWS KMS is a service you access via API, it doesn&#x27;t run INSIDE a VPC.</li>
+</ul>
+</li>
+<li class="">if you need &quot;programmatic access&quot; to manage access controls to CMK&#x27;s what should you use - key policies, iam roles, grants or iam policy?→grants.</li>
+<li class="">Amazon GuardDuty<!-- -->
+<ul>
+<li class="">member &amp; master accounts<!-- -->
+<ul>
+<li class="">users in member accounts can&#x27;t archive findings in their own or the master account - true or false?→True.</li>
+<li class="">users in member accounts can&#x27;t upload &amp; manage Trusted IP lists and threat lists - true or false? True.</li>
+<li class="">users in master accounts can upload and manage Trusted IP lists and threat lists in their own account - true or false?→False.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="">How do you ensure RDS database uses token authentication instead of password?→Enable <code>IAM DB Authentication</code></li>
+<li class="">In a centralised multi-account CloudTrail logs-to-S3-bucket setup, do you need cross-account access between the S3 buckets in each account?→No. Logs will go directly from member account to central account&#x27;s S3 (not S3-to-S3, so no cross-account needed).</li>
+<li class="">If you have CloudWatch and CloudWatch Log Agent issues where logs stop shipping, what are two things you can check for? ↓<!-- -->
+<ul>
+<li class="">check log rotation rules is compatible with the agent&#x27;s config</li>
+<li class="">check for duplicate <code>[logstream]</code>configs in agents config file.</li>
+</ul>
+</li>
+<li class="">If an AWS Access Key gets popped, what are two services you can use to assess extent of compromise? ↓<!-- -->
+<ul>
+<li class="">CloudTrail for activity history</li>
+<li class="">CloudWatch to search CloudTrail logs for API history</li>
+</ul>
+</li>
+<li class="">what streaming service gives you real-time application log processing?→Kinesis Data Streams</li>
+<li class="">what search service gives you search &amp; analytics?→AWS Elasticsearch</li>
+<li class="">CloudWatch can use a <code>Filter Pattern</code> to match Security Group API calls for an Alarm, ensure you include these SG calls in your pattern, to alarm on.<!-- -->
+<ul>
+<li class="">What is the difference between setting the metric for the <code>Filter Pattern</code> to 10 as opposed to 1?→it&#x27;ll take TEN matches before an alert is sent, whereas if you set it to <code>1</code> it&#x27;ll alarm on the first one.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col noPrint_WFHX"><a href="https://github.com/ronamosa/ronamosa.github.io/edit/main/website/docs/study/SCS-C01/D3-InfrastructureSecurity.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_Z9Sw" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div><div class="col lastUpdated_JAkA"><span class="theme-last-updated">Last updated<!-- --> on <b><time datetime="2025-07-04T07:33:22.000Z" itemprop="dateModified">Jul 4, 2025</time></b> by <b>Ron Amosa</b></span></div></div></footer><div class="newsletterCta_rTTm"><p><span class="emoji_bVKv">📬</span> I also write a fortnightly newsletter — my thoughts on the machines that educate, empower, and exploit our society.<!-- --> <a href="/subscribe">Subscribe here.</a></p></div></article><nav class="docusaurus-mt-lg pagination-nav" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/docs/study/SCS-C01/D2-LoggingMonitoring"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">Domain 2 - Logging and Monitoring</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/docs/study/SCS-C01/D4-IdentityAccessManagement"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">Domain 4 - Identity and Access Management</div></a></nav></div></div></div></div></main></div></div></div><footer class="theme-layout-footer footer"><div class="container container-fluid"><div class="row footer__links"><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Connect</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://www.linkedin.com/in/ron-amosa/" target="_blank" rel="noopener noreferrer" class="footer__link-item">LinkedIn<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://github.com/ronamosa/" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li><li class="footer__item"><a href="https://www.youtube.com/@uncommonengineer" target="_blank" rel="noopener noreferrer" class="footer__link-item">YouTube<svg width="13.5" height="13.5" aria-label="(opens in new tab)" class="iconExternalLink_nPIU"><use href="#theme-svg-external-link"></use></svg></a></li></ul></div><div class="theme-layout-footer-column col footer__col"><div class="footer__title">Discover</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/blog">Analysis &amp; Essays</a></li><li class="footer__item"><a class="footer__link-item" href="/docs">Technical</a></li><li class="footer__item"><a class="footer__link-item" href="/about">About</a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Last updated on Sun Apr 26 2026</div></div></div></footer></div>
+</body>
+</html>
