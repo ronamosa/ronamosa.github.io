@@ -1,0 +1,208 @@
+---
+title: Troubleshooting
+description: "Quick fixes for common issues during the Tech for Good Hackathon 2026 — from security warnings to slow performance."
+sidebar_position: 5
+sidebar_label: Troubleshooting
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Troubleshooting
+
+Things not working? Don't worry — most issues have a quick fix. Find your problem below and follow the steps.
+
+:::tip Ask Your Mentor First
+If you're stuck during the hackathon, grab your mentor before spending too long on a fix. They've seen most of these issues before and can help fast.
+:::
+
+## 1. Security Warning When Opening Kiro
+
+Your computer might block Kiro because it was downloaded from the internet. The fix depends on your operating system.
+
+<Tabs>
+  <TabItem value="macos" label="macOS" default>
+
+  **Problem:** macOS Gatekeeper shows a message like _"Kiro can't be opened because it is from an unidentified developer"_ or _"Kiro is damaged and can't be opened."_
+
+  **Fix:**
+
+  1. Open **System Settings → Privacy & Security**.
+  2. Scroll down to the **Security** section.
+  3. You should see a message about Kiro being blocked. Click **Open Anyway**.
+  4. A confirmation dialog will appear — click **Open**.
+  5. Kiro should now launch normally.
+
+  :::tip
+  You only need to do this once. macOS will remember your choice and won't block Kiro again.
+  :::
+
+  </TabItem>
+  <TabItem value="windows" label="Windows">
+
+  **Problem:** Windows SmartScreen shows a blue warning screen saying _"Windows protected your PC"_ when you try to run Kiro.
+
+  **Fix:**
+
+  1. On the SmartScreen warning, click **More info**.
+  2. A **Run anyway** button will appear — click it.
+  3. Kiro will install and launch normally.
+
+  :::tip
+  If you don't see "More info", right-click the Kiro installer, select **Properties**, check the **Unblock** box at the bottom, and click **OK**. Then run the installer again.
+  :::
+
+  </TabItem>
+</Tabs>
+
+## 2. ARM Device Incompatibility
+
+**Problem:** Kiro won't install or crashes immediately on a Windows device.
+
+**Why:** Kiro requires **Windows 64-bit (x64)**. Windows on ARM devices (such as some Surface Pro models and Snapdragon-powered laptops) is not supported.
+
+**Fix:**
+
+There is no workaround for ARM devices. You'll need to switch to a different computer that runs:
+
+- **macOS** (Intel or Apple Silicon)
+- **Windows 64-bit (x64)**
+- **Linux 64-bit (x64)**
+
+:::tip
+Not sure if your device is ARM? On Windows, press `Win + I` to open Settings, go to **System → About**, and look at **System type**. It should say "64-bit operating system, x64-based processor". If it says "ARM-based processor", the device won't work with Kiro.
+:::
+
+## 3. Kiro Not Responding
+
+**Problem:** Kiro is open but the chat isn't responding, or the interface is frozen.
+
+**Fix:**
+
+1. **Wait 30 seconds.** Kiro sometimes takes a moment to process, especially if the AI is generating a large response.
+2. **Check your internet connection.** Kiro needs an active internet connection for all AI features. Try loading a website in Chrome to confirm you're online.
+3. **Restart Kiro.** Close the application completely and reopen it:
+
+<Tabs>
+  <TabItem value="macos" label="macOS" default>
+
+  1. Press `Cmd + Q` to quit Kiro.
+  2. If it won't quit, open **Activity Monitor** (search for it in Spotlight), find "Kiro", select it, and click the **X** button to force quit.
+  3. Reopen Kiro from Applications.
+
+  </TabItem>
+  <TabItem value="windows" label="Windows">
+
+  1. Press `Alt + F4` to close Kiro.
+  2. If it won't close, press `Ctrl + Shift + Esc` to open **Task Manager**, find "Kiro" in the list, right-click it, and select **End task**.
+  3. Reopen Kiro from the Start menu or desktop shortcut.
+
+  </TabItem>
+</Tabs>
+
+:::tip
+If Kiro keeps freezing after a restart, try closing other applications to free up memory. Kiro works best when your computer isn't running too many things at once.
+:::
+
+## 4. App Preview Not Working in the Browser
+
+**Problem:** You opened Chrome and went to the preview URL (usually `http://localhost:3000`) but the page is blank, shows an error, or won't load.
+
+**Fix:**
+
+1. **Make sure the app is actually running.** Check the Kiro terminal or chat — it should show a message like "Server running on http://localhost:3000". If you don't see that, ask Kiro to start the app.
+2. **Hard refresh the page.** Sometimes the browser is showing a cached version:
+   - **Mac:** Press `Cmd + Shift + R`
+   - **Windows:** Press `Ctrl + Shift + R`
+3. **Check the URL.** Make sure you're going to exactly the address Kiro told you — including the port number (the `:3000` part).
+4. **Try a different port.** If something else is using port 3000, Kiro may start the app on a different port (like 3001 or 3002). Check the terminal output for the actual URL.
+
+:::tip
+If you see a message like "This site can't be reached" or "ERR_CONNECTION_REFUSED", the app server probably isn't running. Go back to Kiro and ask it to start the development server.
+:::
+
+## 5. Resetting Broken Code
+
+**Problem:** You asked Kiro to make changes and now the app is broken — errors everywhere, nothing works.
+
+**Fix:**
+
+Don't panic. You have options:
+
+1. **Ask Kiro to fix it.** Type something like:
+
+   ```text
+   The app is broken after the last change. Can you undo the last change
+   and get it working again?
+   ```
+
+2. **Use Undo.** If the change just happened, press `Cmd + Z` (Mac) or `Ctrl + Z` (Windows) multiple times in the affected file to undo recent edits.
+
+3. **Start fresh from the starter project.** If things are really messed up:
+   1. Close the project in Kiro.
+   2. Make a copy of the original starter project folder (your teacher or mentor should have a clean copy).
+   3. Open the fresh copy in Kiro and start again.
+
+:::tip
+This is why starting small matters. If you make one change at a time and test after each one, it's much easier to figure out what went wrong.
+:::
+
+## 6. Kiro Running Slowly
+
+**Problem:** Kiro takes a long time to respond, the interface feels sluggish, or AI responses are very slow.
+
+**Fix:**
+
+1. **Close other applications.** Browsers with lots of tabs, video calls, and other heavy apps compete for memory and CPU. Close anything you don't need.
+2. **Close unused files in Kiro.** If you have many files open in the editor, close the ones you're not actively working on.
+3. **Check your internet speed.** Slow AI responses usually mean a slow internet connection. Ask your teacher or IT admin if there's a better network to connect to.
+4. **Restart Kiro.** A fresh start can clear out any built-up memory usage. Save your work, close Kiro, and reopen it.
+
+:::tip
+If the whole room is experiencing slow responses, it's likely a network issue rather than a device issue. Let your mentor or teacher know — they may be able to help with the Wi-Fi.
+:::
+
+## 7. Unable to Sign In
+
+**Problem:** Kiro asks you to sign in but the sign-in page won't load, gives an error, or loops back without signing you in.
+
+**Fix:**
+
+1. **Check your internet connection.** Sign-in requires an active connection. Try loading [google.com](https://google.com) in Chrome to confirm you're online.
+2. **Use Google sign-in.** Kiro uses Google accounts. Make sure you're clicking **Sign in with Google** and using a valid Google account (like a school Gmail account).
+3. **Clear the sign-in state.** If sign-in is stuck in a loop:
+
+<Tabs>
+  <TabItem value="macos" label="macOS" default>
+
+  1. Quit Kiro completely (`Cmd + Q`).
+  2. Open **Finder**, press `Cmd + Shift + G`, and paste: `~/Library/Application Support/Kiro`
+  3. Delete the contents of this folder (or rename it to `Kiro-backup`).
+  4. Reopen Kiro and try signing in again.
+
+  </TabItem>
+  <TabItem value="windows" label="Windows">
+
+  1. Close Kiro completely (`Alt + F4`).
+  2. Open **File Explorer**, paste this into the address bar: `%APPDATA%\Kiro`
+  3. Delete the contents of this folder (or rename it to `Kiro-backup`).
+  4. Reopen Kiro and try signing in again.
+
+  </TabItem>
+</Tabs>
+
+4. **Try a different Google account.** If your school account has restrictions, try a personal Gmail account.
+
+:::tip
+If multiple students are having sign-in issues at the same time, the school network may be blocking Kiro's authentication service. Ask your IT admin to check if `kiro.dev` and Google sign-in domains are allowed through the firewall.
+:::
+
+## Still Stuck?
+
+If none of the fixes above work:
+
+1. **Ask your mentor** — they can escalate to the event organisers.
+2. **Pair up** — join another team's computer temporarily while the issue gets sorted out.
+3. **Check the [Resources](/hackathon/resources) page** for additional links and support contacts.
+
+Don't let a tech issue stop you — there's always a way to keep going. 💪

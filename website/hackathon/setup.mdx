@@ -1,0 +1,138 @@
+---
+title: Device Setup Guide
+description: "Pre-event checklist for school IT administrators to prepare student devices for the Tech for Good Hackathon 2026."
+sidebar_position: 2
+sidebar_label: Device Setup
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Device Setup Guide
+
+This guide is for school IT administrators preparing student devices before hackathon day. Complete every step below to ensure a smooth experience on the day.
+
+:::warning ChromeOS Not Supported
+Kiro does **not** run on ChromeOS (Chromebooks). Devices must run **macOS**, **Windows (x64)**, or **Linux**. If your school primarily uses Chromebooks, contact the event organisers to discuss alternatives.
+:::
+
+:::info Kiro Is Free
+Kiro is completely free to use. Students do **not** need an AWS account — they sign in with a Google account only.
+:::
+
+## Minimum System Requirements
+
+| Requirement | Details |
+|---|---|
+| **macOS** | Intel or Apple Silicon (M1/M2/M3+) |
+| **Windows** | 64-bit (x64) — ARM is **not** supported |
+| **Linux** | 64-bit (x64), modern distribution |
+| **Internet** | Stable connection required — Kiro needs internet access for all AI interactions |
+| **Browser** | Google Chrome (latest stable version) |
+| **Disk space** | At least 2 GB free for Kiro, Node.js, and the starter project |
+
+## Pre-Event Checklist
+
+Complete these steps on every student device **before** hackathon day.
+
+### 1. Download and install Kiro
+
+Download Kiro from [kiro.dev/downloads](https://kiro.dev/downloads) and install it for the appropriate platform.
+
+<Tabs>
+  <TabItem value="macos" label="macOS" default>
+
+  1. Download the `.dmg` installer from [kiro.dev/downloads](https://kiro.dev/downloads).
+  2. Open the `.dmg` file and drag **Kiro** into the **Applications** folder.
+  3. Launch Kiro from Applications. If macOS Gatekeeper blocks the app, go to **System Settings → Privacy & Security** and click **Open Anyway**.
+
+  </TabItem>
+  <TabItem value="windows" label="Windows">
+
+  1. Download the `.exe` installer from [kiro.dev/downloads](https://kiro.dev/downloads).
+  2. Run the installer and follow the on-screen prompts.
+  3. If Windows SmartScreen displays a warning, click **More info → Run anyway**.
+
+  </TabItem>
+</Tabs>
+
+### 2. Download and install Node.js LTS
+
+Node.js is required to run student projects locally.
+
+<Tabs>
+  <TabItem value="macos" label="macOS" default>
+
+  1. Download the macOS installer (.pkg) from [nodejs.org](https://nodejs.org/).
+  2. Run the installer and accept the defaults.
+  3. Verify the installation by opening **Terminal** and running:
+
+  ```bash
+  node --version
+  ```
+
+  You should see a version number (e.g., `v22.x.x`).
+
+  </TabItem>
+  <TabItem value="windows" label="Windows">
+
+  1. Download the Windows installer (.msi) from [nodejs.org](https://nodejs.org/).
+  2. Run the installer and accept the defaults.
+  3. Verify the installation by opening **Command Prompt** and running:
+
+  ```bash
+  node --version
+  ```
+
+  You should see a version number (e.g., `v22.x.x`).
+
+  </TabItem>
+</Tabs>
+
+### 3. Ensure Google Chrome is installed
+
+Students will use Chrome to preview their apps. If Chrome is not already installed, download it from [google.com/chrome](https://www.google.com/chrome/).
+
+### 4. Download the starter project repo
+
+Download the starter project ZIP file so it is ready for students on the day.
+
+:::note
+Starter repo ZIP links will be provided by the event organisers before the hackathon. See the [Resources](/hackathon/resources) page for download links once available.
+:::
+
+### 5. Open Kiro and sign in with Google
+
+1. Launch Kiro on the device.
+2. Click **Sign in with Google** and complete the sign-in flow using a test Google account.
+3. Confirm that Kiro opens to the welcome screen without errors.
+
+:::tip
+Use a shared test Google account for pre-event verification. Students will sign in with their own accounts on the day.
+:::
+
+## Verify It Works
+
+After completing the checklist, run through these steps to confirm everything is working:
+
+1. **Open Kiro** — launch the application and confirm it loads without errors.
+2. **Type a test prompt** — open the Kiro chat panel and type a simple prompt such as:
+
+   ```text
+   Say hello
+   ```
+
+3. **Confirm a response** — verify that Kiro returns a response in the chat panel. This confirms the device has internet connectivity and Kiro's AI features are functional.
+
+If any step fails, check the [Troubleshooting](/hackathon/troubleshooting) page for common fixes.
+
+## Support
+
+:::note Support Contact — Placeholder
+For pre-event setup issues, contact:
+
+- **Email:** `[placeholder — event organiser email]`
+- **Phone:** `[placeholder — event organiser phone]`
+
+Replace these placeholders with actual contact details before distributing this guide.
+:::
