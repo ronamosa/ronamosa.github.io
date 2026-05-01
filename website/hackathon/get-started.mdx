@@ -38,33 +38,13 @@ Your facilitator may run things slightly faster or slower than the table. Stick 
 
 ## 1️⃣ 🌅 Welcome & warm-up (9.30am)
 
-The day kicks off with a welcome, a quick icebreaker, and a chance to get comfortable with your laptop and Kiro before you have to use it for real.
+The day kicks off with a welcome, a quick icebreaker, and a short scavenger hunt to help you get comfortable with your team laptop and Kiro. Your facilitator will run all of it — just follow along.
 
-Your facilitator will run a short **scavenger hunt** — a few small tasks that help you find your way around Kiro. Just follow along; no prep needed.
-
-While that's happening, check that Kiro is working on your team's laptop:
-
-1. Find the **Kiro** app and open it.
-2. If it asks you to sign in, click **Google** and use a personal `@gmail.com` account (not your school email).
-3. Look for the **Chat Panel** on the right — that's where you'll talk to Kiro.
-4. Type `Say hello` and press Enter. If Kiro replies, you're good to go.
-
-:::tip School Gmail not working?
-Some school Google accounts block third-party apps. If sign-in fails, use a personal `@gmail.com` account or ask a mentor — they've seen this before.
-:::
+Your laptop is already set up: Kiro's installed, you're signed in, and a starter project is ready. You don't need to install or set up anything yourself.
 
 :::warning Something not working?
-If Kiro won't open, won't sign you in, or shows an error, tell your mentor straight away. The [Troubleshooting](/hackathon/troubleshooting) page has fixes for the common ones.
+If Kiro won't open or behaves weirdly, tell your mentor straight away. The [Troubleshooting](/hackathon/troubleshooting) page has fixes for the common ones.
 :::
-
-### What is Kiro?
-
-Kiro is like a really smart coding assistant. You tell it what you want to build in plain English, and it writes the code for you. Two ways to use it:
-
-- **Vibe** — chat first, then build. Great for "I have a rough idea, let's see where it goes." **Recommended for today.**
-- **Spec** — plan first, then build. Better for bigger projects where you want to nail the requirements before coding.
-
-Stick with **Vibe** unless your mentor suggests otherwise.
 
 ## 2️⃣ 🎯 Pick your problem (10.00am)
 
@@ -124,73 +104,78 @@ Take the full break. The next stage is the busiest one of the day.
 
 ## 5️⃣ 🛠️ Build with Kiro (11.20am – 12.00pm)
 
-You've got **40 minutes** to turn your idea into a working prototype. Stay focused — small and shippable beats big and broken.
+You've got **40 minutes**. The good news: you don't start from a blank page. There's a **starter project** for each problem theme — a working app with a list of TODOs your team works through with Kiro. Small and shippable beats big and broken.
 
-### Open your project
+### What is Kiro?
 
-Your mentor or facilitator will tell you whether to:
+Kiro is your AI coding assistant. You describe what you want in plain English, Kiro writes the code. Two modes:
 
-- **Open a starter project** — `File → Open Folder` in Kiro, then pick the folder they point you at, **or**
-- **Start a new project** — Kiro can scaffold one for you from a prompt.
+- **Vibe** — chat first, build as you go. **Use this today.**
+- **Spec** — plan first, then build. Better for bigger projects.
 
-If you're not sure which, ask.
+You'll see the chooser when you open Kiro. Click **Vibe**.
 
-### Write your first prompt
+### Open your starter project
 
-Click into the **Chat Panel** on the right (where you said hello earlier). Make sure **Vibe** mode is selected.
+Your facilitator will tell you which starter matches the problem you picked (e.g. 🌊 *Water Watch NZ* for ocean pollution). The full list with download links is on the [Resources page](/hackathon/resources).
 
-Now describe what you want, in plain English. Be specific — tell Kiro what the app is for, what it should do, and what it should look like.
+1. Download the starter ZIP from the Resources page (or clone it with `git` if your team prefers) and extract it somewhere easy to find — your desktop is fine.
+2. In Kiro, click **File → Open Folder** and select the starter folder.
+3. Open a terminal in Kiro (**Terminal → New Terminal**) and run:
 
-**Good prompt:**
+   ```bash
+   npm install
+   npm start
+   ```
 
-```text
-Build a simple web app that shows a list of beaches in Auckland and
-lets a user mark a beach as "polluted" with a short description and
-the date. Use a clean, friendly design with big buttons.
-```
+4. Open **Chrome** and go to **http://localhost:3000**. You should see the starter app already running — basic page with a title and some empty sections. That's your starting point.
 
-**Better prompt:**
+:::warning Blank page or an error?
+Tell your mentor or check [Troubleshooting](/hackathon/troubleshooting).
+:::
 
-```text
-I'm building an app for a 14-year-old who wants to know if her local
-beach is safe to swim at before she goes there. Build a single-page
-web app with:
-- a list of 5 example Auckland beaches
-- each beach shows its name and a "Safe to swim?" status
-- a button on each beach that lets the user report pollution with a
-  short description and the date
-- a simple, friendly design — bright colours, big text
-```
+### Read `requirements.md`
 
-The more context you give Kiro, the better the result.
+Open `requirements.md` in Kiro (it's at the top of the file list). It tells you:
 
-:::tip See more examples
-The [Prompt Library](/hackathon/prompts) has prompts for different project types — chatbots, dashboards, games, accessibility tools — copy and adapt.
+- What's already built in the starter
+- A numbered list of **TODOs** — the things your team will add
+- Tips and CSS class names to use
+
+Read through it together. Don't skip this — it's how you know what to do next.
+
+### Pick a TODO and find its prompt
+
+For each TODO:
+
+1. Read what it asks for in `requirements.md`.
+2. Go to the [Prompt Library](/hackathon/prompts) and find the matching prompt for your theme + TODO number (e.g. *"🌊 Ocean Pollution → TODO 1"*).
+3. Copy the prompt, paste it into Kiro's **Chat Panel** on the right, and hit Enter.
+
+:::tip Start at TODO 1
+Don't skip ahead. The TODOs build on each other — TODO 1 sets things up that TODO 2 uses, and so on.
 :::
 
 ### Let Kiro work
 
 After you hit Enter, Kiro will:
 
-1. Think about what you asked for.
-2. Create or update files in your project.
+1. Think about your request.
+2. Update files in your project.
 3. Explain what it did in the chat.
 
-Watch it happen. **Don't type while it's working** — interrupting can confuse it. You'll know it's done when the chat stops updating.
+**Don't type while it's working** — interrupting can confuse it. You'll know it's done when the chat stops updating. Then refresh `http://localhost:3000` in Chrome to see the change.
 
-### Preview your app
+### Make it your own
 
-Once Kiro finishes, ask it to run the app. The simplest prompt:
+Once a TODO is built, ask Kiro to **adapt it for your persona**. For example:
 
 ```text
-How do I run this app and see it in my browser?
+Make this form feel friendly for a 14-year-old. Use brighter colours,
+bigger buttons, and friendlier labels.
 ```
 
-Kiro will tell you what command to run (often `npm run dev`) and give you a local URL like `http://localhost:3000`. Open **Google Chrome** and paste the URL — you should see your app live.
-
-:::warning Blank page or an error?
-Don't panic. Tell your mentor or check [Troubleshooting](/hackathon/troubleshooting). Most issues are quick fixes.
-:::
+That's where your team's project starts becoming uniquely yours.
 
 ### Working as a team on one laptop
 
@@ -198,7 +183,7 @@ Only one person can type at a time, so:
 
 - **Rotate the keyboard** every 10–15 minutes so everyone gets a turn.
 - The person at the keyboard is the **driver**. Everyone else is a **navigator** — watching, suggesting, catching mistakes.
-- If you're not at the keyboard, you're not idle — you're thinking about the *next* prompt, the persona, or the pitch.
+- If you're not at the keyboard, you're not idle — you're thinking about the next TODO, the persona, or the pitch.
 
 ## 6️⃣ 🧪 Test & iterate (12.00pm – 12.20pm)
 

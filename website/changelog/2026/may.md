@@ -9,6 +9,13 @@ description: Changes and additions for May 2026
 ## 📅 2026-05-01
 
 ### 📚 Documentation Updates
+- **Tied hackathon docs to starter projects** (Option A: every team uses a starter):
+  - **Day Guide Section 5 rewrite**: replaced the open-or-scaffold ambiguity with the canonical starter flow — `File → Open Folder` → `npm install && npm start` → `localhost:3000` → read `requirements.md` → pick a TODO → find the matching prompt. Moved the Vibe vs Spec explainer here from Section 1 (it's needed at build time, not warm-up time).
+  - **Day Guide Section 1 slimmed**: dropped the smoke-test/sign-in steps since IT does that pre-event; kept just the icebreaker context.
+  - **Prompt Library restructured**: each theme now has 5 prompts numbered TODO 1–5 (matching the 5 TODOs in each starter's `requirements.md`). Prompts reference real API endpoints, field names, and CSS classes from each starter so Kiro produces code that fits the existing scaffold.
+  - **Starter-repo READMEs updated** (all 5 repos): added a "First time?" pointer to the Day Guide at the top, and a "Need help?" footer linking to the Day Guide, Prompt Library, and Troubleshooting.
+  - **Link**: [Hackathon Day Guide](/hackathon/get-started)
+
 - **Hackathon starter projects published**: Replaced the placeholder repo and ZIP links on `resources.mdx` with the real GitHub repos and ZIP downloads — 🌊 Water Watch NZ (ocean pollution), 💛 How Are You Today? (youth wellbeing), 🍲 Kai Share (community food sharing), 🦎 Kaitiaki Watch (native species), and ♻️ Green School Tracker (school sustainability). Aligned the school-sustainability emoji to ♻️ across the homepage and prompt library to match.
   - **Link**: [Resources & Links](/hackathon/resources)
 

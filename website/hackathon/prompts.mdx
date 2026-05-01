@@ -1,259 +1,362 @@
 ---
 title: "Prompt Library"
-description: "Ready-to-use prompts organised by problem theme — copy, paste, and start building your hackathon project with Kiro."
+description: "Ready-to-use prompts for each starter project — one per TODO. Copy, paste into Kiro, and watch your hackathon project come to life."
 sidebar_position: 4
 sidebar_label: Prompt Library
 ---
 
 # 📚 Prompt Library
 
-Stuck on what to type into Kiro? Use these as a starting point. Each theme below has:
+Each prompt below maps to a **TODO** in your starter project's `requirements.md`. The flow on the day is:
 
-- **Starter prompt** — your first feature.
-- **Iteration prompts** — what to add next.
-- **Stretch prompt** — if your team is flying.
+1. Open your starter project in Kiro (see [Hackathon Day Guide → Section 5](/hackathon/get-started)).
+2. Read `requirements.md`.
+3. Pick a TODO.
+4. **Find the matching prompt below** for your theme.
+5. Copy it into Kiro's Chat Panel and hit Enter.
 
-:::note These are inspiration, not the official issue list
-On the day, your facilitator will share the actual list of social and environmental issues your team can pick from. The themes below are example shapes — find the closest one and **adapt it to your problem and your persona** (see [Adapt to your problem](#-adapt-to-your-problem) below).
+:::tip Start at TODO 1
+TODOs build on each other — TODO 1 sets things up that TODO 2 uses, and so on. Don't skip ahead.
 :::
+
+The five themes match the five starter projects:
+
+| Theme | Project | Jump to |
+|---|---|---|
+| 🌊 Ocean / Water Pollution | Water Watch NZ | [↓](#-ocean--water-pollution) |
+| 💛 Youth Wellbeing | How Are You Today? | [↓](#-youth-wellbeing) |
+| 🍲 Community Food Sharing | Kai Share | [↓](#-community-food-sharing) |
+| 🦎 Native Species Conservation | Kaitiaki Watch | [↓](#-native-species-conservation) |
+| ♻️ School Sustainability | Green School Tracker | [↓](#-school-sustainability) |
 
 ---
 
-## 🌊 Ocean and Water Pollution
+## 🌊 Ocean / Water Pollution
 
-Help communities report and track pollution in New Zealand's oceans, rivers, and beaches.
+**Project:** [Water Watch NZ](/hackathon/resources#-starter-projects) — a pollution reporting tool for beaches and rivers across Aotearoa.
 
-### Starter Prompt
+### TODO 1 — Report form
 
 ```text
-Create a web app where users can report water pollution at a beach or river.
-The form should have fields for the location name, type of pollution (plastic,
-sewage, chemical, or other), a text description of what they saw, and the date
-they spotted it. Show all reports in a list below the form.
+In public/index.html and public/app.js, add a pollution report form above
+the reports list. The form needs these fields:
+- Location name (text input)
+- Pollution type (dropdown: Plastic, Sewage, Chemical, Other)
+- Description (textarea)
+- Date (date input)
+- Submit button
+
+When submitted, POST the data as JSON to /api/reports, then refresh the
+reports list so the new report appears.
 ```
 
-### Iteration Prompts
+### TODO 2 — Reports list
 
 ```text
-Add a filter so users can view reports by pollution type. Show the count of
-reports for each type at the top of the page.
+In public/app.js, fetch reports from GET /api/reports and display them
+as cards below the form. Each card should show: location, pollution type,
+description, and date. Use simple bordered cards with padding.
 ```
 
+### TODO 3 — Severity rating
+
 ```text
-Add a "severity" rating to each report — low, medium, or high. Use colour-coded
-badges (green, orange, red) to make it easy to scan the list.
+Add a "Severity" dropdown to the report form with options: Low, Medium, High.
+Include severity in the POSTed data. On each report card, show a colour-coded
+badge using the existing CSS classes:
+- Low → .badge-low (green)
+- Medium → .badge-medium (orange)
+- High → .badge-high (red)
 ```
 
+### TODO 4 — Filter by type
+
 ```text
-Add a feature that lets users upload a photo with their pollution report. Show
-a thumbnail of the photo next to each report in the list.
+Add filter buttons above the reports list: All, Plastic, Sewage, Chemical, Other.
+When a button is clicked, show only reports matching that type. The "All" button
+shows everything. Filter the existing reports list in JavaScript — no page reload.
 ```
 
-### Stretch Prompt
+### TODO 5 (Stretch) — Dashboard
 
 ```text
-Add a dashboard page that shows a summary of all reports: total count, most
-common pollution type, and a bar chart showing reports per month. Use the
-existing report data to generate the chart.
+Add a stats dashboard at the top of the page showing:
+- Total reports submitted
+- Most common pollution type
+- A simple bar chart of reports per month using HTML and CSS (no chart libraries)
+
+Calculate everything from the existing reports list — no new API needed.
 ```
 
 ---
 
 ## 💛 Youth Wellbeing
 
-Build tools that support the mental health and wellbeing of young people in Aotearoa.
+**Project:** [How Are You Today?](/hackathon/resources#-starter-projects) — a daily mood tracker that helps young people check in with themselves and spot patterns.
 
-### Starter Prompt
+### TODO 1 — Mood buttons
 
 ```text
-Create a daily mood tracker app. Users should be able to select how they're
-feeling today from five options (great, good, okay, not great, rough) using
-emoji buttons. Save each entry with the date and display a list of past
-entries showing the emoji and date.
+In public/index.html and public/app.js, add 5 mood buttons:
+- 😄 Great
+- 🙂 Good
+- 😐 Okay
+- 😕 Not great
+- 😞 Rough
+
+When a button is clicked, POST { mood, date } to /api/entries with today's
+date in ISO format, then refresh the history list. Use big, friendly buttons.
 ```
 
-### Iteration Prompts
+### TODO 2 — Mood history
 
 ```text
-Add an optional "journal note" text field so users can write a short note
-about their day when they log their mood. Show the note alongside each
-mood entry in the history list.
+In public/app.js, fetch entries from GET /api/entries and display them as
+a list. Each item shows the emoji, the mood label, and the date.
+Show the most recent entry first.
 ```
 
+### TODO 3 — Journal note
+
 ```text
-Add a "weekly summary" section that shows how many times each mood was
-selected in the last 7 days. Display it as a simple count like
-"Great: 2, Good: 3, Okay: 1, Not great: 1, Rough: 0".
+Add an optional text input below the mood buttons labelled "Add a note
+(optional)". When a mood button is clicked, include the note text in the
+POST to /api/entries. Show the note alongside the mood and date in the
+history list. Clear the note field after saving.
 ```
 
-### Stretch Prompt
+### TODO 4 — Weekly summary
 
 ```text
-Add a "self-care suggestions" feature. After a user logs their mood, show
-a short encouraging message and one self-care tip based on their mood. For
-example, if they select "rough", suggest "Try stepping outside for 5 minutes
-of fresh air" or "Text a friend you trust and say hi."
+Add a "This Week" section above the mood history showing how many times
+each mood has been logged in the last 7 days. Display each mood emoji
+followed by its count, e.g. "😄 × 3   🙂 × 2   😐 × 1".
+Calculate from the existing entries list — no new API needed.
+```
+
+### TODO 5 (Stretch) — Self-care suggestions
+
+```text
+When a mood button is clicked, show a short, kind self-care suggestion
+below the buttons. Match suggestions to the mood:
+- 😄 Great → "Keep it up — share your energy with someone today."
+- 🙂 Good → "Nice. Maybe spend a few minutes outside."
+- 😐 Okay → "Try a 5-minute walk or a glass of water."
+- 😕 Not great → "Talk to a friend, or take a break and breathe."
+- 😞 Rough → "It's okay to not be okay. Talk to someone you trust."
 ```
 
 ---
 
 ## 🍲 Community Food Sharing
 
-Help reduce food waste and food insecurity by connecting people who have spare food with those who need it.
+**Project:** [Kai Share](/hackathon/resources#-starter-projects) — a community food sharing board where people can post food they have spare and others can claim it.
 
-### Starter Prompt
+### TODO 1 — Food listing form
 
 ```text
-Create a community food sharing board. Users can post a food listing with
-the food name, a short description, the suburb or area for pickup, and an
-expiry date. Show all active listings in a grid of cards. Each card should
-display the food name, area, and how many hours until it expires.
+Add a form above the listings grid for posting a food listing with these
+fields:
+- Food name (text input)
+- Description (textarea)
+- Suburb / area (text input)
+- Expiry date (date input)
+- Post button
+
+When submitted, POST the data as JSON to /api/listings and refresh the
+listings grid.
 ```
 
-### Iteration Prompts
+### TODO 2 — Listings cards
 
 ```text
-Add a search bar that filters the food listings by name or area as the user
-types. Show a "no results" message if nothing matches.
+In public/app.js, fetch listings from GET /api/listings and display them
+as cards in a grid. Use the existing CSS class .food-card for each card.
+Each card shows: food name, suburb/area, and how many hours until expiry.
+If a listing is already claimed, also add the .claimed class so it greys out.
 ```
 
+### TODO 3 — Search bar
+
 ```text
-Add a "claim" button on each food card. When someone clicks it, mark that
-listing as "claimed" and change the card's appearance so it looks different
-from available listings. Claimed items should still be visible but greyed out.
+Add a search input above the listings grid. As the user types, filter the
+visible cards to show only listings where the food name OR suburb/area
+matches the search text (case-insensitive). Don't reload the page or call
+the API — filter the cards in JavaScript.
 ```
 
+### TODO 4 — Claim button
+
 ```text
-Add categories for the food listings: fruit and veg, baked goods, cooked meals,
-pantry items, and other. Let users filter the board by category using buttons
-at the top of the page.
+On each unclaimed listing card, add a "Claim" button using the existing
+CSS class .claim-btn. When clicked, send PATCH /api/listings/:id/claim.
+After the response, add the .claimed class to the card and disable the
+button.
 ```
 
-### Stretch Prompt
+### TODO 5 (Stretch) — Stats section
 
 ```text
-Add a simple stats section at the top of the page showing: total listings
-posted, total items claimed, and the most active suburb. Update these numbers
-automatically as users add and claim listings.
+Add a stats bar at the top of the page showing:
+- Total listings posted
+- Total listings claimed
+- Most active suburb (the suburb with the most listings)
+
+Update these numbers automatically as listings are added or claimed.
+Calculate from the existing listings list — no new API needed.
 ```
 
 ---
 
 ## 🦎 Native Species Conservation
 
-Help protect Aotearoa New Zealand's unique native plants and animals through tracking, education, and community action.
+**Project:** [Kaitiaki Watch](/hackathon/resources#-starter-projects) — a sighting tracker for kiwi, kākāpō, tūī, and other taonga species of Aotearoa.
 
-### Starter Prompt
+### TODO 1 — Sighting form
 
 ```text
-Create a native species sighting tracker. Users can log a sighting by
-selecting a species from a dropdown list (kiwi, kākāpō, tūī, kererū,
-wētā, gecko, or other), entering the location name, adding a short note,
-and picking the date. Display all sightings in a list sorted by most recent.
+Add a form for logging a native species sighting using the pre-existing
+species dropdown (#species-select), plus:
+- Location (text input)
+- Note / description (textarea)
+- Date (date input)
+- Submit button
+
+When submitted, POST the data as JSON to /api/sightings and refresh the
+sightings list.
 ```
 
-### Iteration Prompts
+### TODO 2 — Sightings list
 
 ```text
-Add a "species profile" section. When a user selects a species from the
-dropdown, show a short info card with the species name, conservation status
-(e.g. "Nationally Vulnerable"), and one fun fact. Use this data for at least
-four species.
+In public/app.js, fetch sightings from GET /api/sightings and display them
+as a list. Each item shows: species name, location, note, and date.
+The server already returns them sorted by most recent — render them in order.
 ```
 
+### TODO 3 — Species profile card
+
 ```text
-Add a count of total sightings per species and display it as a simple
-leaderboard at the top of the page. Show which species has been spotted
-the most.
+When a species is selected in #species-select, show a profile card with:
+- Species name
+- Conservation status, using a badge with the matching CSS class:
+  .status-critical, .status-endangered, .status-vulnerable, or .status-nothreat
+- One fun fact
+
+Use the SPECIES_DATA object already in public/app.js — it has the conservation
+status and fun fact for each species.
 ```
 
-### Stretch Prompt
+### TODO 4 — Leaderboard
 
 ```text
-Add a "conservation tips" page that lists five practical things young people
-can do to help native species in their area — like building a wētā hotel,
-planting native trees, or keeping cats indoors at night. Each tip should have
-a title, a short description, and a difficulty rating (easy, medium, hard).
+Add a leaderboard showing total sightings count per species, sorted highest
+to lowest. Calculate from the sightings list already loaded in JavaScript —
+no new API call needed. Show as a simple list, e.g. "Tūī — 5 sightings".
+```
+
+### TODO 5 (Stretch) — Conservation tips page
+
+```text
+Add a "Conservation Tips" section listing 5 practical actions people can
+take to protect native species (e.g. plant native trees, keep cats indoors
+at night, build a wētā hotel). Each tip has:
+- A title
+- A short description
+- A difficulty rating: Easy / Medium / Hard
+
+Use a card layout with the difficulty shown as a small badge.
 ```
 
 ---
 
 ## ♻️ School Sustainability
 
-Help schools track and reduce their environmental impact through waste audits, energy monitoring, and sustainability challenges.
+**Project:** [Green School Tracker](/hackathon/resources#-starter-projects) — a waste audit tool that helps a school measure and reduce its waste over time.
 
-### Starter Prompt
+### TODO 1 — Waste audit form
 
 ```text
-Create a school waste audit tool. Users can log a waste audit entry by
-selecting the waste type (landfill, recycling, compost, or e-waste),
-entering the estimated weight in kilograms, and picking the date. Show
-all entries in a table sorted by date with columns for waste type, weight,
-and date.
+Add a form to log a waste audit entry with these fields:
+- Waste type (dropdown: Landfill, Recycling, Compost, E-waste)
+- Weight in kg (number input — accept decimals)
+- Date (date input)
+- Submit button
+
+When submitted, POST the data (weight as a number, not a string) to
+/api/entries and refresh the audit table.
 ```
 
-### Iteration Prompts
+### TODO 2 — Audit table
 
 ```text
-Add a summary section above the table that shows the total weight for each
-waste type. Highlight the waste type with the highest total so the school
-can see where to focus their efforts.
+In public/app.js, fetch entries from GET /api/entries and display them in
+a table sorted by date (most recent first). Columns: Date | Waste Type |
+Weight (kg). Apply the matching CSS class to the waste type cell:
+- Landfill → .type-landfill
+- Recycling → .type-recycling
+- Compost → .type-compost
+- E-waste → .type-ewaste
 ```
 
+### TODO 3 — Waste summary
+
 ```text
-Add a "sustainability challenge" feature. Display a weekly challenge at the
-top of the page like "This week: try to reduce landfill waste by 10%."
-Include a progress indicator that compares this week's landfill total to
-last week's.
+Add a summary section above the audit table showing total weight per waste
+type. Highlight the waste type with the highest total — bold it or add a ⭐.
+Calculate from the entries list already loaded in JavaScript.
 ```
 
+### TODO 4 — Class leaderboard
+
 ```text
-Add the ability to record which class submitted each waste audit entry.
-Include a "class" dropdown field in the form and add a leaderboard showing
-which class has logged the most compost by weight.
+Add a "Class" dropdown to the audit form (Room 1, Room 2, Room 3, Room 4).
+Include the class with each posted entry. Add a leaderboard showing which
+class has contributed the most compost weight, ranked highest to lowest.
 ```
 
-### Stretch Prompt
+### TODO 5 (Stretch) — Sustainability score
 
 ```text
-Add a "sustainability score" for the school. Calculate it based on the
-percentage of total waste that goes to compost or recycling instead of
-landfill. Display the score as a percentage with a colour indicator —
-green for above 60%, orange for 30–60%, and red for below 30%. Show a
-trend arrow indicating if the score is improving or declining compared
-to last week.
+Calculate a sustainability score: percentage of total waste weight going to
+compost or recycling vs landfill. Display it as a progress bar using the
+existing .score-bar and .score-fill CSS classes. Colour the bar based on
+the score:
+- 0–40% → red
+- 41–70% → orange
+- 71–100% → green
+
+Add a trend arrow (↑ or ↓) showing whether the score improved compared to
+the previous week.
 ```
 
 ---
 
-## 🪄 Adapt to Your Problem {#-adapt-to-your-problem}
+## 🪄 Make It Your Own
 
-These prompts are templates, not scripts. The best results come when you rewrite them to fit **your specific problem and your persona**.
+After you've built a TODO, ask Kiro to **adapt it for your persona**. For example:
 
-For example, take the Ocean Pollution starter prompt and adapt it for Mere (14, wants to know if her local beach is safe to swim at):
+> *"Make this form feel friendly for a 14-year-old who's new to the app. Use brighter colours, bigger buttons, and a friendlier tone in the labels."*
 
-> *"Build a single-page web app for a 14-year-old who walks to the beach with friends on weekends. Show a list of 5 Auckland beaches with a 'Safe to swim?' status for each one. Add a button to report pollution at a beach. Use bright, friendly colours and big text."*
+Or:
 
-Same idea, but it's *your* idea now. Always:
+> *"Add a small message at the top of the page that says 'Built by Team \[name\] for \[persona\]'."*
 
-- **Name your persona** in the prompt — *"Build for a teenager who…"*
-- **Name the place** — *"Auckland beaches"*, *"a Hamilton high school"*
-- **Pick one feature** — don't ask for five things at once
+That's where your team's project starts becoming uniquely yours.
 
 ## ✨ Quick Prompt Tips
 
-A vague prompt gets a vague result. **Be specific.** A good prompt tells Kiro three things:
+When writing your own prompts (instead of copying from above), be **specific**. A good prompt tells Kiro:
 
 1. **What** you're building (a form, a list, a map, a chart?)
 2. **What data** it needs (which fields?)
-3. **Where** it goes (new page, below the header, sidebar?)
+3. **Where** it goes (new section, above the list, in the sidebar?)
 
 | ❌ Vague | ✅ Specific |
 |---|---|
-| "Make a page about pollution" | "Add a page that lists 5 Auckland beaches with a 'Safe to swim?' status for each one" |
-| "Add a map" | "Add a map showing a pin for each beach using its latitude and longitude" |
-| "Fix the form" | "The date field doesn't save when I submit — fix the date picker" |
+| "Add a search" | "Add a search input above the listings grid that filters cards by name as the user types" |
 | "Make it look better" | "Use ocean blue as the page background and make the headings white and larger" |
+| "Fix the form" | "The date field doesn't save when I submit — fix the date picker" |
 
 :::tip Iterate, don't overthink
 Your first prompt doesn't have to be perfect. Start small, see what Kiro builds, then refine. That's how real developers work too.
