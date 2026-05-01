@@ -130,6 +130,18 @@ module.exports = {
     },
   },
 
+  // Safety stub: ensure `window.gtag` is always defined, so the gtag plugin's
+  // clientModule never throws "window.gtag is not a function" — covers ad
+  // blockers, offline dev, and stale .docusaurus cache after a prod build.
+  // The real gtag (loaded by the plugin in production) overwrites this.
+  headTags: [
+    {
+      tagName: 'script',
+      attributes: {},
+      innerHTML: `window.dataLayer=window.dataLayer||[];window.gtag=window.gtag||function(){window.dataLayer.push(arguments);};`,
+    },
+  ],
+
   scripts: [
     {
       src: '/js/console-clue.js',

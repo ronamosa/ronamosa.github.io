@@ -166,3 +166,221 @@ p {
     font-size: 1rem;
   }
 }
+
+/* ------------------------------------------------------------------
+ * Hackathon — "Part of Techweek26" badge (above title)
+ * ------------------------------------------------------------------ */
+.techweek-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.45rem 0.95rem;
+  margin: 0.5rem 0 1rem;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 0, 109, 0.35);
+  border-radius: 999px;
+  text-decoration: none !important;
+  color: #F5F3F4;
+  transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+}
+
+.techweek-badge:hover {
+  transform: translateY(-2px);
+  border-color: rgba(255, 0, 109, 0.7);
+  background: rgba(255, 0, 109, 0.08);
+  text-decoration: none !important;
+}
+
+.techweek-badge-label {
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.7;
+  font-weight: 600;
+}
+
+.techweek-badge img {
+  height: 18px;
+  width: auto;
+  display: block;
+}
+
+/* ------------------------------------------------------------------
+ * Hackathon — hero with intro copy + Kiro mascot attribution badge
+ * ------------------------------------------------------------------ */
+.kiro-hero {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin: 0.5rem 0 2rem;
+}
+
+.kiro-hero-copy {
+  flex: 1 1 auto;
+  min-width: 0;
+  margin: 0;
+}
+
+.kiro-mascot-link {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none !important;
+  color: var(--ifm-color-secondary);
+  transition: transform 0.25s ease;
+}
+
+.kiro-mascot-link:hover {
+  transform: translateY(-3px);
+  text-decoration: none !important;
+}
+
+.kiro-mascot-link:hover .kiro-mascot {
+  box-shadow: 0 12px 28px rgba(132, 70, 255, 0.5);
+  transform: rotate(-3deg);
+}
+
+.kiro-mascot {
+  width: 96px;
+  height: 96px;
+  display: block;
+  border-radius: 20px;
+  object-fit: cover;
+  box-shadow: 0 6px 18px rgba(132, 70, 255, 0.3);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.kiro-mascot-caption {
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.6;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+@media screen and (max-width: 700px) {
+  .kiro-hero {
+    flex-direction: column-reverse;
+    align-items: flex-start;
+    gap: 1.25rem;
+  }
+
+  .kiro-mascot {
+    width: 80px;
+    height: 80px;
+  }
+}
+
+/* ------------------------------------------------------------------
+ * Hackathon — partner logo strip
+ * ------------------------------------------------------------------ */
+.hackathon-partners {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  align-items: center;
+  justify-content: center;
+  margin: 1.5rem 0 2rem;
+  padding: 1.5rem 1rem;
+  background: #ffffff;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.hackathon-partners img {
+  max-height: 64px;
+  width: auto;
+  max-width: 220px;
+  object-fit: contain;
+  filter: none;
+  transition: transform 0.2s ease;
+}
+
+.hackathon-partners img:hover {
+  transform: scale(1.04);
+}
+
+@media screen and (max-width: 600px) {
+  .hackathon-partners img {
+    max-height: 48px;
+    max-width: 160px;
+  }
+}
+
+/* ------------------------------------------------------------------
+ * Hackathon — big colourful role buttons (Student / Mentor / IT)
+ * ------------------------------------------------------------------ */
+.hackathon-role-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.25rem;
+  margin: 2rem 0 2.5rem;
+}
+
+.hackathon-role-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1.75rem 1.5rem;
+  border-radius: 16px;
+  color: #ffffff !important;
+  text-decoration: none !important;
+  background: linear-gradient(135deg, #555 0%, #222 100%);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
+  min-height: 200px;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.hackathon-role-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.5);
+  filter: brightness(1.08);
+  text-decoration: none !important;
+}
+
+.hackathon-role-card .role-icon {
+  font-size: 2.6rem;
+  line-height: 1;
+  margin-bottom: 0.75rem;
+}
+
+.hackathon-role-card .role-title {
+  font-size: 1.35rem;
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+  color: #ffffff;
+}
+
+.hackathon-role-card .role-blurb {
+  font-size: 0.95rem;
+  opacity: 0.95;
+  margin-bottom: 1rem;
+  flex-grow: 1;
+}
+
+.hackathon-role-card .role-cta {
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.hackathon-role-card.student {
+  background: linear-gradient(135deg, #FF6B6B 0%, #C9184A 100%);
+}
+
+.hackathon-role-card.mentor {
+  background: linear-gradient(135deg, #06B6D4 0%, #0E7490 100%);
+}
+
+.hackathon-role-card.it {
+  background: linear-gradient(135deg, #8B5CF6 0%, #4338CA 100%);
+}

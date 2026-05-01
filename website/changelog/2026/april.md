@@ -1,5 +1,5 @@
 ---
-sidebar_position: 1
+sidebar_position: 2
 title: April 2026
 description: Changes and additions for April 2026
 ---
