@@ -9,6 +9,9 @@ description: Changes and additions for May 2026
 ## 📅 2026-05-01
 
 ### 📚 Documentation Updates
+- **Hackathon starter projects published**: Replaced the placeholder repo and ZIP links on `resources.mdx` with the real GitHub repos and ZIP downloads — 🌊 Water Watch NZ (ocean pollution), 💛 How Are You Today? (youth wellbeing), 🍲 Kai Share (community food sharing), 🦎 Kaitiaki Watch (native species), and ♻️ Green School Tracker (school sustainability). Aligned the school-sustainability emoji to ♻️ across the homepage and prompt library to match.
+  - **Link**: [Resources & Links](/hackathon/resources)
+
 - **Troubleshooting page corrections**: Fixed the Sign-In section that previously contradicted the rest of the docs — it now correctly leads with "use a personal `@gmail.com`, not your school email" as the most common fix, naming the *"This app is blocked by your administrator"* error explicitly. App-data clearing demoted to a reversible "last resort" with rename-not-delete. Merged "Kiro Not Responding" and "Kiro Running Slowly" into one **🐢 Kiro Slow or Frozen** section, aligned the ARM section's Linux mention with the Setup Guide, and softened the "starter project" reset advice.
   - **Link**: [Troubleshooting](/hackathon/troubleshooting)
 
