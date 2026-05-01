@@ -9,6 +9,17 @@ description: Changes and additions for May 2026
 ## 📅 2026-05-01
 
 ### 📚 Documentation Updates
+- **Hackathon Day Guide rewrite**: Rebuilt `get-started.mdx` to mirror the actual runsheet (Empathise → Ideate → Prototype → Test → Pitch) instead of an 8-step Kiro-only walkthrough
+  - Added a schedule table aligned to the 9.30am–2.30pm runsheet
+  - Introduced a worked-example persona (Mere, 14) that threads through prompts, ideation, and pitch advice
+  - Added a "What is Kiro?" mini-explainer with **Vibe vs Spec** mode guidance (recommends Vibe for the day)
+  - Replaced the prescriptive `requirements.md` / TODO flow with flexible starter-or-blank-canvas guidance
+  - Added "Working as a team on one laptop" (driver/navigator + keyboard rotation)
+  - Added "When Kiro gets it wrong" 2-try escalation rule
+  - Strengthened pitch guidance: story-first, live demo > screenshots, screenshots as backup
+  - Light cultural framing (kia ora, rangatahi, kia kaha)
+  - **Link**: [Hackathon Day Guide](/hackathon/get-started)
+
 - **Hackathon Device Setup Guide rewrite**: Restructured `setup.mdx` to be IT-admin-friendly and logically ordered
   - Reframed the page around "1 device per team, not per student" with a tip callout
   - Added clearer **Minimum System Requirements** table (macOS / Windows x64 only; ChromeOS not supported; Linux noted as out-of-scope)
