@@ -8,6 +8,16 @@ description: Changes and additions for May 2026
 
 ## 📅 2026-05-01
 
+### 📚 Documentation Updates
+- **Hackathon Device Setup Guide rewrite**: Restructured `setup.mdx` to be IT-admin-friendly and logically ordered
+  - Reframed the page around "1 device per team, not per student" with a tip callout
+  - Added clearer **Minimum System Requirements** table (macOS / Windows x64 only; ChromeOS not supported; Linux noted as out-of-scope)
+  - Folded the Kiro sign-in walkthrough into Step 5 of the **Pre-Event Checklist** (with `kiro-firstboot.png` and `kiro-signin-options.png` screenshots) so install precedes sign-in instructions
+  - Recommended personal `@gmail.com` over school Workspace accounts to avoid third-party OAuth blocks
+  - Added Step 6 smoke test with the annotated Kiro IDE screenshot (`kiro-interface.png`) so IT admins know exactly which panel to type into
+  - Added **On the Day — Network Notes** section clarifying that Deloitte's network is pre-configured for Kiro and `npm`
+  - **Link**: [Device Setup Guide](/hackathon/setup)
+
 ### 🔧 Bug Fixes
 - **`window.gtag is not a function` runtime error**: Added a `window.gtag` safety stub via `headTags` in `docusaurus.config.js` so the Google gtag plugin's clientModule never throws when the real gtag script is missing (ad blocker, offline dev, or stale `.docusaurus` cache after switching between dev and prod builds). The real gtag overrides the stub once it loads in production.
 

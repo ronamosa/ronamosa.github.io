@@ -1,6 +1,6 @@
 ---
 title: Device Setup Guide
-description: "Pre-event checklist for school IT administrators to prepare student devices for the Tech for Good Hackathon 2026."
+description: "Pre-event checklist for school IT to prepare student devices for the Tech for Good Hackathon 2026 — install Kiro, Node.js, and verify sign-in."
 sidebar_position: 2
 sidebar_label: Device Setup
 ---
@@ -10,14 +10,18 @@ import TabItem from '@theme/TabItem';
 
 # 💻 Device Setup Guide
 
-This guide is for school IT administrators preparing student devices before hackathon day. Complete every step below to ensure a smooth experience on the day.
+This guide is for school IT preparing student devices before hackathon day. The goal is simple: **at least one working laptop per hackathon team** with Kiro installed and signed in.
+
+:::tip Aim for 1 device per team, not per student
+Each team is usually 3–4 students sharing one laptop. Most schools will only need to set up a handful of devices. No need for mass deployment — focus on getting a small number ready and tested well.
+:::
 
 :::warning ChromeOS Not Supported
-Kiro does **not** run on ChromeOS (Chromebooks). Devices must run **macOS**, **Windows (x64)**, or **Linux**. If your school primarily uses Chromebooks, contact the event organisers to discuss alternatives.
+Kiro does **not** run on ChromeOS (Chromebooks). Devices must run **macOS** or **Windows (x64)**. If your school primarily uses Chromebooks, contact the event organisers to discuss alternatives.
 :::
 
 :::info Kiro Is Free
-Kiro is completely free to use. Students do **not** need an AWS account — they sign in with a Google account only.
+Kiro is completely free to use. Students sign in with a personal Google (Gmail) account — no AWS account, credit card, or special setup needed.
 :::
 
 ## 🖥️ Minimum System Requirements
@@ -26,14 +30,17 @@ Kiro is completely free to use. Students do **not** need an AWS account — they
 |---|---|
 | **macOS** | Intel or Apple Silicon (M1/M2/M3+) |
 | **Windows** | 64-bit (x64) — ARM is **not** supported |
-| **Linux** | 64-bit (x64), modern distribution |
-| **Internet** | Stable connection required — Kiro needs internet access for all AI interactions |
+| **Internet** | Stable connection — Kiro needs internet for all AI interactions |
 | **Browser** | Google Chrome (latest stable version) |
 | **Disk space** | At least 2 GB free for Kiro, Node.js, and the starter project |
 
+:::note Linux not covered
+Linux works with Kiro but is not covered by this setup guide. If a student needs to use a Linux machine on the day, contact the event organisers ahead of time.
+:::
+
 ## ✅ Pre-Event Checklist
 
-Complete these steps on every student device **before** hackathon day.
+Complete these steps on every device that will be used by a hackathon team. **Do this at least one week before your event date** so there's time to fix issues.
 
 ### 1️⃣ Download and install Kiro
 
@@ -63,73 +70,99 @@ Node.js is required to run student projects locally.
 <Tabs>
   <TabItem value="macos" label="macOS" default>
 
-  1. Download the macOS installer (.pkg) from [nodejs.org](https://nodejs.org/).
+  1. Download the macOS installer (`.pkg`) from [nodejs.org](https://nodejs.org/).
   2. Run the installer and accept the defaults.
-  3. Verify the installation by opening **Terminal** and running:
+  3. Verify by opening **Terminal** and running:
 
   ```bash
   node --version
   ```
 
-  You should see a version number (e.g., `v22.x.x`).
+  You should see a version number (e.g. `v22.x.x`).
 
   </TabItem>
   <TabItem value="windows" label="Windows">
 
-  1. Download the Windows installer (.msi) from [nodejs.org](https://nodejs.org/).
+  1. Download the Windows installer (`.msi`) from [nodejs.org](https://nodejs.org/).
   2. Run the installer and accept the defaults.
-  3. Verify the installation by opening **Command Prompt** and running:
+  3. Verify by opening **Command Prompt** and running:
 
   ```bash
   node --version
   ```
 
-  You should see a version number (e.g., `v22.x.x`).
+  You should see a version number (e.g. `v22.x.x`).
 
   </TabItem>
 </Tabs>
 
 ### 3️⃣ Ensure Google Chrome is installed
 
-Students will use Chrome to preview their apps. If Chrome is not already installed, download it from [google.com/chrome](https://www.google.com/chrome/).
+Students will use Chrome to preview their apps. If Chrome isn't already installed, grab it from [google.com/chrome](https://www.google.com/chrome/).
 
-### 4️⃣ Download the starter project repo
+### 4️⃣ Download the starter project
 
-Download the starter project ZIP file so it is ready for students on the day.
+:::note Starter repo — Placeholder
+The event organisers will provide a starter project ZIP closer to the event date. Once available, download the ZIP onto each device and extract it to a known location (e.g. the desktop) so students can find it on the day.
 
-:::note
-Starter repo ZIP links will be provided by the event organisers before the hackathon. See the [Resources](/hackathon/resources) page for download links once available.
+See the [Resources](/hackathon/resources) page for download links once published.
 :::
 
 ### 5️⃣ Open Kiro and sign in with Google
 
-1. Launch Kiro on the device.
-2. Click **Sign in with Google** and complete the sign-in flow using a test Google account.
-3. Confirm that Kiro opens to the welcome screen without errors.
+Launch Kiro for the first time. You'll see a welcome screen — click the green **Sign in** button:
 
-:::tip
-Use a shared test Google account for pre-event verification. Students will sign in with their own accounts on the day.
+![Kiro welcome screen with the KIRO wordmark, the tagline "An agentic IDE that helps you do your best work", and a green Sign in button](/img/hackathon/kiro-firstboot.png)
+
+Kiro will then ask how to sign in. Click **Google** and sign in with a personal `@gmail.com` account:
+
+![Kiro sign-in options page with Google highlighted, plus GitHub, Builder ID, and Your organization options](/img/hackathon/kiro-signin-options.png)
+
+Confirm Kiro opens to the main editor without errors. That's it — no AWS account, no credit card, no extra setup.
+
+:::tip Use a personal Gmail, not a school Workspace account
+Many school Google Workspace tenants block third-party OAuth apps by default, which causes "This app is blocked by your administrator" errors. A standard personal `@gmail.com` avoids that whole class of problem.
 :::
 
-## 🧪 Verify It Works
+:::tip Use a shared test account during setup
+Use one shared Gmail to verify everything works on each device, then sign out. Students will sign in with their own personal Gmail accounts on the day.
+:::
 
-After completing the checklist, run through these steps to confirm everything is working:
+:::note Other sign-in options
+Kiro also supports **GitHub**, **AWS Builder ID**, and **Your organization** SSO. If a student genuinely can't use a personal Google account, contact the event organisers and we'll help you choose the next-best option.
+:::
 
-1. **Open Kiro** — launch the application and confirm it loads without errors.
-2. **Type a test prompt** — open the Kiro chat panel and type a simple prompt such as:
+### 6️⃣ Run a smoke test
+
+Confirm Kiro is actually working end-to-end. The Kiro window is split into a few areas:
+
+![Kiro IDE interface showing the Editor in the centre, the Chat Panel on the right with an "Ask a question or describe a task" input, the Views sidebar on the left, and the Status Bar across the bottom](/img/hackathon/kiro-interface.png)
+
+1. In the **Chat Panel** on the right (the box labelled *"Ask a question or describe a task..."*), type a simple prompt:
 
    ```text
    Say hello
    ```
 
-3. **Confirm a response** — verify that Kiro returns a response in the chat panel. This confirms the device has internet connectivity and Kiro's AI features are functional.
+2. Press **Enter** and wait a few seconds.
+3. Confirm Kiro returns a response in the chat. This proves the device has internet, Kiro is signed in, and the AI features are functional.
 
-If any step fails, check the [Troubleshooting](/hackathon/troubleshooting) page for common fixes.
+:::warning Test every device
+Repeat this smoke test on **every** device you've set up. One untested device is one team that can't start on the day.
+:::
+
+If anything fails at any step, head to the [Troubleshooting](/hackathon/troubleshooting) page.
+
+## 🌐 On the Day — Network Notes
+
+The hackathon runs at Deloitte offices, where the network is configured to allow everything Kiro and `npm` need. **You don't need to coordinate with Deloitte's network team.**
+
+The work that matters is making sure Kiro is **installed and signed in** at the school *before* the day. Once Kiro is on the device and authenticated, it will work fine on the Deloitte Wi-Fi.
 
 ## 📞 Support
 
-:::note Support Contact — Placeholder
-For pre-event setup issues, contact:
+:::note Organiser Contact — Placeholder
+For pre-event setup issues, contact the event organisers:
 
 - **Email:** `[placeholder — event organiser email]`
 - **Phone:** `[placeholder — event organiser phone]`
