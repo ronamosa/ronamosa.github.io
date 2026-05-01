@@ -9,6 +9,9 @@ description: Changes and additions for May 2026
 ## 📅 2026-05-01
 
 ### 📚 Documentation Updates
+- **Troubleshooting page corrections**: Fixed the Sign-In section that previously contradicted the rest of the docs — it now correctly leads with "use a personal `@gmail.com`, not your school email" as the most common fix, naming the *"This app is blocked by your administrator"* error explicitly. App-data clearing demoted to a reversible "last resort" with rename-not-delete. Merged "Kiro Not Responding" and "Kiro Running Slowly" into one **🐢 Kiro Slow or Frozen** section, aligned the ARM section's Linux mention with the Setup Guide, and softened the "starter project" reset advice.
+  - **Link**: [Troubleshooting](/hackathon/troubleshooting)
+
 - **Resources page tightened**: Consolidated `resources.mdx` from 87 lines to 49 — merged the duplicate Starter Repos and ZIP Downloads tables into one (Git repo + ZIP columns), combined the three single-bullet "documents" sections (Pitch Template / Judging Criteria / Event Schedule) into one Event Documents list, replaced five repeated placeholder admonitions with a single upfront note, aligned theme emojis with the Prompt Library, and added a "Need help?" pointer to the setup guide's contact section.
   - **Link**: [Resources & Links](/hackathon/resources)
 

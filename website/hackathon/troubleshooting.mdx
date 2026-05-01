@@ -59,49 +59,44 @@ Your computer might block Kiro because it was downloaded from the internet. The 
 
 **Problem:** Kiro won't install or crashes immediately on a Windows device.
 
-**Why:** Kiro requires **Windows 64-bit (x64)**. Windows on ARM devices (such as some Surface Pro models and Snapdragon-powered laptops) is not supported.
+**Why:** Kiro requires **Windows 64-bit (x64)**. Windows on ARM (some Surface Pro models, Snapdragon-powered laptops) is not supported.
 
-**Fix:**
+**Fix:** Switch to a different computer running **macOS** (Intel or Apple Silicon) or **Windows 64-bit (x64)**. Linux works too but isn't covered by the [Setup Guide](/hackathon/setup).
 
-There is no workaround for ARM devices. You'll need to switch to a different computer that runs:
-
-- **macOS** (Intel or Apple Silicon)
-- **Windows 64-bit (x64)**
-- **Linux 64-bit (x64)**
-
-:::tip
-Not sure if your device is ARM? On Windows, press `Win + I` to open Settings, go to **System → About**, and look at **System type**. It should say "64-bit operating system, x64-based processor". If it says "ARM-based processor", the device won't work with Kiro.
+:::tip How to check if your device is ARM
+On Windows, press `Win + I` → **System → About** and look at **System type**. *"64-bit operating system, x64-based processor"* = good. *"ARM-based processor"* = won't work with Kiro.
 :::
 
-## 🥶 Kiro Not Responding
+## 🐢 Kiro Slow or Frozen
 
-**Problem:** Kiro is open but the chat isn't responding, or the interface is frozen.
+**Problem:** Kiro takes ages to respond, the chat won't move, or the whole interface is frozen.
 
 **Fix:**
 
-1. **Wait 30 seconds.** Kiro sometimes takes a moment to process, especially if the AI is generating a large response.
-2. **Check your internet connection.** Kiro needs an active internet connection for all AI features. Try loading a website in Chrome to confirm you're online.
-3. **Restart Kiro.** Close the application completely and reopen it:
+1. **Wait 30 seconds.** Big responses can take a moment. Don't interrupt.
+2. **Check your internet.** Kiro needs an active connection for every AI request — try loading a website in Chrome to confirm you're online.
+3. **Close other apps.** Browsers with lots of tabs, video calls, and big downloads compete for memory. Close anything you don't need.
+4. **Restart Kiro.** Quit and reopen:
 
 <Tabs>
   <TabItem value="macos" label="macOS" default>
 
   1. Press `Cmd + Q` to quit Kiro.
-  2. If it won't quit, open **Activity Monitor** (search for it in Spotlight), find "Kiro", select it, and click the **X** button to force quit.
+  2. If it won't quit, open **Activity Monitor** (search in Spotlight), find "Kiro", and force-quit it.
   3. Reopen Kiro from Applications.
 
   </TabItem>
   <TabItem value="windows" label="Windows">
 
   1. Press `Alt + F4` to close Kiro.
-  2. If it won't close, press `Ctrl + Shift + Esc` to open **Task Manager**, find "Kiro" in the list, right-click it, and select **End task**.
-  3. Reopen Kiro from the Start menu or desktop shortcut.
+  2. If it won't close, press `Ctrl + Shift + Esc` to open **Task Manager**, right-click "Kiro", and select **End task**.
+  3. Reopen Kiro from the Start menu.
 
   </TabItem>
 </Tabs>
 
-:::tip
-If Kiro keeps freezing after a restart, try closing other applications to free up memory. Kiro works best when your computer isn't running too many things at once.
+:::tip If the whole room is slow
+It's almost certainly a network issue, not a device issue. Tell your mentor — there may be a better network to switch to.
 :::
 
 ## 🌐 App Preview Not Working in the Browser
@@ -138,64 +133,46 @@ Don't panic. You have options:
 
 2. **Use Undo.** If the change just happened, press `Cmd + Z` (Mac) or `Ctrl + Z` (Windows) multiple times in the affected file to undo recent edits.
 
-3. **Start fresh from the starter project.** If things are really messed up:
-   1. Close the project in Kiro.
-   2. Make a copy of the original starter project folder (your teacher or mentor should have a clean copy).
-   3. Open the fresh copy in Kiro and start again.
+3. **Start fresh from a clean copy.** If things are really messed up, ask your mentor — they can help you reset to a fresh copy of the project (or scaffold a new one with Kiro) without losing your team's work.
 
 :::tip
-This is why starting small matters. If you make one change at a time and test after each one, it's much easier to figure out what went wrong.
-:::
-
-## 🐢 Kiro Running Slowly
-
-**Problem:** Kiro takes a long time to respond, the interface feels sluggish, or AI responses are very slow.
-
-**Fix:**
-
-1. **Close other applications.** Browsers with lots of tabs, video calls, and other heavy apps compete for memory and CPU. Close anything you don't need.
-2. **Close unused files in Kiro.** If you have many files open in the editor, close the ones you're not actively working on.
-3. **Check your internet speed.** Slow AI responses usually mean a slow internet connection. Ask your teacher or IT admin if there's a better network to connect to.
-4. **Restart Kiro.** A fresh start can clear out any built-up memory usage. Save your work, close Kiro, and reopen it.
-
-:::tip
-If the whole room is experiencing slow responses, it's likely a network issue rather than a device issue. Let your mentor or teacher know — they may be able to help with the Wi-Fi.
+This is why starting small matters. One change at a time, test after each one — it's much easier to spot what broke.
 :::
 
 ## 🔑 Unable to Sign In
 
-**Problem:** Kiro asks you to sign in but the sign-in page won't load, gives an error, or loops back without signing you in.
+**Problem:** Kiro asks you to sign in but the sign-in page won't load, gives an error like *"This app is blocked by your administrator"*, or loops without signing you in.
 
-**Fix:**
+**Fix (try in this order):**
 
-1. **Check your internet connection.** Sign-in requires an active connection. Try loading [google.com](https://google.com) in Chrome to confirm you're online.
-2. **Use Google sign-in.** Kiro uses Google accounts. Make sure you're clicking **Sign in with Google** and using a valid Google account (like a school Gmail account).
-3. **Clear the sign-in state.** If sign-in is stuck in a loop:
+1. **Use a personal `@gmail.com`, not your school email.** This is the #1 cause of sign-in failures. School Google Workspace accounts often block third-party apps like Kiro. A standard personal Gmail almost always works.
+
+2. **Check your internet.** Try loading [google.com](https://google.com) in Chrome. If that fails, you're offline.
+
+3. **Try a different Google account.** If you're already signed in to multiple Google accounts in your browser, Kiro may be picking the wrong one. Sign out of all of them first, then try again.
+
+4. **Network blocking auth.** If multiple students hit this at the same time, the school network may be blocking sign-in. Tell your mentor — they can flag it to IT or the event organisers. The domains that need to be allowed are `kiro.dev` and Google sign-in.
+
+5. **Last resort — clear Kiro's sign-in state.** Only do this if all of the above failed and your mentor agrees:
 
 <Tabs>
   <TabItem value="macos" label="macOS" default>
 
-  1. Quit Kiro completely (`Cmd + Q`).
+  1. Quit Kiro (`Cmd + Q`).
   2. Open **Finder**, press `Cmd + Shift + G`, and paste: `~/Library/Application Support/Kiro`
-  3. Delete the contents of this folder (or rename it to `Kiro-backup`).
+  3. Rename the folder to `Kiro-backup` (so you can put it back if needed).
   4. Reopen Kiro and try signing in again.
 
   </TabItem>
   <TabItem value="windows" label="Windows">
 
-  1. Close Kiro completely (`Alt + F4`).
-  2. Open **File Explorer**, paste this into the address bar: `%APPDATA%\Kiro`
-  3. Delete the contents of this folder (or rename it to `Kiro-backup`).
+  1. Close Kiro (`Alt + F4`).
+  2. Open **File Explorer**, paste into the address bar: `%APPDATA%\Kiro`
+  3. Rename the folder to `Kiro-backup` (so you can put it back if needed).
   4. Reopen Kiro and try signing in again.
 
   </TabItem>
 </Tabs>
-
-4. **Try a different Google account.** If your school account has restrictions, try a personal Gmail account.
-
-:::tip
-If multiple students are having sign-in issues at the same time, the school network may be blocking Kiro's authentication service. Ask your IT admin to check if `kiro.dev` and Google sign-in domains are allowed through the firewall.
-:::
 
 ## 🆘 Still Stuck?
 
