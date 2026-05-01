@@ -9,6 +9,9 @@ description: Changes and additions for May 2026
 ## 📅 2026-05-01
 
 ### 📚 Documentation Updates
+- **Prompt Library refresh**: Reframed `prompts.mdx` to acknowledge that facilitators provide the day's issue list (themes are inspiration, not fixed). Added an "Adapt to your problem" section using the Mere persona to show students how to rewrite generic starter prompts through their own user. Cut the duplicated "What Makes a Good Prompt?" tutorial down to a 12-line vague-vs-specific cheat sheet matching the mentor guide.
+  - **Link**: [Prompt Library](/hackathon/prompts)
+
 - **Mentor Playbook tightened**: Replaced the wall-of-text minute-by-minute build script with a scannable role briefing — Your Role, Do/Don't table, day-at-a-glance with one-line jobs per stage, prompt-coaching cheatsheet, judging criteria, and an escalation triage. Cut from ~370 lines to ~85.
   - **Link**: [Mentor Guide](/hackathon/mentor-guide)
 

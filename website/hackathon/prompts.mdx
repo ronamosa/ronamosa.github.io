@@ -7,16 +7,14 @@ sidebar_label: Prompt Library
 
 # 📚 Prompt Library
 
-Not sure what to type into Kiro? No worries — we've got you covered. Below you'll find ready-to-use prompts for each of the five hackathon themes. Just copy a prompt, paste it into the Kiro chat, and watch your app come to life.
+Stuck on what to type into Kiro? Use these as a starting point. Each theme below has:
 
-Each theme has three types of prompts:
+- **Starter prompt** — your first feature.
+- **Iteration prompts** — what to add next.
+- **Stretch prompt** — if your team is flying.
 
-- **Starter prompt** — gets your first feature up and running.
-- **Iteration prompts** — add more features or improve what you've already built.
-- **Stretch prompt** — a bigger challenge if your team is flying through it.
-
-:::tip Pick a Theme That Matters to You
-The best projects come from teams who genuinely care about the problem. Pick the theme your team feels most passionate about — you'll have way more fun building it.
+:::note These are inspiration, not the official issue list
+On the day, your facilitator will share the actual list of social and environmental issues your team can pick from. The themes below are example shapes — find the closest one and **adapt it to your problem and your persona** (see [Adapt to your problem](#-adapt-to-your-problem) below).
 :::
 
 ---
@@ -228,45 +226,35 @@ to last week.
 
 ---
 
-## ✨ What Makes a Good Prompt?
+## 🪄 Adapt to Your Problem {#-adapt-to-your-problem}
 
-The prompts you write make a huge difference in what Kiro builds for you. Here's the secret: **be specific**. Tell Kiro exactly what you want, who it's for, and what it should look like.
+These prompts are templates, not scripts. The best results come when you rewrite them to fit **your specific problem and your persona**.
 
-### Good Prompt vs Vague Prompt
+For example, take the Ocean Pollution starter prompt and adapt it for Mere (14, wants to know if her local beach is safe to swim at):
 
-Here's a vague prompt that won't give you great results:
+> *"Build a single-page web app for a 14-year-old who walks to the beach with friends on weekends. Show a list of 5 Auckland beaches with a 'Safe to swim?' status for each one. Add a button to report pollution at a beach. Use bright, friendly colours and big text."*
 
-```text
-Make a page about pollution.
-```
+Same idea, but it's *your* idea now. Always:
 
-What's wrong with it? Kiro doesn't know what kind of page, what information to show, or what the user should be able to do. It'll guess — and the guess probably won't match what you had in mind.
+- **Name your persona** in the prompt — *"Build for a teenager who…"*
+- **Name the place** — *"Auckland beaches"*, *"a Hamilton high school"*
+- **Pick one feature** — don't ask for five things at once
 
-Now here's a good prompt that gives Kiro everything it needs:
+## ✨ Quick Prompt Tips
 
-```text
-Create a page that shows a list of beach pollution reports. Each report
-should display the beach name, the type of pollution, the date it was
-reported, and a severity badge (green for low, orange for medium, red
-for high). Add a filter dropdown at the top so users can filter reports
-by pollution type.
-```
+A vague prompt gets a vague result. **Be specific.** A good prompt tells Kiro three things:
 
-See the difference? The good prompt tells Kiro:
+1. **What** you're building (a form, a list, a map, a chart?)
+2. **What data** it needs (which fields?)
+3. **Where** it goes (new page, below the header, sidebar?)
 
-- **What to build** — a page with a list of reports
-- **What data to show** — beach name, pollution type, date, severity
-- **How it should look** — colour-coded badges
-- **What it should do** — filter by pollution type
+| ❌ Vague | ✅ Specific |
+|---|---|
+| "Make a page about pollution" | "Add a page that lists 5 Auckland beaches with a 'Safe to swim?' status for each one" |
+| "Add a map" | "Add a map showing a pin for each beach using its latitude and longitude" |
+| "Fix the form" | "The date field doesn't save when I submit — fix the date picker" |
+| "Make it look better" | "Use ocean blue as the page background and make the headings white and larger" |
 
-### Quick Tips for Writing Prompts
-
-1. **Start with what you want to see.** "Create a form that..." or "Add a section that shows..." gives Kiro a clear starting point.
-2. **Name the fields and details.** Instead of "add some inputs", say "add fields for name, email, and a message."
-3. **Describe the behaviour.** "When the user clicks Submit, clear the form and show a success message."
-4. **Mention the look if it matters.** "Use a card layout" or "make the header blue" helps Kiro style things the way you want.
-5. **One thing at a time.** Big prompts with five features can get messy. Ask for one or two things, check the result, then ask for more.
-
-:::tip Iterate, Don't Overthink
-Your first prompt doesn't have to be perfect. Start with something simple, see what Kiro builds, and then refine it. That's how real developers work too.
+:::tip Iterate, don't overthink
+Your first prompt doesn't have to be perfect. Start small, see what Kiro builds, then refine. That's how real developers work too.
 :::
