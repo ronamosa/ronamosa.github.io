@@ -9,6 +9,9 @@ description: Changes and additions for May 2026
 ## 📅 2026-05-01
 
 ### 📚 Documentation Updates
+- **Mentor Playbook tightened**: Replaced the wall-of-text minute-by-minute build script with a scannable role briefing — Your Role, Do/Don't table, day-at-a-glance with one-line jobs per stage, prompt-coaching cheatsheet, judging criteria, and an escalation triage. Cut from ~370 lines to ~85.
+  - **Link**: [Mentor Guide](/hackathon/mentor-guide)
+
 - **Hackathon Day Guide rewrite**: Rebuilt `get-started.mdx` to mirror the actual runsheet (Empathise → Ideate → Prototype → Test → Pitch) instead of an 8-step Kiro-only walkthrough
   - Added a schedule table aligned to the 9.30am–2.30pm runsheet
   - Introduced a worked-example persona (Mere, 14) that threads through prompts, ideation, and pitch advice
