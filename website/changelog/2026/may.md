@@ -9,6 +9,9 @@ description: Changes and additions for May 2026
 ## 📅 2026-05-01
 
 ### 📚 Documentation Updates
+- **Resources page tightened**: Consolidated `resources.mdx` from 87 lines to 49 — merged the duplicate Starter Repos and ZIP Downloads tables into one (Git repo + ZIP columns), combined the three single-bullet "documents" sections (Pitch Template / Judging Criteria / Event Schedule) into one Event Documents list, replaced five repeated placeholder admonitions with a single upfront note, aligned theme emojis with the Prompt Library, and added a "Need help?" pointer to the setup guide's contact section.
+  - **Link**: [Resources & Links](/hackathon/resources)
+
 - **Prompt Library refresh**: Reframed `prompts.mdx` to acknowledge that facilitators provide the day's issue list (themes are inspiration, not fixed). Added an "Adapt to your problem" section using the Mere persona to show students how to rewrite generic starter prompts through their own user. Cut the duplicated "What Makes a Good Prompt?" tutorial down to a 12-line vague-vs-specific cheat sheet matching the mentor guide.
   - **Link**: [Prompt Library](/hackathon/prompts)
 
