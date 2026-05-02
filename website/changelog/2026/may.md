@@ -6,6 +6,13 @@ description: Changes and additions for May 2026
 
 # May 2026
 
+## 📅 2026-05-02
+
+### 📚 Documentation Updates
+- **Hackathon setup guide — starter projects published**: All 5 starter repos are now public, so the placeholder under Step 4 has been replaced with direct ZIP download links for each project (Water Watch NZ, How Are You Today?, Kai Share, Kaitiaki Watch, Green School Tracker). Added a tip suggesting IT admins pre-run `npm install` during setup if they have internet, so day-of startup is instant.
+  - **Link**: [Device Setup Guide → Step 4](/hackathon/setup)
+- **Placeholder audit complete**: The only placeholders remaining across the hackathon section are organiser contact details (`setup.mdx`, `index.mdx`) and three Google Docs/Sheets links on the Resources page (pitch template, judging criteria, event schedule).
+
 ## 📅 2026-05-01
 
 ### 📚 Documentation Updates
