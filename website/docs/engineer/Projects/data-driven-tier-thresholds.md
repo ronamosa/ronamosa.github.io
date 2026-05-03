@@ -162,6 +162,12 @@ new NodejsFunction(this, 'DashboardApiFn', {
 
 The dashboard API then exposes them in `/api/summary` so the frontend can compute progress without hardcoding anything. Adding a new GENPOP channel is now a one-line CDK change that propagates automatically.
 
+### The dashboard after the changes
+
+![GLXTCH dashboard tier-status panel for a member-tier user showing rolling-window progress to Senior: Heartbeat (last 8w) 4/6, Messages GENPOP (last 8w) 210/60, Reactions (lifetime) 376/100, Channel breadth GENPOP (last 8w) 6/3, plus a 4-week heartbeat history strip](/img/projects/glxtch/tier-status-dashboard.png)
+
+The mix is visible at a glance: lifetime **Reactions** sits alongside the three rolling 8-week metrics (Heartbeat, Messages GENPOP, Channel breadth GENPOP), and the heartbeat history strip below shows the last four weeks all met. This user is well past the volume gates (210 messages vs 60 needed; 6 channels vs 3) but is gated on **Heartbeat 4/6** — they need two more weekly heartbeats inside the rolling 8w window to make Senior. That's exactly the segmentation I wanted: volume isn't enough, recency-of-presence is the real gate. The `/status` Discord command renders the same numbers from the same helpers, so users see the same answer wherever they look.
+
 ---
 
 ## What I found
