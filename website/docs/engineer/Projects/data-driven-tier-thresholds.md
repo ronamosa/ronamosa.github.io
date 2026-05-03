@@ -12,7 +12,7 @@ keywords:
   - cdk typescript dynamodb
   - rolling window vs lifetime counter
   - discord bot promotion logic
-tags: [ai, discord, aws, dynamodb, lambda, cdk, data-analysis]
+tags: [discord, aws, dynamodb, lambda, cdk, data-analysis]
 image: /img/social-card.jpg
 ---
 
@@ -353,5 +353,5 @@ Run the new evaluator against your real DynamoDB and check who would be promoted
 ---
 
 :::tip[The actual lesson]
-The starting thresholds were a **calibrated guess**, which is the right call when you have no data — you can't measure what hasn't happened yet. The mistake wasn't picking numbers from intuition; it was leaving the placeholders running unexamined once real usage had accumulated. **Schedule the recalibration when you ship a gut-feel number.** Three weeks of activity was enough to derive honest thresholds — I just had to actually sit down with the data instead of treating the placeholders as decisions.
+The starting thresholds were a **calibrated guess**, which is the right call when you have no data — you can't measure what hasn't happened yet. But as soon as you have some data, three weeks of activity was enough to derive honest thresholds, so don't forget to review things often.
 :::
