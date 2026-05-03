@@ -24,6 +24,10 @@ This post was co-written with AI assistance. All technical testing, troubleshoot
 
 GLXTCH is a Discord bot I run for the TechNesians server. It has a four-rung tier ladder — `lobby → member → senior → principal` — where each rung unlocks deeper channels, and members earn promotions through sustained activity rather than tenure or boost status. Every promotion is gated by a set of numerical thresholds (messages, reactions, channel breadth, weekly heartbeats), evaluated by a Lambda that runs every Saturday at 11:00 UTC.
 
+![Discord role list for the GLXTCH tier ladder: Lobby and Member each with a 1-week no-activity rule, Senior with 2 weeks grace, Principal with 4 weeks grace, and Server Booster as an orthogonal perk role](/img/projects/glxtch/tier-roles.png)
+
+The tiers as they show up in Discord. Each role has its own grace period before the inactivity Lambda starts ticking missed-week counters — Lobby and Member get a single week, Senior gets 2 weeks, Principal gets 4. Server Booster is an orthogonal perk role (XP multiplier + extra grace), not a rung on the ladder. The grace numbers come back later in the post when an inactivity bug starts re-kicking ghosts.
+
 When I first stood it up, I picked thresholds by gut feel. After ~3 weeks of real usage I sat down to ask whether the numbers were doing what I wanted. They weren't, in two distinct ways. This post is the journey from "are these the right numbers?" to "the system now segments my community correctly, and I caught a separate latent bug along the way."
 
 :::tip[TL;DR]
