@@ -1,8 +1,8 @@
 ---
-title: "Tracking Claude Code Spend — Building the Measurement (Bedrock vs Pro Max, Part 1)"
-description: "Part 1: built the system to measure Claude Code spend across Claude Pro Max (flat subscription) and AWS Bedrock (pay-per-token). The comparison itself comes in Part 2 once Bedrock usage volume catches up. This post covers the build, the AWS Marketplace billing surprise, and what early data already does and doesn't say."
-keywords: ["claude code", "claude pro max", "aws bedrock", "anthropic api", "cost tracking", "llm token economics", "marketplace billing", "application inference profile", "cost explorer", "prompt caching"]
-tags: ["claude-code", "claude-pro", "aws-bedrock", "cost-tracking", "prompt-caching"]
+title: "Claude Code Cost Tracking: AWS Bedrock vs Pro Max (Part 1)"
+description: "Compare Claude Code costs on AWS Bedrock vs Pro Max. Covers the Marketplace billing trap, Cost Explorer queries for third-party models, and cache economics."
+keywords: ["claude code cost", "claude code pricing", "aws bedrock pricing", "claude pro max", "bedrock vs pro max", "aws marketplace billing", "cost explorer claude", "prompt caching cost", "claude code aws", "token cost comparison"]
+tags: ["ai", "aws", "claude", "bedrock", "cost-tracking", "prompt-caching"]
 ---
 
 :::info 🤖 AI Collaboration
@@ -13,15 +13,20 @@ structure, clarity, and documentation formatting.
 
 ## Overview
 
-A few days ago I posted about [standing up my own Claude through AWS Bedrock](TK-link-to-apr-30-linkedin) so I could keep my personal data inside my own AWS perimeter. The trust problem from the day before — about whether to give Anthropic my personal email and calendar — was solved by engineering, not by changing my mind.
+A few days ago I posted about [standing up my own Claude through AWS Bedrock](https://www.linkedin.com/posts/ron-amosa_yesterday-i-said-i-know-what-i-need-to-do-share-7455390945119907842-IXns) so I could keep my personal data inside my own AWS perimeter. The trust problem from the day before — about whether to give Anthropic my personal email and calendar — was solved by engineering, not by changing my mind.
 
-A reader asked the obvious follow-up: *what are the token economics like now? Bedrock pay-per-token versus your Claude Pro Max sub — which is actually cheaper for what you're doing?*
+A reader asked the obvious follow-up:
+> *what are the token economics like now? Bedrock pay-per-token versus your Claude Pro Max sub — which is actually cheaper for what you're doing?*
 
-I didn't have a clean answer. I had vibes. So this morning I built the system that will let me answer it properly.
+I didn't have a clean answer, I'd been more interested in getting it up & running, but I definitely needed to know.
 
-This post is **Part 1**: the system itself, what it measures, and the surprises I hit putting it together. Subscription versus per-token is hard to eyeball, especially when prompt caching is in play — cache reads cost 10% of base input, but you can do millions of them in a long session, and any comparison that ignores caching is fiction.
+So this morning I built the system that will let me answer it properly.
 
+This post is **Part 1**: the system itself, what it measures, and a few surprises I hit putting it together. Subscription versus per-token is hard to eyeball, especially when prompt caching is in play — cache reads cost 10% of base input, but you can do millions of them in a long session, and any comparison that ignores caching is fiction.
+
+:::caution[Data isn't apples-to-apples yet]
 The comparison numbers it produces today are **skewed**: I've only been running through `claude-bedrock` for about a week, while my Pro Max sessions go back 90 days. The system is real. The verdict isn't, yet.
+:::
 
 **Part 2** lands when I have enough Bedrock usage at the same workload shape to make the comparison honest. Until then, this post shows how the measurement works, the things I learned about AWS billing's exposure of Claude on Bedrock, and what the early data already does and doesn't say.
 
@@ -39,7 +44,7 @@ A small Python utility under `~/.claude/cost-tracking/`:
 
 Symlinked into `~/bin/` so it's just `claude-cost --days 30` from anywhere.
 
-A real run from my account, last 90 days. The Pro side covers 90 days of accumulated Claude Code work; the Bedrock side reflects only ~1 week of usage since I switched it on. Read accordingly — the dollar totals don't compare equivalent volumes. The Pro paid figure is set explicitly (`--pro-paid 112.51`) from my actual Anthropic invoices over the window — see the plan-history note below the output.
+A real run from my account, last 90 days. The Pro side covers 90 days of accumulated Claude Code work; the Bedrock side reflects only ~1 week of usage since I switched it on. **Read accordingly** — the dollar totals don't compare equivalent volumes. The Pro paid figure is set explicitly (`--pro-paid 112.51`) from my actual Anthropic invoices over the window — see the plan-history note below the output.
 
 ```
 $ claude-cost --days 90 --no-tag --pro-paid 112.51
@@ -85,7 +90,11 @@ Verdict:
 | Auto-recharge top-ups (Feb 25 + Mar 6) | overage | — | $20.29 |
 | **Total paid in window** | | | **$112.51** |
 
-I was on regular Pro at $20/month for ~70 of the 90 days; I only upgraded to Max 5x on April 20 — about a week before I built this. The $112.51 figure is what actually hit my card across the window. The script's default still amortises a flat $100/mo Max 5x rate (`PRO_MONTHLY_USD = 100.00`), which would overstate Pro spend at $300 for any 90-day window where you weren't on Max 5x throughout. The `--pro-paid` flag lets you plug in the real number from invoices, which is the only way to get an honest "what did this actually cost me" comparison if your plan changed during the window.
+I was on regular Pro at $20/month for ~70 of the 90 days; I only upgraded to Max 5x on April 20 — about a week before I built this. The $112.51 figure is what actually hit my card across the window. The script's default still amortises a flat $100/mo Max 5x rate (`PRO_MONTHLY_USD = 100.00`), which would overstate Pro spend at $300 for any 90-day window where you weren't on Max 5x throughout.
+
+:::tip[Use real invoice numbers]
+If your plan changed during the measurement window, use `--pro-paid` with your actual Anthropic invoice total. It's the only way to get an honest "what did this actually cost me" comparison instead of relying on the script's default flat-rate amortisation.
+:::
 
 ---
 
@@ -174,7 +183,9 @@ Claude 3 Haiku (Amazon Bedrock Edition)           $0.13
 
 So the right query has **no service filter**; it groups by SERVICE × USAGE_TYPE and post-filters in Python to anything matching "Claude" + "Amazon Bedrock Edition". Non-Claude Bedrock spend (Titan, AgentCore, etc.) goes into a separate "other" bucket so it doesn't pollute the comparison.
 
-This caught me out for a solid hour. If you're building anything that touches Bedrock billing for third-party models, **don't filter by `SERVICE = "Amazon Bedrock"`.** It will silently exclude the thing you're trying to measure.
+:::warning[Marketplace billing trap]
+This caught me (aka Claude Code) out at first, but I remembered this detail from looking around cost explorer before. If you're building anything that touches Bedrock billing for third-party models, **don't filter by `SERVICE = "Amazon Bedrock"`**, otherwise you'll easily miss it.
+:::
 
 ### Cost Explorer doesn't expose the 5m vs 1h cache-write split
 
@@ -184,7 +195,7 @@ Practical effect: my Pro side can show 5m/1h breakdown, but the Bedrock side jus
 
 ### Application Inference Profile tag propagation to Marketplace is unverified
 
-AWS published Application Inference Profiles (AIPs) as the canonical way to attribute Bedrock spend across teams or apps. The flow:
+AWS published [Application Inference Profiles (AIPs)](https://docs.aws.amazon.com/bedrock/latest/userguide/inference-profiles.html) as the canonical way to attribute Bedrock spend across teams or apps. The flow:
 
 1. Create an AIP that wraps a system inference profile or foundation model.
 2. Tag it with `Project=<something>`, `Team=<whatever>`.
@@ -252,9 +263,10 @@ If you want to run this on your own account:
 
 ### 1. Pull current Anthropic prices
 
-Source: <https://platform.claude.com/docs/en/docs/about-claude/pricing>. Per-MTok rates change occasionally; date your constants and refresh when Anthropic announces price changes.
+Source: [Anthropic Pricing](https://docs.anthropic.com/en/docs/about-claude/pricing). Per-MTok rates change occasionally; date your constants and refresh when Anthropic announces price changes.
 
 Cache rate multipliers (relative to base input):
+
 - 5m cache write: 1.25× base input
 - 1h cache write: 2.00× base input
 - Cache read: 0.10× base input
@@ -317,7 +329,9 @@ aws bedrock create-inference-profile \
 
 Then activate the tag in the AWS Billing console under **Cost allocation tags**. 24–48h propagation before it appears in Cost Explorer.
 
-> ⚠️ The tag propagation question above isn't settled for Marketplace-billed models like Claude. Don't commit to AIP-based tagging as your only attribution mechanism until you've verified empirically.
+:::warning
+The tag propagation question above isn't settled for Marketplace-billed models like Claude. Don't commit to AIP-based tagging as your only attribution mechanism until you've verified empirically.
+:::
 
 ---
 
