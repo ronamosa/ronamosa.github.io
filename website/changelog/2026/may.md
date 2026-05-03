@@ -9,6 +9,8 @@ description: Changes and additions for May 2026
 ## 📅 2026-05-03
 
 ### 📚 Documentation Updates
+- **Tuning a Discord Tier System From Data, Not Vibes**: New doc walking through how I recalibrated GLXTCH's tier promotion thresholds from real DynamoDB activity data — swapped lifetime counters for rolling 8w/16w windows across the Lambda, `/status` command, and dashboard, centralised channel IDs in CDK, and uncovered a downstream bug where the evaluate Lambda was re-kicking already-departed members. Includes a one-shot reconcile script pattern (dry-run by default), a TL;DR, and pull-out admonitions for the rolling-vs-lifetime rule, the Discord delete idempotency gotcha, and the vacation interaction known issue.
+  - **Link**: [Tuning a Discord Tier System From Data, Not Vibes](/docs/engineer/AI/data-driven-tier-thresholds)
 - **Claude Code Cost Tracking — Bedrock vs Pro Max (Part 1)**: New doc covering the build of a Python CLI that compares Claude Code spend across Claude Pro Max (flat subscription) and AWS Bedrock (pay-per-token). Includes the AWS Marketplace billing surprise, Cost Explorer query patterns for third-party models, cache economics breakdown, and an Application Inference Profile tag propagation test.
   - **Link**: [Tracking Claude Code Spend — Bedrock vs Pro Max, Part 1](/docs/engineer/AI/claude-code-cost-tracking-bedrock-vs-pro-max)
 
