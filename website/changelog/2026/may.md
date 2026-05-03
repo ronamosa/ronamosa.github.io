@@ -6,6 +6,14 @@ description: Changes and additions for May 2026
 
 # May 2026
 
+## 📅 2026-05-03
+
+### 📚 Documentation Updates
+- **Claude Code Cost Tracking — Bedrock vs Pro Max (Part 1)**: New doc covering the build of a Python CLI that compares Claude Code spend across Claude Pro Max (flat subscription) and AWS Bedrock (pay-per-token). Includes the AWS Marketplace billing surprise, Cost Explorer query patterns for third-party models, cache economics breakdown, and an Application Inference Profile tag propagation test.
+  - **Link**: [Tracking Claude Code Spend — Bedrock vs Pro Max, Part 1](/docs/engineer/AI/claude-code-cost-tracking-bedrock-vs-pro-max)
+
+---
+
 ## 📅 2026-05-02
 
 ### 📚 Documentation Updates
