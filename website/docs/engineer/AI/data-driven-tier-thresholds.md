@@ -352,6 +352,6 @@ Run the new evaluator against your real DynamoDB and check who would be promoted
 
 ---
 
-:::tip[The lesson I keep relearning]
-**Picking numbers from data you already have is almost always cheaper than picking them from intuition and then re-tuning.** The data was sitting in DynamoDB the whole time; I just hadn't asked it. The whole journey took about a day of work, most of which was the data analysis and the threshold conversations with myself — the actual code changes were small.
+:::tip[The actual lesson]
+The starting thresholds were a **calibrated guess**, which is the right call when you have no data — you can't measure what hasn't happened yet. The mistake wasn't picking numbers from intuition; it was leaving the placeholders running unexamined once real usage had accumulated. **Schedule the recalibration when you ship a gut-feel number.** Three weeks of activity was enough to derive honest thresholds — I just had to actually sit down with the data instead of treating the placeholders as decisions.
 :::
