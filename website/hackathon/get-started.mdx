@@ -134,6 +134,20 @@ Your facilitator will tell you which starter matches the problem you picked (e.g
 Tell your mentor or check [Troubleshooting](/hackathon/troubleshooting).
 :::
 
+### See your app live, right next to the code
+
+You can preview your app **inside Kiro** so you don't have to flick between windows every time you change something:
+
+1. Press `Cmd + Shift + P` (Mac) or `Ctrl + Shift + P` (Windows) to open the Command Palette.
+2. Type `Simple Browser: Show` and press Enter.
+3. Paste `http://localhost:3000` and press Enter.
+
+The browser opens as a tab next to your code. Now when Kiro changes something, just refresh the Simple Browser tab and watch your app update live. Keep **Chrome** open too — that's where you'll run your final pitch demo.
+
+:::tip Why two browsers?
+Simple Browser is great for the build phase (code + preview side by side). Chrome is better for your pitch — bigger window, full dev tools, and it's the browser judges will be looking at.
+:::
+
 ### Read `requirements.md`
 
 Open `requirements.md` in Kiro (it's at the top of the file list). It tells you:
@@ -166,16 +180,30 @@ After you hit Enter, Kiro will:
 
 **Don't type while it's working** — interrupting can confuse it. You'll know it's done when the chat stops updating. Then refresh `http://localhost:3000` in Chrome to see the change.
 
-### Make it your own
+### Make it your own — ship 2 of your own features
 
-Once a TODO is built, ask Kiro to **adapt it for your persona**. For example:
+The TODOs are just the core. Once you've got them running, **your team needs to add at least two features you ideate yourselves** — things that matter to the persona you built during Empathise and Ideate.
+
+This is where your project stops being "the starter everyone got" and starts being yours. Judges notice.
+
+How to do it:
+
+1. As a team, look at your persona. What would actually help *them* that the TODOs don't cover?
+2. Pick two ideas. Keep them small — one button, one field, one view.
+3. Write your own prompt for each (see the [Prompt Library → Quick Prompt Tips](/hackathon/prompts#-quick-prompt-tips) if you're stuck).
+4. Paste into Kiro's Chat Panel, refresh Simple Browser, check it works.
+
+For example, for a youth wellbeing app where the persona is a shy 14-year-old:
 
 ```text
-Make this form feel friendly for a 14-year-old. Use brighter colours,
-bigger buttons, and friendlier labels.
+Add a small message at the top of the page that says
+"Your check-ins are private to you." Style it in a soft grey so it
+feels calm, not alarming.
 ```
 
-That's where your team's project starts becoming uniquely yours.
+:::tip This is the ideation → build link
+All the work you did in Empathise and Ideate lands here. Your two features are how you prove your team understood the problem, not just copied the starter.
+:::
 
 ### Working as a team on one laptop
 

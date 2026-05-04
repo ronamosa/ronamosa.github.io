@@ -116,6 +116,23 @@ It's almost certainly a network issue, not a device issue. Tell your mentor — 
 If you see a message like "This site can't be reached" or "ERR_CONNECTION_REFUSED", the app server probably isn't running. Go back to Kiro and ask it to start the development server.
 :::
 
+## 🤖 "Invalid Model ID" Error in Kiro Chat
+
+**Problem:** You send a prompt in Kiro's Chat Panel and get back an error like *"Invalid model ID"* instead of a real response.
+
+**Why:** Kiro couldn't reach a working AI model with the current setting. This is usually a transient backend issue, not a problem with your prompt or your project.
+
+**Fix:**
+
+1. **Switch the model manually.** In the Chat Panel, look for the model selector near the input box. If it's set to **Auto**, change it to a specific model (e.g. Claude Sonnet). Try your prompt again.
+2. **Resend the prompt.** Sometimes the next request just works.
+3. **Restart Kiro.** Quit (`Cmd + Q` on Mac, `Alt + F4` on Windows) and reopen. Send the prompt again.
+4. **Check your internet.** Kiro needs a working connection for every AI request.
+
+:::tip Flag it if it's room-wide
+If multiple teams hit this at the same time, tell your mentor — it's likely an upstream outage and the AWS technical mentor will want to know.
+:::
+
 ## ↩️ Resetting Broken Code
 
 **Problem:** You asked Kiro to make changes and now the app is broken — errors everywhere, nothing works.

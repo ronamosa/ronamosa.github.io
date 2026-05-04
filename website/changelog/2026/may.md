@@ -6,6 +6,18 @@ description: Changes and additions for May 2026
 
 # May 2026
 
+## 📅 2026-05-05
+
+### 📚 Documentation Updates
+- **Round-1 user-testing feedback applied to hackathon docs**: Actioned feedback from pre-event Mac setup testing — added explicit Apple Silicon vs Intel guidance to the setup guide (Apple menu → About This Mac → Chip line), introduced an in-Kiro **Simple Browser** "see your app live" step in the Hackathon Day Guide so students can preview their app next to the code without alt-tabbing, and upgraded the "Make It Your Own" section from a soft suggestion to an explicit requirement — every team now ships the starter TODOs **plus at least two persona-driven features they ideate themselves**. Mirrored the "2 own features" expectation in the Prompt Library, the Mentor Playbook day-at-a-glance, and the judging criteria so facilitators, mentors, and students see the same story.
+  - **Links**: [Device Setup](/hackathon/setup) · [Hackathon Day Guide](/hackathon/get-started) · [Prompt Library](/hackathon/prompts) · [Mentor Guide](/hackathon/mentor-guide)
+
+### 🔧 Bug Fixes
+- **Troubleshooting: "Invalid Model ID" error**: Added a new troubleshooting entry covering the transient Kiro backend error where the Chat Panel returns *"Invalid model ID"* when the model selector is on **Auto**. Fix is to switch to a specific model (e.g. Claude Sonnet), resend the prompt, restart Kiro if it persists, and flag to the AWS technical mentor if multiple teams hit it at once (likely upstream outage).
+  - **Link**: [Troubleshooting → Invalid Model ID](/hackathon/troubleshooting)
+
+---
+
 ## 📅 2026-05-03
 
 ### 📚 Documentation Updates
