@@ -133,21 +133,21 @@ Add a self-contained `/hackathon` documentation section to the existing Docusaur
     - Wrap the block in a `:::note` admonition so placeholders are visible during review; include a reminder line that the placeholders must be replaced before go-live
     - _Requirements: 3.9, 13.1, 13.2, 13.3, 13.5, 13.6_
 
-- [ ] 10. Update the Student Guide (schedule, Icebreaker, Trustworthy AI)
-  - [ ] 10.1 Replace the schedule table in `website/hackathon/get-started.mdx` with the full 13-row Order of Events
+- [x] 10. Update the Student Guide (schedule, Icebreaker, Trustworthy AI)
+  - [x] 10.1 Replace the schedule table in `website/hackathon/get-started.mdx` with the full 13-row Order of Events
     - Stage names and time ranges must match Requirement 5 AC 5 exactly (9:00–9:30 School registration through 2:30–2:45 Schools depart)
     - Preserve the Student Guide's friendly tone and keep stage emoji/labels where they help readability
     - _Requirements: 5.5_
-  - [ ] 10.2 Remove scavenger hunt references and rename the warm-up to "Icebreaker" in `website/hackathon/get-started.mdx`
+  - [x] 10.2 Remove scavenger hunt references and rename the warm-up to "Icebreaker" in `website/hackathon/get-started.mdx`
     - Walk every heading, paragraph, and table cell on the page and remove any mention of a "scavenger hunt"
     - Ensure the warm-up stage is described consistently with the 9:40–10:25 am "Icebreaker and problem exploration" block from the Order of Events
     - _Requirements: 5.6, 5.7_
-  - [ ] 10.3 Add a Trustworthy AI subsection with a stable anchor in `website/hackathon/get-started.mdx`
+  - [x] 10.3 Add a Trustworthy AI subsection with a stable anchor in `website/hackathon/get-started.mdx`
     - Add `## Trustworthy AI {#trustworthy-ai}` so fragment links from the Landing Page and Mentor Guide resolve
     - Cover the four Requirement 11 AC 2 topics as clearly labelled callouts or subheadings: honesty about AI use, verification of AI-generated output, privacy and safety with prompts, what to do if something feels wrong
     - Place the subsection before the Build with Kiro stage so students encounter it before they start prompting
     - _Requirements: 11.1, 11.2, 11.5_
-  - [ ] 10.4 Add a Trustworthy AI pointer admonition before the Build with Kiro stage in `website/hackathon/get-started.mdx`
+  - [x] 10.4 Add a Trustworthy AI pointer admonition before the Build with Kiro stage in `website/hackathon/get-started.mdx`
     - Use `:::tip` or `:::warning`, whichever flows with the surrounding copy
     - Direct students to read the Trustworthy AI subsection before prompting the Kiro AI Chatbot
     - Place it immediately before or at the top of the Build with Kiro stage
