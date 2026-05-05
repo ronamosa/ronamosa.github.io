@@ -6,6 +6,14 @@ description: Changes and additions for May 2026
 
 # May 2026
 
+## 📅 2026-05-06
+
+### 📚 Documentation Updates
+- **Round-2 stakeholder feedback applied to hackathon docs (Phase 2)**: Locked the Hackathon Day Guide schedule to the official 13-row Order of Events (registration 9:00 through schools depart 2:45), renamed the morning warm-up from a "welcome & warm-up with scavenger hunt" to **Icebreaker & problem exploration** across both the student and mentor guides, and extended the build stage to 60 minutes under its new name **Design & prototyping with Kiro**. Added a dedicated **[Judging Guide](/hackathon/judging-guide)** for judges, mentors, and curious students covering the six assessment criteria (Problem & Impact, Solution, Use of Kiro, Feasibility, Creativity & Innovation, Communication), how to give positive and constructive feedback (2-positives-to-1-suggestion ratio, example phrasings), body language, and supporting student confidence. Introduced a **Trustworthy AI** subsection inline on the Hackathon Day Guide with a stable `#trustworthy-ai` anchor, covering honesty about AI use, verifying AI output, keeping personal information out of prompts, and what to do if something feels wrong — with a warning admonition at the top of the build stage pointing students there before they prompt Kiro. Added an "I'm a Judge" audience entry card to the landing page, reframed the Mentor Playbook's "What Judges Look For" into a tight summary plus link to the Judging Guide, and added a "Reinforcing Trustworthy AI" coaching note for mentors. Replaced the generic organiser-contact placeholder on both the landing page and the Device Setup Guide with a two-entry **Regional Points of Contact** block (Auckland & Hamilton TBC; Wellington/Shane TBC). Updated the Hynds Foundation partner designation to **Funding and Programme Delivery Partner** (they're now also prize co-funders alongside Deloitte and AWS).
+  - **Links**: [Hackathon Day Guide](/hackathon/get-started) · [Judging Guide](/hackathon/judging-guide) · [Mentor Playbook](/hackathon/mentor-guide) · [Landing Page](/hackathon/) · [Device Setup](/hackathon/setup)
+
+---
+
 ## 📅 2026-05-05
 
 ### 📚 Documentation Updates

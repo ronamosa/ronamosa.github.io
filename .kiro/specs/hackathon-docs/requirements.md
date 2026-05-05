@@ -2,9 +2,9 @@
 
 ## Introduction
 
-This feature adds a self-contained `/hackathon` documentation section to the existing Docusaurus v3 site at uncommonengineer.com. The section supports the "Tech for Good Hackathon 2026" — a youth hackathon for high school students across three New Zealand cities (Wellington, Hamilton, Auckland), run in partnership with AWS, Deloitte, and the Hynds Foundation. Students work in teams to pick a social or environmental problem and build a tech solution using Kiro, AWS's spec-driven AI IDE.
+This feature adds a self-contained `/hackathon` documentation section to the existing Docusaurus v3 site at uncommonengineer.com. The section supports the "Tech for Good Hackathon 2026" — a youth hackathon for high school students across three New Zealand cities (Wellington, Hamilton, Auckland), run in partnership with AWS (technology partner), Deloitte (programme delivery, venue, and mentors), and the Hynds Foundation (funding and programme delivery partner). Students work in teams to pick a social or environmental problem and build a tech solution using Kiro, AWS's spec-driven AI IDE.
 
-The hackathon docs serve three distinct audiences: students (the primary participants), school IT administrators (who prepare devices), and adult mentors/facilitators. The section must be mobile-friendly, use existing Docusaurus features (admonitions, tabs, code blocks), and not modify any existing site content.
+The hackathon docs serve four distinct audiences: students (the primary participants), school IT administrators (who prepare devices), adult mentors/facilitators, and event judges. The section must be mobile-friendly, use existing Docusaurus features (admonitions, tabs, code blocks), and not modify any existing site content. The content must also reinforce the responsible and trustworthy use of AI tools throughout the student and mentor journeys.
 
 ## Glossary
 
@@ -16,6 +16,11 @@ The hackathon docs serve three distinct audiences: students (the primary partici
 - **Troubleshooting_Page**: The page at `/hackathon/troubleshooting` listing common issues and their solutions.
 - **Mentor_Guide**: The page at `/hackathon/mentor-guide` containing the facilitator playbook for adult mentors.
 - **Resources_Page**: The page at `/hackathon/resources` providing links to repos, templates, and external tools.
+- **Judging_Guide**: The dedicated page at `/hackathon/judging-guide` containing authoritative judging guidance — judging purpose, the six assessment criteria, giving positive and constructive feedback, body language, supporting student confidence, and a closing reminder. Shared reference for judges, mentors, and curious students.
+- **Trustworthy_AI_Section**: A substantive subsection within the Student_Guide covering responsible AI use for students, supported by a short mentor-coaching note within the Mentor_Guide. Delivered as inline content rather than as a standalone page.
+- **Regional_Point_Of_Contact**: A named individual with an email address who is the primary contact for a specified city or cities (Auckland, Hamilton, Wellington).
+- **Icebreaker**: The warm-up activity run early in the day to help students get comfortable with their team and Kiro. Corresponds to the "Icebreaker and problem exploration" block on the official Order of Events.
+- **Kiro_AI_Chatbot**: Kiro's built-in AI chatbot interface, used by students during the Design and Prototyping stage to generate and iterate on their solution.
 - **Navbar**: The top navigation bar of the Docusaurus site.
 - **Sidebar**: The left-hand navigation panel specific to the Hackathon_Section.
 - **Docusaurus_Plugin_Instance**: A separate `@docusaurus/plugin-content-docs` configuration that creates an independent docs section with its own content path, route base path, and sidebar.
@@ -50,18 +55,28 @@ The hackathon docs serve three distinct audiences: students (the primary partici
 
 ### Requirement 3: Landing Page
 
-**User Story:** As a hackathon participant, mentor, or IT administrator, I want a landing page that clearly identifies the event and directs me to the content relevant to my role, so that I can quickly find what I need.
+**User Story:** As a hackathon participant, mentor, IT administrator, or judge, I want a landing page that clearly identifies the event and directs me to the content relevant to my role, so that I can quickly find what I need.
+
+**Follow-up note (non-blocking):** An updated Hynds Foundation logo asset is pending delivery from the stakeholder. The existing placeholder image `/img/hackathon/hynds-foundation-logo.png` remains valid until the new asset is supplied.
 
 #### Acceptance Criteria
 
 1. THE Landing_Page SHALL display the event title "Tech for Good Hackathon 2026".
-2. THE Landing_Page SHALL list the partner organisations: AWS, Deloitte, and Hynds Foundation, with placeholder references for partner logos.
-3. THE Landing_Page SHALL display the event dates and cities: Wellington (May 18), Hamilton (May 19), Auckland (May 22).
-4. THE Landing_Page SHALL provide three audience-specific entry points with clear call-to-action labels:
+2. THE Landing_Page SHALL display logos for AWS, Deloitte, and Hynds Foundation, referencing existing placeholder image paths until final assets are supplied.
+3. THE Landing_Page SHALL list the partner organisations grouped by partner type and SHALL state their respective contributions as follows:
+   - AWS — Technology Partner (Kiro, technical expertise, and on-the-day student mentors)
+   - Deloitte — Programme Delivery Partner (programme delivery, design-thinking facilitation, venue, and on-the-day mentors)
+   - Hynds Foundation — Funding and Programme Delivery Partner
+4. THE Landing_Page SHALL describe the winning-school prize contribution towards new tech equipment as jointly funded by Deloitte, AWS, and the Hynds Foundation.
+5. THE Landing_Page SHALL display the event dates and cities: Wellington (May 18), Hamilton (May 19), Auckland (May 22).
+6. THE Landing_Page SHALL provide audience-specific entry points with clear call-to-action labels:
    - "I'm a student" linking to `/hackathon/get-started`
    - "I'm a mentor/facilitator" linking to `/hackathon/mentor-guide`
    - "I'm school IT" linking to `/hackathon/setup`
-5. THE Landing_Page SHALL be the index page of the Hackathon_Section, served at the `/hackathon/` route.
+   - "I'm a judge" linking to the Judging_Guide (see Requirement 12)
+7. THE Landing_Page SHALL be the index page of the Hackathon_Section, served at the `/hackathon/` route.
+8. THE Landing_Page SHALL include a brief introduction to the event's approach to responsible AI use and SHALL link to the Trustworthy_AI_Section within the Student_Guide for the full guidance (see Requirement 11).
+9. THE Landing_Page SHALL surface a Contacts section listing the Regional_Points_Of_Contact with name, region coverage, and email address (see Requirement 13).
 
 ### Requirement 4: Device Setup Guide
 
@@ -74,7 +89,7 @@ The hackathon docs serve three distinct audiences: students (the primary partici
 3. THE Setup_Guide SHALL display a warning Admonition stating that Kiro does not run on ChromeOS and requires macOS, Windows (x64), or Linux.
 4. THE Setup_Guide SHALL list minimum system requirements: macOS (Intel or Apple Silicon), Windows 64-bit (ARM not supported), and stable internet connection.
 5. THE Setup_Guide SHALL state that Kiro requires internet access for AI interactions.
-6. THE Setup_Guide SHALL include a placeholder for support contact details.
+6. THE Setup_Guide SHALL include the Regional_Points_Of_Contact (name, region, email) so IT administrators have a named escalation path per region (see Requirement 13).
 7. THE Setup_Guide SHALL note that Kiro is free and does not require an AWS account.
 8. THE Setup_Guide SHALL be written in a professional, concise tone appropriate for IT administrators.
 
@@ -84,10 +99,28 @@ The hackathon docs serve three distinct audiences: students (the primary partici
 
 #### Acceptance Criteria
 
-1. THE Student_Guide SHALL present numbered steps covering: opening Kiro, opening the team project folder, reading the `requirements.md` file and finding TODO items, opening the Kiro chat and typing a first prompt, watching Kiro generate specs and code, previewing the app in Chrome, iterating by asking Kiro to add features or fix things, and stopping coding when the mentor announces "10 minutes left" to take screenshots for the pitch.
+1. THE Student_Guide SHALL present numbered steps covering: opening Kiro, opening the team project folder, reading the `requirements.md` file and finding TODO items, opening the Kiro_AI_Chatbot and typing a first prompt, watching Kiro generate specs and code, previewing the app in Chrome, iterating by asking Kiro to add features or fix things, and finalising the prototype and refining the pitch during the post-lunch pitch preparation window.
 2. THE Student_Guide SHALL use Admonition callout boxes for tips and warnings throughout the guide.
 3. THE Student_Guide SHALL include a link to the Troubleshooting_Page for when things go wrong.
 4. THE Student_Guide SHALL be written in a friendly, encouraging tone with zero technical jargon.
+5. THE Student_Guide SHALL present the day's schedule as the authoritative Order of Events for the hackathon, with the following stages, times, and durations:
+   1. 9:00–9:30 am — School registration (Deloitte Reception)
+   2. 9:30–9:40 am — Session welcome and introduction (10 min)
+   3. 9:40–10:25 am — Icebreaker and problem exploration (45 min)
+   4. 10:25–11:00 am — Ideation (30 min)
+   5. 11:00–11:10 am — Short break (10 min)
+   6. 11:10 am–12:10 pm — Design and prototyping ideas (60 min)
+   7. 12:10–12:35 pm — Lunch (25 min)
+   8. 12:35–1:00 pm — Final testing and refine pitch presentations (25 min)
+   9. 1:00–1:50 pm — Pitch presentations and judges feedback (50 min, 6 min per team)
+   10. 1:50–2:05 pm — Judges deliberation and student energizer (15 min)
+   11. 2:05–2:15 pm — Winners announced and prizes (10 min)
+   12. 2:15–2:30 pm — Session reflection and wrap-up (15 min)
+   13. 2:30–2:45 pm — Schools depart (15 min)
+6. THE Student_Guide SHALL refer to the warm-up activity as an "Icebreaker" and SHALL describe it in terms consistent with the Requirement 5 Acceptance Criterion 5 Order of Events (that is, as part of the 9:40–10:25 am "Icebreaker and problem exploration" block).
+7. THE Student_Guide SHALL NOT reference any "scavenger hunt" activity.
+8. WHEN describing the Design and Prototyping stage (11:10 am–12:10 pm), THE Student_Guide SHALL identify the Kiro_AI_Chatbot as the tool students use to design, build, and iterate on their solution.
+9. THE Student_Guide SHALL contain a Trustworthy_AI_Section (aligned with Requirement 11) and SHALL include at least one Admonition directing students to read it before they start prompting the Kiro_AI_Chatbot.
 
 ### Requirement 6: Prompt Library
 
@@ -116,15 +149,17 @@ The hackathon docs serve three distinct audiences: students (the primary partici
 #### Acceptance Criteria
 
 1. THE Mentor_Guide SHALL include a role description explaining the mentor's responsibilities during the hackathon.
-2. THE Mentor_Guide SHALL provide a 40-minute playbook with minute-by-minute guidance for the prototype/build phase.
-3. THE Mentor_Guide SHALL include a first-5-minutes triage decision tree to help mentors assess and support teams at the start.
-4. THE Mentor_Guide SHALL include prompt coaching tips for helping students write effective prompts.
-5. THE Mentor_Guide SHALL include conversation starters for engaging with student teams.
-6. THE Mentor_Guide SHALL describe what judges look for in the final presentations.
+2. THE Mentor_Guide SHALL provide stage-by-stage guidance aligned with the Order of Events defined in Requirement 5 Acceptance Criterion 5, and the Mentor_Guide "Day at a Glance" table SHALL use stage names and sequence that match that Order of Events exactly.
+3. THE Mentor_Guide SHALL NOT reference any "scavenger hunt" activity, and the warm-up stage SHALL be labelled "Icebreaker" consistent with the Student_Guide.
+4. THE Mentor_Guide SHALL include a first-5-minutes triage decision tree to help mentors assess and support teams at the start of the build.
+5. THE Mentor_Guide SHALL include prompt coaching tips for helping students write effective prompts for the Kiro_AI_Chatbot.
+6. THE Mentor_Guide SHALL include conversation starters for engaging with student teams.
+7. THE Mentor_Guide SHALL summarise, at a high level, what judges look for in final presentations, and SHALL delegate the authoritative detail to the Judging_Guide by linking to it from a "What Judges Look For" section rather than duplicating that content (aligned with Requirement 12).
+8. THE Mentor_Guide SHALL include a short mentor-coaching note on reinforcing the Trustworthy_AI_Section with student teams during the Design and Prototyping stage, and SHALL link to the Trustworthy_AI_Section on the Student_Guide for the substantive content (aligned with Requirement 11).
 
 ### Requirement 9: Resources Page
 
-**User Story:** As a hackathon participant, mentor, or IT administrator, I want a single page with all relevant links and downloads, so that I can find external resources without searching.
+**User Story:** As a hackathon participant, mentor, IT administrator, or judge, I want a single page with all relevant links and downloads, so that I can find external resources without searching.
 
 #### Acceptance Criteria
 
@@ -144,3 +179,70 @@ The hackathon docs serve three distinct audiences: students (the primary partici
 4. THE Hackathon_Section SHALL render correctly on mobile devices using the existing Docusaurus responsive layout without requiring custom CSS.
 5. THE Hackathon_Section SHALL use only Markdown and MDX file formats for all content pages.
 6. THE Hackathon_Section SHALL NOT introduce any external dependencies beyond those already present in the Docusaurus site.
+
+### Requirement 11: Trustworthy AI Content
+
+**User Story:** As a student or mentor, I want clear guidance on the responsible use of AI tools embedded in the pages I actually read, so that I can act on it without navigating to an extra page.
+
+**Design note:** This content is delivered as a dedicated subsection within the Student_Guide, plus a short mentor-coaching note within the Mentor_Guide — not as a standalone page. Rationale: the Hackathon_Section navigation is already dense, and the people who most need this guidance (students and mentors) are already on the Student_Guide and Mentor_Guide respectively.
+
+#### Acceptance Criteria
+
+1. THE Student_Guide SHALL include a Trustworthy_AI_Section covering the responsible use of AI tools, written in language accessible to high school students.
+2. THE Trustworthy_AI_Section SHALL cover the following topics as subheadings or clearly labelled callouts:
+   - Honesty about AI use — students openly acknowledge in their pitch that their project was built with AI assistance
+   - Verification of AI-generated output — students cross-check facts, code, and claims before relying on them
+   - Privacy and safety with prompts — students do not paste personal information about themselves, teammates, or others into the Kiro_AI_Chatbot
+   - What to do if something feels wrong — students stop and ask a mentor if the AI produces content that feels harmful, unsafe, or inappropriate
+3. THE Mentor_Guide SHALL include a short mentor-coaching note (aligned with Requirement 8 Acceptance Criterion 8) explaining how mentors reinforce the Trustworthy_AI_Section topics with their teams during the Design and Prototyping stage, and SHALL link to the Trustworthy_AI_Section on the Student_Guide as the authoritative content.
+4. THE Landing_Page SHALL include a brief introduction to the event's approach to trustworthy AI use and SHALL link to the Trustworthy_AI_Section on the Student_Guide (aligned with Requirement 3 Acceptance Criterion 8).
+5. THE Trustworthy_AI_Section SHALL use consistent topic names and vocabulary wherever the content is referenced across the Hackathon_Section.
+6. THE Hackathon_Section SHALL NOT publish a separate top-level Trustworthy AI page.
+
+### Requirement 12: Judging Guide Page
+
+**User Story:** As an event judge, mentor, or curious student, I want a dedicated Judging Guide that explains judging purpose, what to look for, how to give constructive feedback, and how to support student confidence, so that judging is fair and students leave feeling good about their presentation.
+
+#### Acceptance Criteria
+
+1. THE Judging_Guide SHALL exist as a dedicated page within the Hackathon_Section at `/hackathon/judging-guide`, with its own autogenerated sidebar entry ordered via `sidebar_position` frontmatter.
+2. THE Judging_Guide SHALL be publicly accessible without authentication so it can be shared with judges, mentors, and interested students.
+3. THE Judging_Guide SHALL open with a Judging Purpose section stating that judging focuses on student learning, effort, and potential impact; judges assess the idea, the thinking, and the clarity rather than visual polish; and judges reward purpose, creativity, and understanding.
+4. THE Judging_Guide SHALL describe What to Look For across six assessment criteria:
+   - Problem and Impact
+   - Solution
+   - Use of Kiro
+   - Feasibility
+   - Creativity and Innovation
+   - Communication
+5. FOR EACH of the six assessment criteria in Requirement 12 Acceptance Criterion 4, THE Judging_Guide SHALL include the descriptive sub-bullets that explain how to assess that criterion (sourced from the judging guidance document supplied by the event organisers).
+6. THE Judging_Guide SHALL include a Giving Positive, Constructive Feedback section covering:
+   - Strengths-first framing
+   - "Next step" language rather than criticism
+   - A two-positives-to-one-suggestion ratio
+   - Feedback on the idea, not the person
+   - Curious questions rather than "gotcha" questions
+   - At least two example phrasings that judges can reuse verbatim
+7. THE Judging_Guide SHALL include a Facial Expressions and Body Language section covering smiling, nodding, engaged posture, and saving critique for the Q&A rather than showing it during the pitch itself.
+8. THE Judging_Guide SHALL include a Supporting Student Confidence section covering a calm, warm, and encouraging tone, thanking teams for presenting, and simple affirmations.
+9. THE Judging_Guide SHALL close with a Final Reminder stating that students will remember how it felt to present more than what was said.
+10. THE Judging_Guide SHALL use Admonitions consistent with the rest of the Hackathon_Section for tips, reminders, and notes.
+11. THE Mentor_Guide SHALL link to the Judging_Guide from its "What Judges Look For" section and SHALL summarise rather than duplicate the judging content (aligned with Requirement 8 Acceptance Criterion 7).
+12. THE Landing_Page SHALL include an "I'm a judge" call-to-action that links to the Judging_Guide (aligned with Requirement 3 Acceptance Criterion 6).
+
+### Requirement 13: Regional Points of Contact
+
+**User Story:** As a school, student, mentor, IT administrator, or judge, I want a named point of contact with an email address for my region, so that I know who to reach for event-related questions.
+
+**Follow-up note (non-blocking):** Actual names and email addresses are pending from the stakeholder. Placeholders are used until the real values are supplied.
+
+#### Acceptance Criteria
+
+1. THE Hackathon_Section SHALL list exactly two named Regional_Points_Of_Contact:
+   - One Regional_Point_Of_Contact covering Auckland and Hamilton (name TBC)
+   - One Regional_Point_Of_Contact covering Wellington, first name "Shane" (surname TBC)
+2. FOR EACH Regional_Point_Of_Contact, THE Hackathon_Section SHALL display the contact's name, the region or regions covered, and an email address.
+3. THE Landing_Page SHALL include the Regional_Points_Of_Contact in a Contacts section (aligned with Requirement 3 Acceptance Criterion 9).
+4. THE Setup_Guide SHALL include the Regional_Points_Of_Contact so IT administrators have a named escalation path per region (aligned with Requirement 4 Acceptance Criterion 6).
+5. WHERE a name or email address for a Regional_Point_Of_Contact is not yet supplied, THE Hackathon_Section SHALL display a visible placeholder (for example, `[name — TBC]` or `[email — TBC]`) so the gap is obvious during review.
+6. THE Regional_Points_Of_Contact placeholder names and email addresses SHALL be replaced with real values before the Hackathon_Section goes live.
