@@ -134,6 +134,43 @@ Your facilitator will tell you which starter matches the problem you picked (e.g
 Tell your mentor or check [Troubleshooting](/hackathon/troubleshooting).
 :::
 
+### See your app live, right next to the code
+
+You can preview your app **inside Kiro** so you don't have to flick between windows every time you change something:
+
+1. Press `Cmd + Shift + P` (Mac) or `Ctrl + Shift + P` (Windows) to open the Command Palette.
+2. Type `>simple` and press Enter when you see **Simple Browser: Show**.
+3. Paste `http://localhost:3000` into the URL prompt and press Enter.
+
+The browser opens as a tab next to your code. When Kiro changes something, refresh the Simple Browser tab and watch your app update live. Keep **Chrome** open too — that's where you'll run your final pitch demo.
+
+<div className="hackathon-screenshots">
+  <a href="/img/hackathon/kiro-simple-browser-1-palette.png" target="_blank" rel="noopener noreferrer">
+    <img src="/img/hackathon/kiro-simple-browser-1-palette.png" alt="Kiro command palette showing '>simple' typed and 'Simple Browser: Show' highlighted as a match" />
+    <figcaption>1. Open the palette, type <code>&gt;simple</code></figcaption>
+  </a>
+  <a href="/img/hackathon/kiro-simple-browser-2-url-prompt.png" target="_blank" rel="noopener noreferrer">
+    <img src="/img/hackathon/kiro-simple-browser-2-url-prompt.png" alt="Simple Browser URL input prompt showing 'https://example.com' placeholder text" />
+    <figcaption>2. Simple Browser asks for a URL</figcaption>
+  </a>
+  <a href="/img/hackathon/kiro-simple-browser-3-url-localhost.png" target="_blank" rel="noopener noreferrer">
+    <img src="/img/hackathon/kiro-simple-browser-3-url-localhost.png" alt="Simple Browser URL input showing 'http://localhost:3000' typed in, ready to press Enter" />
+    <figcaption>3. Type <code>http://localhost:3000</code></figcaption>
+  </a>
+  <a href="/img/hackathon/kiro-simple-browser-4-split.png" target="_blank" rel="noopener noreferrer">
+    <img src="/img/hackathon/kiro-simple-browser-4-split.png" alt="Kiro showing the starter project README on the left and the running 'How Are You Today?' app in Simple Browser on the right, with the terminal below showing npm start output" />
+    <figcaption>4. Your app runs next to your code</figcaption>
+  </a>
+</div>
+
+:::tip Click any screenshot to zoom
+Each thumbnail opens the full-size image in a new tab.
+:::
+
+:::tip Why two browsers?
+Simple Browser is great for the build phase (code + preview side by side). Chrome is better for your pitch — bigger window, full dev tools, and it's the browser judges will be looking at.
+:::
+
 ### Read `requirements.md`
 
 Open `requirements.md` in Kiro (it's at the top of the file list). It tells you:
@@ -166,16 +203,30 @@ After you hit Enter, Kiro will:
 
 **Don't type while it's working** — interrupting can confuse it. You'll know it's done when the chat stops updating. Then refresh `http://localhost:3000` in Chrome to see the change.
 
-### Make it your own
+### Make it your own — ship 2 of your own features
 
-Once a TODO is built, ask Kiro to **adapt it for your persona**. For example:
+The TODOs are just the core. Once you've got them running, **your team needs to add at least two features you ideate yourselves** — things that matter to the persona you built during Empathise and Ideate.
+
+This is where your project stops being "the starter everyone got" and starts being yours. Judges notice.
+
+How to do it:
+
+1. As a team, look at your persona. What would actually help *them* that the TODOs don't cover?
+2. Pick two ideas. Keep them small — one button, one field, one view.
+3. Write your own prompt for each (see the [Prompt Library → Quick Prompt Tips](/hackathon/prompts#-quick-prompt-tips) if you're stuck).
+4. Paste into Kiro's Chat Panel, refresh Simple Browser, check it works.
+
+For example, for a youth wellbeing app where the persona is a shy 14-year-old:
 
 ```text
-Make this form feel friendly for a 14-year-old. Use brighter colours,
-bigger buttons, and friendlier labels.
+Add a small message at the top of the page that says
+"Your check-ins are private to you." Style it in a soft grey so it
+feels calm, not alarming.
 ```
 
-That's where your team's project starts becoming uniquely yours.
+:::tip This is the ideation → build link
+All the work you did in Empathise and Ideate lands here. Your two features are how you prove your team understood the problem, not just copied the starter.
+:::
 
 ### Working as a team on one laptop
 

@@ -384,3 +384,47 @@ p {
 .hackathon-role-card.it {
   background: linear-gradient(135deg, #8B5CF6 0%, #4338CA 100%);
 }
+
+/* ------------------------------------------------------------------
+ * Hackathon — click-to-zoom screenshot gallery
+ *
+ * Each thumbnail wraps its <img> in an <a href="{same-image}"
+ * target="_blank">. The anchor opens the full-res PNG in a new tab
+ * so readers can zoom without us shipping a lightbox library.
+ * ------------------------------------------------------------------ */
+.hackathon-screenshots {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+.hackathon-screenshots a {
+  display: block;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid #2a2f36;
+  background: #0f1318;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  cursor: zoom-in;
+}
+
+.hackathon-screenshots a:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.45);
+  border-color: var(--ifm-color-primary);
+}
+
+.hackathon-screenshots img {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0;
+}
+
+.hackathon-screenshots figcaption {
+  padding: 0.5rem 0.75rem 0.75rem;
+  font-size: 0.85rem;
+  color: var(--ifm-color-secondary-light);
+  text-align: center;
+}
