@@ -234,15 +234,16 @@ The hackathon docs serve four distinct audiences: students (the primary particip
 
 **User Story:** As a school, student, mentor, IT administrator, or judge, I want a named point of contact with an email address for my region, so that I know who to reach for event-related questions.
 
-**Follow-up note (non-blocking):** Actual names and email addresses are pending from the stakeholder. Placeholders are used until the real values are supplied.
+**Follow-up note:** Final contact names and email addresses have been supplied by the stakeholder and are now live on the Landing Page and the Device Setup Guide:
+
+- Auckland & Hamilton — Fathin Doray — fdoray@deloitte.co.nz
+- Wellington — Shane Kelly — shankelly@deloitte.co.nz
 
 #### Acceptance Criteria
 
 1. THE Hackathon_Section SHALL list exactly two named Regional_Points_Of_Contact:
-   - One Regional_Point_Of_Contact covering Auckland and Hamilton (name TBC)
-   - One Regional_Point_Of_Contact covering Wellington, first name "Shane" (surname TBC)
-2. FOR EACH Regional_Point_Of_Contact, THE Hackathon_Section SHALL display the contact's name, the region or regions covered, and an email address.
+   - One Regional_Point_Of_Contact covering Auckland and Hamilton — Fathin Doray (fdoray@deloitte.co.nz)
+   - One Regional_Point_Of_Contact covering Wellington — Shane Kelly (shankelly@deloitte.co.nz)
+2. FOR EACH Regional_Point_Of_Contact, THE Hackathon_Section SHALL display the contact's name, the region or regions covered, and an email address rendered as a clickable `mailto:` link.
 3. THE Landing_Page SHALL include the Regional_Points_Of_Contact in a Contacts section (aligned with Requirement 3 Acceptance Criterion 9).
 4. THE Setup_Guide SHALL include the Regional_Points_Of_Contact so IT administrators have a named escalation path per region (aligned with Requirement 4 Acceptance Criterion 6).
-5. WHERE a name or email address for a Regional_Point_Of_Contact is not yet supplied, THE Hackathon_Section SHALL display a visible placeholder (for example, `[name — TBC]` or `[email — TBC]`) so the gap is obvious during review.
-6. THE Regional_Points_Of_Contact placeholder names and email addresses SHALL be replaced with real values before the Hackathon_Section goes live.
