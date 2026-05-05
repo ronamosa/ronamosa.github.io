@@ -169,8 +169,8 @@ Add a self-contained `/hackathon` documentation section to the existing Docusaur
     - Link to `/hackathon/get-started#trustworthy-ai` as the authoritative source rather than duplicating the content
     - _Requirements: 8.8, 11.3_
 
-- [ ] 12. Update the Device Setup Guide
-  - [ ] 12.1 Replace the placeholder organiser contact with Regional Points of Contact in `website/hackathon/setup.mdx`
+- [x] 12. Update the Device Setup Guide
+  - [x] 12.1 Replace the placeholder organiser contact with Regional Points of Contact in `website/hackathon/setup.mdx`
     - Remove the existing "Organiser Contact — Placeholder" admonition at the bottom of the page
     - Replace with the same two-entry block used on the Landing Page:
       - Auckland and Hamilton — `[name — TBC]`, `[email — TBC]`
