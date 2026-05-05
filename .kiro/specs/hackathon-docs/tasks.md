@@ -153,18 +153,18 @@ Add a self-contained `/hackathon` documentation section to the existing Docusaur
     - Place it immediately before or at the top of the Build with Kiro stage
     - _Requirements: 5.9_
 
-- [ ] 11. Update the Mentor Playbook
-  - [ ] 11.1 Rebuild the Day at a Glance table in `website/hackathon/mentor-guide.mdx` to match the Student Guide's Order of Events
+- [x] 11. Update the Mentor Playbook
+  - [x] 11.1 Rebuild the Day at a Glance table in `website/hackathon/mentor-guide.mdx` to match the Student Guide's Order of Events
     - Stage names and sequence must be identical to the Student Guide's 13-row Order of Events; times/durations can collapse into a single "when" column but stage names are canonical
     - Remove any scavenger hunt reference and rename the warm-up to "Icebreaker"
     - _Requirements: 8.2, 8.3_
-  - [ ] 11.2 Replace the existing "What Judges Look For" content with a summary plus link in `website/hackathon/mentor-guide.mdx`
+  - [x] 11.2 Replace the existing "What Judges Look For" content with a summary plus link in `website/hackathon/mentor-guide.mdx`
     - Keep a tight bulleted list naming the six criteria (Problem and Impact, Solution, Use of Kiro, Feasibility, Creativity and Innovation, Communication)
     - Link prominently to `/hackathon/judging-guide` as the authoritative source
     - Remove the long-form criteria descriptions — they now live on the Judging Guide
     - Keep the "winning pitch shape" callout if it fits naturally; otherwise move it to the Judging Guide
     - _Requirements: 8.7, 12.11_
-  - [ ] 11.3 Add a short Trustworthy AI coaching note in `website/hackathon/mentor-guide.mdx`
+  - [x] 11.3 Add a short Trustworthy AI coaching note in `website/hackathon/mentor-guide.mdx`
     - One short admonition or subsection aimed at mentors, explaining how to reinforce the four Trustworthy AI topics with their teams during the Design and Prototyping stage
     - Link to `/hackathon/get-started#trustworthy-ai` as the authoritative source rather than duplicating the content
     - _Requirements: 8.8, 11.3_
