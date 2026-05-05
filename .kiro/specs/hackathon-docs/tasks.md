@@ -94,12 +94,12 @@ Add a self-contained `/hackathon` documentation section to the existing Docusaur
 - [x] 7. Final checkpoint — Ensure all tests pass
   - Ensure all tests pass, ask the user if questions arise.
 
-- [ ] 8. Shift sidebar position and create the Judging Guide page
-  - [ ] 8.1 Update `website/hackathon/resources.mdx` frontmatter `sidebar_position` from 7 to 8
+- [x] 8. Shift sidebar position and create the Judging Guide page
+  - [x] 8.1 Update `website/hackathon/resources.mdx` frontmatter `sidebar_position` from 7 to 8
     - Single-line frontmatter edit so the Judging Guide can occupy `sidebar_position: 7`
     - No other changes to the page content
     - _Requirements: 12.1_
-  - [ ] 8.2 Create `website/hackathon/judging-guide.mdx` — Judging Guide page
+  - [x] 8.2 Create `website/hackathon/judging-guide.mdx` — Judging Guide page
     - Add frontmatter: `title: "Judging Guide"`, a short description, `sidebar_position: 7`, `sidebar_label: "Judging Guide"`
     - Open with a **Judging Purpose** section covering student learning/effort/potential impact, assessing the idea over visual polish, and rewarding purpose/creativity/understanding
     - Add a **What to Look For** section describing the six assessment criteria with the descriptive sub-bullets sourced from the stakeholder judging guidance document: Problem and Impact, Solution, Use of Kiro, Feasibility, Creativity and Innovation, Communication
