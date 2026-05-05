@@ -178,7 +178,7 @@ Add a self-contained `/hackathon` documentation section to the existing Docusaur
     - Use a `:::note` admonition with visible `[… — TBC]` placeholders and a reminder line that placeholders must be replaced before go-live
     - _Requirements: 4.6, 13.1, 13.2, 13.4, 13.5, 13.6_
 
-- [-] 13. Final build verification for Phase 2
+- [x] 13. Final build verification for Phase 2
   - Run `npm run build` from the `website/` directory
   - Confirm the site compiles without errors
   - Confirm all 8 hackathon pages build (including the new Judging Guide)
