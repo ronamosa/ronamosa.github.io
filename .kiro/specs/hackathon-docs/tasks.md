@@ -110,22 +110,22 @@ Add a self-contained `/hackathon` documentation section to the existing Docusaur
     - Use Admonitions consistent with the rest of the section (`:::tip`, `:::note`, `:::info`). No Tabs or Mermaid required.
     - _Requirements: 12.1, 12.2, 12.3, 12.4, 12.5, 12.6, 12.7, 12.8, 12.9, 12.10_
 
-- [ ] 9. Update the Landing Page
-  - [ ] 9.1 Update partner and prize wording in `website/hackathon/index.mdx`
+- [x] 9. Update the Landing Page
+  - [x] 9.1 Update partner and prize wording in `website/hackathon/index.mdx`
     - Change the Hynds Foundation partner bullet in the Partners list from "funding partner" to "**Funding and Programme Delivery Partner**"
     - Confirm the existing "What's at Stake" paragraph names Deloitte, AWS, and the Hynds Foundation as joint funders of the winning-school prize; tighten wording only if needed to match Requirement 3 AC 4 exactly
     - _Requirements: 3.3, 3.4_
-  - [ ] 9.2 Add a fourth "I'm a Judge" audience CTA card to the Who Are You section in `website/hackathon/index.mdx`
+  - [x] 9.2 Add a fourth "I'm a Judge" audience CTA card to the Who Are You section in `website/hackathon/index.mdx`
     - Add a card after the existing student / mentor / IT cards using the same `hackathon-role-card` base class pattern
     - Label: "I'm a Judge"; link target: `/hackathon/judging-guide`
     - Use a suitable icon (suggested ⚖️) and an audience-specific modifier class name (suggested `judge`) consistent with the existing `student` / `mentor` / `it` variants; adding the CSS rule itself is out of scope — the base class alone is sufficient
     - _Requirements: 3.6, 12.12_
-  - [ ] 9.3 Add a Trustworthy AI lead-in paragraph in `website/hackathon/index.mdx`
+  - [x] 9.3 Add a Trustworthy AI lead-in paragraph in `website/hackathon/index.mdx`
     - One short paragraph introducing the event's stance on responsible AI use
     - Link target: `/hackathon/get-started#trustworthy-ai` for the full guidance
     - Place it in the top half of the page, above the Partners section, so students and judges encounter it before the CTAs
     - _Requirements: 3.8, 11.4_
-  - [ ] 9.4 Replace the placeholder organiser contact with a Regional Points of Contact block in `website/hackathon/index.mdx`
+  - [x] 9.4 Replace the placeholder organiser contact with a Regional Points of Contact block in `website/hackathon/index.mdx`
     - Remove the existing "Organiser Contact — Placeholder" admonition at the bottom of the page
     - Replace with a Contacts section listing two entries, each with name, region coverage, and email:
       - Auckland and Hamilton — `[name — TBC]`, `[email — TBC]`
