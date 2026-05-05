@@ -94,6 +94,99 @@ Add a self-contained `/hackathon` documentation section to the existing Docusaur
 - [x] 7. Final checkpoint — Ensure all tests pass
   - Ensure all tests pass, ask the user if questions arise.
 
+- [ ] 8. Shift sidebar position and create the Judging Guide page
+  - [ ] 8.1 Update `website/hackathon/resources.mdx` frontmatter `sidebar_position` from 7 to 8
+    - Single-line frontmatter edit so the Judging Guide can occupy `sidebar_position: 7`
+    - No other changes to the page content
+    - _Requirements: 12.1_
+  - [ ] 8.2 Create `website/hackathon/judging-guide.mdx` — Judging Guide page
+    - Add frontmatter: `title: "Judging Guide"`, a short description, `sidebar_position: 7`, `sidebar_label: "Judging Guide"`
+    - Open with a **Judging Purpose** section covering student learning/effort/potential impact, assessing the idea over visual polish, and rewarding purpose/creativity/understanding
+    - Add a **What to Look For** section describing the six assessment criteria with the descriptive sub-bullets sourced from the stakeholder judging guidance document: Problem and Impact, Solution, Use of Kiro, Feasibility, Creativity and Innovation, Communication
+    - Add a **Giving Positive, Constructive Feedback** section covering strengths-first framing, "next step" language, a two-positives-to-one-suggestion ratio, feedback on the idea not the person, curious over "gotcha" questions, and at least two reusable example phrasings
+    - Add a **Facial Expressions and Body Language** section (smiling, nodding, engaged posture, save critique for Q&A)
+    - Add a **Supporting Student Confidence** section (calm/warm/encouraging tone, thanking teams, simple affirmations)
+    - Close with a **Final Reminder** that students will remember how it felt to present more than what was said
+    - Use Admonitions consistent with the rest of the section (`:::tip`, `:::note`, `:::info`). No Tabs or Mermaid required.
+    - _Requirements: 12.1, 12.2, 12.3, 12.4, 12.5, 12.6, 12.7, 12.8, 12.9, 12.10_
+
+- [ ] 9. Update the Landing Page
+  - [ ] 9.1 Update partner and prize wording in `website/hackathon/index.mdx`
+    - Change the Hynds Foundation partner bullet in the Partners list from "funding partner" to "**Funding and Programme Delivery Partner**"
+    - Confirm the existing "What's at Stake" paragraph names Deloitte, AWS, and the Hynds Foundation as joint funders of the winning-school prize; tighten wording only if needed to match Requirement 3 AC 4 exactly
+    - _Requirements: 3.3, 3.4_
+  - [ ] 9.2 Add a fourth "I'm a Judge" audience CTA card to the Who Are You section in `website/hackathon/index.mdx`
+    - Add a card after the existing student / mentor / IT cards using the same `hackathon-role-card` base class pattern
+    - Label: "I'm a Judge"; link target: `/hackathon/judging-guide`
+    - Use a suitable icon (suggested ⚖️) and an audience-specific modifier class name (suggested `judge`) consistent with the existing `student` / `mentor` / `it` variants; adding the CSS rule itself is out of scope — the base class alone is sufficient
+    - _Requirements: 3.6, 12.12_
+  - [ ] 9.3 Add a Trustworthy AI lead-in paragraph in `website/hackathon/index.mdx`
+    - One short paragraph introducing the event's stance on responsible AI use
+    - Link target: `/hackathon/get-started#trustworthy-ai` for the full guidance
+    - Place it in the top half of the page, above the Partners section, so students and judges encounter it before the CTAs
+    - _Requirements: 3.8, 11.4_
+  - [ ] 9.4 Replace the placeholder organiser contact with a Regional Points of Contact block in `website/hackathon/index.mdx`
+    - Remove the existing "Organiser Contact — Placeholder" admonition at the bottom of the page
+    - Replace with a Contacts section listing two entries, each with name, region coverage, and email:
+      - Auckland and Hamilton — `[name — TBC]`, `[email — TBC]`
+      - Wellington — Shane `[surname — TBC]`, `[email — TBC]`
+    - Wrap the block in a `:::note` admonition so placeholders are visible during review; include a reminder line that the placeholders must be replaced before go-live
+    - _Requirements: 3.9, 13.1, 13.2, 13.3, 13.5, 13.6_
+
+- [ ] 10. Update the Student Guide (schedule, Icebreaker, Trustworthy AI)
+  - [ ] 10.1 Replace the schedule table in `website/hackathon/get-started.mdx` with the full 13-row Order of Events
+    - Stage names and time ranges must match Requirement 5 AC 5 exactly (9:00–9:30 School registration through 2:30–2:45 Schools depart)
+    - Preserve the Student Guide's friendly tone and keep stage emoji/labels where they help readability
+    - _Requirements: 5.5_
+  - [ ] 10.2 Remove scavenger hunt references and rename the warm-up to "Icebreaker" in `website/hackathon/get-started.mdx`
+    - Walk every heading, paragraph, and table cell on the page and remove any mention of a "scavenger hunt"
+    - Ensure the warm-up stage is described consistently with the 9:40–10:25 am "Icebreaker and problem exploration" block from the Order of Events
+    - _Requirements: 5.6, 5.7_
+  - [ ] 10.3 Add a Trustworthy AI subsection with a stable anchor in `website/hackathon/get-started.mdx`
+    - Add `## Trustworthy AI {#trustworthy-ai}` so fragment links from the Landing Page and Mentor Guide resolve
+    - Cover the four Requirement 11 AC 2 topics as clearly labelled callouts or subheadings: honesty about AI use, verification of AI-generated output, privacy and safety with prompts, what to do if something feels wrong
+    - Place the subsection before the Build with Kiro stage so students encounter it before they start prompting
+    - _Requirements: 11.1, 11.2, 11.5_
+  - [ ] 10.4 Add a Trustworthy AI pointer admonition before the Build with Kiro stage in `website/hackathon/get-started.mdx`
+    - Use `:::tip` or `:::warning`, whichever flows with the surrounding copy
+    - Direct students to read the Trustworthy AI subsection before prompting the Kiro AI Chatbot
+    - Place it immediately before or at the top of the Build with Kiro stage
+    - _Requirements: 5.9_
+
+- [ ] 11. Update the Mentor Playbook
+  - [ ] 11.1 Rebuild the Day at a Glance table in `website/hackathon/mentor-guide.mdx` to match the Student Guide's Order of Events
+    - Stage names and sequence must be identical to the Student Guide's 13-row Order of Events; times/durations can collapse into a single "when" column but stage names are canonical
+    - Remove any scavenger hunt reference and rename the warm-up to "Icebreaker"
+    - _Requirements: 8.2, 8.3_
+  - [ ] 11.2 Replace the existing "What Judges Look For" content with a summary plus link in `website/hackathon/mentor-guide.mdx`
+    - Keep a tight bulleted list naming the six criteria (Problem and Impact, Solution, Use of Kiro, Feasibility, Creativity and Innovation, Communication)
+    - Link prominently to `/hackathon/judging-guide` as the authoritative source
+    - Remove the long-form criteria descriptions — they now live on the Judging Guide
+    - Keep the "winning pitch shape" callout if it fits naturally; otherwise move it to the Judging Guide
+    - _Requirements: 8.7, 12.11_
+  - [ ] 11.3 Add a short Trustworthy AI coaching note in `website/hackathon/mentor-guide.mdx`
+    - One short admonition or subsection aimed at mentors, explaining how to reinforce the four Trustworthy AI topics with their teams during the Design and Prototyping stage
+    - Link to `/hackathon/get-started#trustworthy-ai` as the authoritative source rather than duplicating the content
+    - _Requirements: 8.8, 11.3_
+
+- [ ] 12. Update the Device Setup Guide
+  - [ ] 12.1 Replace the placeholder organiser contact with Regional Points of Contact in `website/hackathon/setup.mdx`
+    - Remove the existing "Organiser Contact — Placeholder" admonition at the bottom of the page
+    - Replace with the same two-entry block used on the Landing Page:
+      - Auckland and Hamilton — `[name — TBC]`, `[email — TBC]`
+      - Wellington — Shane `[surname — TBC]`, `[email — TBC]`
+    - Use a `:::note` admonition with visible `[… — TBC]` placeholders and a reminder line that placeholders must be replaced before go-live
+    - _Requirements: 4.6, 13.1, 13.2, 13.4, 13.5, 13.6_
+
+- [ ] 13. Final build verification for Phase 2
+  - Run `npm run build` from the `website/` directory
+  - Confirm the site compiles without errors
+  - Confirm all 8 hackathon pages build (including the new Judging Guide)
+  - Confirm no broken internal links or anchors, especially the fragment link to `/hackathon/get-started#trustworthy-ai` from the Landing Page and the Mentor Guide
+  - Confirm no new npm dependencies were introduced
+  - Confirm `sidebars.js` and `sidebars-changelog.js` are unchanged
+  - _Requirements: 1.4, 1.5, 10.4, 10.5, 10.6_
+
 ## Notes
 
 - All content uses MDX format with standard Docusaurus components (Admonitions, Tabs, code blocks) — no custom CSS or external dependencies
@@ -101,3 +194,4 @@ Add a self-contained `/hackathon` documentation section to the existing Docusaur
 - Placeholder URLs use `#` as href with `:::info` admonitions so they don't trigger broken link warnings
 - Each task references specific requirements for traceability
 - Checkpoints at tasks 3 and 7 ensure incremental build validation
+- Phase 2 (Tasks 8–13) adds the Judging Guide and applies stakeholder-requested updates to the existing pages (Order of Events, Icebreaker rename, Trustworthy AI content, Regional Points of Contact, partner wording)
