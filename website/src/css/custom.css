@@ -280,11 +280,11 @@ p {
 .hackathon-partners {
   display: flex;
   flex-wrap: wrap;
-  gap: 2rem;
+  gap: 4rem;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
   margin: 1.5rem 0 2rem;
-  padding: 1.5rem 1rem;
+  padding: 2rem 2.5rem;
   background: #ffffff;
   border-radius: 12px;
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -304,6 +304,11 @@ p {
 }
 
 @media screen and (max-width: 600px) {
+  .hackathon-partners {
+    gap: 2rem;
+    padding: 1.5rem 1rem;
+  }
+
   .hackathon-partners img {
     max-height: 48px;
     max-width: 160px;
