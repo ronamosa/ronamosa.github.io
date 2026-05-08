@@ -6,6 +6,14 @@ description: Changes and additions for May 2026
 
 # May 2026
 
+## 📅 2026-05-08
+
+### 📚 Documentation Updates
+- **Claude Code Cost Tracking — Bedrock vs Pro Max (Part 2)**: Postmortem on why AIP tag propagation appeared broken — turns out it works, but real traffic was bypassing the AIPs via system-defined cross-region profiles. Covers the routing fix, a silent-failure bug in the cost script (`== 0` vs `< 0.01`), and a latency-driven migration from us-east-1 to ap-southeast-2 (Sydney) saving ~800ms per request from Auckland.
+  - **Link**: [Part 2 — Tag Propagation, Sydney Migration, Bug Fixes](/docs/engineer/AI/claude-code-cost-tracking-bedrock-vs-pro-max-part-2)
+
+---
+
 ## 📅 2026-05-06
 
 ### 📚 Documentation Updates
