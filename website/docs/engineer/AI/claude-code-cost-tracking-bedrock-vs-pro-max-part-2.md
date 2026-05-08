@@ -1,6 +1,6 @@
 ---
 title: "Claude Code Cost Tracking: AWS Bedrock vs Pro Max (Part 2) — Tag Propagation, Sydney Migration, Bug Fixes"
-description: "Part 2 of the Claude Code cost tracking series. AIP tag propagation answered (it works — but I'd been measuring the wrong thing), a script bug exposed, and a us-east-1 → ap-southeast-2 migration for Auckland latency."
+description: "AIP tag propagation works — but I'd been measuring the wrong thing. A script bug exposed, and a us-east-1 to ap-southeast-2 migration for Auckland latency."
 keywords: ["claude code cost", "aws bedrock cost allocation tags", "application inference profile", "bedrock marketplace billing", "claude bedrock sydney", "ap-southeast-2 claude", "au sovereign inference profile", "cost explorer bedrock", "claude code latency", "aws bedrock tagging"]
 tags: ["ai", "aws", "claude", "bedrock", "cost-tracking", "inference-profiles", "postmortem"]
 ---
