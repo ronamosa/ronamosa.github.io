@@ -6,6 +6,14 @@ description: Changes and additions for May 2026
 
 # May 2026
 
+## 📅 2026-05-15
+
+### 📚 Documentation Updates
+- **Kiro Chat reframed as the primary research tool for hackathon teams**: Across the hackathon docs, called out that students are encouraged to use Kiro Chat for **primary research** during Empathise and Ideate — not just for code generation later. Updated the Hackathon Day Guide so the Empathise step now leads with *"Use Kiro Chat to research your problem"* (with example prompts about plastic pollution, food insecurity, and existing solutions in Aotearoa) and adds a brainstorming nudge in Ideation. Added a new **Research Prompts (Empathise & Ideate)** section to the Prompt Library covering problem research, persona-building, comparing existing solutions, idea pressure-testing, and "How might we…" generation, plus a top-of-page tip linking to it. Tightened Trustworthy AI to call out that the same verification rules apply to research output (added *"Ask Kiro what sources it used"*). Updated the Mentor Playbook with research-coaching prompts (*"Ask Kiro what sources it used. Are they real?"*), a new "Tell me about food waste" → specific row in the prompt-coaching table, and updated day-at-a-glance entries for Icebreaker and Ideation. Reframed the landing page Trustworthy AI blurb to name both uses of Kiro (research + build), and added a Research with Kiro Chat block to the Resources page that points back to the prompt library and Trustworthy AI guidance.
+  - **Links**: [Hackathon Day Guide](/hackathon/get-started) · [Prompt Library → Research Prompts](/hackathon/prompts#-research-prompts-empathise--ideate) · [Mentor Guide](/hackathon/mentor-guide) · [Resources](/hackathon/resources) · [Landing Page](/hackathon/)
+
+---
+
 ## 📅 2026-05-08
 
 ### 📚 Documentation Updates
