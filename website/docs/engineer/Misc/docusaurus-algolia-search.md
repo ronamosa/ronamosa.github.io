@@ -8,7 +8,7 @@ sidebar_position: 3
 
 ## Introduction
 
-This is a walk-through of what it took for me to make my blog & digital garden [ronamosa.io](https://ronamosa.io/) searchable using [Algolia](https://www.algolia.com/users/sign_in). I had the added benefit of using Cloudflare CDN in front of my website, so that needed to be taken into account as well.
+This is a walk-through of what it took for me to make my blog & digital garden [uncommonengineer.com](https://www.uncommonengineer.com/) searchable using [Algolia](https://www.algolia.com/users/sign_in). I had the added benefit of using Cloudflare CDN in front of my website, so that needed to be taken into account as well.
 
 If you get it all right, you get this:
 
@@ -59,16 +59,16 @@ Click `>_ Editor` and your config should look like this (thsi is the standard Do
 new Crawler({
   rateLimit: 8,
   maxDepth: 10,
-  startUrls: ["https://ronamosa.io/"], // root folder crawler starts from...
+  startUrls: ["https://www.uncommonengineer.com/"], // root folder crawler starts from...
   renderJavaScript: false,
-  sitemaps: ["https://ronamosa.io/sitemap.xml"],
+  sitemaps: ["https://www.uncommonengineer.com/sitemap.xml"],
   ignoreCanonicalTo: true,
-  discoveryPatterns: ["https://ronamosa.io/**"],
+  discoveryPatterns: ["https://www.uncommonengineer.com/**"],
   schedule: "at 16:06 on Monday",
   actions: [
     {
       indexName: "ronamosa",
-      pathsToMatch: ["https://ronamosa.io/**"], // don't change this due to the `url_will_not_match_config` error
+      pathsToMatch: ["https://www.uncommonengineer.com/**"], // don't change this due to the `url_will_not_match_config` error
       recordExtractor: ({ $, helpers }) => {
         // priority order: deepest active sub list header -> navbar active item -> 'Documentation'
         const lvl0 =
