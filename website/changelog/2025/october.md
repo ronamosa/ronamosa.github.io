@@ -15,7 +15,7 @@ description: Changes and additions for October 2025
   - Restructured headings for better content hierarchy and SEO optimization
   - Enhanced content structure with proper H2/H3 organization
   - Added prerequisites section and improved technical explanations
-  - **Link**: [iPhone Photo Backup to Linux Guide](/docs/engineer/Misc/iphone-to-linux-mount)
+  - **Link**: [iPhone Photo Backup to Linux Guide](/docs/engineer/guides/iphone-to-linux-mount)
 
 ---
 

@@ -221,6 +221,23 @@ module.exports = {
         breadcrumbs: true,
       },
     ],
+    [
+      '@docusaurus/plugin-client-redirects',
+      {
+        createRedirects(existingPath) {
+          if (existingPath === '/docs/bulk-delete-outlook-rules-powershell-macos') {
+            return ['/docs/engineer/Misc/bulk-delete-outlook-rules-powershell-macos'];
+          }
+          if (existingPath.startsWith('/docs/engineer/guides')) {
+            return [existingPath.replace('/docs/engineer/guides', '/docs/engineer/Misc')];
+          }
+          if (existingPath === '/docs/category/guides') {
+            return ['/docs/category/misc', '/docs/engineer/Misc'];
+          }
+          return undefined;
+        },
+      },
+    ],
   ],
 
 };

@@ -1,12 +1,36 @@
 ---
 title: "Bulk-Deleting Outlook Rules from a Mac with PowerShell"
-description: "Mass-delete Outlook inbox rules on macOS with PowerShell 7 and Exchange Online using Get-InboxRule and Remove-InboxRule, plus fixes for the MSAL clash and Graph admin-consent wall."
-keywords: ["bulk delete outlook rules", "powershell macos", "exchange online powershell", "get-inboxrule", "remove-inboxrule", "connect-exchangeonline", "inbox rules cleanup", "outlook mac"]
+description: "Bulk-delete Outlook inbox rules on macOS when /cleanrules isn't available. PowerShell 7, Exchange Online, Get-InboxRule, Remove-InboxRule, MSAL and Graph fixes."
+slug: /bulk-delete-outlook-rules-powershell-macos
+keywords: ["bulk delete outlook rules", "powershell macos", "exchange online powershell", "get-inboxrule", "remove-inboxrule", "connect-exchangeonline", "inbox rules cleanup", "outlook mac", "outlook cleanrules mac alternative", "new outlook for mac delete all rules", "Connect-MgGraph MSAL Method not found", "ExchangeOnlineManagement module macos"]
 tags: ["powershell", "outlook", "exchange-online", "macos", "email", "automation"]
+image: /img/docs/bulk-delete-outlook-rules-powershell-macos.png
 sidebar_position: 7
 ---
 
-Years of "create a rule for this sender" left me with **229 Outlook inbox rules** — broken ones pointing at deleted folders, duplicates, conflicts. Outlook on macOS won't let you bulk-delete rules in the GUI, and `outlook.exe /cleanrules` is Windows-only. This is the PowerShell + Exchange Online path that actually works, plus the gotchas that nearly derailed it.
+import { FAQSchema, HowToSchema } from '@site/src/components/StructuredData';
+
+<HowToSchema
+  name="Bulk-Delete Outlook Inbox Rules on macOS with PowerShell"
+  description="Install PowerShell on macOS, connect to Exchange Online, back up inbox rules, and bulk-delete them with Get-InboxRule and Remove-InboxRule."
+  steps={[
+    { name: "Install PowerShell on macOS", text: "Install PowerShell 7 via Homebrew with brew install --cask powershell, or use the preview cask (powershell@preview) if the stable build fails." },
+    { name: "Install the Exchange Online module", text: "In PowerShell, run Install-Module ExchangeOnlineManagement -Scope CurrentUser -Force." },
+    { name: "Connect to Exchange Online", text: "Run Connect-ExchangeOnline -UserPrincipalName you@yourcompany.com and complete browser SSO until authentication completes." },
+    { name: "Audit inbox rules before deleting", text: "Run Get-InboxRule to list rules and export to CSV. Review the Description field for broken rules marked [folder not found]." },
+    { name: "Back up rules for recovery", text: "Export a restorable backup with Get-InboxRule | Export-Clixml ~/inbox-rules-backup.clixml." },
+    { name: "Bulk delete inbox rules", text: "Delete broken rules with a Where-Object filter on Description, or remove all rules with Get-InboxRule | Remove-InboxRule -Confirm:$false." }
+  ]}
+/>
+
+<FAQSchema items={[
+  { question: "Do Outlook inbox rules run retroactively on existing mail?", answer: "No. Server-side inbox rules only fire on incoming mail. They will not re-sort messages already in your inbox. Use OWA Sweep or manual sorting to re-file existing mail." },
+  { question: "Why does Connect-MgGraph fail with Method not found after Connect-ExchangeOnline?", answer: "This is an MSAL assembly version conflict. ExchangeOnlineManagement loads an older Microsoft.Identity.Client into the session, and Graph auth needs a newer method. Run Graph in a fresh PowerShell session that has not connected to Exchange." },
+  { question: "Why does Microsoft Graph need admin consent in a corporate tenant?", answer: "The Graph CLI app often requires tenant admin consent that end users cannot self-approve. Exchange Online apps are frequently pre-consented org-wide, but the Graph CLI app may not be. Use Exchange Online for rules and manage folders manually if admin approval is not worth pursuing." },
+  { question: "Why should I avoid pasting large PowerShell blocks into an interactive session?", answer: "Large pastes can corrupt mid-transfer, leaving unterminated quotes and dropping PowerShell into continuation mode where subsequent commands are silently swallowed. Put commands in a .ps1 script and dot-source it instead." }
+]} />
+
+Years of "create a rule for this sender" left me with **229 Outlook inbox rules** — broken ones pointing at deleted folders, duplicates, conflicts. Outlook on macOS won't let you bulk-delete rules in the GUI, and `outlook.exe /cleanrules` is Windows-only. This is the PowerShell + Exchange Online path that actually works, plus the gotchas that nearly derailed it. More cross-platform tooling guides live in the [technical docs hub](/docs/).
 
 ## TL;DR
 
@@ -25,7 +49,7 @@ So for bulk work, PowerShell is the way.
 
 ## 1) Get PowerShell on macOS
 
-PowerShell isn't Windows-only anymore. Install via Homebrew:
+PowerShell isn't Windows-only anymore. Install via Homebrew — the same package manager used in other [Mac-adjacent dev environment guides](/docs/engineer/guides/chomebook-terminal):
 
 ```bash
 brew install --cask powershell
