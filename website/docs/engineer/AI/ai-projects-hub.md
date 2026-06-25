@@ -171,7 +171,7 @@ graph TD
 
 **Security & Compliance**
 - [Infrastructure Security](/docs/hacker/) - AI system security
-- [Data Privacy](/docs/engineer/Misc/) - Compliance and governance
+- [Data Privacy](/docs/category/guides) - Compliance and governance
 
 ---
 
