@@ -6,6 +6,14 @@ description: Changes and additions for June 2026
 
 # June 2026
 
+## 📅 2026-06-29
+
+### 📚 Documentation Updates
+- **AI Trust-Model Decomposition Failure**: Post-mortem on an LLM-assisted Discord bot security design where high factual accuracy masked a single-axis trust model — authorization and input integrity were conflated until human correction.
+  - **Link**: [AI Trust-Model Decomposition Failure in an Agentic Security Design](/docs/engineer/AI/ai-trust-model-decomposition-failure)
+
+---
+
 ## 📅 2026-06-23
 
 ### 🛠️ Site Improvements
