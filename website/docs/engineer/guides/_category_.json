@@ -1,0 +1,9 @@
+{
+  "label": "Guides",
+  "position": 8,
+  "link": {
+    "type": "generated-index",
+    "title": "Guides",
+    "description": "Cross-platform tooling, site setup, and practical how-tos that don't fit a single cloud or lab bucket."
+  }
+}
