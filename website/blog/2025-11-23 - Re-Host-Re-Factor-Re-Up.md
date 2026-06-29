@@ -46,7 +46,7 @@ That’s some of the lenses I see the world through, so bear that in mind as you
 
 If nothing else, you'll leave thinking about things a little bit differently.
 
-You won't find tutorials here, or step-by-step guides on tech or careers (you can find that kind of writing on my blog athttps://ronamosa.io/).
+You won't find tutorials here, or step-by-step guides on tech or careers (you can find that kind of writing on my blog at https://www.uncommonengineer.com/docs/).
 
 What you*will*find: my thoughts on**AI**,**Cloud**,**hacking**, corporate culture, the tech industry, my Pasifika communities and their struggles, and the intersections of all of those things.
 

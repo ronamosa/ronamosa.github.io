@@ -37,6 +37,11 @@ module.exports = {
   tagline: 'Mastery before rebellion. Builder. Anarchist. Pasifika.',
   url: 'https://www.uncommonengineer.com',
   baseUrl: '/',
+  // GitHub Pages 301-redirects non-slash URLs to their trailing-slash form and
+  // serves that as the 200 response. Enforce trailingSlash so Docusaurus emits
+  // canonical/og:url/sitemap URLs that match the served URL (no canonical->301
+  // mismatch) and normalises every page to a single URL form site-wide.
+  trailingSlash: true,
   onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',

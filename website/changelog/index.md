@@ -6,7 +6,7 @@ description: A running journal of documentation updates and blog changes
 
 # 📝 Changelog
 
-Welcome to the changelog for **ronamosa.io**! This is a running journal documenting all the updates, additions, and improvements made to the documentation and blog content.
+Welcome to the changelog for **The Uncommon Engineer**! This is a running journal documenting all the updates, additions, and improvements made to the documentation and blog content.
 
 ## What's Tracked Here
 

@@ -139,7 +139,7 @@ Login to your EdgeSwitch10XP
 
 default username/passwd = ubnt/ubnt
 
-From ["Part 1"](https://ronamosa.io/documentation/2020-11-19-Ubiquiti-Home-Network-Part1/) we can see the only 2 ports we're currently using are Port 1 and Port 8.
+From ["Part 1"](./2020-11-19-Ubiquiti-Home-Network-Part1.md) we can see the only 2 ports we're currently using are Port 1 and Port 8.
 
 ![EdgeSwitch10xp active ports](/img/edgeswitch10xp-activeports.png)
 
@@ -214,7 +214,7 @@ Now to setup the last device- the Unifi AP AC Lite.
 
 **_Note: firmware at time of writing:_** UI: 6.0.28, Backend: 6.0.28, Build: atag_6.0.28_14280
 
-Log into your Unifi network controller _(see ['Part 1'](https://ronamosa.io/documentation/2020-11-19-Ubiquiti-Home-Network-Part1/) for setting up and logging into the unifi network controller)_.
+Log into your Unifi network controller _(see ['Part 1'](./2020-11-19-Ubiquiti-Home-Network-Part1.md) for setting up and logging into the unifi network controller)_.
 
 ### Networks - LAB, DMZ, SECURE
 
