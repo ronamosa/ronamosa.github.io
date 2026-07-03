@@ -1,0 +1,45 @@
+.newsletterPage {
+  min-height: calc(100vh - 60px);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 3rem 2rem;
+  background-color: var(--ifm-background-color);
+}
+
+.newsletterContainer {
+  max-width: 480px;
+  width: 100%;
+  text-align: center;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--ifm-font-color-base);
+  margin: 0 0 1rem;
+  letter-spacing: -0.02em;
+}
+
+.body {
+  font-size: 1rem;
+  color: #aaa;
+  line-height: 1.6;
+  margin: 0 0 0.75rem;
+}
+
+.objection {
+  font-size: 0.9rem;
+  color: #777;
+  margin: 0 0 1.5rem;
+}
+
+@media screen and (max-width: 600px) {
+  .newsletterPage {
+    padding: 2rem 1.5rem;
+  }
+
+  .title {
+    font-size: 1.75rem;
+  }
+}

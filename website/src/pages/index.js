@@ -1,15 +1,17 @@
 import React from "react";
 import Link from '@docusaurus/Link';
-import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import Layout from '@theme/Layout';
 import Head from '@docusaurus/Head';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faLinkedin, faGithub, faYoutube } from "@fortawesome/free-brands-svg-icons";
 import { usePluginData } from '@docusaurus/useGlobalData';
+import BeehiivEmbed from '@site/src/components/BeehiivEmbed';
+import {
+  FLAGSHIP_ESSAY,
+  HOMEPAGE_TITLE,
+  NEWSLETTER_DESCRIPTION,
+  buildHomepageDescription,
+} from '@site/src/data/siteConstants';
 
 import styles from './index.module.css';
-
-const SUBSCRIBER_COUNT = 180;
 
 function trackCardClick(cardName, destination) {
   if (typeof window !== 'undefined' && window.gtag) {
@@ -36,7 +38,7 @@ function ContentCard({ icon, title, count, countLabel, description, linkText, li
       <h3 className={styles.cardTitle}>{title}</h3>
       <p className={styles.cardDescription}>{description}</p>
       {latestLabel && (
-        <p className={styles.latestPost}>Latest: {latestLabel}</p>
+        <p className={styles.latestPost}>Featured: {latestLabel}</p>
       )}
       <span className={styles.cardLink}>
         {linkText} <span className={styles.arrow}>→</span>
@@ -46,74 +48,24 @@ function ContentCard({ icon, title, count, countLabel, description, linkText, li
 }
 
 function NewsletterCard() {
-  const openSubscribePopup = () => {
-    trackCardClick('Newsletter', '/subscribe');
-    window.open(
-      '/subscribe',
-      'subscribe',
-      'width=550,height=650,scrollbars=yes'
-    );
-  };
-
   return (
-    <div
-      className={styles.card}
-      onClick={openSubscribePopup}
-      role="button"
-      tabIndex={0}
-      onKeyDown={(e) => { if (e.key === 'Enter') openSubscribePopup(); }}
-      style={{ cursor: 'pointer' }}
-    >
+    <div className={`${styles.card} ${styles.newsletterCard}`}>
       <div className={styles.cardHeader}>
         <span className={styles.cardIcon}>📬</span>
-        <span className={styles.cardCount}>{SUBSCRIBER_COUNT}+ Subscribers</span>
       </div>
       <h3 className={styles.cardTitle}>Newsletter</h3>
-      <p className={styles.cardDescription}>
-        Unfiltered takes on AI, power, and tech from a Pasifika engineer twenty-plus years inside the machine. No polish. Fortnightly.
-      </p>
-      <span className={styles.cardLink}>
-        Subscribe <span className={styles.arrow}>→</span>
-      </span>
-    </div>
-  );
-}
-
-function SocialIcons() {
-  const socials = [
-    { icon: faLinkedin, url: "https://www.linkedin.com/in/ron-amosa/", label: "LinkedIn" },
-    { icon: faGithub, url: "https://github.com/ronamosa", label: "GitHub" },
-    { icon: faYoutube, url: "https://www.youtube.com/@uncommonengineer", label: "YouTube" },
-  ];
-
-  return (
-    <div className={styles.socialIcons}>
-      {socials.map((social, idx) => (
-        <a 
-          key={idx}
-          href={social.url} 
-          target="_blank" 
-          rel="noopener noreferrer"
-          className={styles.socialIcon}
-          aria-label={social.label}
-        >
-          <FontAwesomeIcon icon={social.icon} />
-        </a>
-      ))}
+      <p className={styles.cardDescription}>{NEWSLETTER_DESCRIPTION}</p>
+      <BeehiivEmbed utmSource="site" utmMedium="home" height={140} />
     </div>
   );
 }
 
 function Home() {
-  const context = useDocusaurusContext();
-  const { siteConfig = {} } = context;
-  const { blogCount, docsCount, latestPost } = usePluginData('content-counts');
+  const { displayBlogCount, displayDocsCount } = usePluginData('content-counts');
+  const metaDescription = buildHomepageDescription(displayDocsCount);
 
   return (
-    <Layout
-      title="Cloud Engineering, Kubernetes Guides & Political Analysis"
-      description="170+ technical guides on cloud architecture, Kubernetes, and infrastructure security. 56+ essays on AI sovereignty, digital colonialism, and Pacific identity. By Ron Amosa."
-    >
+    <Layout title={HOMEPAGE_TITLE} description={metaDescription}>
       <Head>
         <script type="application/ld+json">
           {JSON.stringify({
@@ -121,7 +73,7 @@ function Home() {
             "@type": "WebSite",
             "name": "The Uncommon Engineer",
             "url": "https://www.uncommonengineer.com",
-            "description": "Technical guides on cloud engineering and Kubernetes, plus essays on AI sovereignty, digital colonialism, and Pacific identity.",
+            "description": metaDescription,
             "author": {
               "@type": "Person",
               "name": "Ron Amosa",
@@ -137,13 +89,12 @@ function Home() {
         </script>
       </Head>
       <main className={styles.mainContainer}>
-        {/* Hero Section */}
         <section className={styles.heroSection}>
           <div className={styles.heroContainer}>
             <div className={styles.heroImageWrapper}>
-              <img 
-                src="/img/profile.svg" 
-                alt="Ron Amosa" 
+              <img
+                src="/img/profile.svg"
+                alt="Ron Amosa"
                 className={styles.heroImage}
               />
             </div>
@@ -161,10 +112,14 @@ function Home() {
                 Senior Solutions Architect and writer exploring cloud infrastructure,
                 AI sovereignty, and the politics of technology through a Pacific lens.
               </p>
-              <SocialIcons />
-              <a className={styles.heroCta} href="#explore">
-                Explore my work <span className={styles.arrow}>→</span>
-              </a>
+              <div className={styles.heroCtas}>
+                <Link className={styles.heroCtaPrimary} to="/docs/">
+                  Start here <span className={styles.arrow}>→</span>
+                </Link>
+                <a className={styles.heroCtaSecondary} href="#explore">
+                  Browse the work <span className={styles.arrow}>→</span>
+                </a>
+              </div>
             </div>
           </div>
           <div className={styles.scrollIndicator}>
@@ -174,29 +129,28 @@ function Home() {
           </div>
         </section>
 
-        {/* Cards Section */}
         <section id="explore" className={styles.cardsSection}>
-          <h2 className={styles.sectionHeading}>What You'll Find Here</h2>
+          <h2 className={styles.sectionHeading}>What You&apos;ll Find Here</h2>
           <div className={styles.cardsContainer}>
             <ContentCard
               icon="📰"
               title="Analysis & Essays"
-              count={blogCount}
+              count={displayBlogCount}
               countLabel="Essays"
               description="Deep-dive essays exploring how technology intersects with power, sovereignty, and Pacific identity."
               linkText="Browse Analysis"
-              linkTo="/blog"
-              latestLabel={latestPost?.title}
+              linkTo="/blog/"
+              latestLabel={FLAGSHIP_ESSAY.title}
             />
 
             <ContentCard
               icon="🔧"
               title="Technical Docs"
-              count={docsCount}
+              count={displayDocsCount}
               countLabel="Guides"
               description="Battle-tested guides on cloud architecture, Kubernetes, security, and infrastructure automation."
               linkText="Browse Docs"
-              linkTo="/docs"
+              linkTo="/docs/"
             />
 
             <NewsletterCard />

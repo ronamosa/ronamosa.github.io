@@ -1,6 +1,12 @@
 import React from 'react';
 import Link from '@docusaurus/Link';
 import { usePluginData } from '@docusaurus/useGlobalData';
+import BeehiivEmbed from '@site/src/components/BeehiivEmbed';
+import {
+  CURATED_START_HERE,
+  NEWSLETTER_DESCRIPTION,
+  NEWSLETTER_OBJECTION,
+} from '@site/src/data/siteConstants';
 import styles from './styles.module.css';
 
 function formatDate(dateStr) {
@@ -29,17 +35,35 @@ export function Hero() {
 }
 
 export function SiteStats() {
-  const { blogCount, docsCount } = usePluginData('content-counts');
+  const { displayBlogCount, displayDocsCount } = usePluginData('content-counts');
 
   return (
     <div className={styles.stats}>
       <div className={styles.stat}>
-        <span className={styles.statNumber}>{docsCount}+</span>
+        <span className={styles.statNumber}>{displayDocsCount}+</span>
         <span className={styles.statLabel}>Technical Guides</span>
       </div>
       <div className={styles.stat}>
-        <span className={styles.statNumber}>{blogCount}+</span>
+        <span className={styles.statNumber}>{displayBlogCount}+</span>
         <span className={styles.statLabel}>Essays &amp; Analysis</span>
+      </div>
+    </div>
+  );
+}
+
+export function CuratedStartHere() {
+  return (
+    <div className={styles.section}>
+      <div className={styles.sectionHeader}>
+        <h3 className={styles.sectionTitle}>Start with these</h3>
+      </div>
+      <div className={styles.curatedGrid}>
+        {CURATED_START_HERE.map((item, i) => (
+          <Link key={i} to={item.to} className={styles.curatedCard}>
+            <span className={styles.curatedLabel}>{item.label}</span>
+            <span className={styles.curatedTitle}>{item.title}</span>
+          </Link>
+        ))}
       </div>
     </div>
   );
@@ -66,36 +90,6 @@ export function RecentPosts() {
             <h4 className={styles.postTitle}>{post.title}</h4>
             {post.description && (
               <p className={styles.postDesc}>{post.description}</p>
-            )}
-          </Link>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-export function RecentDocs() {
-  const { recentDocs } = usePluginData('content-counts');
-  if (!recentDocs?.length) return null;
-
-  return (
-    <div className={styles.section}>
-      <div className={styles.sectionHeader}>
-        <h3 className={styles.sectionTitle}>Recently Updated</h3>
-        <Link to="/docs" className={styles.viewAll}>
-          All docs <span className={styles.arrow}>&rarr;</span>
-        </Link>
-      </div>
-      <div className={styles.docGrid}>
-        {recentDocs.map((doc, i) => (
-          <Link key={i} to={doc.permalink} className={styles.docCard}>
-            <span className={styles.docTitle}>{doc.title}</span>
-            {doc.tags?.length > 0 && (
-              <div className={styles.tags}>
-                {doc.tags.slice(0, 4).map((tag, j) => (
-                  <span key={j} className={styles.tag}>{tag}</span>
-                ))}
-              </div>
             )}
           </Link>
         ))}
@@ -141,6 +135,46 @@ export function Pathways() {
           <div className={styles.pathwayDesc}>{p.desc}</div>
         </Link>
       ))}
+    </div>
+  );
+}
+
+export function RecentDocs() {
+  const { recentDocs } = usePluginData('content-counts');
+  if (!recentDocs?.length) return null;
+
+  return (
+    <div className={styles.section}>
+      <div className={styles.sectionHeader}>
+        <h3 className={styles.sectionTitle}>Recently Updated</h3>
+        <Link to="/docs/" className={styles.viewAll}>
+          All docs <span className={styles.arrow}>&rarr;</span>
+        </Link>
+      </div>
+      <div className={styles.docGrid}>
+        {recentDocs.map((doc, i) => (
+          <Link key={i} to={doc.permalink} className={styles.docCard}>
+            <span className={styles.docTitle}>{doc.title}</span>
+            {doc.tags?.length > 0 && (
+              <div className={styles.tags}>
+                {doc.tags.slice(0, 4).map((tag, j) => (
+                  <span key={j} className={styles.tag}>{tag}</span>
+                ))}
+              </div>
+            )}
+          </Link>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+export function NewsletterCapture() {
+  return (
+    <div className={styles.newsletterSection}>
+      <p className={styles.newsletterDescription}>{NEWSLETTER_DESCRIPTION}</p>
+      <p className={styles.newsletterObjection}>{NEWSLETTER_OBJECTION}</p>
+      <BeehiivEmbed utmSource="site" utmMedium="start" height={160} />
     </div>
   );
 }

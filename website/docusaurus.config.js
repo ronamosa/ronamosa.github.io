@@ -1,4 +1,5 @@
 const {themes} = require('prism-react-renderer');
+const legacyRedirects = require('./redirects');
 
 const internetProfiles = {
   linkedin: {
@@ -59,6 +60,12 @@ module.exports = {
   ],
 
   themeConfig: {
+    announcementBar: {
+      id: 'newsletter-2026-07',
+      content:
+        'Own your stack — fortnightly engineering signal, no polish. <a href="/newsletter?utm_source=site&utm_medium=banner">Subscribe →</a>',
+      isCloseable: true,
+    },
     image: 'img/social-card.jpg',
     metadata: [
       { name: 'twitter:card', content: 'summary_large_image' },
@@ -229,15 +236,16 @@ module.exports = {
     [
       '@docusaurus/plugin-client-redirects',
       {
+        redirects: legacyRedirects,
         createRedirects(existingPath) {
-          if (existingPath === '/docs/bulk-delete-outlook-rules-powershell-macos') {
-            return ['/docs/engineer/Misc/bulk-delete-outlook-rules-powershell-macos'];
+          if (existingPath === '/docs/bulk-delete-outlook-rules-powershell-macos/') {
+            return ['/docs/engineer/Misc/bulk-delete-outlook-rules-powershell-macos/'];
           }
-          if (existingPath.startsWith('/docs/engineer/guides')) {
-            return [existingPath.replace('/docs/engineer/guides', '/docs/engineer/Misc')];
+          if (existingPath.startsWith('/docs/engineer/guides/')) {
+            return [existingPath.replace('/docs/engineer/guides/', '/docs/engineer/Misc/')];
           }
-          if (existingPath === '/docs/category/guides') {
-            return ['/docs/category/misc', '/docs/engineer/Misc'];
+          if (existingPath === '/docs/category/guides/') {
+            return ['/docs/category/misc/'];
           }
           return undefined;
         },

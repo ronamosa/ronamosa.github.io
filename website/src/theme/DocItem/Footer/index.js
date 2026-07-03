@@ -17,9 +17,21 @@ export default function FooterWrapper(props) {
     <>
       <Footer {...props} />
       <div className={styles.newsletterCta}>
+        <p className={styles.lead}>
+          <strong>This guide worked? Good.</strong>
+        </p>
         <p>
-          <span className={styles.emoji}>📬</span> I also write a fortnightly newsletter — my thoughts on the machines that educate, empower, and exploit our society.{' '}
-          <a href="/subscribe" onClick={trackNewsletterCtaClick}>Subscribe here.</a>
+          I write like this every fortnight — AI, infra, security. What worked,
+          what broke, what the marketing didn&apos;t mention. No polish, no hype.
+          One email a fortnight. Leave whenever.
+        </p>
+        <p>
+          <a
+            href="/newsletter?utm_source=site&utm_medium=guide"
+            onClick={trackNewsletterCtaClick}
+          >
+            Get the newsletter →
+          </a>
         </p>
       </div>
     </>

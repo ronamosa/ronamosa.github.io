@@ -22,11 +22,11 @@ function NewsletterCta() {
           Want posts like this straight in your inbox every fortnight?
         </p>
         <a
-          href="/subscribe"
+          href="/newsletter?utm_source=site&utm_medium=blog"
           className={styles.ctaButton}
           onClick={trackNewsletterCtaClick}
         >
-          Subscribe to the mailing list
+          Get the newsletter →
         </a>
       </div>
     </div>

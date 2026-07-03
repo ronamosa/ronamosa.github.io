@@ -8,7 +8,7 @@
  * Sections:
  *   - analysis    : /blog/*
  *   - docs        : /docs/*
- *   - newsletter  : /subscribe*
+ *   - newsletter  : /newsletter*, /subscribe* (legacy)
  *   - homepage    : / (exact)
  *   - changelog   : /changelog/*
  *   - projects    : /projects/*
@@ -26,7 +26,7 @@ function getSection(pathname) {
   if (pathname === '/') return 'homepage';
   if (pathname.startsWith('/blog')) return 'analysis';
   if (pathname.startsWith('/docs')) return 'docs';
-  if (pathname.startsWith('/subscribe')) return 'newsletter';
+  if (pathname.startsWith('/newsletter') || pathname.startsWith('/subscribe')) return 'newsletter';
   if (pathname.startsWith('/changelog')) return 'changelog';
   if (pathname.startsWith('/projects')) return 'projects';
   if (pathname.startsWith('/about')) return 'about';
