@@ -1,5 +1,6 @@
 const {themes} = require('prism-react-renderer');
 const legacyRedirects = require('./redirects');
+const {ANNOUNCEMENT_BAR_HTML} = require('./src/data/siteConstants.js');
 
 const internetProfiles = {
   linkedin: {
@@ -61,9 +62,8 @@ module.exports = {
 
   themeConfig: {
     announcementBar: {
-      id: 'newsletter-2026-07',
-      content:
-        'Own your stack — fortnightly engineering signal, no polish. <a href="/newsletter?utm_source=site&utm_medium=banner">Subscribe →</a>',
+      id: 'newsletter-2026-07-v2',
+      content: ANNOUNCEMENT_BAR_HTML,
       isCloseable: true,
     },
     image: 'img/social-card.jpg',

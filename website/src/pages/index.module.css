@@ -205,6 +205,10 @@
   transform: none;
 }
 
+.newsletterCard .cardDescription {
+  margin-bottom: 0.5rem;
+}
+
 .heroCta {
   display: inline-flex;
   align-items: center;

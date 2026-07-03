@@ -18,6 +18,8 @@ description: Changes and additions for July 2026
 ### 🎨 Design Changes
 - **Homepage and docs footer refresh**: Subtle newsletter CTA styling on doc footers; homepage hero social icons removed (footer retains Connect links); curated flagship essay and Start Here entry trio replace auto-latest picks
   - Proof strip (Block 8) intentionally deferred until copy is final
+- **Homepage newsletter card**: Compact beehiiv embed variant crops excess iframe padding so the signup row fits the card grid
+- **Announcement bar copy**: Replaced “Own your stack” line with newsletter positioning aligned to site copy (AI, power, tech — from inside the machine)
 
 ### ⚡ Performance Improvements
 - **404 redirect map**: Expanded client-side redirects for legacy `/subscribe`, `/documentation/`, and stale doc category paths

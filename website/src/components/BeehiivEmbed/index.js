@@ -13,10 +13,21 @@ export default function BeehiivEmbed({
   utmSource = 'site',
   utmMedium,
   height = 160,
+  variant = 'default',
   className,
 }) {
+  const isCompact = variant === 'compact';
+
   return (
-    <div className={[styles.embedContainer, className].filter(Boolean).join(' ')}>
+    <div
+      className={[
+        styles.embedContainer,
+        isCompact && styles.embedCompact,
+        className,
+      ]
+        .filter(Boolean)
+        .join(' ')}
+    >
       <iframe
         src={buildEmbedSrc({ utmSource, utmMedium })}
         className="beehiiv-embed"
@@ -26,7 +37,7 @@ export default function BeehiivEmbed({
         scrolling="no"
         style={{
           width: '100%',
-          height: `${height}px`,
+          height: isCompact ? undefined : `${height}px`,
           margin: 0,
           backgroundColor: 'transparent',
         }}

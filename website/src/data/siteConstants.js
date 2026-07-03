@@ -7,6 +7,10 @@ export const NEWSLETTER_DESCRIPTION =
 
 export const NEWSLETTER_OBJECTION = 'One email a fortnight. Leave whenever.';
 
+/** Site-wide announcement bar — keep in sync with newsletter positioning. */
+export const ANNOUNCEMENT_BAR_HTML =
+  'Unfiltered takes on AI, power, and tech — fortnightly from inside the machine. <a href="/newsletter?utm_source=site&utm_medium=banner">Subscribe →</a>';
+
 export const HOMEPAGE_TITLE =
   'Engineering Guides, AI Sovereignty & Pacific Tech | The Uncommon Engineer';
 

@@ -1,3 +1,16 @@
 .embedContainer {
   width: 100%;
 }
+
+/* Crop beehiiv iframe chrome — interior padding is set in beehiiv, not overridable here. */
+.embedCompact {
+  overflow: hidden;
+  height: 44px;
+  margin-top: 0.25rem;
+}
+
+.embedCompact iframe {
+  height: 72px;
+  margin-top: -14px;
+  margin-bottom: -14px;
+}

@@ -55,7 +55,7 @@ function NewsletterCard() {
       </div>
       <h3 className={styles.cardTitle}>Newsletter</h3>
       <p className={styles.cardDescription}>{NEWSLETTER_DESCRIPTION}</p>
-      <BeehiivEmbed utmSource="site" utmMedium="home" height={140} />
+      <BeehiivEmbed utmSource="site" utmMedium="home" variant="compact" />
     </div>
   );
 }
