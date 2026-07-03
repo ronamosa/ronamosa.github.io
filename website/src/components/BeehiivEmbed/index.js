@@ -1,3 +1,8 @@
+/**
+ * Site-embedded beehiiv iframe — for on-site capture only (homepage, Start Here, /newsletter).
+ * LinkedIn and other off-site CTAs must use BEEHIIV_HOSTED_SUBSCRIBE_URL / LINKEDIN_NEWSLETTER_URLS
+ * in siteConstants.js — iframe embeds strip referrer and UTM attribution.
+ */
 import React from 'react';
 import { BEEHIIV_EMBED_ID } from '@site/src/data/siteConstants';
 import styles from './styles.module.css';

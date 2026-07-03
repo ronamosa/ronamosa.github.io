@@ -1,15 +1,37 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Layout from '@theme/Layout';
 import BeehiivEmbed from '@site/src/components/BeehiivEmbed';
 import {
   NEWSLETTER_DESCRIPTION,
   NEWSLETTER_OBJECTION,
 } from '@site/src/data/siteConstants';
+import { getLinkedInHostedSubscribeRedirect } from '@site/src/utils/newsletterAttribution';
 import styles from './styles.module.css';
 
 function Newsletter() {
+  const [redirecting, setRedirecting] = useState(false);
+
   useEffect(() => {
-    if (typeof window !== 'undefined' && window.gtag) {
+    const redirectUrl = getLinkedInHostedSubscribeRedirect(
+      window.location.search,
+      document.referrer,
+    );
+
+    if (redirectUrl) {
+      setRedirecting(true);
+      if (window.gtag) {
+        window.gtag('event', 'linkedin_hosted_redirect', {
+          event_category: 'newsletter_funnel',
+          redirect_target: redirectUrl,
+          referral_source: document.referrer || 'direct',
+          attribution_medium: new URL(redirectUrl).searchParams.get('utm_medium'),
+        });
+      }
+      window.location.replace(redirectUrl);
+      return;
+    }
+
+    if (window.gtag) {
       const referrer = document.referrer || 'direct';
       const source = referrer.includes(window.location.hostname)
         ? new URL(referrer).pathname
@@ -21,6 +43,16 @@ function Newsletter() {
       });
     }
   }, []);
+
+  if (redirecting) {
+    return (
+      <Layout title="The Uncommon Engineer" description={NEWSLETTER_DESCRIPTION}>
+        <main className={styles.newsletterPage}>
+          <p className={styles.redirecting}>Redirecting to subscribe…</p>
+        </main>
+      </Layout>
+    );
+  }
 
   return (
     <Layout

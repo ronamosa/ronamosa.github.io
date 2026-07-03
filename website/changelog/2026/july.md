@@ -9,6 +9,11 @@ description: Changes and additions for July 2026
 ## 📅 2026-07-03
 
 ### 🛠️ Site Improvements
+- **LinkedIn newsletter attribution fix**: v2 iframe embed strips referrer/UTM — LinkedIn CTAs route to beehiiv-hosted subscribe page (`bee.uncommonengineer.com/subscribe`) where attribution is captured; `/newsletter` auto-redirects LinkedIn traffic with `linkedin_hosted_redirect` GA4 event; vanity path `/newsletter/linkedin/` → `medium=post`
+  - Granular mediums only: `profile`, `featured`, `pinned`, `post`, `referral` (referrer-only legacy links)
+  - Canonical URLs in `siteConstants.js` → `LINKEDIN_NEWSLETTER_URLS`; frozen post CTAs in `LINKEDIN_POST_CTA_STRINGS`
+
+### 🛠️ Site Improvements
 - **GEO / answer-engine findability (Task 8)**: AI crawlers explicitly allowed in `robots.txt`; build-time `llms.txt` curated index; `BlogPosting`/`TechArticle` JSON-LD on all blog posts and docs; Pacific AI & Data Sovereignty pillar hub with reciprocal cluster links
   - Curated picks live in `src/data/geoContent.js`
   - **Link**: [Pacific AI & Data Sovereignty hub](/blog/pacific-ai-data-sovereignty/)

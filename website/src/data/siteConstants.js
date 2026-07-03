@@ -2,6 +2,37 @@
 
 export const BEEHIIV_EMBED_ID = '6098c229-772a-4563-8e9b-8e44aa11992f';
 
+/**
+ * Beehiiv-hosted subscribe page — use for LinkedIn (and other off-site) CTAs.
+ * v2 iframe embeds strip referrer/UTM; the hosted page captures attribution.
+ */
+export const BEEHIIV_HOSTED_SUBSCRIBE_URL = 'https://bee.uncommonengineer.com/subscribe';
+
+export function buildBeehiivHostedSubscribeUrl({ utmSource = 'site', utmMedium } = {}) {
+  const url = new URL(BEEHIIV_HOSTED_SUBSCRIBE_URL);
+  if (utmSource) url.searchParams.set('utm_source', utmSource);
+  if (utmMedium) url.searchParams.set('utm_medium', utmMedium);
+  return url.toString();
+}
+
+/** LinkedIn CTA URLs — point profile, featured, pinned, and post links here, not /newsletter. */
+export const LINKEDIN_NEWSLETTER_URLS = {
+  profile: buildBeehiivHostedSubscribeUrl({ utmSource: 'linkedin', utmMedium: 'profile' }),
+  featured: buildBeehiivHostedSubscribeUrl({ utmSource: 'linkedin', utmMedium: 'featured' }),
+  pinned: buildBeehiivHostedSubscribeUrl({ utmSource: 'linkedin', utmMedium: 'pinned' }),
+  post: buildBeehiivHostedSubscribeUrl({ utmSource: 'linkedin', utmMedium: 'post' }),
+};
+
+/**
+ * Block 9 — frozen in-body LinkedIn CTA strings (hypothesis #1 experiment).
+ * One line each, ≤12 words + hosted post URL. Rotate across ≥6 posts unchanged.
+ */
+export const LINKEDIN_POST_CTA_STRINGS = [
+  `If this landed, the newsletter will too → ${LINKEDIN_NEWSLETTER_URLS.post}`,
+  `Where the long-form version of this lives → ${LINKEDIN_NEWSLETTER_URLS.post}`,
+  `Fortnightly from inside the machine → ${LINKEDIN_NEWSLETTER_URLS.post}`,
+];
+
 export const NEWSLETTER_DESCRIPTION =
   'Unfiltered takes on AI, power, and tech from a Pasifika engineer twenty-plus years inside the machine. No polish. Fortnightly.';
 
