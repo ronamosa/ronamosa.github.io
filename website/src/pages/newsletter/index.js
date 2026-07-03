@@ -5,11 +5,15 @@ import {
   NEWSLETTER_DESCRIPTION,
   NEWSLETTER_OBJECTION,
 } from '@site/src/data/siteConstants';
-import { getLinkedInHostedSubscribeRedirect } from '@site/src/utils/newsletterAttribution';
+import {
+  getLinkedInHostedSubscribeRedirect,
+  getNewsletterEmbedUtms,
+} from '@site/src/utils/newsletterAttribution';
 import styles from './styles.module.css';
 
 function Newsletter() {
   const [redirecting, setRedirecting] = useState(false);
+  const [embedUtms, setEmbedUtms] = useState(null);
 
   useEffect(() => {
     const redirectUrl = getLinkedInHostedSubscribeRedirect(
@@ -30,6 +34,8 @@ function Newsletter() {
       window.location.replace(redirectUrl);
       return;
     }
+
+    setEmbedUtms(getNewsletterEmbedUtms(window.location.search));
 
     if (window.gtag) {
       const referrer = document.referrer || 'direct';
@@ -65,7 +71,13 @@ function Newsletter() {
           <p className={styles.body}>{NEWSLETTER_DESCRIPTION}</p>
           <p className={styles.objection}>{NEWSLETTER_OBJECTION}</p>
 
-          <BeehiivEmbed utmSource="site" utmMedium="newsletter-page" height={180} />
+          {embedUtms && (
+            <BeehiivEmbed
+              utmSource={embedUtms.utmSource}
+              utmMedium={embedUtms.utmMedium}
+              height={180}
+            />
+          )}
         </div>
       </main>
     </Layout>

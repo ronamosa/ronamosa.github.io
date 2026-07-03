@@ -10,6 +10,7 @@ description: Changes and additions for July 2026
 
 ### 🛠️ Site Improvements
 - **LinkedIn newsletter attribution fix**: v2 iframe embed strips referrer/UTM — LinkedIn CTAs route to beehiiv-hosted subscribe page (`bee.uncommonengineer.com/subscribe`) where attribution is captured; `/newsletter` auto-redirects LinkedIn traffic with `linkedin_hosted_redirect` GA4 event; vanity path `/newsletter/linkedin/` → `medium=post`
+  - `/newsletter` embed forwards URL `utm_medium` from link hops (guide, banner, blog) before defaulting to `newsletter-page`
   - Granular mediums only: `profile`, `featured`, `pinned`, `post`, `referral` (referrer-only legacy links)
   - Canonical URLs in `siteConstants.js` → `LINKEDIN_NEWSLETTER_URLS`; frozen post CTAs in `LINKEDIN_POST_CTA_STRINGS`
 

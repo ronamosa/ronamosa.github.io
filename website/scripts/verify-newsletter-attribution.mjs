@@ -25,6 +25,28 @@ function getLinkedInHostedSubscribeRedirect(search = '', referrer = '') {
   });
 }
 
+function getNewsletterEmbedUtms(search = '') {
+  const params = new URLSearchParams(search);
+  return {
+    utmSource: params.get('utm_source') || 'site',
+    utmMedium: params.get('utm_medium') || 'newsletter-page',
+  };
+}
+
+function testNewsletterPageEmbedUtms() {
+  assertEqual(
+    getNewsletterEmbedUtms('').utmMedium,
+    'newsletter-page',
+    'direct /newsletter visit → newsletter-page',
+  );
+
+  for (const medium of ['guide', 'banner', 'blog']) {
+    const utms = getNewsletterEmbedUtms(`?utm_source=site&utm_medium=${medium}`);
+    assertEqual(utms.utmSource, 'site', `${medium} hop source`);
+    assertEqual(utms.utmMedium, medium, `${medium} hop medium forwarded to embed`);
+  }
+}
+
 function assert(condition, message) {
   if (!condition) throw new Error(message);
 }
@@ -110,15 +132,19 @@ console.log('verify-newsletter-attribution: running…\n');
 
 testLinkedInRedirectPrecedence();
 testOnSiteEmbedUtms();
+testNewsletterPageEmbedUtms();
 testLinkedInHostedRegistry();
 
 console.log('✓ LinkedIn redirect precedence (URL param > referrer)');
 console.log('✓ On-site embed UTM surfaces (home, start, newsletter-page)');
+console.log('✓ /newsletter page forwards URL UTMs (guide, banner, blog hops)');
 console.log('✓ LinkedIn hosted registry (profile, featured, pinned, post — no social)');
 console.log('\n--- Task 9a manual plus-address test (beehiiv dashboard) ---');
-console.log('Submit one test signup per on-site embed using plus-addressed emails:');
-console.log('  • homepage card     → you+home@yourdomain.com      (expect utm_medium=home)');
-console.log('  • Start Here footer → you+start@yourdomain.com     (expect utm_medium=start)');
-console.log('  • /newsletter page  → you+newsletter@yourdomain.com (expect utm_medium=newsletter-page)');
+console.log('Submit one test signup per surface using plus-addressed emails:');
+console.log('  • homepage embed        → you+home@…           (expect utm_medium=home)');
+console.log('  • Start Here embed      → you+start@…          (expect utm_medium=start)');
+console.log('  • /newsletter direct    → you+newsletter@…     (expect utm_medium=newsletter-page)');
+console.log('  • doc footer → /newsletter → you+guide@…       (expect utm_medium=guide)');
+console.log('  • announcement bar → /newsletter → you+banner@… (expect utm_medium=banner)');
 console.log('Confirm in beehiiv subscriber source — not embed:direct. Unsubscribe test rows after.');
 console.log('\nAll automated checks passed.');
