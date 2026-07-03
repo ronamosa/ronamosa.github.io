@@ -21,6 +21,7 @@ description: Changes and additions for July 2026
 
 ### ⚡ Performance Improvements
 - **404 redirect map**: Expanded client-side redirects for legacy `/subscribe`, `/documentation/`, and stale doc category paths
+- **GA-derived 404 redirects**: Mapped 111 broken paths from Apr–Jul 2026 analytics export (Substack `/p/` slugs, nested hub URLs, old AWS naming, removed blog posts)
 - **Count hygiene**: Docs and blog counts now computed once at build time with rounded display values shared across homepage and Start Here
 
 ---
