@@ -152,6 +152,15 @@ module.exports = {
       attributes: {},
       innerHTML: `window.dataLayer=window.dataLayer||[];window.gtag=window.gtag||function(){window.dataLayer.push(arguments);};`,
     },
+    {
+      tagName: 'link',
+      attributes: {
+        rel: 'alternate',
+        type: 'text/plain',
+        href: '/llms.txt',
+        title: 'LLM Content Map',
+      },
+    },
   ],
 
   scripts: [

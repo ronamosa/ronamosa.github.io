@@ -9,6 +9,11 @@ description: Changes and additions for July 2026
 ## 📅 2026-07-03
 
 ### 🛠️ Site Improvements
+- **GEO / answer-engine findability (Task 8)**: AI crawlers explicitly allowed in `robots.txt`; build-time `llms.txt` curated index; `BlogPosting`/`TechArticle` JSON-LD on all blog posts and docs; Pacific AI & Data Sovereignty pillar hub with reciprocal cluster links
+  - Curated picks live in `src/data/geoContent.js`
+  - **Link**: [Pacific AI & Data Sovereignty hub](/blog/pacific-ai-data-sovereignty/)
+
+### 🛠️ Site Improvements
 - **Newsletter conversion funnel overhaul**: Added site-wide announcement bar, embedded beehiiv forms on homepage and Start Here, new `/newsletter` landing page, and end-of-guide CTA on all docs pages — every link carries UTM attribution (`banner`, `guide`, `home`, `start`, `newsletter-page`)
   - Retired `/subscribe` via client-side redirect to `/newsletter`
   - Removed subscriber counts from homepage

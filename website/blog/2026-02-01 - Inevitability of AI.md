@@ -24,6 +24,10 @@ draft: false
 
 ![The Inevitability of AI](/img/blog/inevitability-of-ai-header.png)
 
+:::tip Part of the Pacific AI & Data Sovereignty series
+This essay is part of a thread on AI, data sovereignty, and Pasifika in technology. See the **[Pacific AI & Data Sovereignty hub](/blog/pacific-ai-data-sovereignty/)** for the full collection. Related: [AI Is a Conversation](/blog/ai-is-a-conversation/), [Getting Paid For Your Data Sounds Great](/blog/getting-paid-for-your-data-sounds-great/).
+:::
+
 Talofa reader,
 
 The argument that "AI is inevitable" has been accepted by tech and non-tech professionals alike, largely with muted reservation rather than loud proclamation. I've led workshops on generative AI, and the feeling from participants is that AI is a foregone conclusion:

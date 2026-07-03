@@ -26,6 +26,10 @@ draft: false
 
 ![Getting Paid For Your Data Sounds Great](/img/blog/getting-paid-foryour-data-header.png)
 
+:::tip Part of the Pacific AI & Data Sovereignty series
+This essay is part of a thread on AI, data sovereignty, and Pasifika in technology. See the **[Pacific AI & Data Sovereignty hub](/blog/pacific-ai-data-sovereignty/)** for the full collection. Related: [Data Sovereignty & The Cloud](/blog/data-sovereignty-the-cloud/), [The Inevitability of AI](/blog/the-inevitability-of-ai/).
+:::
+
 Talofa reader,
 
 Anthropic dropped $8 million on a Super Bowl ad to tell you Claude is ad-free. I posted [this](https://www.linkedin.com/posts/ron-amosa_i-saw-a-linkedin-post-last-week-talking-about-activity-7429286105654538240-RBgt/) about it the other week. The internet immediately started debating whether that's sustainable.

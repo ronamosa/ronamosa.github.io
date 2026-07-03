@@ -143,5 +143,10 @@ module.exports = function contentCountsPlugin(_context, _options) {
         recentDocs: getRecentDocs(docsDir, 5),
       });
     },
+    async postBuild({ outDir }) {
+      const { buildLlmsTxt } = require('../src/data/geoContent.js');
+      const llmsPath = path.join(outDir, 'llms.txt');
+      fs.writeFileSync(llmsPath, buildLlmsTxt(), 'utf-8');
+    },
   };
 };

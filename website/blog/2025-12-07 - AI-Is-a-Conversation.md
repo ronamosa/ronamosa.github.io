@@ -23,6 +23,10 @@ draft: false
 
 ![AI Is a Conversation](/img/blog/ai-conversation.png)
 
+:::tip Part of the Pacific AI & Data Sovereignty series
+This essay is part of a thread on AI, data sovereignty, and Pasifika in technology. See the **[Pacific AI & Data Sovereignty hub](/blog/pacific-ai-data-sovereignty/)** for the full collection. Related: [The Inevitability of AI](/blog/the-inevitability-of-ai/), [The AI Resistance](/blog/the-ai-resistance/).
+:::
+
 Talofa reader,
 
 I remember one of my first AI-related engagements with one of my highly capable AWS Partners, a multi-national, multi-billion dollar company, highly resourced. It was early 2024, and I was delivering a workshop on GenAI. I was talking with one of the company tech leaders, and I was a little surprised at how they were thinking about AI—essentially, off-loading a good chunk of the problem decisions to the LLMs, and little to no emphasis on context details and scope going either way: to, from and back to the LLM.

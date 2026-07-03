@@ -16,6 +16,11 @@ word_count: 1425
 hide_table_of_contents: false
 draft: false
 ---
+
+:::tip Part of the Pacific AI & Data Sovereignty series
+This essay is part of a thread on AI, data sovereignty, and Pasifika in technology. See the **[Pacific AI & Data Sovereignty hub](/blog/pacific-ai-data-sovereignty/)** for the full collection. Related: [Pasifika And The AI Opportunity](/blog/pasifika-and-the-ai-opportunity/), [The Knowledge Gap: Rethinking the Digital Divide for Pasifika](/blog/knowledge-gap-rethinking-digital-divide-for-pasifika/).
+:::
+
 Talofa reader,
 
 I saw a post by a Māori Entrepreneur & Investor who had recently launched an AI company, which left me flabbergasted.

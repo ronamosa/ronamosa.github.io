@@ -26,6 +26,10 @@ draft: false
 
 ![The Blue Pill Doesn't Work Here](/img/blog/bluepill.png)
 
+:::tip Part of the Pacific AI & Data Sovereignty series
+This essay is part of a thread on AI, data sovereignty, and Pasifika in technology. See the **[Pacific AI & Data Sovereignty hub](/blog/pacific-ai-data-sovereignty/)** for the full collection. Related: [Technology Is Political](/blog/technology-political-no-matter-how-much-people-try/), [The Inevitability of AI](/blog/the-inevitability-of-ai/).
+:::
+
 Talofa reader,
 
 I had an encounter the other week, with a smart, very capable young Pasifika person on my Discord who said they're not political because they're _"either not interested in it or ... too busy living life and having fun to do anything about it"._

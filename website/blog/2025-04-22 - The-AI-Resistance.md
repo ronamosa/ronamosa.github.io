@@ -25,6 +25,10 @@ draft: false
 
 ![The AI Resistance](/img/blog/ai-resistance.png)
 
+:::tip Part of the Pacific AI & Data Sovereignty series
+This essay is part of a thread on AI, data sovereignty, and Pasifika in technology. See the **[Pacific AI & Data Sovereignty hub](/blog/pacific-ai-data-sovereignty/)** for the full collection. Related: [AI Is a Conversation](/blog/ai-is-a-conversation/), [The Inevitability of AI](/blog/the-inevitability-of-ai/).
+:::
+
 Talofa reader,
 
 I guess the first thing I should say about "AI" as a concept, an idea and a thing that's taken over the world as we know it, is- I'm not pro AI.
