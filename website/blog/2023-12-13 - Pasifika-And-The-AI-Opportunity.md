@@ -16,6 +16,11 @@ word_count: 1786
 hide_table_of_contents: false
 draft: false
 ---
+
+:::tip Part of the Pacific AI & Data Sovereignty series
+This essay is part of a thread on AI, data sovereignty, and Pasifika in technology. See the **[Pacific AI & Data Sovereignty hub](/blog/pacific-ai-data-sovereignty/)** for the full collection. Related: [Data Sovereignty & The Cloud](/blog/data-sovereignty-the-cloud/), [Beyond Netflix: AI Literacy Among Indigenous Tech Leaders](/blog/beyond-netflix-critical-need-for-ai-literacy-among/).
+:::
+
 Talofa Reader,
 
 I was listening to a podcast once, and the guest was explaining why there aren't as many "geniuses" and prodigies around now as there were in, say, Mozart's days.

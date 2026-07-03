@@ -147,6 +147,68 @@
   }
 }
 
+.heroCtas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+.heroCtaPrimary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.5rem;
+  background-color: var(--ifm-color-primary);
+  color: #fff;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.heroCtaPrimary:hover {
+  background-color: var(--ifm-color-primary-dark);
+  transform: translateY(-1px);
+  text-decoration: none;
+  color: #fff;
+}
+
+.heroCtaSecondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.5rem;
+  background-color: transparent;
+  color: var(--ifm-font-color-base);
+  border: 1px solid #2a2a2a;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.heroCtaSecondary:hover {
+  border-color: var(--ifm-color-primary);
+  color: var(--ifm-color-primary);
+  text-decoration: none;
+  transform: translateY(-1px);
+}
+
+.newsletterCard {
+  cursor: default;
+}
+
+.newsletterCard:hover {
+  transform: none;
+}
+
+.newsletterCard .cardDescription {
+  margin-bottom: 0.5rem;
+}
+
 .heroCta {
   display: inline-flex;
   align-items: center;
@@ -295,16 +357,16 @@
     align-items: center;
   }
 
+  .heroCtas {
+    justify-content: center;
+  }
+
   .heroTitle {
     font-size: 2.75rem;
   }
 
   .heroSubtitle {
     text-align: center;
-  }
-
-  .socialIcons {
-    justify-content: center;
   }
 
   .cardsContainer {

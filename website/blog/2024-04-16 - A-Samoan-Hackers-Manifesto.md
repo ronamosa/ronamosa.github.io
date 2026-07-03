@@ -17,6 +17,11 @@ word_count: 1883
 hide_table_of_contents: false
 draft: false
 ---
+
+:::tip Part of the Pacific AI & Data Sovereignty series
+This essay is part of a thread on AI, data sovereignty, and Pasifika in technology. See the **[Pacific AI & Data Sovereignty hub](/blog/pacific-ai-data-sovereignty/)** for the full collection. Related: [Pasifika Need Tech Leaders Who Are Technical](/blog/pasifika-need-tech-leaders-who-technical/), [The Inevitability of AI](/blog/the-inevitability-of-ai/).
+:::
+
 Talofa reader,
 
 I often tell the story of what first got me into thinking about tech, so for this edition, I thought I’d dive deep into what made it such a life-changing point in my life.

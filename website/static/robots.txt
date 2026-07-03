@@ -1,3 +1,23 @@
+# AI crawlers explicitly allowed — public brand layer is discoverable by answer engines.
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
 User-agent: *
 Allow: /
+
 Sitemap: https://www.uncommonengineer.com/sitemap.xml

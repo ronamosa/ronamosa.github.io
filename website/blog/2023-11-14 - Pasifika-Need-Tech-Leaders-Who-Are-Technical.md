@@ -16,6 +16,11 @@ word_count: 1423
 hide_table_of_contents: false
 draft: false
 ---
+
+:::tip Part of the Pacific AI & Data Sovereignty series
+This essay is part of a thread on AI, data sovereignty, and Pasifika in technology. See the **[Pacific AI & Data Sovereignty hub](/blog/pacific-ai-data-sovereignty/)** for the full collection. Related: [There is no Pasifika in Tech Problem](/blog/there-no-pasifika-in-tech-problem/), [A Samoan Hacker's Manifesto](/blog/a-samoan-hackers-manifesto/).
+:::
+
 Talofa reader,
 
 Pasifika Have a "Technical Leadership" Issue.

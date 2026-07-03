@@ -76,6 +76,72 @@
   margin-top: 0.25rem;
 }
 
+/* ---- Curated entry trio ---- */
+
+.curatedGrid {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.curatedCard {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding: 1rem 1.25rem;
+  background: #161A1D;
+  border: 1px solid #1e2228;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: border-color 0.2s ease, transform 0.15s ease;
+}
+
+.curatedCard:hover {
+  border-color: #A4161A;
+  transform: translateX(4px);
+  text-decoration: none;
+}
+
+.curatedLabel {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #BA181B;
+}
+
+.curatedTitle {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #F5F3F4;
+  line-height: 1.3;
+}
+
+.curatedCard:hover .curatedTitle {
+  color: #BA181B;
+}
+
+/* ---- Newsletter capture ---- */
+
+.newsletterSection {
+  margin: 2.5rem 0 1rem;
+  padding: 1.5rem;
+  background: #161A1D;
+  border: 1px solid #1e2228;
+  border-radius: 8px;
+}
+
+.newsletterDescription {
+  font-size: 1rem;
+  color: #B1A7A6;
+  line-height: 1.6;
+  margin: 0 0 0.5rem;
+}
+
+.newsletterObjection {
+  font-size: 0.9rem;
+  color: #777;
+  margin: 0 0 1rem;
+}
+
 /* ---- Section ---- */
 
 .section {

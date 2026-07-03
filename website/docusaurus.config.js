@@ -1,4 +1,6 @@
 const {themes} = require('prism-react-renderer');
+const legacyRedirects = require('./redirects');
+const {ANNOUNCEMENT_BAR_HTML} = require('./src/data/siteConstants.js');
 
 const internetProfiles = {
   linkedin: {
@@ -59,6 +61,11 @@ module.exports = {
   ],
 
   themeConfig: {
+    announcementBar: {
+      id: 'newsletter-2026-07-v2',
+      content: ANNOUNCEMENT_BAR_HTML,
+      isCloseable: true,
+    },
     image: 'img/social-card.jpg',
     metadata: [
       { name: 'twitter:card', content: 'summary_large_image' },
@@ -145,6 +152,15 @@ module.exports = {
       attributes: {},
       innerHTML: `window.dataLayer=window.dataLayer||[];window.gtag=window.gtag||function(){window.dataLayer.push(arguments);};`,
     },
+    {
+      tagName: 'link',
+      attributes: {
+        rel: 'alternate',
+        type: 'text/plain',
+        href: '/llms.txt',
+        title: 'LLM Content Map',
+      },
+    },
   ],
 
   scripts: [
@@ -229,15 +245,16 @@ module.exports = {
     [
       '@docusaurus/plugin-client-redirects',
       {
+        redirects: legacyRedirects,
         createRedirects(existingPath) {
-          if (existingPath === '/docs/bulk-delete-outlook-rules-powershell-macos') {
-            return ['/docs/engineer/Misc/bulk-delete-outlook-rules-powershell-macos'];
+          if (existingPath === '/docs/bulk-delete-outlook-rules-powershell-macos/') {
+            return ['/docs/engineer/Misc/bulk-delete-outlook-rules-powershell-macos/'];
           }
-          if (existingPath.startsWith('/docs/engineer/guides')) {
-            return [existingPath.replace('/docs/engineer/guides', '/docs/engineer/Misc')];
+          if (existingPath.startsWith('/docs/engineer/guides/')) {
+            return [existingPath.replace('/docs/engineer/guides/', '/docs/engineer/Misc/')];
           }
-          if (existingPath === '/docs/category/guides') {
-            return ['/docs/category/misc', '/docs/engineer/Misc'];
+          if (existingPath === '/docs/category/guides/') {
+            return ['/docs/category/misc/'];
           }
           return undefined;
         },

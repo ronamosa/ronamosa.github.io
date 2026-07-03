@@ -1,7 +1,13 @@
 const fs = require('fs');
 const path = require('path');
 
-function countMarkdownFiles(dir) {
+const EXCLUDED_DOC_FILES = new Set(['start-here.md', 'start-here.mdx']);
+
+function roundCountDown(count) {
+  return Math.floor(count / 10) * 10;
+}
+
+function countMarkdownFiles(dir, { exclude = () => false } = {}) {
   let count = 0;
   if (!fs.existsSync(dir)) return count;
 
@@ -9,8 +15,8 @@ function countMarkdownFiles(dir) {
   for (const entry of entries) {
     const fullPath = path.join(dir, entry.name);
     if (entry.isDirectory()) {
-      count += countMarkdownFiles(fullPath);
-    } else if (/\.(md|mdx)$/.test(entry.name)) {
+      count += countMarkdownFiles(fullPath, { exclude });
+    } else if (/\.(md|mdx)$/.test(entry.name) && !exclude(entry.name)) {
       count++;
     }
   }
@@ -122,13 +128,25 @@ module.exports = function contentCountsPlugin(_context, _options) {
 
       const recentPosts = getRecentBlogPosts(blogDir, 5);
 
+      const blogCount = countMarkdownFiles(blogDir);
+      const docsCount = countMarkdownFiles(docsDir, {
+        exclude: (name) => EXCLUDED_DOC_FILES.has(name),
+      });
+
       actions.setGlobalData({
-        blogCount: countMarkdownFiles(blogDir),
-        docsCount: countMarkdownFiles(docsDir),
+        blogCount,
+        docsCount,
+        displayBlogCount: roundCountDown(blogCount),
+        displayDocsCount: roundCountDown(docsCount),
         latestPost: recentPosts[0] || null,
         recentPosts,
         recentDocs: getRecentDocs(docsDir, 5),
       });
+    },
+    async postBuild({ outDir }) {
+      const { buildLlmsTxt } = require('../src/data/geoContent.js');
+      const llmsPath = path.join(outDir, 'llms.txt');
+      fs.writeFileSync(llmsPath, buildLlmsTxt(), 'utf-8');
     },
   };
 };

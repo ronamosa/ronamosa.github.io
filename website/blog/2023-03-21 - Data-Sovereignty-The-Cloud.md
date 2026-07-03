@@ -17,6 +17,11 @@ word_count: 2715
 hide_table_of_contents: false
 draft: false
 ---
+
+:::tip Part of the Pacific AI & Data Sovereignty series
+This essay is part of a thread on AI, data sovereignty, and Pasifika in technology. See the **[Pacific AI & Data Sovereignty hub](/blog/pacific-ai-data-sovereignty/)** for the full collection. Related: [Pasifika And The AI Opportunity](/blog/pasifika-and-the-ai-opportunity/), [Getting Paid For Your Data Sounds Great](/blog/getting-paid-for-your-data-sounds-great/).
+:::
+
 Talofa reader,
 
 There's been a lot more AI activity this past week after the announcement ofGPT4by OpenAI. There's been a lot of discussion and activity in my Pasifika Tech Network discord as well as the developers have been playing with creating slack and discord bots that use the OpenAI API.

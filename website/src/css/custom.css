@@ -45,6 +45,26 @@ html[data-theme='dark'] {
   padding: 0 var(--ifm-pre-padding);
 }
 
+/* Announcement bar — thin, no animation */
+div[class*='announcementBar'] {
+  font-size: 0.85rem;
+  line-height: 1.4;
+}
+
+div[class*='announcementBarContent'] {
+  padding: 0.35rem 0;
+}
+
+div[class*='announcementBarContent'] a {
+  color: var(--ifm-color-primary);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+div[class*='announcementBarContent'] a:hover {
+  text-decoration: underline;
+}
+
 /* Enable word wrapping in code blocks */
 pre {
   white-space: pre-wrap !important;

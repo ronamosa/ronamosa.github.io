@@ -17,6 +17,11 @@ word_count: 1517
 hide_table_of_contents: false
 draft: false
 ---
+
+:::tip Part of the Pacific AI & Data Sovereignty series
+This essay is part of a thread on AI, data sovereignty, and Pasifika in technology. See the **[Pacific AI & Data Sovereignty hub](/blog/pacific-ai-data-sovereignty/)** for the full collection. Related: [Beyond Netflix: AI Literacy Among Indigenous Tech Leaders](/blog/beyond-netflix-critical-need-for-ai-literacy-among/), [There is no Pasifika in Tech Problem](/blog/there-no-pasifika-in-tech-problem/).
+:::
+
 Talofa reader,
 
 The "digital divide" is a term I've been hearing since I first got into community work with my charity back in 2017. Back then, researchers from the '90s had this simple way of looking at it - you either had computers and internet, or you didn't. Pretty straightforward stuff: get people devices, hook them up to the internet, problem solved. The lack of Pasifika representation in IT was wrapped up in this whole narrative.

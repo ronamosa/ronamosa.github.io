@@ -15,6 +15,11 @@ word_count: 2082
 hide_table_of_contents: false
 draft: false
 ---
+
+:::tip Part of the Pacific AI & Data Sovereignty series
+This essay is part of a thread on AI, data sovereignty, and Pasifika in technology. See the **[Pacific AI & Data Sovereignty hub](/blog/pacific-ai-data-sovereignty/)** for the full collection. Related: [The Knowledge Gap: Rethinking the Digital Divide for Pasifika](/blog/knowledge-gap-rethinking-digital-divide-for-pasifika/), [Pasifika Need Tech Leaders Who Are Technical](/blog/pasifika-need-tech-leaders-who-technical/).
+:::
+
 Talofa reader,
 
 I had some thoughts recently on this topic, and after a live stream and discord discussion, wanted to note things down.
