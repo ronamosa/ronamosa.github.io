@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Layout from '@theme/Layout';
 import BeehiivEmbed from '@site/src/components/BeehiivEmbed';
+import NewsletterPitch from '@site/src/components/NewsletterPitch';
 import {
   NEWSLETTER_DESCRIPTION,
   NEWSLETTER_OBJECTION,
@@ -68,7 +69,9 @@ function Newsletter() {
       <main className={styles.newsletterPage}>
         <div className={styles.newsletterContainer}>
           <h1 className={styles.title}>The Uncommon Engineer</h1>
-          <p className={styles.body}>{NEWSLETTER_DESCRIPTION}</p>
+          <p className={styles.body}>
+            <NewsletterPitch />
+          </p>
           <p className={styles.objection}>{NEWSLETTER_OBJECTION}</p>
 
           {embedUtms && (

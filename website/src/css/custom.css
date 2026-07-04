@@ -71,6 +71,17 @@ div[class*='announcementBarContent'] a:hover {
   text-decoration: underline;
 }
 
+div[class*='announcementBarContent'] strong {
+  color: #fff;
+  font-weight: 800;
+}
+
+div[class*='announcementBarContent'] em {
+  font-style: normal;
+  font-weight: 600;
+  opacity: 0.92;
+}
+
 button[class*='announcementBarClose'] {
   color: #F5F3F4;
   opacity: 0.85;

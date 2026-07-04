@@ -209,6 +209,17 @@
   margin-bottom: 0.5rem;
 }
 
+.newsletterPunchline {
+  color: #f0c75e;
+  font-weight: 800;
+}
+
+.newsletterTagline {
+  font-style: normal;
+  font-weight: 600;
+  color: #b0b0b0;
+}
+
 .heroCta {
   display: inline-flex;
   align-items: center;

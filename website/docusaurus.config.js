@@ -62,7 +62,7 @@ module.exports = {
 
   themeConfig: {
     announcementBar: {
-      id: 'newsletter-2026-07-v2',
+      id: 'newsletter-2026-07-v3',
       content: ANNOUNCEMENT_BAR_HTML,
       isCloseable: true,
     },

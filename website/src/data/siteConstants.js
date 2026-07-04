@@ -33,14 +33,49 @@ export const LINKEDIN_POST_CTA_STRINGS = [
   `Fortnightly from inside the machine → ${LINKEDIN_NEWSLETTER_URLS.post}`,
 ];
 
-export const NEWSLETTER_DESCRIPTION =
-  'Unfiltered takes on AI, power, and tech from a Pasifika engineer twenty-plus years inside the machine. No polish. Fortnightly.';
+/** Core newsletter pitch — edit segments here; formatting via NewsletterPitch component. */
+export const NEWSLETTER_PITCH_SEGMENTS = {
+  setup: 'The newsletter is the what... as in, ',
+  punchline: 'what the f***',
+  body: " — AI, power, Big Tech and the tech industry, through a Pasifika lens, from an engineer who's spent twenty-plus years working inside the machine.",
+  tagline: 'Fortnightly. No filter.',
+};
 
-export const NEWSLETTER_OBJECTION = 'One email a fortnight. Leave whenever.';
+/** Context openers paired with the pitch ("…the how."). */
+export const NEWSLETTER_CONTEXT_PREFIXES = {
+  doc: { subject: 'The docs are', contrast: 'the how' },
+  blog: { subject: 'This essay is', contrast: 'the how' },
+  startHere: { subject: 'The guides are', contrast: 'the how' },
+};
 
-/** Site-wide announcement bar — keep in sync with newsletter positioning. */
+function buildNewsletterPitchPlain(context) {
+  const { setup, punchline, body, tagline } = NEWSLETTER_PITCH_SEGMENTS;
+  const pitch = `${setup}${punchline}${body} ${tagline}`;
+
+  if (!context) {
+    return pitch;
+  }
+
+  const { subject, contrast } = NEWSLETTER_CONTEXT_PREFIXES[context];
+  return `${subject} ${contrast}. ${pitch}`;
+}
+
+/** Plain text for meta tags, SEO, llms.txt, and other non-React surfaces. */
+export const NEWSLETTER_PITCH = buildNewsletterPitchPlain();
+
+/** Default description for homepage card, /newsletter page, and meta tags. */
+export const NEWSLETTER_DESCRIPTION = NEWSLETTER_PITCH;
+
+/** Plain-text variants (legacy exports — prefer NewsletterPitch component in UI). */
+export const NEWSLETTER_DOC_FOOTER_BODY = buildNewsletterPitchPlain('doc');
+export const NEWSLETTER_BLOG_FOOTER_BODY = buildNewsletterPitchPlain('blog');
+export const NEWSLETTER_START_HERE_BODY = buildNewsletterPitchPlain('startHere');
+
+export const NEWSLETTER_OBJECTION = 'Leave whenever.';
+
+/** Site-wide announcement bar — HTML allowed; keep plain-text meaning in sync with segments. */
 export const ANNOUNCEMENT_BAR_HTML =
-  'Unfiltered takes on AI, power, and tech — fortnightly from inside the machine. <a href="/newsletter?utm_source=site&utm_medium=banner">Subscribe →</a>';
+  'The <strong>what</strong>, not the <strong>how</strong> — AI, power, Big Tech, Pasifika lens. <em>Fortnightly. No filter.</em> <a href="/newsletter?utm_source=site&utm_medium=banner">Subscribe →</a>';
 
 export const HOMEPAGE_TITLE =
   'Engineering Guides, AI Sovereignty & Pacific Tech | The Uncommon Engineer';

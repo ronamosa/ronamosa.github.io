@@ -195,7 +195,7 @@ export function buildLlmsTxt() {
     ...TOP_GUIDES.map((e) => `- [${e.title}](${SITE_URL}${e.path}): ${e.description}`),
     '',
     '## Newsletter',
-    `- [The Uncommon Engineer Newsletter](${SITE_URL}/newsletter/): Fortnightly — AI, power, and tech from inside the machine.`,
+    `- [The Uncommon Engineer Newsletter](${SITE_URL}/newsletter/): The what, not the how — AI, power, Big Tech, Pasifika lens. Fortnightly. No filter.`,
   ];
 
   return `${lines.join('\n')}\n`;

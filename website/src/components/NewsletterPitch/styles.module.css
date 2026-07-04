@@ -1,0 +1,10 @@
+.punchline {
+  color: inherit;
+  font-weight: 800;
+}
+
+.tagline {
+  font-style: normal;
+  font-weight: 600;
+  opacity: 0.9;
+}

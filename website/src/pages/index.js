@@ -4,6 +4,7 @@ import Layout from '@theme/Layout';
 import Head from '@docusaurus/Head';
 import { usePluginData } from '@docusaurus/useGlobalData';
 import BeehiivEmbed from '@site/src/components/BeehiivEmbed';
+import NewsletterPitch from '@site/src/components/NewsletterPitch';
 import {
   FLAGSHIP_ESSAY,
   HOMEPAGE_TITLE,
@@ -69,7 +70,12 @@ function NewsletterCard() {
         <span className={styles.cardIcon}>📬</span>
       </div>
       <h3 className={styles.cardTitle}>Newsletter</h3>
-      <p className={styles.cardDescription}>{NEWSLETTER_DESCRIPTION}</p>
+      <p className={styles.cardDescription}>
+        <NewsletterPitch
+          punchlineClassName={styles.newsletterPunchline}
+          taglineClassName={styles.newsletterTagline}
+        />
+      </p>
       <BeehiivEmbed utmSource="site" utmMedium="home" variant="compact" />
     </div>
   );

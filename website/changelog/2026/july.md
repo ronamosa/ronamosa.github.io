@@ -9,6 +9,8 @@ description: Changes and additions for July 2026
 ## 📅 2026-07-04
 
 ### 🎨 Design Changes
+- **Newsletter copy refresh**: Unified positioning across site — "the how vs the what" framing with Pasifika lens, Big Tech, and no-filter fortnightly cadence; context-specific openers on doc footers ("The docs are the how"), blog footers ("This essay"), and Start Here ("The guides"); pitch segments support bold/emphasis formatting via shared `NewsletterPitch` component
+- **Doc footer newsletter CTA**: Warm gold accent card with checkmark badge and button-style subscribe link; lead line reads "Enjoying the docs? Good."
 - **Homepage cards**: Larger section emojis; featured essay on the Analysis card is now a direct link to the flagship post
 - **Announcement bar**: Red brand background with white copy and high-contrast black subscribe link — replaces the default white bar on the dark theme
 
