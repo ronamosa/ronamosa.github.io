@@ -2,9 +2,9 @@ import React from 'react';
 import Link from '@docusaurus/Link';
 import { usePluginData } from '@docusaurus/useGlobalData';
 import BeehiivEmbed from '@site/src/components/BeehiivEmbed';
+import NewsletterPitch from '@site/src/components/NewsletterPitch';
 import {
   CURATED_START_HERE,
-  NEWSLETTER_DESCRIPTION,
   NEWSLETTER_OBJECTION,
 } from '@site/src/data/siteConstants';
 import styles from './styles.module.css';
@@ -104,25 +104,25 @@ export function Pathways() {
       label: 'Engineer',
       title: 'Cloud & Infrastructure',
       desc: 'AWS, Kubernetes, AI, security, and architecture projects.',
-      to: '/docs/engineer',
+      to: '/docs/engineer/LAB/',
     },
     {
       label: 'Essays',
       title: 'Analysis & Essays',
       desc: 'AI sovereignty, digital colonialism, Pacific identity.',
-      to: '/blog',
+      to: '/blog/',
     },
     {
-      label: 'Certifications',
-      title: 'Study Notes',
-      desc: 'CKA, CKS, AWS SA Pro — exam prep and walkthroughs.',
-      to: '/docs/study',
+      label: 'AI',
+      title: 'AI & ML Projects',
+      desc: 'LLM deployment, Bedrock, private AI, and agentic RAG.',
+      to: '/docs/engineer/AI/',
     },
     {
       label: 'Homelab',
       title: 'Proxmox Hub',
       desc: 'The complete guide collection for Proxmox virtualization.',
-      to: '/docs/engineer/LAB/proxmox-hub',
+      to: '/docs/engineer/LAB/proxmox-hub/',
     },
   ];
 
@@ -172,7 +172,9 @@ export function RecentDocs() {
 export function NewsletterCapture() {
   return (
     <div className={styles.newsletterSection}>
-      <p className={styles.newsletterDescription}>{NEWSLETTER_DESCRIPTION}</p>
+      <p className={styles.newsletterDescription}>
+        <NewsletterPitch context="startHere" />
+      </p>
       <p className={styles.newsletterObjection}>{NEWSLETTER_OBJECTION}</p>
       <BeehiivEmbed utmSource="site" utmMedium="start" height={160} />
     </div>

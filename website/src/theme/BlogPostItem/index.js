@@ -3,6 +3,8 @@ import BlogPostItem from '@theme-original/BlogPostItem';
 import {useBlogPost} from '@docusaurus/plugin-content-blog/client';
 import {BlogPostingSchema} from '@site/src/components/StructuredData';
 import {SITE_URL} from '@site/src/data/geoContent';
+import NewsletterPitch from '@site/src/components/NewsletterPitch';
+import { NEWSLETTER_OBJECTION } from '@site/src/data/siteConstants';
 import styles from './styles.module.css';
 
 function toAbsoluteUrl(path) {
@@ -27,8 +29,9 @@ function NewsletterCta() {
       <span className={styles.emoji}>✉️</span>
       <div className={styles.ctaContent}>
         <p className={styles.ctaText}>
-          Want posts like this straight in your inbox every fortnight?
+          <NewsletterPitch context="blog" />
         </p>
+        <p className={styles.ctaObjection}>{NEWSLETTER_OBJECTION}</p>
         <a
           href="/newsletter?utm_source=site&utm_medium=blog"
           className={styles.ctaButton}

@@ -1,32 +1,96 @@
 .newsletterCta {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.1rem;
   margin-top: 2.5rem;
-  padding: 1.25rem 1.5rem;
-  border-radius: 8px;
-  border: 1px solid #2a2a2a;
-  background-color: #161A1D;
+  padding: 1.5rem 1.75rem;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #2a2208 0%, #1a1505 55%, #141108 100%);
+  border: 1px solid rgba(212, 168, 67, 0.4);
+  border-left: 5px solid #d4a843;
+  box-shadow:
+    0 4px 28px rgba(212, 168, 67, 0.14),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
 }
 
-.newsletterCta p {
-  margin: 0 0 0.75rem;
-  font-size: 0.95rem;
-  color: var(--ifm-font-color-base);
-  line-height: 1.6;
+.emoji {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  margin-top: 0.1rem;
+  font-size: 1.25rem;
+  font-weight: 800;
+  line-height: 1;
+  color: #1a1205;
+  background: linear-gradient(180deg, #f0c75e 0%, #d4a843 100%);
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(212, 168, 67, 0.35);
 }
 
-.newsletterCta p:last-child {
-  margin-bottom: 0;
+.ctaContent {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  min-width: 0;
 }
 
 .lead {
-  margin-bottom: 0.5rem !important;
+  margin: 0;
 }
 
-.newsletterCta a {
-  color: var(--ifm-color-primary);
+.lead strong {
+  font-size: 1.1rem;
+  color: #f0c75e;
+  letter-spacing: -0.01em;
+}
+
+.body {
+  margin: 0;
+  font-size: 0.92rem;
+  color: #d8ccb4;
+  line-height: 1.6;
+}
+
+.punchline {
+  color: #f0c75e;
+  font-weight: 800;
+}
+
+.tagline {
+  color: #e8b84a;
+  font-style: normal;
   font-weight: 600;
-  text-decoration: none;
 }
 
-.newsletterCta a:hover {
-  text-decoration: underline;
+.objection {
+  margin: 0;
+  font-size: 0.82rem;
+  color: #a89878;
+  line-height: 1.5;
+}
+
+.ctaButton {
+  display: inline-block;
+  width: fit-content;
+  margin-top: 0.25rem;
+  padding: 0.55rem 1.35rem;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #1a1205;
+  background: linear-gradient(180deg, #f0c75e 0%, #c9932a 100%);
+  border-radius: 6px;
+  text-decoration: none;
+  box-shadow: 0 2px 10px rgba(201, 147, 42, 0.35);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+}
+
+.ctaButton:hover {
+  color: #0b090a;
+  text-decoration: none;
+  transform: translateY(-1px);
+  filter: brightness(1.06);
+  box-shadow: 0 4px 16px rgba(201, 147, 42, 0.45);
 }

@@ -45,24 +45,51 @@ html[data-theme='dark'] {
   padding: 0 var(--ifm-pre-padding);
 }
 
-/* Announcement bar — thin, no animation */
+/* Announcement bar — brand red, high contrast on dark site */
 div[class*='announcementBar'] {
+  --docusaurus-announcement-bar-background-color: var(--ifm-color-primary);
+  background-color: var(--ifm-color-primary) !important;
+  color: #F5F3F4;
   font-size: 0.85rem;
   line-height: 1.4;
 }
 
 div[class*='announcementBarContent'] {
   padding: 0.35rem 0;
+  color: #F5F3F4;
 }
 
 div[class*='announcementBarContent'] a {
-  color: var(--ifm-color-primary);
-  font-weight: 600;
-  text-decoration: none;
+  color: #0B090A;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 2px;
 }
 
 div[class*='announcementBarContent'] a:hover {
+  color: #161A1D;
   text-decoration: underline;
+}
+
+div[class*='announcementBarContent'] strong {
+  color: #fff;
+  font-weight: 800;
+}
+
+div[class*='announcementBarContent'] em {
+  font-style: normal;
+  font-weight: 600;
+  opacity: 0.92;
+}
+
+button[class*='announcementBarClose'] {
+  color: #F5F3F4;
+  opacity: 0.85;
+}
+
+button[class*='announcementBarClose']:hover {
+  color: #fff;
+  opacity: 1;
 }
 
 /* Enable word wrapping in code blocks */

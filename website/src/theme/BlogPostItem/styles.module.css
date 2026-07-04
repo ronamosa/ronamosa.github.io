@@ -38,6 +38,24 @@
   line-height: 1.6;
 }
 
+.ctaText strong {
+  color: var(--ifm-color-primary-light);
+  font-weight: 800;
+}
+
+.ctaText em {
+  font-style: normal;
+  font-weight: 600;
+  color: #999;
+}
+
+.ctaObjection {
+  margin: 0;
+  font-size: 0.82rem;
+  color: #888;
+  line-height: 1.5;
+}
+
 .ctaButton {
   display: inline-block;
   width: fit-content;

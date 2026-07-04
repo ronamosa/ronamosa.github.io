@@ -4,6 +4,7 @@ import Layout from '@theme/Layout';
 import Head from '@docusaurus/Head';
 import { usePluginData } from '@docusaurus/useGlobalData';
 import BeehiivEmbed from '@site/src/components/BeehiivEmbed';
+import NewsletterPitch from '@site/src/components/NewsletterPitch';
 import {
   FLAGSHIP_ESSAY,
   HOMEPAGE_TITLE,
@@ -24,26 +25,41 @@ function trackCardClick(cardName, destination) {
   }
 }
 
-function ContentCard({ icon, title, count, countLabel, description, linkText, linkTo, latestLabel }) {
+function ContentCard({ icon, title, count, countLabel, description, linkText, linkTo, featured }) {
   return (
-    <Link
-      className={styles.card}
-      to={linkTo}
-      onClick={() => trackCardClick(title, linkTo)}
-    >
+    <div className={styles.card}>
       <div className={styles.cardHeader}>
-        <span className={styles.cardIcon}>{icon}</span>
+        <span className={styles.cardIcon} aria-hidden="true">{icon}</span>
         <span className={styles.cardCount}>{count}+ {countLabel}</span>
       </div>
-      <h3 className={styles.cardTitle}>{title}</h3>
-      <p className={styles.cardDescription}>{description}</p>
-      {latestLabel && (
-        <p className={styles.latestPost}>Featured: {latestLabel}</p>
+      <Link
+        className={styles.cardBodyLink}
+        to={linkTo}
+        onClick={() => trackCardClick(title, linkTo)}
+      >
+        <h3 className={styles.cardTitle}>{title}</h3>
+        <p className={styles.cardDescription}>{description}</p>
+      </Link>
+      {featured && (
+        <p className={styles.latestPost}>
+          Featured:{' '}
+          <Link
+            to={featured.to}
+            className={styles.featuredLink}
+            onClick={() => trackCardClick(`${title} — featured`, featured.to)}
+          >
+            {featured.title}
+          </Link>
+        </p>
       )}
-      <span className={styles.cardLink}>
+      <Link
+        className={styles.cardLink}
+        to={linkTo}
+        onClick={() => trackCardClick(title, linkTo)}
+      >
         {linkText} <span className={styles.arrow}>→</span>
-      </span>
-    </Link>
+      </Link>
+    </div>
   );
 }
 
@@ -54,7 +70,12 @@ function NewsletterCard() {
         <span className={styles.cardIcon}>📬</span>
       </div>
       <h3 className={styles.cardTitle}>Newsletter</h3>
-      <p className={styles.cardDescription}>{NEWSLETTER_DESCRIPTION}</p>
+      <p className={styles.cardDescription}>
+        <NewsletterPitch
+          punchlineClassName={styles.newsletterPunchline}
+          taglineClassName={styles.newsletterTagline}
+        />
+      </p>
       <BeehiivEmbed utmSource="site" utmMedium="home" variant="compact" />
     </div>
   );
@@ -140,7 +161,7 @@ function Home() {
               description="Deep-dive essays exploring how technology intersects with power, sovereignty, and Pacific identity."
               linkText="Browse Analysis"
               linkTo="/blog/"
-              latestLabel={FLAGSHIP_ESSAY.title}
+              featured={FLAGSHIP_ESSAY}
             />
 
             <ContentCard

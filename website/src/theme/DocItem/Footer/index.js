@@ -1,5 +1,7 @@
 import React from 'react';
 import Footer from '@theme-original/DocItem/Footer';
+import NewsletterPitch from '@site/src/components/NewsletterPitch';
+import { NEWSLETTER_OBJECTION } from '@site/src/data/siteConstants';
 import styles from './styles.module.css';
 
 function trackNewsletterCtaClick() {
@@ -17,22 +19,27 @@ export default function FooterWrapper(props) {
     <>
       <Footer {...props} />
       <div className={styles.newsletterCta}>
-        <p className={styles.lead}>
-          <strong>This guide worked? Good.</strong>
-        </p>
-        <p>
-          I write like this every fortnight — AI, infra, security. What worked,
-          what broke, what the marketing didn&apos;t mention. No polish, no hype.
-          One email a fortnight. Leave whenever.
-        </p>
-        <p>
+        <span className={styles.emoji} aria-hidden="true">✓</span>
+        <div className={styles.ctaContent}>
+          <p className={styles.lead}>
+            <strong>Enjoying the docs? Good.</strong>
+          </p>
+          <p className={styles.body}>
+            <NewsletterPitch
+              context="doc"
+              punchlineClassName={styles.punchline}
+              taglineClassName={styles.tagline}
+            />
+          </p>
+          <p className={styles.objection}>{NEWSLETTER_OBJECTION}</p>
           <a
+            className={styles.ctaButton}
             href="/newsletter?utm_source=site&utm_medium=guide"
             onClick={trackNewsletterCtaClick}
           >
             Get the newsletter →
           </a>
-        </p>
+        </div>
       </div>
     </>
   );
