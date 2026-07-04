@@ -104,25 +104,25 @@ export function Pathways() {
       label: 'Engineer',
       title: 'Cloud & Infrastructure',
       desc: 'AWS, Kubernetes, AI, security, and architecture projects.',
-      to: '/docs/engineer',
+      to: '/docs/engineer/LAB/',
     },
     {
       label: 'Essays',
       title: 'Analysis & Essays',
       desc: 'AI sovereignty, digital colonialism, Pacific identity.',
-      to: '/blog',
+      to: '/blog/',
     },
     {
-      label: 'Certifications',
-      title: 'Study Notes',
-      desc: 'CKA, CKS, AWS SA Pro — exam prep and walkthroughs.',
-      to: '/docs/study',
+      label: 'AI',
+      title: 'AI & ML Projects',
+      desc: 'LLM deployment, Bedrock, private AI, and agentic RAG.',
+      to: '/docs/engineer/AI/',
     },
     {
       label: 'Homelab',
       title: 'Proxmox Hub',
       desc: 'The complete guide collection for Proxmox virtualization.',
-      to: '/docs/engineer/LAB/proxmox-hub',
+      to: '/docs/engineer/LAB/proxmox-hub/',
     },
   ];
 

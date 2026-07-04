@@ -262,7 +262,6 @@
   border: 1px solid #2a2a2a;
   border-radius: 12px;
   padding: 1.5rem;
-  text-decoration: none;
   color: inherit;
   transition: all 0.25s ease;
   display: flex;
@@ -273,6 +272,16 @@
   border-color: var(--ifm-color-primary);
   box-shadow: 0 0 30px rgba(164, 22, 26, 0.15);
   transform: translateY(-3px);
+}
+
+.cardBodyLink {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  flex: 1;
+}
+
+.cardBodyLink:hover {
   text-decoration: none;
   color: inherit;
 }
@@ -285,7 +294,8 @@
 }
 
 .cardIcon {
-  font-size: 1.25rem;
+  font-size: 2rem;
+  line-height: 1;
 }
 
 .cardCount {
@@ -320,6 +330,18 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.featuredLink {
+  color: var(--ifm-color-primary);
+  font-style: normal;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.featuredLink:hover {
+  text-decoration: underline;
+  color: var(--ifm-color-primary-light);
 }
 
 .cardLink {

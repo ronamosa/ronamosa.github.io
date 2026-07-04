@@ -6,6 +6,16 @@ description: Changes and additions for July 2026
 
 # July 2026
 
+## 📅 2026-07-04
+
+### 🎨 Design Changes
+- **Homepage cards**: Larger section emojis; featured essay on the Analysis card is now a direct link to the flagship post
+- **Announcement bar**: Red brand background with white copy and high-contrast black subscribe link — replaces the default white bar on the dark theme
+
+### 🛠️ Site Improvements
+- **Technical landing page (`/docs/`)**: Removed misleading “Recently Updated” block (file mtime, mostly stale study notes); fixed “Where to Start” pathway cards that 404’d (`/docs/engineer`, `/docs/study`); replaced Study pathway with AI Projects hub; moved Study and Books & Papers to the bottom of the docs sidebar
+  - **Link**: [Start Here](/docs/)
+
 ## 📅 2026-07-03
 
 ### 🛠️ Site Improvements
