@@ -6,6 +6,12 @@ description: Changes and additions for July 2026
 
 # July 2026
 
+## 📅 2026-07-11
+
+### 🛠️ Site Improvements
+- **Discord domain verification**: Added `/.well-known/discord` static file for HTTPS domain verification in Discord Connections
+  - Served from `website/static/.well-known/discord` via Docusaurus build output
+
 ## 📅 2026-07-04
 
 ### 🎨 Design Changes
