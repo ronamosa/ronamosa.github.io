@@ -6,6 +6,14 @@ description: Changes and additions for July 2026
 
 # July 2026
 
+## 📅 2026-07-15
+
+### 🛠️ Site Improvements
+- **TechNesians Discord redirect (`/tn`)**: Added static `static/tn/index.html` landing that fires a GA4 `page_view` (reading `utm_*` off the URL) then bounces to the TechNesians Discord invite after ~500ms
+  - Single rotation point — the invite lives only in the `DEST` variable; `/tn` and any printed QR codes never change when the invite is rotated
+  - `noindex,nofollow`; uses the site GA4 Measurement ID (`G-DMRNTVGLRC`)
+  - **Link**: [/tn](/tn)
+
 ## 📅 2026-07-11
 
 ### 🛠️ Site Improvements
