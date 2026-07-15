@@ -15,7 +15,11 @@ GLXTCH is a Discord bot for a primarily New Zealand tech community. One of its f
 
 The feature worked, but the results were repeatedly bad for exactly the kind of query it exists to answer. Asking *"Why is Dave Letele in trouble in the news?"* — Dave Letele being a well-known New Zealand boxer-turned-social-advocate — returned noise, and the summary faithfully described that noise. It happened more than once.
 
-This is a write-up of what the pipeline actually does, why the results were wrong, the fix across three layers, and the evaluation harness now standing guard so it doesn't regress. The short version: **Tavily was never the problem** — it returns excellent New Zealand results when asked correctly. The failures were upstream, in how the query was constructed and how the results were judged.
+This is a write-up of what the pipeline actually does, why the results were wrong, the fix across three layers, and the evaluation harness now standing guard so it doesn't regress.
+
+:::tip The short version
+**Tavily was never the problem** — it returns excellent New Zealand results when asked correctly. The failures were upstream, in how the query was constructed and how the results were judged.
+:::
 
 ---
 
@@ -52,7 +56,11 @@ graph LR
     style Reply fill:#2d7a4a,stroke:#5bbf8b,color:#fff
 ```
 
-That last point is the whole reason bad search is so damaging. The summariser is doing its job correctly: it summarises what it's given. If stage 2 hands it articles about the Golden State Warriors, it will write an accurate, well-voiced summary about the wrong Warriors. **Garbage in, garbage out — and the garbage looks polished on the way out.** That's why the symptom presented as "the summary is bad" when the actual fault was two stages upstream.
+That last point is the whole reason bad search is so damaging. The summariser is doing its job correctly: it summarises what it's given. If stage 2 hands it articles about the Golden State Warriors, it will write an accurate, well-voiced summary about the wrong Warriors.
+
+:::warning Garbage in, garbage out — and the garbage looks polished on the way out
+A grounded summariser faithfully reflects whatever retrieval hands it. Bad search doesn't produce an obviously broken reply; it produces a confident, well-voiced, *wrong* one. That's why the symptom presented as "the summary is bad" when the actual fault was two stages upstream.
+:::
 
 ---
 
@@ -82,7 +90,9 @@ The query set was deliberately weighted toward the danger zone: **NZ entities th
 
 Plus common-word NZ brands (Spark, Contact, Vector), NZ public figures, and a control group of unambiguously-NZ entities (All Blacks, Silver Ferns) that should always pass.
 
-The harness added one key detector: a **SUSPECT** flag for the precise failure mode — a `news` query that passed the relevance check as "clean" but returned **zero** NZ-domain results. That's a wrong-country result sailing through undetected.
+:::note The one metric that cracked it: SUSPECT
+The harness added a single boolean detector for the precise failure mode — a `news` query that passed the relevance check as "clean" but returned **zero** NZ-domain results. That's a wrong-country result sailing through undetected. This one flag turned a vague "results are bad sometimes" into "2 of 20, here they are."
+:::
 
 The first run over 20 queries was blunt about it:
 
@@ -98,7 +108,11 @@ That was enough to locate the fault in two layers, not one.
 
 ### Layer 1 — the intent classifier under-specified the query
 
-The classifier is what turns *"Why are the Warriors in the news?"* into a search string. It was emitting `"Warriors news"` — no country, no sport. Tavily, given a bare ambiguous word, quite reasonably returned the globally-dominant Warriors. In the Chiefs case it even added `"rugby"` but still no country, and Tavily returned the NFL anyway. The lesson: for a name that collides with a foreign entity, **the sport isn't enough — the country is the disambiguator**, and the classifier was omitting it 35% of the time.
+The classifier is what turns *"Why are the Warriors in the news?"* into a search string. It was emitting `"Warriors news"` — no country, no sport. Tavily, given a bare ambiguous word, quite reasonably returned the globally-dominant Warriors. In the Chiefs case it even added `"rugby"` but still no country, and Tavily returned the NFL anyway.
+
+:::info The disambiguator is the attribute the model drops
+For a name that collides with a foreign entity, **the sport isn't enough — the country is the disambiguator.** The classifier was omitting it 35% of the time. When a model produces an ambiguous query, look for the *one* attribute that would resolve the collision — it's usually the one being left out.
+:::
 
 It was also *over-rejecting*. A bare common word like "Spark" or "Contact" was being treated as a possible server question and refused, so a senior asking about the NZ telco just got silently ignored — arguably worse than a bad answer.
 
@@ -280,7 +294,9 @@ Each record freezes the classifier output, the Tavily results, *and* a heuristic
 
 Assertion 2 is the regression net. If someone later tweaks `extractDistinctiveTerms`, `isNzResult`, or `resultsLookWeak` in a way that flips a verdict — say, Hurricanes back to a false-WEAK — this test fails with the exact case named. It runs offline and for free as part of the normal `npx vitest run` suite (currently 468 tests green, 49 of them this benchmark).
 
-> ⚠️ The bot's CI job currently only builds (`npm ci` + `npm run build`) — it does not run the test suite. So this benchmark is *CI-ready* but not yet CI-*gated*; today it only fires when someone runs vitest locally. Wiring a `npm test` step into the CI workflow is the obvious next step to make the regression net automatic.
+:::warning CI-ready, not yet CI-gated
+The bot's CI job currently only builds (`npm ci` + `npm run build`) — it does not run the test suite. So this benchmark is *CI-ready* but not yet CI-*gated*; today it only fires when someone runs vitest locally. Wiring a `npm test` step into the CI workflow is the obvious next step to make the regression net automatic.
+:::
 
 ### The workflow for future changes
 
