@@ -8,6 +8,10 @@ description: Changes and additions for July 2026
 
 ## 📅 2026-07-15
 
+### 📚 Documentation Updates
+- **GLXTCH knowledge-lookup search-quality write-up**: New engineer/AI doc covering why the Discord bot's Tavily-backed lookups returned wrong-country results for NZ queries, the classifier + heuristic root causes, the three-layer fix, and the two-form eval (live + deterministic replay) that guards against regressions
+  - **Link**: [GLXTCH Knowledge Lookup — Fixing NZ Search Quality](/docs/engineer/AI/glxtch-knowledge-lookup-search-quality)
+
 ### 🛠️ Site Improvements
 - **TechNesians Discord redirect (`/tn`)**: Added static `static/tn/index.html` landing that fires a GA4 `page_view` (reading `utm_*` off the URL) then bounces to the TechNesians Discord invite after ~500ms
   - Single rotation point — the invite lives only in the `DEST` variable; `/tn` and any printed QR codes never change when the invite is rotated
