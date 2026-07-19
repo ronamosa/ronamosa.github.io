@@ -6,6 +6,11 @@ description: Changes and additions for July 2026
 
 # July 2026
 
+## 📅 2026-07-20
+
+### 🎨 Design Changes
+- **Social card refresh**: Updated Open Graph / Twitter preview image (`social-card.jpg`) used for site-wide link sharing
+
 ## 📅 2026-07-15
 
 ### 📚 Documentation Updates
