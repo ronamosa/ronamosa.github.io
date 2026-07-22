@@ -6,6 +6,12 @@ description: Changes and additions for July 2026
 
 # July 2026
 
+## 📅 2026-07-23
+
+### 🔧 Bug Fixes
+- **Chromebook guide slug typo**: Fixed the misspelled `chomebook-terminal` slug (missing `r`) — renamed to `chromebook-terminal` and added client-side redirects from both indexed typo paths (current `guides/` slug and the retired `Misc/` slug) to the corrected canonical URL, consolidating search authority onto one address
+  - **Link**: [How to Enable Linux Terminal on Chromebook](/docs/engineer/guides/chromebook-terminal)
+
 ## 📅 2026-07-20
 
 ### 🎨 Design Changes
