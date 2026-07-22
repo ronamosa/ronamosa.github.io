@@ -8,6 +8,9 @@ description: Changes and additions for July 2026
 
 ## 📅 2026-07-23
 
+### 🛠️ Site Improvements
+- **Newsletter CTA attribution — stop polluting GA4 acquisition**: Internal newsletter CTAs (announcement bar, docs footer, blog footer, in-post links) previously used `?utm_source=site&utm_medium=<surface>`, which made GA4 start a fresh `site / <surface>` session on every click and fragmented the true acquisition source. Switched these to a non-utm `?ref=<surface>` param that GA4 ignores; the `/newsletter` page maps `ref` back into the Beehiiv subscribe UTMs (with a legacy `utm_medium` fallback), so signup attribution is unchanged while GA4 source/medium reporting is no longer diluted
+
 ### 🔧 Bug Fixes
 - **Chromebook guide slug typo**: Fixed the misspelled `chomebook-terminal` slug (missing `r`) — renamed to `chromebook-terminal` and added client-side redirects from both indexed typo paths (current `guides/` slug and the retired `Misc/` slug) to the corrected canonical URL, consolidating search authority onto one address
   - **Link**: [How to Enable Linux Terminal on Chromebook](/docs/engineer/guides/chromebook-terminal)

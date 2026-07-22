@@ -75,7 +75,7 @@ export const NEWSLETTER_OBJECTION = 'Leave whenever.';
 
 /** Site-wide announcement bar — HTML allowed; keep plain-text meaning in sync with segments. */
 export const ANNOUNCEMENT_BAR_HTML =
-  'The <strong>what</strong>, not the <strong>how</strong> — AI, power, Big Tech, Pasifika lens. <em>Fortnightly. No filter.</em> <a href="/newsletter?utm_source=site&utm_medium=banner">Subscribe →</a>';
+  'The <strong>what</strong>, not the <strong>how</strong> — AI, power, Big Tech, Pasifika lens. <em>Fortnightly. No filter.</em> <a href="/newsletter?ref=banner">Subscribe →</a>';
 
 export const HOMEPAGE_TITLE =
   'Engineering Guides, AI Sovereignty & Pacific Tech | The Uncommon Engineer';

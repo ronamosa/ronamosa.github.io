@@ -99,4 +99,4 @@ There is no neutral position on politics as a Pasifika person in tech. Apolitica
 ## Related
 
 - [Start Here](/docs/) — curated entry point for guides and essays
-- [The Uncommon Engineer Newsletter](/newsletter/?utm_source=site&utm_medium=guide) — fortnightly signal on AI, power, and tech
+- [The Uncommon Engineer Newsletter](/newsletter/?ref=guide) — fortnightly signal on AI, power, and tech

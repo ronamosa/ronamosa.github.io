@@ -33,7 +33,7 @@ function NewsletterCta() {
         </p>
         <p className={styles.ctaObjection}>{NEWSLETTER_OBJECTION}</p>
         <a
-          href="/newsletter?utm_source=site&utm_medium=blog"
+          href="/newsletter?ref=blog"
           className={styles.ctaButton}
           onClick={trackNewsletterCtaClick}
         >
