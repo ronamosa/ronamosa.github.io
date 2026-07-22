@@ -26,7 +26,14 @@
 
   // page_view fires automatically and GA4 reads utm_* off this page's URL.
   // sendBeacon keeps it alive through the redirect.
-  gtag('config', 'G-DMRNTVGLRC', { page_title: 'tn-redirect' });
+  // "Redirect — " page_title + a redirect_interstitial event tag this hop so
+  // GA4 filtering can exclude it from content engagement/bounce reports — it
+  // bounces off-site by design and would otherwise read as a 96%-bounce landing.
+  gtag('config', 'G-DMRNTVGLRC', { page_title: 'Redirect — TechNesians Discord' });
+  gtag('event', 'redirect_interstitial', {
+    event_category: 'redirect',
+    redirect_target: 'technesians-discord',
+  });
 
   // Bounce after GA has had its moment. ~500ms is invisible to the user
   // and comfortably enough for the beacon to leave.
