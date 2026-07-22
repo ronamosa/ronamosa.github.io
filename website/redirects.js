@@ -14,6 +14,11 @@ module.exports = [
   // Common stale blog URL patterns → blog index
   { from: '/blog/category/all/', to: '/blog/' },
 
+  // Typo fix: "chomebook" → "chromebook". Redirect both indexed typo paths
+  // (current guides/ slug + retired Misc/ slug) to the corrected canonical URL.
+  { from: '/docs/engineer/guides/chomebook-terminal/', to: '/docs/engineer/guides/chromebook-terminal/' },
+  { from: '/docs/engineer/Misc/chomebook-terminal/', to: '/docs/engineer/guides/chromebook-terminal/' },
+
   // GA export Apr–Jul 2026: paths with traffic that 404 on current build
   ...gaRedirects,
 ];
