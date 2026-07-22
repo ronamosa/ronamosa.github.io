@@ -34,7 +34,7 @@ export default function FooterWrapper(props) {
           <p className={styles.objection}>{NEWSLETTER_OBJECTION}</p>
           <a
             className={styles.ctaButton}
-            href="/newsletter?utm_source=site&utm_medium=guide"
+            href="/newsletter?ref=guide"
             onClick={trackNewsletterCtaClick}
           >
             Get the newsletter →
