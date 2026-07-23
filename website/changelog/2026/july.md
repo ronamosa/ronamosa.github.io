@@ -10,6 +10,7 @@ description: Changes and additions for July 2026
 
 ### 🛠️ Site Improvements
 - **Newsletter CTA attribution — stop polluting GA4 acquisition**: Internal newsletter CTAs (announcement bar, docs footer, blog footer, in-post links) previously used `?utm_source=site&utm_medium=<surface>`, which made GA4 start a fresh `site / <surface>` session on every click and fragmented the true acquisition source. Switched these to a non-utm `?ref=<surface>` param that GA4 ignores; the `/newsletter` page maps `ref` back into the Beehiiv subscribe UTMs (with a legacy `utm_medium` fallback), so signup attribution is unchanged while GA4 source/medium reporting is no longer diluted
+- **Tag off-site redirect interstitials for GA4 filtering**: The by-design redirect pages (`/tn` → Discord, `/newsletter/linkedin` and the LinkedIn-inbound `/newsletter` hop → hosted Beehiiv form) bounce users off-site instantly, inflating `(not set)`/high-bounce landing metrics. Each now fires a `redirect_interstitial` GA4 event (`event_category: redirect`) and carries a `Redirect — …` page title, so they can be excluded from content engagement/bounce analysis by event, page title, or path
 
 ### 🔧 Bug Fixes
 - **Chromebook guide slug typo**: Fixed the misspelled `chomebook-terminal` slug (missing `r`) — renamed to `chromebook-terminal` and added client-side redirects from both indexed typo paths (current `guides/` slug and the retired `Misc/` slug) to the corrected canonical URL, consolidating search authority onto one address

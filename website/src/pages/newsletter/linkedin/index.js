@@ -14,12 +14,18 @@ export default function LinkedInNewsletterRedirect() {
         cta_surface: 'newsletter-linkedin-vanity',
         attribution_medium: 'post',
       });
+      // Consistent redirect tag so GA4 filtering can exclude this off-site
+      // interstitial from content engagement/bounce reports.
+      window.gtag('event', 'redirect_interstitial', {
+        event_category: 'redirect',
+        redirect_target: 'newsletter-linkedin-vanity',
+      });
     }
     window.location.replace(LINKEDIN_NEWSLETTER_URLS.post);
   }, []);
 
   return (
-    <Layout title="Subscribe" description="The Uncommon Engineer newsletter">
+    <Layout title="Redirect — Newsletter (LinkedIn)" description="The Uncommon Engineer newsletter">
       <main className={styles.newsletterPage}>
         <p className={styles.redirecting}>Redirecting to subscribe…</p>
       </main>

@@ -31,6 +31,12 @@ function Newsletter() {
           referral_source: document.referrer || 'direct',
           attribution_medium: new URL(redirectUrl).searchParams.get('utm_medium'),
         });
+        // Consistent redirect tag so GA4 filtering can exclude this off-site
+        // interstitial from content engagement/bounce reports.
+        window.gtag('event', 'redirect_interstitial', {
+          event_category: 'redirect',
+          redirect_target: 'newsletter-linkedin-inbound',
+        });
       }
       window.location.replace(redirectUrl);
       return;
@@ -53,7 +59,7 @@ function Newsletter() {
 
   if (redirecting) {
     return (
-      <Layout title="The Uncommon Engineer" description={NEWSLETTER_DESCRIPTION}>
+      <Layout title="Redirect — Newsletter (LinkedIn)" description={NEWSLETTER_DESCRIPTION}>
         <main className={styles.newsletterPage}>
           <p className={styles.redirecting}>Redirecting to subscribe…</p>
         </main>
