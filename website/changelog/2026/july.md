@@ -6,6 +6,12 @@ description: Changes and additions for July 2026
 
 # July 2026
 
+## 📅 2026-07-31
+
+### 📝 Blog Posts
+- **InternetNZ 2026 board election candidate map**: Sourced overview of all nine InternetNZ board candidates, organisational affiliations (including FSU connections), 2025 election context, STV voting guidance, and key dates — voting closes 10 August
+  - **Link**: [Two seats, nine candidates: InternetNZ board election](/blog/internetnz-2026-board-election-candidates)
+
 ## 📅 2026-07-23
 
 ### 🛠️ Site Improvements
