@@ -5,8 +5,8 @@
   "collapsed": true,
   "className": "red",
   "link": {
-    "type": "generated-index",
-    "title": "Artificial Intelligence"
+    "type": "doc",
+    "id": "engineer/AI/ai-projects-hub"
   },
   "customProps": {
     "description": "This is where you can find all the information about AI."

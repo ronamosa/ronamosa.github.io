@@ -1,3 +1,7 @@
 {
-  "label": "LAB"
+  "label": "LAB",
+  "link": {
+    "type": "doc",
+    "id": "engineer/LAB/home-lab-hub"
+  }
 }
