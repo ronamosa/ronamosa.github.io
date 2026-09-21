@@ -1,0 +1,1 @@
+"use strict";(globalThis.webpackChunkronamosa_github_io=globalThis.webpackChunkronamosa_github_io||[]).push([[86995],{86995(a,o,i){i.d(o,{createInfoServices:()=>s.v});var s=i(69932);i(10616)}}]);

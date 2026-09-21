@@ -1,0 +1,1 @@
+"use strict";(globalThis.webpackChunkronamosa_github_io=globalThis.webpackChunkronamosa_github_io||[]).push([[31926],{95561(a){a.exports=JSON.parse('{"name":"docusaurus-plugin-content-docs","id":"hackathon"}')}}]);

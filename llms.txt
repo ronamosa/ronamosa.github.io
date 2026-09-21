@@ -1,0 +1,37 @@
+# The Uncommon Engineer
+> Engineering guides, AI sovereignty essays, and Pacific tech analysis by Ron Amosa (uncommonengineer.com).
+
+Curated index for AI assistants and answer engines. Full site:
+https://www.uncommonengineer.com
+
+## Pacific AI & Data Sovereignty
+- [Pacific AI & Data Sovereignty](https://www.uncommonengineer.com/blog/pacific-ai-data-sovereignty/): Hub for essays on AI, data sovereignty, and Pasifika technology — from a Pacific engineer inside the machine.
+- [Data Sovereignty & The Cloud](https://www.uncommonengineer.com/blog/data-sovereignty-the-cloud/): Where indigenous data is stored vs. who collects and uses it — the real sovereignty fight.
+- [Pasifika And The AI Opportunity](https://www.uncommonengineer.com/blog/pasifika-and-the-ai-opportunity/): How AI tools can close the knowledge-access gap that has limited Pasifika advancement.
+- [Beyond Netflix: AI Literacy Among Indigenous Tech Leaders](https://www.uncommonengineer.com/blog/beyond-netflix-critical-need-for-ai-literacy-among/): Why surface-level AI knowledge among indigenous tech leaders is a sovereignty risk.
+- [The Knowledge Gap: Rethinking the Digital Divide for Pasifika](https://www.uncommonengineer.com/blog/knowledge-gap-rethinking-digital-divide-for-pasifika/): The digital divide for Pasifika is a knowledge gap, not a device gap.
+- [There is no Pasifika in Tech Problem](https://www.uncommonengineer.com/blog/there-no-pasifika-in-tech-problem/): Reframing Pasifika underrepresentation in technology away from deficit narratives.
+- [Pasifika Need Tech Leaders Who Are Technical](https://www.uncommonengineer.com/blog/pasifika-need-tech-leaders-who-technical/): Why Pasifika community tech projects need CTO-level technical leadership, not salespeople.
+- [The Inevitability of AI](https://www.uncommonengineer.com/blog/the-inevitability-of-ai/): Questioning whose agenda gets slipstreamed into blind acceptance of Big Tech’s AI roadmap.
+- [Getting Paid For Your Data Sounds Great](https://www.uncommonengineer.com/blog/getting-paid-for-your-data-sounds-great/): Data marketplaces vs. what real indigenous data sovereignty looks like for communities.
+- [AI Is a Conversation](https://www.uncommonengineer.com/blog/ai-is-a-conversation/): Bad AI results are usually a communication problem, not a technology problem.
+- [The AI Resistance](https://www.uncommonengineer.com/blog/the-ai-resistance/): Not pro-AI, not anti-AI — on real value, real harm, and why abstaining is not the move.
+- [A Samoan Hacker’s Manifesto](https://www.uncommonengineer.com/blog/a-samoan-hackers-manifesto/): Identity, rebellion, and the Pasifika geek who never fit the stereotype.
+- [The Blue Pill Doesn’t Work Here](https://www.uncommonengineer.com/blog/the-blue-pill-doesnt-work-here/): There is no neutral position on politics as a Pasifika person in tech.
+
+## Flagship Analysis (#ActualAI)
+- [AI Is a Conversation](https://www.uncommonengineer.com/blog/ai-is-a-conversation/): Collaborative thinking with LLMs — context, communication, and what actually works.
+- [The Inevitability of AI](https://www.uncommonengineer.com/blog/the-inevitability-of-ai/): Scrutinising the “inevitable AI” narrative pushed by Big Tech.
+- [Getting Paid For Your Data Sounds Great](https://www.uncommonengineer.com/blog/getting-paid-for-your-data-sounds-great/): Data marketplaces and indigenous data sovereignty.
+- [AI-Native Is The New Digital Native](https://www.uncommonengineer.com/blog/ai-native-is-the-new-digital-native/): What “AI-native” actually means for the next generation.
+- [Everyone Was Logged Into the Same Session](https://www.uncommonengineer.com/blog/everyone-was-logged-into-the-same-session/): Shared AI sessions, security boundaries, and what went wrong.
+
+## Top Technical Guides
+- [Start Here](https://www.uncommonengineer.com/docs/): Curated entry point — guides, essays, and the working lab book.
+- [Proxmox Homelab Hub](https://www.uncommonengineer.com/docs/engineer/LAB/proxmox-hub/): Cloud-init, Packer, Terraform, and LVM on Proxmox.
+- [Complete Pi-hole Guide](https://www.uncommonengineer.com/docs/engineer/LAB/pihole-guide/): Pi-hole with Unbound recursive DNS in Docker.
+- [Kubernetes Guides](https://www.uncommonengineer.com/docs/engineer/K8s/): Cluster setup, workloads, and operations.
+- [About Ron Amosa](https://www.uncommonengineer.com/about/): Author — Senior Solutions Architect, Pasifika engineer, The Uncommon Engineer.
+
+## Newsletter
+- [The Uncommon Engineer Newsletter](https://www.uncommonengineer.com/newsletter/): The what, not the how — AI, power, Big Tech, Pasifika lens. Fortnightly. No filter.
