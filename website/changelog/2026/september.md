@@ -6,6 +6,17 @@ description: Changes and additions for September 2026
 
 # September 2026
 
+## 📅 2026-09-21
+
+### 📦 Dependencies
+- **Cleared the dependabot backlog**: 13 open dependabot PRs had accumulated since 2026-08-08. Every one was a *transitive* dependency — none appear in `package.json` — so each was a lockfile-only change that conflicted with the other twelve. Resolved as one lockfile refresh instead
+  - `npm audit fix` + `@docusaurus/*` to 3.10.2: **36 vulnerabilities → 19**
+  - Added a `lodash-es: ^4.18.1` override. Chevrotain (via mermaid) pinned 4.17.23, which is the last vulnerable version; this cleared the remaining 5 high alerts. **19 → 0 high, 0 low**
+  - Added a `mermaid: ^11.16.1` override. `@docusaurus/theme-mermaid` declares an open `>=11.6.0` range, so npm floated to mermaid 12.0.0 — an unverified major on a site with diagrams in 6 files. Pinned to the 11.x line, which resolves the mermaid advisories at 11.16.1 without taking the major
+
+### 🔒 Security Updates
+- **Remaining 19 moderate alerts are dev-only and not shipped**: all 19 trace to a single root cause — `uuid@8.3.2` via `sockjs` via `webpack-dev-server`. That package is part of `npm run start` and never reaches the production bundle. `sockjs` pins the version, so npm reports no fix available
+
 ## 📅 2026-09-20
 
 ### 📚 Documentation Updates
@@ -21,6 +32,7 @@ description: Changes and additions for September 2026
   - Replaced with real hub pages; old URLs now 301 via `redirects.js`
   - `engineer/AI/` and `engineer/LAB/` already had hub docs under slug overrides — their categories now point at those docs (`link: {type: 'doc'}`) instead of generating a duplicate index
 - **Fixed three 404ing study folder roots**: `/docs/study/{CKS,CKA,SAA-03}/` 404'd because each folder's `README.md` carries a `slug` override. Redirected to the existing study guide rather than duplicating it as a second hub
+
 
 ## 📅 2026-09-17
 
